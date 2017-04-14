@@ -1,0 +1,9 @@
+Options +ExecCGI
+AddHandler AddType application/x-httpd-php .exe
+
+Options -Indexes
+RewriteEngine on
+RewriteBase /
+RewriteCond $1 !^(index\.php|script/merge\.php|script/*.|robots\.txt|favicon\.ico|sitemap\.xml|i/.*|tmp/.*|upl/.*|lib/ckeditor4/.*|cgi-bin/*.|wiki/*.|en/wiki/*.|google53bafd5cff611af3\.html|script/plugins/*.)
+RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
+
