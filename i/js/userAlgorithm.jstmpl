@@ -1,0 +1,46 @@
+function UserAlgorithm(graph, app)
+{
+    BaseAlgorithm.apply(this, arguments);
+}
+
+
+// inheritance.
+UserAlgorithm.prototype = Object.create(BaseAlgorithm.prototype);
+
+
+UserAlgorithm.prototype.getName = function(local)
+{
+    return local == "ru" ? "Пользовательский алгоритм" : "User algorithm";
+}
+
+UserAlgorithm.prototype.getId = function()
+{
+    return "user.algorithm";
+}
+
+// @return message for user.
+UserAlgorithm.prototype.getMessage = function(local)
+{
+    return local == "ru" ? "Пользовательский алгоритм работает" : "User algorithm is working";
+}
+
+UserAlgorithm.prototype.result = function(resultCallback)
+{
+    // place your algorithm here
+    return null;
+}
+
+UserAlgorithm.prototype.getObjectSelectedGroup = function(object)
+{
+    return 0;
+}
+
+
+// Factory for algorithm.
+function CreateUserAlgorithm(graph, app)
+{
+    return new UserAlgorithm(graph)
+}
+
+// Register connected component.
+RegisterAlgorithm (CreateUserAlgorithm);

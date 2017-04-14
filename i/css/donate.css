@@ -1,0 +1,42 @@
+
+    .ProgresssBarLink
+    {
+        text-decoration:none;
+        color:#459ef8;
+    }
+
+    .ProgressBar
+    {
+        width:720px;
+        width:720px;
+        height:32px;
+        background-color:#b9e3ff!important;
+        font-size:20px;
+        line-height:1;
+    }
+
+    .ProgressBarFill
+    {
+        height:100%;
+        background-color:#459ef8!important
+    }
+
+    .ProgressBarText
+    {
+        position: relative;
+        left: 0px;
+        z-index: 1;
+        width:100%;
+        text-align: center;
+        color: #0649a6!important;
+    }
+
+
+.share-buttons{
+	list-style: none;
+	padding: 0;
+}
+
+.share-buttons li{
+	display: inline;
+}

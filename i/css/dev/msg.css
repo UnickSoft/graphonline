@@ -1,0 +1,31 @@
+
+    /**
+     * Стилизация сообщений выводящихся php-функциями Msg() MsgOk() MsgErr()
+     *
+     * @author Zmi
+     */
+
+
+    .msg, .msg-err, .msg-ok
+    {
+        cursor: pointer;
+        font-size: 14px;
+        margin: 5px 0;
+        padding: 5px 12px;
+        .m-border-radius(3px);
+        border: 1px solid #BBB;
+        color: #363E49;
+        line-height: 20px;
+    }
+
+    .msg-ok
+    {
+        border: 1px solid #52AB27;
+        color: #52AB27;
+    }
+
+    .msg-err
+    {
+        border: 1px solid #CC0000;
+        color: #CC0000;
+    }

@@ -1,0 +1,26 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+author=
+charset=UTF-8
+csum=
+ctime=1471354262
+description=How to save graph in Graph Online 
+host=128.68.33.133
+name=Help.SaveGraph
+rev=4
+targets=
+text=(:Title Save graph :)%0a(:Description How to save graph in Graph Online :)%0a%0a!! Save graph %0a%0aChoosing Graph in the menu bar and then Save, you will save a graph on the server. At the same time you will see this popup window:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_31_40.png%0a%0aThe link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/en/?graph=FXsDdtxEEWZVWLoZ]]%0a%0a%0a!! How to save the image of the graph %0a%0aIf you choose Graph -> Save image in the menu bar, you will save the image of the graph on the server. In the popup window:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_32_34.png%0a%0aYou may save the image into a file or post it on the social media.  Here is an example:%0a%0ahttp://graphonline.ru/tmp/saved/qr/qrtLnAMVnkRHwkKF.png
+time=1471637564
+title=Save graph 
+author:1471637564=
+diff:1471637564:1471358850:=10c10%0a%3c The link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/en/?graph=FXsDdtxEEWZVWLoZ]]%0a---%0a> The link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a
+host:1471637564=128.68.33.133
+author:1471358850=
+diff:1471358850:1471354345:=6,7c6,7%0a%3c Choosing Graph in the menu bar and then Save, you will save a graph on the server. At the same time you will see this popup window:%0a%3c %0a---%0a> Выбрав пункт меню Граф -> Сохранить, вы автоматически сохраните граф на сервере. При этом вы увидите диалоговое окно:%0a> %0a10,16c10,16%0a%3c The link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a%3c %0a%3c %0a%3c !! How to save the image of the graph %0a%3c %0a%3c If you choose Graph -> Save image in the menu bar, you will save the image of the graph on the server. In the popup window:%0a%3c %0a---%0a> Ссылку на граф вы можете отправить себе на почту или опубликовать в социальных сетях. Пример ссылки на Граф: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a> %0a> %0a> !! Сохранение изображения графа%0a> %0a> Если вы выберете пункт меню Граф -> сохранить изображение, вы сохраните изображение графа на сервере. В открывшемся диалоге:%0a> %0a19c19%0a%3c You may save the image into a file or post it on the social media.  Here is an example:%0a---%0a> Вы можете сохранить изображение в файл или опубликовать в социальных сетях. Пример изображения графа:%0a
+host:1471358850=128.68.33.133
+author:1471354345=
+diff:1471354345:1471354262:=1,4c1,4%0a%3c (:Title Save graph :)%0a%3c (:Description How to save graph in Graph Online :)%0a%3c %0a%3c !! Save graph %0a---%0a> (:Title Сохранение графа :)%0a> (:Description Как сохранить граф в Граф Онлайн:)%0a> %0a> !! Сохранение графа%0a
+host:1471354345=128.68.33.133
+author:1471354262=
+diff:1471354262:1471354262:=1,21d0%0a%3c (:Title Сохранение графа :)%0a%3c (:Description Как сохранить граф в Граф Онлайн:)%0a%3c %0a%3c !! Сохранение графа%0a%3c %0a%3c Выбрав пункт меню Граф -> Сохранить, вы автоматически сохраните граф на сервере. При этом вы увидите диалоговое окно:%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/2016_01_22_15_31_40.png%0a%3c %0a%3c Ссылку на граф вы можете отправить себе на почту или опубликовать в социальных сетях. Пример ссылки на Граф: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a%3c %0a%3c %0a%3c !! Сохранение изображения графа%0a%3c %0a%3c Если вы выберете пункт меню Граф -> сохранить изображение, вы сохраните изображение графа на сервере. В открывшемся диалоге:%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/2016_01_22_15_32_34.png%0a%3c %0a%3c Вы можете сохранить изображение в файл или опубликовать в социальных сетях. Пример изображения графа:%0a%3c %0a%3c http://graphonline.ru/tmp/saved/qr/qrtLnAMVnkRHwkKF.png%0a\ No newline at end of file%0a
+host:1471354262=128.68.33.133

@@ -1,0 +1,16 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36 OPR/29.0.1795.47
+author=Petko
+charset=UTF-8
+csum=include Site.Site
+ctime=1182106004
+host=109.111.148.98
+name=SiteAdmin.SiteAdmin
+passwdattr=@lock
+passwdedit=@lock
+passwdread=@lock
+rev=8
+targets=
+text=(:include Site.Site:)%0a(:title Site Administration:)(:Summary: Site Administration:)%0a
+time=1430482683
+title=Site Administration

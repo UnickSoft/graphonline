@@ -1,0 +1,59 @@
+/**
+Copyright 2013 LoopIndex, This file is part of the Track Changes plugin for CKEditor.
+
+The track changes plugin is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2, as published by the Free Software Foundation.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with this program as the file gpl-2.0.txt. If not, see http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+Written by (David *)Frenkiel - https://github.com/imdfl
+**/
+.ice-del {
+	display: none;
+}
+
+.ice-ins {
+	white-space:pre-wrap;
+}
+
+.ICE-Tracking .ice-ins,
+.ICE-Tracking .ice-del {
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #000;
+	padding: 1px 0 2px;
+}
+
+.ICE-Tracking .ice-ins, .ICE-Tracking .ice-ins p  {
+	background-color: #e5ffcd !important;
+}
+
+.ICE-Tracking .ice-ins.ice-cts-1, .ICE-Tracking .ice-ins.ice-cts-1 p  {
+	background-color: #e5ffcd !important;
+}
+
+.ICE-Tracking .ice-ins.ice-cts-2, .ICE-Tracking .ice-ins.ice-cts-2 p  {
+	background-color: #e3ffff !important;
+}
+
+.ICE-Tracking .ice-ins.ice-cts-3, .ICE-Tracking .ice-ins.ice-cts-3 p  {
+	background-color: #d1eeee !important;
+}
+
+
+.ICE-Tracking .ice-del {
+	display: inline;
+	text-decoration: line-through;
+	color: #555;
+	background-color: #faf1f1 !important;
+}
+
+.ICE-Tracking .ice-del.ice-cts-1 {
+	background-color: #faf1f1 !important;
+}
+
+.ICE-Tracking .ice-del.ice-cts-2 {
+	background-color: #ffe1e1 !important;
+}
+
+.ICE-Tracking .ice-del.ice-cts-3 {
+	background-color: #ffdddd !important;
+}

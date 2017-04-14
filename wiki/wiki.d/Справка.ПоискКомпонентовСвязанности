@@ -1,0 +1,18 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+author=
+charset=UTF-8
+csum=
+ctime=1471934669
+host=128.68.33.133
+name=Справка.ПоискКомпонентовСвязанности
+rev=2
+targets=
+text=(:redirect Справка/ПоискКомпонентовСвязности:)
+time=1471934742
+author:1471934742=
+diff:1471934742:1471934669:=1c1%0a%3c (:redirect Справка/ПоискКомпонентовСвязности:)%0a\ No newline at end of file%0a---%0a> (:redirect Справка/Поиск компонентов связности:)%0a\ No newline at end of file%0a
+host:1471934742=128.68.33.133
+author:1471934669=
+diff:1471934669:1471934669:=1d0%0a%3c (:redirect Справка/Поиск компонентов связности:)%0a\ No newline at end of file%0a
+host:1471934669=128.68.33.133

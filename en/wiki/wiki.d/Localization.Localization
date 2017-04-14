@@ -1,0 +1,24 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+author=Bonner
+charset=UTF-8
+csum=iPebZcXL6
+ctime=1484915884
+host=188.143.232.32
+name=Localization.Localization
+rev=3
+targets=
+text=That's an expert answer to an %3ca href="http://jheqfiusmwl.com">inritesteng%3c/a> question
+time=1485188420
+author:1485188420=Bonner
+csum:1485188420=iPebZcXL6
+diff:1485188420:1485016111:=1c1%0a%3c That's an expert answer to an %3ca href="http://jheqfiusmwl.com">inritesteng%3c/a> question%0a\ No newline at end of file%0a---%0a> %3ca href="http://bammgy.com">Thikinng%3c/a> like that is really amazing%0a\ No newline at end of file%0a
+host:1485188420=188.143.232.32
+author:1485016111=Fannie
+csum:1485016111=qEtzNk7OfwJD
+diff:1485016111:1484915884:=1c1%0a%3c %3ca href="http://bammgy.com">Thikinng%3c/a> like that is really amazing%0a\ No newline at end of file%0a---%0a> Your's is the ingtllieent approach to this issue.%0a\ No newline at end of file%0a
+host:1485016111=188.143.232.32
+author:1484915884=Rocky
+csum:1484915884=my5oEDkPuN
+diff:1484915884:1484915884:=1d0%0a%3c Your's is the ingtllieent approach to this issue.%0a\ No newline at end of file%0a
+host:1484915884=188.143.232.32

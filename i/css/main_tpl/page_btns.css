@@ -1,0 +1,12 @@
+
+    .page-btns
+    {
+        padding-top: 12px;
+        .btn
+        {
+            .fa
+            {
+                margin-right: 3px;
+            }
+        }
+    }

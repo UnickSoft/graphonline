@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=OliverBetz
+charset=UTF-8
+csum=
+host=85.171.160.186
+name=PmWiki.SitePreferences
+rev=12
+targets=Site.Preferences,PmWiki.AccessKeys,Site.EditForm
+text=(:Summary: Customisable browser setting preferences: Access keys, edit form:)%0aThe page [[{$SiteGroup}.Preferences]] contains customisable browser preference settings.%0aThese include [[access keys]] (keyboard shortcuts to certain actions like edit, history, browse) and settings of the [[{$SiteGroup}.EditForm]] (width and height of the edit textarea) as well as the name of the edit form in use.%0a%0aA different page than [[{$SiteGroup}.Preferences]] can be chosen by making a copy of that page under a new name, customising it, and setting a cookie which will point to this page for the browser being used, through %0a%0a   ?setprefs=`SomeGroup.`CustomPreferences %0a%0a`SomeGroup.`CustomPreferences being the name of the new customised preference page.%0a%0a!!Notes and Comments%0a%0aNote that in order to enable parsing of [[{$SiteGroup}.Preferences]] by default, a line like the following needs to be added to local/config.php:%0a%0a XLPage('prefs', "Site.Preferences");%0a
+time=1315670897

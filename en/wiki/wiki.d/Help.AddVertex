@@ -1,0 +1,20 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+author=
+charset=UTF-8
+csum=
+ctime=1470412431
+description=How to add a vertex in Graph Online
+host=128.68.33.133
+name=Help.AddVertex
+rev=2
+targets=
+text=(:Title Add vertex:)%0a(:Description How to add a vertex in Graph Online:)%0a%0a!!! Vertex%0a%0aA graph consists of vertices and edges. Edges connect vertices. Usually vertices have their own label or name. Occasionally vertices may be distinguished by colour, for instance while painting the graph.%0a%0a!!! How to add vertices%0a%0aIn order to add vertices you have to select "Add vertex" in the menu bar and click on the work area where you want to place a vertex.%0a%0a%0aIf you add new vertices in the adjacency matrix or incidence matrix, then they will appear in the working area. %0a%0a!!! Vertices enumeration%0a%0aIn the help window you may choose how to index the vertices. There are 4 types:%0a%0a%0a# 1, 2, 3... - numbers.%0a# A, B, C... - in Latin letters.%0a# А, Б, В... - in Cyrillic letters.%0a# Α, Β, Γ, Δ... - in Greek letters.
+time=1470941362
+title=Add vertex
+author:1470941362=
+diff:1470941362:1470412431:=6,7c6,7%0a%3c A graph consists of vertices and edges. Edges connect vertices. Usually vertices have their own label or name. Occasionally vertices may be distinguished by colour, for instance while painting the graph.%0a%3c %0a---%0a> A graph consists of vertices and directed lines. Directed lines connect vertices. Usually vertices have their own label or name. Occasionally vertices may be distinguished by colour, for instance while painting the graph.%0a> %0a10c10%0a%3c In order to add vertices you have to select "Add vertex" in the menu bar and click on the work area where you want to place a vertex.%0a---%0a> In order to add vertices you have to select "Add vertex" in the menu bar and click on the work are where you'd line to place a vertex.%0a
+host:1470941362=128.68.33.133
+author:1470412431=
+diff:1470412431:1470412431:=1,23d0%0a%3c (:Title Add vertex:)%0a%3c (:Description How to add a vertex in Graph Online:)%0a%3c %0a%3c !!! Vertex%0a%3c %0a%3c A graph consists of vertices and directed lines. Directed lines connect vertices. Usually vertices have their own label or name. Occasionally vertices may be distinguished by colour, for instance while painting the graph.%0a%3c %0a%3c !!! How to add vertices%0a%3c %0a%3c In order to add vertices you have to select "Add vertex" in the menu bar and click on the work are where you'd line to place a vertex.%0a%3c %0a%3c %0a%3c If you add new vertices in the adjacency matrix or incidence matrix, then they will appear in the working area. %0a%3c %0a%3c !!! Vertices enumeration%0a%3c %0a%3c In the help window you may choose how to index the vertices. There are 4 types:%0a%3c %0a%3c %0a%3c # 1, 2, 3... - numbers.%0a%3c # A, B, C... - in Latin letters.%0a%3c # А, Б, В... - in Cyrillic letters.%0a%3c # Α, Β, Γ, Δ... - in Greek letters.%0a\ No newline at end of file%0a
+host:1470412431=128.68.33.133

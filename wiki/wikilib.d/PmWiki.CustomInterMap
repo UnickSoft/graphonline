@@ -1,0 +1,9 @@
+version=pmwiki-2.2.34 ordered=1 urlencoded=1
+author=Petko
+charset=UTF-8
+csum=redirect InterMap
+name=PmWiki.CustomInterMap
+rev=50
+targets=PmWiki.InterMap
+text=(:redirect InterMap:)%0aSummary:Redirects to [[PmWiki.InterMap]].
+time=1320750931

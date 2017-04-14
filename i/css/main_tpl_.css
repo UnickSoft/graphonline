@@ -1,0 +1,85 @@
+
+    html
+    {
+        position: relative; // Для футера
+        min-height: 100%;   // Для футера
+
+        background: #eee;
+    }
+
+    @footer-height: 90px;
+
+    body
+    {
+        margin-bottom: @footer-height - 10px; // Для футера
+
+        // Чтобы заработал background в html:
+        //background-color: transparent; 
+        //background: transparent;
+    }
+    
+    .header 
+    {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e5e5e5;
+
+        .logo 
+        {
+            padding-bottom: 19px;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 40px;
+            font-size: 32px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .logo, 
+        .logo:hover
+        {
+            text-decoration: none;
+        }
+
+        .langs
+        {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 7px;
+            margin-left: 24px;
+
+            background: #eee;
+            .m-border-radius(3px);
+            padding: 3px 4px;
+        }
+    }
+
+    .content
+    {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    
+    .footer 
+    {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        .container
+        {
+            //padding-top: 29px;
+            //padding-bottom: 20px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+
+            color: #777;
+            border-top: 1px solid #e5e5e5;
+            height: @footer-height;
+        }
+    }
+    
+    .page-center-back
+    {
+        background: #fff;
+    }

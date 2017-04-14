@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=fix entities which appear broken in utf-8
+host=85.171.160.186
+name=PmWiki.SpecialCharacters
+rev=14
+targets=PmWiki.SpecialCharactersList,PmWiki.Characters
+text=When creating pages it's common to use commercial trademarks, copyright, umlaut, and other non-keyboard symbols.  therefore it's important that you have the means to input these special characters.  %0a%0a!!!ISO Standard codes%0aPmWiki supports the HTML special character listings by the w3c. [[http://www.w3.org/MarkUp/html-spec/html-spec_13.html |  W3C Page of Special Character codes ISO standard.]]%0a%0aHere are some samples: %0a(:markup:)[=%0a&#169; | &#188; | &#189; | &#174; | &#181; | &#168; =]%0a%0a(:markup:)[=%0a&#198; | 32&#176; | Un&#239;ted St&#228;tes | &#182; | &#165;Yen | PmWiki&#8482;=]%0a%0aFor a nice table of the same codes that show the codes with the output go to the [[http://www.nobledesktop.com/specialcharacters.html | Noble Desktop]] special character page. %0a%0a!!!Other ways to do it: %0a%0a!!!!Character Map%0aFind the "Character Map" utility in your computer's System Tools folder.  Click the symbol you're interested in, and note the keystroke information at the bottom of the box.  You execute these by ''holding "Alt"'' while keying the numbers ''on the numerical keypad'' of your keyboard (not the numbers across the top of the board).%0a%0a[=&#169;=] = Alt+0169 = &#169; | [=&#174;=] = Alt+0174 =  &#174; | [=&#176;=] = Alt+0176 = &#176; (degrees).%0a%0a!!!!Paste%0a*Use Word or another desktop application to create your text with the special characters that you want.  Copy and paste the text to the wiki page you're editing or creating.%0a*Find an instance of a special character in an online document; copy and paste the character to your wiki page:  ©%0a%0aThere's a list of special characters at [[PmWiki:SpecialCharactersList]].%0aThere's another illustration at [[PmWiki:Characters]]
+time=1315670897

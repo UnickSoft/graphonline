@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=the double apostrophe is interpreted as italics, needs fixing
+host=85.171.160.186
+name=Site.PageActions
+rev=47
+targets=Site.PageActions
+text=(:Summary:Contains the '[[PmWiki/AvailableActions|action]]' links (like Browse, Edit, History, etc.), placed at the top of the page, see [[PmWiki/site page actions]]:)%0a(:comment This page can be somewhat complex to figure out the first time you see it. Its contents are documented at PmWiki.SitePageActions if you need help. :)%0a* %25item rel=nofollow class=browse    accesskey='$[ak_view]'%25      [[{*$FullName}               | $[View] ]]%0a* %25item rel=nofollow class=edit      accesskey='$[ak_edit]'%25      [[{*$FullName}?action=edit   | $[Edit] ]]%0a* %25item rel=nofollow class=diff      accesskey='$[ak_history]'%25   [[{*$FullName}?action=diff   | $[History] ]]%0a(:if auth upload:)%0a* %25item rel=nofollow class=upload    accesskey='$[ak_attach]'%25    [[{*$FullName}?action=upload | $[Attach] ]]%0a(:ifend:)%0a* %25item rel=nofollow class=print     accesskey='$[ak_print]'%25     [[{*$FullName}?action=print  | $[Print] ]]%0a(:if group Site,SiteAdmin,Cookbook,Profiles,PmWiki*:) (:comment delete if and ifend to enable backlinks:)%0a* %25item rel=nofollow class=backlinks accesskey='$[ak_backlinks]'%25 [[{*$Name}?action=search&q=link={*$FullName} | $[Backlinks] ]]%0a(:ifend:)%0a(:if enabled AuthPw:)%0a* %25item rel=nofollow class=logout    accesskey="$[ak_logout]"%25''  [-[[{*$FullName}?action=logout | $[Logout] ]]-]''%0a(:ifend:)
+time=1315674224

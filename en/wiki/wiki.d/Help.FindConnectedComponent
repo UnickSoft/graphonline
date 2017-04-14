@@ -1,0 +1,36 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+author=Zaiyah
+charset=UTF-8
+csum=pKWCtX9tVo
+ctime=1471539859
+host=188.143.232.32
+name=Help.FindConnectedComponent
+rev=7
+targets=
+text=I found myself nodding my noggin all the way %3ca href="http://dymhdevwber.com">thuhgro.%3c/a>
+time=1485188765
+author:1485188765=Zaiyah
+csum:1485188765=pKWCtX9tVo
+diff:1485188765:1485016511:=1c1%0a%3c I found myself nodding my noggin all the way %3ca href="http://dymhdevwber.com">thuhgro.%3c/a>%0a\ No newline at end of file%0a---%0a> Articles like these put the consumer in the driver seat-very %3ca href="http://tbdmnndsq.com">imttpoanr.%3c/a>%0a\ No newline at end of file%0a
+host:1485188765=188.143.232.32
+author:1485016511=Kalea
+csum:1485016511=rgV4crm3a1i
+diff:1485016511:1484937684:=1c1%0a%3c Articles like these put the consumer in the driver seat-very %3ca href="http://tbdmnndsq.com">imttpoanr.%3c/a>%0a\ No newline at end of file%0a---%0a> &quot;Visto che Nicollier Ã¨ uno degli astronauti abilitati a compiere passeggiate spaziali, magari riusciamo a farci dire se Ã¨ vero che alcuni astronauti si fanno togliere le unghie delle dita per non farsele maciullare dai guanti della tuta spheialz.&quot;Arga, che schifo solo l&#39;idea! Spero che non sia vero! (Anche perchÃ© in caso contrario la mia curiositÃ  morbosa mi spingerebbe a sapere COME se le fanno togliere)%0a\ No newline at end of file%0a
+host:1485016511=188.143.232.32
+author:1484937684=Janesa
+csum:1484937684=bfnHV74WXO
+diff:1484937684:1471623610:=1c1,16%0a%3c &quot;Visto che Nicollier Ã¨ uno degli astronauti abilitati a compiere passeggiate spaziali, magari riusciamo a farci dire se Ã¨ vero che alcuni astronauti si fanno togliere le unghie delle dita per non farsele maciullare dai guanti della tuta spheialz.&quot;Arga, che schifo solo l&#39;idea! Spero che non sia vero! (Anche perchÃ© in caso contrario la mia curiositÃ  morbosa mi spingerebbe a sapere COME se le fanno togliere)%0a\ No newline at end of file%0a---%0a> (:Title Find connected component :)%0a> (:Description How to find connected component using Graph Online:)%0a> %0a> !! Connected component%0a> %0a> Connected component is highly connected subgraph of the graph. Thus, every graph may be divided to several connected components.%0a> %0a> !! Find connected components%0a> %0a> In order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a unique number. %0a> %0a> http://graphonline.ru/tmp/saved/XU/XUoFkErYflWXnqGO.png%0a> %0a> !! Algorithm%0a> %0a> Graph Online finds connected component for non-oriented graphs and it finds weakly connected component for oriented graphs. Breadth-first search is used for search. Implementation on JavaScript could be seen here: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a
+host:1484937684=188.143.232.32
+author:1471623610=
+diff:1471623610:1471623551:=10c10%0a%3c In order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a unique number. %0a---%0a> In order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a peculiar number. %0a
+host:1471623610=128.68.33.133
+author:1471623551=
+diff:1471623551:1471555118:=16c16%0a%3c Graph Online finds connected component for non-oriented graphs and it finds weakly connected component for oriented graphs. Breadth-first search is used for search. Implementation on JavaScript could be seen here: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a---%0a> Graph Online finds connected component for non-oriented graphs and it finds Для неориентированных графов сервис находит компонент связности графа, а для ориентированных компонент слабо-связанности графа. Для поиска используется обход графа в ширину. Реализацию на JavaScript вы можете посмотреть по ссылке: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a
+host:1471623551=128.68.33.133
+author:1471555118=
+diff:1471555118:1471539859:=14,16c14,16%0a%3c !! Algorithm%0a%3c %0a%3c Graph Online finds connected component for non-oriented graphs and it finds Для неориентированных графов сервис находит компонент связности графа, а для ориентированных компонент слабо-связанности графа. Для поиска используется обход графа в ширину. Реализацию на JavaScript вы можете посмотреть по ссылке: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a---%0a> !! Алгоритм%0a> %0a> Для неориентированных графов сервис находит компонент связности графа, а для ориентированных компонент слабо-связанности графа. Для поиска используется обход графа в ширину. Реализацию на JavaScript вы можете посмотреть по ссылке: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a
+host:1471555118=128.68.33.133
+author:1471539859=
+diff:1471539859:1471539859:=1,16d0%0a%3c (:Title Find connected component :)%0a%3c (:Description How to find connected component using Graph Online:)%0a%3c %0a%3c !! Connected component%0a%3c %0a%3c Connected component is highly connected subgraph of the graph. Thus, every graph may be divided to several connected components.%0a%3c %0a%3c !! Find connected components%0a%3c %0a%3c In order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a peculiar number. %0a%3c %0a%3c http://graphonline.ru/tmp/saved/XU/XUoFkErYflWXnqGO.png%0a%3c %0a%3c !! Алгоритм%0a%3c %0a%3c Для неориентированных графов сервис находит компонент связности графа, а для ориентированных компонент слабо-связанности графа. Для поиска используется обход графа в ширину. Реализацию на JavaScript вы можете посмотреть по ссылке: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a
+host:1471539859=128.68.33.133

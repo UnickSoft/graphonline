@@ -1,0 +1,12 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=fix link
+host=85.171.160.186
+name=PmWiki.WikiPage
+post= Save
+rev=18
+targets=PmWiki.WikiStructure,PmWiki.WikiWikiWeb,PmWiki.PageFileFormat
+text=(:Summary: Wiki page information:)%0aA WikiPage is simply the basic building block of a WikiWikiWeb that contains text and images. See [[WikiStructure]]s and [[WikiWikiWeb]] for more information.%0a%0aWiki pages can have an edit template to predefine initial content, see [[Cookbook:Edit Templates]] [-{Cookbook/EditTemplates$:Summary}-]%0a%0aWiki pages are stored in individual flat files, see [[PmWiki/Page File Format]] and [[(PmWiki:)Flat File Advantages]].%0a%0a%0a%0a%0a
+time=1315670897

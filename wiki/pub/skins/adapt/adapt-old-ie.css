@@ -1,0 +1,203 @@
+body { color: #333; }
+
+.pure-img-responsive { max-width: 100%; height: auto; }
+
+/*
+Add transition to containers so they can push in and out.
+*/
+#layout, #menu, .menu-link {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+/*
+This is the parent `<div>` that contains the menu and the content area.
+Hamburger Menu styles are first, wider @media styles are below.
+*/
+#layout { position: relative; padding-left: 0; }
+#layout.active { position: relative; left: 180px; }
+#layout.active #menu { left: 180px; width: 180px; }
+#layout.active .menu-link { left: 180px; }
+
+/*
+The content `<div>` is where all your content goes.
+*/
+.content { margin: 0 auto; padding: 0 2em; max-width: 800px;
+  margin-bottom: 50px; line-height: 1.6em; }
+.content a { max-width:100%; height:auto; } /*TODO wiki needs to style it*/
+
+/* Wiki page actions */
+#wikicmds { float:right; white-space:nowrap; font-size:90%; }
+#wikicmds ul { list-style:none; margin:0px; padding:0px; }
+#wikicmds li { display:inline; margin:0px 5px; }
+#wikicmds li a { text-decoration:none; color:#333; border:none; }
+#wikicmds li a.createlink { display:none; }
+#wikicmds li a:hover { text-decoration:underline; color:blue; }
+
+/* The headerlogo element is (Site|Group).HeaderLogo TODO */
+.headerlogo { border-bottom:1px #ccc solid; }
+
+/* Wiki Header - Logo and Search box */
+#wikihead { position:absolute; right:10px; top:10px; font-size:85%; }
+#wikihead form { display:none; }
+#wikihead input { font-size:85%; }
+/* The #wikilogo element is the logo from $PageLogoFmt */
+#wikilogo { padding:10px 2em 6px 75px; text-align:right;
+background: #eee; border-bottom:1px #ccc solid;  }
+
+/* Wiki page title */
+.title { margin: 0 auto; color: #000; padding: 1em 2em 0.5em;
+ max-width: 800px; border-bottom: 1px solid #eee; }
+.title h1 { margin: 0em 0; font-size: 2em; font-weight: 300; }
+
+/*TODO Wikify this*/
+.content-subhead { margin: 50px 0 20px 0; font-weight: 300; color: #888;}
+
+/* Edit Form */
+#wikiedit form { margin:0px; width:100%; line-height:1.1em; }
+#wikiedit textarea { margin:0px; width:99.5%; height:18em; }
+#wikiedit input[type=text] { margin:0px; width:99.5%; }
+h2.wikiaction { margin:0px }
+.wikimessage { margin-top:3px; margin-bottom:3px; font-style:italic;
+ color:black; background-color:#ffffcc; padding:2px; }
+
+/* For the (Site.)Search page */
+.searchbox { margin-right:2px; max-width:100%; }
+
+#wikifoot { font-size:80%; padding-top:2em; text-align:center; }
+.footnav a { text-decoration:none; color:black; }
+.footnav a:hover { text-decoration:underline; color:blue; }
+.lastmod { color:#999; }
+
+/*
+The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
+appears on the left side of the page.
+*/
+
+#menu {
+  margin-left: -180px; /* "#menu" width */
+  width: 180px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000; /* so the menu or its navicon stays above all content */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #eee;
+  border-right: 1px solid #ccc;
+}
+/* All anchors inside the menu should be styled like this. */
+#menu a { color: #000; border: none; padding: 0.6em 0 0.3em 0.6em; }
+/* Sidebar Headings too TODO */
+#menu .sidehead { color: #000; border: none; padding: 0.6em 0 0.3em 0.6em; }
+/* Remove all background/borders, since we are applying them to #menu.*/
+#menu .pure-menu,
+#menu .pure-menu ul {
+  border: none; background: transparent; }
+/* Add that light border to separate items into groups. */
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+  padding-top: 0.5em; }
+/* Change color of the anchor links on hover/focus. */
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+  background: #ccc; }
+/* This styles the selected menu item `<li>`. */
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+  background: #1f8dd6; }
+/* This styles a link within a selected menu item `<li>`. */
+#menu .pure-menu-selected a { color: #444; }
+/* This styles the menu heading. */
+#menu .pure-menu-heading {
+  font-size: 110%; color: #444; margin: 0; }
+
+/* Sidebar headings */
+#menu .sidehead {
+  color: #000; border: none; padding: 0.6em 0 0 0.6em; background: #eee; }
+#menu .sidehead a { color:#000; }
+#menu .sidehead a:hover { text-decoration:underline; }
+/* Side menu search form TODO */
+#menu .sidesearch {
+  background: #eee; color: #000; padding-bottom: 0.2em; padding-top: 0.5em; }
+#menu .sidesearch a:hover {
+  text-decoration:underline; }
+
+
+/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+/*
+The button to open/close the Menu is custom-made and not part of Pure. Here's
+how it works:
+*/
+
+/*
+`.menu-link` represents the responsive menu toggle that shows/hides on
+small screens.
+*/
+.menu-link {
+    position: fixed;
+    display: block; /* show this only on small screens */
+    top: 0;
+    left: 0; /* "#menu width" */
+    background: #000;
+    background: rgba(0,0,0,0.7);
+    font-size: 10px; /* change this value to increase/decrease button size */
+    z-index: 10;
+    width: 2em;
+    height: auto;
+    padding: 2.1em 1.6em;
+}
+
+    .menu-link:hover,
+    .menu-link:focus {
+        background: #000;
+    }
+
+    .menu-link span {
+        position: relative;
+        display: block;
+    }
+
+    .menu-link span,
+    .menu-link span:before,
+    .menu-link span:after {
+        background-color: #fff;
+        width: 100%;
+        height: 0.2em;
+    }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+/*
+Responsive Styles (Media Queries) 
+These styles are activated when the display is wider; the Hamburger
+will disappear and the Side Menu for larger displays will be visible.
+
+/* Hide the menu at `48em`, but modify this based on your app's needs. */
+#menu .sidesearch { display: none; }
+#wikilogo { padding-left: 1em; text-align:left; }
+#wikihead form { margin-top: 0.3em; display:block; }
+.title,
+.content { padding-left: 2em; padding-right: 2em; }
+/* width of the left (menu) column */
+#layout { padding-left: 180px; left: 0; }
+#menu { left: 180px; }
+
+.menu-link {
+position: fixed; left: 180px; display: none;  }
+
+#layout.active .menu-link {  left: 180px; }

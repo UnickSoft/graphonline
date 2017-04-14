@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=revert sandbox
+host=85.171.160.186
+name=PmWiki.WikiSandbox
+rev=8
+targets=
+text=(:redirect Main.WikiSandbox:)%0a
+time=1315670897

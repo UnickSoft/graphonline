@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Lorenzo
+charset=UTF-8
+csum=
+host=85.171.160.186
+name=PmWiki.FAQ
+rev=586
+targets=Site.Search,PmWiki.DocumentationIndex,PmWiki.Questions
+text=(:Summary:List of frequently asked questions:)%0aThis page will attempt to summarize some of the more commonly asked questions. The answers are on the corresponding pages (see link). If you have a question which isn't answered here, you can leave your question on the [[(PmWiki:)Questions]] page or search for documentation using the [[Site.Search | search]] facility. More documentation can be found on the [[PmWiki.DocumentationIndex | documentation index]] page.%0a%0a(:comment The questions and answers are held on their respective page(s), then collated below according to the pagelist. Please make changes to those page(s) rather than making the changes here .:)%0a%0a(:pagelist trail=PmWiki.DocumentationIndex name=-{*$FullName} "[[#faq]]" fmt=#includefaq class=faqtoc:)%0a%0a
+time=1315670897

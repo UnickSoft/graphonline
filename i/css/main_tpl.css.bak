@@ -1,0 +1,94 @@
+
+    html, 
+    body
+    {
+        height: 100%;
+    }
+
+    body
+    {
+        background: #f2f2f2;
+    }
+
+    @footer-height: 80px;
+
+    .page-wrap
+    {
+        background: #fff;
+        .m-box-shadow(#ccc, 6px);
+        min-height: 100%;
+        height: 100%;
+
+        padding-left: 25px;
+        padding-right: 25px;
+
+        // Чтобы футер был всегда внизу экрана
+        position: relative;
+        padding-bottom: @footer-height;
+    }
+    
+    .header 
+    {
+        padding-top: 30px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #e5e5e5;
+
+        .logo 
+        {
+            padding-bottom: 19px;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 40px;
+            font-size: 32px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .logo, 
+        .logo:hover
+        {
+            text-decoration: none;
+        }
+
+        .langs
+        {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 7px;
+            margin-left: 24px;
+
+            background: #eee;
+            .m-border-radius(3px);
+            padding: 3px 4px;
+        }
+    }
+
+    .content
+    {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    
+    .footer 
+    {
+        padding: 0px;
+        padding-top: 18px;
+        padding-bottom: 8px;
+
+        color: #777;
+        border-top: 1px solid #e5e5e5;
+
+        // Чтобы футер был всегда внизу экрана
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: @footer-height;
+
+        .container
+        {
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    }

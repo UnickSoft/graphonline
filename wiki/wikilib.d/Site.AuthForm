@@ -1,0 +1,9 @@
+version=pmwiki-2.2.73 ordered=1 urlencoded=1
+author=Petko
+charset=UTF-8
+csum=localize "OK"
+name=Site.AuthForm
+rev=18
+targets=
+text=(:Summary:form displayed when requesting a [[PmWiki/password(s)]] or username/password:)%0a'''$[Password required]'''%0a(:messages:)%0a(:if enabled InvalidLogin:)* $[Name/password not recognized]%0a(:ifend:)%0a(:input auth_form:)%0a(:if enabled EnableAuthUser:)$[Name]: (:input text name=authid:)\\%0a(:if:)$[Password]: (:input password name=authpw:)%0a(:input submit value='$[OK]':)%0a(:input end:)%0a(:ifend:)%0a
+time=1427579974

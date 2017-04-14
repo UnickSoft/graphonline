@@ -1,0 +1,10 @@
+version=pmwiki-2.2.45 ordered=1 urlencoded=1
+author=Petko
+charset=UTF-8
+csum=Noone is afraid :-)
+ctime=1180819909
+name=PmWiki.Introduction
+rev=32
+targets=PmWiki.WikiWikiWeb,PmWiki.PmWiki,Main.WikiSandbox,PmWiki.BasicEditing,PmWiki.TextFormattingRules,PmWiki.Requirements,PmWiki.DocumentationIndex,PmWiki.Download,PmWiki.Installation,PmWiki.MailingLists,PmWiki.HowToGetAssistance
+text=(:Summary:Frequent questions before installing PmWiki:)%0a>>faq%3c%3c [[#faq]]%0aQ: What is PmWiki?%0aA: PmWiki is a [[WikiWikiWeb|wiki-based]] system for collaborative creation and maintenance of websites. See [[PmWiki/]].%0a%0aQ: What can I do with it?%0aA: PmWiki pages look and act like normal web pages, except they have an "Edit" link that makes it easy to modify existing pages and add new pages into the website, using [[basic editing]] rules. You do not need to know or use any HTML or CSS. Page editing can be left open to the public or restricted to small groups of authors. Feel free to experiment with the [[PmWiki/Text Formatting Rules]] in the "[[Main/WikiSandbox?action=edit | Wiki sandbox]]". The website you're currently viewing is built and maintained with PmWiki.%0a%0aQ: What are the requirements?%0aA: See the [[PmWiki.Requirements | PmWiki requirements]] page.%0a%0aQ: Where can I find documentation?%0aA: See the [[PmWiki.DocumentationIndex | documentation index]] page.%0a%0aQ: How can I download PmWiki?%0aA: See the [[PmWiki:Download | download]] page.%0a%0aQ: How do I install PmWiki?%0aA: Instructions for installation are on the [[PmWiki.Installation | installation page]].%0a%0aQ: How do I get help with PmWiki?%0aA: See [[(PmWiki:)Mailing lists]] and [[(PmWiki:)How to get assistance]].%0a%0aQ: How do you pronounce "Michaud"?%0aA: "Michaud" is french pronounced "mee show", the trailing D is silent.%0a
+time=1355132038

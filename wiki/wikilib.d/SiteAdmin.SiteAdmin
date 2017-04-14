@@ -1,0 +1,13 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=include Site.Site
+ctime=1182106004
+host=85.171.160.186
+name=SiteAdmin.SiteAdmin
+rev=7
+targets=
+text=(:include Site.Site:)%0a(:title Site Administration:)(:Summary: Site Administration:)%0a
+time=1315674224
+title=Site Administration

@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=
+host=85.171.160.186
+name=Site.PageNotFound
+rev=46
+targets=Site.PageNotFound
+text=(:Summary: Page displayed when PmWiki can't find the requested page:)%0a(:nolinkwikiwords:)%0a(:if name {$SiteGroup}.PageNotFound:)%0a-> %25green font-style:italic%25 This page contains the text to be displayed when PmWiki is unable to locate a requested page.  Administrators can edit this page to change the message.%0a(:ifend:)%0a%0a(:if !group Category:)%0aThe page "{$RequestedPage}" doesn't exist.  %0a(:ifend:)%0a(:if auth edit:)%0a%25rel=nofollow%25 ([[{*$FullName}?action=edit | Create {*$FullName}]]). %0a(:ifend:)%0a%0a
+time=1315674224

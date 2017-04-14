@@ -1,0 +1,12 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=gb
+charset=UTF-8
+csum=+doc (extracted from Pm answer, mailing list)
+ctime=1178938308
+host=85.171.160.186
+name=PmWiki.Drafts
+rev=10
+targets=PmWiki.Passwords,PmWiki.Drafts
+text=(:Summary: Draft versions of pages:)%0aPmWiki has the capability to stage ''draft'' versions of a page prior to them becoming "official". All of the draft pages end in "-Draft" by default (this can be changed by setting $DraftSuffix). Multiple interim edits to a page can be temporarily saved in a "-Draft" copy of a page until the draft is ready to be published to the original.%0a%0aWhen the site administrator sets $EnableDrafts in a local customization file, the "Save" button on the edit page is split into separate "Publish" and "Save draft" buttons.  %0a%0aThe "Save draft" button causes any edits to be saved to a "-Draft" copy of the original page, leaving the original page intact.  Subsequent requests to edit the page (either the original or -Draft) bring up the draft copy for further editing.%0a%0aThe "Publish" button saves back to the original non-Draft copy of the page, removing any -Draft page that may have been created.%0a%0aBy default, saving drafts and publishing are available to anyone with 'edit' permissions (see [[Passwords]]).  However, the site administrator can also set the $EnablePublishAttr configuration variable, which provides a separate 'publish' permission that is required to publish to the original page.%0a%0a'''Drafts and pagelists (and RSS)'''%0a%0aThe drafts module also sets pagelists (and thus RSS feeds) to ignore "-Draft" pages by default; one has to do list=all or similar in order to have draft pages included in a pagelist or RSS feed.%0a%0a>>faq%3c%3c [[#faq]]%0a%0aQ:  How do I moderate all postings?%0a%0aA:  Start by [[Drafts | enabling drafts]] to change the "Save" button into separate "Publish" and "Save draft" buttons.  Then set $EnablePublishAttr.  This adds a "publish" authorization level to distinguish editing of page drafts from publishing.%0a
+time=1315670897

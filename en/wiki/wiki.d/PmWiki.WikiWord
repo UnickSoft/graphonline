@@ -1,0 +1,23 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+author=Aslan
+charset=UTF-8
+csum=3awhHJxt
+host=188.143.232.32
+name=PmWiki.WikiWord
+rev=35
+targets=
+text=That's a nicely made answer to a %3ca href="http://tjtlit.com">chlglenaing%3c/a> question
+time=1485188417
+author:1485188417=Aslan
+csum:1485188417=3awhHJxt
+diff:1485188417:1485016107:=1c1%0a%3c That's a nicely made answer to a %3ca href="http://tjtlit.com">chlglenaing%3c/a> question%0a\ No newline at end of file%0a---%0a> I have been so %3ca href="http://jtsjzezoel.com">beelrdeiwd%3c/a> in the past but now it all makes sense!%0a\ No newline at end of file%0a
+host:1485188417=188.143.232.32
+author:1485016107=Jaylene
+csum:1485016107=G7Egp8sjFaH
+diff:1485016107:1484915065:=1c1%0a%3c I have been so %3ca href="http://jtsjzezoel.com">beelrdeiwd%3c/a> in the past but now it all makes sense!%0a\ No newline at end of file%0a---%0a> I thoghut finding this would be so arduous but it's a breeze!%0a\ No newline at end of file%0a
+host:1485016107=188.143.232.32
+author:1484915065=Sonny
+csum:1484915065=jV6MiLDb8D1
+diff:1484915065:1322641703:=1c1,35%0a%3c I thoghut finding this would be so arduous but it's a breeze!%0a\ No newline at end of file%0a---%0a> (:Summary:Definition and usage of WikiWord:)%0a> A '''WikiWord''' is a set of two or more words run together, where the first letter of each word is capitalized. This syntax is also sometimes referred to as "mixed case" or "camel case". Other descriptions of WikiWords are available from [[Wiki:WikiWord]] and [[Wikipedia:WikiWord]].%0a> %0a> !!Usage as page titles%0a> WikiWords are used as '''page titles''' in a [[WikiWikiWeb|wiki-based system]].  %0a> %0a> !!Usage as links%0a> In some wikis (depending on the configuration of PmWiki), a valid '''link''' can be created by writing it as WikiWord. In such PmWiki installations, WikiWords surrounded by [=[=...=]=] or preceded by a backquote (`) are not turned into links: %0a> %0a> (:linkwikiwords:)%0a> (:markup:)[@LikeThis compared to `LikeThis or even [=LikeThis=]@]%0a> (:nolinkwikiwords:)%0a> %0a> See [[Links]] for information about `PmWiki's rules for forming links and forming page titles.%0a> %0a> !!!Enabling WikiWord links%0a> WikiWord links are disabled by default since Pmwiki version 2.1 beta2. To enable WikiWord links you need to set in ''config.php'' %0a> %0a>     $EnableWikiWords = 1;%0a> %0a> See also $LinkWikiWords.%0a> %0a> !!!WikiWord links to non-existent pages without decoration%0a> If you want to display links to non-existent pages without decoration, place the following lines in ''pub/css/local.css'': %0a> %0a> ->    [@span.wikiword a.createlink { display:none; }%0a> span.wikiword a.createlinktext { border-bottom:none; text-decoration:none; color:inherit; }@]%0a>  %0a> !!!Finding WikiWord links%0a> If you upgraded from an earlier version and want to convert WikiWord links to standard [[links]], the following will help to find those WikiWord links easier by highlighting them. Set in ''config.php'':%0a> %0a> ->    [@$HTMLStylesFmt['wikiword'] = "span.wikiword { background:yellow; }";@] %0a> %0a> !!!Disabling certain WikiWords links%0a> The variable $WikiWordCount controls WikiWord conversion on a per word basis.%0a
+host:1484915065=188.143.232.27

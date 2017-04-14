@@ -1,0 +1,9 @@
+version=pmwiki-2.2.73 ordered=1 urlencoded=1
+author=Petko
+charset=UTF-8
+csum=use the accented "ù" character which works with the ISO8859-1 encoding
+name=Site.Search
+rev=26
+targets=
+text=(:Summary:Search wiki:)%0a(:searchbox:)%0a%0a(:searchresults:)%0a%0a[[#searchinfostart]]%0aA search for more than one word will find pages that contain all of the words.%0aUse quotation marks to search for a phrase.  %0aAlso use quotes for text with punctuation or special characters.%0aSearches are case insensitive, but accent sensitive in the default configuration (i.e. 'u' is not the same as 'ù').%0a%0aTo limit your search to a single group, enter the group name followed by a slash at the beginning of the search string (e.g., "[=PmWiki/=]" or "{$SiteGroup}/").  %0aTo list all pages, enter a slash for the search.  %0a%0a!![-Search examples-]%0a %0a||border='0' cellspacing='0' width='100%25' cellpadding='0'%0a||!Enter            ||!To find pages whose content contains ||%0a||apple pie         ||both 'apple' and 'pie' ||%0a||"apple pie"       ||the phrase 'apple pie' ||%0a||pmwiki/apple      ||'apple' in the [=PmWiki=] group of pages ||%0a||"pmwiki/apple"    ||the phrase 'pmwiki/apple' in all groups of pages ||%0a||apple -pie        ||'apple', omitting those containing 'pie' ||%0a||food -"apple pie" ||'food', omitting those containing 'apple pie' ||%0a||apple "-pie"      ||the words 'apple' and '-pie' ||%0a||apple - pie       ||'apple', '-', and 'pie' ||%0a||"pie:"            ||the word 'pie' with a colon ||%0a||"pie=tasty"       ||the phrase 'pie=tasty' ||%0a||pmwiki/           ||all pages in the [=PmWiki=] group ||%0a%0aSome ''special characters'' need to be enclosed in quotes, including the colon (:), equals sign (=), less than (&lt;), single quote (') and double quote(").%0a%0a[[#searchinfoend]]%0a
+time=1427581680

@@ -1,0 +1,11 @@
+
+    .page-status-label
+    {
+        display: block;
+        text-align: center;
+        font-size: 130px;
+        padding: 0;
+        line-height: 1;
+        color: #EEE;
+        .m-text-shadow(#CCC, -1px);
+    }

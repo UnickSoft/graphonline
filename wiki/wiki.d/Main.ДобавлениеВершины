@@ -1,0 +1,15 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36 OPR/36.0.2130.65
+author=
+charset=UTF-8
+csum=
+ctime=1460888257
+host=83.219.151.198
+name=Main.ДобавлениеВершины
+rev=1
+targets=
+text=(:redirect Справка/ДобавлениеВершины:)
+time=1460888257
+author:1460888257=
+diff:1460888257:1460888257:=1d0%0a%3c (:redirect Справка/ДобавлениеВершины:)%0a\ No newline at end of file%0a
+host:1460888257=83.219.151.198

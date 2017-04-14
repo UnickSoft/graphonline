@@ -1,0 +1,23 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+author=
+charset=UTF-8
+csum=
+ctime=1470437183
+description=How to add directed line to Graph Online
+host=128.68.33.133
+name=Help.AddDirectedLine
+rev=3
+targets=
+text=(:Title Add Directed Line:)%0a(:Description How to add directed line to Graph Online:)%0a%0a!!! Directed Line%0a%0aDirected line connects vertices. Directed line may have weight or could be unweighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a%0a%0a!!! How to add directed line%0a%0aIn order to add a directed line you have to choose "Connect vertices" in the menu bar. Then you should select starting vertex and click on the finishing vertex. Thus, you will see the table:%0a%0ahttp://images.unick-soft.ru/photos/share/create_edge.png%0a%0aYou can enter the weight of the directed line or choose unweighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a%0aVarious types of directed lines:%0a%0ahttp://images.unick-soft.ru/photos/share/edges_types.png%0a%0a!!! How to erase a directed line%0a%0aIn order to delete a directed line you have to click on "Delete" button and then click on a directed line. %0a
+time=1471028803
+title=Add Directed Line
+author:1471028803=
+diff:1471028803:1470942694:=6,8c6,8%0a%3c Directed line connects vertices. Directed line may have weight or could be unweighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a%3c %0a%3c %0a---%0a> Directed line connects vertices. Directed line may have weight or could be non-weighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a> %0a> %0a15c15%0a%3c You can enter the weight of the directed line or choose unweighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a---%0a> You can enter the weight of the directed line or choose non-weighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a
+host:1471028803=128.68.33.133
+author:1470942694=
+diff:1470942694:1470437183:=6,8c6,8%0a%3c Directed line connects vertices. Directed line may have weight or could be non-weighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a%3c %0a%3c %0a---%0a> Directed line connects vertices. Directed line may have weight or could be ненагруженными. Directed lines can be directed graph and ordinary (undirected) graph.%0a> %0a> %0a15,18c15,18%0a%3c You can enter the weight of the directed line or choose non-weighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a%3c %0a%3c Various types of directed lines:%0a%3c %0a---%0a> Вы можете ввести вес дуги или выбрать ненагруженное ребро. По завершению вам необходимо нажать кнопку "Ориентированную" или "Неориентированную", чтобы создать дугу соответствующего типа.%0a> %0a> Разные виды дуг:%0a> %0a21,23c21,23%0a%3c !!! How to erase a directed line%0a%3c %0a%3c In order to delete a directed line you have to click on "Delete" button and then click on a directed line. %0a---%0a> !!! Удаление дуги%0a> %0a> Для удаления дуги вам необходимо нажать кнопку "Удалить" и кликнуть по дуге.%0a
+host:1470942694=128.68.33.133
+author:1470437183=
+diff:1470437183:1470437183:=1,23d0%0a%3c (:Title Add Directed Line:)%0a%3c (:Description How to add directed line to Graph Online:)%0a%3c %0a%3c !!! Directed Line%0a%3c %0a%3c Directed line connects vertices. Directed line may have weight or could be ненагруженными. Directed lines can be directed graph and ordinary (undirected) graph.%0a%3c %0a%3c %0a%3c !!! How to add directed line%0a%3c %0a%3c In order to add a directed line you have to choose "Connect vertices" in the menu bar. Then you should select starting vertex and click on the finishing vertex. Thus, you will see the table:%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/create_edge.png%0a%3c %0a%3c Вы можете ввести вес дуги или выбрать ненагруженное ребро. По завершению вам необходимо нажать кнопку "Ориентированную" или "Неориентированную", чтобы создать дугу соответствующего типа.%0a%3c %0a%3c Разные виды дуг:%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/edges_types.png%0a%3c %0a%3c !!! Удаление дуги%0a%3c %0a%3c Для удаления дуги вам необходимо нажать кнопку "Удалить" и кликнуть по дуге.%0a
+host:1470437183=128.68.33.133

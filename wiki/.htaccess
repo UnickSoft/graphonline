@@ -1,0 +1,10 @@
+# Use mod_rewrite to enable "Clean URLs" for a PmWiki installation.
+RewriteEngine On
+# Define the rewrite base.
+RewriteBase /wiki
+# Send requests without parameters to pmwiki.php.
+RewriteRule ^$           pmwiki.php  [L]
+# Send requests for index.php to pmwiki.php.
+RewriteRule ^index\.php$ pmwiki.php  [L]
+# Send requests to pmwiki.php, appending the query string part.
+RewriteRule ^([A-Z0-9\xa0-\xff].*)$ pmwiki.php?n=$1  [QSA,L]

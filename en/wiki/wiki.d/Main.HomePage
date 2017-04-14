@@ -1,0 +1,23 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+author=Anisha
+charset=UTF-8
+csum=8LFIQkMt
+host=188.143.232.32
+name=Main.HomePage
+rev=206
+targets=
+text=I'd %3ca href="http://asbbfunk.com">veturne%3c/a> that this article has saved me more time than any other.
+time=1485188756
+author:1485188756=Anisha
+csum:1485188756=8LFIQkMt
+diff:1485188756:1485016499:=1c1%0a%3c I'd %3ca href="http://asbbfunk.com">veturne%3c/a> that this article has saved me more time than any other.%0a\ No newline at end of file%0a---%0a> I was %3ca href="http://qowgjqbhb.com">selsruioy%3c/a> at DefCon 5 until I saw this post.%0a\ No newline at end of file%0a
+host:1485188756=188.143.232.32
+author:1485016499=Jaelyn
+csum:1485016499=od0NZJLYkVLg
+diff:1485016499:1484933901:=1c1%0a%3c I was %3ca href="http://qowgjqbhb.com">selsruioy%3c/a> at DefCon 5 until I saw this post.%0a\ No newline at end of file%0a---%0a> The concept of stipulation seems rational and helpful, but to be really persuasive, the idea needs to fit on a bumpersticker or an image. There just aren&#39;t that many people who change their minds based on text alone, in my exh.rienceeWpat might be such an image?%0a\ No newline at end of file%0a
+host:1485016499=188.143.232.32
+author:1484933901=Vinny
+csum:1484933901=4MdsKySOOOtO
+diff:1484933901:1400472661:=1c1,13%0a%3c The concept of stipulation seems rational and helpful, but to be really persuasive, the idea needs to fit on a bumpersticker or an image. There just aren&#39;t that many people who change their minds based on text alone, in my exh.rienceeWpat might be such an image?%0a\ No newline at end of file%0a---%0a> (:Summary:The default home page for the PmWiki distribution:)%0a> Welcome to PmWiki!%0a> %0a> A local copy of PmWiki's%0a> documentation has been installed along with the software,%0a> and is available via the [[PmWiki/documentation index]].  %0a> %0a> To continue setting up PmWiki, see [[PmWiki/initial setup tasks]].%0a> %0a> The [[PmWiki/basic editing]] page describes how to create pages%0a> in PmWiki.  You can practice editing in the [[wiki sandbox]].%0a> %0a> More information about PmWiki is available from [[http://www.pmwiki.org]].%0a
+host:1484933901=188.143.232.32

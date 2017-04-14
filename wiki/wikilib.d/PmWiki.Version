@@ -1,0 +1,10 @@
+version=pmwiki-2.2.67 ordered=1 urlencoded=1
+author=buanzo
+charset=UTF-8
+csum=added relative location of version.php
+ctime=1176363304
+name=PmWiki.Version
+rev=13
+targets=PmWiki.PageVariables,SiteAdmin.Status,PmWiki.BasicVariables,PmWiki.SiteAnalyzer,Cookbook.RecipeCheck
+text=(:Summary: Determining and displaying the current version of PmWiki ({$Version}):)%0a%0a'''This wiki installation is running version %25red%25{$Version}%25%25, version number %25red%25{$VersionNum}%25%25.'''%0a%0a!! Obtaining the PmWiki version%0aUse the [@{$Version}@] [[page variable(s)]] to display the current version of PmWiki.%0a%0aSee the [[SiteAdmin.Status]] page for the current version and version number.%0a%0aFor example%0a(:markup:)%0aThis wiki installation is running PmWiki {$Version}, version number {$VersionNum}.%0a-%3cThe default group is {$DefaultGroup}.%0a-%3cThe default name is {$DefaultName}.%0a-%3cThe site group is {$SiteGroup}%0a(:markupend:)%0a%0aSee also [[basic variables]].%0a%0aThe script @@version.php@@  contains the declaration of the version number. The file is located on scripts/version.php, relative to PmWiki installation path.%0a%0a!! Obtaining recipe versions%0aThe [[(PmWiki:)Site Analyzer]] can be used to display the current version of %0a[[Cookbook(:/)]] recipes.%0a%0aSee also [[Cookbook:RecipeCheck]]%0a%0a%0a
+time=1407076175

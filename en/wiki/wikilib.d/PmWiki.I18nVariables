@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=mfwolff
+charset=UTF-8
+csum=
+host=85.171.160.186
+name=PmWiki.I18nVariables
+rev=16
+targets=PmWiki.Internationalizations,Site.Preferences
+text=(:Summary:variables used for internationalization (i18n):)%0a%0aThis page describes the variables used by PmWiki for [[Internationalizations]] (i18n).%0a%0a:$EnableXLPageScriptLoad:This variable, if set to 0, will disable the 'xlpage-i18n' parameter in XLPage definitions and thus it will prevent editors from (accidentally) loading scripts and changing the website encoding. Note that if you use this variable, you should include the required scripts, eg. xlpage-utf-8.php, from config.php.%0a%0a:$VarPagesFmt:An array which contains the PageNames where you can find lists (trails) of pages containing variable definitions.  To be modified when documentation is not in English.  See ''scripts/vardoc.php''.%0a%0a:@@%25blue%25$XL%25%25@@:An array (hash) which contains pairs of language identifiers and translation hashes. Each translation hash maps a given lookup key (or phrase) into a corresponding text string for the given language. Thus, it is essentially a multi-lingual dictionary used for phrase translation.  It is also used for handling user preference mappings. Thus, the 'e_row' value that one finds on the [[Site.Preferences]] page is loaded into $XL during preference processing.%0a%0a:$XLLangs:An array that contains the names of the currently active language definitions. Only dictionaries in $XL that are named in $XLLangs are used by the [=$[...]=] markup when performing a translation.%0a%0aSee also:%0a* $TimeFmt%0a
+time=1315670897

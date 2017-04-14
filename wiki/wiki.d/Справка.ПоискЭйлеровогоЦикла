@@ -1,0 +1,46 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 OPR/41.0.2353.46
+author=
+charset=UTF-8
+csum=
+ctime=1456027801
+description=Как найти Эйлеров цикл, используя сервис Граф Онлайн
+host=82.145.220.53
+name=Справка.ПоискЭйлеровогоЦикла
+rev=10
+targets=
+text=(:Title Поиск Эйлерового Цикла :)%0a(:Description Как найти Эйлеров цикл, используя сервис Граф Онлайн:)%0a%0a!! Эйлеров цикл%0a%0aЭйлеров цикл — это замкнутый путь, проходящий через каждое ребро графа ровно по одному разу.%0a%0a!! Алгоритм поиска%0a%0aСервис использует алгоритм поиска на основе циклов.%0a%0a''Будем рассматривать самый общий случай — случай ориентированного мультиграфа, возможно, с петлями. Также мы предполагаем, что эйлеров цикл в графе существует (и состоит хотя бы из одной вершины). Для поиска эйлерова цикла воспользуемся тем, что эйлеров цикл — это объединение всех простых циклов графа. Следовательно, наша задача — эффективно найти все циклы и эффективно объединить их в один.''%0a%0aКроме того, перед поиском цикла проверяется его существование, для этого происходит поиск степени вершин.%0a%0aБолее подробно вы можете узнать об этом алгоритме%0a[[https://ru.wikipedia.org/wiki/Эйлеров_цикл#.D0.90.D0.BB.D0.B3.D0.BE.D1.80.D0.B8.D1.82.D0.BC_.D0.BD.D0.B0_.D0.BE.D1.81.D0.BD.D0.BE.D0.B2.D0.B5_.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.B2|в Википедии]].%0a%0aРеализацию алгоритма на языке C++ вы можете найти в нашем репозитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a%0a%0a!! Как использовать%0a%0a# Создайте граф.%0a# Выделите пункт меню "Найти Эйлеров цикл".%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/graphonlineru_euler_loop.gif
+time=1478334348
+title=Поиск Эйлерового Цикла 
+author:1478334348=
+diff:1478334348:1477998623:=27c27%0a%3c http://graphonline.ru/wiki/uploads/Справка/graphonlineru_euler_loop.gif%0a\ No newline at end of file%0a---%0a> http://graphonline.ru/wiki/uploads/Справка/EuleriaPath.png%0a\ No newline at end of file%0a
+host:1478334348=82.145.220.53
+author:1477998623=
+diff:1477998623:1477574485:=19c19%0a%3c Реализацию алгоритма на языке C++ вы можете найти в нашем репозитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a---%0a> Реализацию алгоритма на языке C++ в можете найти в нашем репозитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a
+host:1477998623=82.145.221.45
+author:1477574485=
+diff:1477574485:1477232381:=19c19%0a%3c Реализацию алгоритма на языке C++ в можете найти в нашем репозитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a---%0a> Реализацию алгоритма на языке C++ в можете найти в нашем репазитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a
+host:1477574485=82.145.221.194
+author:1477232381=
+diff:1477232381:1477231505:=26,27d25%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/EuleriaPath.png%0a\ No newline at end of file%0a
+host:1477232381=82.145.221.62
+author:1477231505=
+diff:1477231505:1477231307:=13,14d12%0a%3c %0a%3c Кроме того, перед поиском цикла проверяется его существование, для этого происходит поиск степени вершин.%0a
+host:1477231505=82.145.221.62
+author:1477231307=
+diff:1477231307:1477231097:=15,18c15%0a%3c [[https://ru.wikipedia.org/wiki/Эйлеров_цикл#.D0.90.D0.BB.D0.B3.D0.BE.D1.80.D0.B8.D1.82.D0.BC_.D0.BD.D0.B0_.D0.BE.D1.81.D0.BD.D0.BE.D0.B2.D0.B5_.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.B2|в Википедии]].%0a%3c %0a%3c Реализацию алгоритма на языке C++ в можете найти в нашем репазитории на GitHub: [[https://github.com/UnickSoft/GraphOffline/blob/master/algorithm/EulerianLoop.cpp | Реализация поиска Эйлерового цикла в Graphoffline]].%0a%3c %0a---%0a> [[https://ru.wikipedia.org/wiki/Эйлеров_цикл#.D0.90.D0.BB.D0.B3.D0.BE.D1.80.D0.B8.D1.82.D0.BC_.D0.BD.D0.B0_.D0.BE.D1.81.D0.BD.D0.BE.D0.B2.D0.B5_.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.B2|в Википедии]]%0a
+host:1477231307=82.145.221.62
+author:1477231097=
+diff:1477231097:1460886181:=1,20d0%0a%3c (:Title Поиск Эйлерового Цикла :)%0a%3c (:Description Как найти Эйлеров цикл, используя сервис Граф Онлайн:)%0a%3c %0a%3c !! Эйлеров цикл%0a%3c %0a%3c Эйлеров цикл — это замкнутый путь, проходящий через каждое ребро графа ровно по одному разу.%0a%3c %0a%3c !! Алгоритм поиска%0a%3c %0a%3c Сервис использует алгоритм поиска на основе циклов.%0a%3c %0a%3c ''Будем рассматривать самый общий случай — случай ориентированного мультиграфа, возможно, с петлями. Также мы предполагаем, что эйлеров цикл в графе существует (и состоит хотя бы из одной вершины). Для поиска эйлерова цикла воспользуемся тем, что эйлеров цикл — это объединение всех простых циклов графа. Следовательно, наша задача — эффективно найти все циклы и эффективно объединить их в один.''%0a%3c %0a%3c Более подробно вы можете узнать об этом алгоритме%0a%3c [[https://ru.wikipedia.org/wiki/Эйлеров_цикл#.D0.90.D0.BB.D0.B3.D0.BE.D1.80.D0.B8.D1.82.D0.BC_.D0.BD.D0.B0_.D0.BE.D1.81.D0.BD.D0.BE.D0.B2.D0.B5_.D1.86.D0.B8.D0.BA.D0.BB.D0.BE.D0.B2|в Википедии]]%0a%3c %0a%3c !! Как использовать%0a%3c %0a%3c # Создайте граф.%0a%3c # Выделите пункт меню "Найти Эйлеров цикл".%0a
+host:1477231097=82.145.221.62
+author:1460886181=
+diff:1460886181:1456922901:=0a1%0a> My ex & I were close, then we had a bad break up. A month has gone by & we still see each other on a daily basis but don't talk b/c we don't want to make it awkward for our%3ca href="http://anknxbuwz.com"> muutal%3c/a> friends by arguing. So we haven't had any contact & I've moved on but in the past 2 weeks I have dreamed about him 11 times.& the dreams are about him missing me, us getting back together, or me missing him.  Why do I keep dreaming about him? Does this mean he misses me?%0a\ No newline at end of file%0a
+host:1460886181=83.219.151.198
+author:1456922901=Crystal
+csum:1456922901=8ATIxaEwrvG
+diff:1456922901:1456027801:=1c1%0a%3c My ex & I were close, then we had a bad break up. A month has gone by & we still see each other on a daily basis but don't talk b/c we don't want to make it awkward for our%3ca href="http://anknxbuwz.com"> muutal%3c/a> friends by arguing. So we haven't had any contact & I've moved on but in the past 2 weeks I have dreamed about him 11 times.& the dreams are about him missing me, us getting back together, or me missing him.  Why do I keep dreaming about him? Does this mean he misses me?%0a\ No newline at end of file%0a---%0a> I date a guy that is black and brazilian, he's very light black and more tan aculatly. He's very nice and really cares about me. I am white and as white gets. I find an attraction to guys from different places. What does the public think? I don't think it matters as long as the guy is very supportive and stuff. I think my mom is getting over the fact I don't like just white guys. What should I do? I mean she really likes the guy. Its not a big deal but what does the public think about interracial couples honestly?%0a\ No newline at end of file%0a
+host:1456922901=188.143.232.27
+author:1456027801=Anh
+csum:1456027801=G4xl516P
+diff:1456027801:1456027801:=1d0%0a%3c I date a guy that is black and brazilian, he's very light black and more tan aculatly. He's very nice and really cares about me. I am white and as white gets. I find an attraction to guys from different places. What does the public think? I don't think it matters as long as the guy is very supportive and stuff. I think my mom is getting over the fact I don't like just white guys. What should I do? I mean she really likes the guy. Its not a big deal but what does the public think about interracial couples honestly?%0a\ No newline at end of file%0a
+host:1456027801=221.178.182.97

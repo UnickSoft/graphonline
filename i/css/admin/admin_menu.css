@@ -1,0 +1,15 @@
+
+    body
+    {
+        padding-top: 51px + 16px; // for fixed menu
+    }
+
+    #admin-menu
+    {
+        .navbar-brand
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+    }
+

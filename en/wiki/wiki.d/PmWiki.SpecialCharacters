@@ -1,0 +1,23 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+author=Brandilyn
+charset=UTF-8
+csum=ldubumeb5
+host=188.143.232.27
+name=PmWiki.SpecialCharacters
+rev=17
+targets=
+text=Me and this article, sitting in a tree, %3ca href="http://xozhdnfw.com">L-----RENAI-N-G!%3c/a>
+time=1485188317
+author:1485188317=Brandilyn
+csum:1485188317=ldubumeb5
+diff:1485188317:1485016006:=1c1%0a%3c Me and this article, sitting in a tree, %3ca href="http://xozhdnfw.com">L-----RENAI-N-G!%3c/a>%0a\ No newline at end of file%0a---%0a> This article %3ca href="http://sxiidzt.com">aceveihd%3c/a> exactly what I wanted it to achieve.%0a\ No newline at end of file%0a
+host:1485188317=188.143.232.27
+author:1485016006=Charlotte
+csum:1485016006=KUHf14QAk
+diff:1485016006:1484908805:=1c1%0a%3c This article %3ca href="http://sxiidzt.com">aceveihd%3c/a> exactly what I wanted it to achieve.%0a\ No newline at end of file%0a---%0a> Phmeenonal breakdown of the topic, you should write for me too!%0a\ No newline at end of file%0a
+host:1485016006=188.143.232.32
+author:1484908805=Kerriann
+csum:1484908805=WjxmyaO5dV
+diff:1484908805:1315670897:=1c1,27%0a%3c Phmeenonal breakdown of the topic, you should write for me too!%0a\ No newline at end of file%0a---%0a> When creating pages it's common to use commercial trademarks, copyright, umlaut, and other non-keyboard symbols.  therefore it's important that you have the means to input these special characters.  %0a> %0a> !!!ISO Standard codes%0a> PmWiki supports the HTML special character listings by the w3c. [[http://www.w3.org/MarkUp/html-spec/html-spec_13.html |  W3C Page of Special Character codes ISO standard.]]%0a> %0a> Here are some samples: %0a> (:markup:)[=%0a> &#169; | &#188; | &#189; | &#174; | &#181; | &#168; =]%0a> %0a> (:markup:)[=%0a> &#198; | 32&#176; | Un&#239;ted St&#228;tes | &#182; | &#165;Yen | PmWiki&#8482;=]%0a> %0a> For a nice table of the same codes that show the codes with the output go to the [[http://www.nobledesktop.com/specialcharacters.html | Noble Desktop]] special character page. %0a> %0a> !!!Other ways to do it: %0a> %0a> !!!!Character Map%0a> Find the "Character Map" utility in your computer's System Tools folder.  Click the symbol you're interested in, and note the keystroke information at the bottom of the box.  You execute these by ''holding "Alt"'' while keying the numbers ''on the numerical keypad'' of your keyboard (not the numbers across the top of the board).%0a> %0a> [=&#169;=] = Alt+0169 = &#169; | [=&#174;=] = Alt+0174 =  &#174; | [=&#176;=] = Alt+0176 = &#176; (degrees).%0a> %0a> !!!!Paste%0a> *Use Word or another desktop application to create your text with the special characters that you want.  Copy and paste the text to the wiki page you're editing or creating.%0a> *Find an instance of a special character in an online document; copy and paste the character to your wiki page:  ©%0a> %0a> There's a list of special characters at [[PmWiki:SpecialCharactersList]].%0a> There's another illustration at [[PmWiki:Characters]]%0a\ No newline at end of file%0a
+host:1484908805=188.143.232.32

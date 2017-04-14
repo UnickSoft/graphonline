@@ -1,0 +1,24 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 OPR/34.0.2036.25
+author=
+charset=UTF-8
+csum=
+ctime=1442324546
+description=Как перемещать вершины Граф Онлайн
+host=83.219.130.68
+name=Справка.ПеремещениеВершинИДуг
+passwdedit=$2y$10$Xg.aI.tv93jKtLLmL0ruB.ZLBqTqkIZuq1IjStm22azEYnGQSAlF2
+rev=5
+targets=
+text=(:Title Перемещение вершин:)%0a(:Description Как перемещать вершины Граф Онлайн:)%0a%0aДля перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и выделяя вершины перетаскивать их. Дуги будут перемещаться за вершинами.
+time=1450780015
+title=Перемещение вершин
+author:1450779981=
+diff:1450779981:1450779963:=4c4%0a%3c Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и выделяя вершины перетаскивать их. Дуги будут перемещаться за вершинами.%0a\ No newline at end of file%0a---%0a> Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и выделяя вершины перетаскивать их.%0a\ No newline at end of file%0a
+host:1450779981=83.219.130.68
+author:1450779963=
+diff:1450779963:1442324546:=1,4d0%0a%3c (:Title Перемещение вершин:)%0a%3c (:Description Как перемещать вершины Граф Онлайн:)%0a%3c %0a%3c Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и выделяя вершины перетаскивать их.%0a\ No newline at end of file%0a
+host:1450779963=83.219.130.68
+author:1442324546=
+diff:1442324546:1442324546:=
+host:1442324546=93.175.212.152

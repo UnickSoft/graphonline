@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{$Title} | $WikiTitle $ActionTitle </title>
+        <meta name="description" content="$WikiTitle $ActionTitle" />
+        <meta name="keywords" content="$Title, $WikiTitle $ActionTitle. graph wikipedia" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/i/image/touch_icon/favicon_144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/i/image/touch_icon/favicon_114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/i/image/touch_icon/favicon_72x72.png" />
+        <link rel="apple-touch-icon-precomposed" href="/i/image/touch_icon/favicon_57x57.png" />
+
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+        <meta http-equiv="cleartype" content="on">
+
+        
+
+        <!-- Следущая строчка нужна для обозначения места вставки объеденённых css/js файлов. Её не следует удалять.-->
+        <!-- extraPacker --><link rel="stylesheet" charset="UTF-8" type="text/css" href="/tmp/auto_merge_css_js/css/css1467316905.css" /><script type="text/javascript" charset="UTF-8" src="/tmp/auto_merge_css_js/js/js1470086177.js"></script>
+        
+    
+        <link media="screen" rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic" />
+
+        <link rel="stylesheet" href="$SkinDirUrl/style.css">
+
+    </head>
+    <body>
+        <div class="container page-wrap">
+<!--            <div class="header"> -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/en/"><span class="fa fa-sitemap fa-fw"></span> Graph Online</a>
+    </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav navbar-right">
+<li class=""><a href="/en/">Home</a></li>
+<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Create Graph <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/en/create_graph_by_matrix">Using adjacency matrix</a></li>
+<li><a href="/en/create_graph_by_incidence_matrix">Using incidence matrix</a></li>
+</ul>
+</li>
+<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Help <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/en/help">Quick Start</a></li>
+<li><a href="/en/wiki">Wiki</a></li>
+</ul>
+</li>
+<li class="active"><a href="/en/news">News</a></li>
+<li class=""><a href="/en/contacts">Contacts</a></li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/en/wiki" title="English" class="selected"><img src="/i/image/flags/en.png" alt="English"> English</a></li>
+<li><a href="/wiki" title="Русский" class=""><img src="/i/image/flags/ru.png" alt="Русский"> Русский</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+    </div>
+</nav>
+            <div class="content">
+            <a href='{$ScriptUrl}/{$Group}' class="navbar-brand" style="padding-right: 0px;">{$Group}<span class="fa fa-chevron-right fa-fw"></span></a><h1 style="display: inline-block;">{$Title}</h1>
+
+    <form action='{$ScriptUrl}' style="float:right">
+    <input type='hidden' name='n' value='{$FullName}' />
+    <input type='hidden' name='action' value='search' />
+    <a href='{$ScriptUrl}/$[{$SiteGroup}/Search]'><span class="fa fa-search" ></span></a>
+    <input type='text' name='q' value='' class='inputbox searchbox' />
+    <input type='submit' class="btn btn-primary"
+      value='find' /></form>
+
+<!--PageText-->
+
+    <div class="page-btns">
+        <a class="btn btn-default" onclick="window.history.back(); return false;" href="#"><i class="fa fa-lg fa-angle-left"></i> Back</a>
+    </div>
+            </div>
+
+                <!-- Футер приходится обрамить в .container, потому что у него position:absolute и он занимает всю ширину игнорируя паддинги родителя -->
+        <footer class="footer" id="footer">
+           <div class="container">
+                    <p>© <a href="/en">Graph Online</a>&nbsp;is online project aimed at&nbsp;creation and easy visualization of graph and <a href="/en">shortest path searching</a>. Also you can create&nbsp;<a href="http://graph.unick-soft.ru/en/create_graph_by_matrix">graph from adjacency matrix</a>.&nbsp;A<a href="/en/about">bout project</a> and <a href="http://graph.unick-soft.ru/en/help">look help page</a>.
+ 2016  (<a rel="nofollow" href='{$PageUrl}?action=edit'>$[Edit]</a> -
+        <a rel="nofollow" href='{$PageUrl}?action=diff'>$[History]</a> -
+        <a rel="nofollow" href='{$PageUrl}?action=print' target='_blank'>$[Print]</a> -
+        <a href='{$ScriptUrl}/$[{$Group}/RecentChanges]'>$[Recent Changes]</a> -
+        <a href='{$ScriptUrl}/$[{$SiteGroup}/Search]'>$[Search]</a>)
+
+            </p>
+           </div>
+        </footer>
+        </div>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter25827098 = new Ya.Metrika({id:25827098,
+                    clickmap:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25827098" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+	<script>
+		if (typeof preLoadPage == 'function')
+		{  
+			preLoadPage();
+		}
+	</script>
+	<script src="/i/js/dev/bootstrap3/bootstrap.min.js" >
+        	        $('.dropdown-toggle').dropdown();
+	</script>
+	<script>
+		if (typeof postLoadPage == 'function')
+		{  
+			postLoadPage();
+		}		
+	</script>              
+    </body>
+</html>

@@ -1,0 +1,26 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 OPR/42.0.2393.517
+author=
+charset=UTF-8
+csum=
+ctime=1471451125
+description=How to find the shortest path using Graph online
+host=37.146.179.134
+name=Help.FindTheShortestPath
+rev=4
+targets=
+text=(:Title Find the shortest path :)%0a(:Description How to find the shortest path using Graph online:)%0a%0a!! Searching algorithm%0a%0aGraph Online uses [[https://en.wikipedia.org/wiki/Dijkstra%2527s_algorithm|Dijkstra's algorithm]] for the shortest path search. The algorithm supports edges with integral and non-integral weights. %0a%0a!! How to use %0a%0a# Create a graph.%0a# Select "Find the shortest path" menu item.%0a# Select starting and finishing vertices.%0a%0aIf the path exists, it will be selected on the graph.%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_19_13_48_17.png%0a%0aMoreover, you may choose a detailed report. In that case the shortest path from the starting vertex to a stated one will be written above every vertex. On the contrary, if the vertex can not be approached from the starting vertex, there will be a "∞" symbol. %0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_19_13_48_48.png
+time=1485630964
+title=Find the shortest path 
+author:1485630964=
+diff:1485630964:1471452535:=6c6%0a%3c Graph Online uses [[https://en.wikipedia.org/wiki/Dijkstra%2527s_algorithm|Dijkstra's algorithm]] for the shortest path search. The algorithm supports edges with integral and non-integral weights. %0a---%0a> Graph Online uses [[https://ru.wikipedia.org/wiki/Алгоритм_Дейкстры|алгоритмы Дейкстры]] for the shortest path search. The algorithm supports edges with integral and non-integral weights. %0a
+host:1485630964=37.146.179.134
+author:1471452535=
+diff:1471452535:1471452506:=14c14%0a%3c If the path exists, it will be selected on the graph.%0a---%0a> If the path exists, it will be selected on the grath.%0a
+host:1471452535=128.68.33.133
+author:1471452506=
+diff:1471452506:1471451125:=10,15c10,15%0a%3c # Create a graph.%0a%3c # Select "Find the shortest path" menu item.%0a%3c # Select starting and finishing vertices.%0a%3c %0a%3c If the path exists, it will be selected on the grath.%0a%3c %0a---%0a> # Создайте граф.%0a> # Выделите пункт меню "Найти кратчайший путь".%0a> # Выделите начальную и конечную вершины.%0a> %0a> Если путь существует, он будет выделен на графе.%0a> %0a18c18%0a%3c Moreover, you may choose a detailed report. In that case the shortest path from the starting vertex to a stated one will be written above every vertex. On the contrary, if the vertex can not be approached from the starting vertex, there will be a "∞" symbol. %0a---%0a> Кроме того вы можете выбрать подробный отчёт. В этом случае над каждой вершиной будет написано кратчайшее расстояние начальной вершины до данной. Либо символ бесконечности ∞, если вершина не достижима из начальной вершины.%0a
+host:1471452506=128.68.33.133
+author:1471451125=
+diff:1471451125:1471451125:=1,20d0%0a%3c (:Title Find the shortest path :)%0a%3c (:Description How to find the shortest path using Graph online:)%0a%3c %0a%3c !! Searching algorithm%0a%3c %0a%3c Graph Online uses [[https://ru.wikipedia.org/wiki/Алгоритм_Дейкстры|алгоритмы Дейкстры]] for the shortest path search. The algorithm supports edges with integral and non-integral weights. %0a%3c %0a%3c !! How to use %0a%3c %0a%3c # Создайте граф.%0a%3c # Выделите пункт меню "Найти кратчайший путь".%0a%3c # Выделите начальную и конечную вершины.%0a%3c %0a%3c Если путь существует, он будет выделен на графе.%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/2016_01_19_13_48_17.png%0a%3c %0a%3c Кроме того вы можете выбрать подробный отчёт. В этом случае над каждой вершиной будет написано кратчайшее расстояние начальной вершины до данной. Либо символ бесконечности ∞, если вершина не достижима из начальной вершины.%0a%3c %0a%3c http://images.unick-soft.ru/photos/share/2016_01_19_13_48_48.png%0a\ No newline at end of file%0a
+host:1471451125=128.68.33.133

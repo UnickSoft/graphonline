@@ -1,0 +1,24 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+author=Roxanna
+charset=UTF-8
+csum=y1qzontuCtV
+ctime=1156512549
+host=188.143.232.32
+name=PmWiki.DebugVariables
+rev=19
+targets=
+text=Wow, your post makes mine look %3ca href="http://uvzziamkl.com">feeleb.%3c/a> More power to you!
+time=1485188754
+author:1485188754=Roxanna
+csum:1485188754=y1qzontuCtV
+diff:1485188754:1485016498:=1c1%0a%3c Wow, your post makes mine look %3ca href="http://uvzziamkl.com">feeleb.%3c/a> More power to you!%0a\ No newline at end of file%0a---%0a> This is what we need - an insight to make %3ca href="http://nvumqqdnet.com">evryoene%3c/a> think%0a\ No newline at end of file%0a
+host:1485188754=188.143.232.32
+author:1485016498=Jimbo
+csum:1485016498=Jcgb6cAgP
+diff:1485016498:1484933393:=1c1%0a%3c This is what we need - an insight to make %3ca href="http://nvumqqdnet.com">evryoene%3c/a> think%0a\ No newline at end of file%0a---%0a> &gt;&gt; The Israelis need to stop being narcissistic racists who always seem to see themselves as victims even while being responsible for most of the atrocities in this conflict.You make it sound as though the Israelis are having fun playing the role of aggt-ssorevicrim when, in reality, it&#8217;s hard work!  At the end of the day, don&#8217;t they deserve something &#8211; say, the West Bank &#8211; for their efforts?  ;-)%0a\ No newline at end of file%0a
+host:1485016498=188.143.232.32
+author:1484933393=Infinity
+csum:1484933393=pqn1EIDE03
+diff:1484933393:1430065976:=1c1,32%0a%3c &gt;&gt; The Israelis need to stop being narcissistic racists who always seem to see themselves as victims even while being responsible for most of the atrocities in this conflict.You make it sound as though the Israelis are having fun playing the role of aggt-ssorevicrim when, in reality, it&#8217;s hard work!  At the end of the day, don&#8217;t they deserve something &#8211; say, the West Bank &#8211; for their efforts?  ;-)%0a\ No newline at end of file%0a---%0a> (:Summary:variables useful for debugging:)%0a> %0a> :$AbortFunction:A custom function name replacing the built-in Abort() function. %0a> :$EnableDiag:%0a> >>indent%3c%3c%0a> (:include AvailableActions#BEGENABLEDIAG#ENDENABLEDIAG:)%0a> >>%3c%3c%0a> :$EnableIMSCaching:A variable which, when set equal to 1, recognizes the "If-Modified-Since" header coming from browsers and allows browsers to use locally cached pages.  Disabled by default to help the administrator customize its page without needing permanent reloading.%0a> %0a> :$EnableStopWatch:This activates an internal stopwatch that shows how long it takes to render a page. (If you have a wiki that composes a HTML page from multiple pages, such as a normal layout with a sidebar, you'll get separate timings for each subpage and for the total page.)%0a> %0a> : :The timings can be displayed by adding [@%3c!--function:StopWatchHTML 1-->@] in the wiki template.%0a> %0a> : :Valid values are:%0a>         $EnableStopWatch = 0; # No timings (the default). No HTML will be generated.%0a>         $EnableStopWatch = 1; # Wall-clock timings only.%0a>         $EnableStopWatch = 2; # Wall-clock and CPU usage timings. Won't work on Windows.%0a> %0a> : :See [[(Cookbook:)Stopwatch]] for more details.%0a> %0a> See also:%0a> * [[AvailableActions#refcount|scripts/refcount.php]] is useful for debugging%0a> %0a> %0a> ----%0a> >>faq%3c%3c[[#faq]]%0a> Q:Is it possible for someone with admin priviledges to always have access to debugging tools, without letting everyone else access them?%0a> A:You can easily & automatically allow debugging for anyone with admin priviledges (meanwhile leaving it off for everyone else) by including this line in config.php - ''just be sure that 1) $EnableDiag is either null or set to 0, and 2) to include it near the end of config.php, AFTER declaring your passwords, and after any AuthUser or other priviledge settings'':%0a> %0a> -->@@if (CondAuth($pagename, 'admin')) $EnableDiag = 1;  # allows admin to always call phpinfo, etc@@%0a> %0a> >>%3c%3c%0a
+host:1484933393=188.143.232.32

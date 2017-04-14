@@ -1,0 +1,9 @@
+version=pmwiki-2.2.68 ordered=1 urlencoded=1
+author=Petko
+charset=UTF-8
+csum=Use the button above
+name=Site.UploadQuickReference
+rev=28
+targets=Site.RecentUploads,PmWiki.Uploads,Site.UploadQuickReference
+text=(:Summary:Quick reference for [[PmWiki/uploads|uploading]] pages:)%0a[[#quickreference]]%0a>>color:#000000 bgcolor:#f9f9f9 font-family:'Arial,sans-serif' font-size:12px padding:2px border:'1px solid #cccccc' class='quickref'%3c%3c%0a(:if exists {*$Group}.RecentUploads:)%0a%25rfloat newwin%25[[{*$Group}.RecentUploads|Recent uploads]] to {*$Group} `WikiGroup%0a(:ifend:)%0a'''%25newwin%25[[PmWiki/Uploads]]'''%0a%0a# Use the button above to find the "File to upload" on your local computer.%0a%0a# For the "Name attachment as:" field, enter the name you prefer the file to have once it has been uploaded to the site.\\%0aThis can be the same as its filename on your source disk ''or it can be different'', but %25bgcolor:yellow%25'''make sure it has the correct file extension'''%25%25.%0a%0a# Press "$[Upload]" to upload the file.%0a%0a# To refer to an attachment within a wiki page in this {$Group} `WikiGroup, simply enter @@[=Attach:=]''filename.ext''@@ in the page text.%0a%0a# After uploading, you can %0a** %25item rel=nofollow class=browse%25 [[{*$FullName}?action=browse | $[View] the {*$Name} page]] or%0a** %25item rel=nofollow class=edit%25 [[{*$FullName}?action=edit   | $[Edit] the {*$Name} page]] or%0a** Scroll down to view the list of files that have been uploaded to the {*$Group} wiki group.%0a>>%3c%3c%0a[[#quickreferenceend]]%0a%0a----%0a%0a!! Existing uploads%0a>>font-size:smaller%3c%3c%0a(:attachlist:)%0a>>%3c%3c
+time=1411027969

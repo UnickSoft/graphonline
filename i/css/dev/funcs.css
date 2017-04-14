@@ -1,0 +1,69 @@
+
+    .m-border-radius(@r: 5px)
+    {
+        -webkit-border-radius: @arguments;
+         -khtml-border-radius: @arguments;
+           -moz-border-radius: @arguments;
+            -ms-border-radius: @arguments;
+             -o-border-radius: @arguments;
+                border-radius: @arguments;
+    }
+
+    .m-inset-shadow(@color: #DDD, @size: 6px, @offset_y: 1px, @offset_x: 0)
+    {
+        -webkit-box-shadow: inset @offset_x @offset_y @size @color;
+         -khtml-box-shadow: inset @offset_x @offset_y @size @color;
+           -moz-box-shadow: inset @offset_x @offset_y @size @color;
+            -ms-box-shadow: inset @offset_x @offset_y @size @color;
+             -o-box-shadow: inset @offset_x @offset_y @size @color;
+                box-shadow: inset @offset_x @offset_y @size @color;
+    }
+
+    .m-box-shadow(@color: #222, @size: 6px, @offset_y: 0, @offset_x: 0)
+    {
+        -webkit-box-shadow: @offset_x @offset_y @size @color;
+         -khtml-box-shadow: @offset_x @offset_y @size @color;
+           -moz-box-shadow: @offset_x @offset_y @size @color;
+            -ms-box-shadow: @offset_x @offset_y @size @color;
+             -o-box-shadow: @offset_x @offset_y @size @color;
+                box-shadow: @offset_x @offset_y @size @color;
+    }
+
+    .m-text-shadow(@color: #111, @offset_y: 1px, @offset_x: 0px, @blur: 0)
+    {
+        text-shadow: @color @offset_x @offset_y @blur;
+    }
+
+    .m-gradient(@from, @to, @k: 0.5)
+    {
+        background-color: (@k * @from + (1.0 - @k) * @to) !important;
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)", @from, @to));
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @from), color-stop(100%, @to));
+        background-image: -webkit-linear-gradient(top, @from, @to);
+        background-image: -khtml-gradient(linear, left top, left bottom, from(@from), to(@to));
+        background-image: -moz-linear-gradient(top, @from, @to);
+        background-image:  -ms-linear-gradient(top, @from, @to);
+        background-image:   -o-linear-gradient(top, @from, @to);
+        background-image:      linear-gradient(@from, @to);
+    }
+
+    .m-opacity(@val)
+    {
+        -webkit-opacity: @val;
+         -khtml-opacity: @val;
+           -moz-opacity: @val;
+            -ms-opacity: @val;
+             -o-opacity: @val;
+                opacity: @val;
+        filter: e(%("progid:DXImageTransform.Microsoft.Alpha(opacity=100 * @size)"));
+        zoom:1;
+    }
+
+    .m-animate(@property, @time: 200ms, @func: linear)
+    {
+        -webkit-transition: @property @time @func;
+           -moz-transition: @property @time @func;
+             -o-transition: @property @time @func;
+                transition: @property @time @func;
+    }

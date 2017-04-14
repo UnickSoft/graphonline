@@ -1,0 +1,11 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0
+author=Petko
+charset=UTF-8
+csum=fix link
+host=85.171.160.186
+name=PmWiki.WikiAdministrator
+rev=13
+targets=PmWiki.Installation,PmWiki.InitialSetupTasks,PmWiki.DocumentationIndex,PmWiki.Security,PmWiki.Audiences
+text=A Wiki Administrator is a person (or persons) who installs, configures, and administers a PmWiki system for authors and site visitors.  PmWiki has been designed to make the [[installation]] and [[initial setup tasks]] as easy as possible for people who do not have a lot of knowledge about HTML, PHP, or even web server software.  At the same time, PmWiki is designed to be flexible enough so that someone with just a little bit of knowledge about HTML and PHP can customize PmWiki to their specific needs. %0a%0aSee the [[PmWiki.documentation index]] for pages about administering PmWiki, [[PmWiki:AdminTask|administration tasks]], %0a[[PmWiki/security]],%0aand [[PmWiki.audiences]] for more details of PmWiki's target audiences.%0a
+time=1315670897

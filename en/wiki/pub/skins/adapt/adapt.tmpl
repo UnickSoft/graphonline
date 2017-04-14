@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>{$Title} | $WikiTitle $ActionTitle </title></title>
+ <link rel="stylesheet" href="$SkinDirUrl/pure-min.css">
+ <!--[if lte IE 8]>
+    <link rel="stylesheet" href="$SkinDirUrl/adapt-old-ie.css">
+ <![endif]-->
+ <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="$SkinDirUrl/adapt.css">
+ <!--<![endif]-->
+ <!--[if lt IE 9]>
+    <script src="$SkinDirUrl/html5shiv.js"></script>
+ <![endif]-->
+ <!--HTMLHeader-->
+</head>
+
+<body>
+<div id="layout">
+<!--PageLeftFmt-->
+  <!-- HeaderLogo Menu toggle -->
+  <a href="#menu" id="menuLink" class="menu-link">
+    <!-- Hamburger icon -->
+    <span></span>
+  </a>
+  <div id="menu">
+    <div class="pure-menu pure-menu-open">
+      <div class='sidesearch'><a href='http://www.haganfox.net/Site/Search'>Search</a></div>
+      <!--wiki:{$Group}.AdaptSideBar {$SiteGroup}.AdaptSideBar-->
+      <!--wiki:{$Group}.SideBar {$SiteGroup}.SideBar-->
+    </div>
+  </div>
+<!--/PageLeftFmt-->
+  <div id="main">
+<!--PageHeaderFmt-->
+  <div id='wikilogo'><a href='{$ScriptUrl}'><img src='$PageLogoUrl'
+    alt='$WikiTitle' border='0' /></a></div>
+  <div id='wikihead'>
+  <form action='{$ScriptUrl}'>
+    <span class='headnav'><a href='{$ScriptUrl}/$[{$Group}/RecentChanges]'
+      accesskey='$[ak_recentchanges]'>$[Recent Changes]</a> -</span>
+    <input type='hidden' name='n' value='{$FullName}' />
+    <input type='hidden' name='action' value='search' />
+    <a href='{$ScriptUrl}/$[{$SiteGroup}/Search]'>$[Search]</a>:
+    <input type='text' name='q' value='' class='inputbox searchbox' />
+    <input type='submit' class='inputbutton searchbutton'
+      value='$[Go]' /></form></div>
+<!--PageActionFmt-->
+    <div id='wikicmds'><!--wiki:{$Group}.PageActions {$SiteGroup}.PageActions--></div>
+<!--PageTitleFmt-->
+    <div class="title">
+      <div class='pagegroup'><a href='{$ScriptUrl}/{$Group}'>{$Group}</a> /</div>
+      <h1 class='pagetitle'>{$Title}</h1>
+    </div>
+<!--/PageTitleFmt-->
+    <div class="content">
+<!--PageText-->
+<!--PageFooterFmt-->
+      <div id='wikifoot'><div class='footnav'>
+        <a rel="nofollow" href='{$PageUrl}?action=edit'>$[Edit]</a> -
+        <a rel="nofollow" href='{$PageUrl}?action=diff'>$[History]</a> -
+        <a rel="nofollow" href='{$PageUrl}?action=print' target='_blank'>$[Print]</a> -
+        <a href='{$ScriptUrl}/$[{$Group}/RecentChanges]'>$[Recent Changes]</a> -
+        <a href='{$ScriptUrl}/$[{$SiteGroup}/Search]'>$[Search]</a></div>
+        <div class='lastmod'>$[Page last modified on {$LastModified}]</div>
+      </div>
+<!--/PageFooterFmt-->
+    </div>
+  </div>
+</div>
+<script src="$SkinDirUrl/ui.js"></script>
+<!--HTMLFooter-->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+(w[c] = w[c] || []).push(function() {
+try {
+w.yaCounter25827098 = new Ya.Metrika({id:25827098,
+clickmap:true,
+accurateTrackBounce:true});
+} catch(e) { }
+});
+
+var n = d.getElementsByTagName("script")[0],
+s = d.createElement("script"),
+f = function () { n.parentNode.insertBefore(s, n); };
+s.type = "text/javascript";
+s.async = true;
+s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+if (w.opera == "[object Opera]") {
+d.addEventListener("DOMContentLoaded", f, false);
+} else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25827098" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

@@ -1,0 +1,8 @@
+version=pmwiki-2.2.30 ordered=1 urlencoded=1
+charset=UTF-8
+name=Site.AuthUser
+passwdattr=*
+passwdedit=*
+rev=1
+text=(:redirect SiteAdmin.AuthUser:)%0a
+time=1000000000

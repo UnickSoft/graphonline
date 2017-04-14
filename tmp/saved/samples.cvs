@@ -1,0 +1,8 @@
+Planar|"Пример планарного графа"|"Planar graph example"
+Cayleygraph|"Граф Кэли прямого произведения Z2xZ3"|"Cayley Graph Z2xZ3"
+HalinGraph|"Пример Графа Халина"|"Halin graph example"
+CompleteGraph|"Полный граф K6"|"Complete Graph K6"
+BipartiteGraph|"Двудольный граф"|"Bipartite graph"
+weightedGraph|"Пример взвешенного графа"|"Weighted graph"
+bigTree|"Большое дерево"|"Big Tree"
+russiaCenter|"Граф центрально европейских городов России"|"Graph of Central European cities Russian"

@@ -1,0 +1,25 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 OPR/42.0.2393.517
+author=
+charset=UTF-8
+ctime=1470345655
+host=37.146.179.134
+name=SiteAdmin.ApprovedUrls
+rev=5
+text=%0a  http://graphonline.ru%0a  http://images.unick-soft.ru%0a  https://github.com%0a  https://ru.wikipedia.org%0a  https://en.wikipedia.org%0a
+time=1485630966
+author:1485630966=
+diff:1485630966:1485630926:=6d5%0a%3c   https://en.wikipedia.org%0a
+host:1485630966=37.146.179.134
+author:1485630926=
+diff:1485630926:1478122946:=5d4%0a%3c   https://ru.wikipedia.org%0a
+host:1485630926=37.146.179.134
+author:1478122946=
+diff:1478122946:1470585781:=4d3%0a%3c   https://github.com%0a
+host:1478122946=82.145.221.45
+author:1470585781=
+diff:1470585781:1470345655:=3d2%0a%3c   http://images.unick-soft.ru%0a
+host:1470585781=128.68.33.133
+author:1470345655=
+diff:1470345655:1470345655:=1,2d0%0a%3c %0a%3c   http://graphonline.ru%0a
+host:1470345655=128.68.33.133
