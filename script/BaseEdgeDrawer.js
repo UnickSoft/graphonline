@@ -107,6 +107,7 @@ BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
   this.context.lineWidth   = baseEdge.model.width;
   this.context.strokeStyle = arcStyle.strokeStyle;
   this.context.fillStyle   = arcStyle.fillStyle;
+  this.sizeOfLoop          = baseEdge.vertex1.model.diameter / 2;
 }
 
 BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
@@ -157,23 +158,23 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
 	this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
 }
 
-BaseEdgeDrawer.prototype.GetArcPositions = function(position1, position2, diameter)
+BaseEdgeDrawer.prototype.GetArcPositions = function(position1, position2, diameter1, diameter2)
 {
   var direction = position1.subtract(position2); 
   direction.normalize(1.0);
   direction = direction.multiply(0.5);
   
   var res = [];
-  res.push(position1.subtract(direction.multiply(diameter)));
-  res.push(position2.subtract(direction.multiply(-diameter)));
+  res.push(position1.subtract(direction.multiply(diameter1)));
+  res.push(position2.subtract(direction.multiply(-diameter2)));
   return res;
 }
 
-BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, diameter, shift)
+BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, diameter1, diameter2, shift)
 {
     if (shift == 0)
     {
-        return this.GetArcPositions(position1, position2, diameter);
+        return this.GetArcPositions(position1, position2, diameter1, diameter2);
     }
     else
     {
@@ -183,10 +184,11 @@ BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, d
         direction = direction.multiply(0.5);
         position1 = position1.subtract(normal.multiply(shift));
         position2 = position2.subtract(normal.multiply(shift));
-        diameter = Math.sqrt(diameter * diameter - shift * shift);
+        diameter1 = Math.sqrt(diameter1 * diameter1 - shift * shift);
+        diameter2 = Math.sqrt(diameter2 * diameter2 - shift * shift);
         var res = [];
-        res.push(position1.subtract(direction.multiply(diameter)));
-        res.push(position2.subtract(direction.multiply(-diameter)));
+        res.push(position1.subtract(direction.multiply(diameter1)));
+        res.push(position2.subtract(direction.multiply(-diameter2)));
         return res;
     }  
 }
@@ -216,7 +218,7 @@ DirectArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
   var realShift = (baseEdge.hasPair ? pairShift : 0);
   direction.normalize(1.0);
   var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, realShift);
+	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
   
   baseDrawer.DrawArc (positions[0], positions[1].subtract(direction.multiply(-length / 2)), arcStyle);
 
@@ -277,7 +279,7 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
     var pairShift = baseEdge.vertex1.model.diameter * 0.25;
     var realShift = (baseEdge.hasPair ? pairShift : 0);
     var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-                                              baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, realShift);
+                                              baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
     var progressSize = 10;
     
     if (positions[0].equals(positions[1]))

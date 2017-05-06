@@ -11,10 +11,10 @@ function BaseVertex(x, y, vertexEnumType)
     this.mainText = "";
     this.upText   = "";
     this.vertexEnumType = vertexEnumType;
+    this.model    = new VertexModel();
 };
 
 BaseVertex.prototype.position = new Point(0, 0);
-BaseVertex.prototype.model    = new VertexModel();
 
 BaseVertex.prototype.SaveToXML = function ()
 {

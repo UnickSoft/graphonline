@@ -14,9 +14,8 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
     this.hasPair   = false;
     this.useWeight = useWeight;
     this.id        = 0;
+    this.model = new EdgeModel();
 }
-
-BaseEdge.prototype.model = new EdgeModel();
 
 BaseEdge.prototype.SaveToXML = function ()
 {
