@@ -54,3 +54,8 @@ BaseEdge.prototype.GetPixelLength = function ()
         return Point.distance(this.vertex1.position, this.vertex2.position);
     }
 }
+
+BaseEdge.prototype.GetWeight = function ()
+{
+    return this.useWeight ? this.weight : 1;
+}

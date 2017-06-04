@@ -38,7 +38,7 @@ ModernGraphStyle.prototype.result = function(resultCallback)
     var result = {};
     result["version"] = 1;
     
-    this.vertexVisualization();
+    this.vertexVisualization2();
     this.edgeVisualization();
 
     return result;
@@ -75,6 +75,61 @@ ModernGraphStyle.prototype.vertexVisualization = function()
         {
             var currentDegree = degree[vertex.id].length;
             //vertex.model.diameter = (currentDegree / maxDegree) * (this.maxVertexSize - this.minVertexSize) + this.minVertexSize;
+            vertex.model.diameter = Math.max(Math.min((currentDegree / sumDegree) * sumOfDiameters, this.maxVertexSize), this.minVertexSize);
+            //sumOfDiameters
+        }
+        else
+        {
+            vertex.model.diameter = this.minVertexSize;     
+        }
+    }
+}
+
+ModernGraphStyle.prototype.vertexVisualization2 = function()
+{
+    var degree = {};
+    var graph  = this.graph;
+    var sumDegree = 0;
+    
+    var sumOfDiameters = graph.vertices.length * (new VertexModel()).diameter;
+    
+    // Search max vertex degree.
+    for (var i = 0; i < graph.edges.length; i++)
+    {
+        var edge = graph.edges[i];
+        if (!degree.hasOwnProperty(edge.vertex1.id))
+        {
+            degree[edge.vertex1.id] = 0;
+        }
+        if (!degree.hasOwnProperty(edge.vertex2.id))
+        {
+            degree[edge.vertex2.id] = 0;
+        }
+        
+        var currentWeight = 0;
+        if (edge.isDirect)
+        {
+            currentWeight = edge.GetWeight() / 2;
+        }
+        else
+        {
+            currentWeight = edge.GetWeight();
+        }
+        
+        sumDegree = sumDegree + 2 * currentWeight;
+        degree[edge.vertex1.id] += currentWeight;
+        degree[edge.vertex2.id] += currentWeight;
+    }
+
+    console.log("sumDegree = " + sumDegree);
+    for (var i = 0; i < graph.vertices.length; i++)
+    {
+        var vertex = graph.vertices[i];
+
+        if (degree.hasOwnProperty(vertex.id))
+        {
+            var currentDegree = degree[vertex.id];
+            console.log(currentDegree / sumDegree);
             vertex.model.diameter = Math.max(Math.min((currentDegree / sumDegree) * sumOfDiameters, this.maxVertexSize), this.minVertexSize);
             //sumOfDiameters
         }
