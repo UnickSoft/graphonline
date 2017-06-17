@@ -55,3 +55,7 @@
             </div>
         </div>
     </nav>
+
+    <script src="/i/js/dev/bootstrap3/bootstrap.min.js">
+        	        $('.dropdown-toggle').dropdown();
+	</script>
