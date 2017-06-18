@@ -1,21 +1,13 @@
 <?php
-$examples = array();
+
+include ("./src/graphs_examples_func.php");
+
+$examples = getAllExampleGraphs();
 
 // Load from cvs
 
-$examplesFilename = $g_config['graphSavePath'] . $g_config['graphExamplesFile'];
-
-if (($handle = fopen($examplesFilename, "r")) !== FALSE)
+foreach ($examples as $item)
 {
-    while (($data = fgetcsv($handle, 1000, "|")) !== FALSE)
-    {
-        $item = array();
-        $item["id"] = $data[0];
-        $item["title_ru"] = $data[1];
-        $item["title_en"] = $data[2];
-        $g_lang["m_keyWords"] .= ", " . $item["title_" . $g_lang["current_language"]];
-        $examples[] = $item;
-    }
-    fclose($handle);
+    $g_lang["m_keyWords"] .= ", " . $item["title_" . $g_lang["current_language"]];
 }
 ?>

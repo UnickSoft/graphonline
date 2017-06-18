@@ -1,6 +1,7 @@
 <?php
 
 include ("cgi-bin/saveGraphHelpers.php");
+include ("./src/graphs_examples_func.php");
 
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
@@ -64,21 +65,6 @@ if (isset($_POST["source_id"]))
 }
 
 
-$examples = array();
-
-// Load from cvs
-
-if (($handle = fopen($examplesFilename, "r")) !== FALSE)
-{
-    while (($data = fgetcsv($handle, 1000, "|")) !== FALSE)
-    {
-        $item = array();
-        $item["id"] = $data[0];
-        $item["title_ru"] = $data[1];
-        $item["title_en"] = $data[2];
-        $examples[] = $item;
-    }
-    fclose($handle);
-}
+$examples = getAllExampleGraphs();
 
 ?>

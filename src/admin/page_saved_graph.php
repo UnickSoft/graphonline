@@ -1,5 +1,6 @@
 <?php
 
+include ("./src/graphs_examples_func.php");
 
 function glob_recursive($pattern, $flags = 0)
 {
@@ -11,7 +12,7 @@ function glob_recursive($pattern, $flags = 0)
     return $files;
 }
 
-function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback)
+function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback, $ageActionCallback)
 {
     // Process graph project files.
     $files = glob_recursive($mask);
@@ -24,12 +25,12 @@ function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback
 
         if ($ageCallback($fileAgeInMonth))
         {
-            $ageCount = $ageCount + 1;
+            $ageActionCallback($ageCount, $file);
         }
     }
 }
 
-$ageCallback = function($age)
+$age6mLessCallback = function($age)
 {
     return $age <= 6;
 };
@@ -43,9 +44,52 @@ $ageGraph        = 0;
 $totalImages = 0;
 $totalImagesSize = 0; // In Kb
 $ageImage        = 0;
+$msg             = "";
 
-processFiles($g_config['graphSavePath'] . "*.xml", $totalGraphCount, $totalGraphSize, $ageGraph, $ageCallback);
-processFiles($g_config['graphSavePath'] . "*.png", $totalImages, $totalImagesSize, $ageImage, $ageCallback);
+
+if ($_POST["submit"] == "delete1YImages")
+{
+    $age1yMoreCallback = function($age)
+    {
+        return $age > 12;
+    };
+    
+    $examples = getAllExampleGraphs();
+    
+    $msg = "Deleted files: ";
+    $deletedCount = 0;
+    
+    $ageDelActionCallback = function(&$ageCount, $file) use($examples, &$msg, &$deletedCount)
+    {
+        // Ignory examples.
+        foreach ($examples as $item)
+        {
+            if (strpos ($file, $item["id"]) !== FALSE)
+            {
+                return;
+            }
+        }
+        
+        if (unlink($file))
+        {
+            $msg = $msg . $file . ", ";
+            $deletedCount = $deletedCount + 1;
+        }
+    };
+    
+    processFiles($g_config['graphSavePath'] . "*.png", $totalImages, $totalImagesSize, $ageImage, $age1yMoreCallback, $ageDelActionCallback);
+    
+    $msg = $msg . "<br/>" . "Total: $deletedCount";
+}
+
+
+$ageActionCallback = function(&$ageCount, $file)
+{
+    $ageCount = $ageCount + 1;
+};
+
+processFiles($g_config['graphSavePath'] . "*.xml", $totalGraphCount, $totalGraphSize, $ageGraph, $age6mLessCallback, $ageActionCallback);
+processFiles($g_config['graphSavePath'] . "*.png", $totalImages, $totalImagesSize, $ageImage, $age6mLessCallback, $ageActionCallback);
 
 $totalGraphSize = intval($totalGraphSize);
 $totalImagesSize = intval($totalImagesSize);
