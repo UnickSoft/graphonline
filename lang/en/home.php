@@ -5,7 +5,7 @@
     $g_lang["add_node"] = "Add vertex";
     $g_lang["connect_nodes"] = "Connect vertexes";
     $g_lang["delete"] = "Remove object";
-    $g_lang["default"] = "Drad & drop";
+    $g_lang["default"] = "Drag";
     $g_lang["short_path"] = "Find shortest path";
     $g_lang["save_direction_choose"] = "Save edge type";
     $g_lang["edge_weight"] = "Edge weight";
