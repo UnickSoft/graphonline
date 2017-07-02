@@ -9,6 +9,12 @@
     $g_lang["newsList"] = array();
 
     $newsIndex = 0;
+    $g_lang["newsList"][$newsIndex]["title"] = "Завершение сбора стредств";
+    $g_lang["newsList"][$newsIndex]["text"]  = "Мы рады сообщить, что сбор на хостинг завершён. Благодаря 20 неравнодушным пользователям нам удалось собрать 1500р, для продления хостинга на год. Теперь мы можем не боясть блокировки до 2019 года.<br> <img src=\"/i/image/news/hosting.png\">";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Админ";
+    $g_lang["newsList"][$newsIndex]["date"]  = "02.07.2017";
+    $newsIndex ++;
+    
     $g_lang["newsList"][$newsIndex]["title"] = "Обновления";
     $g_lang["newsList"][$newsIndex]["text"]  = "По постоянно работаем над улучшением сайта, за последние несколько месяцев было сделано следующее: обновлены ролики у на нашем канале на Youtube <a href=\"https://www.youtube.com/channel/UCrUEnaF7yz6sclCZi1-7XMA\">https://www.youtube.com/channel/UCrUEnaF7yz6sclCZi1-7XMA</a>, добавлены примеры графов, добавлен алгоритм поиска минимального остовного дерева, улучшена мобильная версия сайта и другие мелкие правки.";
     $g_lang["newsList"][$newsIndex]["autor"] = "Админ";
