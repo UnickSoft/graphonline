@@ -273,15 +273,30 @@ window.onload = function ()
 				<div id="videoHelp">
 					<a href="./create_graph_by_matrix_help">Видео справка</a>
                     <a href="./wiki/Справка/МатрицаСмежности">Wiki справка</a>
-				</div>
+				</div>    
 </section>
+
+                <section style="text-align: center;" class="hidden-phone">
+                <div>
+                    <img src="/i/image/help/createGrapthByMatrix.gif" alt="<?= L('head_no_tags')?>"/>
+                </div>
+                </section>
 <? endif; ?>
 
-<section style="text-align: center;" class="hidden-phone">
-<div>
-    <img src="/i/image/help/createGrapthByMatrix.gif" alt="<?= L('head_no_tags')?>"/>
-</div>
+<? if (L('current_language') == "en"): ?>
+
+<section>
+				<div id="videoHelp">
+                    <a href="./wiki/Help/AdjacencyMatrix">Wiki help</a>
+				</div>    
 </section>
+                <section style="text-align: center;" class="hidden-phone">
+                <div>
+                    <img src="/i/image/help/createGraphByMatrixEn.gif" alt="<?= L('head_no_tags')?>"/>
+                </div>
+                </section>
+<? endif; ?>
+
                 <? if (L('current_language') == "ru"): ?>
     <section style="height:90px;text-align: center;" id="adv" class="hidden-phone">
 <!-- Yandex.RTB R-A-202319-1 -->
