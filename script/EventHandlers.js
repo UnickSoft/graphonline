@@ -642,33 +642,38 @@ SavedDialogGraphImageHandler.prototype.objects    = null;
 
 SavedDialogGraphImageHandler.prototype.show = function(object)
 {
-    var imageName = this.app.SaveGraphImageOnDisk();
+    var showDialogCallback = function ()
+    {
+        var dialogButtons = {};
+
+        dialogButtons[g_close] = function() {
+            $( this ).dialog( "close" );
+        };
+
+        var fileLocation = "tmp/saved/" + imageName.substr(0, 2) + "/"+ imageName + ".png"
+
+        document.getElementById("showSavedImageGraph").src     = "/" + fileLocation;
+        document.getElementById("showSavedImageGraphRef").href = "/" + fileLocation;
+        //document.getElementById("showSavedImageGraph").src = document.getElementById("showSavedImageGraph").src.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+        document.getElementById("ShareSavedImageGraph").innerHTML =
+        document.getElementById("ShareSavedImageGraph").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+
+        document.getElementById("SaveImageLinks").innerHTML =
+        document.getElementById("SaveImageLinks").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+
+        $( "#saveImageDialog" ).dialog({
+                                  resizable: false,
+                                  height: "auto",
+                                  width:  "auto",
+                                  modal: true,
+                                  title: g_save_image_dialog,
+                                  buttons: dialogButtons,
+                                  dialogClass: 'EdgeDialog'
+                                  });
     
-    var dialogButtons = {};
+    }
     
-    dialogButtons[g_close] = function() {
-        $( this ).dialog( "close" );
-    };
-    
-    var fileLocation = "tmp/saved/" + imageName.substr(0, 2) + "/"+ imageName + ".png"
-    
-    
-    document.getElementById("ShareSavedImageGraph").innerHTML =
-    document.getElementById("ShareSavedImageGraph").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
-    
-    document.getElementById("SaveImageLinks").innerHTML =
-    document.getElementById("SaveImageLinks").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
-    
-    $( "#saveImageDialog" ).dialog({
-                              resizable: false,
-                              height: "auto",
-                              width:  "auto",
-                              modal: true,
-                              title: g_save_image_dialog,
-                              buttons: dialogButtons,
-                              dialogClass: 'EdgeDialog'
-                              });
-    
+    var imageName = this.app.SaveGraphImageOnDisk(showDialogCallback);
 }
 
 

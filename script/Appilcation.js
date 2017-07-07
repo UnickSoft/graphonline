@@ -765,7 +765,7 @@ Application.prototype.SaveGraphOnDisk = function ()
 	});
 }
                           
-Application.prototype.SaveGraphImageOnDisk = function ()
+Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 {
     var imageName = this.GetNewGraphName();
                           
@@ -797,7 +797,10 @@ Application.prototype.SaveGraphImageOnDisk = function ()
      data: {
            base64data : imageBase64Data
      },
-     dataType: "text"
+     dataType: "text",
+     success: function(data){
+        showDialogCallback();
+    }
      });
                           
     return imageName;

@@ -102,6 +102,6 @@
     
     $g_lang["group_rename"] = "Групповое переименование";
     $g_lang["enter_vertices_text_in_each_line"] = "Введите текст для каждой вершины в отдельную строку";
-    
+    $g_lang["or"] = "или";
     
 ?>

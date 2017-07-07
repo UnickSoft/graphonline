@@ -239,7 +239,11 @@
 <form>
 <fieldset>
 <? $shareImagePageURL = $_SERVER['SERVER_NAME'] . "/";?>
-<p id="SaveImageLinks"><a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank"><?= L('open_saved_image_browser')?></a> or <a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" download><?= L('download_saved_image')?></a></p>
+<p id="SaveImageLinks"><a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank"><?= L('open_saved_image_browser')?></a> <?= L('or')?> <a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" download><?= L('download_saved_image')?></a>
+</p>
+<p class="hidden-phone">
+<a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
+</p>
 <p><?= L('share_graph_description') ?></p>
 <ul class="share-buttons" id="ShareSavedImageGraph">
 <li><a href="http://vkontakte.ru/share.php?url=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&text=<?= L('share_graph_text') ?>" target="_blank" title="Share on Vkontate"><i class="fa fa-vk fa-2x"></i></a></li>
