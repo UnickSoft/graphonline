@@ -131,6 +131,26 @@ Application.prototype._redrawGraph = function()
     return context;
 }
 
+Application.prototype._OffscreenRedrawGraph = function()
+{
+    var bbox = this.graph.getGraphBBox();
+    var canvas = document.createElement('canvas');
+    canvas.width  = bbox.size().x;
+    canvas.height = bbox.size().y;
+    var context = canvas.getContext('2d');
+    
+    context.save();
+    context.clearRect(0, 0, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()));
+    context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    this.RedrawEdges(context);
+    this.RedrawNodes(context);
+    
+    context.restore();
+    
+    return canvas;
+}
+
 Application.prototype.updateRenderPathLength = function()
 {
     this.renderPathLength = 0;
@@ -515,6 +535,11 @@ Application.prototype.SetHandlerMode = function(mode)
         var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
         savedDialogGraphImageHandler.show();
     }
+    else if (mode == "saveDialogFullImage")
+    {
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
+        savedDialogGraphImageHandler.show(null, true);           
+    }
     else if (mode == "eulerianLoop")
     {
 		this.handler = new EulerianLoopGraphHandler(this);
@@ -790,6 +815,35 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
     }
 
     var imageBase64Data = this.canvas.toDataURL();
+
+    $.ajax({
+     type: "POST",
+     url: "/cgi-bin/saveImage.php?name=" + imageName + rectParams,
+     data: {
+           base64data : imageBase64Data
+     },
+     dataType: "text",
+     success: function(data){
+        showDialogCallback();
+    }
+     });
+                          
+    return imageName;
+}
+
+Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback)
+{
+    var imageName = this.GetNewGraphName();
+                          
+    this.stopRenderTimer();
+    var canvas = this._OffscreenRedrawGraph();
+                          
+    var bbox = this.graph.getGraphBBox();
+    
+    var rectParams = ""; 
+    rectParams = "&x=0" + "&y=0" + "&width=" + bbox.size().x + "&height=" + bbox.size().y;
+
+    var imageBase64Data = canvas.toDataURL();
 
     $.ajax({
      type: "POST",

@@ -640,7 +640,7 @@ SavedDialogGraphImageHandler.prototype.pathObjects = null;
 // Objects.
 SavedDialogGraphImageHandler.prototype.objects    = null;
 
-SavedDialogGraphImageHandler.prototype.show = function(object)
+SavedDialogGraphImageHandler.prototype.show = function(object, isFull = false)
 {
     var showDialogCallback = function ()
     {
@@ -673,7 +673,7 @@ SavedDialogGraphImageHandler.prototype.show = function(object)
     
     }
     
-    var imageName = this.app.SaveGraphImageOnDisk(showDialogCallback);
+    var imageName = isFull ? this.app.SaveFullGraphImageOnDisk(showDialogCallback) : this.app.SaveGraphImageOnDisk(showDialogCallback);
 }
 
 

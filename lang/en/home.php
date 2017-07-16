@@ -18,7 +18,7 @@
     $g_lang["orint_edge"] = "Directed";
     $g_lang["not_orint_edge"] = "Undirected";
     $g_lang["show_adjacency_matrix"] = "Adjacency Matrix";
-    $g_lang["save"] = "Save";
+    $g_lang["save"] = "Save graph";
     $g_lang["cancel"] = "Cancel";
     $g_lang["adjacency_matrix_description"] = "Setup adjacency matrix. Use comma \",\" as separator";
     $g_lang["adjacency_matrix_bad_format"] = "Matrix is incorrect. Use comma \",\" as separator. Matrix should be square";
@@ -57,7 +57,8 @@
     $g_lang["wrong_matrix_title"] = "Matrix has wrong format";
     $g_lang["bad_adj_matrix_message"] = "Cannot create graph. Adjacency Matrix has wrong format. Click \"fix matrix\" button to fix matrix or \"help\" button to open help about Adjacency Matrix format";
     $g_lang["bad_inc_matrix_message"] = "Cannot create graph. Incidence Matrix has wrong format. Click \"fix matrix\" button to fix matrix or \"help\" button to open help about Incidence Matrix format";
-    $g_lang["save_image"] = "Save graph image";
+    $g_lang["save_image"] = "Save workspace image";
+    $g_lang["save_full_image"] = "Save full graph image";
     $g_lang["open_saved_image_browser"] = "Open image in browser";
     $g_lang["download_saved_image"] = "Download saved image";
     $g_lang["save_image_dialog_title"] = "Save Graph Image";

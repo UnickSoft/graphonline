@@ -44,6 +44,9 @@
                 <li>
                     <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_image')?></button>
                 </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveFullGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_full_image')?></button>
+                </li>
 				<li class="divider"></li>
       				<li>
 				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_adjacency_matrix')?></button>
