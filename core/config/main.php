@@ -79,4 +79,6 @@
     // Donate files
     $g_config['donateTotal']            = "./tmp/donate/total.txt";
     $g_config['donateTransactions']     = "./tmp/donate/transactions.txt";
+    $g_config['vote']                   = "./tmp/vote/vote.txt";
+    $g_config['voteTopics']             = "./tmp/vote/voteTopics.txt_";
 ?>

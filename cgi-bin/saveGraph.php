@@ -1,4 +1,5 @@
 <?
+  include ("../core/config/main.php");
   include ("saveGraphHelpers.php");
 
   $graph = file_get_contents("php://input");

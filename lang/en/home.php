@@ -100,4 +100,6 @@
     $g_lang["group_rename"] = "Group rename";
     $g_lang["enter_vertices_text_in_each_line"] = "Enter text for each vertex in separate line";
     $g_lang["or"] = "or";
+    $g_lang["vote"] = "Vote";
+    $g_lang["vote_question"] = "What functions should we add firstly?";
 ?>

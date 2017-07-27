@@ -66,6 +66,7 @@ var g_editWeight = "Edit weight";
 
 var g_noWeight = "No weight";
 var g_groupRename = "Group rename";
+var g_vote = "Vote";
 
 function loadTexts()
 {
@@ -133,4 +134,5 @@ function loadTexts()
     
     g_noWeight = document.getElementById("noWeight").innerHTML;
     g_groupRename = document.getElementById("groupeRenameText").innerHTML;
+    g_vote = document.getElementById("voteText").innerHTML;
 }

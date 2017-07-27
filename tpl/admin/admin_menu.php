@@ -4,7 +4,7 @@
     </head>
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="admin-menu">
+    <nav class="navbar navbar-inverse" role="navigation" id="admin-menu">
         <div class="container">
 
             <!-- Логотип и кнопка открытия меню сгруппированы для лучшего отображения на мобильных устройствах -->

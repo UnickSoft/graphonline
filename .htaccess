@@ -1,5 +1,5 @@
-Options +ExecCGI
-AddHandler AddType application/x-httpd-php .exe
+#Options +ExecCGI
+#AddHandler AddType application/x-httpd-php .exe
 
 Options -Indexes
 RewriteEngine on

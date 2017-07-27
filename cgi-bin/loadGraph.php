@@ -1,4 +1,5 @@
 <?
+  include ("../core/config/main.php");
   include ("saveGraphHelpers.php");
 
   $name  = $_GET["name"];

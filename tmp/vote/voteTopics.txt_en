@@ -1,0 +1,4 @@
+User account|Possibility to store graphs in your user account and other settings.
+Improved visualization|The ability to change colors for vertexes and edges, as well as the shape and size of the vertexes.
+Improving the support of large graphs|Make easy work with large graphs with the number of vertixes is more than 300.
+More algorithms|Add more algorithms: maximum flow, minimum cut, radius, diameter, coloring graph.

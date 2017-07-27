@@ -44,7 +44,8 @@
                                array('link' => SiteRoot('admin/page_editor'),     'name' => 'Все страницы', 'label' => 'Смотреть все страницы'),
                                array('link' => SiteRoot('admin/page_editor_add'), 'name' => 'Добавить',     'label' => 'Добавить новую страницу'),
                                array('link' => SiteRoot('admin/page_saved_graph'), 'name' => 'Статистика',     'label' => 'Статистика сохранений'),
-                               array('link' => SiteRoot('admin/page_example_graph'), 'name' => 'Примеры',     'label' => 'Примеры графов')
+                               array('link' => SiteRoot('admin/page_example_graph'), 'name' => 'Примеры',     'label' => 'Примеры графов'),
+                               array('link' => SiteRoot('admin/page_vote'), 'name' => 'Голосование',     'label' => 'Результаты голосования')
                            )
             );
 

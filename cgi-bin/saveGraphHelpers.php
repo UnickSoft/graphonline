@@ -3,8 +3,6 @@
    Function to save/open graph
    */
 
-include ("../core/config/main.php");
-
 // Only latic.
 function isValidName($name)
 {

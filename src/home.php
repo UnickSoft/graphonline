@@ -1,6 +1,7 @@
 <?php
     
     include ("./src/donate.php");
+    include ("./src/vote_func.php");
     
     $graphName = "";
     if (isset($_GET["graph"]))
@@ -35,4 +36,13 @@
         $g_lang["m_keyWords"] = $graphName . ", " . $g_lang["m_keyWords"];
         $g_lang["m_description"] = $g_lang["title_notg"] . ": " . $graphName;
     }
+
+    $wasVote = (isset($_COOKIE["vote0"]));
+
+    $voteTopics = getVoteTopics();
+    for ($i = 0; $i < count($voteTopics); $i++)
+    {
+        $voteTopics[$i]["index"] = $i;
+    }
+    shuffle($voteTopics);
 ?>

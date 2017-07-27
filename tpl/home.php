@@ -100,6 +100,10 @@
         </div>
 
         <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> <?= L('delete')?></span></button>
+
+        <? if (!$wasVote && count($voteTopics) > 0): ?>
+        <button type="button" class="btn btn-success" id="VoteButton"><span class="glyphicon glyphicon-thumbs-up"></span> <?= L('vote') ?></button>
+        <? endif ?>
 <!--
 		  <button type="button" class="btn btn-default" id="Test"><span class="glyphicon glyphicon-remove"></span> Test repos</button>
 -->
@@ -274,6 +278,31 @@
 	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
 
+	<div id="incidenceMatrix">
+		<form>
+		<fieldset>
+				<p><?= L('incidence_matrix_description')?></p>				
+				<textarea name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
+				<p id="BadIncidenceMatrixFormatMessage"><?= L('incidence_matrix_bad_format')?></p>
+		</fieldset>
+		</form>
+       </div>
+        
+	<div id="voteDialog">
+		<form>
+		<fieldset>
+				<p><?= L('vote_question') ?></p>	
+            <? foreach ($voteTopics as $topic): ?>
+                <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote<?=$topic["index"]?>">
+                    <h4 class="list-group-item-heading"><?= $topic["title"] ?></h4>
+                    <p class="list-group-item-text"><?= $topic["desc"] ?></p>
+                  </button>
+                </div>
+            <? endforeach ?>
+		</fieldset>
+		</form>
+    </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
     <p id="MoveCursorForMoving" class="translation"><?= L('move_cursor_for_moving')?></p>
@@ -339,7 +368,8 @@
     <p id="editWeight" class="translation"><?= L('edit_weight')?></p>
     <p id="noWeight" class="translation"><?= L('default_weight')?></p>
     <p id="groupeRenameText" class="translation"><?= L('group_rename')?></p>
-
+    <p id="voteText" class="translation"><?= L('vote')?></p>
+        
     </section>
 <!--
 <script>
