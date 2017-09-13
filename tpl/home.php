@@ -101,9 +101,11 @@
 
         <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> <?= L('delete')?></span></button>
 
+<!--
         <? if (!$wasVote && count($voteTopics) > 0): ?>
         <button type="button" class="btn btn-success" id="VoteButton"><span class="glyphicon glyphicon-thumbs-up"></span> <?= L('vote') ?></button>
         <? endif ?>
+-->
 <!--
 		  <button type="button" class="btn btn-default" id="Test"><span class="glyphicon glyphicon-remove"></span> Test repos</button>
 -->
