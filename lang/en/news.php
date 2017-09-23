@@ -11,6 +11,14 @@
     
     $newsIndex = 0;
 
+    $g_lang["newsList"][$newsIndex]["title"] = "Vote";
+    $g_lang["newsList"][$newsIndex]["text"]  = "We’ve asked you about the functions you’d like to use while working with graphonline.ru. And here are the results of the poll:" .
+    "<ul><li>More algorithms - 53%</li><li>Improved visualization - 24%</li><li>Personal account - 13%</li><li>Improved support of large graphs - 8%</li></ul>" . 
+    "Thus, we will start crowdfunding program which will help to raise money for new algorithms development..";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Admin";
+    $g_lang["newsList"][$newsIndex]["date"]  = "23.09.2017";
+    $newsIndex ++;
+
     $g_lang["newsList"][$newsIndex]["title"] = "Updates";
     $g_lang["newsList"][$newsIndex]["text"]  = "We’re constantly working on improving our service. Here are the list of recent changes. Our team has uploaded new videos to official YouTube channel <a href=\"https://www.youtube.com/channel/UCyYynHE4mSdR9jXRYVEHRCw\">https://www.youtube.com/channel/UCyYynHE4mSdR9jXRYVEHRCw</a>, added examples of graphs and the algorithm of searching for minimum spanning tree, improved mobile version of the website, and made some other modifications.";
     $g_lang["newsList"][$newsIndex]["autor"] = "Admin";
