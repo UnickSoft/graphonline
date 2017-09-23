@@ -129,15 +129,14 @@
     </section>
 
 <? if (L('current_language') == "ru"): ?>
-    <section style="height:0px;text-align: center;" id="adv" class="hidden-phone">
-<!--
+    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+
     <a class="ProgresssBarLink" href="/donate" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:<?= intval($donates / $totalDonate * 100) ?>%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p>Поддержите наш проект: сбор средств на продление хостинг на 1 год.</p></span>
+        <span class="ProgressBarText" style="top:-28px"><p>Поддержите наш проект: сбор средств добавления новых алгоритмов.</p></span>
     </div>
     </a>
--->
 <!-- Yandex.RTB R-A-202319-1 -->
 <!--
 <div style="text-align:center;">
