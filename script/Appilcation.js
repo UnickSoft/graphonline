@@ -482,10 +482,13 @@ Application.prototype.FindPath = function(graph1, graph2)
 
 Application.prototype.SetHandlerMode = function(mode)
 {
-    if (this.handler)
+    var manipolationHandlers = ["default", "addGraph", "addArc", "delete", "findPath", "connectedComponent", "eulerianLoop"];
+    
+    if (this.handler && (g_AlgorithmIds.indexOf(mode) >= 0 || manipolationHandlers.indexOf(mode) >= 0))
     {
         this.handler.RestoreAll();
     }
+    
 	if (mode == "default")
 	{
 		this.handler = new DefaultHandler(this);
