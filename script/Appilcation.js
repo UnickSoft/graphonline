@@ -1136,8 +1136,13 @@ Application.prototype.getAlgorithmNames = function()
         oneFactory = factory(this.graph);
         obj.name = oneFactory.getName(g_language);
         obj.id   = oneFactory.getId();
+        obj.priority = oneFactory.getPriority();
         res.push(obj);
     }
+    
+    res.sort(function (a, b) {
+      return a.priority > b.priority;
+    });
     
     return res;
 }

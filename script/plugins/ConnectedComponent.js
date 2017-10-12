@@ -93,6 +93,11 @@ FindConnectedComponentNew.prototype.getObjectSelectedGroup = function(object)
     return (object.id in this.selectedObjects) ? this.selectedObjects[object.id] : 0;
 }
 
+FindConnectedComponentNew.prototype.getPriority = function()
+{
+    return -9;
+}
+
 
 // Factory for connected components.
 function CreateConnectedComponetsNew(graph, app)

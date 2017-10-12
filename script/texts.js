@@ -68,6 +68,8 @@ var g_noWeight = "No weight";
 var g_groupRename = "Group rename";
 var g_vote = "Vote";
 
+var g_recommendAlgorithm = "Recommend algorithm";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -135,4 +137,6 @@ function loadTexts()
     g_noWeight = document.getElementById("noWeight").innerHTML;
     g_groupRename = document.getElementById("groupeRenameText").innerHTML;
     g_vote = document.getElementById("voteText").innerHTML;
+    
+    g_recommendAlgorithm = document.getElementById("recommend_algorithm").innerHTML;
 }

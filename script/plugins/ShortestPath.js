@@ -199,7 +199,10 @@ FindShortPathNew.prototype.updateUpText = function()
     }
 }
 
-
+FindShortPathNew.prototype.getPriority = function()
+{
+    return -10;
+}
 
 
 // Factory for connected components.

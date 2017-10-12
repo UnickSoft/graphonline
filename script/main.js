@@ -170,7 +170,8 @@ function postLoadPage()
             || ($('#saveDialog').hasClass('ui-dialog-content') && $('#saveDialog').dialog('isOpen'))
             || ($('#saveImageDialog').hasClass('ui-dialog-content') && $('#saveImageDialog').dialog('isOpen'))
             || ($('#GroupRenameDialog').hasClass('ui-dialog-content') && $('#GroupRenameDialog').dialog('isOpen'))
-            || $('#developerTools').css("display") != "none")
+            || $('#developerTools').css("display") != "none"
+            || ($('#NeedAlgorithm').hasClass('ui-dialog-content') && $('#NeedAlgorithm').dialog('isOpen')))
         {
             console.log("prevent");
             return; // Should do nothing if the default action has been cancelled
@@ -432,6 +433,7 @@ function postLoadPage()
             buttons: dialogButtons,
         });
     }
+    
     
     // Get algorithms list and load it.
     $.get( "/cgi-bin/getPluginsList.php",

@@ -102,4 +102,8 @@
     $g_lang["or"] = "or";
     $g_lang["vote"] = "Vote";
     $g_lang["vote_question"] = "What functions should we add firstly?";
+
+    $g_lang["what_algorithm_need"] = "Please, write what algorithm you are missing";
+
+    $g_lang["recommend_algorithm"] = "Recommend algorithms";
 ?>

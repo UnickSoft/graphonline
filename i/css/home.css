@@ -66,6 +66,11 @@
 		overflow-wrap: normal;
 	}
 
+    #NeedAlgorithmMessage
+    {
+		width : 100%;
+    }
+
     #EdgeWeight
     {
         max-width : 80px;
@@ -103,7 +108,7 @@
     .ui-dialog-buttonset button 
     {
   	border: 1px solid #c5dbec;
-  	background: #dfeffc url("/themeroller/images/ui-bg_glass_85_dfeffc_1x400.png") 50% 50% repeat-x;
+  	background: #dfeffc url("images/ui-bg_glass_85_dfeffc_1x400.png") 50% 50% repeat-x;
   	font-weight: bold;
   	color: #2e6e9e;
  	margin: .5em .4em .5em 0;

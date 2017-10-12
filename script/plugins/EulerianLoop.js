@@ -77,6 +77,11 @@ FindEulerianLoop.prototype.getObjectSelectedGroup = function(object)
     return (object.id in this.selectedObjects) ? this.selectedObjects[object.id] : 0;
 }
 
+FindEulerianLoop.prototype.getPriority = function()
+{
+    return -7;
+}
+
 // Factory for connected components.
 function CreateFindEulerianLoop(graph, app)
 {

@@ -118,6 +118,13 @@ BaseAlgorithm.prototype.getObjectSelectedGroup = function(object)
 // This methos is called, when messages was updated on html page.
 BaseAlgorithm.prototype.messageWasChanged = function() {}
 
+// Algorithm priority in menu
+BaseAlgorithm.prototype.getPriority = function()
+{
+    return 0;
+}
+
+
 
 /**
  * Default handler.

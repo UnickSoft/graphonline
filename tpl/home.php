@@ -304,6 +304,16 @@
 		</fieldset>
 		</form>
     </div>
+        
+        
+	<div id="NeedAlgorithm">
+		<form>
+		<fieldset>
+				<p><?= L('what_algorithm_need') ?></p>
+                <textarea name="needAlgorthmText" id="NeedAlgorithmMessage" rows="5"></textarea>
+		</fieldset>
+		</form>
+    </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
     <p id="MoveCursorForMoving" class="translation"><?= L('move_cursor_for_moving')?></p>
@@ -370,6 +380,8 @@
     <p id="noWeight" class="translation"><?= L('default_weight')?></p>
     <p id="groupeRenameText" class="translation"><?= L('group_rename')?></p>
     <p id="voteText" class="translation"><?= L('vote')?></p>
+    <p id="recommend_algorithm" class="translation"><?= L('recommend_algorithm')?></p>
+        
         
     </section>
 <!--
