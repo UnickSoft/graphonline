@@ -103,7 +103,7 @@
     $g_lang["vote"] = "Vote";
     $g_lang["vote_question"] = "What functions should we add firstly?";
 
-    $g_lang["what_algorithm_need"] = "Please, write what algorithm you are missing";
+    $g_lang["what_algorithm_need"] = "Please, write what kind of algorithm would you like to see on this website?";
 
     $g_lang["recommend_algorithm"] = "Recommend algorithms";
 ?>

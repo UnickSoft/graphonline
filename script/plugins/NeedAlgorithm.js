@@ -15,7 +15,7 @@ NeedAlgorithm.prototype = Object.create(BaseAlgorithm.prototype);
 
 NeedAlgorithm.prototype.getName = function(local)
 {
-    return local == "ru" ? "Не нашли нужный алгоритм?" : "Didn't find needed algorithm?";
+    return local == "ru" ? "Не нашли нужный алгоритм?" : "Didn't you find the algorithm you need?";
 }
 
 NeedAlgorithm.prototype.getId = function()
