@@ -311,6 +311,7 @@
 		<fieldset>
 				<p><?= L('what_algorithm_need') ?></p>
                 <textarea name="needAlgorthmText" id="NeedAlgorithmMessage" rows="5"></textarea>
+                <p><?= L('what_algorithm_we_have') ?></p>
 		</fieldset>
 		</form>
     </div>

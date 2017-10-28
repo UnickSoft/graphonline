@@ -106,9 +106,11 @@
     $g_lang["or"] = "или";
     $g_lang["vote"] = "Опрос";
     $g_lang["vote_question"] = "Какие функции нам добавить в первую очередь?";
-    $g_lang["what_algorithm_need"] = "Пожалуйста, напишите, какого алгоритма вам не хватает";
+    $g_lang["what_algorithm_need"] = "Пожалуйста, напишите, какого алгоритма вам не хватает. <a href=\"/donate\" style=\"text-decoration: underline\">Поддержвать проект</a>.";
 
     $g_lang["recommend_algorithm"] = "Рекомендовать алгоритмы";
+
+    $g_lang["what_algorithm_we_have"] = "Сервис уже поддерживает следущий функционал: <a href=\"/wiki/Справка/ПоискКратчайшегоПути\" target=\"_blank\" style=\"text-decoration: underline\">Поиск пути алгоритмом Дейкстры</a>, <a href=\"/wiki/Справка/МатрицаСмежности\" target=\"_blank\" style=\"text-decoration: underline\">матрицу смежности</a>, <a href=\"/wiki/Справка/МатрицаИнцидентности\" target=\"_blank\" style=\"text-decoration: underline\">матрицу инцидентности</a>.";
 
 
 ?>

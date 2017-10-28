@@ -106,4 +106,6 @@
     $g_lang["what_algorithm_need"] = "Please, write what kind of algorithm would you like to see on this website?";
 
     $g_lang["recommend_algorithm"] = "Recommend algorithms";
+
+    $g_lang["what_algorithm_we_have"] = "Our service already supports these features: <a href=\"/en/wiki/Help/FindTheShortestPath\" target=\"_blank\" style=\"text-decoration: underline\">Find the shortest path using Dijkstra's algorithm</a>, <a href=\"/en/wiki/Help/AdjacencyMatrix\" target=\"_blank\" style=\"text-decoration: underline\">Adjacency matrix</a>, <a href=\"/en/wiki/Help/IncidenceMatrix\" target=\"_blank\" style=\"text-decoration: underline\">Incidence Matrix</a>.";
 ?>

@@ -22,7 +22,7 @@ FindShortPathNew.prototype.pathObjects = null;
 
 FindShortPathNew.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти кратчайший путь" : "Find shortest path";
+    return local == "ru" ? "Поиск кратчайший путь алгоритмом Дейкстры" : "Find shortest path using Dijkstra's algorithm";
 }
 
 FindShortPathNew.prototype.getId = function()
