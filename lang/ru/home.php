@@ -106,7 +106,7 @@
     $g_lang["or"] = "или";
     $g_lang["vote"] = "Опрос";
     $g_lang["vote_question"] = "Какие функции нам добавить в первую очередь?";
-    $g_lang["what_algorithm_need"] = "Пожалуйста, напишите, какого алгоритма вам не хватает. <a href=\"/donate\" style=\"text-decoration: underline\">Поддержвать проект</a>.";
+    $g_lang["what_algorithm_need"] = "Пожалуйста, напишите, какого алгоритма вам не хватает. <a href=\"/donate\" style=\"text-decoration: underline\" target=\"_blank\">Поддержвать проект</a>.";
 
     $g_lang["recommend_algorithm"] = "Рекомендовать алгоритмы";
 
