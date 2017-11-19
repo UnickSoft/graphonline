@@ -112,5 +112,7 @@
 
     $g_lang["what_algorithm_we_have"] = "Сервис уже поддерживает следущий функционал: <a href=\"/wiki/Справка/ПоискКратчайшегоПути\" target=\"_blank\" style=\"text-decoration: underline\">Поиск пути алгоритмом Дейкстры</a>, <a href=\"/wiki/Справка/МатрицаСмежности\" target=\"_blank\" style=\"text-decoration: underline\">матрицу смежности</a>, <a href=\"/wiki/Справка/МатрицаИнцидентности\" target=\"_blank\" style=\"text-decoration: underline\">матрицу инцидентности</a>.";
 
+    $g_lang["has_eulerian_path"] = "Граф содержит Эйлерову цепь";
+    $g_lang["has_not_eulerian_path"] = "Граф не содержит Эйлерову цепь";
 
 ?>

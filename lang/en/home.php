@@ -108,4 +108,7 @@
     $g_lang["recommend_algorithm"] = "Recommend algorithms";
 
     $g_lang["what_algorithm_we_have"] = "Our service already supports these features: <a href=\"/en/wiki/Help/FindTheShortestPath\" target=\"_blank\" style=\"text-decoration: underline\">Find the shortest path using Dijkstra's algorithm</a>, <a href=\"/en/wiki/Help/AdjacencyMatrix\" target=\"_blank\" style=\"text-decoration: underline\">Adjacency matrix</a>, <a href=\"/en/wiki/Help/IncidenceMatrix\" target=\"_blank\" style=\"text-decoration: underline\">Incidence Matrix</a>.";
+
+    $g_lang["has_eulerian_path"]     = "Graph has Eulerian path";
+    $g_lang["has_not_eulerian_path"] = "Graph has not Eulerian path";
 ?>

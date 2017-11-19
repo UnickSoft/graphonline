@@ -382,7 +382,10 @@
     <p id="groupeRenameText" class="translation"><?= L('group_rename')?></p>
     <p id="voteText" class="translation"><?= L('vote')?></p>
     <p id="recommend_algorithm" class="translation"><?= L('recommend_algorithm')?></p>
-        
+
+    <p id="hasNotEulerianPath" class="translation"><?= L('has_not_eulerian_path')?></p>
+    <p id="hasEulerianPath" class="translation"><?= L('has_eulerian_path')?></p>
+
         
     </section>
 <!--

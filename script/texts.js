@@ -52,6 +52,9 @@ var g_shortReport = "Short report";
 var g_hasEulerianLoop = "Graph has Eulerian Loop";
 var g_hasNotEulerianLoop  = "Graph has not Eulerian Loop";
 
+var g_hasEulerianPath = "Graph has Eulerian Path";
+var g_hasNotEulerianPath = "Graph has not Eulerian Path";
+
 var g_processing = "Processing...";
 
 var g_customEnumVertex = "Custom";
@@ -139,4 +142,7 @@ function loadTexts()
     g_vote = document.getElementById("voteText").innerHTML;
     
     g_recommendAlgorithm = document.getElementById("recommend_algorithm").innerHTML;
+    
+    g_hasEulerianPath    = document.getElementById("hasEulerianPath").innerHTML;
+    g_hasNotEulerianPath = document.getElementById("hasNotEulerianPath").innerHTML;
 }
