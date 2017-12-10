@@ -10,6 +10,11 @@
     $g_lang["newsList"] = array();
     
     $newsIndex = 0;
+    $g_lang["newsList"][$newsIndex]["title"] = "Floyd–Warshall algorithm";
+    $g_lang["newsList"][$newsIndex]["text"]  = "We add Floyd–Warshall algorithm. Now you can get distance matrix.";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Admin";
+    $g_lang["newsList"][$newsIndex]["date"]  = "10.12.2017";
+    $newsIndex ++;
 
     $g_lang["newsList"][$newsIndex]["title"] = "Vote";
     $g_lang["newsList"][$newsIndex]["text"]  = "We’ve asked you about the functions you’d like to use while working with graphonline.ru. And here are the results of the poll:" .

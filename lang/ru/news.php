@@ -8,7 +8,14 @@
     
     $g_lang["newsList"] = array();
 
+
     $newsIndex = 0;
+    $g_lang["newsList"][$newsIndex]["title"] = "Алгоритм Флойда — Уоршелла";
+    $g_lang["newsList"][$newsIndex]["text"]  = "Добавили алгоритм Флойда — Уоршелла. Теперь вы можете получить матрицу расстояний графа.";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Админ";
+    $g_lang["newsList"][$newsIndex]["date"]  = "10.12.2017";
+    $newsIndex ++;
+
     $g_lang["newsList"][$newsIndex]["title"] = "Опрос";
     $g_lang["newsList"][$newsIndex]["text"]  = "Мы завершили опрос о функциях, которые вы хотели бы видеть на graphonline.ru. Результаты распределились следующим образом: " .
     "<ul><li>Больше алгоритмов - 53%</li><li>Улучшение визуализации - 24%</li><li>Личный кабинет - 13%</li><li>Улучшение поддержки больших графов - 8%</li></ul>" . 
