@@ -111,4 +111,11 @@
 
     $g_lang["has_eulerian_path"]     = "Graph has Eulerian path";
     $g_lang["has_not_eulerian_path"] = "Graph has not Eulerian path";
+
+    $g_lang["min_dist_matrix_description"] = "Matrix of minimal distances";
+    
+    $g_lang["graphOfMinDist"] = "Graph of minimal distances";
+    $g_lang["checkToSave"]    = "Check to save";
+    $g_lang["showDistMatrix"] = "Show distance matrix";
+    $g_lang["distMatrixText"] = "Distance matrix";
 ?>

@@ -751,6 +751,11 @@ AlgorithmGraphHandler.prototype.RestoreAll = function()
     {
         this.RestoreUpText();
     }
+    
+    if (this.algorithm.wantRestore())
+    {
+        this.algorithm.restore();
+    }
 }
 
 AlgorithmGraphHandler.prototype.SaveUpText = function()
@@ -793,6 +798,11 @@ AlgorithmGraphHandler.prototype.UpdateResultAndMesasge = function()
 AlgorithmGraphHandler.prototype.InitControls = function()
 {
     this.algorithm.messageWasChanged();
+}
+
+AlgorithmGraphHandler.prototype.GetMessage = function()
+{
+	return this.algorithm.getMessage(g_language);
 }
 
 

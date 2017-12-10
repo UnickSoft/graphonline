@@ -220,7 +220,15 @@
 		</fieldset>
 		</form>
        </div>
-
+        
+	<div id="floidMatrix">
+		<form>
+		<fieldset>
+				<p><?= L('min_dist_matrix_description') ?></p>
+				<textarea name="floidMatrixField" id="FloidMatrixField" wrap="off"></textarea>
+		</fieldset>
+		</form>
+    </div>
 
 	<div id="saveDialog">
 		<form>
@@ -386,8 +394,11 @@
     <p id="hasNotEulerianPath" class="translation"><?= L('has_not_eulerian_path')?></p>
     <p id="hasEulerianPath" class="translation"><?= L('has_eulerian_path')?></p>
 
-        
-    </section>
+    <p id="graphOfMinDist" class="translation"><?= L('graphOfMinDist')?></p>
+    <p id="checkToSave" class="translation"><?= L('checkToSave')?></p>
+    <p id="showDistMatrix" class="translation"><?= L('showDistMatrix')?></p>
+    <p id="distMatrixText" class="translation"><?= L('distMatrixText')?></p>
+</section>
 <!--
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});

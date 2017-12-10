@@ -115,4 +115,10 @@
     $g_lang["has_eulerian_path"] = "Граф содержит Эйлерову цепь";
     $g_lang["has_not_eulerian_path"] = "Граф не содержит Эйлерову цепь";
 
+    $g_lang["min_dist_matrix_description"] = "Матрица минимальных расстояний графа";
+    
+    $g_lang["graphOfMinDist"] = "Граф минимальных расстояний.";
+    $g_lang["checkToSave"]    = "Нажмите для сохранения";
+    $g_lang["showDistMatrix"] = "Показать матрицу расстояний";
+    $g_lang["distMatrixText"] = "Матрица расстояний";
 ?>

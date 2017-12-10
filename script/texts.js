@@ -73,6 +73,11 @@ var g_vote = "Vote";
 
 var g_recommendAlgorithm = "Recommend algorithm";
 
+var g_graphOfMinDist = "Graph of minimal distances.";
+var g_checkToSave    = "Check to save";
+var g_showDistMatrix = "Show Distance matrix";
+var g_minDistMatrixText = "Minimal distances matrix";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -145,4 +150,9 @@ function loadTexts()
     
     g_hasEulerianPath    = document.getElementById("hasEulerianPath").innerHTML;
     g_hasNotEulerianPath = document.getElementById("hasNotEulerianPath").innerHTML;
+    
+    g_graphOfMinDist = document.getElementById("graphOfMinDist").innerHTML;
+    g_checkToSave    = document.getElementById("checkToSave").innerHTML;
+    g_showDistMatrix = document.getElementById("showDistMatrix").innerHTML;
+    g_minDistMatrixText = document.getElementById("distMatrixText").innerHTML;
 }

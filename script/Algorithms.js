@@ -109,6 +109,17 @@ BaseAlgorithm.prototype.needRestoreUpText = function()
     return true;
 }
 
+// @return true, if you change resotry graph after use.
+BaseAlgorithm.prototype.wantRestore = function()
+{
+    return false;
+}
+
+// calls this method if wantRestore return true.
+BaseAlgorithm.prototype.restore = function()
+{
+}
+
 // @return 0, if object is not selected, in other case return groupe of selection.
 BaseAlgorithm.prototype.getObjectSelectedGroup = function(object)
 {
