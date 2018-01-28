@@ -5,8 +5,8 @@ var userAction = function(str)
 {
     if (typeof window.yaCounter25827098 !== "undefined")
     {
-        console.log(str);
-        window.yaCounter25827098.hit("http://" + window.location.hostname + "/UserAction#" + str);
+        console.log(g_language + "/" + str);
+        window.yaCounter25827098.hit("http://" + window.location.hostname + "/" + g_language + "/UserAction#" + str);
     }
     else if (!waitCounter)
     {
