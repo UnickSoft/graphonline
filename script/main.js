@@ -6,7 +6,7 @@ var userAction = function(str)
     if (typeof window.yaCounter25827098 !== "undefined")
     {
         console.log(g_language + "/" + str);
-        window.yaCounter25827098.hit("http://" + window.location.hostname + "/" + g_language + "/UserAction#" + str);
+        window.yaCounter25827098.hit("http://" + window.location.hostname + (g_language != "ru" ? "/" + g_language : "") + "/UserAction#" + str);
     }
     else if (!waitCounter)
     {
