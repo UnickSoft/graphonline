@@ -1,7 +1,25 @@
 <?
 
-$jsScripts = glob("../script/plugins/*.js");
+$tempFilename = "../tmp/pluginsList.txt";
 
-echo json_encode($jsScripts);
+if (isset($_GET["reset"]))
+{
+    unlink($tempFilename);
+}
+
+$res = "";
+if (!file_exists($tempFilename)) 
+{   
+    $jsScripts = glob("../script/plugins/*.js");
+    $res = json_encode($jsScripts);
+    file_put_contents ($tempFilename, $res);
+}
+else
+{
+    $res = file_get_contents($tempFilename);
+}
+
+
+echo $res;
 
 ?>
