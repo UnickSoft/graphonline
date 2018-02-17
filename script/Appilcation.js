@@ -1141,7 +1141,7 @@ Application.prototype.getAlgorithmNames = function()
     }
     
     res.sort(function (a, b) {
-      return a.priority > b.priority;
+      return a.priority - b.priority;
     });
     
     return res;

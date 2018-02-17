@@ -212,7 +212,7 @@ RadiusAndDiameter.prototype.getObjectSelectedGroup = function(object)
 
 RadiusAndDiameter.prototype.getPriority = function()
 {
-    return -8.5;
+    return -9.6;
 }
 
 // Factory for connected components.
