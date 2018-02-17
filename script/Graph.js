@@ -18,6 +18,8 @@ function Graph()
 	this.hasDirect = false;
 };
 
+// infinity
+Graph.prototype.infinity = 1E8;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
@@ -146,7 +148,7 @@ Graph.prototype.FindEdge = function(id1, id2)
 	return res;
 }
 
-Graph.prototype.GetAdjacencyMatrix = function ()
+Graph.prototype.GetAdjacencyMatrixStr = function ()
 {
 	var matrix = "";
 	for (var i = 0; i < this.vertices.length; i++)
@@ -173,6 +175,32 @@ Graph.prototype.GetAdjacencyMatrix = function ()
 	}
 	
 	return matrix;
+}
+
+Graph.prototype.GetAdjacencyMatrix = function ()
+{
+    var matrix = [];
+    
+    for (var i = 0; i < this.vertices.length; i ++)
+    {
+        matrix.push([]);
+        var v1 = this.vertices[i];
+        for (var j = 0; j < this.vertices.length; j ++)
+        {
+            var v2 = this.vertices[j];
+            var edge = this.FindEdge(v1.id, v2.id);
+            if (edge != null)
+            {
+                matrix[i][j] = edge.GetWeight();
+            }
+            else
+            {
+                matrix[i][j] = this.infinity;               
+            }
+        }
+    }
+    
+    return matrix;
 }
 
 Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")

@@ -46,35 +46,7 @@ FloidAlgorithm.prototype.result = function(resultCallback)
     
     this.matrix = [];
     
-    for (var i = 0; i < this.graph.vertices.length; i ++)
-    {
-        this.matrix.push([]);
-        var v1 = this.graph.vertices[i];
-        var str = "";
-        for (var j = 0; j < this.graph.vertices.length; j ++)
-        {
-            var v2 = this.graph.vertices[j];
-            var edge = this.graph.FindEdge(v1.id, v2.id);
-            if (edge != null)
-            {
-                this.matrix[i][j] = edge.GetWeight();
-            }
-            else
-            {
-                this.matrix[i][j] = this.infinity;               
-            }
-        }
-    }
-    
-    for (var k = 0; k < this.graph.vertices.length; k ++)
-        for (var i = 0; i < this.graph.vertices.length; i ++)
-            for (var j = 0; j < this.graph.vertices.length; j ++)
-                {
-                    if (this.matrix[i][j] > this.matrix[i][k] + this.matrix[k][j])
-                    {
-                        this.matrix[i][j] = this.matrix[i][k] + this.matrix[k][j];
-                    }
-                }
+    this.resultMatrix();
     
     //console.log(this.matrix);
     
@@ -118,6 +90,45 @@ FloidAlgorithm.prototype.result = function(resultCallback)
     */
 }
 
+
+FloidAlgorithm.prototype.resultMatrix = function()
+{
+    this.matrix = [];
+    
+    for (var i = 0; i < this.graph.vertices.length; i ++)
+    {
+        this.matrix.push([]);
+        var v1 = this.graph.vertices[i];
+        var str = "";
+        for (var j = 0; j < this.graph.vertices.length; j ++)
+        {
+            var v2 = this.graph.vertices[j];
+            var edge = this.graph.FindEdge(v1.id, v2.id);
+            if (edge != null)
+            {
+                this.matrix[i][j] = edge.GetWeight();
+            }
+            else
+            {
+                this.matrix[i][j] = this.infinity;               
+            }
+        }
+    }
+    
+    for (var k = 0; k < this.graph.vertices.length; k ++)
+        for (var i = 0; i < this.graph.vertices.length; i ++)
+            for (var j = 0; j < this.graph.vertices.length; j ++)
+                {
+                    if (this.matrix[i][j] > this.matrix[i][k] + this.matrix[k][j])
+                    {
+                        this.matrix[i][j] = this.matrix[i][k] + this.matrix[k][j];
+                    }
+                }
+    
+    return this.matrix;
+}
+
+
 FloidAlgorithm.prototype.getObjectSelectedGroup = function(object)
 {
     return 0;
@@ -155,7 +166,7 @@ FloidAlgorithm.prototype.messageWasChanged = function()
 
 FloidAlgorithm.prototype.GetFloidMatrix = function()
 {
-    return this.graph.GetAdjacencyMatrix();
+    return this.graph.GetAdjacencyMatrixStr();
 }
 
 

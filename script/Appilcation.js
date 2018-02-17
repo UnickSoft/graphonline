@@ -671,7 +671,7 @@ Application.prototype.GetStatus = function()
 
 Application.prototype.GetAdjacencyMatrix = function ()
 {
-	return this.graph.GetAdjacencyMatrix();
+	return this.graph.GetAdjacencyMatrixStr();
 }
 
 Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")

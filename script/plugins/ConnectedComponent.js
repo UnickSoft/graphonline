@@ -34,6 +34,17 @@ FindConnectedComponentNew.prototype.getMessage = function(local)
 
 FindConnectedComponentNew.prototype.result = function(resultCallback)
 {
+    this.calculate(true);
+    
+    var result = {};
+    result["version"] = 1;
+    this.selectedObjects = this.component;
+
+    return result;
+}
+
+FindConnectedComponentNew.prototype.calculate = function(fillUpText = false)
+{
     this.connectedComponentNumber = 0;
     this.component = {};
     var tempVertexes = this.graph.vertices.slice();
@@ -55,7 +66,10 @@ FindConnectedComponentNew.prototype.result = function(resultCallback)
         {
             var stackElement = stack[i];
             this.component[stackElement.id]  = connectedComponentNumber;
-            stackElement.upText = connectedComponentNumber;
+            if (fillUpText)
+            {
+                stackElement.upText = connectedComponentNumber;
+            }
             
             if (connectedVertex.hasOwnProperty(stackElement.id))
             {
@@ -81,11 +95,12 @@ FindConnectedComponentNew.prototype.result = function(resultCallback)
         }
     }
     this.connectedComponentNumber = connectedComponentNumber;
-    var result = {};
-    result["version"] = 1;
-    this.selectedObjects = this.component;
+    
+    //var result = {};
+    //result["version"] = 1;
+    //this.selectedObjects = this.component;
 
-    return result;
+    return this.connectedComponentNumber;
 }
 
 FindConnectedComponentNew.prototype.getObjectSelectedGroup = function(object)
