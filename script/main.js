@@ -160,6 +160,29 @@ function postLoadPage()
         }
     }
     
+    function getCharCode(event) {
+      if (event.which == null) { // IE
+        return event.keyCode;
+      }
+
+      if (event.which != 0 && event.charCode != 0) { // все кроме IE
+        return event.which; // остальные
+      }
+
+      return null; // спец. символ
+    }
+    
+    function getChar(event) {
+        return String.fromCharCode(getCharCode(event)); // остальные
+    }
+    
+    function selectHandler(buttonName, handlerName)
+    {
+            userAction(this.id + "_shortcut");
+			restButtons (buttonName);
+			application.SetHandlerMode(handlerName);  
+    }
+    
     document.onkeypress   = function (e)
     {
         if (event.defaultPrevented
@@ -178,42 +201,56 @@ function postLoadPage()
         }
         
         
-        var key = 0;
-        
-        if(window.event)
-        {
-            key = event.keyCode;
-        }
-        else if(event.which)
-        {
-            key = event.which;
-        }
-        console.log(key);
+        var key = getChar(event);
+        var code = getCharCode(event);
+        console.log(key + " code=" + code);
         
         var moveValue = 10;
-        if (key == 61 || key == 43) // +
+        if (code == 61 || code == 43) // +
         {
             application.multCanvasScale(1.5);
         }
-        else if (key == 45) // -
+        else if (code == 45) // -
         {
             application.multCanvasScale(1 / 1.5);
         }
-        else if (key == 119 || key == 1094) // up
+        else if (key == 'w' || key == 'ц') // up
         {
             application.onCanvasMove(new Point(0, moveValue));
         }
-        else if (key == 115 || key == 1099) // down
+        else if (key == 's' || key == 'ы') // down
         {
             application.onCanvasMove(new Point(0, -moveValue));
         }
-        else if (key == 97 || key == 1092) // left
+        else if (key == 'a' || key == 'ф') // left
         {
             application.onCanvasMove(new Point(moveValue, 0));
         }
-        else if (key == 100 || key == 1074) // right
+        else if (key == 'd' || key == 'в') // right
         {
             application.onCanvasMove(new Point(-moveValue, 0));
+        }
+        else if (key == 'v' || key == 'м') // vertex
+        {
+            selectHandler('AddGraph', 'addGraph');
+        }
+        else if (key == 'e' || key == 'у') // edge
+        {
+            selectHandler('ConnectGraphs', 'addArc');
+        }
+        else if (key == 'r' || key == 'к') // delete
+        {
+            selectHandler('DeleteObject', 'delete');
+        }
+        else if (key == 'n' || key == 'т') // new
+        {
+            userAction('NewGraph_shortcut');
+			application.SetHandlerMode("deleteAll");
+            application.SetDefaultTransformations();
+        }
+        else if (key == 'm' || key == 'ь') // move
+        {
+            selectHandler('Default', 'default');
         }
     }
 
