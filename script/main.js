@@ -178,7 +178,7 @@ function postLoadPage()
     
     function selectHandler(buttonName, handlerName)
     {
-            userAction(this.id + "_shortcut");
+            userAction(buttonName + "_shortcut");
 			restButtons (buttonName);
 			application.SetHandlerMode(handlerName);  
     }
