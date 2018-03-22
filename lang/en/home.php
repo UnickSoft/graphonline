@@ -72,8 +72,8 @@
     $g_lang["view"] = "View";
     $g_lang["view_keys"] = "To move use keys \"w\", \"a\", \"s\", \"d\".";
     $g_lang["zoom_fit"] = "Zoom fit";
-    $g_lang["zoom_in"] = "Zoom in (+)";
-    $g_lang["zoom_out"] = "Zoom out (-)";
+    $g_lang["zoom_in"] = "Zoom in";
+    $g_lang["zoom_out"] = "Zoom out";
     $g_lang["move_workspace"] = "Move workspace";
     $g_lang["custom"] = "Custom text";
     $g_lang["enter_vertex_title"] = "Enter title";
