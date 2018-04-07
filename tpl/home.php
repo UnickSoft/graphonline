@@ -128,7 +128,7 @@
     </div>
     </section>
 
-<? if (L('current_language') == "ru"): ?>
+<? if (L('current_language') == "ru" && false): ?>
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
 
     <a class="ProgresssBarLink" href="/donate" target="_blank">
