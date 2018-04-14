@@ -121,4 +121,12 @@
     $g_lang["checkToSave"]    = "Нажмите для сохранения";
     $g_lang["showDistMatrix"] = "Показать матрицу расстояний";
     $g_lang["distMatrixText"] = "Матрица расстояний";
+
+    $g_lang["selectStartVertexForMaxFlow"]   = "Выделите исток максимального потока";
+    $g_lang["selectFinishVertexForMaxFlow"]  = "Выделите сток максимального потока";
+    $g_lang["maxFlowResult"]  = "Максимальный поток из %2 в %3 равен %1";
+    $g_lang["flowNotExists"]  = "Поток из %1 в %2 не существует";
+
+    $g_lang["sourceVertex"]  = "Исток";
+    $g_lang["sinkVertex"]    = "Сток";
 ?>

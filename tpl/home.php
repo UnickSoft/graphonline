@@ -398,6 +398,14 @@
     <p id="checkToSave" class="translation"><?= L('checkToSave')?></p>
     <p id="showDistMatrix" class="translation"><?= L('showDistMatrix')?></p>
     <p id="distMatrixText" class="translation"><?= L('distMatrixText')?></p>
+        
+    <p id="selectStartVertexForMaxFlow" class="translation"><?= L('selectStartVertexForMaxFlow')?></p>
+    <p id="selectFinishVertexForMaxFlow" class="translation"><?= L('selectFinishVertexForMaxFlow')?></p>
+    <p id="maxFlowResult" class="translation"><?= L('maxFlowResult')?></p>
+    <p id="flowNotExists" class="translation"><?= L('flowNotExists')?></p>
+        
+    <p id="sourceVertex" class="translation"><?= L('sourceVertex')?></p>
+    <p id="sinkVertex" class="translation"><?= L('sinkVertex')?></p>
 </section>
 <!--
 <script>

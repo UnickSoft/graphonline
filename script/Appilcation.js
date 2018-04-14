@@ -1005,7 +1005,7 @@ Application.prototype.GetFindPathReport = function ()
     return this.findPathReport;
 }
                           
-                          
+/*                         
 Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
 {
     var app = this;
@@ -1050,15 +1050,15 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
                     $data.each(function(){
                                if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
                                {
-                               pathObjects.push(app.FindVertex(id));
+                                    pathObjects.push(app.FindVertex(id));
                                }
                                else
                                {
-                               if (!properties[id])
-                               {
-                               properties[id] = {};
-                               }
-                               properties[id][$(this).attr('key')] = $(this).text();
+                                    if (!properties[id])
+                                    {
+                                        properties[id] = {};
+                                    }
+                                    properties[id][$(this).attr('key')] = $(this).text();
                                }
                                });
                     });
@@ -1066,9 +1066,20 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
         $edges = $xml.find( "edge" );
         
         $edges.each(function(){
-                    var source = $(this).attr('source');
-                    var target = $(this).attr('target');
-                    pathObjects.push(app.FindEdge(source, target));
+                        var source = $(this).attr('source');
+                        var target = $(this).attr('target');
+                        var edge   = app.FindEdge(source, target);
+                        pathObjects.push(edge);
+            
+                        $data = $(this).find("data");
+                        $data.each(function(){
+                            if (!properties[edge.id])
+                            {
+                                properties[edge.id] = {};
+                            }
+                            properties[edge.id][$(this).attr('key')] = $(this).text();
+                            console.log("Data edge " + $(this).text());
+                        });
                     });
         
         console.log(result);
@@ -1078,6 +1089,7 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
 
     return true;
 }
+*/
                           
 Application.prototype.GetRealWidth = function ()
 {

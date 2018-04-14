@@ -95,9 +95,9 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
   var positions = this.GetArcPositions(baseEdge.vertex1.position, baseEdge.vertex2.position, baseEdge.vertex1.model.diameter);
   
   this.DrawArc (positions[0], positions[1], arcStyle);
-  if (baseEdge.useWeight)
+  if (baseEdge.GetText().length > 0)
   {
-	this.DrawWeight(positions[0], positions[1], baseEdge.weight, arcStyle, baseEdge.hasPair);
+	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
   }
 }
 
@@ -226,10 +226,10 @@ DirectArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
   this.context.lineWidth   = 0;
   this.DrawArrow(positions[0], positions[1], length, width);
 
-  if (baseEdge.useWeight)
+  if (baseEdge.GetText().length > 0)
   {
-	baseDrawer.DrawWeight(positions[0], positions[1], baseEdge.weight, arcStyle, baseEdge.hasPair);
-  } 
+	baseDrawer.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
+  }
 }
 
 DirectArcDrawer.prototype.DrawArrow = function(position1, position2, length, width) 

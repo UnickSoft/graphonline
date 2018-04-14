@@ -52,6 +52,9 @@ var g_shortReport = "Short report";
 var g_hasEulerianLoop = "Graph has Eulerian Loop";
 var g_hasNotEulerianLoop  = "Graph has not Eulerian Loop";
 
+var g_hasEulerianPath = "Graph has Eulerian Path";
+var g_hasNotEulerianPath = "Graph has not Eulerian Path";
+
 var g_processing = "Processing...";
 
 var g_customEnumVertex = "Custom";
@@ -66,6 +69,22 @@ var g_editWeight = "Edit weight";
 
 var g_noWeight = "No weight";
 var g_groupRename = "Group rename";
+var g_vote = "Vote";
+
+var g_recommendAlgorithm = "Recommend algorithm";
+
+var g_graphOfMinDist = "Graph of minimal distances.";
+var g_checkToSave    = "Check to save";
+var g_showDistMatrix = "Show Distance matrix";
+var g_minDistMatrixText = "Minimal distances matrix";
+
+var g_selectStartVertexForMaxFlow  = "Select source vertex for max flow";
+var g_selectFinishVertexForMaxFlow = "Select sink vertex for max flow";
+var g_maxFlowResult = "Maximum flow from %2 to %3 is %1";
+var g_flowNotExists = "Flow from %1 to %2 does not exists";
+
+var g_sourceVertex = "Source";
+var g_sinkVertex   = "Sink";
 
 function loadTexts()
 {
@@ -133,6 +152,25 @@ function loadTexts()
     
     g_noWeight = document.getElementById("noWeight").innerHTML;
     g_groupRename = document.getElementById("groupeRenameText").innerHTML;
+    g_vote = document.getElementById("voteText").innerHTML;
+    
+    g_recommendAlgorithm = document.getElementById("recommend_algorithm").innerHTML;
+    
+    g_hasEulerianPath    = document.getElementById("hasEulerianPath").innerHTML;
+    g_hasNotEulerianPath = document.getElementById("hasNotEulerianPath").innerHTML;
+    
+    g_graphOfMinDist = document.getElementById("graphOfMinDist").innerHTML;
+    g_checkToSave    = document.getElementById("checkToSave").innerHTML;
+    g_showDistMatrix = document.getElementById("showDistMatrix").innerHTML;
+    g_minDistMatrixText = document.getElementById("distMatrixText").innerHTML;
+    
+    g_selectStartVertexForMaxFlow  = document.getElementById("selectStartVertexForMaxFlow").innerHTML;
+    g_selectFinishVertexForMaxFlow = document.getElementById("selectFinishVertexForMaxFlow").innerHTML;
+    g_maxFlowResult = document.getElementById("maxFlowResult").innerHTML;
+    g_flowNotExists = document.getElementById("flowNotExists").innerHTML;
+    
+    g_sourceVertex = document.getElementById("sourceVertex").innerHTML;
+    g_sinkVertex   = document.getElementById("sinkVertex").innerHTML;
 }
 function Point(x, y){
     this.x = x || 0;
@@ -298,10 +336,10 @@ function BaseVertex(x, y, vertexEnumType)
     this.mainText = "";
     this.upText   = "";
     this.vertexEnumType = vertexEnumType;
+    this.model    = new VertexModel();
 };
 
 BaseVertex.prototype.position = new Point(0, 0);
-BaseVertex.prototype.model    = new VertexModel();
 
 BaseVertex.prototype.SaveToXML = function ()
 {
@@ -345,13 +383,13 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
     this.vertex2    = vertex2;
     this.isDirect  = isDirect;
     this.weight    = Number(weight);
+    this.text      = "";
     // For direct graph, has pair edge or not.
     this.hasPair   = false;
     this.useWeight = useWeight;
     this.id        = 0;
+    this.model = new EdgeModel();
 }
-
-BaseEdge.prototype.model = new EdgeModel();
 
 BaseEdge.prototype.SaveToXML = function ()
 {
@@ -363,6 +401,7 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "hasPair=\""    + this.hasPair + "\" " +
 	       "id=\""         + this.id + "\" " +
+           "text=\""       + this.text + "\" " +
 		"></edge>";       
 }
 
@@ -377,6 +416,7 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
 	this.hasPair   =    xml.attr('hasPair') == "true";
 	this.useWeight =    xml.attr('useWeight') == "true";
     this.id        =    parseInt(xml.attr('id'));
+    this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
 }
 
 BaseEdge.prototype.GetPixelLength = function ()
@@ -390,7 +430,16 @@ BaseEdge.prototype.GetPixelLength = function ()
         return Point.distance(this.vertex1.position, this.vertex2.position);
     }
 }
-/**
+
+BaseEdge.prototype.GetWeight = function ()
+{
+    return this.useWeight ? this.weight : 1;
+}
+
+BaseEdge.prototype.GetText = function ()
+{
+    return this.text.length > 0 ? this.text : (this.useWeight ? this.weight.toString() : "");
+}/**
  * Graph drawer.
  */
  
@@ -624,9 +673,9 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
   var positions = this.GetArcPositions(baseEdge.vertex1.position, baseEdge.vertex2.position, baseEdge.vertex1.model.diameter);
   
   this.DrawArc (positions[0], positions[1], arcStyle);
-  if (baseEdge.useWeight)
+  if (baseEdge.GetText().length > 0)
   {
-	this.DrawWeight(positions[0], positions[1], baseEdge.weight, arcStyle, baseEdge.hasPair);
+	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
   }
 }
 
@@ -636,6 +685,7 @@ BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
   this.context.lineWidth   = baseEdge.model.width;
   this.context.strokeStyle = arcStyle.strokeStyle;
   this.context.fillStyle   = arcStyle.fillStyle;
+  this.sizeOfLoop          = baseEdge.vertex1.model.diameter / 2;
 }
 
 BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
@@ -686,23 +736,23 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
 	this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
 }
 
-BaseEdgeDrawer.prototype.GetArcPositions = function(position1, position2, diameter)
+BaseEdgeDrawer.prototype.GetArcPositions = function(position1, position2, diameter1, diameter2)
 {
   var direction = position1.subtract(position2); 
   direction.normalize(1.0);
   direction = direction.multiply(0.5);
   
   var res = [];
-  res.push(position1.subtract(direction.multiply(diameter)));
-  res.push(position2.subtract(direction.multiply(-diameter)));
+  res.push(position1.subtract(direction.multiply(diameter1)));
+  res.push(position2.subtract(direction.multiply(-diameter2)));
   return res;
 }
 
-BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, diameter, shift)
+BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, diameter1, diameter2, shift)
 {
     if (shift == 0)
     {
-        return this.GetArcPositions(position1, position2, diameter);
+        return this.GetArcPositions(position1, position2, diameter1, diameter2);
     }
     else
     {
@@ -712,10 +762,11 @@ BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, d
         direction = direction.multiply(0.5);
         position1 = position1.subtract(normal.multiply(shift));
         position2 = position2.subtract(normal.multiply(shift));
-        diameter = Math.sqrt(diameter * diameter - shift * shift);
+        diameter1 = Math.sqrt(diameter1 * diameter1 - shift * shift);
+        diameter2 = Math.sqrt(diameter2 * diameter2 - shift * shift);
         var res = [];
-        res.push(position1.subtract(direction.multiply(diameter)));
-        res.push(position2.subtract(direction.multiply(-diameter)));
+        res.push(position1.subtract(direction.multiply(diameter1)));
+        res.push(position2.subtract(direction.multiply(-diameter2)));
         return res;
     }  
 }
@@ -745,7 +796,7 @@ DirectArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
   var realShift = (baseEdge.hasPair ? pairShift : 0);
   direction.normalize(1.0);
   var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, realShift);
+	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
   
   baseDrawer.DrawArc (positions[0], positions[1].subtract(direction.multiply(-length / 2)), arcStyle);
 
@@ -753,10 +804,10 @@ DirectArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
   this.context.lineWidth   = 0;
   this.DrawArrow(positions[0], positions[1], length, width);
 
-  if (baseEdge.useWeight)
+  if (baseEdge.GetText().length > 0)
   {
-	baseDrawer.DrawWeight(positions[0], positions[1], baseEdge.weight, arcStyle, baseEdge.hasPair);
-  } 
+	baseDrawer.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
+  }
 }
 
 DirectArcDrawer.prototype.DrawArrow = function(position1, position2, length, width) 
@@ -806,7 +857,7 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
     var pairShift = baseEdge.vertex1.model.diameter * 0.25;
     var realShift = (baseEdge.hasPair ? pairShift : 0);
     var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-                                              baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, realShift);
+                                              baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
     var progressSize = 10;
     
     if (positions[0].equals(positions[1]))
@@ -949,6 +1000,17 @@ BaseAlgorithm.prototype.needRestoreUpText = function()
     return true;
 }
 
+// @return true, if you change resotry graph after use.
+BaseAlgorithm.prototype.wantRestore = function()
+{
+    return false;
+}
+
+// calls this method if wantRestore return true.
+BaseAlgorithm.prototype.restore = function()
+{
+}
+
 // @return 0, if object is not selected, in other case return groupe of selection.
 BaseAlgorithm.prototype.getObjectSelectedGroup = function(object)
 {
@@ -957,6 +1019,13 @@ BaseAlgorithm.prototype.getObjectSelectedGroup = function(object)
 
 // This methos is called, when messages was updated on html page.
 BaseAlgorithm.prototype.messageWasChanged = function() {}
+
+// Algorithm priority in menu
+BaseAlgorithm.prototype.getPriority = function()
+{
+    return 0;
+}
+
 
 
 /**
@@ -1032,9 +1101,19 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
         $edges = $xml.find( "edge" );
         
         $edges.each(function(){
-                    var source = $(this).attr('source');
-                    var target = $(this).attr('target');
-                    pathObjects.push(graph.FindEdge(source, target));
+                        var source = $(this).attr('source');
+                        var target = $(this).attr('target');
+                        var edge   = graph.FindEdge(source, target);
+                        pathObjects.push(edge);
+            
+                        $data = $(this).find("data");
+                        $data.each(function(){
+                            if (!properties[edge.id])
+                            {
+                                properties[edge.id] = {};
+                            }
+                            properties[edge.id][$(this).attr('key')] = $(this).text();
+                        });
                     });
         
         console.log(result);
@@ -1699,35 +1778,40 @@ SavedDialogGraphImageHandler.prototype.pathObjects = null;
 // Objects.
 SavedDialogGraphImageHandler.prototype.objects    = null;
 
-SavedDialogGraphImageHandler.prototype.show = function(object)
+SavedDialogGraphImageHandler.prototype.show = function(object, isFull = false)
 {
-    var imageName = this.app.SaveGraphImageOnDisk();
+    var showDialogCallback = function ()
+    {
+        var dialogButtons = {};
+
+        dialogButtons[g_close] = function() {
+            $( this ).dialog( "close" );
+        };
+
+        var fileLocation = "tmp/saved/" + imageName.substr(0, 2) + "/"+ imageName + ".png"
+
+        document.getElementById("showSavedImageGraph").src     = "/" + fileLocation;
+        document.getElementById("showSavedImageGraphRef").href = "/" + fileLocation;
+        //document.getElementById("showSavedImageGraph").src = document.getElementById("showSavedImageGraph").src.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+        document.getElementById("ShareSavedImageGraph").innerHTML =
+        document.getElementById("ShareSavedImageGraph").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+
+        document.getElementById("SaveImageLinks").innerHTML =
+        document.getElementById("SaveImageLinks").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
+
+        $( "#saveImageDialog" ).dialog({
+                                  resizable: false,
+                                  height: "auto",
+                                  width:  "auto",
+                                  modal: true,
+                                  title: g_save_image_dialog,
+                                  buttons: dialogButtons,
+                                  dialogClass: 'EdgeDialog'
+                                  });
     
-    var dialogButtons = {};
+    }
     
-    dialogButtons[g_close] = function() {
-        $( this ).dialog( "close" );
-    };
-    
-    var fileLocation = "tmp/saved/" + imageName.substr(0, 2) + "/"+ imageName + ".png"
-    
-    
-    document.getElementById("ShareSavedImageGraph").innerHTML =
-    document.getElementById("ShareSavedImageGraph").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
-    
-    document.getElementById("SaveImageLinks").innerHTML =
-    document.getElementById("SaveImageLinks").innerHTML.replace(/tmp\/saved\/([A-Za-z]*)\/([A-Za-z]*).png/g, fileLocation);
-    
-    $( "#saveImageDialog" ).dialog({
-                              resizable: false,
-                              height: "auto",
-                              width:  "auto",
-                              modal: true,
-                              title: g_save_image_dialog,
-                              buttons: dialogButtons,
-                              dialogClass: 'EdgeDialog'
-                              });
-    
+    var imageName = isFull ? this.app.SaveFullGraphImageOnDisk(showDialogCallback) : this.app.SaveGraphImageOnDisk(showDialogCallback);
 }
 
 
@@ -1805,6 +1889,11 @@ AlgorithmGraphHandler.prototype.RestoreAll = function()
     {
         this.RestoreUpText();
     }
+    
+    if (this.algorithm.wantRestore())
+    {
+        this.algorithm.restore();
+    }
 }
 
 AlgorithmGraphHandler.prototype.SaveUpText = function()
@@ -1847,6 +1936,11 @@ AlgorithmGraphHandler.prototype.UpdateResultAndMesasge = function()
 AlgorithmGraphHandler.prototype.InitControls = function()
 {
     this.algorithm.messageWasChanged();
+}
+
+AlgorithmGraphHandler.prototype.GetMessage = function()
+{
+	return this.algorithm.getMessage(g_language);
 }
 
 
@@ -1982,6 +2076,8 @@ function Graph()
 	this.hasDirect = false;
 };
 
+// infinity
+Graph.prototype.infinity = 1E8;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
@@ -2110,7 +2206,7 @@ Graph.prototype.FindEdge = function(id1, id2)
 	return res;
 }
 
-Graph.prototype.GetAdjacencyMatrix = function ()
+Graph.prototype.GetAdjacencyMatrixStr = function ()
 {
 	var matrix = "";
 	for (var i = 0; i < this.vertices.length; i++)
@@ -2137,6 +2233,32 @@ Graph.prototype.GetAdjacencyMatrix = function ()
 	}
 	
 	return matrix;
+}
+
+Graph.prototype.GetAdjacencyMatrix = function ()
+{
+    var matrix = [];
+    
+    for (var i = 0; i < this.vertices.length; i ++)
+    {
+        matrix.push([]);
+        var v1 = this.vertices[i];
+        for (var j = 0; j < this.vertices.length; j ++)
+        {
+            var v2 = this.vertices[j];
+            var edge = this.FindEdge(v1.id, v2.id);
+            if (edge != null)
+            {
+                matrix[i][j] = edge.GetWeight();
+            }
+            else
+            {
+                matrix[i][j] = this.infinity;               
+            }
+        }
+    }
+    
+    return matrix;
 }
 
 Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")
@@ -3128,6 +3250,26 @@ Application.prototype._redrawGraph = function()
     return context;
 }
 
+Application.prototype._OffscreenRedrawGraph = function()
+{
+    var bbox = this.graph.getGraphBBox();
+    var canvas = document.createElement('canvas');
+    canvas.width  = bbox.size().x;
+    canvas.height = bbox.size().y;
+    var context = canvas.getContext('2d');
+    
+    context.save();
+    context.clearRect(0, 0, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()));
+    context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    this.RedrawEdges(context);
+    this.RedrawNodes(context);
+    
+    context.restore();
+    
+    return canvas;
+}
+
 Application.prototype.updateRenderPathLength = function()
 {
     this.renderPathLength = 0;
@@ -3459,10 +3601,13 @@ Application.prototype.FindPath = function(graph1, graph2)
 
 Application.prototype.SetHandlerMode = function(mode)
 {
-    if (this.handler)
+    var manipolationHandlers = ["default", "addGraph", "addArc", "delete", "findPath", "connectedComponent", "eulerianLoop"];
+    
+    if (this.handler && (g_AlgorithmIds.indexOf(mode) >= 0 || manipolationHandlers.indexOf(mode) >= 0))
     {
         this.handler.RestoreAll();
     }
+    
 	if (mode == "default")
 	{
 		this.handler = new DefaultHandler(this);
@@ -3511,6 +3656,11 @@ Application.prototype.SetHandlerMode = function(mode)
     {
         var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
         savedDialogGraphImageHandler.show();
+    }
+    else if (mode == "saveDialogFullImage")
+    {
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
+        savedDialogGraphImageHandler.show(null, true);           
     }
     else if (mode == "eulerianLoop")
     {
@@ -3640,7 +3790,7 @@ Application.prototype.GetStatus = function()
 
 Application.prototype.GetAdjacencyMatrix = function ()
 {
-	return this.graph.GetAdjacencyMatrix();
+	return this.graph.GetAdjacencyMatrixStr();
 }
 
 Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")
@@ -3762,7 +3912,7 @@ Application.prototype.SaveGraphOnDisk = function ()
 	});
 }
                           
-Application.prototype.SaveGraphImageOnDisk = function ()
+Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 {
     var imageName = this.GetNewGraphName();
                           
@@ -3794,7 +3944,39 @@ Application.prototype.SaveGraphImageOnDisk = function ()
      data: {
            base64data : imageBase64Data
      },
-     dataType: "text"
+     dataType: "text",
+     success: function(data){
+        showDialogCallback();
+    }
+     });
+                          
+    return imageName;
+}
+
+Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback)
+{
+    var imageName = this.GetNewGraphName();
+                          
+    this.stopRenderTimer();
+    var canvas = this._OffscreenRedrawGraph();
+                          
+    var bbox = this.graph.getGraphBBox();
+    
+    var rectParams = ""; 
+    rectParams = "&x=0" + "&y=0" + "&width=" + bbox.size().x + "&height=" + bbox.size().y;
+
+    var imageBase64Data = canvas.toDataURL();
+
+    $.ajax({
+     type: "POST",
+     url: "/cgi-bin/saveImage.php?name=" + imageName + rectParams,
+     data: {
+           base64data : imageBase64Data
+     },
+     dataType: "text",
+     success: function(data){
+        showDialogCallback();
+    }
      });
                           
     return imageName;
@@ -3942,7 +4124,7 @@ Application.prototype.GetFindPathReport = function ()
     return this.findPathReport;
 }
                           
-                          
+/*                         
 Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
 {
     var app = this;
@@ -3987,15 +4169,15 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
                     $data.each(function(){
                                if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
                                {
-                               pathObjects.push(app.FindVertex(id));
+                                    pathObjects.push(app.FindVertex(id));
                                }
                                else
                                {
-                               if (!properties[id])
-                               {
-                               properties[id] = {};
-                               }
-                               properties[id][$(this).attr('key')] = $(this).text();
+                                    if (!properties[id])
+                                    {
+                                        properties[id] = {};
+                                    }
+                                    properties[id][$(this).attr('key')] = $(this).text();
                                }
                                });
                     });
@@ -4003,9 +4185,20 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
         $edges = $xml.find( "edge" );
         
         $edges.each(function(){
-                    var source = $(this).attr('source');
-                    var target = $(this).attr('target');
-                    pathObjects.push(app.FindEdge(source, target));
+                        var source = $(this).attr('source');
+                        var target = $(this).attr('target');
+                        var edge   = app.FindEdge(source, target);
+                        pathObjects.push(edge);
+            
+                        $data = $(this).find("data");
+                        $data.each(function(){
+                            if (!properties[edge.id])
+                            {
+                                properties[edge.id] = {};
+                            }
+                            properties[edge.id][$(this).attr('key')] = $(this).text();
+                            console.log("Data edge " + $(this).text());
+                        });
                     });
         
         console.log(result);
@@ -4015,6 +4208,7 @@ Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
 
     return true;
 }
+*/
                           
 Application.prototype.GetRealWidth = function ()
 {
@@ -4073,8 +4267,13 @@ Application.prototype.getAlgorithmNames = function()
         oneFactory = factory(this.graph);
         obj.name = oneFactory.getName(g_language);
         obj.id   = oneFactory.getId();
+        obj.priority = oneFactory.getPriority();
         res.push(obj);
     }
+    
+    res.sort(function (a, b) {
+      return a.priority - b.priority;
+    });
     
     return res;
 }
@@ -4123,8 +4322,8 @@ var userAction = function(str)
 {
     if (typeof window.yaCounter25827098 !== "undefined")
     {
-        console.log(str);
-        window.yaCounter25827098.hit("http://" + window.location.hostname + "/UserAction#" + str);
+        console.log(g_language + "/" + str);
+        window.yaCounter25827098.hit("http://" + window.location.hostname + (g_language != "ru" ? "/" + g_language : "") + "/UserAction#" + str);
     }
     else if (!waitCounter)
     {
@@ -4278,6 +4477,29 @@ function postLoadPage()
         }
     }
     
+    function getCharCode(event) {
+      if (event.which == null) { // IE
+        return event.keyCode;
+      }
+
+      if (event.which != 0 && event.charCode != 0) { // все кроме IE
+        return event.which; // остальные
+      }
+
+      return null; // спец. символ
+    }
+    
+    function getChar(event) {
+        return String.fromCharCode(getCharCode(event)); // остальные
+    }
+    
+    function selectHandler(buttonName, handlerName)
+    {
+            userAction(buttonName + "_shortcut");
+			restButtons (buttonName);
+			application.SetHandlerMode(handlerName);  
+    }
+    
     document.onkeypress   = function (e)
     {
         if (event.defaultPrevented
@@ -4288,49 +4510,64 @@ function postLoadPage()
             || ($('#saveDialog').hasClass('ui-dialog-content') && $('#saveDialog').dialog('isOpen'))
             || ($('#saveImageDialog').hasClass('ui-dialog-content') && $('#saveImageDialog').dialog('isOpen'))
             || ($('#GroupRenameDialog').hasClass('ui-dialog-content') && $('#GroupRenameDialog').dialog('isOpen'))
-            || $('#developerTools').css("display") != "none")
+            || $('#developerTools').css("display") != "none"
+            || ($('#NeedAlgorithm').hasClass('ui-dialog-content') && $('#NeedAlgorithm').dialog('isOpen')))
         {
             console.log("prevent");
             return; // Should do nothing if the default action has been cancelled
         }
         
         
-        var key = 0;
-        
-        if(window.event)
-        {
-            key = event.keyCode;
-        }
-        else if(event.which)
-        {
-            key = event.which;
-        }
-        console.log(key);
+        var key = getChar(event);
+        var code = getCharCode(event);
+        console.log(key + " code=" + code);
         
         var moveValue = 10;
-        if (key == 61 || key == 43) // +
+        if (code == 61 || code == 43) // +
         {
             application.multCanvasScale(1.5);
         }
-        else if (key == 45) // -
+        else if (code == 45) // -
         {
             application.multCanvasScale(1 / 1.5);
         }
-        else if (key == 119 || key == 1094) // up
+        else if (key == 'w' || key == 'ц') // up
         {
             application.onCanvasMove(new Point(0, moveValue));
         }
-        else if (key == 115 || key == 1099) // down
+        else if (key == 's' || key == 'ы') // down
         {
             application.onCanvasMove(new Point(0, -moveValue));
         }
-        else if (key == 97 || key == 1092) // left
+        else if (key == 'a' || key == 'ф') // left
         {
             application.onCanvasMove(new Point(moveValue, 0));
         }
-        else if (key == 100 || key == 1074) // right
+        else if (key == 'd' || key == 'в') // right
         {
             application.onCanvasMove(new Point(-moveValue, 0));
+        }
+        else if (key == 'v' || key == 'м') // vertex
+        {
+            selectHandler('AddGraph', 'addGraph');
+        }
+        else if (key == 'e' || key == 'у') // edge
+        {
+            selectHandler('ConnectGraphs', 'addArc');
+        }
+        else if (key == 'r' || key == 'к') // delete
+        {
+            selectHandler('DeleteObject', 'delete');
+        }
+        else if (key == 'n' || key == 'т') // new
+        {
+            userAction('NewGraph_shortcut');
+			application.SetHandlerMode("deleteAll");
+            application.SetDefaultTransformations();
+        }
+        else if (key == 'm' || key == 'ь') // move
+        {
+            selectHandler('Default', 'default');
         }
     }
 
@@ -4410,6 +4647,12 @@ function postLoadPage()
     {
         userAction(this.id);
         application.SetHandlerMode("saveDialogImage");
+    }
+    
+    document.getElementById('SaveFullGraphImage').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("saveDialogFullImage");
     }
     
     document.getElementById('Zoom100').onclick = function ()
@@ -4510,6 +4753,40 @@ function postLoadPage()
         }
     }
     
+    if (document.getElementById('VoteButton') !== null)
+    document.getElementById('VoteButton').onclick = function ()
+    {
+        var dialogButtons = {};
+        
+        for (var i = 0; i < 6 && document.getElementById('vote' + i) !== null; i++)
+        {
+            document.getElementById('vote' + i)["voteIndex"] = i;
+            document.getElementById('vote' + i).onclick = function ()
+            {
+                console.log("Vote" + this["voteIndex"]);
+                $.ajax({
+                type: "GET",
+                url: "/cgi-bin/vote.php?index=" + this["voteIndex"],
+                dataType: "text"
+                });
+                $("#voteDialog").dialog('close');
+                $("#VoteButton").hide();
+            }
+        }
+
+        dialogButtons[g_close] = function() {
+                $( this ).dialog( "close" );					
+            }; 
+
+        $( "#voteDialog" ).dialog({
+            resizable: false,
+            title: g_vote,
+            width: 400,
+            modal: true,
+            dialogClass: 'EdgeDialog',
+            buttons: dialogButtons,
+        });
+    }
     
     
     // Get algorithms list and load it.

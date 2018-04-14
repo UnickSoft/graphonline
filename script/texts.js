@@ -78,6 +78,14 @@ var g_checkToSave    = "Check to save";
 var g_showDistMatrix = "Show Distance matrix";
 var g_minDistMatrixText = "Minimal distances matrix";
 
+var g_selectStartVertexForMaxFlow  = "Select source vertex for max flow";
+var g_selectFinishVertexForMaxFlow = "Select sink vertex for max flow";
+var g_maxFlowResult = "Maximum flow from %2 to %3 is %1";
+var g_flowNotExists = "Flow from %1 to %2 does not exists";
+
+var g_sourceVertex = "Source";
+var g_sinkVertex   = "Sink";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -155,4 +163,12 @@ function loadTexts()
     g_checkToSave    = document.getElementById("checkToSave").innerHTML;
     g_showDistMatrix = document.getElementById("showDistMatrix").innerHTML;
     g_minDistMatrixText = document.getElementById("distMatrixText").innerHTML;
+    
+    g_selectStartVertexForMaxFlow  = document.getElementById("selectStartVertexForMaxFlow").innerHTML;
+    g_selectFinishVertexForMaxFlow = document.getElementById("selectFinishVertexForMaxFlow").innerHTML;
+    g_maxFlowResult = document.getElementById("maxFlowResult").innerHTML;
+    g_flowNotExists = document.getElementById("flowNotExists").innerHTML;
+    
+    g_sourceVertex = document.getElementById("sourceVertex").innerHTML;
+    g_sinkVertex   = document.getElementById("sinkVertex").innerHTML;
 }

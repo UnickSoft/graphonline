@@ -10,6 +10,7 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
     this.vertex2    = vertex2;
     this.isDirect  = isDirect;
     this.weight    = Number(weight);
+    this.text      = "";
     // For direct graph, has pair edge or not.
     this.hasPair   = false;
     this.useWeight = useWeight;
@@ -27,6 +28,7 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "hasPair=\""    + this.hasPair + "\" " +
 	       "id=\""         + this.id + "\" " +
+           "text=\""       + this.text + "\" " +
 		"></edge>";       
 }
 
@@ -41,6 +43,7 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
 	this.hasPair   =    xml.attr('hasPair') == "true";
 	this.useWeight =    xml.attr('useWeight') == "true";
     this.id        =    parseInt(xml.attr('id'));
+    this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
 }
 
 BaseEdge.prototype.GetPixelLength = function ()
@@ -58,4 +61,9 @@ BaseEdge.prototype.GetPixelLength = function ()
 BaseEdge.prototype.GetWeight = function ()
 {
     return this.useWeight ? this.weight : 1;
+}
+
+BaseEdge.prototype.GetText = function ()
+{
+    return this.text.length > 0 ? this.text : (this.useWeight ? this.weight.toString() : "");
 }

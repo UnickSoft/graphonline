@@ -210,9 +210,19 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
         $edges = $xml.find( "edge" );
         
         $edges.each(function(){
-                    var source = $(this).attr('source');
-                    var target = $(this).attr('target');
-                    pathObjects.push(graph.FindEdge(source, target));
+                        var source = $(this).attr('source');
+                        var target = $(this).attr('target');
+                        var edge   = graph.FindEdge(source, target);
+                        pathObjects.push(edge);
+            
+                        $data = $(this).find("data");
+                        $data.each(function(){
+                            if (!properties[edge.id])
+                            {
+                                properties[edge.id] = {};
+                            }
+                            properties[edge.id][$(this).attr('key')] = $(this).text();
+                        });
                     });
         
         console.log(result);
