@@ -9,6 +9,9 @@ function FindMaxFlow(graph, app)
     this.selectedObjects = {};
     this.selectedEdges = [];
     this.resetUpText = [];
+    
+    this.minEdgeSize = 2;
+    this.maxEdgeSize = 12;
 }
 
 
@@ -62,24 +65,55 @@ FindMaxFlow.prototype.resultCallback = function(pathObjects, properties, results
     
     var bFound = results.length > 0 && results[0].value < 1E5 && (results[0].type == 1 || results[0].type == 2) && results[0].value * 1 > 0.0;
     
+    var maxFlow = results[0].value * 1;
+    
     if (bFound)
     {
         this.selectedObjects = {};
 
+        var defaultDiameter = (new EdgeModel()).width;
+
+        var avgFlow = 0;
+        var countEdges = 0;
+        
+        for (var i = 0; i < pathObjects.length; i++)
+        {
+            if (pathObjects[i] instanceof BaseEdge)
+            {
+                avgFlow += properties[pathObjects[i].id]["flowValue"] * 1;
+                countEdges += 1;
+            }
+        }
+        avgFlow = avgFlow / countEdges;
+        
         for (var i = 0; i < pathObjects.length; i++)
         {
             if (pathObjects[i] instanceof BaseEdge)
             {
                 this.selectedObjects[pathObjects[i].id] = 1;
-                if (pathObjects[i].useWeight)
+                var flow = properties[pathObjects[i].id]["flowValue"] * 1;
+                if (pathObjects[i].useWeight || flow != pathObjects[i].GetWeight())
                 {
-                    pathObjects[i].text = properties[pathObjects[i].id]["flowValue"] + " / " + pathObjects[i].GetWeight();
+                    pathObjects[i].text = flow + " / " + pathObjects[i].GetWeight();
                 }
+                if (!pathObjects[i].isDirect)
+                {
+                    if (parseInt(properties[pathObjects[i].id]["backToFront"]) > 0)
+                    {
+                        pathObjects[i].arrayStyleStart = "arrow";  
+                    }
+                    else
+                    {
+                         pathObjects[i].arrayStyleFinish = "arrow";     
+                    }
+                }
+                
+                pathObjects[i].model.width = Math.max(Math.min((flow / avgFlow) * defaultDiameter, this.maxEdgeSize), this.minEdgeSize);
             }
         }
         this.selectedEdges = pathObjects;
     
-        this.message = g_maxFlowResult.replace("%1", (results[0].value * 1).toString()).replace("%2", this.firstObject.mainText).replace("%3", this.secondObject.mainText);
+        this.message = g_maxFlowResult.replace("%1", (maxFlow).toString()).replace("%2", this.firstObject.mainText).replace("%3", this.secondObject.mainText);
         
         this.selectedObjects[this.secondObject.id] = 3;
         this.selectedObjects[this.firstObject.id]  = 1;
@@ -164,6 +198,9 @@ BaseAlgorithm.prototype.restore = function()
             if (this.selectedEdges[i] instanceof BaseEdge)
             {
                 this.selectedEdges[i].text = "";
+                this.selectedEdges[i].arrayStyleStart  = "";
+                this.selectedEdges[i].arrayStyleFinish = "";
+                this.selectedEdges[i].model.width = (new EdgeModel()).width;
             }
         }
         

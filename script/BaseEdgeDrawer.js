@@ -91,10 +91,38 @@ function BaseEdgeDrawer(context)
 BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle) 
 {
   this.SetupStyle(baseEdge, arcStyle);
-
-  var positions = this.GetArcPositions(baseEdge.vertex1.position, baseEdge.vertex2.position, baseEdge.vertex1.model.diameter);
+    
+  var length = baseEdge.model.width * 4;
+  var width  = baseEdge.model.width * 2;
+  var position1 = baseEdge.vertex1.position;
+  var position2 = baseEdge.vertex2.position;
+  var direction = position1.subtract(position2); 
+  var pairShift = baseEdge.vertex1.model.diameter * 0.25;
+  var realShift = (baseEdge.hasPair ? pairShift : 0);
+  direction.normalize(1.0);
+  var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
+	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
   
-  this.DrawArc (positions[0], positions[1], arcStyle);
+  var hasStartStyle = !position1.equals(position2) && baseEdge.GetStartEdgeStyle() != "";
+  var hasFinishStyle = !position1.equals(position2) && baseEdge.GetFinishEdgeStyle() != "";
+    
+  this.DrawArc (positions[0].subtract(direction.multiply(hasStartStyle  ? -length / 2 : 0.0)), 
+                positions[1].subtract(direction.multiply(hasFinishStyle ? -length / 2 : 0.0)), arcStyle);
+
+  this.context.fillStyle = this.context.strokeStyle;
+  this.context.lineWidth = 0;
+
+  if (hasStartStyle)
+  {
+    this.DrawArrow(positions[0], positions[1], length, width);
+  }
+  if (hasFinishStyle)
+  {
+    this.DrawArrow(positions[1], positions[0], length, width);
+  }
+    
+  this.SetupStyle(baseEdge, arcStyle);
+    
   if (baseEdge.GetText().length > 0)
   {
 	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
@@ -193,69 +221,24 @@ BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, d
     }  
 }
 
-
-/**
- * Direct Arc drawer.
- */
-function DirectArcDrawer(context)
-{ 
-  this.context = context;
-}
-
-DirectArcDrawer.prototype = Object.create(BaseEdgeDrawer.prototype);
-
-DirectArcDrawer.prototype.Draw = function(baseEdge, arcStyle) 
+BaseEdgeDrawer.prototype.DrawArrow = function(position1, position2, length, width) 
 {
-  baseDrawer = this.CreateBase();
-  baseDrawer.SetupStyle(baseEdge, arcStyle);
-  
-  var length = baseEdge.model.width * 4;
-  var width  = baseEdge.model.width * 2;
-  var position1 = baseEdge.vertex1.position;
-  var position2 = baseEdge.vertex2.position;
   var direction = position1.subtract(position2); 
-  var pairShift = baseEdge.vertex1.model.diameter * 0.25;
-  var realShift = (baseEdge.hasPair ? pairShift : 0);
-  direction.normalize(1.0);
-  var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
-  
-  baseDrawer.DrawArc (positions[0], positions[1].subtract(direction.multiply(-length / 2)), arcStyle);
-
-  this.context.fillStyle = this.context.strokeStyle;
-  this.context.lineWidth   = 0;
-  this.DrawArrow(positions[0], positions[1], length, width);
-
-  if (baseEdge.GetText().length > 0)
-  {
-	baseDrawer.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
-  }
-}
-
-DirectArcDrawer.prototype.DrawArrow = function(position1, position2, length, width) 
-{
-  var direction = position2.subtract(position1); 
   direction.normalize(1.0);
   var normal = direction.normal();
   
-  var pointOnLine = position2.subtract(direction.multiply(length));
+  var pointOnLine = position1.subtract(direction.multiply(length));
   var point1 = pointOnLine.add(normal.multiply(width));
   var point2 = pointOnLine.add(normal.multiply(-width));
   
   this.context.beginPath();
-  this.context.moveTo(position2.x, position2.y);
+  this.context.moveTo(position1.x, position1.y);
   this.context.lineTo(point1.x, point1.y);
   this.context.lineTo(point2.x, point2.y);
-  this.context.lineTo(position2.x, position2.y);
+  this.context.lineTo(position1.x, position1.y);
   this.context.closePath();
   this.context.fill();
 }
-
-DirectArcDrawer.prototype.CreateBase = function() 
-{
-	return new BaseEdgeDrawer(this.context);
-}
-
 
 
 function ProgressArcDrawer(context, baseDrawer, progress)

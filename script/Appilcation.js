@@ -200,42 +200,33 @@ Application.prototype.setRenderPath = function(renderPath)
 Application.prototype.RedrawEdge = function(context, edge)
 {
     var arcDrawer = new BaseEdgeDrawer(context);
-    var directArcDrawer  = new DirectArcDrawer(context);
     var commonStyle      = new CommonEdgeStyle(context);
     var selectedStyles   = selectedEdgeStyles;
     
-    this._RedrawEdge(edge, arcDrawer, directArcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyles);
 }
 
-Application.prototype._RedrawEdge = function(edge, arcDrawer, directArcDrawer, commonStyle, selectedStyles)
+Application.prototype._RedrawEdge = function(edge, arcDrawer, commonStyle, selectedStyles)
 {
     var selectedGroup = this.handler.GetSelectedGroup(edge);
     var currentStyle  = selectedGroup > 0 ?
         selectedStyles[(selectedGroup - 1) % selectedStyles.length] : commonStyle;
     
-    this._RedrawEdgeWithStyle(edge, currentStyle, arcDrawer, directArcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdgeWithStyle(edge, currentStyle, arcDrawer, commonStyle, selectedStyles);
 }
 
-Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, directArcDrawer, commonStyle, selectedStyles)
+Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, commonStyle, selectedStyles)
 {
-    if (!edge.isDirect)
-    {
-        arcDrawer.Draw(edge, style);
-    }
-    else
-    {
-        directArcDrawer.Draw(edge, style);
-    }
+    arcDrawer.Draw(edge, style);
 }
 
 Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
 {
     var arcDrawer        = new ProgressArcDrawer(context, new BaseEdgeDrawer(context), progress);
-    var directArcDrawer  = new ProgressArcDrawer(context, new DirectArcDrawer(context), progress);
     var commonStyle      = new CommonEdgeStyle(context);
     var selectedStyles   = selectedEdgeStyles;
 
-    this._RedrawEdge(edge, arcDrawer, directArcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyles);
 }
 
 Application.prototype.RedrawEdges = function(context)

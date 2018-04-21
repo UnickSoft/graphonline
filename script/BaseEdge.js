@@ -8,6 +8,9 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
 {
     this.vertex1    = vertex1;
     this.vertex2    = vertex2;
+    this.arrayStyleStart  = "";
+    this.arrayStyleFinish = "";
+    
     this.isDirect  = isDirect;
     this.weight    = Number(weight);
     this.text      = "";
@@ -29,6 +32,8 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "hasPair=\""    + this.hasPair + "\" " +
 	       "id=\""         + this.id + "\" " +
            "text=\""       + this.text + "\" " +
+           "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
+           "arrayStyleFinish=\""       + this.arrayStyleFinish + "\" " +
 		"></edge>";       
 }
 
@@ -44,6 +49,8 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
 	this.useWeight =    xml.attr('useWeight') == "true";
     this.id        =    parseInt(xml.attr('id'));
     this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
+    this.arrayStyleStart      =   xml.attr("arrayStyleStart") == null ? "" : xml.attr("arrayStyleStart");
+    this.arrayStyleFinish      =  xml.attr("arrayStyleFinish") == null ? "" : xml.attr("arrayStyleFinish");
 }
 
 BaseEdge.prototype.GetPixelLength = function ()
@@ -66,4 +73,14 @@ BaseEdge.prototype.GetWeight = function ()
 BaseEdge.prototype.GetText = function ()
 {
     return this.text.length > 0 ? this.text : (this.useWeight ? this.weight.toString() : "");
+}
+
+BaseEdge.prototype.GetStartEdgeStyle = function ()
+{
+    return this.arrayStyleStart;
+}
+
+BaseEdge.prototype.GetFinishEdgeStyle = function ()
+{
+    return (this.arrayStyleFinish != "" ? this.arrayStyleFinish : (this.isDirect ? "arrow" : ""));
 }
