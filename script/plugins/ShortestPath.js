@@ -18,7 +18,8 @@ FindShortPathNew.prototype.firstObject = null;
 FindShortPathNew.prototype.secondObject = null;
 // Path
 FindShortPathNew.prototype.pathObjects = null;
-
+// Infinity
+FindShortPathNew.prototype.infinityValue = 1E9 - 1;
 
 FindShortPathNew.prototype.getName = function(local)
 {
@@ -58,7 +59,7 @@ FindShortPathNew.prototype.resultCallback = function(pathObjects, properties, re
     this.pathObjects = pathObjects;
     this.properties = properties;
     
-    var bFound = results.length > 0 && results[0].value < 1E5 && (results[0].type == 1 || results[0].type == 2);
+    var bFound = results.length > 0 && results[0].value < this.infinityValue && (results[0].type == 1 || results[0].type == 2);
     
     if (bFound)
     {
@@ -185,7 +186,7 @@ FindShortPathNew.prototype.updateUpText = function()
                 var propertie = this.properties[object.id];
                 if (propertie.hasOwnProperty('lowestDistance'))
                 {
-                    object.upText = g_shortestDistance + (propertie.lowestDistance > 1E5 ? "\u221E" : (propertie.lowestDistance * 1).toString());
+                    object.upText = g_shortestDistance + (propertie.lowestDistance > this.infinityValue ? "\u221E" : (propertie.lowestDistance * 1).toString());
                 }
             }
         }
