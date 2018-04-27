@@ -19,3 +19,6 @@ Disallow: /en/wiki/action=
 User-Agent: W3C-checklink
 Disallow: /wiki/*
 Disallow: /en/wiki/*
+
+User-agent: Crawler
+Disallow: /

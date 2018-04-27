@@ -174,12 +174,6 @@
    <priority>0.5120</priority>
 </url>
 <url>
-   <loc>http://graphonline.ru/wiki/%d0%a1%d0%bf%d1%80%d0%b0%d0%b2%d0%ba%d0%b0/RecentChanges</loc>
-   <lastmod>2016-10-29T18:06:53+00:00</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.5120</priority>
-</url>
-<url>
    <loc>http://graphonline.ru/en/create_algorithm</loc>
    <lastmod>2016-10-29T18:06:53+00:00</lastmod>
    <changefreq>monthly</changefreq>
@@ -193,12 +187,6 @@
 </url>
 <url>
    <loc>http://graphonline.ru/wiki/uploads/%d0%a0%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0/GraphonlineAPI10.pdf</loc>
-   <lastmod>2016-10-29T18:06:53+00:00</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.5120</priority>
-</url>
-<url>
-   <loc>http://graphonline.ru/wiki/%d0%a0%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0/RecentChanges</loc>
    <lastmod>2016-10-29T18:06:53+00:00</lastmod>
    <changefreq>monthly</changefreq>
    <priority>0.5120</priority>
@@ -270,12 +258,6 @@
    <priority>0.4096</priority>
 </url>
 <url>
-   <loc>http://graphonline.ru/en/wiki/Development/RecentChanges</loc>
-   <lastmod>2016-10-29T18:06:53+00:00</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.4096</priority>
-</url>
-<url>
    <loc>http://graphonline.ru/wiki/%d0%a0%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0/%d0%a0%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0</loc>
    <lastmod>2016-10-29T18:06:53+00:00</lastmod>
    <changefreq>monthly</changefreq>
@@ -325,12 +307,6 @@
 </url>
 <url>
    <loc>http://graphonline.ru/en/wiki/Help/FindConnectedComponent</loc>
-   <lastmod>2016-10-29T18:06:53+00:00</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.4096</priority>
-</url>
-<url>
-   <loc>http://graphonline.ru/en/wiki/Help/RecentChanges</loc>
    <lastmod>2016-10-29T18:06:53+00:00</lastmod>
    <changefreq>monthly</changefreq>
    <priority>0.4096</priority>
