@@ -179,7 +179,7 @@ FindMaxFlow.prototype.getObjectSelectedGroup = function(object)
 
 FindMaxFlow.prototype.getPriority = function()
 {
-    return -9.7;
+    return -9.6;
 }
 
 // @return true, if you change resotry graph after use.

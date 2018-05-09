@@ -67,8 +67,63 @@ function SelectedVertexStyle4()
 
 SelectedVertexStyle4.prototype = Object.create(CommonVertexStyle.prototype);
 
+function SelectedVertexStyle5()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle = '#FF6200';
+	this.mainTextColor  = '#FF6200';
+	this.fillStyle   = '#0F4FA8';
+}
+
+SelectedVertexStyle5.prototype = Object.create(CommonVertexStyle.prototype);
+
+function SelectedVertexStyle6()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle   = '#8CA336';
+	this.mainTextColor = '#8CA336';
+	this.fillStyle     = '#9C344C';
+}
+
+SelectedVertexStyle6.prototype = Object.create(CommonVertexStyle.prototype);
+
+function SelectedVertexStyle7()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle   = '#B59E22';
+	this.mainTextColor = '#B59E22';
+	this.fillStyle     = '#22387A';
+}
+
+SelectedVertexStyle7.prototype = Object.create(CommonVertexStyle.prototype);
+
+function SelectedVertexStyle8()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle   = '#08806C';
+	this.mainTextColor = '#08806C';
+	this.fillStyle     = '#CA980D';
+}
+
+SelectedVertexStyle8.prototype = Object.create(CommonVertexStyle.prototype);
+
+function SelectedVertexStyle9()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle   = '#AA8134';
+	this.mainTextColor = '#AA8134';
+	this.fillStyle     = '#492A73';
+}
+
+SelectedVertexStyle9.prototype = Object.create(CommonVertexStyle.prototype);
+
 var selectedGraphStyles = [new SelectedVertexStyle0(), new SelectedVertexStyle1(),
-	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4()];
+	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4(), new SelectedVertexStyle5(), new SelectedVertexStyle6(), new SelectedVertexStyle7(), new SelectedVertexStyle8(), new SelectedVertexStyle9()];
                    
 function BaseVertexDrawer(context)
 { 
