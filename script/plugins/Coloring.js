@@ -19,7 +19,7 @@ Coloring.prototype = Object.create(BaseAlgorithm.prototype);
 
 Coloring.prototype.getName = function(local)
 {
-    return local == "ru" ? "Раскраска графов" : "Graph coloring";
+    return local == "ru" ? "Раскраска графа" : "Graph coloring";
 }
 
 Coloring.prototype.getId = function()
