@@ -53,6 +53,7 @@ Coloring.prototype.calculate = function(fillUpText = false)
     var listOfOrders = [];
     this.addSimpleAndRandomOrders(listOfOrders);
     this.addBasedOnDegree(listOfOrders, connectedVertex);
+    this.addForTree(listOfOrders, connectedVertex);
     
     this.connectedComponentNumber = this.MaxColor;
     
@@ -198,6 +199,152 @@ Coloring.prototype.addBasedOnDegree = function(listOfOrders, connectedVertex)
             //console.log(randomByPart);
         }
     }
+}
+
+Coloring.prototype.addForTree = function(listOfOrders, connectedVertex)
+{
+    var vertexDegree = [];
+    var idToIndex = {};
+    var idToDegree = {};
+    for (var i = 0; i < this.graph.vertices.length; i++)
+    {
+        var degree = 0;
+        var id = this.graph.vertices[i].id;
+        if (id in connectedVertex)
+        {
+            degree = connectedVertex[id].length;
+        }
+        
+        vertexDegree.push({index : i, degree : degree});
+        idToIndex[id] = i;
+        idToDegree[id] = degree;
+    }
+    
+    // sort
+    vertexDegree.sort(
+        function(a, b) {
+            return (a.degree > b.degree) ? -1 : 
+                   ((b.degree > a.degree) ? 1 : 0);
+        });
+    
+    var vertexDegreeOrder = [];
+    for (var i = 0; i < vertexDegree.length; i++)
+    {
+        vertexDegreeOrder.push(vertexDegree[i].index);
+    }
+    
+    {
+        var wasAdded = {};
+        var resSimple = [];
+
+        //------ simple near ------
+        for (var i = 0; i < vertexDegreeOrder.length; i++)
+        {
+            var vertex = this.graph.vertices[vertexDegreeOrder[i]].id;
+            if (!(vertex in wasAdded))
+            {
+                wasAdded[vertex] = 1;
+                resSimple.push(idToIndex[vertex]);
+
+                var queue = [];
+                queue.push(vertex);
+
+                while (true)
+                {
+                     var needBreak = true;
+                     for (var j = 0; j < queue.length; j++)
+                     {
+                        var vertexId = queue[j];
+                        if (vertexId in connectedVertex)
+                        {
+                            for (var k = 0; k < connectedVertex[vertexId].length; k++)
+                            {
+                                if (!(connectedVertex[vertexId][k].id in wasAdded))
+                                {
+                                    var id = connectedVertex[vertexId][k].id;
+                                    wasAdded[id] = 1;
+                                    queue.push(id);
+                                    resSimple.push(idToIndex[id]);
+                                    needBreak = false;
+                                }
+                            }
+                        }
+                     }
+
+                     if (needBreak)
+                     {
+                         break;
+                     }
+                }
+            }
+        }
+
+        listOfOrders.push(resSimple);
+    }
+    //-------------------------------
+    
+    
+    //------ simple near with max degree
+    {
+        var wasAdded = {};
+        var resMaxDegree = [];
+        for (var i = 0; i < vertexDegreeOrder.length; i++)
+        {
+            var vertex = this.graph.vertices[vertexDegreeOrder[i]].id;
+            if (!(vertex in wasAdded))
+            {
+                wasAdded[vertex] = 1;
+                resMaxDegree.push(idToIndex[vertex]);
+
+                var queue = [];
+                queue.push(vertex);
+
+                while (true)
+                {
+                     var needBreak = true;
+                     for (var j = 0; j < queue.length; j++)
+                     {
+                        var vertexId = queue[j];
+                        if (vertexId in connectedVertex)
+                        {
+                            var maxDegree = -1;
+                            var vertexMaxId  = -1;
+
+                            for (var k = 0; k < connectedVertex[vertexId].length; k++)
+                            {
+                                if (!(connectedVertex[vertexId][k].id in wasAdded))
+                                {
+                                    var id = connectedVertex[vertexId][k].id;
+
+                                    if (idToDegree[id] > maxDegree)
+                                    {
+                                        maxDegree = idToDegree[id];
+                                        vertexMaxId = id;
+                                    }
+                                }
+                            }
+
+                            if (vertexMaxId >= 0)
+                            {
+                                wasAdded[vertexMaxId] = 1;
+                                queue.push(vertexMaxId);
+                                resMaxDegree.push(idToIndex[vertexMaxId]);
+                                needBreak = false;
+                            }
+                        }
+                     }
+
+                     if (needBreak)
+                     {
+                         break;
+                     }
+                }
+            }
+        }
+
+        listOfOrders.push(resMaxDegree);
+    }
+    //-------------------------------
 }
 
 Coloring.prototype.shuffleArray = function(a) 
