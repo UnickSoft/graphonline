@@ -118,11 +118,11 @@
     $g_lang["checkToSave"]    = "Check to save";
     $g_lang["showDistMatrix"] = "Show distance matrix";
     $g_lang["distMatrixText"] = "Distance matrix";
-
-    $g_lang["selectStartVertexForMaxFlow"]   = "Select source vertex of maximum flow";
-    $g_lang["selectFinishVertexForMaxFlow"]  = "Select sink vertex of maximum flow";
-    $g_lang["maxFlowResult"]  = "Maximum flow from %2 to %3 is %1";
-    $g_lang["flowNotExists"]  = "Flow from %1 to %2 does not exists";
+    
+    $g_lang["selectStartVertexForMaxFlow"]   = "Select a source of the maximum flow";
+    $g_lang["selectFinishVertexForMaxFlow"]  = "Select a sink of the maximum flow";
+    $g_lang["maxFlowResult"]  = "Maximum flow from %2 to %3 equals %1";
+    $g_lang["flowNotExists"]  = "Flow from %1 in %2 does not exist";
 
     $g_lang["sourceVertex"]  = "Source";
     $g_lang["sinkVertex"]    = "Sink";
