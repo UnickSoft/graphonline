@@ -88,8 +88,8 @@
             <span class="glyphicon glyphicon-cog fa-fw "></span><span class="hidden-phone"> <?= L('algorithms') ?> </span><span class="caret"></span>
             </button>
           <ul class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">
-            <li>
 <!--
+          <li>
 		  <button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="FindPath"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('short_path')?></button></li>
           <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="ConnectedComponent"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('connected_component') ?> </button></li>
 		  <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="EulerianLoop"><span class="glyphicon glyphicon-refresh fa-fw"></span> <span><?= L('find_eulerian_loop')?></span></button></li>

@@ -31,6 +31,7 @@ NeedAlgorithm.prototype.getMessage = function(local)
 
 NeedAlgorithm.prototype.result = function(resultCallback)
 {
+    /*
     var dialogButtons = {};
 
     dialogButtons[g_send] = function() {
@@ -56,7 +57,39 @@ NeedAlgorithm.prototype.result = function(resultCallback)
         dialogClass: 'EdgeDialog',
         buttons: dialogButtons,
     });
+    */
+    
+    var dialogButtons = {};
 
+    for (var i = 0; i < 6 && document.getElementById('vote' + i) !== null; i++)
+    {
+        document.getElementById('vote' + i)["voteIndex"] = i;
+        document.getElementById('vote' + i).onclick = function ()
+        {
+            console.log("Vote" + this["voteIndex"]);
+            $.ajax({
+            type: "GET",
+            url: "/cgi-bin/vote.php?index=" + this["voteIndex"],
+            dataType: "text"
+            });
+            $("#voteDialog").dialog('close');
+            $("#VoteButton").hide();
+        }
+    }
+
+    dialogButtons[g_close] = function() {
+            $( this ).dialog( "close" );					
+        }; 
+
+    $( "#voteDialog" ).dialog({
+        resizable: false,
+        title: g_vote,
+        width: 400,
+        modal: true,
+        dialogClass: 'EdgeDialog',
+        buttons: dialogButtons,
+    });
+    
     var result = {};
     result["version"] = 1;
 

@@ -1,4 +1,6 @@
-User account|Possibility to store graphs in your user account and other settings.
-Improved visualization|The ability to change colors for vertexes and edges, as well as the shape and size of the vertexes.
-Improving the support of large graphs|Make easy work with large graphs with the number of vertixes is more than 300.
-More algorithms|Add more algorithms: maximum flow, minimum cut, radius, diameter, coloring graph.
+Search Hamiltonian path and cycle|
+Depth-first search and breadth-first search|
+Search all paths from vertex A to vertex B|
+Search strongly connected component|
+Search longest path on graph|
+Bellman–Ford algorithm|
