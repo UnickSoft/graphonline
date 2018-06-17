@@ -129,4 +129,7 @@
 
     $g_lang["sourceVertex"]  = "Исток";
     $g_lang["sinkVertex"]    = "Сток";
+
+    $g_lang["export_graph"]    = "Экспортировать граф";
+    $g_lang["import_graph"]    = "Импортировать граф";
 ?>

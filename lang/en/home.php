@@ -126,4 +126,7 @@
 
     $g_lang["sourceVertex"]  = "Source";
     $g_lang["sinkVertex"]    = "Sink";
+
+    $g_lang["export_graph"]    = "Export to file";
+    $g_lang["import_graph"]    = "Import from file";
 ?>

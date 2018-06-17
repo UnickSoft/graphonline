@@ -127,6 +127,21 @@ function createAlgorithmMenu()
 
 }
 
+    
+function handelImportGraph(files) {
+    var graphFileToLoad = files[0];
+
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent){
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        console.log(textFromFileLoaded);
+        application.LoadGraphFromString(textFromFileLoaded);
+        ImportGraphFiles.value = "";
+    };
+
+    fileReader.readAsText(graphFileToLoad, "UTF-8");
+}
+
 function postLoadPage()
 {
     application.userAction = userAction;
@@ -435,6 +450,36 @@ function postLoadPage()
             devTools.style.width = "100%";
         }
     }
+    
+    document.getElementById('ExportGraph').onclick = function ()
+    {
+        userAction(this.id);
+        
+        var graphAsString  = application.graph.SaveToXML();
+        var savedGraphName = application.GetNewGraphName();
+        
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(graphAsString));
+        element.setAttribute('download', "graph_" + savedGraphName + ".graphml");
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+    
+    document.getElementById('ImportGraph').onclick = function ()
+    {
+        userAction(this.id);
+        
+        if (ImportGraphFiles) {
+            ImportGraphFiles.click();
+        }
+    }
+    
+    
     
     if (document.getElementById('VoteButton') !== null)
     document.getElementById('VoteButton').onclick = function ()

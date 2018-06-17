@@ -857,6 +857,17 @@ Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback)
                           
 
 
+Application.prototype.LoadGraphFromString = function (str)
+{
+    var graph = new Graph();
+    graph.LoadFromXML(str);
+    this.SetDefaultTransformations();
+    this.graph = graph;
+    this.AutoAdjustViewport();
+    this.updateMessage();
+    this.redrawGraph();   
+}
+
 Application.prototype.LoadGraphFromDisk = function (graphName)
 {
 	var  app = this;
@@ -867,13 +878,7 @@ Application.prototype.LoadGraphFromDisk = function (graphName)
 	})
 	.done(function( msg ) 
 	{
-		var graph = new Graph();
-		graph.LoadFromXML(msg);
-        app.SetDefaultTransformations();
-		app.graph = graph;
-        app.AutoAdjustViewport();
-        app.updateMessage();
-        app.redrawGraph();
+       app.LoadGraphFromString(msg);
 	});
 }
 

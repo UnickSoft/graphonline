@@ -47,6 +47,16 @@
                 <li>
                     <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveFullGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_full_image')?></button>
                 </li>
+                <li class="divider hidden-phone"></li>
+                <li class="hidden-phone">
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ExportGraph"><span class="glyphicon glyphicon-download fa-fw"></span> <?= L('export_graph')?></button>
+				</li>
+                    
+                <li class="hidden-phone">
+                  <input type="file" id="ImportGraphFiles" accept=".graphml" style="display:none" onchange="handelImportGraph(this.files)">
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ImportGraph"><span class="glyphicon glyphicon-upload fa-fw"></span> <?= L('import_graph')?></button>
+				</li>
+                    
 				<li class="divider"></li>
       				<li>
 				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_adjacency_matrix')?></button>
