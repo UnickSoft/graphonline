@@ -279,6 +279,11 @@ function postLoadPage()
             userAction(this.id);
 			application.SetHandlerMode("showIncidenceMatrix");
 		}
+	document.getElementById('ShowDistanceMatrix').onclick = function ()
+		{
+            userAction(this.id);
+			application.SetHandlerMode("showDistanceMatrix");
+		}
     
 	document.getElementById('GroupRename').onclick = function ()
 		{

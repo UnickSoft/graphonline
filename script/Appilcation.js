@@ -515,6 +515,11 @@ Application.prototype.SetHandlerMode = function(mode)
 		var showIncidenceMatrix = new ShowIncidenceMatrix(this);
 		showIncidenceMatrix.show();
 	}
+    else if (mode == "showDistanceMatrix")
+	{
+		var showDistanceMatrix = new ShowDistanceMatrix(this);
+		showDistanceMatrix.show();
+	}
 	else if (mode == "connectedComponent")
 	{
 		this.handler = new ConnectedComponentGraphHandler(this);

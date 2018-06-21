@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	<script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=6")?>" ></script>
+        <script src="<?= Root("script/example.js?v=7")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -63,6 +63,9 @@
 				</li>
       				<li>
 		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowIncidenceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_incidence_matrix')?> </button>
+				</li>
+                <li>
+		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowDistanceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('distMatrixText')?> </button>
 				</li>
                 <li>
 		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="GroupRename"><span class="glyphicon glyphicon-pencil fa-fw"></span> <?= L('group_rename')?> </button>
@@ -305,7 +308,7 @@
 				<p id="BadIncidenceMatrixFormatMessage"><?= L('incidence_matrix_bad_format')?></p>
 		</fieldset>
 		</form>
-       </div>
+    </div>
         
 	<div id="voteDialog">
 		<form>
