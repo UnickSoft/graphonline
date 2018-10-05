@@ -86,6 +86,12 @@ var g_flowNotExists = "Flow from %1 to %2 does not exists";
 var g_sourceVertex = "Source";
 var g_sinkVertex   = "Sink";
 
+var g_hasHamiltonianLoop = "Graph has Hamiltonian Loop";
+var g_hasNotHamiltonianLoop  = "Graph has not Hamiltonian Loop";
+
+var g_hasHamiltonianPath = "Graph has Hamiltonian Path";
+var g_hasNotHamiltonianPath = "Graph has not Hamiltonian Path";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -171,4 +177,10 @@ function loadTexts()
     
     g_sourceVertex = document.getElementById("sourceVertex").innerHTML;
     g_sinkVertex   = document.getElementById("sinkVertex").innerHTML;
+    
+    g_hasHamiltonianLoop    = document.getElementById("hasHamiltonianLoop").innerHTML;
+    g_hasNotHamiltonianLoop = document.getElementById("hasNotHamiltonianLoop").innerHTML;
+
+    g_hasHamiltonianPath    = document.getElementById("hasHamiltonianPath").innerHTML;
+    g_hasNotHamiltonianPath = document.getElementById("hasNotHamiltonianPath").innerHTML;
 }

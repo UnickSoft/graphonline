@@ -132,4 +132,10 @@
 
     $g_lang["export_graph"]    = "Экспортировать граф";
     $g_lang["import_graph"]    = "Импортировать граф";
+
+    $g_lang["has_hamiltonian_path"] = "Граф содержит Гамильтонову цепь";
+    $g_lang["has_not_hamiltonian_path"] = "Граф не содержит Гамильтонову цепь";
+
+    $g_lang["has_hamiltonian_loop"] = "Граф содержит Гамильтонов цикл";
+    $g_lang["has_not_hamiltonian_loop"] = "Граф не содержит Гамильтонов цикл";
 ?>

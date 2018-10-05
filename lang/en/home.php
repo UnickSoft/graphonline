@@ -129,4 +129,10 @@
 
     $g_lang["export_graph"]    = "Export to file";
     $g_lang["import_graph"]    = "Import from file";
+
+    $g_lang["has_hamiltonian_path"] = "Graph has Hamiltonian path";
+    $g_lang["has_not_hamiltonian_path"] = "Graph has not Hamiltonian path";
+
+    $g_lang["has_hamiltonian_loop"] = "Graph has Hamiltonian cycle";
+    $g_lang["has_not_hamiltonian_loop"] = "Graph has not Hamiltonian cycle";
 ?>

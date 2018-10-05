@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	<script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=7")?>" ></script>
+        <script src="<?= Root("script/example.js?v=8")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -419,6 +419,12 @@
         
     <p id="sourceVertex" class="translation"><?= L('sourceVertex')?></p>
     <p id="sinkVertex" class="translation"><?= L('sinkVertex')?></p>
+        
+    <p id="hasNotHamiltonianLoop" class="translation"><?= L('has_not_hamiltonian_loop')?></p>
+    <p id="hasHamiltonianLoop" class="translation"><?= L('has_hamiltonian_loop')?></p>
+        
+    <p id="hasNotHamiltonianPath" class="translation"><?= L('has_not_hamiltonian_path')?></p>
+    <p id="hasHamiltonianPath" class="translation"><?= L('has_hamiltonian_path')?></p>
 </section>
 <!--
 <script>
