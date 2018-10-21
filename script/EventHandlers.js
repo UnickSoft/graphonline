@@ -497,7 +497,7 @@ ConnectionGraphHandler.prototype.SelectFirst = function()
 ConnectionGraphHandler.prototype.SelectSecond = function(selectedObject)
 {
 	this.firstObject = selectedObject;
-	this.message     = g_selectFisrtVertexToConnect + this.GetSelect2VertexMenu();						
+	this.message     = g_selectSecondVertexToConnect + this.GetSelect2VertexMenu();						
 }
 
 ConnectionGraphHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
