@@ -126,6 +126,41 @@ BaseHandler.prototype.GetSelectedGroup = function(object)
 
 BaseHandler.prototype.InitControls = function() 
 {
+    var vertex1Text = document.getElementById("Vertex1");
+    if (vertex1Text)
+    {
+        var handler = this;
+        vertex1Text.onchange = function () {
+           for (var i = 0; i < handler.app.graph.vertices.length; i++)
+           {   
+               if (handler.app.graph.vertices[i].mainText == vertex1Text.value)
+               {
+	               handler.SelectFirstVertexMenu(vertex1Text, handler.app.graph.vertices[i]);
+                   break;
+               }
+           }
+        };
+        
+        this.UpdateFirstVertexMenu(vertex1Text);
+    }
+    
+    var vertex2Text = document.getElementById("Vertex2");
+    if (vertex2Text)
+    {
+        var handler = this;
+        vertex2Text.onchange = function () {
+           for (var i = 0; i < handler.app.graph.vertices.length; i++)
+           {   
+               if (handler.app.graph.vertices[i].mainText == vertex2Text.value)
+               {
+	               handler.SelectSecondVertexMenu(vertex2Text, handler.app.graph.vertices[i]);
+                   break;
+               }
+           }
+        };
+        
+        this.UpdateSecondVertexMenu(vertex2Text);
+    }
 }
 
 BaseHandler.prototype.GetNodesPath = function(array, start, count)
@@ -141,6 +176,37 @@ BaseHandler.prototype.GetNodesPath = function(array, start, count)
 BaseHandler.prototype.RestoreAll = function()
 {
 }
+
+BaseHandler.prototype.GetSelectVertexMenu = function(menuName)
+{
+	var res = "<input list=\"vertexList" + menuName + "\" id=\"" + menuName + "\" class=\"SelectVertexInput\"/>" + 
+      "<datalist id=\"vertexList" + menuName + "\">";
+    
+	for (var i = 0; i < this.app.graph.vertices.length; i++)
+	{
+		res = res + "<option value=\"" + this.app.graph.vertices[i].mainText + "\"/>";
+	}
+    
+    return res + "</datalist>";
+}
+
+BaseHandler.prototype.GetSelect2VertexMenu = function()
+{
+    return "<span style=\"float:right\">" + 
+        this.GetSelectVertexMenu("Vertex1") + " &rarr; " + this.GetSelectVertexMenu("Vertex2") + "</span>";
+}
+
+BaseHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
+{}
+
+BaseHandler.prototype.UpdateFirstVertexMenu = function()
+{}
+
+BaseHandler.prototype.SelectSecondVertexMenu = function(vertex2Text, vertex)
+{}
+
+BaseHandler.prototype.UpdateSecondVertexMenu = function()
+{}
 
 /**
  * Default handler.
@@ -351,7 +417,7 @@ AddGraphHandler.prototype.ChangedType = function()
 function ConnectionGraphHandler(app)
 {
   BaseHandler.apply(this, arguments);
-  this.message = g_selectFisrtVertexToConnect;	
+  this.SelectFirst();	
 }
 
 // inheritance.
@@ -362,9 +428,45 @@ ConnectionGraphHandler.prototype.firstObject = null;
 ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
 	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value);
-	this.firstObject = null;
-	this.message = g_selectFisrtVertexToConnect;						
+	this.SelectFirst();					
 	this.app.NeedRedraw();
+}
+
+ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject) 
+{
+    if (this.firstObject)
+    {
+        var direct = false;
+        var handler = this;
+        var dialogButtons = {};
+        dialogButtons[g_orintEdge] = function() {
+                    handler.AddNewEdge(selectedObject, true);						
+                    $( this ).dialog( "close" );					
+                };
+        dialogButtons[g_notOrintEdge] = function() {
+                    handler.AddNewEdge(selectedObject, false);
+                    $( this ).dialog( "close" );						
+                };					
+        $( "#addEdge" ).dialog({
+            resizable: false,
+            height: "auto",
+            width:  "auto",
+            modal: true,
+            title: g_addEdge,
+            buttons: dialogButtons,
+            dialogClass: 'EdgeDialog',
+            open: function () {
+                        $(this).off('submit').on('submit', function () {
+                            return false;
+                        });
+                }
+        });
+    }
+    else
+    {
+        this.SelectSecond(selectedObject);	
+    }
+    this.needRedraw = true;
 }
 
 ConnectionGraphHandler.prototype.MouseDown = function(pos) 
@@ -372,41 +474,13 @@ ConnectionGraphHandler.prototype.MouseDown = function(pos)
 	var selectedObject = this.GetSelectedGraph(pos);
 	if (selectedObject && (selectedObject instanceof BaseVertex))
 	{
-		if (this.firstObject)
-		{
-			var direct = false;
-			var handler = this;
-			var dialogButtons = {};
-			dialogButtons[g_orintEdge] = function() {
-						handler.AddNewEdge(selectedObject, true);						
-						$( this ).dialog( "close" );					
-					};
-			dialogButtons[g_notOrintEdge] = function() {
-						handler.AddNewEdge(selectedObject, false);
-						$( this ).dialog( "close" );						
-					};					
-			$( "#addEdge" ).dialog({
-				resizable: false,
-				height: "auto",
-				width:  "auto",
-				modal: true,
-				title: g_addEdge,
-				buttons: dialogButtons,
-				dialogClass: 'EdgeDialog',
-				open: function () {
-            				$(this).off('submit').on('submit', function () {
-                			    return false;
-            				});
-        			}
-			});
-		}
-		else
-		{
-			this.firstObject = selectedObject;
-			this.message = g_selectSecondVertexToConnect;	
-		}
-		this.needRedraw = true;
-	}	
+        this.SelectVertex(selectedObject);
+	}
+    else
+    {  
+      this.SelectFirst();
+      this.needRedraw = true;
+    }
 }
 
 ConnectionGraphHandler.prototype.GetSelectedGroup = function(object)
@@ -414,6 +488,44 @@ ConnectionGraphHandler.prototype.GetSelectedGroup = function(object)
 	return (object == this.firstObject) ? 1 : 0;
 }
 
+ConnectionGraphHandler.prototype.SelectFirst = function()
+{
+	this.firstObject = null;
+	this.message     = g_selectFisrtVertexToConnect + this.GetSelect2VertexMenu();
+}
+
+ConnectionGraphHandler.prototype.SelectSecond = function(selectedObject)
+{
+	this.firstObject = selectedObject;
+	this.message     = g_selectFisrtVertexToConnect + this.GetSelect2VertexMenu();						
+}
+
+ConnectionGraphHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
+{
+   this.firstObject = null;
+   this.SelectVertex(vertex);
+}
+
+ConnectionGraphHandler.prototype.UpdateFirstVertexMenu = function(vertex1Text)
+{
+    if (this.firstObject)
+    {
+        vertex1Text.value = this.firstObject.mainText;        
+    }
+}
+
+ConnectionGraphHandler.prototype.SelectSecondVertexMenu = function(vertex2Text, vertex)
+{
+    this.SelectVertex(vertex);
+}
+
+ConnectionGraphHandler.prototype.UpdateSecondVertexMenu = function(vertex2Text)
+{
+    if (this.secondObject)
+    {
+        vertex2Text.value = this.secondObject.mainText;
+    }   
+}
 
 /**
  * Delete Graph handler.

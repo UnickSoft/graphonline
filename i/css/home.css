@@ -101,6 +101,11 @@
     	display: none;
     }
 
+    .SelectVertexInput
+    {
+        width: 64px;
+    }
+
     .ui-dialog.EdgeDialog
        {
       font-size: 15px;         //14px;
