@@ -474,6 +474,7 @@ ConnectionGraphHandler.prototype.MouseDown = function(pos)
 	var selectedObject = this.GetSelectedGraph(pos);
 	if (selectedObject && (selectedObject instanceof BaseVertex))
 	{
+        userAction("ConnectionHandler.Mouse");
         this.SelectVertex(selectedObject);
 	}
     else
@@ -502,6 +503,7 @@ ConnectionGraphHandler.prototype.SelectSecond = function(selectedObject)
 
 ConnectionGraphHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
 {
+   userAction("ConnectionHandler.Menu");
    this.firstObject = null;
    this.SelectVertex(vertex);
 }
@@ -516,6 +518,7 @@ ConnectionGraphHandler.prototype.UpdateFirstVertexMenu = function(vertex1Text)
 
 ConnectionGraphHandler.prototype.SelectSecondVertexMenu = function(vertex2Text, vertex)
 {
+    userAction("ConnectionHandler.Menu");
     this.SelectVertex(vertex);
 }
 
