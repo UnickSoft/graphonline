@@ -678,7 +678,7 @@ Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, 
 Application.prototype.SetAdjacencyMatrix = function (matrix, separator = ",")
 {
 	var res = true;
-        var r = {};
+    var r = {};
 	var c = {};
 	if (!this.TestAdjacencyMatrix(matrix, r, c, separator))
 	{

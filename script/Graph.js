@@ -105,11 +105,13 @@ Graph.prototype.DeleteVertex = function(vertexObject)
 	var index = this.vertices.indexOf(vertexObject);
 	if (index > -1) 
 	{
-		for (var i = 0; i < this.edges.length; i++)
+        var clonedEdge = this.edges.slice(0);
+		
+		for (var i = 0; i < clonedEdge.length; i++)
 		{
-			if (this.edges[i].vertex1 == vertexObject || this.edges[i].vertex2 == vertexObject)
+			if (clonedEdge[i].vertex1 == vertexObject || clonedEdge[i].vertex2 == vertexObject)
 			{
-				this.DeleteEdge(this.edges[i]);
+				this.DeleteEdge(clonedEdge[i]);
 				i--;
 			}
 		}
@@ -461,9 +463,11 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 	{
 		rows = rowsObj.rows;
 		cols = colsObj.cols;
-		for (var i = 0; i < this.edges.length; i++)
+        
+        var clonedEdge = this.edges.slice(0);
+		for (var i = 0; i < clonedEdge.length; i++)
 		{
-			this.DeleteEdge (this.edges[i]);
+			this.DeleteEdge (clonedEdge[i]);
 		}
 		
 		var newVertexes = [];
@@ -581,9 +585,10 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 	{
 		rows = rowsObj.rows;
 		cols = colsObj.cols;
-		for (var i = 0; i < this.edges.length; i++)
+        var clonedEdge = this.edges.slice(0);
+		for (var i = 0; i < clonedEdge.length; i++)
 		{
-			this.DeleteEdge (this.edges[i]);
+			this.DeleteEdge (clonedEdge[i]);
 		}
 		var newVertexes = [];
         var bWeightGraph = false;
