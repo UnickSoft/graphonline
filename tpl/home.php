@@ -97,7 +97,7 @@
 
         <!-- Algorithms -->
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openAlgorithmList">
             <span class="glyphicon glyphicon-cog fa-fw "></span><span class="hidden-phone"> <?= L('algorithms') ?> </span><span class="caret"></span>
             </button>
           <ul class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">

@@ -10,7 +10,7 @@
     $g_lang["menu_7"] = "Quick Start";
     $g_lang["menu_8"] = "News";
     $g_lang["menu_9"] = "Using graph example";
-    $g_lang["footer_info"] = "<a href=\"/en/\">Graph Online</a>&nbsp;is online project aimed at&nbsp;creation and easy visualization of graph and <a href=\"/en/\">shortest path searching</a>. Also you can create&nbsp;<a href=\"http://graph.unick-soft.ru/en/create_graph_by_matrix\">graph from adjacency matrix</a>.&nbsp;A<a href=\"/en/about\">bout project</a> and <a href=\"http://graph.unick-soft.ru/en/help\">look help page</a>.\n";
+    $g_lang["footer_info"] = "<a href=\"/en/\">Graph Online</a>&nbsp;is online project aimed at&nbsp;creation and easy visualization of graph and <a href=\"/en/\">shortest path searching</a>. Also you can create&nbsp;<a href=\"http://graph.unick-soft.ru/en/create_graph_by_matrix\">graph from adjacency matrix</a>.&nbsp;<a href=\"/en/about\">About project</a> and <a href=\"http://graph.unick-soft.ru/en/help\">look help page</a>.\n";
     $g_lang["lang"] = "Language";
     
 ?>

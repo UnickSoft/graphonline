@@ -484,7 +484,27 @@ function postLoadPage()
         }
     }
     
-    
+    document.getElementById('openAlgorithmList').onclick = function()
+    {
+        // Show menu first
+        setTimeout(function() 
+                   {
+                        var button = document.getElementById('openAlgorithmList');
+                        var buttonRect = button.getBoundingClientRect();
+                        var algorithmList = document.getElementById('algorithmList');
+            
+                        var delta = buttonRect.right - algorithmList.offsetWidth;
+                        if (delta < 0)
+                        {
+                            var value = (delta - 4) + "px";
+                            algorithmList.style.right = value;
+                        }
+                        else
+                        {
+                             algorithmList.style.right = "0";   
+                        }
+                   }, 1);
+    }
     
     if (document.getElementById('VoteButton') !== null)
     document.getElementById('VoteButton').onclick = function ()
