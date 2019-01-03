@@ -92,6 +92,9 @@ var g_hasNotHamiltonianLoop  = "Graph has not Hamiltonian Loop";
 var g_hasHamiltonianPath = "Graph has Hamiltonian Path";
 var g_hasNotHamiltonianPath = "Graph has not Hamiltonian Path";
 
+var g_startTraversal = "Select start traversal vector";
+var g_traversalOrder = "Traversal order: ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -183,4 +186,7 @@ function loadTexts()
 
     g_hasHamiltonianPath    = document.getElementById("hasHamiltonianPath").innerHTML;
     g_hasNotHamiltonianPath = document.getElementById("hasNotHamiltonianPath").innerHTML;
+    
+    g_startTraversal = document.getElementById("startTraversal").innerHTML;
+    g_traversalOrder = document.getElementById("traversalOrder").innerHTML;
 }

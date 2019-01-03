@@ -135,4 +135,7 @@
 
     $g_lang["has_hamiltonian_loop"] = "Graph has Hamiltonian cycle";
     $g_lang["has_not_hamiltonian_loop"] = "Graph has not Hamiltonian cycle";
+
+    $g_lang["start_traversal"]  = "Select start traversal vertex";
+    $g_lang["traversal_order"]  = "Traversal order: ";
 ?>

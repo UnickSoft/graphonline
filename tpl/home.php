@@ -425,6 +425,9 @@
         
     <p id="hasNotHamiltonianPath" class="translation"><?= L('has_not_hamiltonian_path')?></p>
     <p id="hasHamiltonianPath" class="translation"><?= L('has_hamiltonian_path')?></p>
+        
+    <p id="startTraversal" class="translation"><?= L('start_traversal')?></p>
+    <p id="traversalOrder" class="translation"><?= L('traversal_order')?></p>
 </section>
 <!--
 <script>

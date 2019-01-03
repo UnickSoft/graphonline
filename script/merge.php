@@ -18,7 +18,7 @@ file_put_contents($outputFilename, file_get_contents("Graph.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("EnumVertices.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("Appilcation.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("main.js"), FILE_APPEND);
-
+file_put_contents($outputFilename, file_get_contents("BaseTraversal.js"), FILE_APPEND);
 
 if (file_exists($outputFilename))
 {

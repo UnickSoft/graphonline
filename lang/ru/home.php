@@ -138,4 +138,7 @@
 
     $g_lang["has_hamiltonian_loop"] = "Граф содержит Гамильтонов цикл";
     $g_lang["has_not_hamiltonian_loop"] = "Граф не содержит Гамильтонов цикл";
+
+    $g_lang["start_traversal"]  = "Выбирете начальную вершину обхода";
+    $g_lang["traversal_order"]  = "Порядок обхода: ";
 ?>
