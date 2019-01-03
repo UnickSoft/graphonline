@@ -79,7 +79,7 @@ FindHamiltonianPath.prototype.getObjectSelectedGroup = function(object)
 
 FindHamiltonianPath.prototype.getPriority = function()
 {
-    return -7.1;
+    return -5;
 }
 
 // Factory for connected components.

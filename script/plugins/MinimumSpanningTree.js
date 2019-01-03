@@ -140,6 +140,11 @@ MinimumSpanningTree.prototype.getObjectSelectedGroup = function(object)
     	(object instanceof  BaseVertex || this.edges.indexOf(object) >= 0) ? 1 : 0;
 }
 
+MinimumSpanningTree.prototype.getPriority = function()
+{
+    return -9.5;
+}
+
 
 // Factory for algorithm.
 function CreateMinimumSpanningTree(graph, app)

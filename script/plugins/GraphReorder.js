@@ -154,6 +154,11 @@ GraphReorder.prototype.getObjectSelectedGroup = function(object)
     return 0;
 }
 
+GraphReorder.prototype.getPriority = function()
+{
+    return -8.5;
+}
+
 
 // Factory for connected components.
 function CreateAlgorithmGraphReorder(graph, app)

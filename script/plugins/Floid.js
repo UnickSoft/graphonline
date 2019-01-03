@@ -180,7 +180,7 @@ FloidAlgorithm.prototype.changedType = function()
 
 FloidAlgorithm.prototype.getPriority = function()
 {
-    return -9.5;
+    return 0;
 }
 
 FloidAlgorithm.prototype.removeAllEdges = function()

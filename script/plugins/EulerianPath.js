@@ -79,7 +79,7 @@ FindEulerianPath.prototype.getObjectSelectedGroup = function(object)
 
 FindEulerianPath.prototype.getPriority = function()
 {
-    return -7;
+    return -7.5;
 }
 
 // Factory for connected components.

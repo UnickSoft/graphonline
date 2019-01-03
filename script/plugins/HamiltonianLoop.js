@@ -79,7 +79,7 @@ FindHamiltonianLoop.prototype.getObjectSelectedGroup = function(object)
 
 FindHamiltonianLoop.prototype.getPriority = function()
 {
-    return -7.1;
+    return -5;
 }
 
 // Factory for connected components.

@@ -110,7 +110,7 @@ FindConnectedComponentNew.prototype.getObjectSelectedGroup = function(object)
 
 FindConnectedComponentNew.prototype.getPriority = function()
 {
-    return -9;
+    return 0;
 }
 
 

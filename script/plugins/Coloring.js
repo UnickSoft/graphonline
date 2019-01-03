@@ -366,7 +366,7 @@ Coloring.prototype.getObjectSelectedGroup = function(object)
 
 Coloring.prototype.getPriority = function()
 {
-    return -9.7;
+    return -9.0;
 }
 
 

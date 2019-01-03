@@ -79,7 +79,7 @@ FindEulerianLoop.prototype.getObjectSelectedGroup = function(object)
 
 FindEulerianLoop.prototype.getPriority = function()
 {
-    return -7;
+    return -7.5;
 }
 
 // Factory for connected components.
