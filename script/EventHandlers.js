@@ -297,6 +297,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
                     handler.RenameVertex(enumType.GetVertexText(0));
                     userAction("RenameVertex");
             };
+            $('#message').unbind();
             $('#message').on('click', '#renameButton', function(){
                             var customEnum =  new TextEnumVertexsCustom();
                             customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
@@ -310,6 +311,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
         var handler = this;
         if (!this.editEdgeRename)
         {
+            $('#message').unbind();
             $('#message').on('click', '#editEdge', function(){
                              var direct = false;
                              var dialogButtons = {};
@@ -595,6 +597,7 @@ ShowAdjacencyMatrix.prototype.show = function()
 	var handler = this;
 	var dialogButtons = {};
 
+    $('#AdjacencyMatrixField').unbind();
 	$( "#AdjacencyMatrixField" ).on('keyup change', function (eventObject)
 		{
 			if (!handler.app.TestAdjacencyMatrix($( "#AdjacencyMatrixField" ).val(), [], []))
@@ -652,6 +655,7 @@ ShowIncidenceMatrix.prototype.show = function()
 	var handler = this;
 	var dialogButtons = {};
 
+    $('#IncidenceMatrixField').unbind();
 	$( "#IncidenceMatrixField" ).on('keyup change', function (eventObject)
 		{
 			if (!handler.app.TestIncidenceMatrix($( "#IncidenceMatrixField" ).val(), [], []))
