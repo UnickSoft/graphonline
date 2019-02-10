@@ -34,6 +34,7 @@ BaseEdge.prototype.SaveToXML = function ()
            "text=\""       + this.text + "\" " +
            "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
            "arrayStyleFinish=\""       + this.arrayStyleFinish + "\" " +
+           this.model.SaveToXML() + 
 		"></edge>";       
 }
 
@@ -51,6 +52,8 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
     this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
     this.arrayStyleStart      =   xml.attr("arrayStyleStart") == null ? "" : xml.attr("arrayStyleStart");
     this.arrayStyleFinish      =  xml.attr("arrayStyleFinish") == null ? "" : xml.attr("arrayStyleFinish");
+    
+    this.model.LoadFromXML(xml);
 }
 
 BaseEdge.prototype.GetPixelLength = function ()
@@ -83,4 +86,78 @@ BaseEdge.prototype.GetStartEdgeStyle = function ()
 BaseEdge.prototype.GetFinishEdgeStyle = function ()
 {
     return (this.arrayStyleFinish != "" ? this.arrayStyleFinish : (this.isDirect ? "arrow" : ""));
+}
+
+BaseEdge.prototype.HitTest = function (pos)
+{
+    var positions = this.GetEdgePositionsShift();
+    return this.model.HitTest(positions[0], positions[1], pos);
+}
+
+BaseEdge.prototype.GetEdgePositionsShift = function()
+{
+    var pairShift = this.vertex1.model.diameter * 0.25;
+    var shift     = (this.hasPair ? pairShift : 0);
+    
+    if (shift == 0 || this.model.type == EdgeModels.cruvled)
+    {
+        return this.GetEdgePositions();
+    }
+    else
+    {
+        var position1 = this.vertex1.position;
+        var position2 = this.vertex2.position;
+        var diameter1 = this.vertex1.model.diameter;
+        var diameter2 = this.vertex2.model.diameter;
+        
+        var direction = position1.subtract(position2);
+        direction.normalize(1.0);
+        var normal = direction.normal();
+        direction = direction.multiply(0.5);
+        position1 = position1.subtract(normal.multiply(shift));
+        position2 = position2.subtract(normal.multiply(shift));
+        diameter1 = Math.sqrt(diameter1 * diameter1 - shift * shift);
+        diameter2 = Math.sqrt(diameter2 * diameter2 - shift * shift);
+        var res = [];
+        res.push(position1.subtract(direction.multiply(diameter1)));
+        res.push(position2.subtract(direction.multiply(-diameter2)));
+        return res;
+    }  
+}
+
+BaseEdge.prototype.GetEdgePositions = function()
+{
+    var position1 = this.vertex1.position;
+    var position2 = this.vertex2.position;
+    var diameter1 = this.vertex1.model.diameter;
+    var diameter2 = this.vertex2.model.diameter;
+
+    var direction = position1.subtract(position2);
+    
+    var direction1 = direction;
+    var direction2 = direction;
+    var d1        = diameter1;
+    var d2        = -diameter2;
+    
+    if (this.model.type == EdgeModels.cruvled)
+    {
+        var dist   = position1.distance(position2);
+        var point1  = this.model.GetCurvedPoint(position1, position2, 10.0 / dist);
+        direction1  = position1.subtract(point1);
+        
+        var point2  = this.model.GetCurvedPoint(position1, position2, 1.0 - 10.0 / dist);
+        direction2  = position2.subtract(point2);
+        
+        d2         = diameter2;
+    }
+
+    direction1.normalize(1.0);
+    direction1 = direction1.multiply(0.5);
+    direction2.normalize(1.0);
+    direction2 = direction2.multiply(0.5);
+
+    var res = [];
+    res.push(position1.subtract(direction1.multiply(d1)));
+    res.push(position2.subtract(direction2.multiply(d2)));
+    return res;
 }

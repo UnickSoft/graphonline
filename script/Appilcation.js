@@ -197,9 +197,33 @@ Application.prototype.setRenderPath = function(renderPath)
     }
 }
 
-Application.prototype.RedrawEdge = function(context, edge)
+Application.prototype.GetBaseArcDrawer = function(context, edge)
 {
     var arcDrawer = new BaseEdgeDrawer(context);
+    
+    if (edge.model.type == EdgeModels.cruvled)
+    {
+        var curvedArcDrawer = new CurvedArcDrawer(context, edge.model);
+
+        arcDrawer = new BaseEdgeDrawer(context, 
+                                        {
+                                            drawArc             : curvedArcDrawer, 
+                                            startArrowDiretion  : curvedArcDrawer,
+                                            finishArrowDiretion : curvedArcDrawer,
+                                            textCenterObject    : curvedArcDrawer,
+                                            getPointOnArc       : curvedArcDrawer
+                                        }
+                                      );
+    }
+    
+    return arcDrawer;
+}
+
+Application.prototype.RedrawEdge = function(context, edge)
+{
+    var curvedArcDrawer = new CurvedArcDrawer(context, edge.model)
+    var arcDrawer       = this.GetBaseArcDrawer(context, edge);
+    
     var commonStyle      = new CommonEdgeStyle(context);
     var selectedStyles   = selectedEdgeStyles;
     
@@ -222,7 +246,8 @@ Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, co
 
 Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
 {
-    var arcDrawer        = new ProgressArcDrawer(context, new BaseEdgeDrawer(context), progress);
+    var progressDraw     = new ProgressArcDrawer(context, this.GetBaseArcDrawer(context, edge), progress);
+    var arcDrawer        = new BaseEdgeDrawer(context, {drawObject : progressDraw});
     var commonStyle      = new CommonEdgeStyle(context);
     var selectedStyles   = selectedEdgeStyles;
 
@@ -236,7 +261,6 @@ Application.prototype.RedrawEdges = function(context)
         this.RedrawEdge(context, this.graph.edges[i]);
     }
 }
-
 
 Application.prototype.RedrawNodes = function(context)
 {
@@ -374,12 +398,38 @@ Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight)
 		useWeight = true;
 	}
 	weight = (!isNaN(parseInt(weight, 10)) && weight >= 0) ? weight : 1;
-	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, useWeight));
+	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, useWeight));
+    
+    // Make cruvled for pair.
+    var edgeObject = this.graph.edges[edge];
+    if (edgeObject.hasPair)
+    {
+        if (edgeObject.model.default)
+            edgeObject.model.type = EdgeModels.cruvled; 
+        
+        var pairEdge = this.FindEdge(graph2.id, graph1.id);
+        if (pairEdge.model.default)
+            pairEdge.model.type = EdgeModels.cruvled; 
+    }
+    
+    return edge;
 }
 
 Application.prototype.DeleteEdge = function(edgeObject)
 {
+    var vertex1 = edgeObject.vertex1;
+    var vertex2 = edgeObject.vertex2;
+    var hasPair = edgeObject.hasPair;
+    
 	this.graph.DeleteEdge(edgeObject);
+    
+    // Make line for pair.
+    if (hasPair)
+    {
+        var edgeObject = this.FindEdge(vertex2.id, vertex1.id);
+        if (edgeObject.model.default)
+            edgeObject.model.type = EdgeModels.line;
+    }
 }
 
 Application.prototype.DeleteVertex = function(graphObject)

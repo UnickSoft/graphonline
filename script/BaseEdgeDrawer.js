@@ -14,7 +14,6 @@ function CommonEdgeStyle()
 	this.loopShiftAngel = Math.PI / 6;
 }
 
-
 function SelectedEdgeStyle0()
 {
 	CommonEdgeStyle.apply(this, arguments);  
@@ -83,42 +82,67 @@ var selectedEdgeStyles = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(),
 	new SelectedEdgeStyle2(), new SelectedEdgeStyle3(), new SelectedEdgeStyle4()];
 
 
-function BaseEdgeDrawer(context)
+function BaseEdgeDrawer(context, drawObjects = null)
 { 
   this.context = context;
+    
+  this.drawObject = null;
+  this.drawArc = null;
+  this.startArrowDiretion  = null;
+  this.finishArrowDiretion = null;
+  this.textCenterObject    = null;
+  this.getPointOnArc       = null;   
+    
+  if (drawObjects)
+  {
+    if (drawObjects.hasOwnProperty("drawObject"))
+      this.drawObject = drawObjects.drawObject;
+    if (drawObjects.hasOwnProperty("drawArc"))
+      this.drawArc = drawObjects.drawArc;
+    if (drawObjects.hasOwnProperty("startArrowDiretion"))
+      this.startArrowDiretion = drawObjects.startArrowDiretion;
+    if (drawObjects.hasOwnProperty("finishArrowDiretion"))
+      this.finishArrowDiretion = drawObjects.finishArrowDiretion;
+    if (drawObjects.hasOwnProperty("textCenterObject"))
+      this.textCenterObject = drawObjects.textCenterObject;
+    if (drawObjects.hasOwnProperty("getPointOnArc"))
+      this.getPointOnArc = drawObjects.getPointOnArc;
+  }
 }
 
 BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle) 
 {
+  if (this.drawObject && this.drawObject != this)
+  {
+    this.drawObject.Draw(baseEdge, arcStyle);
+    return;
+  }
+    
   this.SetupStyle(baseEdge, arcStyle);
     
-  var length = baseEdge.model.width * 4;
-  var width  = baseEdge.model.width * 2;
+  var lengthArrow = baseEdge.model.width * 4;
+  var widthArrow  = baseEdge.model.width * 2;
   var position1 = baseEdge.vertex1.position;
   var position2 = baseEdge.vertex2.position;
   var direction = position1.subtract(position2); 
-  var pairShift = baseEdge.vertex1.model.diameter * 0.25;
-  var realShift = (baseEdge.hasPair ? pairShift : 0);
   direction.normalize(1.0);
-  var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-	baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
+  var positions = baseEdge.GetEdgePositionsShift();
   
-  var hasStartStyle = !position1.equals(position2) && baseEdge.GetStartEdgeStyle() != "";
+  var hasStartStyle  = !position1.equals(position2) && baseEdge.GetStartEdgeStyle() != "";
   var hasFinishStyle = !position1.equals(position2) && baseEdge.GetFinishEdgeStyle() != "";
     
-  this.DrawArc (positions[0].subtract(direction.multiply(hasStartStyle  ? -length / 2 : 0.0)), 
-                positions[1].subtract(direction.multiply(hasFinishStyle ? -length / 2 : 0.0)), arcStyle);
+  this.DrawArc (positions[0], positions[1], arcStyle);
 
   this.context.fillStyle = this.context.strokeStyle;
   this.context.lineWidth = 0;
 
   if (hasStartStyle)
   {
-    this.DrawArrow(positions[0], positions[1], length, width);
+    this.DrawArrow(positions[0], this.GetStartArrowDiretion(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
   }
   if (hasFinishStyle)
   {
-    this.DrawArrow(positions[1], positions[0], length, width);
+    this.DrawArrow(positions[1], this.GetFinishArrowDiretion(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
   }
     
   this.SetupStyle(baseEdge, arcStyle);
@@ -140,6 +164,12 @@ BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
 
 BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
 {
+  if (this.drawArc && this.drawArc != this)
+  {
+      this.drawArc.DrawArc(position1, position2, arcStyle);
+      return;
+  }
+    
   if (position1.equals(position2))
   {
     this.context.beginPath();
@@ -160,13 +190,8 @@ BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
 
 BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcStyle, hasPair)
 { 
-  var textShift  = Math.min(12 / position1.subtract(position2).length(), 0.4);
-  var centerPoint = Point.interpolate(position1, position2, 0.5 + (hasPair ? textShift : 0));
-  if (position1.equals(position2))
-  {
-    centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
-    centerPoint.x = centerPoint.x - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
-  }
+  var centerPoint = this.GetTextCenterPoint(position1, position2, hasPair, arcStyle);
+        
   this.context.font         = "bold 16px sans-serif";
   this.context.textBaseline = "middle";
   this.context.lineWidth    = arcStyle.textStrockeWidth;
@@ -186,60 +211,74 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
 	this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
 }
 
-BaseEdgeDrawer.prototype.GetArcPositions = function(position1, position2, diameter1, diameter2)
+BaseEdgeDrawer.prototype.DrawArrow = function(position, direction, length, width) 
 {
-  var direction = position1.subtract(position2); 
-  direction.normalize(1.0);
-  direction = direction.multiply(0.5);
-  
-  var res = [];
-  res.push(position1.subtract(direction.multiply(diameter1)));
-  res.push(position2.subtract(direction.multiply(-diameter2)));
-  return res;
-}
-
-BaseEdgeDrawer.prototype.GetArcPositionsShift = function(position1, position2, diameter1, diameter2, shift)
-{
-    if (shift == 0)
-    {
-        return this.GetArcPositions(position1, position2, diameter1, diameter2);
-    }
-    else
-    {
-        var direction = position1.subtract(position2);
-        direction.normalize(1.0);
-        var normal = direction.normal();
-        direction = direction.multiply(0.5);
-        position1 = position1.subtract(normal.multiply(shift));
-        position2 = position2.subtract(normal.multiply(shift));
-        diameter1 = Math.sqrt(diameter1 * diameter1 - shift * shift);
-        diameter2 = Math.sqrt(diameter2 * diameter2 - shift * shift);
-        var res = [];
-        res.push(position1.subtract(direction.multiply(diameter1)));
-        res.push(position2.subtract(direction.multiply(-diameter2)));
-        return res;
-    }  
-}
-
-BaseEdgeDrawer.prototype.DrawArrow = function(position1, position2, length, width) 
-{
-  var direction = position1.subtract(position2); 
-  direction.normalize(1.0);
   var normal = direction.normal();
   
-  var pointOnLine = position1.subtract(direction.multiply(length));
+  var pointOnLine = position.subtract(direction.multiply(length));
   var point1 = pointOnLine.add(normal.multiply(width));
   var point2 = pointOnLine.add(normal.multiply(-width));
   
   this.context.beginPath();
-  this.context.moveTo(position1.x, position1.y);
+  this.context.moveTo(position.x, position.y);
   this.context.lineTo(point1.x, point1.y);
   this.context.lineTo(point2.x, point2.y);
-  this.context.lineTo(position1.x, position1.y);
+  this.context.lineTo(position.x, position.y);
   this.context.closePath();
   this.context.fill();
 }
 
+BaseEdgeDrawer.prototype.GetStartArrowDiretion = function(position1, position2, lengthArrow) 
+{
+    if (this.startArrowDiretion && this.startArrowDiretion != this)
+    {
+      return this.startArrowDiretion.GetStartArrowDiretion(position1, position2, lengthArrow);
+    }
+    
+    var direction = position1.subtract(position2);
+    direction.normalize(1.0);
+    return direction;
+}
+
+BaseEdgeDrawer.prototype.GetFinishArrowDiretion = function(position1, position2, lengthArrow) 
+{
+    if (this.finishArrowDiretion && this.finishArrowDiretion != this)
+    {
+      return this.finishArrowDiretion.GetFinishArrowDiretion(position1, position2, lengthArrow);
+    }
+
+    var direction = position2.subtract(position1);
+    direction.normalize(1.0);
+    return direction;
+}
+
+BaseEdgeDrawer.prototype.GetTextCenterPoint = function (position1, position2, hasPair, arcStyle)
+{
+  if (this.textCenterObject && this.textCenterObject != this)
+  {
+    return this.textCenterObject.GetTextCenterPoint(position1, position2, hasPair, arcStyle);
+  }
+    
+  var textShift   = Math.min(12 / position1.subtract(position2).length(), 0.4);
+  var centerPoint = Point.interpolate(position1, position2, 0.5 + (hasPair ? textShift : 0));
+  if (position1.equals(position2))
+  {
+    centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+    centerPoint.x = centerPoint.x - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+  } 
+    
+  return centerPoint;
+}
+
+BaseEdgeDrawer.prototype.GetPointOnArc = function (position1, position2, procent)
+{
+    if (this.getPointOnArc && this.getPointOnArc != this)
+    {
+      return this.getPointOnArc.GetPointOnArc(position1, position2, procent);
+    }
+    
+  return Point.interpolate(position1, position2, procent);
+}
 
 function ProgressArcDrawer(context, baseDrawer, progress)
 {
@@ -259,10 +298,7 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
     
     this.context.lineWidth = 10;
     
-    var pairShift = baseEdge.vertex1.model.diameter * 0.25;
-    var realShift = (baseEdge.hasPair ? pairShift : 0);
-    var positions = this.GetArcPositionsShift(baseEdge.vertex1.position,
-                                              baseEdge.vertex2.position, baseEdge.vertex1.model.diameter, baseEdge.vertex2.model.diameter, realShift);
+    var positions = baseEdge.GetEdgePositionsShift();
     var progressSize = 10;
     
     if (positions[0].equals(positions[1]))
@@ -277,8 +313,8 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
     }
     else
     {
-        var startPosition = Point.interpolate(positions[0], positions[1], this.progress);
-        var vectorOffset = positions[0].subtract(positions[1]).normalizeCopy(progressSize);
+        var startPosition  = this.baseDrawer.GetPointOnArc(positions[0], positions[1], this.progress);
+        var vectorOffset   = positions[0].subtract(positions[1]).normalizeCopy(progressSize);
         var finishPosition = startPosition.add(vectorOffset);
         
         this.context.beginPath();
@@ -290,7 +326,66 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
 }
 
 
+function CurvedArcDrawer(context, model)
+{
+    this.context = context;
+    this.model   = model;
+}
 
+CurvedArcDrawer.prototype = Object.create(BaseEdgeDrawer.prototype);
 
+CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
+{
+  if (position1.equals(position2))
+  {
+    this.context.beginPath();
+    this.context.arc(position1.x - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, 
+                     position1.y - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, arcStyle.sizeOfLoop, 0, 2 * Math.PI);
+    this.context.closePath();
+    this.context.stroke();
+  }
+  else
+  {
+    var points = this.model.GetBezierPoints(position1, position2);
+    var firstBezierPoint  = points[0];  
+    var secondBezierPoint = points[1];
+    
+    this.context.beginPath();
+    this.context.moveTo(position1.x, position1.y);
+    this.context.bezierCurveTo(firstBezierPoint.x, firstBezierPoint.y, secondBezierPoint.x, secondBezierPoint.y, position2.x, position2.y);
+    this.context.stroke(); 
+  }
+}
 
+CurvedArcDrawer.prototype.GetStartArrowDiretion = function(position1, position2, lengthArrow) 
+{
+    var dist = position1.distance(position2);
+    var direction = position1.subtract(this.model.GetCurvedPoint(position1, position2, lengthArrow / dist));
+    direction.normalize(1.0);
+    return direction;
+}
 
+CurvedArcDrawer.prototype.GetFinishArrowDiretion = function(position1, position2, lengthArrow) 
+{
+    var dist      = position1.distance(position2);
+    var direction = position2.subtract(this.model.GetCurvedPoint(position1, position2, 1.0 - lengthArrow / dist));
+    direction.normalize(1.0);
+    return direction;
+}
+
+CurvedArcDrawer.prototype.GetTextCenterPoint = function (position1, position2, hasPair, arcStyle)
+{
+  var centerPoint = this.model.GetCurvedPoint(position1, position2, 0.5)
+  if (position1.equals(position2))
+  {
+    centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+    centerPoint.x = centerPoint.x - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+  } 
+    
+  return centerPoint;
+}
+
+CurvedArcDrawer.prototype.GetPointOnArc = function (position1, position2, procent)
+{   
+  return this.model.GetCurvedPoint(position1, position2, procent);
+}

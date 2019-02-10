@@ -90,10 +90,10 @@ Graph.prototype.DeleteEdge = function(edgeObject)
 	var index = this.edges.indexOf(edgeObject);
 	if (index > -1) 
 	{
-		var edgeRevert = this.FindEdge(edgeObject.vertex2, edgeObject.vertex1);
+		var edgeRevert = this.FindEdge(edgeObject.vertex2.id, edgeObject.vertex1.id);
 		if (edgeRevert != null && edgeRevert.isDirect)
 		{
-			edgeRevert.isPair = false;
+			edgeRevert.hasPair = false;
 		}
 		this.edges.splice(index, 1);
 	}

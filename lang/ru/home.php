@@ -141,4 +141,6 @@
 
     $g_lang["start_traversal"]  = "Выбирете начальную вершину обхода";
     $g_lang["traversal_order"]  = "Порядок обхода: ";
+
+    $g_lang["curve_edge"]       = "Изгиб дуги";
 ?>

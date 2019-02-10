@@ -95,6 +95,8 @@ var g_hasNotHamiltonianPath = "Graph has not Hamiltonian Path";
 var g_startTraversal = "Select start traversal vector";
 var g_traversalOrder = "Traversal order: ";
 
+var g_curveEdge      = "Curved edge";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -189,4 +191,6 @@ function loadTexts()
     
     g_startTraversal = document.getElementById("startTraversal").innerHTML;
     g_traversalOrder = document.getElementById("traversalOrder").innerHTML;
+    
+    g_curveEdge = document.getElementById("curveEdge").innerHTML;
 }

@@ -57,26 +57,10 @@ BaseHandler.prototype.GetSelectedArc = function(pos)
 	// Selected Arc.
     for (var i = 0; i < this.app.graph.edges.length; i ++)
     {
-		var pos1 = this.app.graph.edges[i].vertex1.position;
-		var pos2 = this.app.graph.edges[i].vertex2.position;
-		var pos0 = new Point(pos.x, pos.y);
-		
-		var r1  = pos0.distance(pos1);
-		var r2  = pos0.distance(pos2);
-		var r12 = pos1.distance(pos2);
-		
-		if (r1 >= (new Point(r2, r12)).length() || r2 >= (new Point(r1,r12)).length())
-		{
-		}
-		else		
-		{ 
-			var distance = ((pos1.y - pos2.y) * pos0.x + (pos2.x - pos1.x) * pos0.y + (pos1.x * pos2.y - pos2.x * pos1.y)) / r12;
-
-			if (Math.abs(distance) <= this.app.graph.edges[i].model.width * 1.5)
-			{
-				return this.app.graph.edges[i];
-			}
-		}
+        var edge = this.app.graph.edges[i];
+        
+        if (edge.HitTest(new Point(pos.x, pos.y)))
+            return edge;
 	}
 
 	
@@ -217,8 +201,9 @@ function DefaultHandler(app)
 {
 	BaseHandler.apply(this, arguments);
 	this.message = g_textsSelectAndMove;
+    
+    this.bindedRename   = false;
 }
-
 
 // inheritance.
 DefaultHandler.prototype = Object.create(BaseHandler.prototype);
@@ -230,10 +215,8 @@ DefaultHandler.prototype.selectedObject = null;
 DefaultHandler.prototype.pressed = false;
 // Prev position.
 DefaultHandler.prototype.prevPosition = false;
-// Is binded event for rename
-DefaultHandler.prototype.bindedRename = false;
-// Is binded event for edit edge
-DefaultHandler.prototype.editEdgeRename = false;
+// Cuvled change value.
+DefaultHandler.prototype.curvedValue    = 0.1;
 
 DefaultHandler.prototype.MouseMove = function(pos) 
 {
@@ -307,48 +290,58 @@ DefaultHandler.prototype.MouseUp = function(pos)
     }
     else if (this.selectedObject != null && (this.selectedObject instanceof BaseEdge))
     {
-        this.message = g_textsSelectAndMove + " <button type=\"button\" id=\"editEdge\" class=\"btn btn-default btn-xs\" style=\"float:right;z-index:1;position: relative;\">" + g_editWeight + "</button>";
+        this.message = g_textsSelectAndMove
+        + "<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-default btn-xs\"> + </button>"
+        + " " + g_curveEdge + " "
+        + "<button type=\"button\" id=\"decCurvel\" class=\"btn btn-default btn-xs\"> - </button>"
+        + "&nbsp &nbsp<button type=\"button\" id=\"editEdge\" class=\"btn btn-default btn-xs\" style=\"z-index:1;position: relative;\">" + g_editWeight + "</button></span>";
         var handler = this;
-        if (!this.editEdgeRename)
-        {
-            $('#message').unbind();
-            $('#message').on('click', '#editEdge', function(){
-                             var direct = false;
-                             var dialogButtons = {};
-                             
-                             dialogButtons[g_save] = function() {
-                             
-                                handler.app.DeleteObject(handler.selectedObject);
-                                handler.selectedObject = handler.app.graph.edges[handler.app.CreateNewArc(handler.selectedObject.vertex1, handler.selectedObject.vertex2, handler.selectedObject.isDirect, document.getElementById('EdgeWeight').value)];
-                             
-                                handler.needRedraw = true;
-                                handler.app.redrawGraph();
-                             
-                                userAction("ChangeWeight");
-                                $( this ).dialog( "close" );
-                             };
-   
-                             document.getElementById('EdgeWeight').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : g_noWeight;
-                             document.getElementById('EdgeWeightSlider').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : 0;
-                             
-                             $( "#addEdge" ).dialog({
-                                                    resizable: false,
-                                                    height: "auto",
-                                                    width:  "auto",
-                                                    modal: true,
-                                                    title: g_editWeight,
-                                                    buttons: dialogButtons,
-                                                    dialogClass: 'EdgeDialog',
-                                                    open: function () {
-                                                    $(handler).off('submit').on('submit', function () {
-                                                                             return false;
-                                                                             });
-                                                    }
-                                                    });
-                             });
-            
-            this.editEdgeRename = true;
-        }
+        $('#message').unbind();
+        $('#message').on('click', '#editEdge', function(){
+                         var direct = false;
+                         var dialogButtons = {};
+
+                         dialogButtons[g_save] = function() {
+
+                            handler.app.DeleteObject(handler.selectedObject);
+                            handler.selectedObject = handler.app.graph.edges[handler.app.CreateNewArc(handler.selectedObject.vertex1, handler.selectedObject.vertex2, handler.selectedObject.isDirect, document.getElementById('EdgeWeight').value)];
+
+                            handler.needRedraw = true;
+                            handler.app.redrawGraph();
+
+                            userAction("ChangeWeight");
+                            $( this ).dialog( "close" );
+                         };
+
+                         document.getElementById('EdgeWeight').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : g_noWeight;
+                         document.getElementById('EdgeWeightSlider').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : 0;
+
+                         $( "#addEdge" ).dialog({
+                                                resizable: false,
+                                                height: "auto",
+                                                width:  "auto",
+                                                modal: true,
+                                                title: g_editWeight,
+                                                buttons: dialogButtons,
+                                                dialogClass: 'EdgeDialog',
+                                                open: function () {
+                                                $(handler).off('submit').on('submit', function () {
+                                                                         return false;
+                                                                         });
+                                                }
+                                                });
+                         });
+
+        $('#message').on('click', '#incCurvel', function(){
+            handler.selectedObject.model.ChangeCurvedValue(DefaultHandler.prototype.curvedValue);
+            handler.needRedraw = true;
+            handler.app.redrawGraph();
+        });
+        $('#message').on('click', '#decCurvel', function(){
+            handler.selectedObject.model.ChangeCurvedValue(-DefaultHandler.prototype.curvedValue);
+            handler.needRedraw = true;
+            handler.app.redrawGraph();
+        });
     }
 }
 

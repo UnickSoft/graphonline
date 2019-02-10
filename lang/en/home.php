@@ -138,4 +138,6 @@
 
     $g_lang["start_traversal"]  = "Select start traversal vertex";
     $g_lang["traversal_order"]  = "Traversal order: ";
+
+    $g_lang["curve_edge"]       = "Edge bend";
 ?>
