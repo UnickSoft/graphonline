@@ -2,23 +2,22 @@
 
 include ("./src/graphs_examples_func.php");
 
-function glob_recursive($pattern, $flags = 0)
+function glob_recursive($pattern, $func, $flags = 0)
 {
     $files = glob($pattern, $flags);
+    
+    foreach ($files as $file)
+      $func($file);
+    
     foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
     {
-        $files = array_merge($files, glob_recursive($dir.'/'.basename($pattern), $flags));
+        glob_recursive($dir.'/'.basename($pattern), $func, $flags);
     }
-    return $files;
 }
 
 function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback, $ageActionCallback)
 {
-    // Process graph project files.
-    $files = glob_recursive($mask);
-    
-    $countFiles = count($files);
-    foreach ($files as $file)
+    $processFile = function ($file) use (&$countFiles, &$sizeFiles, &$ageCount, $ageCallback, $ageActionCallback)
     {
         $sizeFiles += filesize($file) / 1024;
         $fileAgeInMonth = (time() - filemtime($file)) / (3600 * 24 * 30);
@@ -27,7 +26,12 @@ function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback
         {
             $ageActionCallback($ageCount, $file);
         }
-    }
+        
+        $countFiles = $countFiles + 1;
+    };
+    
+    // Process graph project files.
+    glob_recursive($mask, $processFile);
 }
 
 $age6mLessCallback = function($age)
