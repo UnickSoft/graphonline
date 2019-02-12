@@ -11,7 +11,7 @@
 
     $newsIndex = 0;
     $g_lang["newsList"][$newsIndex]["title"] = "Изгиб дуг";
-    $g_lang["newsList"][$newsIndex]["text"]  = "Добавили возможность изгибать дуги. Выделите дугу и нажимайте на кнопке + или -.";
+    $g_lang["newsList"][$newsIndex]["text"]  = "Добавили возможность изгибать дуги. Выделите дугу и нажимайте на кнопку + или -.";
     $g_lang["newsList"][$newsIndex]["autor"] = "Админ";
     $g_lang["newsList"][$newsIndex]["date"]  = "15.02.2019";
     $newsIndex ++;
