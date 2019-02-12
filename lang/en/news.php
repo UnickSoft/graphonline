@@ -10,6 +10,12 @@
     $g_lang["newsList"] = array();
     
     $newsIndex = 0;
+    $g_lang["newsList"][$newsIndex]["title"] = "Edges bend";
+    $g_lang["newsList"][$newsIndex]["text"]  = "We add ability to bend edges. Select edge and click to + or -.";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Admin";
+    $g_lang["newsList"][$newsIndex]["date"]  = "15.02.2019";
+    $newsIndex ++;
+
     $g_lang["newsList"][$newsIndex]["title"] = "Floyd–Warshall algorithm";
     $g_lang["newsList"][$newsIndex]["text"]  = "We add Floyd–Warshall algorithm. Now you can get distance matrix.";
     $g_lang["newsList"][$newsIndex]["autor"] = "Admin";

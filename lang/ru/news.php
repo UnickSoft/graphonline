@@ -10,6 +10,12 @@
 
 
     $newsIndex = 0;
+    $g_lang["newsList"][$newsIndex]["title"] = "Изгиб дуг";
+    $g_lang["newsList"][$newsIndex]["text"]  = "Добавили возможность изгибать дуги. Выделите дугу и нажимайте на кнопке + или -.";
+    $g_lang["newsList"][$newsIndex]["autor"] = "Админ";
+    $g_lang["newsList"][$newsIndex]["date"]  = "15.02.2019";
+    $newsIndex ++;
+
     $g_lang["newsList"][$newsIndex]["title"] = "Завершение сбора стредств";
     $g_lang["newsList"][$newsIndex]["text"]  = "Благодаря неравнодушным пользователям нашего сервиса мы завершили сбор средств для разработки новых алгоритмов для сайта. Мы уже добавили алгоритм поиска диаметра и радиуса графа, далее будет поиск максимального потока и раскраска графа.";
     $g_lang["newsList"][$newsIndex]["autor"] = "Админ";

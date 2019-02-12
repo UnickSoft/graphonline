@@ -862,5 +862,25 @@ Graph.prototype.getGraphBBox = function (viewportSize)
         pointMax = pointMax.max(vertex.position.add(deltaVector));
     }
     
+    var max_cruvled_length = 32;
+    
+    for(i = 0; i < this.edges.length; i++)
+    {
+        var edge = this.edges[i];
+        
+        if (edge.model.type == EdgeModels.cruvled)
+        {
+            var max_cruvled = edge.vertex2.position.subtract(edge.vertex1.position).length() / max_cruvled_length;
+            
+            for (j = 0; j < max_cruvled; j++)
+            {
+              var point = edge.model.GetCurvedPoint(edge.vertex1.position, edge.vertex2.position, j / max_cruvled);
+              var deltaVector = new Point(max_cruvled_length, max_cruvled_length);
+              pointMin = pointMin.min(point.subtract(deltaVector));
+              pointMax = pointMax.max(point.add(deltaVector));
+            }
+        }
+    }
+    
     return new Rect(pointMin, pointMax);
 }
