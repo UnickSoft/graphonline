@@ -47,7 +47,7 @@ $ageImage        = 0;
 $msg             = "";
 
 
-if ($_POST["submit"] == "delete1YImages")
+if (isset($_POST["submit"]) && $_POST["submit"] == "delete1YImages")
 {
     $age1yMoreCallback = function($age)
     {
