@@ -157,11 +157,14 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
     var pathObjects = [];
     var properties = {};
     var result = [];
+    
+    var xml = creator.GetXMLString();
+    console.log(xml);
 
     $.ajax({
          type: "POST",
          url: "/cgi-bin/GraphCGI.exe?" + queryString,
-         data: creator.GetXMLString(),
+         data: xml,
          dataType: "text",
          })
     .done(function( msg )
