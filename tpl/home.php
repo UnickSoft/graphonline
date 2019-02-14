@@ -267,20 +267,23 @@
 <div id="saveImageDialog">
 <form>
 <fieldset>
-<? $shareImagePageURL = $_SERVER['SERVER_NAME'] . "/";?>
-<p id="SaveImageLinks"><a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank"><?= L('open_saved_image_browser')?></a> <?= L('or')?> <a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" download><?= L('download_saved_image')?></a>
+<? 
+   $shareImagePageURL = $_SERVER['SERVER_NAME'] . "/";
+   $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+?>
+<p id="SaveImageLinks"><a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank"><?= L('open_saved_image_browser')?></a> <?= L('or')?> <a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" download><?= L('download_saved_image')?></a>
 </p>
 <p class="hidden-phone">
-<a href="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
+<a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
 </p>
 <p><?= L('share_graph_description') ?></p>
 <ul class="share-buttons" id="ShareSavedImageGraph">
-<li><a href="http://vkontakte.ru/share.php?url=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&text=<?= L('share_graph_text') ?>" target="_blank" title="Share on Vkontate"><i class="fa fa-vk fa-2x"></i></a></li>
-<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&t=<?= L('share_graph_text') ?>" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-<li><a href="https://twitter.com/intent/tweet?source=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&text=<?= L('share_graph_text') ?> http://<?= $sharePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-<li><a href="https://plus.google.com/share?url=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-<li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&title=<?= L('share_graph_text') ?>&summary=<?= L('share_graph_text') ?> &source=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-<li><a href="mailto:?subject=<?= L('share_graph_text') ?>&body=http://<?= $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Email"><i class="fa fa-envelope fa-2x"></i></a></li>
+<li><a href="http://vkontakte.ru/share.php?url=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&text=<?= L('share_graph_text') ?>" target="_blank" title="Share on Vkontate"><i class="fa fa-vk fa-2x"></i></a></li>
+<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&t=<?= L('share_graph_text') ?>" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+<li><a href="https://twitter.com/intent/tweet?source=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&text=<?= L('share_graph_text') ?> <?= $protocol . $sharePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+<li><a href="https://plus.google.com/share?url=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+<li><a href="http://www.linkedin.com/shareArticle?mini=true&url=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png&title=<?= L('share_graph_text') ?>&summary=<?= L('share_graph_text') ?> &source=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+<li><a href="mailto:?subject=<?= L('share_graph_text') ?>&body=<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" title="Email"><i class="fa fa-envelope fa-2x"></i></a></li>
 </ul>
 
 </fieldset>
