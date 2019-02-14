@@ -12,7 +12,7 @@ $WikiTitle = 'Вики справка Graph Online';
 ##  $PubDirUrl is the URL for the pub directory.
 $ScriptUrl = '/wiki';
 # $PubDirUrl = 'http://www.mydomain.com/path/to/pub';
-$HeaderLink = 'http://graphonline.ru';
+$HeaderLink = 'graphonline.ru';
 
 ##  If you want to use URLs of the form .../pmwiki.php/Group/PageName
 ##  instead of .../pmwiki.php?p=Group.PageName, try setting
