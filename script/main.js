@@ -1,6 +1,7 @@
 var application = new Application(document, window);
 
 var waitCounter = false;
+var fullscreen  = false;
 var userAction = function(str)
 {
     if (typeof window.yaCounter25827098 !== "undefined")
@@ -54,14 +55,15 @@ var single = 0;
 
 function resizeCanvas()
 {
-        var adv = document.getElementById('adv');
-        var canvas    = document.getElementById('canvas');
-        canvas.width  = document.getElementById('canvasSection').offsetWidth;
+  var adv = document.getElementById('adv');
+  var canvas    = document.getElementById('canvas');
+  canvas.width  = document.getElementById('canvasSection').offsetWidth;
+  var mainContainer = document.getElementById('mainContainer');
+  var offset = (mainContainer.offsetTop + mainContainer.offsetHeight) - (canvas.offsetTop + canvas.offsetHeight) + ($("#footerContent").css("display") === 'block' ? 0 : 24);
         
-            //canvas.height = document.getElementById('footer').offsetTop - document.getElementById('canvasSection').offsetTop - (adv && $("#adv").css("display") === 'block' ? document.getElementById('adv').offsetHeight : 0);
-    canvas.height = $(window).height() - document.getElementById('canvas').offsetTop - (adv && $("#adv").css("display") === 'block' ? document.getElementById('adv').offsetHeight : 0) - ($("#footer").css("display") === 'block' ? document.getElementById('footer').offsetHeight : 0) - (document.documentElement.clientWidth < 650 ? 20 : 0);
+  canvas.height = $(window).height() - document.getElementById('canvas').offsetTop - (adv && $("#adv").css("display") === 'block' ? document.getElementById('adv').offsetHeight : 0) - ($("#footer").css("display") === 'block' ? document.getElementById('footer').offsetHeight : 0) - offset;
 
-   application.redrawGraph();
+  application.redrawGraph();
 }
 
 function touchHandler(event)
@@ -504,6 +506,27 @@ function postLoadPage()
                              algorithmList.style.right = "0";   
                         }
                    }, 1);
+    }
+    
+    document.getElementById('Fullscreen').onclick = function()
+    {
+        var idList = ["h1Header", "h1Text", "navigation", "footerContent"];
+        
+        fullscreen = !fullscreen
+        
+        userAction(fullscreen ? "offscreen_on" : "fullscreen_off");
+        
+        for (var i = 0; i < idList.length; i++)
+            if (fullscreen)
+                document.getElementById(idList[i]).style.display = "none";    
+            else
+                document.getElementById(idList[i]).style.display = "block";
+                
+        document.getElementById("mainContainer").className = fullscreen ? "container-fluid page-wrap" : "container page-wrap";
+        
+        document.getElementById("FullscreenIcon").className = fullscreen ? "glyphicon glyphicon-resize-small fa-fw" : "glyphicon glyphicon-resize-full fa-fw";
+
+        resizeCanvas();
     }
     
     if (document.getElementById('VoteButton') !== null)

@@ -197,6 +197,11 @@
   height: 100%;
 }
 
+#canvasSection
+{
+    position: relative;
+}
+
 .content {
   padding-bottom: 8px;
 }
@@ -226,6 +231,13 @@
     resize: none;
     overflow-wrap: normal;
     white-space: pre;
+}
+
+#Fullscreen
+{
+    position: absolute;
+    right: 0px;
+    z-index: 10;
 }
 
 ::-webkit-scrollbar {

@@ -1,7 +1,7 @@
 
     <head>
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/home.css')?>" />
-	<link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.theme.css')?>" />
+	    <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.theme.css')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.css')?>" />
 <!--
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.structure.css')?>" />
@@ -9,8 +9,8 @@
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery.feedback_me.css')?>" />
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
-	<script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=15")?>" ></script>
+	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
+        <script src="<?= Root("script/example.js?v=16")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -23,9 +23,9 @@
 </div>
 -->
 
-    <h1 style="display:inline;"><?= L('title_notg')?></h1>
+    <h1 style="display:inline;" id="h1Header"><?= L('title_notg')?></h1>
 
-    <span class="hidden-xs"><?= L('text')?></span>
+    <span class="hidden-xs" id="h1Text"><?= L('text')?></span>
 
 	<section>
 		<ul class="nav nav-pills">
@@ -130,6 +130,7 @@
     </section>
 
     <section id="canvasSection">
+    <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="glyphicon glyphicon-resize-full fa-fw" id="FullscreenIcon"></span></button>
 	<canvas id="canvas"><?= L('browser_no_support')?></canvas>
     <div id="developerTools" class="well well-sm">
         <h4><?= L('developer_tools_title')?></h4> <span class="glyphicon glyphicon-resize-full fa-fw leftTopPosition" id="devToolsZoom"></span>

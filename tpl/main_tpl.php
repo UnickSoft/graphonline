@@ -35,9 +35,9 @@
 
     </head>
     <body>
-        <div class="container page-wrap">
+        <div class="container page-wrap" id="mainContainer">
 <!--            <div class="header"> -->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" id="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -85,7 +85,7 @@
         <!-- Футер приходится обрамить в .container, потому что у него position:absolute и он занимает всю ширину игнорируя паддинги родителя -->
 
         <footer class="footer" id="footer" >
-           <div class="container hidden-phone">
+           <div class="container hidden-phone" id="footerContent">
                     <p>© <?= L('footer_info')?> 2015 - <?= date("Y")?></p>
            </div>
         </footer>
