@@ -514,7 +514,7 @@ function postLoadPage()
         
         fullscreen = !fullscreen
         
-        userAction(fullscreen ? "offscreen_on" : "fullscreen_off");
+        userAction(fullscreen ? "fullscreen_on" : "fullscreen_off");
         
         for (var i = 0; i < idList.length; i++)
             if (fullscreen)
