@@ -825,8 +825,13 @@ SavedDialogGraphImageHandler.prototype.pathObjects = null;
 // Objects.
 SavedDialogGraphImageHandler.prototype.objects    = null;
 
-SavedDialogGraphImageHandler.prototype.show = function(object, isFull = false)
+SavedDialogGraphImageHandler.prototype.show = function(object, isFull)
 {
+    if (isFull === undefined) 
+    {
+      isFull = false;
+    }
+    
     var showDialogCallback = function ()
     {
         var dialogButtons = {};

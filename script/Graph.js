@@ -203,8 +203,13 @@ Graph.prototype.GetAdjacencyMatrix = function ()
     return matrix;
 }
 
-Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")
+Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator)
 {
+    if(separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	var bGoodFormat = true;
 	rowsObj.rows = [];
 	rowsObj.rows = matrix.split ("\n");
@@ -450,8 +455,13 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    }
 }
 
-Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnumVertesType, separator = ",")
+Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnumVertesType, separator)
 {
+    if (separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	var rowsObj = {};
 	var colsObj = {};
 
@@ -512,8 +522,13 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 }
 
 
-Graph.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj, separator = ",")
+Graph.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj, separator)
 {
+    if (separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	var bGoodFormat = true;
 	rowsObj.rows = [];
 	rowsObj.rows = matrix.split ("\n");
@@ -691,8 +706,13 @@ Graph.prototype.GetIncidenceMatrix = function ()
 	return matrix;
 }
 
-Graph.prototype.SplitMatrixString = function (line, separator = ",")
+Graph.prototype.SplitMatrixString = function (line, separator)
 {
+  if (separator === undefined) 
+  {
+    separator = ",";
+  }
+    
   var res = [];
   var i = 0;
 

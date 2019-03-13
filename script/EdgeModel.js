@@ -86,8 +86,13 @@ EdgeModel.prototype.HitTest = function(position1, position2, mousePos)
 }
 
 
-EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, factor = 1.0)
+EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, factor)
 {
+    if (factor === undefined) 
+    {
+      factor = 1.0;
+    }
+    
     var pos1 = position1;
     var pos2 = position2;
     var pos0 = mousePos;

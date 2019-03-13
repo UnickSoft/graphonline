@@ -82,8 +82,13 @@ var selectedEdgeStyles = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(),
 	new SelectedEdgeStyle2(), new SelectedEdgeStyle3(), new SelectedEdgeStyle4()];
 
 
-function BaseEdgeDrawer(context, drawObjects = null)
+function BaseEdgeDrawer(context, drawObjects)
 { 
+  if (drawObjects === undefined) 
+  {
+    drawObjects = null;
+  }
+    
   this.context = context;
     
   this.drawObject = null;

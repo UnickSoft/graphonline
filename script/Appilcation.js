@@ -720,13 +720,23 @@ Application.prototype.GetAdjacencyMatrix = function ()
 	return this.graph.GetAdjacencyMatrixStr();
 }
 
-Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator = ",")
+Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator)
 {
+    if(separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	return this.graph.TestAdjacencyMatrix(matrix, rowsObj, colsObj, separator);
 }
 
-Application.prototype.SetAdjacencyMatrix = function (matrix, separator = ",")
+Application.prototype.SetAdjacencyMatrix = function (matrix, separator)
 {
+    if(separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	var res = true;
     var r = {};
 	var c = {};
@@ -778,8 +788,13 @@ Application.prototype.Test = function ()
 
 
 
-Application.prototype.SetAdjacencyMatrixSmart = function (matrix, separator = ",")
+Application.prototype.SetAdjacencyMatrixSmart = function (matrix, separator)
 {
+    if (separator === undefined) 
+    {
+      separator = ",";
+    }
+    
 	var res = false;
 	if (this.TestAdjacencyMatrix(matrix, {}, {}, separator))
         {
