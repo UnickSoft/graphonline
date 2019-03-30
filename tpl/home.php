@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=17")?>" ></script>
+        <script src="<?= Root("script/example.js?v=18")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -434,6 +434,8 @@
     <p id="traversalOrder" class="translation"><?= L('traversal_order')?></p>
 
     <p id="curveEdge" class="translation"><?= L('curve_edge')?></p>
+    <p id="undoTranslate" class="translation"><?= L('undo')?></p>
+
 </section>
 <!--
 <script>

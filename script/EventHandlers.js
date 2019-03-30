@@ -14,6 +14,8 @@ function BaseHandler(app)
 {
 	this.app = app;
     this.app.setRenderPath([]);
+    
+    this.app.ClearUndoStack();
 }
 
 // Need redraw or nor.
@@ -531,7 +533,7 @@ ConnectionGraphHandler.prototype.UpdateSecondVertexMenu = function(vertex2Text)
 function DeleteGraphHandler(app)
 {
   BaseHandler.apply(this, arguments);
-  this.message = g_selectObjectToDelete;	
+  this.message = g_selectObjectToDelete;
 }
 
 // inheritance.
@@ -540,10 +542,38 @@ DeleteGraphHandler.prototype = Object.create(BaseHandler.prototype);
 DeleteGraphHandler.prototype.MouseDown = function(pos) 
 {
 	var selectedObject = this.GetSelectedObject(pos);
-	
-	this.app.DeleteObject(selectedObject);
-	
+        
+    if (!this.app.IsCorrectObject(selectedObject))
+        return;
+    
+    this.app.PushToStack("Delete");
+    this.app.DeleteObject(selectedObject);
 	this.needRedraw = true;
+    
+    this.UpdateUndoButton();
+}
+
+DeleteGraphHandler.prototype.UpdateUndoButton = function()
+{
+    if (!this.app.IsUndoStackEmpty())
+    {
+        this.message = g_selectObjectToDelete + "<span style=\"float:right;\"><button type=\"button\" id=\"undoDelete\" class=\"btn btn-default btn-xs\"> " + g_Undo + " </button>";
+        
+        var handler = this;
+        $('#message').unbind();
+        $('#message').on('click', '#undoDelete', function(){
+            handler.app.Undo();
+            userAction("Undo.Delete");
+            
+            handler.UpdateUndoButton();
+        });
+    }
+    else
+    {
+        this.message = g_selectObjectToDelete;        
+    }
+
+    this.app.updateMessage();
 }
 
 /**

@@ -24,6 +24,7 @@ function Application(document, window)
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
     this.userAction = function(){};
+    this.undoStack  = [];
 };
 
 // List of graph.
@@ -39,7 +40,8 @@ Application.prototype.handler = null;
 Application.prototype.status = {};
 // Graph name length
 Application.prototype.graphNameLength = 16;
-
+// Max undo stack size
+Application.prototype.maxUndoStackSize = 8;
 
 Application.prototype.getMousePos = function(canvas, e)
 {
@@ -447,6 +449,12 @@ Application.prototype.DeleteObject = function(object)
 	{
 		this.DeleteEdge(object);
 	}
+}
+
+Application.prototype.IsCorrectObject = function(object)
+{
+	return (object instanceof BaseVertex) || 
+           (object instanceof BaseEdge);
 }
 
 Application.prototype.FindVertex = function(id)
@@ -1261,4 +1269,37 @@ Application.prototype.IsGraphFitOnViewport = function()
         && Math.floor(canvasPositionInverse.y + canvasHeight) >= Math.floor(graphBBox.maxPoint.y));
 }
 
-                          
+Application.prototype.PushToStack = function(actionName)
+{
+    var object        = {};
+    object.actionName = actionName;
+    object.graphSave  = this.graph.SaveToXML();    
+    
+    this.undoStack.push(object);
+    
+    while (this.undoStack.length > this.maxUndoStackSize)
+    {
+        this.undoStack.shift();
+    }
+}
+
+Application.prototype.Undo = function()
+{
+    if (this.IsUndoStackEmpty())
+        return;
+    
+    var state  = this.undoStack.pop();
+    this.graph = new Graph();
+    this.graph.LoadFromXML(state.graphSave);
+    this.redrawGraph();
+}
+
+Application.prototype.ClearUndoStack = function()
+{
+    this.undoStack = [];
+}
+
+Application.prototype.IsUndoStackEmpty = function()
+{
+    return (this.undoStack.length <= 0);
+}

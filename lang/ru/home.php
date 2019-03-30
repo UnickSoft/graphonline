@@ -143,4 +143,5 @@
     $g_lang["traversal_order"]  = "Порядок обхода: ";
 
     $g_lang["curve_edge"]       = "Изгиб дуги";
+    $g_lang["undo"]             = "Отменить";
 ?>

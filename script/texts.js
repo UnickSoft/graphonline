@@ -97,6 +97,8 @@ var g_traversalOrder = "Traversal order: ";
 
 var g_curveEdge      = "Curved edge";
 
+var g_Undo           = "Undo";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -193,4 +195,6 @@ function loadTexts()
     g_traversalOrder = document.getElementById("traversalOrder").innerHTML;
     
     g_curveEdge = document.getElementById("curveEdge").innerHTML;
+    
+    g_Undo = document.getElementById("undoTranslate").innerHTML;
 }
