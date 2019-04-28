@@ -2,6 +2,11 @@
 RewriteEngine On
 # Define the rewrite base.
 RewriteBase /en/wiki
+
+# Auto redirect to https.
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 # Send requests without parameters to pmwiki.php.
 RewriteRule ^$           pmwiki.php  [L]
 # Send requests for index.php to pmwiki.php.
