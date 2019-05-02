@@ -11,6 +11,14 @@ function CommonVertexStyle()
   this.mainTextColor = '#f0d543';
 }
 
+function CommonPrintVertexStyle()
+{
+  this.lineWidth   = 1;
+  this.strokeStyle = '#000000';
+  this.fillStyle   = '#FFFFFF';
+  this.mainTextColor = '#000000';
+}
+
 // Selected style of Graphs.
 function SelectedVertexStyle0()
 {
@@ -122,9 +130,22 @@ function SelectedVertexStyle9()
 
 SelectedVertexStyle9.prototype = Object.create(CommonVertexStyle.prototype);
 
-var selectedGraphStyles = [new SelectedVertexStyle0(), new SelectedVertexStyle1(),
+function SelectedPrintVertexStyle()
+{
+	CommonVertexStyle.apply(this, arguments);
+
+	this.strokeStyle   = '#000000';
+	this.mainTextColor = '#000000';
+	this.fillStyle     = '#AAAAAA';
+}
+
+SelectedPrintVertexStyle.prototype = Object.create(CommonVertexStyle.prototype);
+
+var DefaultSelectedGraphStyles = [new SelectedVertexStyle0(), new SelectedVertexStyle1(),
 	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4(), new SelectedVertexStyle5(), new SelectedVertexStyle6(), new SelectedVertexStyle7(), new SelectedVertexStyle8(), new SelectedVertexStyle9()];
-                   
+
+var DefaultPrintSelectedGraphStyles = [new SelectedPrintVertexStyle()];
+
 function BaseVertexDrawer(context)
 { 
   this.context = context;

@@ -14,6 +14,17 @@ function CommonEdgeStyle()
 	this.loopShiftAngel = Math.PI / 6;
 }
 
+function CommonPrintEdgeStyle()
+{
+	this.strokeStyle = '#000000';
+	this.weightText  = '#000000';
+ 	this.fillStyle   = '#FFFFFF';
+ 	this.textPadding = 4;
+	this.textStrockeWidth = 2;
+ 	this.sizeOfLoop = 24;
+	this.loopShiftAngel = Math.PI / 6;
+}
+
 function SelectedEdgeStyle0()
 {
 	CommonEdgeStyle.apply(this, arguments);  
@@ -23,17 +34,6 @@ function SelectedEdgeStyle0()
 	this.fillStyle   = '#c7627a';
 }
 SelectedEdgeStyle0.prototype = Object.create(CommonEdgeStyle.prototype);
-
-function ProgressEdgeStyle()
-{
-    CommonEdgeStyle.apply(this, arguments);
-    
-    var selectedStyle = new SelectedEdgeStyle0();
-    this.strokeStyle = selectedStyle.fillStyle;
-    this.weightText  = '#000000';
-    this.fillStyle   = '#000000';
-}
-ProgressEdgeStyle.prototype = Object.create(CommonEdgeStyle.prototype);
 
 function SelectedEdgeStyle1()
 {
@@ -78,9 +78,20 @@ function SelectedEdgeStyle4()
 }
 SelectedEdgeStyle4.prototype = Object.create(CommonEdgeStyle.prototype);
 
-var selectedEdgeStyles = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(), 
+function SelectedEdgePrintStyle()
+{
+	CommonEdgeStyle.apply(this, arguments);  
+
+	this.strokeStyle = '#AAAAAA';
+	this.weightText  = '#000000';
+	this.fillStyle   = '#AAAAAA';
+}
+SelectedEdgeStyle0.prototype = Object.create(CommonEdgeStyle.prototype);
+
+var DefaultSelectedEdgeStyles      = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(), 
 	new SelectedEdgeStyle2(), new SelectedEdgeStyle3(), new SelectedEdgeStyle4()];
 
+var DefaultPrintSelectedEdgeStyles = [new SelectedEdgePrintStyle()];
 
 function BaseEdgeDrawer(context, drawObjects)
 { 
@@ -298,8 +309,6 @@ ProgressArcDrawer.prototype = Object.create(BaseEdgeDrawer.prototype);
 ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
 {
     this.baseDrawer.Draw(baseEdge, arcStyle);
-    
-    this.SetupStyle(baseEdge, new ProgressEdgeStyle());
     
     this.context.lineWidth = 10;
     

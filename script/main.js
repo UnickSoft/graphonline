@@ -359,6 +359,12 @@ function postLoadPage()
         userAction(this.id);
         application.SetHandlerMode("saveDialogFullImage");
     }
+
+    document.getElementById('SavePrintGraphImage').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("savePrintGraphImage");
+    }
     
     document.getElementById('Zoom100').onclick = function ()
     {

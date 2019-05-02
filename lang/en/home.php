@@ -57,8 +57,9 @@
     $g_lang["wrong_matrix_title"] = "Matrix has wrong format";
     $g_lang["bad_adj_matrix_message"] = "Cannot create graph. Adjacency Matrix has wrong format. Click \"fix matrix\" button to fix matrix or \"help\" button to open help about Adjacency Matrix format";
     $g_lang["bad_inc_matrix_message"] = "Cannot create graph. Incidence Matrix has wrong format. Click \"fix matrix\" button to fix matrix or \"help\" button to open help about Incidence Matrix format";
-    $g_lang["save_image"] = "Save workspace image";
-    $g_lang["save_full_image"] = "Save full graph image";
+    $g_lang["save_image"] = "Workspace screenshot";
+    $g_lang["save_full_image"] = "Save graph image";
+    $g_lang["save_print_image"] = "Printed image of graph (black&white)";
     $g_lang["open_saved_image_browser"] = "Open image in browser";
     $g_lang["download_saved_image"] = "Download saved image";
     $g_lang["save_image_dialog_title"] = "Save Graph Image";

@@ -25,6 +25,18 @@ function Application(document, window)
     this.algorithmsValues = {};
     this.userAction = function(){};
     this.undoStack  = [];
+    
+    this.edgeCommonStyle      = new CommonEdgeStyle();
+    this.edgeSelectedStyles   = DefaultSelectedEdgeStyles;
+    
+    this.edgePrintCommonStyle      = new CommonPrintEdgeStyle();
+    this.edgePrintSelectedStyles   = DefaultPrintSelectedEdgeStyles;
+    
+    this.vertexCommonStyle          = new CommonVertexStyle(); 
+    this.vertexSelectedVertexStyles = DefaultSelectedGraphStyles;
+    
+    this.vertexPrintCommonStyle          = new CommonPrintVertexStyle(); 
+    this.vertexPrintSelectedVertexStyles = DefaultPrintSelectedGraphStyles;
 };
 
 // List of graph.
@@ -153,6 +165,28 @@ Application.prototype._OffscreenRedrawGraph = function()
     return canvas;
 }
 
+Application.prototype._PrintRedrawGraph = function()
+{
+    var bbox = this.graph.getGraphBBox();
+    var canvas = document.createElement('canvas');
+    canvas.width  = bbox.size().x;
+    canvas.height = bbox.size().y;
+    var context = canvas.getContext('2d');
+    
+    context.save();
+    
+    context.fillStyle = "white";
+    context.fillRect(0, 0, Math.max(canvas.width, this.GetRealWidth()), Math.max(canvas.height, this.GetRealHeight()));
+    context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    this.RedrawEdges(context, this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
+    this.RedrawNodes(context, this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles);
+    
+    context.restore();
+    
+    return canvas;
+}
+
 Application.prototype.updateRenderPathLength = function()
 {
     this.renderPathLength = 0;
@@ -221,15 +255,15 @@ Application.prototype.GetBaseArcDrawer = function(context, edge)
     return arcDrawer;
 }
 
-Application.prototype.RedrawEdge = function(context, edge)
+Application.prototype.RedrawEdge = function(context, edge, ForceCommonStyle, ForceSelectedStyle)
 {
     var curvedArcDrawer = new CurvedArcDrawer(context, edge.model)
     var arcDrawer       = this.GetBaseArcDrawer(context, edge);
     
-    var commonStyle      = new CommonEdgeStyle(context);
-    var selectedStyles   = selectedEdgeStyles;
+    var commonStyle   = (ForceCommonStyle === undefined) ? this.edgeCommonStyle : ForceCommonStyle;
+    var selectedStyle = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
     
-    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyle);
 }
 
 Application.prototype._RedrawEdge = function(edge, arcDrawer, commonStyle, selectedStyles)
@@ -250,38 +284,33 @@ Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
 {
     var progressDraw     = new ProgressArcDrawer(context, this.GetBaseArcDrawer(context, edge), progress);
     var arcDrawer        = new BaseEdgeDrawer(context, {drawObject : progressDraw});
-    var commonStyle      = new CommonEdgeStyle(context);
-    var selectedStyles   = selectedEdgeStyles;
 
-    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdge(edge, arcDrawer, this.edgeCommonStyle, this.edgeSelectedStyles);
 }
 
-Application.prototype.RedrawEdges = function(context)
+Application.prototype.RedrawEdges = function(context, ForceCommonStyle, ForceSelectedStyle)
 {
     for (i = 0; i < this.graph.edges.length; i ++)
     {
-        this.RedrawEdge(context, this.graph.edges[i]);
+        this.RedrawEdge(context, this.graph.edges[i], ForceCommonStyle, ForceSelectedStyle);
     }
 }
 
-Application.prototype.RedrawNodes = function(context)
+Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSelectedStyle)
 {
-    var graphDrawer = new BaseVertexDrawer(context);
-    var commonGraphDrawer = new CommonVertexStyle();
-    var selectedGraphDrawer = selectedGraphStyles;
+    var graphDrawer   = new BaseVertexDrawer(context);
+    var commonStyle   = (ForceCommonStyle === undefined) ? this.vertexCommonStyle : ForceCommonStyle;
+    var selectedStyle = (ForceSelectedStyle === undefined) ? this.vertexSelectedVertexStyles : ForceSelectedStyle;
 
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
 		var selectedGroup = this.handler.GetSelectedGroup(this.graph.vertices[i]);
 		var currentStyle  = selectedGroup > 0 ?
-				selectedGraphDrawer[(selectedGroup - 1) % selectedGraphDrawer.length] : commonGraphDrawer;
-
-		//this.graph.vertices[i].upText = this.handler.GetUpText(this.graph.vertices[i]);
+				selectedStyle[(selectedGroup - 1) % selectedStyle.length] : commonStyle;
 
 		graphDrawer.Draw(this.graph.vertices[i], currentStyle);
     }	
 }
-
 
 Application.prototype.updateMessage = function()
 {
@@ -590,12 +619,17 @@ Application.prototype.SetHandlerMode = function(mode)
     else if (mode == "saveDialogImage")
     {
         var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.show();
+        savedDialogGraphImageHandler.showWorkspace();
     }
     else if (mode == "saveDialogFullImage")
     {
         var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.show(null, true);           
+        savedDialogGraphImageHandler.showFullgraph();           
+    }
+    else if (mode == "savePrintGraphImage")
+    {
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
+        savedDialogGraphImageHandler.showPrint();           
     }
     else if (mode == "eulerianLoop")
     {
@@ -903,12 +937,12 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
     return imageName;
 }
 
-Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback)
+Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback, forPrint)
 {
     var imageName = this.GetNewGraphName();
                           
     this.stopRenderTimer();
-    var canvas = this._OffscreenRedrawGraph();
+    var canvas = forPrint ? this._PrintRedrawGraph() : this._OffscreenRedrawGraph();
                           
     var bbox = this.graph.getGraphBBox();
     
@@ -932,9 +966,6 @@ Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback)
     return imageName;
 }
                           
-                          
-
-
 Application.prototype.LoadGraphFromString = function (str)
 {
     var graph = new Graph();
