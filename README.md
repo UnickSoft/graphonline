@@ -4,6 +4,7 @@ This is source code of graphonline service. Graphonline helps visualize graph an
 
 # License
 
+MIT License.
 
 # Requirements
 
