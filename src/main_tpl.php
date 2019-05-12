@@ -39,7 +39,10 @@
                             "link"  => SiteRoot("help"),),
                       array(
                             "title" => L("menu_6"),
-                            "link"  => SiteRoot("wiki"),)
+                            "link"  => SiteRoot("wiki"),),
+                      array(
+                            "title" => L("menu_10"),
+                            "link"  => SiteRoot("opensource"),)
                       ),
     ); 
     $menu[] = array
