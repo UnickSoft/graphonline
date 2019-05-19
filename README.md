@@ -20,7 +20,7 @@ Server side:
 1. Download repository to local website folder. It should be placed into root of domen. It can work wrong from subdirectory.
 2. Change access rights of directory /tmp. PHP scripts need to create and modify files inside it.
 3. Run file from browser: /script/merge.php. It merges all js files into one /script/example.js.
-4. Run file from browser: /cgi-bin/getPluginsList.php. It creates file with list of plug-ins. Just optimization.
+4. Run file from browser: /cgi-bin/getPluginsList.php?reset. It creates file with list of plug-ins. Just optimization.
 5. Change default root password in file: /core/config/admin_sector.php
 ```
 $g_config['admin_sector']['def_pwd'] = 'rootPass';
