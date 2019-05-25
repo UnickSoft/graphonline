@@ -1,4 +1,5 @@
-<?
+<?php
+
   include ("../core/config/main.php");
   include ("saveGraphHelpers.php");
 

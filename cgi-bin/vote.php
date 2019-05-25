@@ -1,4 +1,4 @@
-<?
+<?php
     include ("../core/config/main.php");
 
     if (!isset($_COOKIE["vote0"]))

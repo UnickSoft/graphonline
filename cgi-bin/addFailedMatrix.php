@@ -1,4 +1,5 @@
-<?
+<?php
+
   $matrix = $_GET["matrix"];
   $text   = $_GET["text"];
 

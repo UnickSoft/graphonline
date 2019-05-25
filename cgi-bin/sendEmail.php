@@ -1,4 +1,4 @@
-<?
+<?php
 /*
   Sample page
 */

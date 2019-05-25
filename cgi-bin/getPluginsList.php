@@ -1,4 +1,4 @@
-<?
+<?php
 
 $tempFilename = "../tmp/pluginsList.txt";
 
