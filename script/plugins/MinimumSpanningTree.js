@@ -27,7 +27,7 @@ MinimumSpanningTree.prototype.getMessage = function(local)
 {
 	if (!this.isNotConneted )
     {
-    	return local == "ru" ? "Вес минимального оставного дерева равнен " + this.MST : "Weight of minimum spanning tree is " + this.MST;
+    	return local == "ru" ? "Вес минимального оставного дерева равен " + this.MST : "Weight of minimum spanning tree is " + this.MST;
     }
     else
     {
