@@ -146,6 +146,15 @@
     </div>
     </section>
 
+    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+    <a class="ProgresssBarLink" href="opensource" target="_blank">
+    <div class="ProgressBar" style="height:32px">
+        <div class="ProgressBarFill" style="width:0%;"></div>
+        <span class="ProgressBarText" style="top:-28px"><p><?= L('opensource_message')?></p></span>
+    </div>
+    </a>
+    </section>
+
 <? if (L('current_language') == "ru" && false): ?>
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
 

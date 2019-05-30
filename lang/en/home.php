@@ -143,4 +143,5 @@
     $g_lang["curve_edge"]       = "Edge bend";
     $g_lang["undo"]             = "Undo";
 
+    $g_lang["opensource_message"] = "Our project is now open source. More details...";
 ?>
