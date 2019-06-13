@@ -34,13 +34,7 @@ Graph.prototype.AddNewVertex = function(vertex)
 
 Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight)
 {
-	var useWeight = false;
-	if (!isNaN(parseInt(weight, 10)))
-	{
-		useWeight = true;
-	}
-	weight = (!isNaN(parseInt(weight, 10)) && weight >= 0) ? weight : 1;
-	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, useWeight, 0));
+	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight));
 }
 
 Graph.prototype.AddNewEdge = function(edge)

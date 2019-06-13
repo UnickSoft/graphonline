@@ -4,7 +4,7 @@
  *
  */
 
-function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
+function BaseEdge(vertex1, vertex2, isDirect, weight)
 {
     this.vertex1    = vertex1;
     this.vertex2    = vertex2;
@@ -12,13 +12,16 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, useWeight)
     this.arrayStyleFinish = "";
     
     this.isDirect  = isDirect;
-    this.weight    = Number(weight);
+    this.weight    = 0;
     this.text      = "";
     // For direct graph, has pair edge or not.
     this.hasPair   = false;
-    this.useWeight = useWeight;
+    this.useWeight = false;
     this.id        = 0;
     this.model = new EdgeModel();
+    
+    if (weight !== undefined)
+      this.SetWeight(weight);
 }
 
 BaseEdge.prototype.SaveToXML = function ()
@@ -160,4 +163,17 @@ BaseEdge.prototype.GetEdgePositions = function()
     res.push(position1.subtract(direction1.multiply(d1)));
     res.push(position2.subtract(direction2.multiply(d2)));
     return res;
+}
+
+BaseEdge.prototype.SetWeight = function(weight)
+{
+	var useWeight = false;
+	if (!isNaN(parseInt(weight, 10)))
+	{
+		useWeight = true;
+	}
+	weight = (!isNaN(parseInt(weight, 10)) && weight >= 0) ? weight : 1;
+    
+    this.weight    = Number(weight);
+    this.useWeight = useWeight;
 }

@@ -304,10 +304,9 @@ DefaultHandler.prototype.MouseUp = function(pos)
                          var dialogButtons = {};
 
                          dialogButtons[g_save] = function() {
-
-                            handler.app.DeleteObject(handler.selectedObject);
-                            handler.selectedObject = handler.app.graph.edges[handler.app.CreateNewArc(handler.selectedObject.vertex1, handler.selectedObject.vertex2, handler.selectedObject.isDirect, document.getElementById('EdgeWeight').value)];
-
+                        
+                           handler.selectedObject.SetWeight(document.getElementById('EdgeWeight').value);
+                             
                             handler.needRedraw = true;
                             handler.app.redrawGraph();
 

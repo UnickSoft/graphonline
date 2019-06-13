@@ -423,13 +423,7 @@ Application.prototype.CreateNewGraphEx = function(x, y, vertexEnume)
 
 Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight)
 {
-	var useWeight = false;
-	if (!isNaN(parseInt(weight, 10)))
-	{
-		useWeight = true;
-	}
-	weight = (!isNaN(parseInt(weight, 10)) && weight >= 0) ? weight : 1;
-	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, useWeight));
+	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight));
     
     // Make cruvled for pair.
     var edgeObject = this.graph.edges[edge];
@@ -1109,93 +1103,7 @@ Application.prototype.GetFindPathReport = function ()
 {
     return this.findPathReport;
 }
-                          
-/*                         
-Application.prototype.CalculateAlgorithm = function(queryString, callbackObject)
-{
-    var app = this;
-    var creator = new GraphMLCreater(app.graph.vertices, app.graph.edges);
-    var pathObjects = [];
-    var properties = {};
-    var result = [];
-
-    $.ajax({
-         type: "POST",
-         url: "/cgi-bin/GraphCGI.exe?" + queryString,
-         data: creator.GetXMLString(),
-         dataType: "text",
-         })
-    .done(function( msg )
-        {
-        console.log(msg);
-        $('#debug').text(msg);
-        xmlDoc = $.parseXML( msg );
-        var $xml = $( xmlDoc );
-        
-        $results = $xml.find( "result" );
-        
-        $results.each(function(){
-                      $values = $(this).find( "value" );
-                      
-                      $values.each(function(){
-                                   var type  = $(this).attr('type');
-                                   var value = $(this).text();
-                                   var res = {};
-                                   res.type = type;
-                                   res.value = value;
-                                   result.push(res);
-                                   });
-                      });
-        
-        $nodes = $xml.find( "node" );
-        
-        $nodes.each(function(){
-                    var id = $(this).attr('id');
-                    $data = $(this).find("data");
-                    $data.each(function(){
-                               if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
-                               {
-                                    pathObjects.push(app.FindVertex(id));
-                               }
-                               else
-                               {
-                                    if (!properties[id])
-                                    {
-                                        properties[id] = {};
-                                    }
-                                    properties[id][$(this).attr('key')] = $(this).text();
-                               }
-                               });
-                    });
-        
-        $edges = $xml.find( "edge" );
-        
-        $edges.each(function(){
-                        var source = $(this).attr('source');
-                        var target = $(this).attr('target');
-                        var edge   = app.FindEdge(source, target);
-                        pathObjects.push(edge);
-            
-                        $data = $(this).find("data");
-                        $data.each(function(){
-                            if (!properties[edge.id])
-                            {
-                                properties[edge.id] = {};
-                            }
-                            properties[edge.id][$(this).attr('key')] = $(this).text();
-                            console.log("Data edge " + $(this).text());
-                        });
-                    });
-        
-        console.log(result);
-        
-        callbackObject.CalculateAlgorithmCallback(pathObjects, properties, result);
-        });
-
-    return true;
-}
-*/
-                          
+                                                    
 Application.prototype.GetRealWidth = function ()
 {
     return this.canvas.width / this.canvasScale;
@@ -1334,3 +1242,99 @@ Application.prototype.IsUndoStackEmpty = function()
 {
     return (this.undoStack.length <= 0);
 }
+/*
+Application.prototype.SaveUserSettings = function()
+{
+    var res = "{";
+    
+    var needEnd    = false;
+    var checkValue = [];
+    
+    checkValue.push({check: !CommonEdgeStyle.prototype.isPrototypeOf(this.edgeCommonStyle),
+                     field: "edgeCommonStyle",
+                     value: this.edgeCommonStyle});
+    
+    checkValue.push({check: this.edgeSelectedStyles != DefaultSelectedEdgeStyles,
+                     field: "edgeSelectedStyles",
+                     value: this.edgeSelectedStyles});
+
+    checkValue.push({check: !CommonPrintEdgeStyle.prototype.isPrototypeOf(this.edgePrintCommonStyle),
+                     field: "edgePrintCommonStyle",
+                     value: this.edgePrintCommonStyle});
+
+    checkValue.push({check: this.edgePrintSelectedStyles != DefaultPrintSelectedEdgeStyles,
+                     field: "edgePrintSelectedStyles",
+                     value: this.edgePrintSelectedStyles});
+    
+    checkValue.push({check: !CommonVertexStyle.prototype.isPrototypeOf(this.vertexCommonStyle),
+                     field: "vertexCommonStyle",
+                     value: this.vertexCommonStyle});
+    
+    checkValue.push({check: this.vertexSelectedVertexStyles != DefaultSelectedGraphStyles,
+                     field: "vertexSelectedVertexStyles",
+                     value: this.vertexSelectedVertexStyles});
+    
+    checkValue.push({check: !CommonPrintVertexStyle.prototype.isPrototypeOf(this.vertexPrintCommonStyle),
+                     field: "vertexPrintCommonStyle",
+                     value: this.vertexPrintCommonStyle});
+
+    checkValue.push({check: this.vertexPrintSelectedVertexStyles != DefaultPrintSelectedGraphStyles,
+                     field: "vertexPrintSelectedVertexStyles",
+                     value: this.vertexPrintSelectedVertexStyles});
+    
+    checkValue.forEach(function(entry) {
+            if (entry.check)
+            {
+                if (needEnd)
+                    res = res + ",";
+                
+                res = res + entry.field + ":" + JSON.stringify(entry.value);
+            }
+        });
+    
+    res = res + "}";
+    
+    return res;
+}
+
+Application.prototype.LoadUserSettings = function()
+{
+    var checkValue = [];
+    
+    checkValue.push({field: "edgeCommonStyle",
+                     value: this.edgeCommonStyle});
+    
+    checkValue.push({field: "edgeSelectedStyles",
+                     value: this.edgeSelectedStyles});
+
+    checkValue.push({field: "edgePrintCommonStyle",
+                     value: this.edgePrintCommonStyle});
+
+    checkValue.push({field: "edgePrintSelectedStyles",
+                     value: this.edgePrintSelectedStyles});
+    
+    checkValue.push({field: "vertexCommonStyle",
+                     value: this.vertexCommonStyle});
+    
+    checkValue.push({field: "vertexSelectedVertexStyles",
+                     value: this.vertexSelectedVertexStyles});
+    
+    checkValue.push({field: "vertexPrintCommonStyle",
+                     value: this.vertexPrintCommonStyle});
+
+    checkValue.push({field: "vertexPrintSelectedVertexStyles",
+                     value: this.vertexPrintSelectedVertexStyles});
+    
+    var parsedSave = JSON.parse(json);
+    
+    var app = this;
+    
+    checkValue.forEach(function(entry) {
+            if (parsedSave.hasOwnProperty(entry.field))
+            {
+                for(var k in parsedSave[entry.field]) 
+                    entry.value[k] = parsedSave[entry.field][k];
+            }
+        });
+}
+*/
