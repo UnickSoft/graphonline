@@ -54,7 +54,7 @@ For example you place graphonline sources into http://localhost/graph/ directory
 ```
 RewriteRule ^(.*)$ /graph/index.php?q=$1 [L,QSA]
 ```
-2. Write your directory name to script\main.j variable SiteDirs:
+2. Write your directory name to script\main.js variable SiteDirs:
 ```
 var SiteDir     = "graph/";
 ```
