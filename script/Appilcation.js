@@ -497,7 +497,7 @@ Application.prototype.FindPath = function(graph1, graph2)
 
 	$.ajax({
 	type: "POST",
-	url: "/cgi-bin/GraphCGI.exe?dsp=cgiInput&start=" + graph1.id + "&finish=" + graph2.id + "&report=xml",
+	url: "/" + SiteDir + "cgi-bin/GraphCGI.exe?dsp=cgiInput&start=" + graph1.id + "&finish=" + graph2.id + "&report=xml",
 	data: creator.GetXMLString(),
 	dataType: "text"
 	})
@@ -778,7 +778,7 @@ Application.prototype.SetAdjacencyMatrix = function (matrix, separator)
 	var c = {};
 	if (!this.TestAdjacencyMatrix(matrix, r, c, separator))
 	{
-		$.get( "/cgi-bin/addFailedMatrix.php?text=adjacency&matrix=" + encodeURIComponent(matrix), function( data ) {;});
+		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=adjacency&matrix=" + encodeURIComponent(matrix), function( data ) {;});
 		res = false;
 	}
 
@@ -806,7 +806,7 @@ Application.prototype.SetIncidenceMatrix = function (matrix)
 	var c = {};
 	if (!this.TestIncidenceMatrix(matrix, r, c))
 	{
-		$.get( "/cgi-bin/addFailedMatrix.php?text=incidence&matrix=" + encodeURIComponent(matrix), function( data ) {;});
+		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=incidence&matrix=" + encodeURIComponent(matrix), function( data ) {;});
 		res = false;
 	}
 
@@ -880,7 +880,7 @@ Application.prototype.SaveGraphOnDisk = function ()
 	var app = this;
 	$.ajax({
 	type: "POST",
-	url: "/cgi-bin/saveGraph.php?name=" + this.savedGraphName,
+	url: "/" + SiteDir + "cgi-bin/saveGraph.php?name=" + this.savedGraphName,
 	data: graphAsString,
 	dataType: "text"
 	})
@@ -918,7 +918,7 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 
     $.ajax({
      type: "POST",
-     url: "/cgi-bin/saveImage.php?name=" + imageName + rectParams,
+     url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
      data: {
            base64data : imageBase64Data
      },
@@ -947,7 +947,7 @@ Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback, f
 
     $.ajax({
      type: "POST",
-     url: "/cgi-bin/saveImage.php?name=" + imageName + rectParams,
+     url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
      data: {
            base64data : imageBase64Data
      },
@@ -977,7 +977,7 @@ Application.prototype.LoadGraphFromDisk = function (graphName)
 
 	$.ajax({
 	type: "GET",
-	url: "/cgi-bin/loadGraph.php?name=" + graphName
+	url: "/" + SiteDir + "cgi-bin/loadGraph.php?name=" + graphName
 	})
 	.done(function( msg ) 
 	{

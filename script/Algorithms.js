@@ -163,7 +163,7 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
 
     $.ajax({
          type: "POST",
-         url: "/cgi-bin/GraphCGI.exe?" + queryString,
+         url: "/" + SiteDir + "cgi-bin/GraphCGI.exe?" + queryString,
          data: xml,
          dataType: "text",
          })

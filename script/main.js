@@ -1,3 +1,6 @@
+
+var SiteDir     = "";
+
 var application = new Application(document, window);
 
 var waitCounter = false;
@@ -548,7 +551,7 @@ function postLoadPage()
                 console.log("Vote" + this["voteIndex"]);
                 $.ajax({
                 type: "GET",
-                url: "/cgi-bin/vote.php?index=" + this["voteIndex"],
+                url: "/" + SiteDir + "cgi-bin/vote.php?index=" + this["voteIndex"],
                 dataType: "text"
                 });
                 $("#voteDialog").dialog('close');
@@ -572,7 +575,7 @@ function postLoadPage()
     
     
     // Get algorithms list and load it.
-    $.get( "/cgi-bin/getPluginsList.php",
+    $.get( "/" + SiteDir + "cgi-bin/getPluginsList.php",
             function( data )
             {
                 var scriptList = JSON.parse(data);
@@ -586,7 +589,7 @@ function postLoadPage()
                     else
                     {
                         var script = document.createElement('script');
-                        script.src = scriptList[0];
+                        script.src = "/" + SiteDir + "script/" + scriptList[0];
                         scriptList.shift();
                         script.onload  = loadOneScript;
                         script.onerror = loadOneScript;

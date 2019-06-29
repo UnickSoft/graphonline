@@ -17,7 +17,7 @@ Server side:
 
 # How to run
 
-1. Download repository to local website folder. It should be placed into root of domen. It can work wrong from subdirectory.
+1. Download repository to local website folder. It should be placed into root of domen. If you want to run graphonline from subdirectory read "Additional steps to run from subdirectory" below.
 2. Change access rights of directory /tmp. PHP scripts need to create and modify files inside it.
 3. Run file from browser: /script/merge.php. It merges all js files into one /script/example.js.
 4. Run file from browser: /cgi-bin/getPluginsList.php?reset. It creates file with list of plug-ins. Just optimization.
@@ -45,6 +45,24 @@ In files:
 /en/wiki/.htaccess
 
 8. Some algorithms use binary CGI file (short-path, Eulerian cycle/path and so on). If you want to run them, you need to compile GraphOffline util: https://github.com/UnickSoft/GraphOffline. And place it with name /cgi-bin/GraphCGI.exe
+
+# Additional steps to run from subdirectory:
+
+For example you place graphonline sources into http://localhost/graph/ directory.
+
+1. Edit .htaccess change RewriteRule to line:
+```
+RewriteRule ^(.*)$ /graph/index.php?q=$1 [L,QSA]
+```
+2. Write your directory name to script\main.j variable SiteDirs:
+```
+var SiteDir     = "graph/";
+```
+3. Write your directory to core config core\config\main.php in line SITE_IN_DIR:
+```
+define('SITE_IN_DIR',   'graph');
+```
+4. Run merge.php to apply changes. Run http://localhost/graph/script/merge.php
 
 # 3th-party
 

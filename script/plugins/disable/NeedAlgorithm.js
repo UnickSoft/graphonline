@@ -69,7 +69,7 @@ NeedAlgorithm.prototype.result = function(resultCallback)
             console.log("Vote" + this["voteIndex"]);
             $.ajax({
             type: "GET",
-            url: "/cgi-bin/vote.php?index=" + this["voteIndex"],
+            url: "/" + SiteDir + "cgi-bin/vote.php?index=" + this["voteIndex"],
             dataType: "text"
             });
             $("#voteDialog").dialog('close');
