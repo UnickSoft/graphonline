@@ -23,6 +23,7 @@ var g_notOrintEdge = "not Orient";
 var g_adjacencyMatrixText = "Adjacency Matrix";
 var g_save   = "Save";
 var g_cancel = "Cancel";
+var g_save_graph = "Save Graph";
 
 var g_shortestDistance = "lowest-distance is ";
 var g_incidenceMatrixText = "Incidence Matrix";
@@ -98,6 +99,9 @@ var g_traversalOrder = "Traversal order: ";
 var g_curveEdge      = "Curved edge";
 
 var g_Undo           = "Undo";
+var g_default        = "default";
+var g_vertexDraw     = "Vertex draw style";
+var g_edgeDraw       = "Edge draw style";
 
 function loadTexts()
 {
@@ -120,9 +124,9 @@ function loadTexts()
 	g_save   = document.getElementById("Save").innerHTML;
 	g_cancel = document.getElementById("Cancel").innerHTML;
 
-        g_shortestDistance = document.getElementById("shortestDist").innerHTML;
+    g_shortestDistance = document.getElementById("shortestDist").innerHTML;
 
-        g_incidenceMatrixText = document.getElementById("IncidenceMatrixText").innerHTML;
+    g_incidenceMatrixText = document.getElementById("IncidenceMatrixText").innerHTML;
 	
 	g_save_dialog = document.getElementById("saveDialogTitle").innerHTML;
 	g_close       = document.getElementById("closeButton").innerHTML;
@@ -196,5 +200,9 @@ function loadTexts()
     
     g_curveEdge = document.getElementById("curveEdge").innerHTML;
     
-    g_Undo = document.getElementById("undoTranslate").innerHTML;
+    g_Undo       = document.getElementById("undoTranslate").innerHTML;
+    g_save_graph = document.getElementById("saveGraph").innerHTML;
+    g_default    = document.getElementById("default").innerHTML;
+    g_vertexDraw = document.getElementById("vertexDrawStyle").innerHTML;
+    g_edgeDraw   = document.getElementById("edgeDrawStyle").innerHTML;
 }

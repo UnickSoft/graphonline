@@ -763,7 +763,7 @@ Graph.prototype.SplitMatrixString = function (line, separator)
 }
 
 
-Graph.prototype.SaveToXML = function ()
+Graph.prototype.SaveToXML = function (additionalData)
 {
 	var mainHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><graphml>";
 	var header   = "<graph id=\"Graph\" uidGraph=\"" + this.uidGraph + "\"" + " uidEdge=\"" + this.uidEdge + "\">";
@@ -783,11 +783,17 @@ Graph.prototype.SaveToXML = function ()
 	}		
 
 	xmlBoby = xmlBoby + "</edges>";
+    
+    additionalField = "";
+    if (additionalData.length > 0)
+    {
+        additionalField = "<additional data=\"" + additionalData + "\"/>"
+    }
 
-	return mainHeader + header + xmlBoby + "</graph></graphml>";
+	return mainHeader + header + xmlBoby + "</graph>" + additionalField + "</graphml>";
 }
 
-Graph.prototype.LoadFromXML = function (xmlText)
+Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 {
 	xmlDoc = $.parseXML( xmlText );
 	var $xml = $( xmlDoc );
@@ -833,6 +839,12 @@ Graph.prototype.LoadFromXML = function (xmlText)
 	});
 
 	this.edges = edges;
+    
+    $additional = $xml.find( "additional" );
+    if ($additional.length != 0 && additionalData != null)
+    {
+        additionalData["data"] = $additional.attr('data');
+    }
 }
 
 Graph.prototype.hasDirectEdge = function ()

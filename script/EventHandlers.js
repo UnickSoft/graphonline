@@ -1100,3 +1100,200 @@ GroupRenameVertices.prototype.show = function()
 		dialogClass: 'EdgeDialog'
 	});
 }
+
+
+/**
+ * Setup Vertex Style rename vertices.
+ *
+ */
+function SetupVertexStyle(app)
+{
+  BaseHandler.apply(this, arguments);
+  this.message = "";	
+}
+
+// inheritance.
+SetupVertexStyle.prototype = Object.create(BaseHandler.prototype);
+
+SetupVertexStyle.prototype.show = function(index)
+{
+	var handler = this;
+	var dialogButtons = {};
+    var graph = this.app.graph;
+    var app   = this.app;
+    var style = Object.assign({}, (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]));
+    
+    var fillFields = function()
+    {
+        $( "#vertexFillColor" ).val(style.fillStyle);
+        $( "#vertexStrokeColor" ).val(style.strokeStyle);
+        $( "#vertexTextColor" ).val(style.mainTextColor);
+        $( "#vertexStrokeSize" ).val(style.lineWidth);
+    }
+    
+    var redrawVertex = function()
+    {
+        style.fillStyle     = $( "#vertexFillColor" ).val();
+        style.strokeStyle   = $( "#vertexStrokeColor" ).val();
+        style.mainTextColor = $( "#vertexTextColor" ).val();
+        style.lineWidth     = $( "#vertexStrokeSize" ).val();
+        
+        var canvas  = document.getElementById( "VertexPreview" );
+        var context = canvas.getContext('2d');    
+        
+        context.save();
+
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        
+        var graphDrawer = new BaseVertexDrawer(context);
+        var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
+        baseVertex.mainText = "1";
+        baseVertex.upText   = "Up Text";
+        
+        graphDrawer.Draw(baseVertex, style);
+        
+        context.restore();
+    }
+    
+    //var dialogButtons = [];
+    
+	dialogButtons[g_default] = 
+           {
+               text    : g_default,
+               class   : "MarginLeft",
+               click   : function() {
+                    app.ResetVertexStyle(index);
+                    app.redrawGraph();
+                    $( this ).dialog( "close" );
+               }
+           };
+    
+	dialogButtons[g_save] = function() {
+                app.SetVertexStyle(index, style);    
+                app.redrawGraph();
+				$( this ).dialog( "close" );					
+			};
+	dialogButtons[g_cancel] = function() {
+				$( this ).dialog( "close" );						
+			};
+    
+    fillFields();
+        
+	$( "#SetupVertexStyleDialog" ).dialog({
+		resizable: false,
+        height: "auto",
+        width:  "auto",
+		modal: true,
+		title: g_vertexDraw,
+		buttons: dialogButtons,
+		dialogClass: 'EdgeDialog'
+	});
+    
+    redrawVertex();
+
+    $( "#vertexFillColor" ).unbind();
+    $( "#vertexStrokeColor" ).unbind();
+    $( "#vertexTextColor" ).unbind();
+    $( "#vertexStrokeSize" ).unbind();
+    
+    $( "#vertexFillColor" ).change(redrawVertex);
+    $( "#vertexStrokeColor" ).change(redrawVertex);
+    $( "#vertexTextColor" ).change(redrawVertex);
+    $( "#vertexStrokeSize" ).change(redrawVertex);
+}
+
+/**
+ * Setup Vertex Style rename vertices.
+ *
+ */
+function SetupEdgeStyle(app)
+{
+  BaseHandler.apply(this, arguments);
+  this.message = "";	
+}
+
+// inheritance.
+SetupEdgeStyle.prototype = Object.create(BaseHandler.prototype);
+
+SetupEdgeStyle.prototype.show = function(index)
+{
+	var handler = this;
+	var dialogButtons = {};
+    var graph = this.app.graph;
+    var app   = this.app;
+    var style = Object.assign({}, (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]));
+    
+    var fillFields = function()
+    {
+        $( "#edgeFillColor" ).val(style.fillStyle);
+        $( "#edgeStrokeColor" ).val(style.strokeStyle);
+        $( "#edgeTextColor" ).val(style.weightText);
+    }
+    
+    var redrawVertex = function()
+    {
+        style.fillStyle     = $( "#edgeFillColor" ).val();
+        style.strokeStyle   = $( "#edgeStrokeColor" ).val();
+        style.weightText    = $( "#edgeTextColor" ).val();
+        
+        var canvas  = document.getElementById( "EdgePreview" );
+        var context = canvas.getContext('2d');    
+        
+        context.save();
+
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        
+        var graphDrawer  = new BaseEdgeDrawer(context);
+        var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
+        var baseVertex2  = new BaseVertex(canvas.width, canvas.height / 2, new BaseEnumVertices(this));
+        var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10);
+        
+        graphDrawer.Draw(baseEdge, style);
+        
+        context.restore();
+    }
+    
+	dialogButtons[g_default] = 
+           {
+               text    : g_default,
+               class   : "MarginLeft",
+               click   : function() {
+                    app.ResetEdgeStyle(index);
+                    app.redrawGraph();
+                    $( this ).dialog( "close" );
+               }
+           };
+    
+	dialogButtons[g_save] = function() {
+                app.SetEdgeStyle(index, style);    
+                app.redrawGraph();
+				$( this ).dialog( "close" );					
+			};
+	dialogButtons[g_cancel] = function() {
+				$( this ).dialog( "close" );						
+			};
+    
+    fillFields();
+        
+	$( "#SetupEdgeStyleDialog" ).dialog({
+		resizable: false,
+        height: "auto",
+        width:  "auto",
+		modal: true,
+		title: g_edgeDraw,
+		buttons: dialogButtons,
+		dialogClass: 'EdgeDialog'
+	});
+    
+    redrawVertex();
+
+    $( "#edgeFillColor" ).unbind();
+    $( "#edgeStrokeColor" ).unbind();
+    $( "#edgeTextColor" ).unbind();
+    
+    $( "#edgeFillColor" ).change(redrawVertex);
+    $( "#edgeStrokeColor" ).change(redrawVertex);
+    $( "#edgeTextColor" ).change(redrawVertex);
+}

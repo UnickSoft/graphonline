@@ -16,13 +16,11 @@ function CommonEdgeStyle()
 
 function CommonPrintEdgeStyle()
 {
+	CommonEdgeStyle.apply(this, arguments);
+    
 	this.strokeStyle = '#000000';
 	this.weightText  = '#000000';
  	this.fillStyle   = '#FFFFFF';
- 	this.textPadding = 4;
-	this.textStrockeWidth = 2;
- 	this.sizeOfLoop = 24;
-	this.loopShiftAngel = Math.PI / 6;
 }
 
 function SelectedEdgeStyle0()

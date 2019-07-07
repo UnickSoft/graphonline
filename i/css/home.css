@@ -240,6 +240,11 @@
     z-index: 10;
 }
 
+.MarginLeft
+{
+    margin-right: 32px !important;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -297,7 +302,6 @@
         max-height:200px;
         max-width:350px;
     }
-
 
 @media only screen and (max-width: 650px) {
     #canvasSection

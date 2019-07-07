@@ -18,7 +18,7 @@
     $g_lang["orint_edge"] = "Ориентированную";
     $g_lang["not_orint_edge"] = "Неориентированную";
     $g_lang["show_adjacency_matrix"] = "Матрица смежности";
-    $g_lang["save"] = "Сохранить граф";
+    $g_lang["save"] = "Сохранить";
     $g_lang["cancel"] = "Отмена";
     $g_lang["adjacency_matrix_description"] = "Задайте матрицу смежности. Используйте запятую \",\" в качестве разделителя";
     $g_lang["adjacency_matrix_bad_format"] = "Мартрица имеет неправильный формат. Используйте запятую \",\" в качестве разделителя. Матрица должна иметь одинаковое количество столбцов и строк.";
@@ -147,4 +147,21 @@
     $g_lang["undo"]             = "Отменить";
 
     $g_lang["opensource_message"] = "Наш проект стал проектом с открытым исходным кодом. Подробнее...";
+
+    $g_lang["settings"] = "Настройки";
+    $g_lang["common_vertex_settings"]   = "Обычных вершин";
+    $g_lang["selected_vertex_settings"] = "Выделенных вершин";
+    $g_lang["common_edge_settings"]     = "Обычных дуг";
+    $g_lang["selected_edge_settings"]   = "Выделенных дуг";
+
+    $g_lang["common_color"] = "Основой цвет";
+    $g_lang["stroke_color"] = "Цвет обводки";
+    $g_lang["stroke_size"]  = "Толщина обводки";
+    $g_lang["text_color"]   = "Цвет текста";
+    $g_lang["save_graph"]   = "Сохранить граф";
+    $g_lang["default"]      = "По умолчанию";
+    $g_lang["vertex_draw_style"] = "Стиль отрисовки вершины";
+    $g_lang["text_background"]   = "Фон текста";
+    $g_lang["edge_draw_style"]   = "Стиль отрисовки дуги";
+
 ?>

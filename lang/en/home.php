@@ -18,7 +18,7 @@
     $g_lang["orint_edge"] = "Directed";
     $g_lang["not_orint_edge"] = "Undirected";
     $g_lang["show_adjacency_matrix"] = "Adjacency Matrix";
-    $g_lang["save"] = "Save graph";
+    $g_lang["save"] = "Save";
     $g_lang["cancel"] = "Cancel";
     $g_lang["adjacency_matrix_description"] = "Setup adjacency matrix. Use comma \",\" as separator";
     $g_lang["adjacency_matrix_bad_format"] = "Matrix is incorrect. Use comma \",\" as separator. Matrix should be square";
@@ -144,4 +144,20 @@
     $g_lang["undo"]             = "Undo";
 
     $g_lang["opensource_message"] = "Our project is now open source. More details...";
+
+    $g_lang["settings"] = "Settings";
+    $g_lang["common_vertex_settings"]   = "Common vertexes";
+    $g_lang["selected_vertex_settings"] = "Selected vertexes";
+    $g_lang["common_edge_settings"]     = "Common edges";
+    $g_lang["selected_edge_settings"]   = "Selected edges";
+
+    $g_lang["common_color"] = "Common Color";
+    $g_lang["stroke_color"] = "Stroke Color";
+    $g_lang["stroke_size"]  = "Thickness";
+    $g_lang["text_color"]   = "Text Color";
+    $g_lang["save_graph"]   = "Save graph";
+    $g_lang["default"]      = "Default";
+    $g_lang["vertex_draw_style"] = "Vertex Style";
+    $g_lang["text_background"]   = "Text background";
+    $g_lang["edge_draw_style"]   = "Edge Style";
 ?>

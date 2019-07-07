@@ -117,6 +117,20 @@
         </div>
 
         <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> <?= L('delete')?> <sub style="color:#AAAAAA">r</sub></span></button>
+            
+            
+        <div class="btn-group hidden-phone" role="group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openSettings">
+            <span class="glyphicon glyphicon-cog fa-fw "></span><span> <?= L('settings')?> </span><span class="caret"></span>
+            </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="Settings">
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyle"><?= L('common_vertex_settings')?></button> </li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyleSelected"><?= L('selected_vertex_settings')?></button> </li>
+                 <li class="divider"></li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyle"><?= L('common_edge_settings')?></button> </li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyleSelected"><?= L('selected_edge_settings')?></button> </li>
+          </ul>
+        </div>
 
 <!--
         <? if (!$wasVote && count($voteTopics) > 0): ?>
@@ -353,6 +367,66 @@
 		</fieldset>
 		</form>
     </div>
+        
+    <div id="SetupVertexStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="vertexFillColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexFillColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexStrokeColor" class="col-sm-5 col-form-label"><?= L('stroke_color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexStrokeColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexStrokeSize" class="col-sm-5 col-form-label"><?= L('stroke_size') ?></label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="VertexPreview" width="300" height="150"></canvas>
+    </div>
+        
+    <div id="SetupEdgeStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="edgeStrokeColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeTextColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeFillColor" class="col-sm-5 col-form-label"><?= L('text_background') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeFillColor" value="#FFAA22">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="EdgePreview" width="300" height="150"></canvas>
+    </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
     <p id="MoveCursorForMoving" class="translation"><?= L('move_cursor_for_moving')?></p>
@@ -448,6 +522,10 @@
 
     <p id="curveEdge" class="translation"><?= L('curve_edge')?></p>
     <p id="undoTranslate" class="translation"><?= L('undo')?></p>
+    <p id="saveGraph" class="translation"><?= L('save_graph')?></p>
+    <p id="default" class="translation"><?= L('default')?></p>
+    <p id="vertexDrawStyle" class="translation"><?= L('vertex_draw_style')?></p>
+    <p id="edgeDrawStyle" class="translation"><?= L('edge_draw_style')?></p>
 
 </section>
 <!--

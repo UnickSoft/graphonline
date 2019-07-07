@@ -5,7 +5,7 @@
 // Common style of Graphs.
 function CommonVertexStyle()
 {
-  this.lineWidth   = 1;
+  this.lineWidth   = 2;
   this.strokeStyle = '#c7b7c7';
   this.fillStyle   = '#68aeba';
   this.mainTextColor = '#f0d543';
@@ -13,7 +13,9 @@ function CommonVertexStyle()
 
 function CommonPrintVertexStyle()
 {
-  this.lineWidth   = 1;
+  CommonVertexStyle.apply(this, arguments);
+    
+  this.lineWidth   = 2;
   this.strokeStyle = '#000000';
   this.fillStyle   = '#FFFFFF';
   this.mainTextColor = '#000000';
@@ -179,7 +181,6 @@ BaseVertexDrawer.prototype.SetupStyle = function(style)
 
 BaseVertexDrawer.prototype.DrawShape = function(baseGraph)
 {
-  this.context.lineWidth    = 2;
   this.context.beginPath();
   this.context.arc(baseGraph.position.x, baseGraph.position.y, baseGraph.model.diameter / 2.0, 0, 2 * Math.PI);
   this.context.closePath();

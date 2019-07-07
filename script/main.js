@@ -412,7 +412,27 @@ function postLoadPage()
         application.SetHandlerMode("default");
         document.getElementById('Default').className = "btn btn-primary btn-sm";
     }
-
+    document.getElementById('SetupVertexStyle').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("setupVertexStyle");
+    }
+    document.getElementById('SetupVertexStyleSelected').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("setupVertexStyleSelected");
+    }
+    document.getElementById('SetupEdgeStyle').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("setupEdgeStyle");
+    }
+    document.getElementById('SetupEdgeStyleSelected').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("setupEdgeStyleSelected");
+    }
+    
     document.getElementById('runUserScript').onclick = function ()
     {
         var el = document.getElementById('userScript');
@@ -471,7 +491,7 @@ function postLoadPage()
     {
         userAction(this.id);
         
-        var graphAsString  = application.graph.SaveToXML();
+        var graphAsString  = application.graph.SaveToXML("");
         var savedGraphName = application.GetNewGraphName();
         
         var element = document.createElement('a');
