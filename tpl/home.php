@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=19")?>" ></script>
+        <script src="<?= Root("script/example.js?v=20")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -129,6 +129,8 @@
                  <li class="divider"></li>
                  <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyle"><?= L('common_edge_settings')?></button> </li>
                  <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyleSelected"><?= L('selected_edge_settings')?></button> </li>
+                 <li class="divider"></li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupBackgroundStyle"><?= L('background_style') ?></button> </li>
           </ul>
         </div>
 
@@ -427,6 +429,27 @@
         
         <canvas id="EdgePreview" width="300" height="150"></canvas>
     </div>
+        
+    <div id="SetupBackgroundStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="bacgkroundColor" class="col-sm-5 col-form-label"><?= L('color') ?></label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="backgroundColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="backgroundTransporent" class="col-sm-5 col-form-label"><?= L('alpha') ?></label>
+            <div class="col-sm-5">
+              <input type="range" min="0" max="1" step="0.1" id="backgroundTransporent">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="BackgroundPreview" width="300" height="150"></canvas>
+    </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
     <p id="MoveCursorForMoving" class="translation"><?= L('move_cursor_for_moving')?></p>
@@ -526,6 +549,8 @@
     <p id="default" class="translation"><?= L('default')?></p>
     <p id="vertexDrawStyle" class="translation"><?= L('vertex_draw_style')?></p>
     <p id="edgeDrawStyle" class="translation"><?= L('edge_draw_style')?></p>
+    <p id="backgroundStyle" class="translation"><?= L('background_style')?></p>
+        
 
 </section>
 <!--

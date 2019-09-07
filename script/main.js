@@ -432,6 +432,11 @@ function postLoadPage()
         userAction(this.id);
         application.SetHandlerMode("setupEdgeStyleSelected");
     }
+    document.getElementById('SetupBackgroundStyle').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("setupBackgroundStyle");
+    }
     
     document.getElementById('runUserScript').onclick = function ()
     {

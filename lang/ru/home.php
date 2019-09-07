@@ -164,4 +164,8 @@
     $g_lang["text_background"]   = "Фон текста";
     $g_lang["edge_draw_style"]   = "Стиль отрисовки дуги";
 
+    $g_lang["color"] = "Цвет";
+    $g_lang["alpha"] = "Прозрачность";
+
+    $g_lang["background_style"] = "Цвет фона";
 ?>

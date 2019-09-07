@@ -41,6 +41,10 @@ function Application(document, window)
     
     this.vertexPrintCommonStyle          = new CommonPrintVertexStyle(); 
     this.vertexPrintSelectedVertexStyles = DefaultPrintSelectedGraphStyles.slice();
+    
+    this.backgroundCommonStyle = new CommonBackgroundStyle();
+    this.backgroundPrintStyle  = new PrintBackgroundStyle(); 
+    this.isBackgroundCommonStyleCustom  = false;
 };
 
 // List of graph.
@@ -137,9 +141,13 @@ Application.prototype._redrawGraph = function()
     var context = this.canvas.getContext('2d');
     
     context.save();
-    context.clearRect(0, 0, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()));
+    
     context.scale(this.canvasScale, this.canvasScale);
     context.translate(this.canvasPosition.x, this.canvasPosition.y);
+    
+    var backgroundDrawer = new BaseBackgroundDrawer(context);
+    
+    backgroundDrawer.Draw(this.backgroundCommonStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), this.canvasPosition, this.canvasScale);
     
     this.RedrawEdges(context);
     this.RedrawNodes(context);
@@ -158,8 +166,12 @@ Application.prototype._OffscreenRedrawGraph = function()
     var context = canvas.getContext('2d');
     
     context.save();
-    context.clearRect(0, 0, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()));
+
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    var backgroundDrawer = new BaseBackgroundDrawer(context);
+    
+    backgroundDrawer.Draw(this.backgroundCommonStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), bbox.minPoint.inverse(), this.canvasScale);
     
     this.RedrawEdges(context);
     this.RedrawNodes(context);
@@ -179,9 +191,11 @@ Application.prototype._PrintRedrawGraph = function()
     
     context.save();
     
-    context.fillStyle = "white";
-    context.fillRect(0, 0, Math.max(canvas.width, this.GetRealWidth()), Math.max(canvas.height, this.GetRealHeight()));
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    var backgroundDrawer = new BaseBackgroundDrawer(context);
+    
+    backgroundDrawer.Draw(this.backgroundPrintStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), bbox.minPoint.inverse(), this.canvasScale);
     
     this.RedrawEdges(context, this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
     this.RedrawNodes(context, this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles);
@@ -657,6 +671,11 @@ Application.prototype.SetHandlerMode = function(mode)
     {
 		var setupEdgeStyle = new SetupEdgeStyle(this);
 		setupEdgeStyle.show(1); 
+    }
+    else if (mode == "setupBackgroundStyle")
+    {
+		var setupBackgroundStyle = new SetupBackgroundStyle(this);
+		setupBackgroundStyle.show();
     }
     else if (g_AlgorithmIds.indexOf(mode) >= 0)
     {
@@ -1305,6 +1324,10 @@ Application.prototype.SaveUserSettings = function()
                      value: this.vertexSelectedVertexStyles,
                      check: this.isVertexSelectedVertexStylesCustom});
     
+    checkValue.push({field: "backgroundCommonStyle",
+                     value: this.backgroundCommonStyle,
+                     check: this.isBackgroundCommonStyleCustom});
+    
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
 
@@ -1358,6 +1381,10 @@ Application.prototype.LoadUserSettings = function(json)
 
     //checkValue.push({field: "vertexPrintSelectedVertexStyles",
     //                 value: this.vertexPrintSelectedVertexStyles});
+    
+    checkValue.push({field: "backgroundCommonStyle",
+                     value: this.backgroundCommonStyle,
+                     check: "isBackgroundCommonStyleCustom"});
     
     var decoderStr = this.DecodeFromHTML(json);
     var parsedSave = JSON.parse(decoderStr);
@@ -1448,3 +1475,16 @@ Application.prototype.ResetEdgeStyle = function (index)
         this.isEdgeSelectedStylesCustom = false;
     }
 }
+
+Application.prototype.SetBackgroundStyle = function (style)
+{
+    this.backgroundCommonStyle         = style;
+    this.isBackgroundCommonStyleCustom = true;
+}
+
+Application.prototype.ResetBackgroundStyle = function ()
+{
+    this.backgroundCommonStyle         = new CommonBackgroundStyle();
+    this.isBackgroundCommonStyleCustom = false;
+}
+

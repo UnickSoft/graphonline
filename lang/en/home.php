@@ -160,4 +160,9 @@
     $g_lang["vertex_draw_style"] = "Vertex Style";
     $g_lang["text_background"]   = "Text background";
     $g_lang["edge_draw_style"]   = "Edge Style";
+
+    $g_lang["color"] = "Color";
+    $g_lang["alpha"] = "Opacity";
+
+    $g_lang["background_style"] = "Background color";
 ?>

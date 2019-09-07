@@ -102,6 +102,7 @@ var g_Undo           = "Undo";
 var g_default        = "default";
 var g_vertexDraw     = "Vertex draw style";
 var g_edgeDraw       = "Edge draw style";
+var g_backgroundStyle = "Bacgkround style";
 
 function loadTexts()
 {
@@ -205,4 +206,6 @@ function loadTexts()
     g_default    = document.getElementById("default").innerHTML;
     g_vertexDraw = document.getElementById("vertexDrawStyle").innerHTML;
     g_edgeDraw   = document.getElementById("edgeDrawStyle").innerHTML;
+    
+    g_backgroundStyle = document.getElementById("backgroundStyle").innerHTML;
 }
