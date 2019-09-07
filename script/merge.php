@@ -11,6 +11,7 @@ file_put_contents($outputFilename, file_get_contents("BaseVertex.js"), FILE_APPE
 file_put_contents($outputFilename, file_get_contents("BaseEdge.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("BaseVertexDrawer.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("BaseEdgeDrawer.js"), FILE_APPEND);
+file_put_contents($outputFilename, file_get_contents("BaseBackgroundDrawer.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("Algorithms.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("EventHandlers.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("GraphMLCreater.js"), FILE_APPEND);

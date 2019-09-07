@@ -1297,3 +1297,87 @@ SetupEdgeStyle.prototype.show = function(index)
     $( "#edgeStrokeColor" ).change(redrawVertex);
     $( "#edgeTextColor" ).change(redrawVertex);
 }
+
+/**
+ * Setup Background Style rename vertices.
+ *
+ */
+function SetupBackgroundStyle(app)
+{
+  BaseHandler.apply(this, arguments);
+  this.message = "";	
+}
+
+// inheritance.
+SetupBackgroundStyle.prototype = Object.create(BaseHandler.prototype);
+
+SetupBackgroundStyle.prototype.show = function()
+{
+	var handler = this;
+	var dialogButtons = {};
+    var graph = this.app.graph;
+    var app   = this.app;
+    var style = Object.assign({}, app.backgroundCommonStyle);
+    
+    var fillFields = function()
+    {
+        $( "#backgroundColor" ).val(style.commonColor);
+        $( "#backgroundTransporent" ).val(style.commonOpacity);
+    }
+    
+    var redrawVertex = function()
+    {
+        style.commonColor     = $( "#backgroundColor" ).val();
+        style.commonOpacity   = $( "#backgroundTransporent" ).val();
+        
+        var canvas  = document.getElementById( "BackgroundPreview" );
+        var context = canvas.getContext('2d');    
+        
+        context.save();
+
+        var backgroundDrawer = new BaseBackgroundDrawer(context);
+        backgroundDrawer.Draw(style, canvas.width, canvas.height, new Point(0, 0), 1.0);
+        
+        context.restore();
+    }
+    
+	dialogButtons[g_default] = 
+           {
+               text    : g_default,
+               class   : "MarginLeft",
+               click   : function() {
+                    app.ResetBackgroundStyle();
+                    app.redrawGraph();
+                    $( this ).dialog( "close" );
+               }
+           };
+    
+	dialogButtons[g_save] = function() {
+                app.SetBackgroundStyle(style);    
+                app.redrawGraph();
+				$( this ).dialog( "close" );
+			};
+	dialogButtons[g_cancel] = function() {
+				$( this ).dialog( "close" );
+			};
+    
+    fillFields();
+        
+	$( "#SetupBackgroundStyleDialog" ).dialog({
+		resizable: false,
+        height: "auto",
+        width:  "auto",
+		modal: true,
+		title: g_backgroundStyle,
+		buttons: dialogButtons,
+		dialogClass: 'EdgeDialog'
+	});
+    
+    redrawVertex();
+
+    $( "#backgroundColor" ).unbind();
+    $( "#backgroundTransporent" ).unbind();
+    
+    $( "#backgroundColor" ).change(redrawVertex);
+    $( "#backgroundTransporent" ).change(redrawVertex);
+}
