@@ -203,8 +203,6 @@ function DefaultHandler(app)
 {
 	BaseHandler.apply(this, arguments);
 	this.message = g_textsSelectAndMove;
-    
-    this.bindedRename   = false;
 }
 
 // inheritance.
@@ -276,19 +274,15 @@ DefaultHandler.prototype.MouseUp = function(pos)
         this.message = g_textsSelectAndMove + " <button type=\"button\" id=\"renameButton\" class=\"btn btn-default btn-xs\" style=\"float:right;z-index:1;position: relative;\">" + g_renameVertex + "</button>";
         
         var handler = this;
-        if (!this.bindedRename)
-        {
-            var callback = function (enumType) {
-                    handler.RenameVertex(enumType.GetVertexText(0));
-                    userAction("RenameVertex");
-            };
-            $('#message').unbind();
-            $('#message').on('click', '#renameButton', function(){
-                            var customEnum =  new TextEnumVertexsCustom();
-                            customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
-                         });
-            this.bindedRename = true;
-        }
+        var callback = function (enumType) {
+                handler.RenameVertex(enumType.GetVertexText(0));
+                userAction("RenameVertex");
+        };
+        $('#message').unbind();
+        $('#message').on('click', '#renameButton', function(){
+                        var customEnum =  new TextEnumVertexsCustom();
+                        customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
+                     });
     }
     else if (this.selectedObject != null && (this.selectedObject instanceof BaseEdge))
     {

@@ -937,7 +937,7 @@ Application.prototype.SaveGraphOnDisk = function ()
                           
 Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 {
-    var imageName = this.GetNewGraphName();
+    var imageName = this.GetNewName();
                           
     this.stopRenderTimer();
     this.redrawGraph();
@@ -978,7 +978,7 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 
 Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback, forPrint)
 {
-    var imageName = this.GetNewGraphName();
+    var imageName = this.GetNewName();
                           
     this.stopRenderTimer();
     var canvas = forPrint ? this._PrintRedrawGraph() : this._OffscreenRedrawGraph();
@@ -1038,6 +1038,19 @@ Application.prototype.LoadGraphFromDisk = function (graphName)
 
 
 Application.prototype.GetNewGraphName = function()
+{
+    var name = this.GetNewName();
+    
+    if (this.isVertexCommonStyleCustom || this.isVertexSelectedVertexStylesCustom || 
+       this.isBackgroundCommonStyleCustom || this.isEdgeCommonStyleCustom || this.isEdgeSelectedStylesCustom)
+    {
+        name = name + "ZZcst";
+    }
+    
+    return name;
+}
+
+Application.prototype.GetNewName = function()
 {
     var name = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
