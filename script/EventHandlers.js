@@ -1143,8 +1143,8 @@ SetupVertexStyle.prototype.show = function(index)
         
         context.save();
 
-        context.fillStyle = "#FFFFFF";
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        var backgroundDrawer = new BaseBackgroundDrawer(context);
+        backgroundDrawer.Draw(app.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer = new BaseVertexDrawer(context);
         var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
@@ -1241,9 +1241,9 @@ SetupEdgeStyle.prototype.show = function(index)
         var context = canvas.getContext('2d');    
         
         context.save();
-
-        context.fillStyle = "#FFFFFF";
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        
+        var backgroundDrawer = new BaseBackgroundDrawer(context);
+        backgroundDrawer.Draw(app.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer  = new BaseEdgeDrawer(context);
         var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
