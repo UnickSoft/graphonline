@@ -104,7 +104,7 @@ MinimumSpanningTree.prototype.resultStartedFrom = function(vertex, connectedVert
                 for (j = 0; j < connectedVertex[element.id].length; j++)
                 {
                     var connectedElement = connectedVertex[element.id][j];
-                    var connectedEdge    = this.graph.FindEdge(element.id, connectedElement.id);
+                    var connectedEdge    = this.graph.FindEdgeMin(element.id, connectedElement.id);
                     if (inTree.indexOf(connectedElement) < 0)
                     {
 						if (minEdge == null || minEdge.weight > connectedEdge.weight)

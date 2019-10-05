@@ -92,7 +92,7 @@ BFSAlgorithm.prototype.bfs = function(vertex, vertexArray, edgeArray)
     for (var i = 0; i < this.graph.vertices.length; i ++)
     {
         var nextVertex = this.graph.vertices[i];
-        var edge       = this.graph.FindEdge(vertex.id, nextVertex.id);
+        var edge       = this.graph.FindEdgeAny(vertex.id, nextVertex.id);
         if (edge && !vertexArray.includes(nextVertex))
         {
             edgeArray.push(edge);
@@ -102,6 +102,12 @@ BFSAlgorithm.prototype.bfs = function(vertex, vertexArray, edgeArray)
     }
     
     return false;
+}
+
+// Algorithm support multi graph
+BFSAlgorithm.prototype.IsSupportMultiGraph = function()
+{
+    return true;
 }
 
 // Factory for connected components.

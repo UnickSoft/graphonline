@@ -14,8 +14,6 @@ function BaseEdge(vertex1, vertex2, isDirect, weight)
     this.isDirect  = isDirect;
     this.weight    = 0;
     this.text      = "";
-    // For direct graph, has pair edge or not.
-    this.hasPair   = false;
     this.useWeight = false;
     this.id        = 0;
     this.model = new EdgeModel();
@@ -32,7 +30,6 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "isDirect=\""   + this.isDirect + "\" " +
 	       "weight=\""     + this.weight   + "\" " +
 	       "useWeight=\""  + this.useWeight + "\" " +
-	       "hasPair=\""    + this.hasPair + "\" " +
 	       "id=\""         + this.id + "\" " +
            "text=\""       + this.text + "\" " +
            "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
@@ -99,33 +96,7 @@ BaseEdge.prototype.HitTest = function (pos)
 
 BaseEdge.prototype.GetEdgePositionsShift = function()
 {
-    var pairShift = this.vertex1.model.diameter * 0.25;
-    var shift     = (this.hasPair ? pairShift : 0);
-    
-    if (shift == 0 || this.model.type == EdgeModels.cruvled)
-    {
-        return this.GetEdgePositions();
-    }
-    else
-    {
-        var position1 = this.vertex1.position;
-        var position2 = this.vertex2.position;
-        var diameter1 = this.vertex1.model.diameter;
-        var diameter2 = this.vertex2.model.diameter;
-        
-        var direction = position1.subtract(position2);
-        direction.normalize(1.0);
-        var normal = direction.normal();
-        direction = direction.multiply(0.5);
-        position1 = position1.subtract(normal.multiply(shift));
-        position2 = position2.subtract(normal.multiply(shift));
-        diameter1 = Math.sqrt(diameter1 * diameter1 - shift * shift);
-        diameter2 = Math.sqrt(diameter2 * diameter2 - shift * shift);
-        var res = [];
-        res.push(position1.subtract(direction.multiply(diameter1)));
-        res.push(position2.subtract(direction.multiply(-diameter2)));
-        return res;
-    }  
+    return this.GetEdgePositions();
 }
 
 BaseEdge.prototype.GetEdgePositions = function()

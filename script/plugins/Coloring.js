@@ -369,6 +369,12 @@ Coloring.prototype.getPriority = function()
     return -9.0;
 }
 
+// Algorithm support multi graph
+Coloring.prototype.IsSupportMultiGraph = function()
+{
+    return true;
+}
+
 
 // Factory for connected components.
 function CreateColoring(graph, app)

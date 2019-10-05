@@ -76,7 +76,7 @@ FindConnectedComponentNew.prototype.calculate = function(fillUpText = false)
                 for (j = 0; j < connectedVertex[stackElement.id].length; j++)
                 {
                     var nextVertex = connectedVertex[stackElement.id][j];
-                    var connectedEdge = this.graph.FindEdge(stackElement.id, nextVertex.id);
+                    var connectedEdge = this.graph.FindEdgeAny(stackElement.id, nextVertex.id);
                     if (stack.indexOf(nextVertex) < 0)
                     {
                         stack.push(nextVertex);
@@ -111,6 +111,12 @@ FindConnectedComponentNew.prototype.getObjectSelectedGroup = function(object)
 FindConnectedComponentNew.prototype.getPriority = function()
 {
     return 0;
+}
+
+// Algorithm support multi graph
+FindConnectedComponentNew.prototype.IsSupportMultiGraph = function()
+{
+    return true;
 }
 
 

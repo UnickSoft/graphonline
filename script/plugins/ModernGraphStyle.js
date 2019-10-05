@@ -182,7 +182,6 @@ ModernGraphStyle.prototype.getObjectSelectedGroup = function(object)
     return 0;
 }
 
-
 // Factory for connected components.
 function CreateAlgorithmModernGraphStyle(graph, app)
 {

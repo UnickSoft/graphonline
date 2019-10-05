@@ -103,7 +103,7 @@ FloidAlgorithm.prototype.resultMatrix = function()
         for (var j = 0; j < this.graph.vertices.length; j ++)
         {
             var v2 = this.graph.vertices[j];
-            var edge = this.graph.FindEdge(v1.id, v2.id);
+            var edge = this.graph.FindEdgeMin(v1.id, v2.id);
             if (edge != null)
             {
                 this.matrix[i][j] = edge.GetWeight();

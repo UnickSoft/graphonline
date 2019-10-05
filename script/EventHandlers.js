@@ -419,7 +419,7 @@ ConnectionGraphHandler.prototype.firstObject = null;
 
 ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
-	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value);
+	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value, $("#RadiosReplaceEdge").prop("checked"));
 	this.SelectFirst();					
 	this.app.NeedRedraw();
 }
@@ -431,6 +431,26 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
         var direct = false;
         var handler = this;
         var dialogButtons = {};
+        
+        if (!this.app.graph.isMulti())
+        {
+            var hasEdge        = this.app.graph.FindEdgeAny(this.firstObject.id, selectedObject.id);
+            var hasReverseEdge = this.app.graph.FindEdgeAny(selectedObject.id, this.firstObject.id);
+
+            if (hasEdge == null && hasReverseEdge == null)
+            {
+                $("#RadiosReplaceEdge").prop("checked", true);
+                $("#NewEdgeAction" ).hide();
+            }
+            else
+                $( "#NewEdgeAction" ).show();
+        }
+        else
+        {
+            $("#RadiosAddEdge").prop("checked", true);
+            $("#NewEdgeAction" ).hide();
+        }
+        
         dialogButtons[g_orintEdge] = function() {
                     handler.AddNewEdge(selectedObject, true);						
                     $( this ).dialog( "close" );					
@@ -635,7 +655,12 @@ ShowAdjacencyMatrix.prototype.show = function()
 
 	$( "#AdjacencyMatrixField" ).val(this.app.GetAdjacencyMatrix());	
 	$( "#BadMatrixFormatMessage" ).hide();
-		
+	
+    if (this.app.graph.isMulti())
+        $( "#AdjacencyMatrixMultiGraphDesc").show();
+    else
+        $( "#AdjacencyMatrixMultiGraphDesc").hide();
+    
 	$( "#adjacencyMatrix" ).dialog({
 		resizable: false,
         height: "auto",
