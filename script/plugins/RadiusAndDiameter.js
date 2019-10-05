@@ -183,7 +183,7 @@ RadiusAndDiameter.prototype.getPathByMatrix = function(adjacencyMatrix, minPathM
             if (minPathMatrix[i][finishNode] == length - adjacencyMatrix[startNode][i] && i != startNode)
             {
                 res.push(vertices[startNode]);
-                res.push(this.graph.FindEdge(vertices[startNode].id, vertices[i].id));
+                res.push(this.graph.FindEdgeMin(vertices[startNode].id, vertices[i].id));
                 
                 length -= adjacencyMatrix[startNode][i];
                 startNode = i;
@@ -193,7 +193,7 @@ RadiusAndDiameter.prototype.getPathByMatrix = function(adjacencyMatrix, minPathM
     }
     
     res.push(vertices[startNode]);
-    res.push(this.graph.FindEdge(vertices[startNode].id, vertices[finishNode].id));
+    res.push(this.graph.FindEdgeMin(vertices[startNode].id, vertices[finishNode].id));
     res.push(vertices[finishNode]);
     
     return res;

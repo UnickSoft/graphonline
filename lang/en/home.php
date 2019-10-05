@@ -165,4 +165,12 @@
     $g_lang["alpha"] = "Opacity";
 
     $g_lang["background_style"] = "Background color";
+
+    $g_lang["adjacency_matrix_multigraph_description"] = "Multigraph matrix contains weight of minimum edges between vertices.";
+
+    $g_lang["graph_is_multi_message"]   = "Multigraph does not support all algorithms";
+    $g_lang["graph_is_general_message"] = "";
+
+    $g_lang["replace_edge"] = "replace current";
+    $g_lang["add_edge"] = "add (multigraph)";
 ?>

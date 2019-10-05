@@ -104,6 +104,9 @@ var g_vertexDraw     = "Vertex draw style";
 var g_edgeDraw       = "Edge draw style";
 var g_backgroundStyle = "Bacgkround style";
 
+var g_GrapsIsMultiMessage   = "Graph is multigraph";
+var g_GrapsIsGeneralMessage = "";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -208,4 +211,7 @@ function loadTexts()
     g_edgeDraw   = document.getElementById("edgeDrawStyle").innerHTML;
     
     g_backgroundStyle = document.getElementById("backgroundStyle").innerHTML;
+    
+    g_GrapsIsMultiMessage   = document.getElementById("graphIsMultiMessage").innerHTML;
+    g_GrapsIsGeneralMessage = document.getElementById("graphIsGeneralMessage").innerHTML;
 }

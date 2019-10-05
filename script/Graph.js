@@ -16,6 +16,8 @@ function Graph()
 	this.uidEdge = 10000;
 	// Has direction edge.
 	this.hasDirect = false;
+    // Is graph multi
+    this.isMultiGraph = false;
 };
 
 // infinity
@@ -37,43 +39,33 @@ Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight)
 	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight));
 }
 
-Graph.prototype.AddNewEdge = function(edge)
+Graph.prototype.AddNewEdge = function(edge, replaceIfExists)
 {
     edge.id = this.uidEdge;
     this.uidEdge = this.uidEdge + 1;
     
-	var edge1      = this.FindEdge(edge.vertex1.id, edge.vertex2.id);
-	var edgeRevert = this.FindEdge(edge.vertex2.id, edge.vertex1.id);
+	var edge1      = this.FindEdgeAny(edge.vertex1.id, edge.vertex2.id);
+	var edgeRevert = this.FindEdgeAny(edge.vertex2.id, edge.vertex1.id);
 	if (!edge.isDirect)
 	{
-		if (edge1 != null)
-		{
+		if (edge1 != null && replaceIfExists)
 			this.DeleteEdge(edge1);
-		}
-		if (edgeRevert != null)
-		{
+		if (edgeRevert != null && replaceIfExists)
 			this.DeleteEdge(edgeRevert);
-		}
+        
 		this.edges.push(edge);
 	}
 	else
 	{
-		if (edge1 != null)
-		{
+		if (edge1 != null && replaceIfExists)
 			this.DeleteEdge(edge1);
-		}
-		if (edgeRevert != null && !edgeRevert.isDirect)
-		{
+		if (edgeRevert != null && !edgeRevert.isDirect && replaceIfExists)
 			this.DeleteEdge(edgeRevert);
-		}
-		else if (edgeRevert != null)		
-		{
-			edgeRevert.hasPair = true;
-			edge.hasPair = true;
-		}
 		
 		this.edges.push(edge);
 	}
+    
+    this.isMultiGraph = this.checkMutiGraph();
 	
 	return this.edges.length - 1;
 }
@@ -84,15 +76,11 @@ Graph.prototype.DeleteEdge = function(edgeObject)
 	var index = this.edges.indexOf(edgeObject);
 	if (index > -1) 
 	{
-		var edgeRevert = this.FindEdge(edgeObject.vertex2.id, edgeObject.vertex1.id);
-		if (edgeRevert != null && edgeRevert.isDirect)
-		{
-			edgeRevert.hasPair = false;
-		}
 		this.edges.splice(index, 1);
 	}
+    
+    this.isMultiGraph = this.checkMutiGraph();
 }
-
 
 Graph.prototype.DeleteVertex = function(vertexObject)
 {
@@ -126,7 +114,13 @@ Graph.prototype.FindVertex = function(id)
 	return res;
 }
 
+// depricated
 Graph.prototype.FindEdge = function(id1, id2)
+{
+	return this.FindEdgeAny(id1, id2);
+}
+
+Graph.prototype.FindEdgeAny = function(id1, id2)
 {
 	var res = null;
 	for (var i = 0; i < this.edges.length; i++)
@@ -142,6 +136,43 @@ Graph.prototype.FindEdge = function(id1, id2)
 	return res;
 }
 
+Graph.prototype.FindEdgeMin = function(id1, id2)
+{
+	var res       = null;
+    var minWeight = this.infinity;
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var edge = this.edges[i];
+		if ((edge.vertex1.id == id1 && edge.vertex2.id == id2)
+		     || (!edge.isDirect && edge.vertex1.id == id2 && edge.vertex2.id == id1))
+		{
+            if (edge.weight < minWeight)
+            {
+                res       = edge;
+                minWeight = edge.weight;
+            }
+		}
+	}
+	
+	return res;
+}
+
+Graph.prototype.FindAllEdges = function(id1, id2)
+{
+	var res       = [];
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var edge = this.edges[i];
+		if ((edge.vertex1.id == id1 && edge.vertex2.id == id2)
+		     || (!edge.isDirect && edge.vertex1.id == id2 && edge.vertex2.id == id1))
+		{
+			res.push(edge);
+		}
+	}
+	
+	return res;
+}
+
 Graph.prototype.GetAdjacencyMatrixStr = function ()
 {
 	var matrix = "";
@@ -149,7 +180,7 @@ Graph.prototype.GetAdjacencyMatrixStr = function ()
 	{
 		for (var j = 0; j < this.vertices.length; j++)
 		{	
-			var edge = this.FindEdge (this.vertices[i].id, this.vertices[j].id);
+			var edge = this.FindEdgeMin (this.vertices[i].id, this.vertices[j].id);
 			if (edge != null)
 			{
 				matrix += edge.weight;
@@ -182,7 +213,7 @@ Graph.prototype.GetAdjacencyMatrix = function ()
         for (var j = 0; j < this.vertices.length; j ++)
         {
             var v2 = this.vertices[j];
-            var edge = this.FindEdge(v1.id, v2.id);
+            var edge = this.FindEdgeMin(v1.id, v2.id);
             if (edge != null)
             {
                 matrix[i][j] = edge.GetWeight();
@@ -845,6 +876,8 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
     {
         additionalData["data"] = $additional.attr('data');
     }
+    
+    this.isMultiGraph = this.checkMutiGraph();
 }
 
 Graph.prototype.hasDirectEdge = function ()
@@ -909,4 +942,76 @@ Graph.prototype.getGraphBBox = function (viewportSize)
     }
     
     return new Rect(pointMin, pointMax);
+}
+
+Graph.prototype.hasPair = function (edge)
+{
+	return this.FindPairFor(edge) != null;
+}
+
+Graph.prototype.FindPairFor = function (edge)
+{
+    var res = this.getNeighbourEdges(edge);
+	
+	return res.length == 1 ? res[0] : null;
+}
+
+Graph.prototype.getNeighbourEdges = function (edge)
+{
+	var res = [];
+    
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var curEdge = this.edges[i];
+        if (curEdge == edge)
+            continue;
+            
+		if ((curEdge.vertex1.id == edge.vertex1.id  && 
+             curEdge.vertex2.id == edge.vertex2.id) ||
+            (curEdge.vertex1.id == edge.vertex2.id  && 
+             curEdge.vertex2.id == edge.vertex1.id))
+		{
+			res.push(curEdge);
+		}
+	}
+	
+	return res;
+}
+
+Graph.prototype.checkMutiGraph = function ()
+{
+	var res = false;
+    
+    var start  = {};
+    
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var edge = this.edges[i];
+        if (start.hasOwnProperty(edge.vertex1.id) && 
+            start[edge.vertex1.id] == edge.vertex2.id)
+        {
+            res = true;
+            break;
+        }
+        
+        start[edge.vertex1.id] = edge.vertex2.id;
+        if (!edge.isDirect)
+        {
+            if (start.hasOwnProperty(edge.vertex2.id) && 
+                start[edge.vertex2.id] == edge.vertex1.id)
+            {
+                res = true;
+                break;
+            }
+            
+            start[edge.vertex2.id] = edge.vertex1.id;
+        }
+	}
+	
+	return res;
+}
+
+Graph.prototype.isMulti = function ()
+{
+	return this.isMultiGraph;
 }

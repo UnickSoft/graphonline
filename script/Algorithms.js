@@ -135,7 +135,11 @@ BaseAlgorithm.prototype.getPriority = function()
     return 0;
 }
 
-
+// Algorithm support multi graph
+BaseAlgorithm.prototype.IsSupportMultiGraph = function()
+{
+    return false;
+}
 
 /**
  * Default handler.

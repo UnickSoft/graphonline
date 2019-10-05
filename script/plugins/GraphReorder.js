@@ -159,6 +159,11 @@ GraphReorder.prototype.getPriority = function()
     return -8.5;
 }
 
+// Algorithm support multi graph
+GraphReorder.prototype.IsSupportMultiGraph = function()
+{
+    return true;
+}
 
 // Factory for connected components.
 function CreateAlgorithmGraphReorder(graph, app)

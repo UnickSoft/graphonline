@@ -150,6 +150,7 @@
     </section>
 
     <section id="canvasSection">
+    <span id="CanvasMessage"></span>    
     <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="glyphicon glyphicon-resize-full fa-fw" id="FullscreenIcon"></span></button>
 	<canvas id="canvas"><?= L('browser_no_support')?></canvas>
     <div id="developerTools" class="well well-sm">
@@ -221,6 +222,20 @@
 			  <span onClick="document.getElementById('EdgeWeight').value='7'; document.getElementById('EdgeWeightSlider').value=7;" style="cursor: pointer"  class="defaultWeigth">7</span>
 			  <span onClick="document.getElementById('EdgeWeight').value='11'; document.getElementById('EdgeWeightSlider').value=11;" style="cursor: pointer"  class="defaultWeigth">11</span>
 			  </div>
+              <div id="NewEdgeAction">
+                <div class="InlineStyle PaddingRight">
+                  <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosReplaceEdge" value="replace" checked>
+                  <label for="RadiosReplaceEdge">
+                    <?= L('replace_edge')?>
+                  </label>
+                </div>
+                <div class="InlineStyle PaddingRight">
+                  <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosAddEdge" value="add">
+                  <label for="RadiosAddEdge" id="RadiosAddEdgeLabel">
+                    <?= L('add_edge')?>
+                  </label>
+                </div>
+              </div>
 		</fieldset>
 		</form>
     </div>
@@ -248,6 +263,7 @@
 		<form>
 		<fieldset>
 				<p><?= L('adjacency_matrix_description')?></p>
+                <p id="AdjacencyMatrixMultiGraphDesc"><?= L('adjacency_matrix_multigraph_description')?></p>
 				<textarea name="adjacencyMatrixField" id="AdjacencyMatrixField" wrap="off"></textarea>
 				<p id="BadMatrixFormatMessage"><?= L('adjacency_matrix_bad_format')?></p>
 		</fieldset>
@@ -551,7 +567,9 @@
     <p id="edgeDrawStyle" class="translation"><?= L('edge_draw_style')?></p>
     <p id="backgroundStyle" class="translation"><?= L('background_style')?></p>
         
-
+    <p id="graphIsMultiMessage" class="translation"><?= L('graph_is_multi_message')?></p>
+    <p id="graphIsGeneralMessage" class="translation"><?= L('graph_is_general_message')?></p>
+        
 </section>
 <!--
 <script>

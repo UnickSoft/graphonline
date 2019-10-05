@@ -91,7 +91,7 @@ DFSAlgorithm.prototype.dfs = function(vertex, vertexArray, edgeArray)
     for (var i = 0; i < this.graph.vertices.length; i ++)
     {
         var nextVertex = this.graph.vertices[i];
-        var edge        = this.graph.FindEdge(vertex.id, nextVertex.id);
+        var edge        = this.graph.FindEdgeAny(vertex.id, nextVertex.id);
         if (edge && !vertexArray.includes(nextVertex))
         {
             edgeArray.push(edge);
@@ -101,6 +101,12 @@ DFSAlgorithm.prototype.dfs = function(vertex, vertexArray, edgeArray)
     }
     
     return false;
+}
+
+// Algorithm support multi graph
+DFSAlgorithm.prototype.IsSupportMultiGraph = function()
+{
+    return true;
 }
 
 // Factory for connected components.

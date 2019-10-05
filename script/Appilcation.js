@@ -79,6 +79,8 @@ Application.prototype.redrawGraph = function()
     if (!this.isTimerRender)
     {
         this._redrawGraph();
+        
+        this.GraphTypeChanged();
     }
 }
 
@@ -417,9 +419,9 @@ Application.prototype.AddNewVertex = function(vertex)
 	return this.graph.AddNewVertex(vertex);
 }
 
-Application.prototype.AddNewEdge = function(edge)
+Application.prototype.AddNewEdge = function(edge, replaceIfExists)
 {
-	return this.graph.AddNewEdge(edge);
+	return this.graph.AddNewEdge(edge, replaceIfExists);
 }
 
 Application.prototype.CreateNewGraph = function(x, y)
@@ -439,20 +441,35 @@ Application.prototype.CreateNewGraphEx = function(x, y, vertexEnume)
     return this.graph.AddNewVertex(new BaseVertex(x, y, vertexEnume));
 }
 
-Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight)
+Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, replaceIfExist)
 {
-	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight));
-    
-    // Make cruvled for pair.
+	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight), replaceIfExist);
+
     var edgeObject = this.graph.edges[edge];
-    if (edgeObject.hasPair)
+    var hasPair    = this.graph.hasPair(edgeObject);
+    var neighbourEdges = this.graph.getNeighbourEdges(edgeObject);
+    
+    if (hasPair)
     {
         if (edgeObject.model.default)
             edgeObject.model.type = EdgeModels.cruvled; 
         
-        var pairEdge = this.FindEdge(graph2.id, graph1.id);
+        var pairEdge = this.graph.FindPairFor(edgeObject);
         if (pairEdge.model.default)
-            pairEdge.model.type = EdgeModels.cruvled; 
+        {
+            pairEdge.model.type = EdgeModels.cruvled;
+            if (pairEdge.vertex1 == edgeObject.vertex1 && pairEdge.vertex2 == edgeObject.vertex2)
+                pairEdge.model.curvedValue = -pairEdge.model.curvedValue;
+        }
+    }
+    else if (neighbourEdges.length >= 2)
+    {
+        var cruvled = this.GetAvalibleCruvledValue(neighbourEdges, edgeObject);
+        if (edgeObject.model.default)
+        {
+            edgeObject.model.type        = EdgeModels.cruvled;
+            edgeObject.model.curvedValue = cruvled;
+        }
     }
     
     return edge;
@@ -462,16 +479,18 @@ Application.prototype.DeleteEdge = function(edgeObject)
 {
     var vertex1 = edgeObject.vertex1;
     var vertex2 = edgeObject.vertex2;
-    var hasPair = edgeObject.hasPair;
+    
+    var hasPair = this.graph.hasPair(edgeObject);
     
 	this.graph.DeleteEdge(edgeObject);
     
     // Make line for pair.
     if (hasPair)
     {
-        var edgeObject = this.FindEdge(vertex2.id, vertex1.id);
-        if (edgeObject.model.default)
-            edgeObject.model.type = EdgeModels.line;
+        var pairEdges = this.FindAllEdges(vertex2.id, vertex1.id);
+        
+        if (pairEdges.length == 1 && pairEdges[0].model.default)
+            pairEdges[0].model.type = EdgeModels.line;
     }
 }
 
@@ -506,6 +525,16 @@ Application.prototype.FindVertex = function(id)
 Application.prototype.FindEdge = function(id1, id2)
 {
 	return this.graph.FindEdge(id1, id2);
+}
+
+Application.prototype.FindEdgeAny = function(id1, id2)
+{
+	return this.graph.FindEdgeAny(id1, id2);
+}
+
+Application.prototype.FindAllEdges = function(id1, id2)
+{
+	return this.graph.FindAllEdges(id1, id2);
 }
 
 Application.prototype.FindPath = function(graph1, graph2)
@@ -1501,3 +1530,39 @@ Application.prototype.ResetBackgroundStyle = function ()
     this.isBackgroundCommonStyleCustom = false;
 }
 
+Application.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
+{
+    var values = [];
+    
+    for (var i = 0; i < neighbourEdges.length; i ++)
+    {
+      var edge          = neighbourEdges[i];
+      var sameDirection = (originalEdge.vertex1.id == edge.vertex1.id);
+      if (edge.model.type == EdgeModels.cruvled)
+      {
+        values[(sameDirection ? edge.model.curvedValue : -edge.model.curvedValue)] = true;
+      }
+    }
+    
+    var changeValue  = DefaultHandler.prototype.curvedValue;
+    var defaultValue = 0.0;
+    var maxSearch    = 10;
+    
+    for (var i = 1; i < maxSearch; i ++)
+    {
+        value = i * changeValue;
+        if (!values.hasOwnProperty(value))
+            return value;
+
+        value = - i * changeValue;
+        if (!values.hasOwnProperty(value))
+            return value;
+    }
+    
+    return defaultValue;
+}
+
+Application.prototype.GraphTypeChanged = function()
+{
+    $("#CanvasMessage").text(this.graph.isMulti() ? g_GrapsIsMultiMessage : g_GrapsIsGeneralMessage);
+}

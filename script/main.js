@@ -126,6 +126,21 @@ function createAlgorithmMenu()
             application.SetHandlerMode(this.id);
         }
         
+        var eventData = {};
+        eventData.index     = i;
+        eventData.object    = clone;
+        eventData.algorithm = algorithm;
+        
+        $("#openAlgorithmList").bind('click', eventData, function (_eventData) {
+            var data      = _eventData.data;
+            var algorithm = g_Algorithms[g_AlgorithmIds.indexOf(data.algorithm.id)](application.graph, application);
+            
+            if (application.graph.isMulti() && !algorithm.IsSupportMultiGraph())
+              $(data.object).hide();
+            else
+              $(data.object).show();
+          });
+        
         list.appendChild(clone);
         index++;
     }

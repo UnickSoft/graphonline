@@ -168,4 +168,12 @@
     $g_lang["alpha"] = "Прозрачность";
 
     $g_lang["background_style"] = "Цвет фона";
+
+    $g_lang["adjacency_matrix_multigraph_description"] = "Для мультиграфа матрица содержит значения минимальных дуг между вершинами.";
+
+    $g_lang["replace_edge"] = "заменить текущую";
+    $g_lang["add_edge"] = "добавить (мультиграф)";
+
+    $g_lang["graph_is_multi_message"]   = "Мультиграф не поддерживает все алгоритмы";
+    $g_lang["graph_is_general_message"] = "";
 ?>

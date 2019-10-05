@@ -163,7 +163,7 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
     
   if (baseEdge.GetText().length > 0)
   {
-	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, baseEdge.hasPair);
+	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, false);
   }
 }
 
@@ -274,7 +274,7 @@ BaseEdgeDrawer.prototype.GetTextCenterPoint = function (position1, position2, ha
   }
     
   var textShift   = Math.min(12 / position1.subtract(position2).length(), 0.4);
-  var centerPoint = Point.interpolate(position1, position2, 0.5 + (hasPair ? textShift : 0));
+  var centerPoint = Point.interpolate(position1, position2, 0.5);
   if (position1.equals(position2))
   {
     centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;

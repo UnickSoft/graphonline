@@ -240,6 +240,20 @@
     z-index: 10;
 }
 
+#CanvasMessage
+{
+    position: absolute;
+    right: 48px;
+    z-index: 10;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 .MarginLeft
 {
     margin-right: 32px !important;
@@ -325,4 +339,19 @@
     {
         min-width: 0px;
     }
+}
+
+.InlineStyle
+{
+    display:inline;
+}
+
+.PaddingRight
+{
+    padding-right: 8px;
+}
+
+#NewEdgeAction
+{
+    padding-top: 8px;
 }
