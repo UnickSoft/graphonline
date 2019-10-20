@@ -34,9 +34,9 @@ Graph.prototype.AddNewVertex = function(vertex)
 	return this.vertices.length - 1;
 }
 
-Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight)
+Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight, replaceIfExists = true)
 {
-	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight));
+	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight), replaceIfExists);
 }
 
 Graph.prototype.AddNewEdge = function(edge, replaceIfExists)
@@ -519,7 +519,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 				
 				if (cols[i][j] > 0)
 				{
-					var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[i], this.vertices[j], cols[i][j] != cols[j][i], cols[i][j]);
+					var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[i], this.vertices[j], cols[i][j] != cols[j][i], cols[i][j], true);
                     if (nEdgeIndex >= 0)
                     {
                         bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
@@ -669,7 +669,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 				}
                 
                 var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[edgeIndex[0]], this.vertices[edgeIndex[1]],
-                                                     edgeValue[0] != edgeValue[1], Math.abs(edgeValue[1]));
+                                                     edgeValue[0] != edgeValue[1], Math.abs(edgeValue[1]), false);
                 if (nEdgeIndex >= 0)
                 {
                     bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
