@@ -348,16 +348,6 @@
        <div id="matrixErrorInc" class="translation">
 	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
-
-	<div id="incidenceMatrix">
-		<form>
-		<fieldset>
-				<p><?= L('incidence_matrix_description')?></p>				
-				<textarea name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
-				<p id="BadIncidenceMatrixFormatMessage"><?= L('incidence_matrix_bad_format')?></p>
-		</fieldset>
-		</form>
-    </div>
         
 	<div id="voteDialog">
 		<form>
