@@ -34,7 +34,7 @@ In files:
 /wiki/local/config.php
 /en/wiki/local/config.php
 
-7. Maybe you need to disable autoredirect to https. Commends lines:
+7. Maybe you need to disable autoredirect to https. Comments or remove lines:
 ```
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
