@@ -40,15 +40,18 @@ GraphMLCreater.prototype.GetXMLString = function()
 	}		
 	for (var i = 0; i < this.arcs.length; i++)
 	{
-		var weightData = "";
+	    var weightData = "";
+	    var arc = this.arcs[i];
+
 		if (this.arcs[i].weight != defaultWeight)
 		{
-			weightData = "<data key="+ weightKeyId + ">"+ this.arcs[i].weight + "</data>";
+		    weightData = "<data key=" + weightKeyId + ">" + arc.weight + "</data>";
 		}
 
-		xmlBoby = xmlBoby + "<edge source=\"" + this.arcs[i].vertex1.id + "\" target=\""
-			+ this.arcs[i].vertex2.id + "\" "+
-			(this.arcs[i].isDirect != hasDirected ? (hasDirected ? "directed=\"false\"" : "directed=\"true\"") : "");
+		xmlBoby = xmlBoby + "<edge source=\"" + arc.vertex1.id + "\" target=\""
+			+ arc.vertex2.id + "\" " +
+			(arc.isDirect != hasDirected ? (hasDirected ? "directed=\"false\"" : "directed=\"true\"") : "") +
+		    " id=\"" + arc.id + "\"";
 			
 		xmlBoby = xmlBoby +	((weightData != "") ? ">" + weightData + "</edge>" : "/>")
 	}	

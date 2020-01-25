@@ -103,7 +103,16 @@ Application.prototype.redrawGraphTimer = function()
             var i = 0
             for (i = 0; i < this.renderPath.length - 1; i++)
             {
-                var edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+                var edge = null;
+                if (this.renderMinPath)
+                {
+                    edge = this.graph.FindEdgeMin(this.renderPath[i], this.renderPath[i + 1]);
+                }
+                else
+                {
+                    edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+                }
+                    
                 currentLength += edge.GetPixelLength();
                 if (currentLength > this.renderPathCounter)
                 {
@@ -120,7 +129,15 @@ Application.prototype.redrawGraphTimer = function()
                 this.renderPathLoops += 1;
             }
             
-            var edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+            var edge = null;
+            if (this.renderMinPath)
+            {
+                edge = this.graph.FindEdgeMin(this.renderPath[i], this.renderPath[i + 1]);
+            }
+            else
+            {
+                edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+            }
             
             var progress = (this.renderPathCounter - currentLength) / edge.GetPixelLength();
             
@@ -239,9 +256,10 @@ Application.prototype.stopRenderTimer = function()
     }
 }
 
-Application.prototype.setRenderPath = function(renderPath)
+Application.prototype.setRenderPath = function(renderPath, renderMinPath)
 {
-    this.renderPath = renderPath;
+    this.renderPath    = renderPath;
+    this.renderMinPath = renderMinPath;
     
     if (this.renderPath.length > 0)
     {
@@ -535,68 +553,6 @@ Application.prototype.FindEdgeAny = function(id1, id2)
 Application.prototype.FindAllEdges = function(id1, id2)
 {
 	return this.graph.FindAllEdges(id1, id2);
-}
-
-Application.prototype.FindPath = function(graph1, graph2)
-{
-	var creator = new GraphMLCreater(this.graph.vertices, this.graph.edges);
-	var app = this;
-
-	$.ajax({
-	type: "POST",
-	url: "/" + SiteDir + "cgi-bin/GraphCGI.exe?dsp=cgiInput&start=" + graph1.id + "&finish=" + graph2.id + "&report=xml",
-	data: creator.GetXMLString(),
-	dataType: "text"
-	})
-	.done(function( msg ) 
-	{		
-		$('#debug').text(msg);
-		xmlDoc = $.parseXML( msg );
-		var $xml = $( xmlDoc );
-		
-		$nodes = $xml.find( "node" );	
-		
-		var pathObjects = new Array();
-		var shortDistObjects = {};
-		
-		$nodes.each(function(){
-			var id = $(this).attr('id');
-			$data = $(this).find("data");
-			$data.each(function(){
-				if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
-				{
-					pathObjects.push(app.FindVertex(id));  
-				}
-				if ("lowestDistance" == $(this).attr('key'))
-				{
-					shortDistObjects[id] = $(this).text();
-				}
-			});
-		});
-		
-		$edges = $xml.find( "edge" );
-		
-		$edges.each(function(){
-			var source = $(this).attr('source');
-			var target = $(this).attr('target');
-			pathObjects.push(app.FindEdge(source, target));
-		});
-		
-		var $graph = $xml.find( "graph" );
-		$graph.each(function(){
-			var shortPathResult = $(this).attr('result');
-			app.handler.SetShortPath(shortPathResult);
-		});
-		
-		app.handler.SetObjects(pathObjects);
-		app.handler.SetShortDist(shortDistObjects);
-
-		app.redrawGraph();
-		app.updateMessage();
-	});
-  
-    // return empty, will set later.
-	return [];
 }
 
 Application.prototype.SetHandlerMode = function(mode)
@@ -1270,7 +1226,7 @@ Application.prototype.resultCallback = function(paths)
     console.log(paths);
     if ((paths instanceof Object) && "paths" in paths)
     {
-        this.setRenderPath(paths["paths"][0]);
+        this.setRenderPath(paths["paths"][0], "minPath" in paths);
     }
     this.updateMessage();
     this.redrawGraph();

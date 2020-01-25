@@ -73,6 +73,7 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
     
     var result = {};
     result["version"] = 1;
+    result["minPath"] = true;
 
     return result;
 }
@@ -143,6 +144,12 @@ MinimumSpanningTree.prototype.getObjectSelectedGroup = function(object)
 MinimumSpanningTree.prototype.getPriority = function()
 {
     return -9.5;
+}
+
+// Algorithm support multi graph
+MinimumSpanningTree.prototype.IsSupportMultiGraph = function ()
+{
+    return true;
 }
 
 

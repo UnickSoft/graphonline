@@ -120,6 +120,21 @@ Graph.prototype.FindEdge = function(id1, id2)
 	return this.FindEdgeAny(id1, id2);
 }
 
+Graph.prototype.FindEdgeById = function(edgeId)
+{
+    var res = null;
+    for (var i = 0; i < this.edges.length; i++)
+    {
+        if (this.edges[i].id == edgeId)
+        {
+            res = this.edges[i];
+            break;
+        }
+    }
+	
+    return res;
+}
+
 Graph.prototype.FindEdgeAny = function(id1, id2)
 {
 	var res = null;
