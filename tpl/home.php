@@ -173,6 +173,7 @@
     </section>
 
 <? if (L('current_language') == "ru" && false): ?>
+<!--
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
 
     <a class="ProgresssBarLink" href="/donate" target="_blank">
@@ -181,6 +182,7 @@
         <span class="ProgressBarText" style="top:-28px"><p>Поддержите наш проект: сбор средств добавления новых алгоритмов.</p></span>
     </div>
     </a>
+-->
 <!-- Yandex.RTB R-A-202319-1 -->
 <!--
 <div style="text-align:center;">
@@ -205,7 +207,9 @@
     })(this, this.document, "yandexContextAsyncCallbacks");
 </script>
 -->
+<!--
     </section>
+-->
 <? endif; ?>
     <section class="translation">
     <div id="addEdge">

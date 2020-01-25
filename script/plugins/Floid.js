@@ -53,6 +53,7 @@ FloidAlgorithm.prototype.result = function(resultCallback)
     // Remove all edges.
     this.egdesCopy = this.graph.edges.slice();
     this.removeAllEdges();
+    this.isGraphMulti = this.graph.isMulti();
     
     this.graph.hasDirect = false;
     
@@ -206,7 +207,13 @@ FloidAlgorithm.prototype.restore = function()
     
     for (var i = 0; i < this.egdesCopy.length; i ++)
     {
-        this.graph.AddNewEdgeSafe(this.egdesCopy[i].vertex1, this.egdesCopy[i].vertex2, this.egdesCopy[i].isDirect, this.egdesCopy[i].weight);
+        var edge = this.graph.AddNewEdgeSafe(this.egdesCopy[i].vertex1,
+            this.egdesCopy[i].vertex2,
+            this.egdesCopy[i].isDirect,
+            this.egdesCopy[i].weight,
+            this.isGraphMulti);
+
+        //edge.model = this.egdesCopy[i].model;
     }
 }
 
@@ -214,6 +221,12 @@ FloidAlgorithm.prototype.updateMessage = function(save)
 {
     this.message = g_graphOfMinDist + " <label style=\"margin-bottom: 0px\">" + g_checkToSave + " <input id=\"saveFloidGraph\" type=\"checkbox\"" + (save ? "checked" : "") + "></label>" +
         "<button type=\"button\" class=\"btn btn-default btn-xs\" id=\"showFloidMatrix\" style=\"float:right\">" + g_showDistMatrix + "</button>"
+}
+
+// Algorithm support multi graph
+FloidAlgorithm.prototype.IsSupportMultiGraph = function ()
+{
+    return false;
 }
 
 // Factory for connected components.

@@ -55,6 +55,7 @@ FindShortPathNew.prototype.resultCallback = function(pathObjects, properties, re
 {
     var outputResult = {};
     outputResult["version"] = 1;
+    outputResult["minPath"] = true;
     
     this.pathObjects = pathObjects;
     this.properties = properties;
@@ -203,6 +204,12 @@ FindShortPathNew.prototype.updateUpText = function()
 FindShortPathNew.prototype.getPriority = function()
 {
     return -10;
+}
+
+// Algorithm support multi graph
+FindShortPathNew.prototype.IsSupportMultiGraph = function ()
+{
+    return true;
 }
 
 

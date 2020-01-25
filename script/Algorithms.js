@@ -219,7 +219,11 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
         $edges.each(function(){
                         var source = $(this).attr('source');
                         var target = $(this).attr('target');
-                        var edge   = graph.FindEdge(source, target);
+                        var edge = graph.FindEdge(source, target);
+                        if (typeof $(this).attr('id') !== 'undefined')
+                        {
+                            edge = graph.FindEdgeById($(this).attr('id'));
+                        }
                         pathObjects.push(edge);
             
                         $data = $(this).find("data");
