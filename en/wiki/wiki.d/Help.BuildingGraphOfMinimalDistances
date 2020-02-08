@@ -1,0 +1,17 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1522844318
+description=Building graph of minimal distances using the Floyd–Warshall algorithm Graph Online
+host=37.146.182.20
+name=Help.BuildingGraphOfMinimalDistances
+rev=1
+targets=
+text=(:Title Building graph of minimal distances:)%0a(:Description Building graph of minimal distances using the Floyd–Warshall algorithm Graph Online:)%0a%0a!! Graph of minimal distances%0a%0aThe graph of minimal distances is a graph which weight of the arch between two vertexes equals the minimal distance between the vertexes of the initial graph. An adjacency matrix of the graph of the minimal distances will be the matrix of the minimal distances of the initial graph.%0a%0a!! Searching algorithm%0a%0aWe use the Floyd–Warshall algorithm to find minimal distances between all the pairs of vertexes. %0a[[https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm]]. %0a%0a!! How to use Floyd–Warshall algorithm%0a%0a* Choose “Algorithms” in the menu bar and then “The Floyd–Warshall algorithm”.%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/minDistGraph.gif%0a%0a* If you want to work with a distance matrix, then push “Show distance matrix” button.%0a%0a* If you wish to save the result, then put a tick near the text “Press for saving”.
+time=1522844318
+title=Building graph of minimal distances
+author:1522844318=
+diff:1522844318:1522844318:=1,21d0%0a%3c (:Title Building graph of minimal distances:)%0a%3c (:Description Building graph of minimal distances using the Floyd–Warshall algorithm Graph Online:)%0a%3c %0a%3c !! Graph of minimal distances%0a%3c %0a%3c The graph of minimal distances is a graph which weight of the arch between two vertexes equals the minimal distance between the vertexes of the initial graph. An adjacency matrix of the graph of the minimal distances will be the matrix of the minimal distances of the initial graph.%0a%3c %0a%3c !! Searching algorithm%0a%3c %0a%3c We use the Floyd–Warshall algorithm to find minimal distances between all the pairs of vertexes. %0a%3c [[https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm]]. %0a%3c %0a%3c !! How to use Floyd–Warshall algorithm%0a%3c %0a%3c * Choose “Algorithms” in the menu bar and then “The Floyd–Warshall algorithm”.%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/minDistGraph.gif%0a%3c %0a%3c * If you want to work with a distance matrix, then push “Show distance matrix” button.%0a%3c %0a%3c * If you wish to save the result, then put a tick near the text “Press for saving”.%0a\ No newline at end of file%0a
+host:1522844318=37.146.182.20

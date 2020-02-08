@@ -1,15 +1,22 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
-author=Zaiyah
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
+author=
 charset=UTF-8
-csum=pKWCtX9tVo
+csum=
 ctime=1471539859
-host=188.143.232.32
+description=How to find connected component using Graph Online
+host=37.146.179.134
 name=Help.FindConnectedComponent
-rev=7
+passwdattr=@lock
+passwdedit=@lock
+rev=9
 targets=
-text=I found myself nodding my noggin all the way %3ca href="http://dymhdevwber.com">thuhgro.%3c/a>
-time=1485188765
+text=(:Title Find connected component :)%0a(:Description How to find connected component using Graph Online:)%0a%0a!! Connected component%0a%0aConnected component is highly connected subgraph of the graph. Thus, every graph may be divided to several connected components.%0a%0a!! Find connected components%0a%0aIn order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a unique number. %0a%0ahttp://graphonline.ru/tmp/saved/XU/XUoFkErYflWXnqGO.png%0a%0a!! Algorithm%0a%0aGraph Online finds connected component for non-oriented graphs and it finds weakly connected component for oriented graphs. Breadth-first search is used for search. Implementation on JavaScript could be seen here: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a
+time=1495230220
+title=Find connected component
+author:1495230173=
+diff:1495230173:1485188765:=1,16c1%0a%3c (:Title Find connected component :)%0a%3c (:Description How to find connected component using Graph Online:)%0a%3c %0a%3c !! Connected component%0a%3c %0a%3c Connected component is highly connected subgraph of the graph. Thus, every graph may be divided to several connected components.%0a%3c %0a%3c !! Find connected components%0a%3c %0a%3c In order to find connected components you have to choose Algorithms -> Find connected components in the menu bar. You will see the result immediately. Distinct connected components will be marked with distinct colours and will have a unique number. %0a%3c %0a%3c http://graphonline.ru/tmp/saved/XU/XUoFkErYflWXnqGO.png%0a%3c %0a%3c !! Algorithm%0a%3c %0a%3c Graph Online finds connected component for non-oriented graphs and it finds weakly connected component for oriented graphs. Breadth-first search is used for search. Implementation on JavaScript could be seen here: http://graphonline.ru/script/plugins/ConnectedComponent.js%0a---%0a> I found myself nodding my noggin all the way %3ca href="http://dymhdevwber.com">thuhgro.%3c/a>%0a\ No newline at end of file%0a
+host:1495230173=37.146.179.134
 author:1485188765=Zaiyah
 csum:1485188765=pKWCtX9tVo
 diff:1485188765:1485016511:=1c1%0a%3c I found myself nodding my noggin all the way %3ca href="http://dymhdevwber.com">thuhgro.%3c/a>%0a\ No newline at end of file%0a---%0a> Articles like these put the consumer in the driver seat-very %3ca href="http://tbdmnndsq.com">imttpoanr.%3c/a>%0a\ No newline at end of file%0a

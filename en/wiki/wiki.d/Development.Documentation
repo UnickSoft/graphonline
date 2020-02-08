@@ -1,17 +1,18 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 OPR/39.0.2256.71
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
 author=
 charset=UTF-8
 csum=
 ctime=1473362491
 description=API documentation about creating own algorithm for  GraphOnline.ru.
-host=82.145.220.103
+host=37.146.179.134
 name=Development.Documentation
-rev=6
+passwdedit=@lock
+rev=7
 targets=
 text=(:Title Documentation about creating of algorithm :)%0a(:Description API documentation about creating own algorithm for  GraphOnline.ru.:)%0a%0a!! Documentation about creating of algorithm Graphonline%0a%0aFull documentation you can download using this link [[Attach: GraphonlineAPI10En.pdf|documentaion]].
-time=1473520488
-title=Documentation about creating of algorithm 
+time=1495230366
+title=Documentation about creating of algorithm
 author:1473520488=
 diff:1473520488:1473362816:=2c2%0a%3c (:Description API documentation about creating own algorithm for  GraphOnline.ru.:)%0a---%0a> (:Summary: API documentation about creating own algorithm for  GraphOnline.ru.:)%0a
 host:1473520488=82.145.220.103

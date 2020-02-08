@@ -1,0 +1,20 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1522845041
+description=Organize the graph and place it on the two-dimentional serface
+host=37.146.182.20
+name=Help.OrganizeTheGraph
+rev=2
+targets=
+text=(:Title Organize the graph:)%0a(:Description Organize the graph and place it on the two-dimentional serface:)%0a%0a%0a!!! Algorithm%0a%0aOrganizing is such graph placement on the two-dimentional subspace when minimization of crossing of arches and vertexes occurs.%0a%0aPlease note that sometimes the algorithm doesn’t work perfectly.%0a%0aIn order to use the algorithm choose “Algorithms” in the menu bar and then “Organize the graph”.%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/reorder_graph.gif
+time=1522845135
+title=Organize the graph
+author:1522845135=
+diff:1522845135:1522845041:=1c1%0a%3c (:Title Organize the graph:)%0a---%0a> (:Title Упорядочить граф:)%0a
+host:1522845135=37.146.182.20
+author:1522845041=
+diff:1522845041:1522845041:=1,13d0%0a%3c (:Title Упорядочить граф:)%0a%3c (:Description Organize the graph and place it on the two-dimentional serface:)%0a%3c %0a%3c %0a%3c !!! Algorithm%0a%3c %0a%3c Organizing is such graph placement on the two-dimentional subspace when minimization of crossing of arches and vertexes occurs.%0a%3c %0a%3c Please note that sometimes the algorithm doesn’t work perfectly.%0a%3c %0a%3c In order to use the algorithm choose “Algorithms” in the menu bar and then “Organize the graph”.%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/reorder_graph.gif%0a\ No newline at end of file%0a
+host:1522845041=37.146.182.20

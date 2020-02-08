@@ -1,17 +1,18 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
 author=
 charset=UTF-8
 csum=
 ctime=1471354262
-description=How to save graph in Graph Online 
-host=128.68.33.133
+description=How to save graph in Graph Online
+host=37.146.179.134
 name=Help.SaveGraph
-rev=4
+passwdedit=@lock
+rev=5
 targets=
 text=(:Title Save graph :)%0a(:Description How to save graph in Graph Online :)%0a%0a!! Save graph %0a%0aChoosing Graph in the menu bar and then Save, you will save a graph on the server. At the same time you will see this popup window:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_31_40.png%0a%0aThe link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/en/?graph=FXsDdtxEEWZVWLoZ]]%0a%0a%0a!! How to save the image of the graph %0a%0aIf you choose Graph -> Save image in the menu bar, you will save the image of the graph on the server. In the popup window:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_32_34.png%0a%0aYou may save the image into a file or post it on the social media.  Here is an example:%0a%0ahttp://graphonline.ru/tmp/saved/qr/qrtLnAMVnkRHwkKF.png
-time=1471637564
-title=Save graph 
+time=1495230355
+title=Save graph
 author:1471637564=
 diff:1471637564:1471358850:=10c10%0a%3c The link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/en/?graph=FXsDdtxEEWZVWLoZ]]%0a---%0a> The link could be sent to your email or you may post it on the social media. Here is the example: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a
 host:1471637564=128.68.33.133

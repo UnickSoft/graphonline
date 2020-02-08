@@ -1,0 +1,20 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1521665253
+description=Как найти минимальное остовное дерево используя сервис graphonline.ru 
+host=37.146.182.20
+name=Help.FindMinimumSpanningTree
+rev=2
+targets=
+text=(:Title Find Minimum Spanning Tree :)%0a(:Description Как найти минимальное остовное дерево используя сервис graphonline.ru :)%0a%0a!! Minimum Spanning Tree%0a%0aMinimum spanning tree (or minimum weight spanning tree) in a connected weighted undirected graph is a spanning tree of that graph which has a minimum possible weight. The weight of a tree means a sum of the edges’ weights. %0a%0aIn other words, minimum spanning tree is a subgraph which contains all the vertexes of the original graph, while the sum of the arcs’ weights is minimal.%0a%0a!! Algorithm usage examples%0a%0aWith the help of the searching algorithm of a minimum spanning tree, one can calculate %0aminimal road construction or network costs. %0a%0a!! Searching algorithm %0a%0aWe use [[https://en.wikipedia.org/wiki/Prim%2527s_algorithm | Prim’s algorithm]] for searching. %0a%0a!! How to use%0a%0a# Create a graph.%0a# Choose “Algorithms” in the menu bar then “Find minimum spanning tree”.%0a%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/MinSpanningTree.gif%0a
+time=1521665268
+title=Find Minimum Spanning Tree 
+author:1521665268=
+diff:1521665268:1521665253:=23d22%0a%3c %0a
+host:1521665268=37.146.182.20
+author:1521665253=
+diff:1521665253:1521665253:=1,24d0%0a%3c (:Title Find Minimum Spanning Tree :)%0a%3c (:Description Как найти минимальное остовное дерево используя сервис graphonline.ru :)%0a%3c %0a%3c !! Minimum Spanning Tree%0a%3c %0a%3c Minimum spanning tree (or minimum weight spanning tree) in a connected weighted undirected graph is a spanning tree of that graph which has a minimum possible weight. The weight of a tree means a sum of the edges’ weights. %0a%3c %0a%3c In other words, minimum spanning tree is a subgraph which contains all the vertexes of the original graph, while the sum of the arcs’ weights is minimal.%0a%3c %0a%3c !! Algorithm usage examples%0a%3c %0a%3c With the help of the searching algorithm of a minimum spanning tree, one can calculate %0a%3c minimal road construction or network costs. %0a%3c %0a%3c !! Searching algorithm %0a%3c %0a%3c We use [[https://en.wikipedia.org/wiki/Prim%2527s_algorithm | Prim’s algorithm]] for searching. %0a%3c %0a%3c !! How to use%0a%3c %0a%3c # Create a graph.%0a%3c # Choose “Algorithms” in the menu bar then “Find minimum spanning tree”.%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/MinSpanningTree.gif%0a
+host:1521665253=37.146.182.20

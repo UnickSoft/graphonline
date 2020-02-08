@@ -1,0 +1,17 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1522849817
+description=Calculate vertexes degree with Graph Online
+host=37.146.182.20
+name=Help.CalculateVertexesDegree
+rev=1
+targets=
+text=(:Title Calculate vertexes degree:)%0a(:Description Calculate vertexes degree with Graph Online:)%0a%0a!!! Vertexes degree%0a%0aVertexes degree for undirected graph is the number of arches entering or coming from the vertex.%0a%0aFor directed graph Graph Online will calculate the number of arches coming from the vertex.%0a%0aIn order to use the algorithm choose “Algorithms” in the menu bar and then “Calculate vertexes degree”%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/vertex_degree.gif%0a%0aVertexes degree will appear above every vertex. The vertexes of the same degree will be of the same colour. 
+time=1522849817
+title=Calculate vertexes degree
+author:1522849817=
+diff:1522849817:1522849817:=1,14d0%0a%3c (:Title Calculate vertexes degree:)%0a%3c (:Description Calculate vertexes degree with Graph Online:)%0a%3c %0a%3c !!! Vertexes degree%0a%3c %0a%3c Vertexes degree for undirected graph is the number of arches entering or coming from the vertex.%0a%3c %0a%3c For directed graph Graph Online will calculate the number of arches coming from the vertex.%0a%3c %0a%3c In order to use the algorithm choose “Algorithms” in the menu bar and then “Calculate vertexes degree”%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/vertex_degree.gif%0a%3c %0a%3c Vertexes degree will appear above every vertex. The vertexes of the same degree will be of the same colour. %0a\ No newline at end of file%0a
+host:1522849817=37.146.182.20

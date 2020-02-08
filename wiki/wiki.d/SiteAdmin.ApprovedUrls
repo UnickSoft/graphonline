@@ -1,13 +1,16 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
 author=
 charset=UTF-8
 ctime=1430481717
-host=37.146.179.134
+host=37.146.182.20
 name=SiteAdmin.ApprovedUrls
-rev=7
-text=%0a  http://www.pmwiki.org%0a  http://graphonline.ru%0a  http://images.unick-soft.ru%0a  https://ru.wikipedia.org%0a  https://github.com%0a  https://www.youtube.com%0a
-time=1488401158
+rev=8
+text=%0a  http://www.pmwiki.org%0a  http://graphonline.ru%0a  http://images.unick-soft.ru%0a  https://ru.wikipedia.org%0a  https://github.com%0a  https://www.youtube.com%0a  http://admin@graphonline.ru%0a
+time=1521487169
+author:1521487169=
+diff:1521487169:1488401158:=8d7%0a%3c   http://admin@graphonline.ru%0a
+host:1521487169=37.146.182.20
 author:1488401158=
 diff:1488401158:1488401129:=7d6%0a%3c   https://www.youtube.com%0a
 host:1488401158=37.146.179.134

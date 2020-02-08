@@ -1,16 +1,17 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
 author=
 charset=UTF-8
 csum=
 ctime=1470437183
 description=How to add directed line to Graph Online
-host=128.68.33.133
+host=37.146.179.134
 name=Help.AddDirectedLine
-rev=3
+passwdedit=@lock
+rev=4
 targets=
 text=(:Title Add Directed Line:)%0a(:Description How to add directed line to Graph Online:)%0a%0a!!! Directed Line%0a%0aDirected line connects vertices. Directed line may have weight or could be unweighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a%0a%0a!!! How to add directed line%0a%0aIn order to add a directed line you have to choose "Connect vertices" in the menu bar. Then you should select starting vertex and click on the finishing vertex. Thus, you will see the table:%0a%0ahttp://images.unick-soft.ru/photos/share/create_edge.png%0a%0aYou can enter the weight of the directed line or choose unweighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a%0aVarious types of directed lines:%0a%0ahttp://images.unick-soft.ru/photos/share/edges_types.png%0a%0a!!! How to erase a directed line%0a%0aIn order to delete a directed line you have to click on "Delete" button and then click on a directed line. %0a
-time=1471028803
+time=1495230302
 title=Add Directed Line
 author:1471028803=
 diff:1471028803:1470942694:=6,8c6,8%0a%3c Directed line connects vertices. Directed line may have weight or could be unweighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a%3c %0a%3c %0a---%0a> Directed line connects vertices. Directed line may have weight or could be non-weighted. Directed lines can be directed graph and ordinary (undirected) graph.%0a> %0a> %0a15c15%0a%3c You can enter the weight of the directed line or choose unweighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a---%0a> You can enter the weight of the directed line or choose non-weighted edge. Then you have to click on the "Oriented" or "Non-oriented" button to create the directed line, which corresponds to your demand.%0a

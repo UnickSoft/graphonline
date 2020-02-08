@@ -1,0 +1,17 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1522849414
+description=Visualization based on weights Definie the size of the vertexes depending on the exponent and the arches’ thickness depending on the weight
+host=37.146.182.20
+name=Help.VisualizationBasedOnWeights
+rev=1
+targets=
+text=(:Title Visualization based on weights:)%0a(:Description Visualization based on weights Definie the size of the vertexes depending on the exponent and the arches’ thickness depending on the weight:)%0a%0a%0a!!! Visualization based on weights%0a%0aGraph visualization can be more informative if more valued vertexes and arches are bigger and thicker. Visualization on the basis of weights defines the size of the vertexes depending on the exponent and the arches’ thickness depending on the weight.%0a%0aIn order to use the algorithm choose “Algorithms” in the menu bar and then “Visualization based on the weight”.%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/graph_moden_vis.gif%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/graph_moder_vis.png
+time=1522849414
+title=Visualization based on weights
+author:1522849414=
+diff:1522849414:1522849414:=1,13d0%0a%3c (:Title Visualization based on weights:)%0a%3c (:Description Visualization based on weights Definie the size of the vertexes depending on the exponent and the arches’ thickness depending on the weight:)%0a%3c %0a%3c %0a%3c !!! Visualization based on weights%0a%3c %0a%3c Graph visualization can be more informative if more valued vertexes and arches are bigger and thicker. Visualization on the basis of weights defines the size of the vertexes depending on the exponent and the arches’ thickness depending on the weight.%0a%3c %0a%3c In order to use the algorithm choose “Algorithms” in the menu bar and then “Visualization based on the weight”.%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/graph_moden_vis.gif%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/graph_moder_vis.png%0a\ No newline at end of file%0a
+host:1522849414=37.146.182.20

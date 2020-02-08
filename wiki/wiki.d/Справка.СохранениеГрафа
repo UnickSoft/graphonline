@@ -1,19 +1,22 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 OPR/45.0.2552.898
 author=
 charset=UTF-8
 csum=
 ctime=1446748131
 description=Как сохранить граф в Граф Онлайн
-host=128.68.33.133
+host=37.146.179.134
 name=Справка.СохранениеГрафа
 passwdattr=$2y$10$Jd2AI/IMLuzQEeGbohU5OuiX8wRYAMXCdRliOXmfhJxz5qVlTAt5G
 passwdedit=$2y$10$I7MAXJSQ3rrpexLkvJ6ZkuJqxNNZxmZGTtUOcRkVGjF4/kDb6kFfi
-rev=7
+rev=8
 targets=
-text=(:Title Сохранение графа :)%0a(:Description Как сохранить граф в Граф Онлайн:)%0a%0a!! Сохранение графа%0a%0aВыбрав пункт меню Граф -> Сохранить, вы автоматически сохраните граф на сервере. При этом вы увидите диалоговое окно:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_31_40.png%0a%0aСсылку на граф вы можете отправить себе на почту или опубликовать в социальных сетях. Пример ссылки на Граф: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a%0a%0a!! Сохранение изображения графа%0a%0aЕсли вы выберете пункт меню Граф -> сохранить изображение, вы сохраните изображение графа на сервере. В открывшемся диалоге:%0a%0ahttp://images.unick-soft.ru/photos/share/2016_01_22_15_32_34.png%0a%0aВы можете сохранить изображение в файл или опубликовать в социальных сетях. Пример изображения графа:%0a%0ahttp://graphonline.ru/tmp/saved/qr/qrtLnAMVnkRHwkKF.png
-time=1470512368
+text=(:Title Сохранение графа :)%0a(:Description Как сохранить граф в Граф Онлайн:)%0a%0a!! Сохранение графа%0a%0aВыбрав пункт меню Граф -> Сохранить, вы автоматически сохраните граф на сервере. При этом вы увидите диалоговое окно:%0a%0aAttach:saveGraph.png%0a%0aСсылку на граф вы можете отправить себе на почту или опубликовать в социальных сетях. Пример ссылки на Граф: [[http://graphonline.ru/?graph=FXsDdtxEEWZVWLoZ]]%0a%0a%0a!! Сохранение изображения графа%0a%0aЕсли вы выберете пункт меню Граф -> сохранить изображение, вы сохраните изображение графа на сервере. В открывшемся диалоге:%0a%0aAttach:saveImage.png%0a%0aВы можете сохранить изображение в файл или опубликовать в социальных сетях. Пример изображения графа:%0a%0ahttp://graphonline.ru/tmp/saved/qr/qrtLnAMVnkRHwkKF.png
+time=1498295780
 title=Сохранение графа 
+author:1498295780=
+diff:1498295780:1470512368:=8,9c8,9%0a%3c Attach:saveGraph.png%0a%3c %0a---%0a> http://images.unick-soft.ru/photos/share/2016_01_22_15_31_40.png%0a> %0a17c17%0a%3c Attach:saveImage.png%0a---%0a> http://images.unick-soft.ru/photos/share/2016_01_22_15_32_34.png%0a
+host:1498295780=37.146.179.134
 author:1470512368=
 diff:1470512368:1469301124:=4,5c4,5%0a%3c !! Сохранение графа%0a%3c %0a---%0a> !!! Сохранение графа%0a> %0a13c13%0a%3c !! Сохранение изображения графа%0a---%0a> !!! Сохранение изображения графа%0a
 host:1470512368=128.68.33.133

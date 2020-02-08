@@ -1,0 +1,16 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+author=Johnette
+charset=UTF-8
+csum=UVvCXeSM
+ctime=1499557594
+host=46.161.14.99
+name=Cookbook.Cookbook
+rev=1
+targets=
+text=Walking in the precnese of giants here. Cool thinking all around!
+time=1499557594
+author:1499557594=Johnette
+csum:1499557594=UVvCXeSM
+diff:1499557594:1499557594:=1d0%0a%3c Walking in the precnese of giants here. Cool thinking all around!%0a\ No newline at end of file%0a
+host:1499557594=46.161.14.99

@@ -1,16 +1,17 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
 author=
 charset=UTF-8
 csum=
 ctime=1471353416
 description=How to drag and drop vertices in Graph Online
-host=128.68.33.133
+host=37.146.179.134
 name=Help.DragAndDrop
-rev=2
+passwdedit=@lock
+rev=3
 targets=
 text=(:Title Drag and drop:)%0a(:Description How to drag and drop vertices in Graph Online:)%0a%0aIn order to drag a vertex you have to choose "Drag and drop"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a%0ahttp://images.unick-soft.ru/photos/share/Capture03_2.gif
-time=1471450741
+time=1495230265
 title=Drag and drop
 author:1471450741=
 diff:1471450741:1471353416:=4c4%0a%3c In order to drag a vertex you have to choose "Drag and drop"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a---%0a> In order to drag a vertex you have to choose "Drag"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a

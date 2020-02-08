@@ -1,18 +1,21 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 OPR/45.0.2552.898
 author=
 charset=UTF-8
 csum=
 ctime=1450780092
 description=Как перемещать вершины Граф Онлайн
-host=141.0.12.129
+host=37.146.179.134
 name=Справка.ПеремещениеВершин
 passwdedit=$2y$10$6SnS2GJtpsUw6jZKfFvhXed9dNVP0TNC/xsOwKPA2a.MBHWK.KnyC
-rev=5
+rev=6
 targets=
-text=(:Title Перемещение вершин:)%0a(:Description Как перемещать вершины Граф Онлайн:)%0a%0aДля перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и, выделяя вершины, перетаскивать их. Дуги будут перемещаться за вершинами.%0a%0ahttp://images.unick-soft.ru/photos/share/Capture03_2.gif
-time=1469300846
+text=(:Title Перемещение вершин:)%0a(:Description Как перемещать вершины Граф Онлайн:)%0a%0aДля перемещения вам необходимо выбрать инструмент "Перемещение" и, выделяя вершины, перетаскивать их. Дуги будут перемещаться за вершинами.%0a%0aAttach:moveObjects.gif%0a
+time=1498295569
 title=Перемещение вершин
+author:1498295569=
+diff:1498295569:1469300846:=4,6c4,6%0a%3c Для перемещения вам необходимо выбрать инструмент "Перемещение" и, выделяя вершины, перетаскивать их. Дуги будут перемещаться за вершинами.%0a%3c %0a%3c Attach:moveObjects.gif%0a---%0a> Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и, выделяя вершины, перетаскивать их. Дуги будут перемещаться за вершинами.%0a> %0a> http://images.unick-soft.ru/photos/share/Capture03_2.gif%0a\ No newline at end of file%0a
+host:1498295569=37.146.179.134
 author:1469300846=
 diff:1469300846:1453210500:=4c4%0a%3c Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и, выделяя вершины, перетаскивать их. Дуги будут перемещаться за вершинами.%0a---%0a> Для перемещения вам необходимо выбрать инструмент "Перемещение" http://images.unick-soft.ru/photos/share/moveNode.png и выделяя вершины перетаскивать их. Дуги будут перемещаться за вершинами.%0a
 host:1469300846=141.0.12.129

@@ -1,0 +1,17 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36 OPR/51.0.2830.62
+author=
+charset=UTF-8
+csum=
+ctime=1522850263
+description=Searching for graph’s radius and diameter and central and peripheral vertexes
+host=37.146.182.20
+name=Help.SearchingForGraph’sRadiusAndDiameter
+rev=1
+targets=
+text=(:Title Searching for graph’s radius and diameter:)%0a(:Description Searching for graph’s radius and diameter and central and peripheral vertexes:)%0a%0a!! Specifications%0a%0a'''The eccentricity of a graph vertex''' is the maximum distance till the distant vertex.%0a%0a'''The radius of a graph''' is the minimum eccentricity among all the vertexes of a graph.%0a%0a'''The diameter of a graph''' is the longest distance among all the pairs of the graph’s vertexes.%0a%0a'''The central vertex of a graph''' is the vertex which eccentricity equals the graph’s radius.%0a%0a'''The peripheral vertex of a graph''' is the vertex which eccentricity equals the graph’s diameter. %0a%0a!! Searching for radius and diameter%0a%0aGraph Online allows users to find radius and diameter. Moreover, it will point out the central and peripheral vertexes. In order to do it choose “Algorithms” and then “Search graph radius and diameter”.%0a%0ahttp://graphonline.ru/wiki/uploads/Справка/radiusAndDiameter.gif%0a%0aImplementation of the algorithm for JavaScript could be found at http://graphonline.ru/script/plugins/RadiusAndDiameter.js%0a%0a
+time=1522850263
+title=Searching for graph’s radius and diameter
+author:1522850263=
+diff:1522850263:1522850263:=1,23d0%0a%3c (:Title Searching for graph’s radius and diameter:)%0a%3c (:Description Searching for graph’s radius and diameter and central and peripheral vertexes:)%0a%3c %0a%3c !! Specifications%0a%3c %0a%3c '''The eccentricity of a graph vertex''' is the maximum distance till the distant vertex.%0a%3c %0a%3c '''The radius of a graph''' is the minimum eccentricity among all the vertexes of a graph.%0a%3c %0a%3c '''The diameter of a graph''' is the longest distance among all the pairs of the graph’s vertexes.%0a%3c %0a%3c '''The central vertex of a graph''' is the vertex which eccentricity equals the graph’s radius.%0a%3c %0a%3c '''The peripheral vertex of a graph''' is the vertex which eccentricity equals the graph’s diameter. %0a%3c %0a%3c !! Searching for radius and diameter%0a%3c %0a%3c Graph Online allows users to find radius and diameter. Moreover, it will point out the central and peripheral vertexes. In order to do it choose “Algorithms” and then “Search graph radius and diameter”.%0a%3c %0a%3c http://graphonline.ru/wiki/uploads/Справка/radiusAndDiameter.gif%0a%3c %0a%3c Implementation of the algorithm for JavaScript could be found at http://graphonline.ru/script/plugins/RadiusAndDiameter.js%0a%3c %0a
+host:1522850263=37.146.182.20
