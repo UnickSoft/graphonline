@@ -42,16 +42,18 @@ BaseHandler.prototype.SetObjects = function(objects)
 BaseHandler.prototype.GetSelectedGraph = function(pos)
 {
 	// Selected Graph.
+    var res = null;
     for (var i = 0; i < this.app.graph.vertices.length; i ++)
     {
 		if (this.app.graph.vertices[i].position.distance(pos) < this.app.graph.vertices[i].model.diameter / 2.0)
 		{
-            return this.app.graph.vertices[i];
+            // Select last of them.
+            res = this.app.graph.vertices[i];
 		}
 	}
 
 	
-	return null;
+	return res;
 }
 
 BaseHandler.prototype.GetSelectedArc = function(pos)

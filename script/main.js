@@ -277,12 +277,13 @@ function postLoadPage()
         {
             selectHandler('DeleteObject', 'delete');
         }
-        else if (key == 'n' || key == 'т') // new
-        {
-            userAction('NewGraph_shortcut');
-			application.SetHandlerMode("deleteAll");
-            application.SetDefaultTransformations();
-        }
+        // Disabled becase it is easy to lose graph, when you press miss letter.
+        //else if (key == 'n' || key == 'т') // new
+        //{
+        //    userAction('NewGraph_shortcut');
+		//	application.SetHandlerMode("deleteAll");
+        //    application.SetDefaultTransformations();
+        //}
         else if (key == 'm' || key == 'ь') // move
         {
             selectHandler('Default', 'default');

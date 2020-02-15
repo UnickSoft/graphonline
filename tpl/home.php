@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=23")?>" ></script>
+        <script src="<?= Root("script/example.js?v=24")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -35,7 +35,7 @@
 			<span class="glyphicon glyphicon-cog fa-fw"></span><span class="hidden-phone"> <?= L('graph')?> </span><span class="caret"></span></button>
     			<ul class="dropdown-menu" role="menu">
       				<li>
-                        <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> <?= L('new_graph')?> <span style="float:right">n</span></button>
+                        <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> <?= L('new_graph')?> </button>
 				</li>
 				<li class="divider"></li>
       				<li>
