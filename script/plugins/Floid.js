@@ -207,11 +207,15 @@ FloidAlgorithm.prototype.restore = function()
     
     for (var i = 0; i < this.egdesCopy.length; i ++)
     {
-        var edge = this.graph.AddNewEdgeSafe(this.egdesCopy[i].vertex1,
+        var edgeIndex = this.graph.AddNewEdgeSafe(this.egdesCopy[i].vertex1,
             this.egdesCopy[i].vertex2,
             this.egdesCopy[i].isDirect,
             this.egdesCopy[i].weight,
             this.isGraphMulti);
+        
+        var edge = this.graph.edges[edgeIndex];
+        edge.model.type        = this.egdesCopy[i].model.type;
+        edge.model.curvedValue = this.egdesCopy[i].model.curvedValue;
 
         //edge.model = this.egdesCopy[i].model;
     }
@@ -226,7 +230,7 @@ FloidAlgorithm.prototype.updateMessage = function(save)
 // Algorithm support multi graph
 FloidAlgorithm.prototype.IsSupportMultiGraph = function ()
 {
-    return false;
+    return true;
 }
 
 // Factory for connected components.
