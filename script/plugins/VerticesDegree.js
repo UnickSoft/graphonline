@@ -37,21 +37,45 @@ VerticesDegree.prototype.result = function(resultCallback)
     
     var result = {};
     result["version"] = 1;
-    this.degree = getVertexToVertexArray(this.graph, false);
+
     var graph = this.graph;
+    var thisObj = this;
+    
+    var addDegreeToVertex = function (id)
+    {
+        if (thisObj.degree.hasOwnProperty(id))
+        {
+            thisObj.degree[id] ++;
+            currentDegree = thisObj.degree[id];
+            thisObj.maxDegree = Math.max(thisObj.maxDegree, currentDegree);
+        }
+        else
+        {
+            thisObj.degree[id] = 1;      
+        }
+    }
+    
+    for (var i = 0; i < graph.edges.length; i++)
+    {
+        var edge          = graph.edges[i];
+        var currentDegree = 0;
+        
+        addDegreeToVertex(edge.vertex1.id);
+        if (!edge.isDirect)
+        {
+            addDegreeToVertex(edge.vertex2.id);
+        }
+    }
     
     for (var i = 0; i < graph.vertices.length; i++)
     {
-        var vertex = graph.vertices[i];
-        var currentDegree = 0;
-        
-        if (this.degree.hasOwnProperty(vertex.id))
+        var vertex    = graph.vertices[i];
+        if (!this.degree.hasOwnProperty(vertex.id))
         {
-            currentDegree = this.degree[vertex.id].length;
-            this.maxDegree = Math.max(this.maxDegree, currentDegree);
+            this.degree[vertex.id] = 0;  
         }
         
-        vertex.upText = currentDegree;
+        vertex.upText = this.degree[vertex.id];
     }
 
     return result;
@@ -59,9 +83,14 @@ VerticesDegree.prototype.result = function(resultCallback)
 
 VerticesDegree.prototype.getObjectSelectedGroup = function(object)
 {
-    return (this.degree.hasOwnProperty(object.id)) ? this.degree[object.id].length: 0;
+    return (this.degree.hasOwnProperty(object.id)) ? this.degree[object.id]: 0;
 }
 
+// Algorithm support multi graph
+VerticesDegree.prototype.IsSupportMultiGraph = function ()
+{
+    return true;
+}
 
 // Factory for connected components.
 function CreateAlgorithmVerticesDegree(graph, app)
