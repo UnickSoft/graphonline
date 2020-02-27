@@ -215,6 +215,12 @@ RadiusAndDiameter.prototype.getPriority = function()
     return 0;
 }
 
+// Algorithm support multi graph
+RadiusAndDiameter.prototype.IsSupportMultiGraph = function ()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmRadiusAndDiameter(graph, app)
 {
