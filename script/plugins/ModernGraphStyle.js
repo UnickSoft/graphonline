@@ -182,6 +182,12 @@ ModernGraphStyle.prototype.getObjectSelectedGroup = function(object)
     return 0;
 }
 
+// Algorithm support multi graph
+ModernGraphStyle.prototype.IsSupportMultiGraph = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmModernGraphStyle(graph, app)
 {
