@@ -866,11 +866,11 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 	$nodes = $xml.find( "node" );	
 
 	var vertexs = [];
-	
+    
 	$nodes.each(function(){
 		var vertex = new BaseVertex();
 		vertex.LoadFromXML($(this));
-		vertexs.push(vertex);
+        vertexs.push(vertex);
 	});
 	this.vertices = vertexs;
 
@@ -1030,3 +1030,14 @@ Graph.prototype.isMulti = function ()
 {
 	return this.isMultiGraph;
 }
+
+Graph.prototype.isNeedReposition = function ()
+{
+    var res = false;
+	for (var i = 0; i < this.vertices.length; i++)
+	{
+		res = res || this.vertices[i].IsUndefinedPosition();
+	}
+    return res;
+}
+

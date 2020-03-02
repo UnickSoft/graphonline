@@ -851,7 +851,6 @@ Application.prototype.Test = function ()
 }
 
 
-
 Application.prototype.SetAdjacencyMatrixSmart = function (matrix, separator)
 {
     if (separator === undefined) 
@@ -1002,6 +1001,10 @@ Application.prototype.LoadGraphFromString = function (str)
         this.LoadUserSettings(userSettings["data"]);
     this.SetDefaultTransformations();
     this.graph = graph;
+    if (this.graph.isNeedReposition())
+    {
+        this.graph.VertexesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices); 
+    }
     this.AutoAdjustViewport();
     this.updateMessage();
     this.redrawGraph();   

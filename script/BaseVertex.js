@@ -12,6 +12,7 @@ function BaseVertex(x, y, vertexEnumType)
     this.upText   = "";
     this.vertexEnumType = vertexEnumType;
     this.model    = new VertexModel();
+    this.hasUndefinedPosition = false;
 };
 
 BaseVertex.prototype.position = new Point(0, 0);
@@ -30,10 +31,18 @@ BaseVertex.prototype.SaveToXML = function ()
 
 BaseVertex.prototype.LoadFromXML = function (xml)
 {
-    this.position = new Point(parseFloat(xml.attr('positionX')), parseFloat(xml.attr('positionY')));
-    this.id       = parseInt(xml.attr('id'));
+    var xmlX = xml.attr('positionX');
+    var xmlY = xml.attr('positionY');
+    this.hasUndefinedPosition = (typeof xmlX === 'undefined') || (typeof xmlY === 'undefined');
+    this.position = new Point(parseFloat(xmlX), parseFloat(xmlY));
+    this.id       = xml.attr('id');
     this.mainText = xml.attr('mainText');
     this.upText   = xml.attr('upText');
+    
+    if (typeof this.mainText === 'undefined')
+      this.mainText = this.id;
+    if (typeof this.upText === 'undefined')
+      this.upText = "";
 }
 
 BaseVertex.prototype.SetId = function (id)
@@ -45,4 +54,9 @@ BaseVertex.prototype.SetId = function (id)
 BaseVertex.prototype.diameterFactor = function ()
 {
     return 1.0 + (this.mainText.length ? this.mainText.length / 8.0 : 0);
+}
+
+BaseVertex.prototype.IsUndefinedPosition = function ()
+{
+    return this.hasUndefinedPosition;
 }

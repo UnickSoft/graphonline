@@ -25,8 +25,8 @@ function BaseEdge(vertex1, vertex2, isDirect, weight)
 BaseEdge.prototype.SaveToXML = function ()
 {
 	return "<edge " + 
-	       "vertex1=\""     + this.vertex1.id   + "\" " +
-	       "vertex2=\""     + this.vertex2.id   + "\" " +
+	       "source=\""     + this.vertex1.id   + "\" " +
+	       "target=\""     + this.vertex2.id   + "\" " +
 	       "isDirect=\""   + this.isDirect + "\" " +
 	       "weight=\""     + this.weight   + "\" " +
 	       "useWeight=\""  + this.useWeight + "\" " +
@@ -41,14 +41,26 @@ BaseEdge.prototype.SaveToXML = function ()
 BaseEdge.prototype.LoadFromXML = function (xml, graph)
 {
     var attr       =    xml.attr('vertex1');
-	this.vertex1   =    graph.FindVertex(parseInt(typeof attr !== 'undefined' ? attr : xml.attr('graph1')));
+    if (typeof attr === 'undefined')
+    {
+        attr = xml.attr('source');
+    }
+	this.vertex1   =    graph.FindVertex(typeof attr !== 'undefined' ? attr : xml.attr('graph1'));
     var attr       =    xml.attr('vertex2');
-	this.vertex2   =    graph.FindVertex(parseInt(typeof attr !== 'undefined' ? attr : xml.attr('graph2')));
+    if (typeof attr === 'undefined')
+    {
+        attr = xml.attr('target');
+    }
+	this.vertex2   =    graph.FindVertex(typeof attr !== 'undefined' ? attr : xml.attr('graph2'));
 	this.isDirect  =    xml.attr('isDirect') == "true";
 	this.weight    =    parseFloat(xml.attr('weight'));
+    if (isNaN(this.weight))
+    {
+        this.weight = 1;        
+    }
 	this.hasPair   =    xml.attr('hasPair') == "true";
 	this.useWeight =    xml.attr('useWeight') == "true";
-    this.id        =    parseInt(xml.attr('id'));
+    this.id        =    xml.attr('id');
     this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
     this.arrayStyleStart      =   xml.attr("arrayStyleStart") == null ? "" : xml.attr("arrayStyleStart");
     this.arrayStyleFinish      =  xml.attr("arrayStyleFinish") == null ? "" : xml.attr("arrayStyleFinish");
