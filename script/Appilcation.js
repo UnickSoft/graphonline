@@ -45,6 +45,7 @@ function Application(document, window)
     this.backgroundCommonStyle = new CommonBackgroundStyle();
     this.backgroundPrintStyle  = new PrintBackgroundStyle(); 
     this.isBackgroundCommonStyleCustom  = false;
+    this.renderPathWithEdges = false;
 };
 
 // List of graph.
@@ -104,7 +105,12 @@ Application.prototype.redrawGraphTimer = function()
             for (i = 0; i < this.renderPath.length - 1; i++)
             {
                 var edge = null;
-                if (this.renderMinPath)
+                if (this.renderPathWithEdges)
+                {
+                    edge = this.graph.FindEdgeById(this.renderPath[i + 1]);
+                    i++;
+                }
+                else if (this.renderMinPath)
                 {
                     edge = this.graph.FindEdgeMin(this.renderPath[i], this.renderPath[i + 1]);
                 }
@@ -124,13 +130,21 @@ Application.prototype.redrawGraphTimer = function()
             if (i >= this.renderPath.length - 1)
             {
                 i = 0;
+                if (this.renderPathWithEdges)
+                    i = 1;
                 this.renderPathCounter = 0;
                 currentLength = 0;
                 this.renderPathLoops += 1;
             }
             
             var edge = null;
-            if (this.renderMinPath)
+            var currentVertexId = this.renderPath[i];
+            if (this.renderPathWithEdges)
+            {
+                edge = this.graph.FindEdgeById(this.renderPath[i]);
+                currentVertexId = this.renderPath[i - 1];
+            }
+            else if (this.renderMinPath)
             {
                 edge = this.graph.FindEdgeMin(this.renderPath[i], this.renderPath[i + 1]);
             }
@@ -141,7 +155,7 @@ Application.prototype.redrawGraphTimer = function()
             
             var progress = (this.renderPathCounter - currentLength) / edge.GetPixelLength();
             
-            this.RedrawEdgeProgress(context, edge, edge.vertex1.id == this.renderPath[i] ? progress : 1.0 - progress);
+            this.RedrawEdgeProgress(context, edge, edge.vertex1.id == currentVertexId ? progress : 1.0 - progress);
 
             this.renderPathCounter += movePixelStep;
             
@@ -232,7 +246,16 @@ Application.prototype.updateRenderPathLength = function()
     {
         for (var i = 0; i < this.renderPath.length - 1; i++)
         {
-            var edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+            var edge = null;
+            if (this.renderPathWithEdges)
+            {
+                edge = this.graph.FindEdgeById(this.renderPath[i + 1]);
+                i++;
+            }
+            else
+            {
+                edge = this.graph.FindEdge(this.renderPath[i], this.renderPath[i + 1]);
+            }
             this.renderPathLength += edge.GetPixelLength();
         }
     }
@@ -260,6 +283,23 @@ Application.prototype.setRenderPath = function(renderPath, renderMinPath)
 {
     this.renderPath    = renderPath;
     this.renderMinPath = renderMinPath;
+    this.renderPathWithEdges = false;
+    
+    if (this.renderPath.length > 0)
+    {
+        this.startRenderTimer();
+    }
+    else
+    {
+        this.stopRenderTimer();
+    }
+}
+
+Application.prototype.setRenderPathWithEdges = function(renderPath)
+{
+    this.renderPath    = renderPath;
+    this.renderMinPath = false;
+    this.renderPathWithEdges = true;
     
     if (this.renderPath.length > 0)
     {
@@ -1231,6 +1271,11 @@ Application.prototype.resultCallback = function(paths)
     {
         this.setRenderPath(paths["paths"][0], "minPath" in paths);
     }
+    else if ((paths instanceof Object) && "pathsWithEdges" in paths)
+    {
+        this.setRenderPathWithEdges(paths["pathsWithEdges"][0]);
+    }
+    
     this.updateMessage();
     this.redrawGraph();
 }

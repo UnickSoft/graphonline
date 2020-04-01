@@ -250,7 +250,23 @@ BaseAlgorithmEx.prototype.GetNodesPath = function(array, start, count)
     var res = [];
     for (var index = start; index < start + count; index++)
     {
-        res.push(array[index].value);
+        if (array[index].type == 4)
+        {
+            res.push(array[index].value);
+        }
+    }
+    return res;
+}
+
+BaseAlgorithmEx.prototype.GetNodesEdgesPath = function(array, start, count)
+{
+    var res = [];
+    for (var index = start; index < start + count; index++)
+    {
+        if (array[index].type == 4 || array[index].type == 5)
+        {
+            res.push(array[index].value);
+        }
     }
     return res;
 }

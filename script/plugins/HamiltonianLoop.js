@@ -52,9 +52,11 @@ FindHamiltonianLoop.prototype.resultCallback = function(pathObjects, properties,
     this.message = result > 0 ? g_hasHamiltonianLoop : g_hasNotHamiltonianLoop;
     if (result > 0)
     {
-        var nodesPath = this.GetNodesPath(results, 1, results.length - 1);
-        outputResult["paths"] = [];
-        outputResult["paths"].push(nodesPath);
+        var nodesEdgesPath = this.GetNodesEdgesPath(results, 1, results.length - 1);
+        var nodesPath      = this.GetNodesPath(results, 1, results.length - 1);
+
+        outputResult["pathsWithEdges"] = [];
+        outputResult["pathsWithEdges"].push(nodesEdgesPath);
         this.selectedObjects = [];
         
         for (var i = 0; i < pathObjects.length; i++)
@@ -80,6 +82,12 @@ FindHamiltonianLoop.prototype.getObjectSelectedGroup = function(object)
 FindHamiltonianLoop.prototype.getPriority = function()
 {
     return -5;
+}
+
+// Algorithm support multi graph
+FindHamiltonianLoop.prototype.IsSupportMultiGraph = function()
+{
+    return true;
 }
 
 // Factory for connected components.
