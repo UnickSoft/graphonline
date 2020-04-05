@@ -164,10 +164,10 @@
     </section>
 
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
-    <a class="ProgresssBarLink" href="opensource" target="_blank">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1zWpRDsOfnlGeE78H7GnetffGC5LM-J3mqKRgOhowfbM/edit?usp=sharing" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p><?= L('opensource_message')?></p></span>
+        <span class="ProgressBarText" style="top:-28px"><p><?= L('translate_french')?></p></span>
     </div>
     </a>
     </section>

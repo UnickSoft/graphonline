@@ -176,4 +176,6 @@
 
     $g_lang["graph_is_multi_message"]   = "Мультиграф не поддерживает все алгоритмы";
     $g_lang["graph_is_general_message"] = "";
+
+    $g_lang["translate_french"] = "Вы можете помочь с переводом нашего сервиса на французский. Подробнее...";
 ?>
