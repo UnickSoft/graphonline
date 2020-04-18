@@ -173,4 +173,5 @@
 
     $g_lang["replace_edge"] = "replace current";
     $g_lang["add_edge"] = "add (multigraph)";
+    $g_lang["french_add"] = "We have added French translation 🇫🇷";
 ?>

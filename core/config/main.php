@@ -15,7 +15,8 @@
     define('DEF_LANG', 'ru');
     $g_arrLangs = array(
                           'en' => array('name' => 'English'),
-                          'ru' => array('name' => 'Русский')
+                          'ru' => array('name' => 'Русский'),
+                          'fr' => array('name' => 'Français')
                        );
 
     $g_config                     = array();

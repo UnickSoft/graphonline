@@ -1,0 +1,8 @@
+<?php
+
+    $g_lang["title_notg"] = "Aide Graph Online";
+    $g_lang["text"] = "<p><iframe allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"//www.youtube.com/embed/Sx4tOe3bWNg\" width=\"560\"></iframe></p>\n<h3>Ajouter un sommet</h3>\n\n<p>Pour créer un graphique, <a href=\"http://graphonline.ru/fr/\">vous devez ajouter des vertex</a>. Sélectionnez \"Add vertex\" et cliquez sur l'espace de travail.</p>\n\n<p><img alt=\"Add vertexes\" src=\"/i/image/help/addVertexEn.gif\" /></p>\n\n<p>&nbsp;</p>\n\n<h3>Connecter les sommets.</h3>\n\n<p>Pour connecter les vertèbres, vous devez <a href=\"http://graphonline.ru/fr/\">sélectionner \"Connecter les vertèbres\"</a> et cliquer sur le premier vertex, puis sur le second. </p>\n\n<p><img alt=\"Connect vertexes Graph Online\" src=\"/i/image/help/addEdgeEn.gif\"/></p>\n\n<p>Dans la boîte de dialogue, vous devez sélectionner le poids ou le laisser sans poids. Vous pouvez également choisir le type de graphique, c'est-à-dire dirigé ou non dirigé. </p>\n\n<h3>Trouvez le chemin le plus court</h3>\n\n<p>Choisissez <a href=\"http://graphonline.ru/fr/\">\"Trouver le chemin le plus court\"</a> dans le menu déroulant. Ensuite, sélectionnez les vertèbres de départ et d'arrivée. S'il y a un chemin, vous le verrez sur le graphique. Nous utilisons l'algorithme de Dijkstra.</p>\n\n<p><img alt=\"Find shortest path on graph\" src=\"/i/image/help/findShortPathesEn.gif\" /></p>\n\n<p>&nbsp;</p>\n";
+    $g_lang["m_title"] = "Aide Graph Online";
+    $g_lang["m_keyWords"] = "graphique, aide";
+    $g_lang["m_description"] = "Page d'aide de Graph Online .";
+?>
