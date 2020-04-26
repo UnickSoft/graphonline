@@ -106,6 +106,7 @@ var g_backgroundStyle = "Bacgkround style";
 
 var g_GrapsIsMultiMessage   = "Graph is multigraph";
 var g_GrapsIsGeneralMessage = "";
+var g_DefaultWeightPreset   = "no weight";
 
 function loadTexts()
 {
@@ -214,4 +215,5 @@ function loadTexts()
     
     g_GrapsIsMultiMessage   = document.getElementById("graphIsMultiMessage").innerHTML;
     g_GrapsIsGeneralMessage = document.getElementById("graphIsGeneralMessage").innerHTML;
+    g_DefaultWeightPreset   = document.getElementById("defaultWeightPreset").innerHTML;
 }

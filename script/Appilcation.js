@@ -46,6 +46,9 @@ function Application(document, window)
     this.backgroundPrintStyle  = new PrintBackgroundStyle(); 
     this.isBackgroundCommonStyleCustom  = false;
     this.renderPathWithEdges = false;
+    
+    this.edgePresets = [1, 3, 5, 7, 11, 42];
+    this.maxEdgePresets = 6;
 };
 
 // List of graph.
@@ -529,6 +532,9 @@ Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, 
             edgeObject.model.curvedValue = cruvled;
         }
     }
+    
+    if (edgeObject.useWeight)
+        this.UpdateEdgePresets(edgeObject.weight);
     
     return edge;
 }
@@ -1569,4 +1575,26 @@ Application.prototype.GetAvalibleCruvledValue = function(neighbourEdges, origina
 Application.prototype.GraphTypeChanged = function()
 {
     $("#CanvasMessage").text(this.graph.isMulti() ? g_GrapsIsMultiMessage : g_GrapsIsGeneralMessage);
+}
+
+Application.prototype.UpdateEdgePresets = function(weight)
+{
+    var oldPresets = this.edgePresets;
+    this.edgePresets = [1];
+    oldPresets.unshift(weight);
+    
+    for(var i = 0; i < oldPresets.length; i ++) 
+    {
+        var k = oldPresets[i];
+        if (!this.edgePresets.includes(k))
+            this.edgePresets.push(k);
+        
+        if (this.edgePresets.length >= this.maxEdgePresets)
+            break;
+    }
+}
+
+Application.prototype.GetEdgePresets = function()
+{
+    return this.edgePresets;
 }

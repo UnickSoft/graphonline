@@ -460,7 +460,18 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
         dialogButtons[g_notOrintEdge] = function() {
                     handler.AddNewEdge(selectedObject, false);
                     $( this ).dialog( "close" );						
-                };					
+                };
+        
+        var edgePresets = this.app.GetEdgePresets();
+        var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset + "'; document.getElementById('EdgeWeightSlider').value='" + g_DefaultWeightPreset + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
+        
+        for(var i = 0; i < edgePresets.length; i ++) 
+        {
+            var edgePreset = edgePresets[i];
+            presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
+        }        
+        document.getElementById("EdgesPresets").innerHTML = presetsStr;
+        
         $( "#addEdge" ).dialog({
             resizable: false,
             height: "auto",

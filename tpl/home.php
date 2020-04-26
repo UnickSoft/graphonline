@@ -163,7 +163,6 @@
     </div>
     </section>
 
-<? if (L('current_language') != "en"): ?>
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
     <div class="ProgressBar" style="height:32px">
@@ -172,18 +171,6 @@
     </div>
     </a>
     </section>
-<? endif; ?>
-
-<? if (L('current_language') == "en"): ?>
-    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
-    <a class="ProgresssBarLink" href="/fr/">
-    <div class="ProgressBar" style="height:32px">
-        <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p><?= L('french_add')?></p></span>
-    </div>
-    </a>
-    </section>
-<? endif; ?>
 
 <? if (L('current_language') == "ru" && false): ?>
 <!--
@@ -231,7 +218,7 @@
               <div>
 			  <label id="WeightLabel"><?= L('edge_weight')?>&nbsp; </label> <input type="range" id="EdgeWeightSlider" min="0" max="29" value="0" oninput="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');" onchange="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');"> &nbsp; &nbsp;<input type="text" name="edgeWeight" value="<?= L('default_weight')?>" id="EdgeWeight" class="inputBox">
               </div>
-			  <div>
+			  <div id="EdgesPresets">
   			  <span onClick="document.getElementById('EdgeWeight').value='<?= L('default_weight')?>'; document.getElementById('EdgeWeightSlider').value=0;" style="cursor: pointer" class="defaultWeigth"><?= L('default_weight')?></span>
   			  <span onClick="document.getElementById('EdgeWeight').value='1'; document.getElementById('EdgeWeightSlider').value=1;" style="cursor: pointer"  class="defaultWeigth">1</span>
   			  <span onClick="document.getElementById('EdgeWeight').value='3'; document.getElementById('EdgeWeightSlider').value=3;" style="cursor: pointer"  class="defaultWeigth">3</span>
@@ -576,6 +563,7 @@
         
     <p id="graphIsMultiMessage" class="translation"><?= L('graph_is_multi_message')?></p>
     <p id="graphIsGeneralMessage" class="translation"><?= L('graph_is_general_message')?></p>
+    <p id="defaultWeightPreset" class="translation"><?= L('default_weight')?></p>
         
 </section>
 <!--
