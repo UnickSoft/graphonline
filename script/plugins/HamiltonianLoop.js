@@ -55,19 +55,28 @@ FindHamiltonianLoop.prototype.resultCallback = function(pathObjects, properties,
         var nodesEdgesPath = this.GetNodesEdgesPath(results, 1, results.length - 1);
         var nodesPath      = this.GetNodesPath(results, 1, results.length - 1);
 
-        outputResult["pathsWithEdges"] = [];
-        outputResult["pathsWithEdges"].push(nodesEdgesPath);
+        this.message = this.message + ": ";
+
+        if (this.graph.isMulti())
+        {
+          outputResult["pathsWithEdges"] = [];
+          outputResult["pathsWithEdges"].push(nodesEdgesPath);
+        }
+        else
+        {
+          outputResult["paths"] = [];
+          outputResult["paths"].push(nodesEdgesPath);
+        }
+        
+        for (var i = 0; i < nodesPath.length; i++)
+        {
+            this.message = this.message + this.graph.FindVertex(nodesPath[i]).mainText + ((i < nodesPath.length - 1) ? "&rArr;" : "");
+        }
         this.selectedObjects = [];
         
         for (var i = 0; i < pathObjects.length; i++)
         {
             this.selectedObjects[pathObjects[i].id] = 1;
-        }
-        
-        this.message = this.message + ": ";
-        for (var i = 0; i < nodesPath.length; i++)
-        {
-            this.message = this.message + this.graph.FindVertex(nodesPath[i]).mainText + ((i < nodesPath.length - 1) ? "&rArr;" : "");
         }
     }
     
