@@ -215,17 +215,16 @@
     <div id="addEdge">
 		<form>
 		<fieldset>
-              <div>
+              <div id="EdgeWeightControls">
 			  <label id="WeightLabel"><?= L('edge_weight')?>&nbsp; </label> <input type="range" id="EdgeWeightSlider" min="0" max="29" value="0" oninput="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');" onchange="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');"> &nbsp; &nbsp;<input type="text" name="edgeWeight" value="<?= L('default_weight')?>" id="EdgeWeight" class="inputBox">
               </div>
 			  <div id="EdgesPresets">
   			  <span onClick="document.getElementById('EdgeWeight').value='<?= L('default_weight')?>'; document.getElementById('EdgeWeightSlider').value=0;" style="cursor: pointer" class="defaultWeigth"><?= L('default_weight')?></span>
   			  <span onClick="document.getElementById('EdgeWeight').value='1'; document.getElementById('EdgeWeightSlider').value=1;" style="cursor: pointer"  class="defaultWeigth">1</span>
-  			  <span onClick="document.getElementById('EdgeWeight').value='3'; document.getElementById('EdgeWeightSlider').value=3;" style="cursor: pointer"  class="defaultWeigth">3</span>
-  			  <span onClick="document.getElementById('EdgeWeight').value='5'; document.getElementById('EdgeWeightSlider').value=5;" style="cursor: pointer"  class="defaultWeigth">5</span>
-			  <span onClick="document.getElementById('EdgeWeight').value='7'; document.getElementById('EdgeWeightSlider').value=7;" style="cursor: pointer"  class="defaultWeigth">7</span>
-			  <span onClick="document.getElementById('EdgeWeight').value='11'; document.getElementById('EdgeWeightSlider').value=11;" style="cursor: pointer"  class="defaultWeigth">11</span>
 			  </div>
+              <div id="EdgeLabelControls">
+			  <label id="EdgeLabel"><?= L('text_above_edge')?></label>&nbsp;&nbsp;<input type="text" name="edgeLable" value="" id="EdgeLable" class="inputBox">
+              </div>
               <div id="NewEdgeAction">
                 <div class="InlineStyle PaddingRight">
                   <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosReplaceEdge" value="replace" checked>

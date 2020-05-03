@@ -502,9 +502,9 @@ Application.prototype.CreateNewGraphEx = function(x, y, vertexEnume)
     return this.graph.AddNewVertex(new BaseVertex(x, y, vertexEnume));
 }
 
-Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, replaceIfExist)
+Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, replaceIfExist, upText)
 {
-	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight), replaceIfExist);
+	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, upText), replaceIfExist);
 
     var edgeObject = this.graph.edges[edge];
     var hasPair    = this.graph.hasPair(edgeObject);

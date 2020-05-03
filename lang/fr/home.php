@@ -143,4 +143,5 @@
     $g_lang["graph_is_general_message"] = "";
     $g_lang["replace_edge"] = "remplacer l'actuel";
     $g_lang["add_edge"] = "ajout (multigraphe)";
+    $g_lang["text_above_edge"] = "Texte au-dessus du bord";
 ?>

@@ -176,4 +176,5 @@
 
     $g_lang["graph_is_multi_message"]   = "Мультиграф не поддерживает все алгоритмы";
     $g_lang["graph_is_general_message"] = "";
+    $g_lang["text_above_edge"] = "Текст над дугой";
 ?>

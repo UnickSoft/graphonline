@@ -4,7 +4,7 @@
  *
  */
 
-function BaseEdge(vertex1, vertex2, isDirect, weight)
+function BaseEdge(vertex1, vertex2, isDirect, weight, upText)
 {
     this.vertex1    = vertex1;
     this.vertex2    = vertex2;
@@ -17,6 +17,7 @@ function BaseEdge(vertex1, vertex2, isDirect, weight)
     this.useWeight = false;
     this.id        = 0;
     this.model = new EdgeModel();
+    this.upText    = upText;
     
     if (weight !== undefined)
       this.SetWeight(weight);
@@ -32,6 +33,7 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "id=\""         + this.id + "\" " +
            "text=\""       + this.text + "\" " +
+           "upText=\""     + this.upText + "\" " +
            "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
            "arrayStyleFinish=\""       + this.arrayStyleFinish + "\" " +
            this.model.SaveToXML() + 
@@ -64,6 +66,11 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
     this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
     this.arrayStyleStart      =   xml.attr("arrayStyleStart") == null ? "" : xml.attr("arrayStyleStart");
     this.arrayStyleFinish      =  xml.attr("arrayStyleFinish") == null ? "" : xml.attr("arrayStyleFinish");
+	this.upText    = xml.attr('upText');
+    if (typeof this.upText === 'undefined')
+    {
+        this.upText = "";        
+    }
     
     this.model.LoadFromXML(xml);
 }
@@ -88,6 +95,11 @@ BaseEdge.prototype.GetWeight = function ()
 BaseEdge.prototype.GetText = function ()
 {
     return this.text.length > 0 ? this.text : (this.useWeight ? this.weight.toString() : "");
+}
+
+BaseEdge.prototype.GetUpText = function ()
+{
+    return this.upText;
 }
 
 BaseEdge.prototype.GetStartEdgeStyle = function ()
@@ -159,4 +171,9 @@ BaseEdge.prototype.SetWeight = function(weight)
     
     this.weight    = Number(weight);
     this.useWeight = useWeight;
+}
+
+BaseEdge.prototype.SetUpText = function(text)
+{
+    this.upText = text;
 }

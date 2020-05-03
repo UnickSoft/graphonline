@@ -302,6 +302,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
                          dialogButtons[g_save] = function() {
                         
                            handler.selectedObject.SetWeight(document.getElementById('EdgeWeight').value);
+                           handler.selectedObject.SetUpText(document.getElementById('EdgeLable').value);
                              
                             handler.needRedraw = true;
                             handler.app.redrawGraph();
@@ -313,6 +314,17 @@ DefaultHandler.prototype.MouseUp = function(pos)
                          document.getElementById('EdgeWeight').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : g_noWeight;
                          document.getElementById('EdgeWeightSlider').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : 0;
 
+                        var edgePresets = handler.app.GetEdgePresets();
+                        var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset + "'; document.getElementById('EdgeWeightSlider').value='" + g_DefaultWeightPreset + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
+
+                        for(var i = 0; i < edgePresets.length; i ++) 
+                        {
+                            var edgePreset = edgePresets[i];
+                            presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
+                        }        
+                        document.getElementById("EdgesPresets").innerHTML = presetsStr;
+                        document.getElementById('EdgeLable').value = handler.selectedObject.upText;
+            
                          $( "#addEdge" ).dialog({
                                                 resizable: false,
                                                 height: "auto",
@@ -421,7 +433,9 @@ ConnectionGraphHandler.prototype.firstObject = null;
 
 ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
-	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value, $("#RadiosReplaceEdge").prop("checked"));
+	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value, $("#RadiosReplaceEdge").prop("checked"), document.getElementById('EdgeLable').value);
+    
+    EdgeLable
 	this.SelectFirst();					
 	this.app.NeedRedraw();
 }
@@ -471,6 +485,7 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
             presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
         }        
         document.getElementById("EdgesPresets").innerHTML = presetsStr;
+        document.getElementById('EdgeLable').value = "";
         
         $( "#addEdge" ).dialog({
             resizable: false,
@@ -1280,7 +1295,7 @@ SetupEdgeStyle.prototype.show = function(index)
         var graphDrawer  = new BaseEdgeDrawer(context);
         var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
         var baseVertex2  = new BaseVertex(canvas.width, canvas.height / 2, new BaseEnumVertices(this));
-        var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10);
+        var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10, "Text");
         
         graphDrawer.Draw(baseEdge, style);
         

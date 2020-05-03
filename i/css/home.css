@@ -86,7 +86,7 @@
 
     #EdgeWeight
     {
-        max-width : 80px;
+        width: 86px;
     }
 
     #EdgeWeightSlider
@@ -354,4 +354,9 @@
 #NewEdgeAction
 {
     padding-top: 8px;
+}
+
+#EdgeLabelControls
+{
+    padding-top: 4px;   
 }

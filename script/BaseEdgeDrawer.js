@@ -165,6 +165,11 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
   {
 	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, false);
   }
+
+  if (baseEdge.GetUpText().length > 0)
+  {
+    this.DrawUpText(positions[0], positions[1], baseEdge.GetUpText(), arcStyle, false);
+  }
 }
 
 
@@ -216,13 +221,44 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
   this.context.beginPath();
   this.context.rect(centerPoint.x - widthText / 2 - arcStyle.textPadding / 2, 
                     centerPoint.y - 8 - arcStyle.textPadding / 2, 
-    widthText + arcStyle.textPadding, 16 + arcStyle.textPadding);
+                    widthText + arcStyle.textPadding, 16 + arcStyle.textPadding);
   this.context.closePath();
   this.context.fill();
   this.context.stroke ();
 
-	this.context.fillStyle = arcStyle.weightText;	
-	this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
+  this.context.fillStyle = arcStyle.weightText;	
+  this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
+}
+
+BaseEdgeDrawer.prototype.DrawUpText = function(position1, position2, text, arcStyle, hasPair)
+{ 
+  var centerPoint = this.GetTextCenterPoint(position1, position2, hasPair, arcStyle);
+        
+  this.context.font         = "bold 12px sans-serif";
+  this.context.textBaseline = "middle";
+
+  var widthText = this.context.measureText(text).width;
+
+  this.context.fillStyle = arcStyle.strokeStyle;	
+
+  var vectorEdge   = new Point(position2.x - position1.x, position2.y - position1.y);
+  var angleRadians = Math.atan2(vectorEdge.y, vectorEdge.x);
+  if (angleRadians > Math.PI / 2 || angleRadians < -Math.PI / 2)
+  {
+    vectorEdge   = new Point(position1.x - position2.x, position1.y - position2.y);
+    angleRadians = Math.atan2(vectorEdge.y, vectorEdge.x);          
+  }
+  var normalize    = vectorEdge.normal().normalizeCopy(20);
+  this.context.save();
+  this.context.translate(centerPoint.x - normalize.x, centerPoint.y - normalize.y);
+  this.context.rotate(angleRadians);
+  this.context.textAlign = "center";
+  //context.textAlign = "center";
+  //context.fillText("Your Label Here", labelXposition, 0);
+    
+  this.context.fillText(text, 0, 0);
+
+  this.context.restore();
 }
 
 BaseEdgeDrawer.prototype.DrawArrow = function(position, direction, length, width) 
