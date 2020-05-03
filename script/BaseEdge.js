@@ -17,7 +17,11 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, upText)
     this.useWeight = false;
     this.id        = 0;
     this.model = new EdgeModel();
-    this.upText    = upText;
+    
+    if (upText === undefined)
+        this.upText    = "";
+    else
+        this.upText    = upText;
     
     if (weight !== undefined)
       this.SetWeight(weight);
