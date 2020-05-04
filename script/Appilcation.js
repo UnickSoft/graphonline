@@ -49,6 +49,7 @@ function Application(document, window)
     
     this.edgePresets = [1, 3, 5, 7, 11, 42];
     this.maxEdgePresets = 6;
+    this.selectionRect  = null;
 };
 
 // List of graph.
@@ -187,7 +188,9 @@ Application.prototype._redrawGraph = function()
     
     this.RedrawEdges(context);
     this.RedrawNodes(context);
-    
+    if (this.selectionRect != null)
+      this.RedrawSelectionRect(context);
+
     context.restore();
     
     return context;
@@ -391,6 +394,19 @@ Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSel
 
 		graphDrawer.Draw(this.graph.vertices[i], currentStyle);
     }	
+}
+
+Application.prototype.RedrawSelectionRect = function(context)
+{
+  context.lineWidth    = 1.0 / this.canvasScale;
+  context.strokeStyle  = 0xCCCCCC;	
+  context.setLineDash([5, 3]);
+  context.beginPath();
+  context.rect(this.selectionRect.left(), this.selectionRect.top(), 
+               this.selectionRect.size().x, this.selectionRect.size().y);
+  context.closePath();
+  context.stroke();  
+  context.setLineDash([0, 0]);
 }
 
 Application.prototype.updateMessage = function()
@@ -1597,4 +1613,9 @@ Application.prototype.UpdateEdgePresets = function(weight)
 Application.prototype.GetEdgePresets = function()
 {
     return this.edgePresets;
+}
+
+Application.prototype.SetSelectionRect = function(rect)
+{
+  this.selectionRect = rect;
 }

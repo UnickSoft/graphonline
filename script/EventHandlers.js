@@ -205,18 +205,16 @@ function DefaultHandler(app)
 {
 	BaseHandler.apply(this, arguments);
 	this.message = g_textsSelectAndMove;
+        this.selectedObjects = [];
+        this.dragObject     = null;
+        this.selectedObject = null;
+	this.prevPosition   = null;
 }
 
 // inheritance.
 DefaultHandler.prototype = Object.create(BaseHandler.prototype);
-// Current drag object.
-DefaultHandler.prototype.dragObject     = null;
-// Selected object.
-DefaultHandler.prototype.selectedObject = null;
 // Is pressed
 DefaultHandler.prototype.pressed = false;
-// Prev position.
-DefaultHandler.prototype.prevPosition = false;
 // Cuvled change value.
 DefaultHandler.prototype.curvedValue    = 0.1;
 
@@ -224,36 +222,83 @@ DefaultHandler.prototype.MouseMove = function(pos)
 {
 	if (this.dragObject)
 	{
-        this.dragObject.position.x = pos.x;
-        this.dragObject.position.y = pos.y;
+                this.dragObject.position.x = pos.x;
+                this.dragObject.position.y = pos.y;
 		this.needRedraw = true;
 	}
-    else if (this.pressed)
-    {
-        this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
-        this.needRedraw = true;
-        //this.prevPosition = pos;
-    }
+        else if (this.selectedObjects.length > 0 && this.pressed)
+        {
+                var offset = (new Point(pos.x, pos.y)).subtract(this.prevPosition);
+                for (var i = 0; i < this.selectedObjects.length; i ++)
+                {
+                  var object = this.selectedObjects[i];
+                  if (object instanceof BaseVertex)
+                  {
+                    object.position = object.position.add(offset);
+                  }
+                }
+                this.prevPosition = pos;
+		this.needRedraw = true;                
+        }
+        else if (this.pressed)
+        {
+          if (g_ctrlPressed) 
+          {
+               // Rect select.
+               var newPos = new Point(pos.x, pos.y);
+               this.app.SetSelectionRect(new Rect(newPos.min(this.prevPosition), newPos.max(this.prevPosition)));
+               this.needRedraw = true;
+          }
+          else
+          {
+                // Move work space
+                this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
+                this.needRedraw = true;
+          }
+        }
 }
 
 DefaultHandler.prototype.MouseDown = function(pos)
 {
-	this.selectedObject = null;
 	this.dragObject     = null;
 	var selectedObject = this.GetSelectedObject(pos);
-	if (selectedObject != null)
-	{
-		this.selectedObject = selectedObject;
-	}	
-	if ((selectedObject instanceof BaseVertex) && selectedObject != null)
-	{
-		this.dragObject = selectedObject;
-		this.message = g_moveCursorForMoving;		
-	}	
+	var severalSelect  = g_ctrlPressed;
+
+	if (selectedObject == null || (!severalSelect && !this.selectedObjects.includes(selectedObject)))
+        {
+  	  this.selectedObject = null;
+          this.selectedObjects = [];
+        }        
+
+        if ((severalSelect || this.selectedObjects.includes(selectedObject)) && (this.selectedObjects.length > 0 || this.selectedObject != null) && selectedObject != null) 
+        {
+          if (this.selectedObjects.length == 0)
+          {
+            this.selectedObjects.push(this.selectedObject);
+            this.selectedObject = null;
+            this.selectedObjects.push(selectedObject);
+          }
+          else if (!this.selectedObjects.includes(selectedObject))
+          {
+            this.selectedObjects.push(selectedObject);
+          }
+        }
+        else
+        {
+          if (selectedObject != null)
+  	  {
+	    this.selectedObject = selectedObject;
+ 	  }	
+ 	  if ((selectedObject instanceof BaseVertex) && selectedObject != null)
+	  { 
+	    this.dragObject = selectedObject;
+	    this.message    = g_moveCursorForMoving;		
+	  }	
+        }
 	this.needRedraw = true;
-    this.pressed    = true;
-    this.prevPosition = pos;
-    this.app.canvas.style.cursor = "move";
+	this.pressed    = true;
+	this.prevPosition = pos;
+	this.app.canvas.style.cursor = "move";
 }
 
 DefaultHandler.prototype.RenameVertex = function(text)
@@ -271,6 +316,9 @@ DefaultHandler.prototype.MouseUp = function(pos)
 	this.dragObject = null;
     this.pressed    = false;
     this.app.canvas.style.cursor = "auto";
+
+    this.app.SetSelectionRect(null);
+
     if (this.selectedObject != null && (this.selectedObject instanceof BaseVertex))
     {
         this.message = g_textsSelectAndMove + " <button type=\"button\" id=\"renameButton\" class=\"btn btn-default btn-xs\" style=\"float:right;z-index:1;position: relative;\">" + g_renameVertex + "</button>";
@@ -354,11 +402,15 @@ DefaultHandler.prototype.MouseUp = function(pos)
             userAction("Edge.Bend");
         });
     }
+    else if (this.selectedObjects.length > 0)
+    {
+      this.message = "Select more use ctrl + dublicate selected, remove selecrted.";
+    }
 }
 
 DefaultHandler.prototype.GetSelectedGroup = function(object)
 {
-	return (object == this.dragObject) || (object == this.selectedObject) ? 1 : 0;
+  return (object == this.dragObject) || (object == this.selectedObject) ? 1 : 0 || this.selectedObjects.includes(object);
 }
 
 

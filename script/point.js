@@ -130,3 +130,13 @@ Rect.prototype.size = function()
 {
     return this.maxPoint.subtract(this.minPoint);
 };
+
+Rect.prototype.left = function()
+{
+    return this.minPoint.x;
+};
+
+Rect.prototype.top = function()
+{
+    return this.minPoint.y;
+};

@@ -26,6 +26,7 @@ var isIe = (navigator.userAgent.toLowerCase().indexOf("msie") != -1
            || navigator.userAgent.toLowerCase().indexOf("trident") != -1);
 
 var buttonsList = ['AddGraph', 'ConnectGraphs', 'DeleteObject', 'Default'];
+var g_ctrlPressed = false;
 
 function restButtons (me)
 {
@@ -289,6 +290,15 @@ function postLoadPage()
             selectHandler('Default', 'default');
         }
     }
+ 
+    $(document).keydown(function(event) {
+        if (event.which == "17")
+          g_ctrlPressed = true;
+    });
+
+    $(document).keyup(function() {
+      g_ctrlPressed = false;
+    });
 
 	document.getElementById('ShowAdjacencyMatrix').onclick = function ()
 		{
