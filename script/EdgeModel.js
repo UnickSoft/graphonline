@@ -15,6 +15,14 @@ function EdgeModel()
 
 EdgeModel.prototype.defaultCruved = 0.1;
 
+EdgeModel.prototype.copyFrom = function(other)
+{
+    this.width = other.width;
+    this.type  = other.type;
+    this.curvedValue = other.curvedValue;
+    this.default     = other.default;
+}
+
 EdgeModel.prototype.SaveToXML = function ()
 {
     return "model_width=\"" + this.width + "\" " +
@@ -144,6 +152,22 @@ EdgeModel.prototype.ChangeCurvedValue = function (delta)
     }
 
     this.curvedValue = this.curvedValue + delta;
+    
+    if (Math.abs(this.curvedValue) <= 0.01)
+        this.type = EdgeModels.line;
+    
+    this.default = false;
+}
+
+EdgeModel.prototype.SetCurvedValue = function (value)
+{
+    if (this.type == EdgeModels.line)
+    {
+        this.type = EdgeModels.cruvled;
+        this.curvedValue = 0.0;
+    }
+
+    this.curvedValue = value;
     
     if (Math.abs(this.curvedValue) <= 0.01)
         this.type = EdgeModels.line;

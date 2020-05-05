@@ -399,14 +399,16 @@ Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSel
 Application.prototype.RedrawSelectionRect = function(context)
 {
   context.lineWidth    = 1.0 / this.canvasScale;
-  context.strokeStyle  = 0xCCCCCC;	
-  context.setLineDash([5, 3]);
+      
+  context.strokeStyle  = this.edgeSelectedStyles[0].strokeStyle;	
+  context.setLineDash([6, 3]);
   context.beginPath();
   context.rect(this.selectionRect.left(), this.selectionRect.top(), 
                this.selectionRect.size().x, this.selectionRect.size().y);
   context.closePath();
-  context.stroke();  
-  context.setLineDash([0, 0]);
+  context.stroke();
+    
+  context.setLineDash([]);
 }
 
 Application.prototype.updateMessage = function()
@@ -1618,4 +1620,9 @@ Application.prototype.GetEdgePresets = function()
 Application.prototype.SetSelectionRect = function(rect)
 {
   this.selectionRect = rect;
+}
+
+Application.prototype.GetSelectionRect = function(rect)
+{
+  return this.selectionRect;
 }

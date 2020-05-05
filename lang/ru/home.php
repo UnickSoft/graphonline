@@ -12,7 +12,7 @@
     $g_lang["save_weight_choose"] = "использовать значение для следующих дуг";
     $g_lang["default_weight"] = "ненагруженный";
     $g_lang["browser_no_support"] = "Ваш браузер не поддерживается. Попробуйте обновить ваш браузер до последней версии.";
-    $g_lang["select_and_move_objects"] = "Выделите и перемещайте объекты или перемещайте рабочую область";
+    $g_lang["select_and_move_objects"] = "Выделите и перемещайте объекты или перемещайте рабочую область.";
     $g_lang["move_cursor_for_moving"] = "Перемещайте курсор для перемещения объекта";
     $g_lang["add_graph"] = "Добавить ребро";
     $g_lang["orint_edge"] = "Ориентированную";
@@ -177,4 +177,10 @@
     $g_lang["graph_is_multi_message"]   = "Мультиграф не поддерживает все алгоритмы";
     $g_lang["graph_is_general_message"] = "";
     $g_lang["text_above_edge"] = "Текст над дугой";
+
+    $g_lang["select_groupe_mac"] = "Выделите несколько объектов используя Cmd⌘.";
+    $g_lang["select_groupe_win"] = "Выделите несколько объектов используя Ctrl.";
+    $g_lang["drag_select_group"] = "Перемещайте группу.";
+    $g_lang["copy_select_group"] = "Копировать";
+    $g_lang["remove_select_group"] = "Удалить";
 ?>

@@ -140,3 +140,9 @@ Rect.prototype.top = function()
 {
     return this.minPoint.y;
 };
+
+Rect.prototype.isIn = function(v)
+{
+    return this.minPoint.x <= v.x && this.minPoint.y <= v.y && 
+           this.maxPoint.x > v.x  && this.maxPoint.y > v.y;
+};

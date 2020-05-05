@@ -292,7 +292,7 @@ function postLoadPage()
     }
  
     $(document).keydown(function(event) {
-        if (event.which == "17")
+        if (event.which == "17" || event.which == "91")
           g_ctrlPressed = true;
     });
 

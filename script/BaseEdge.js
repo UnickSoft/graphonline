@@ -27,6 +27,24 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, upText)
       this.SetWeight(weight);
 }
 
+BaseEdge.prototype.copyFrom = function(other)
+{
+    this.vertex1    = other.vertex1;
+    this.vertex2    = other.vertex2;
+    this.arrayStyleStart  = other.arrayStyleStart;
+    this.arrayStyleFinish = other.arrayStyleFinish;
+    
+    this.isDirect  = other.isDirect;
+    this.weight    = other.weight;
+    this.text      = other.text;
+    this.useWeight = other.useWeight;
+    this.id        = other.id;
+    this.model     = new EdgeModel();
+    this.model.copyFrom(other.model);
+    
+    this.upText    = other.upText;
+}
+
 BaseEdge.prototype.SaveToXML = function ()
 {
 	return "<edge " + 

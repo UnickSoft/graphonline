@@ -107,6 +107,10 @@ var g_backgroundStyle = "Bacgkround style";
 var g_GrapsIsMultiMessage   = "Graph is multigraph";
 var g_GrapsIsGeneralMessage = "";
 var g_DefaultWeightPreset   = "no weight";
+var g_dragGroupText         = "Drag group.";
+var g_selectGroupText       = "Select using ctrl";
+var g_copyGroupeButton      = "Dublicate";
+var g_removeGroupeButton    = "Remove objects";
 
 function loadTexts()
 {
@@ -216,4 +220,14 @@ function loadTexts()
     g_GrapsIsMultiMessage   = document.getElementById("graphIsMultiMessage").innerHTML;
     g_GrapsIsGeneralMessage = document.getElementById("graphIsGeneralMessage").innerHTML;
     g_DefaultWeightPreset   = document.getElementById("defaultWeightPreset").innerHTML;
+    
+    var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+    if (isMac)
+        g_selectGroupText       = document.getElementById("selectGroupMac").innerHTML;
+    else
+        g_selectGroupText       = document.getElementById("selectGroupWin").innerHTML;
+    
+    g_dragGroupText         = document.getElementById("dragSelectedGroup").innerHTML;
+    g_copyGroupeButton      = document.getElementById("copySelectedGroup").innerHTML;
+    g_removeGroupeButton    = document.getElementById("removeSelectedGroup").innerHTML;
 }

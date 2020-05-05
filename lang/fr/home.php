@@ -12,7 +12,7 @@
     $g_lang["save_weight_choose"] = "Utiliser la valeur pour l'arête suivante";
     $g_lang["default_weight"] = "sans poid";
     $g_lang["browser_no_support"] = "Votre navigateur n'est pas compatible";
-    $g_lang["select_and_move_objects"] = "Sélectionner et déplacer les objets avec la souris ou déplacer l'espace de travail";
+    $g_lang["select_and_move_objects"] = "Sélectionner et déplacer les objets avec la souris ou déplacer l'espace de travail.";
     $g_lang["move_cursor_for_moving"] = "Faire glisser le curseur pour déplacer l'objet";
     $g_lang["add_graph"] = "Ajouter une arête";
     $g_lang["orint_edge"] = "Orienté";
@@ -144,4 +144,10 @@
     $g_lang["replace_edge"] = "remplacer l'actuel";
     $g_lang["add_edge"] = "ajout (multigraphe)";
     $g_lang["text_above_edge"] = "Texte au-dessus du bord";
+
+    $g_lang["select_groupe_mac"] = "Utiliser Cmd⌘ pour sélectionner plusieurs objets.";
+    $g_lang["select_groupe_win"] = "Utiliser Ctrl pour sélectionner plusieurs objets.";
+    $g_lang["drag_select_group"] = "Faites glisser le groupe.";
+    $g_lang["copy_select_group"] = "Groupe de copie";
+    $g_lang["remove_select_group"] = "Supprimer le groupe";
 ?>

@@ -101,11 +101,11 @@ BaseHandler.prototype.GetMessage = function()
 }
 
 
-BaseHandler.prototype.MouseMove = function(pos) {;}
+BaseHandler.prototype.MouseMove = function(pos) {}
 
-BaseHandler.prototype.MouseDown = function(pos) {;}
+BaseHandler.prototype.MouseDown = function(pos) {}
 
-BaseHandler.prototype.MouseUp   = function(pos) {;}
+BaseHandler.prototype.MouseUp   = function(pos) {}
 
 BaseHandler.prototype.GetSelectedGroup = function(object) 
 {
@@ -204,11 +204,14 @@ BaseHandler.prototype.UpdateSecondVertexMenu = function()
 function DefaultHandler(app)
 {
 	BaseHandler.apply(this, arguments);
-	this.message = g_textsSelectAndMove;
+	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
         this.selectedObjects = [];
         this.dragObject     = null;
         this.selectedObject = null;
 	this.prevPosition   = null;
+    this.groupingSelect = false;
+    this.selectedLogRect    = false;
+    this.selectedLogCtrl    = false;
 }
 
 // inheritance.
@@ -226,7 +229,7 @@ DefaultHandler.prototype.MouseMove = function(pos)
                 this.dragObject.position.y = pos.y;
 		this.needRedraw = true;
 	}
-        else if (this.selectedObjects.length > 0 && this.pressed)
+        else if (this.selectedObjects.length > 0 && this.pressed && !this.groupingSelect)
         {
                 var offset = (new Point(pos.x, pos.y)).subtract(this.prevPosition);
                 for (var i = 0; i < this.selectedObjects.length; i ++)
@@ -242,12 +245,18 @@ DefaultHandler.prototype.MouseMove = function(pos)
         }
         else if (this.pressed)
         {
-          if (g_ctrlPressed) 
+          if (this.groupingSelect) 
           {
                // Rect select.
                var newPos = new Point(pos.x, pos.y);
                this.app.SetSelectionRect(new Rect(newPos.min(this.prevPosition), newPos.max(this.prevPosition)));
+               this.SelectObjectInRect(this.app.GetSelectionRect());    
                this.needRedraw = true;
+               if (!this.selectedLogRect)
+               {
+                 userAction("GroupSelected.SelectRect");
+                 this.selectedLogRect = true;
+               }
           }
           else
           {
@@ -265,10 +274,11 @@ DefaultHandler.prototype.MouseDown = function(pos)
 	var severalSelect  = g_ctrlPressed;
 
 	if (selectedObject == null || (!severalSelect && !this.selectedObjects.includes(selectedObject)))
-        {
-  	  this.selectedObject = null;
+    {
+  	      this.selectedObject = null;
           this.selectedObjects = [];
-        }        
+          this.groupingSelect = g_ctrlPressed;
+    }        
 
         if ((severalSelect || this.selectedObjects.includes(selectedObject)) && (this.selectedObjects.length > 0 || this.selectedObject != null) && selectedObject != null) 
         {
@@ -281,6 +291,16 @@ DefaultHandler.prototype.MouseDown = function(pos)
           else if (!this.selectedObjects.includes(selectedObject))
           {
             this.selectedObjects.push(selectedObject);
+          }
+          else if (severalSelect && this.selectedObjects.includes(selectedObject))
+          {
+            var index = this.selectedObjects.indexOf(selectedObject);
+            this.selectedObjects.splice(index, 1);
+          }
+          if (!this.selectedLogCtrl)
+          {
+            userAction("GroupSelected.SelectCtrl");
+            this.selectedLogCtrl = true;
           }
         }
         else
@@ -312,13 +332,14 @@ DefaultHandler.prototype.RenameVertex = function(text)
 
 DefaultHandler.prototype.MouseUp = function(pos) 
 {
-	this.message = g_textsSelectAndMove;
+	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
 	this.dragObject = null;
     this.pressed    = false;
     this.app.canvas.style.cursor = "auto";
 
     this.app.SetSelectionRect(null);
-
+    
+    this.groupingSelect = false;
     if (this.selectedObject != null && (this.selectedObject instanceof BaseVertex))
     {
         this.message = g_textsSelectAndMove + " <button type=\"button\" id=\"renameButton\" class=\"btn btn-default btn-xs\" style=\"float:right;z-index:1;position: relative;\">" + g_renameVertex + "</button>";
@@ -404,13 +425,120 @@ DefaultHandler.prototype.MouseUp = function(pos)
     }
     else if (this.selectedObjects.length > 0)
     {
-      this.message = "Select more use ctrl + dublicate selected, remove selecrted.";
+        this.message = g_dragGroupText + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>"
+        + "<span style=\"float:right;\">"
+        + "<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-default btn-xs\">"
+        + g_copyGroupeButton + "</button> &nbsp &nbsp"
+        + "<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-default btn-xs\">"
+        + g_removeGroupeButton + "</button>"
+        + "</span>";
+        
+        var handler = this;
+        $('#message').unbind();
+        
+        $('#message').on('click', '#DublicateSelected', function(){
+            userAction("GroupSelected.Dublicate");
+            
+            var newSelected = [];
+            var copyVertex  = {};
+            
+            // Copy vertex
+            for(var i = 0; i < handler.selectedObjects.length; i ++)
+            {
+              var object = handler.selectedObjects[i];
+              if (object instanceof BaseVertex)
+              {
+                var newObject   = new BaseVertex()
+                newObject.copyFrom(object);
+                newObject.vertexEnumType = null;
+                handler.app.AddNewVertex(newObject);
+                var vertex      = newObject;
+                var diameter    = (new VertexModel()).diameter;
+                vertex.position.offset(diameter, diameter);
+                newSelected.push(vertex);
+                copyVertex[object.id] = vertex;
+              }
+            }
+            
+            // Copy edge
+            for (var i = 0; i < handler.selectedObjects.length; i ++)
+            {
+              var object = handler.selectedObjects[i];
+              if (object instanceof BaseEdge)
+              {
+                var newObject = new BaseEdge()
+                newObject.copyFrom(object);
+                  
+                var toNewVertex = false;
+                if (newObject.vertex1.id in copyVertex)
+                {
+                    newObject.vertex1 = copyVertex[newObject.vertex1.id];
+                    toNewVertex = true;
+                }
+                if (newObject.vertex2.id in copyVertex)
+                {
+                    newObject.vertex2 = copyVertex[newObject.vertex2.id];
+                    toNewVertex = true;
+                }
+                  
+                handler.app.AddNewEdge(newObject);
+                if (!toNewVertex)
+                {
+                    var neighbourEdges = handler.app.graph.getNeighbourEdges(newObject);
+                    if (neighbourEdges.length >= 1)
+                    {
+                        var cruvled = handler.app.GetAvalibleCruvledValue(neighbourEdges, newObject);
+                        newObject.model.SetCurvedValue(cruvled);
+                    }
+                }
+                newSelected.push(newObject);
+              }
+            }
+
+            handler.selectedObjects = newSelected;
+            handler.needRedraw      = true;
+            handler.app.redrawGraph();
+        });
+        
+        $('#message').on('click', '#RemoveSelected', function(){
+            userAction("GroupSelected.Remove");
+            
+            for(var i = 0; i < handler.selectedObjects.length; i ++)
+              handler.app.DeleteObject(handler.selectedObjects[i]);
+            handler.selectedObjects = [];
+            handler.needRedraw = true;
+            handler.app.redrawGraph();
+            handler.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
+        });
     }
+    
+    this.needRedraw = true;
 }
 
 DefaultHandler.prototype.GetSelectedGroup = function(object)
 {
   return (object == this.dragObject) || (object == this.selectedObject) ? 1 : 0 || this.selectedObjects.includes(object);
+}
+
+DefaultHandler.prototype.SelectObjectInRect = function (rect)
+{
+    this.selectedObjects = [];
+    var vertices = this.app.graph.vertices;
+    for (var i = 0; i < vertices.length; i ++)
+    {
+		if (rect.isIn(vertices[i].position) && !this.selectedObjects.includes(vertices[i]))
+            this.selectedObjects.push(vertices[i]);
+	}
+
+	// Selected Arc.
+    var edges = this.app.graph.edges;
+    for (var i = 0; i < edges.length; i ++)
+    {
+        var edge = edges[i];
+        
+        if (rect.isIn(edge.vertex1.position) && rect.isIn(edge.vertex2.position) && !this.selectedObjects.includes(edge))
+            this.selectedObjects.push(edge);
+	}
 }
 
 

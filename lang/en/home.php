@@ -12,7 +12,7 @@
     $g_lang["save_weight_choose"] = "use value for the next edges";
     $g_lang["default_weight"] = "has no weight";
     $g_lang["browser_no_support"] = "Your browser is not supported";
-    $g_lang["select_and_move_objects"] = "Select and move objects by mouse or move workspace";
+    $g_lang["select_and_move_objects"] = "Select and move objects by mouse or move workspace.";
     $g_lang["move_cursor_for_moving"] = "Drag cursor to move objects";
     $g_lang["add_graph"] = "Add edge";
     $g_lang["orint_edge"] = "Directed";
@@ -175,4 +175,10 @@
     $g_lang["add_edge"] = "add (multigraph)";
     $g_lang["french_add"] = "We have added French translation 🇫🇷";
     $g_lang["text_above_edge"] = "Text above edge";
+
+    $g_lang["select_groupe_mac"] = "Use Cmd⌘ to select several objects.";
+    $g_lang["select_groupe_win"] = "Use Ctrl to select several objects.";
+    $g_lang["drag_select_group"] = "Drag group.";
+    $g_lang["copy_select_group"] = "Copy group";
+    $g_lang["remove_select_group"] = "Delete group";
 ?>

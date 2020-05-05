@@ -17,6 +17,17 @@ function BaseVertex(x, y, vertexEnumType)
 
 BaseVertex.prototype.position = new Point(0, 0);
 
+BaseVertex.prototype.copyFrom = function (other)
+{
+    this.position = new Point(other.position.x, other.position.y);
+    this.id       = other.id;
+    this.mainText = other.mainText;
+    this.upText   = other.upText;
+    this.vertexEnumType = other.vertexEnumType;
+    this.model    = new VertexModel();
+    this.hasUndefinedPosition = other.hasUndefinedPosition;
+}
+
 BaseVertex.prototype.SaveToXML = function ()
 {
 	return "<node " + 
@@ -48,7 +59,8 @@ BaseVertex.prototype.LoadFromXML = function (xml)
 BaseVertex.prototype.SetId = function (id)
 {
     this.id       = id;
-    this.mainText = this.vertexEnumType.GetVertexText(id);		                 
+    if (this.vertexEnumType != null)
+      this.mainText = this.vertexEnumType.GetVertexText(id);		                 
 }
 
 BaseVertex.prototype.diameterFactor = function ()

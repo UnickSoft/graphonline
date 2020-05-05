@@ -564,6 +564,12 @@
     <p id="graphIsGeneralMessage" class="translation"><?= L('graph_is_general_message')?></p>
     <p id="defaultWeightPreset" class="translation"><?= L('default_weight')?></p>
         
+    <p id="selectGroupMac" class="translation"><?= L('select_groupe_mac')?></p>
+    <p id="selectGroupWin" class="translation"><?= L('select_groupe_win')?></p>
+    <p id="dragSelectedGroup" class="translation"><?= L('drag_select_group')?></p>
+    <p id="copySelectedGroup" class="translation"><?= L('copy_select_group')?></p>
+    <p id="removeSelectedGroup" class="translation"><?= L('remove_select_group')?></p>
+        
 </section>
 <!--
 <script>
