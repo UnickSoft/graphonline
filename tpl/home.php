@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=26")?>" ></script>
+        <script src="<?= Root("script/example.js?v=27")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
