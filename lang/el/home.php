@@ -22,10 +22,9 @@
     $g_lang["cancel"] = "Ακύρωση";
     $g_lang["adjacency_matrix_description"] = "Ρύθμιση πίνακα γειτνίασης. Χρησιμοποιήστε κόμμα \",\" σαν διαχωριστή";
     $g_lang["adjacency_matrix_bad_format"] = "Ο πίνακας είναι λανθασμένος. Χρησιμοποιήστε κόμμα \",\" σαν διαχωριστή. Ο πίνακας πρέπει να είναι τετράγωνος";
-    $g_lang["delete_all"] = "Remove all";    
+    $g_lang["delete_all"] = "Διαγραφή όλων";    
     $g_lang["click_to_add_vertex"] = "Κάντε κλικ στο χώρο εργασίας για να προσθέσετε μια νέα κορυφή.<span style=\"float:right;\">Καταμέτρηση κορυφής "  .
-    "<select id=\"enumVertexsText\">" .
-    "</select></span>";
+    "<select id=\"enumVertexsText\">" . "</select></span>";
     $g_lang["select_first_vertext_to_connect"] = "Επιλέξτε την πρώτη κορυφή της ακμής";
     $g_lang["select_second_vertext_to_connect"] = "Επιλέξτε την δεύτερη κορυφή της ακμής";
     $g_lang["select_start_short_path_vertex"] = "Επιλέξτε την αρχική κορυφή της συντομότερης διαδρομής";
@@ -46,7 +45,7 @@
     $g_lang["connected_component"] = "Βρείτε συνδεδεμένα στοιχεία";
     $g_lang["sick_connected_component_result"] = "Ο αριθμός των ασθενώς συνδεδεμένων εξαρτημάτων είναι ";
     $g_lang["connected_component_result"] = "Ο αριθμός των συνδεδεμένων στοιχείων είναι ";
-    $g_lang["new_graph"] = "Δημιουργία γραφήματος";
+    $g_lang["new_graph"] = "Δημιουργία νέου γραφήματος";
     $g_lang["what_do_you_think"] = "Τι πιστεύετε για τον ιστότοπο ;";
     $g_lang["name"] = "Όνομα (email για σχόλια)";
     $g_lang["feedback"] = "Ανατροφοδότηση";
@@ -59,7 +58,7 @@
     $g_lang["bad_inc_matrix_message"] = "Δεν είναι δυνατή η δημιουργία γραφήματος. Ο πίνακας προσπτώσεων έχει λανθασμένη μορφή. Πατήστε \"επιδιόρθωση πίνακα\" για να διορθώσετε τον πίνακα ή \"βοήθεια\" για να ανοίξετε βοήθεια σχετικά με τη μορφή του πίνακα προσπτώσεων";
     $g_lang["save_image"] = "Στιγμιότυπο οθόνης χώρου εργασίας";
     $g_lang["save_full_image"] = "Αποθήκευση εικόνας γραφήματος";
-    $g_lang["save_print_image"] = "Τυπωμένη εικόνα γραφήματος (ασπρόμαυρη)";
+    $g_lang["save_print_image"] = "Εκτύπωση γραφήματος (ασπρόμαυρη)";
     $g_lang["open_saved_image_browser"] = "Άνοιγμα εικόνας στο πρόγραμμα περιήγησης";
     $g_lang["download_saved_image"] = "Λήψη αποθηκευμένης εικόνας";
     $g_lang["save_image_dialog_title"] = "Αποθήκευση γραφήματος ως εικόνας";
@@ -87,7 +86,6 @@
     βρείτε τη συντομότερη διαδρομή, βρείτε τον πίνακα γειτνίασης, βρείτε ελάχιστο δέντρο έκτασης και άλλα";
     $g_lang["current_language"] = "el";
     
-    
     $g_lang["developer_tools_title"] = "Δημιουργία αλγορίθμου";
     $g_lang["developer_tools_text"] = "Επικολλήστε τον αλγόριθμό σας παρακάτω και πατήστε Εκτέλεση";
     $g_lang["developer_tools_run"] = "Εκτέλεση";
@@ -99,7 +97,7 @@
     
     $g_lang["edit_weight"] = "Επεξεργασία βάρους";
     
-    $g_lang["group_rename"] = "Μετονομασία ομάδας";
+    $g_lang["group_rename"] = "Μαζική μετονομασία κορυφών";
     $g_lang["enter_vertices_text_in_each_line"] = "Εισαγάγετε κείμενο για κάθε κορυφή σε ξεχωριστή γραμμή";
     $g_lang["or"] = "ή";
     $g_lang["vote"] = "Ψήφος";
@@ -146,28 +144,28 @@
     $g_lang["curve_edge"]       = "Καμπύλη στην ακμή";
     $g_lang["undo"]             = "Αναίρεση";
 
-    $g_lang["opensource_message"] = "Το έργο μας είναι τώρα ανοιχτού κώδικα. Περισσότερες λεπτομέρειες...";
+    $g_lang["opensource_message"] = "Το πρότζεκτ είναι ανοιχτού κώδικα. Περισσότερες λεπτομέρειες...";
 
     $g_lang["settings"] = "Ρυθμίσεις";
-    $g_lang["common_vertex_settings"]   = "Κοινές κορυφές";
-    $g_lang["selected_vertex_settings"] = "Επιλεγμένες κορυφές";
-    $g_lang["common_edge_settings"]     = "Κοινές ακμές";
-    $g_lang["selected_edge_settings"]   = "Επιλεγμένες ακμές";
+    $g_lang["common_vertex_settings"]   = "Στύλ κορυφών";
+    $g_lang["selected_vertex_settings"] = "Στύλ επιλεγμένων κορυφών";
+    $g_lang["common_edge_settings"]     = "Στύλ ακμών";
+    $g_lang["selected_edge_settings"]   = "Στύλ επιλεγμένων ακμών";
 
-    $g_lang["common_color"] = "Κοινό χρώμα";
+    $g_lang["common_color"] = "Εσωτερικό χρώμα";
     $g_lang["stroke_color"] = "Χρώμα περιγράμματος";
     $g_lang["stroke_size"]  = "Πάχος";
     $g_lang["text_color"]   = "Χρώμα κειμένου";
     $g_lang["save_graph"]   = "Αποθήκευση γραφήματος";
     $g_lang["default"]      = "Προκαθορισμένο";
-    $g_lang["vertex_draw_style"] = "Στυλ κορυφής";
+    $g_lang["vertex_draw_style"] = "Στύλ κορυφής";
     $g_lang["text_background"]   = "Φόντο κειμένου";
-    $g_lang["edge_draw_style"]   = "Στυλ ακμής";
+    $g_lang["edge_draw_style"]   = "Στύλ ακμής";
 
     $g_lang["color"] = "Χρώμα";
     $g_lang["alpha"] = "Διαφάνεια";
 
-    $g_lang["background_style"] = "Χρώμα του φόντου";
+    $g_lang["background_style"] = "Χρώμα φόντου";
 
     $g_lang["adjacency_matrix_multigraph_description"] = "Ο πίνακας Multigraph περιέχει βάρος ελάχιστων άκρων μεταξύ κορυφών.";
 
@@ -180,9 +178,9 @@
     $g_lang["greece_add"] = "Προσθέσαμε ελληνική μετάφραση GR";
     $g_lang["text_above_edge"] = "Κείμενο πάνω από την άκρη";
 
-    $g_lang["select_groupe_mac"] = "Χρησιμοποιήστε Cmd⌘ για να επιλέξετε πολλά αντικείμενα.";
-    $g_lang["select_groupe_win"] = "Χρησιμοποιήστε Ctrl για να επιλέξετε πολλά αντικείμενα.";
-    $g_lang["drag_select_group"] = "Σύρετε την ομάδα";
-    $g_lang["copy_select_group"] = "Αντιγραφή ομάδας";
-    $g_lang["remove_select_group"] = "Διαγραφή ομάδας";
+    $g_lang["select_groupe_mac"] = "Χρησιμοποιήστε Cmd⌘ για να επιλέξετε πολλαπλά αντικείμενα.";
+    $g_lang["select_groupe_win"] = "Χρησιμοποιήστε Ctrl για να επιλέξετε πολλαπλά αντικείμενα.";
+    $g_lang["drag_select_group"] = "Μπορείτε να σύρετε την επιλεγμένη ομάδα. ";
+    $g_lang["copy_select_group"] = "Αντιγραφή επιλεγμένης ομάδας";
+    $g_lang["remove_select_group"] = "Διαγραφή επιλεγμένης ομάδας";
 ?>
