@@ -163,6 +163,8 @@
     </div>
     </section>
 
+<? if (L('current_language') != "en"): ?>
+
     <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
     <div class="ProgressBar" style="height:32px">
@@ -171,6 +173,17 @@
     </div>
     </a>
     </section>
+
+<? else: ?>
+
+    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+    <div class="ProgressBar" style="height:32px">
+        <div class="ProgressBarFill" style="width:0%;"></div>
+        <span class="ProgressBarText" style="top:-28px"><p><?= L('greek_add')?></p></span>
+    </div>
+    </section>
+
+<? endif; ?>
 
 <? if (L('current_language') == "ru" && false): ?>
 <!--
