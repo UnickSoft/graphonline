@@ -8,7 +8,7 @@
     $g_lang["menu_6"] = "Wiki";
     $g_lang["menu_7"] = "Γρήγορη εκκίνηση";
     $g_lang["menu_8"] = "Νέα";
-    $g_lang["menu_9"] = "Από παράδειγμα γράφων";
+    $g_lang["menu_9"] = "Από παραδείγματα γράφων";
     $g_lang["menu_10"] = "Ανοιχτό λογισμικό";
     $g_lang["footer_info"] = "
     <a href=\"/en/\">Το Graph Online</a> 
