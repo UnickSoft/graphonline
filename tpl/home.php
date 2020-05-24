@@ -165,7 +165,7 @@
 
 <? if (L('current_language') != "en"): ?>
 
-    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
@@ -176,7 +176,7 @@
 
 <? else: ?>
 
-    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
         <span class="ProgressBarText" style="top:-28px"><p><?= L('greek_add')?></p></span>
@@ -187,7 +187,7 @@
 
 <? if (L('current_language') == "ru" && false): ?>
 <!--
-    <section style="height:32px;text-align: center;" id="adv" class="hidden-phone">
+    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
 
     <a class="ProgresssBarLink" href="/donate" target="_blank">
     <div class="ProgressBar" style="height:32px">

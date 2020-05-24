@@ -298,9 +298,9 @@ window.onload = function ()
 <? endif; ?>
 
                 <? if (L('current_language') == "ru"): ?>
-    <section style="height:90px;text-align: center;" id="adv" class="hidden-phone">
+    <section style="height:90px;text-align: center;" id="info" class="hidden-phone">
 <!-- Yandex.RTB R-A-202319-1 -->
-<iframe frameborder="0" allowtransparency="true" scrolling="no" src="https://money.yandex.ru/embed/donate.xml?account=41001394497131&quickpay=donate&payment-type-choice=on&mobile-payment-type-choice=on&default-sum=30&targets=%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D1%82%D0%B5+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82+%D0%93%D1%80%D0%B0%D1%84+%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD.&target-visibility=on&project-name=&project-site=&button-text=01&successURL=" width="522" height="90"></iframe>
+    <a href="https://yasobe.ru/na/oplata_hostinga_i_domennogo_imeni">🤑 Поддержвать проект деньгами 🤑</a>
 <!--
 <div style="text-align:center;">
 <div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>

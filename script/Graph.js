@@ -814,21 +814,21 @@ Graph.prototype.SaveToXML = function (additionalData)
 	var mainHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><graphml>";
 	var header   = "<graph id=\"Graph\" uidGraph=\"" + this.uidGraph + "\"" + " uidEdge=\"" + this.uidEdge + "\">";
 
-	var xmlBoby = "<nodes>";
+	var xmlBoby = "";
 	  
 	for (var i = 0; i < this.vertices.length; i++)
 	{
 		xmlBoby = xmlBoby + this.vertices[i].SaveToXML();
 	}
 
-	xmlBoby = xmlBoby + "</nodes><edges>";
+	xmlBoby = xmlBoby + "";
 
 	for (var i = 0; i < this.edges.length; i++)
 	{
 		xmlBoby = xmlBoby + this.edges[i].SaveToXML();
-	}		
+	}
 
-	xmlBoby = xmlBoby + "</edges>";
+	xmlBoby = xmlBoby + "";
     
     additionalField = "";
     if (additionalData.length > 0)

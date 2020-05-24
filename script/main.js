@@ -59,13 +59,13 @@ var single = 0;
 
 function resizeCanvas()
 {
-  var adv = document.getElementById('adv');
+  var adv = document.getElementById('bottom_info');
   var canvas    = document.getElementById('canvas');
   canvas.width  = document.getElementById('canvasSection').offsetWidth;
   var mainContainer = document.getElementById('mainContainer');
   var offset = (mainContainer.offsetTop + mainContainer.offsetHeight) - (canvas.offsetTop + canvas.offsetHeight) + ($("#footerContent").css("display") === 'block' ? 0 : 24);
         
-  canvas.height = $(window).height() - document.getElementById('canvas').offsetTop - (adv && $("#adv").css("display") === 'block' ? document.getElementById('adv').offsetHeight : 0) - ($("#footer").css("display") === 'block' ? document.getElementById('footer').offsetHeight : 0) - offset;
+  canvas.height = $(window).height() - document.getElementById('canvas').offsetTop - (adv && $("#bottom_info").css("display") === 'block' ? document.getElementById('bottom_info').offsetHeight : 0) - ($("#footer").css("display") === 'block' ? document.getElementById('footer').offsetHeight : 0) - offset;
 
   application.redrawGraph();
 }
