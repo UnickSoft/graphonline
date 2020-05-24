@@ -300,7 +300,7 @@ window.onload = function ()
                 <? if (L('current_language') == "ru"): ?>
     <section style="height:90px;text-align: center;" id="info" class="hidden-phone">
 <!-- Yandex.RTB R-A-202319-1 -->
-    <a href="https://yasobe.ru/na/oplata_hostinga_i_domennogo_imeni">🤑 Поддержвать проект деньгами 🤑</a>
+    <a href="https://yasobe.ru/na/oplata_hostinga_i_domennogo_imeni">🤑 Поддержать проект деньгами 🤑</a>
 <!--
 <div style="text-align:center;">
 <div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>
