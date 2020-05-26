@@ -27,6 +27,8 @@
         const TAG_EXTRAPACKER            = '<!-- extraPacker -->';
 
         const MEMORY_FOR_PACKING         = 67108864; // 64Mb
+        
+        const FORCE_DISABLE_GZIP         = false;
 
         private $addrJsCacheFileInfo;
         private $addrJsCacheFile;
@@ -531,6 +533,11 @@
 
         private function CanUseGZIP()
         {
+            if (self::FORCE_DISABLE_GZIP)
+            {
+                return false;
+            }
+            
             $httpAcceptEncoding = isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : '';
             $hasGzip            = strstr($httpAcceptEncoding, 'gzip') !== false && extension_loaded('zlib');
             $canEncoding        = true;
