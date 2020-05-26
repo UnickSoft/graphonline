@@ -17,7 +17,7 @@
                           'en' => array('name' => 'English'),
                           'ru' => array('name' => 'Русский'),
                           'fr' => array('name' => 'Français'),
-                          'el' => array('name' => 'Greek')
+                          'el' => array('name' => 'Greek'),
                           'es' => array('name' => 'Spanish')
                        );
 
