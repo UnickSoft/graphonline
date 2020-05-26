@@ -64,6 +64,10 @@ define('SITE_IN_DIR',   'graph');
 ```
 4. Run merge.php to apply changes. Run http://localhost/graph/script/merge.php
 
+# Fix problems
+
+1. If you see page but css is not loaded. Maybe your web server does not support gzip encoding. You can try change FORCE_DISABLE_GZIP field from **false** to **true**. (It is placed in file /lib/ExtraPacker/ExtraPacker.php).
+
 # 3th-party
 
 1. Micron (http://zmicron.itkd.ru/) is our engine.
