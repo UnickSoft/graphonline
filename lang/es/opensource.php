@@ -1,0 +1,6 @@
+<?php
+
+    $g_lang["head_no_tags"] = "Graphonline Código Abierto";
+    $g_lang["text"] = "<p>Graphonline es un proyecto de código abierto. Puedes encontrar el código fuente en github: <a href=\"https://github.com/UnickSoft/graphonline\">https://github.com/UnickSoft/graphonline</a>. Tenemos planes para un montón de nuevas funciones, pero nuestro pequeño equipo las implementa muy lento.</p>\n\n<h2>Tu puedes ayudarnos</h2>\n\n<p>Si sabes programar en: php o JavaScript o C++, puedes ayudar a mejorar el servicio Graphonline. Por favor escribenos en github o a <a href=\"mailto:admin@graphonline.ru\">admin@graphonline.ru</a>. Si eres un estudiante, es una buena oportunidad para trabajar en un equipo de desarrollo.</p>\n\n<p>Además puedes ayudarnos a llenar nuestra wiki: <a href=\"https://graphonline.ru/en/wiki/\">https://graphonline.ru/en/wiki/</a>. O mejorar nuestro diseño. O probar nueva funcionalidad. Como sea, si puedes dedicarle 1 hora a la semana a graphonline, por favor escribenos.</p>\n";
+
+?>

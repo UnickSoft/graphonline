@@ -18,6 +18,7 @@
                           'ru' => array('name' => 'Русский'),
                           'fr' => array('name' => 'Français'),
                           'el' => array('name' => 'Greek')
+                          'es' => array('name' => 'Spanish')
                        );
 
     $g_config                     = array();
