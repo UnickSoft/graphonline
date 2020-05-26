@@ -18,7 +18,7 @@ Server side:
 # How to run
 
 1. Download repository to local website folder. It should be placed into root of domen. If you want to run graphonline from subdirectory read "Additional steps to run from subdirectory" below.
-2. Change access rights of directory /tmp. PHP scripts need to create and modify files inside it.
+2. Change access rights of directory /tmp (it is actually for Non-Windows system, you should set rwx). PHP scripts should be able to create and to modify files inside it.
 3. Run file from browser: /script/merge.php. It merges all js files into one /script/example.js.
 4. Run file from browser: /cgi-bin/getPluginsList.php?reset. It creates file with list of plug-ins. Just optimization.
 5. Change default root password in file: /core/config/admin_sector.php
