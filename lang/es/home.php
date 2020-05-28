@@ -3,7 +3,7 @@
     $g_lang["title_notg"] = "Encontrar camino más corto";
     $g_lang["text"] = "<p>Crea un grafo y encuentra el camino más corto entre vértices. En la página de ayuda <a href=\"/en/help\">encontrarás un video tutorial</a>.</p>\n";
     $g_lang["add_node"] = "Agregar vértice";
-    $g_lang["connect_nodes"] = "Conectr vértices";
+    $g_lang["connect_nodes"] = "Conectar vértices";
     $g_lang["delete"] = "Remover objeto";
     $g_lang["default"] = "Arrastrar";
     $g_lang["short_path"] = "Encontrar camino más corto";
