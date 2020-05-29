@@ -68,7 +68,9 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= $langInfo["name"]?>"> <?= L('lang')?> <span class="caret"></span></a>
 <ul class="dropdown-menu">
 <?php foreach($g_arrLangs as $lang => $langInfo):?>
+<?php if (!array_key_exists('hidden', $langInfo) || !$langInfo["hidden"]):?>
 <li><a href="<?= ChangeLang($lang, GetCurUrl())?>" title="<?= $langInfo["name"]?>" class="<?= $lang == LANG ? "selected" : ""?>"><img src="<?= Root("i/image/flags/{$lang}.png")?>" alt="<?= $langInfo["name"]?>"> <?= $langInfo["name"]?></a></li>
+<?php endif?>
 <?php endforeach?>
 </ul>
 </li>

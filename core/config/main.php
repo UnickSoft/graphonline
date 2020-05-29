@@ -18,7 +18,8 @@
                           'ru' => array('name' => 'Русский'),
                           'fr' => array('name' => 'Français'),
                           'el' => array('name' => 'Greek'),
-                          'es' => array('name' => 'Spanish')
+                          'es' => array('name' => 'Spanish'),
+                          'nl' => array('name' => 'Dutch', 'hidden' => True),
                        );
 
     $g_config                     = array();
