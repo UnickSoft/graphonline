@@ -1,4 +1,5 @@
 <?php
+    $g_lang["title_notg"] = "Vind het kortste pad";
     $g_lang["text"] = "<p>Créeer een graaf en vind het kortste pad. Op de Help pagina kunt u <a href=\"/en/help\"> een uitleg video vinden.</a>.</p>";
     $g_lang["add_node"] = "Voeg knoop toe";
     $g_lang["connect_nodes"] = "Verbind knopen";
