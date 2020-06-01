@@ -122,7 +122,7 @@
     $g_lang["opensource_message"] = "Ons project is nu open source. Voor meer details klik hier.";
     $g_lang["settings"] = "Instellingen";
     $g_lang["common_vertex_settings"] = "Standaard knopen";
-    $g_lang["selected_vertex_settings"] = "Geselcteerde knopen";
+    $g_lang["selected_vertex_settings"] = "Geselecteerde knopen";
     $g_lang["common_edge_settings"] = "Standaard wegen";
     $g_lang["selected_edge_settings"] = "Geselecteerde wegen";
     $g_lang["common_color"] = "Standaard kleur";

@@ -19,7 +19,7 @@
                           'fr' => array('name' => 'Français'),
                           'el' => array('name' => 'Greek'),
                           'es' => array('name' => 'Spanish'),
-                          'nl' => array('name' => 'Dutch', 'hidden' => True),
+                          'nl' => array('name' => 'Dutch'),
                        );
 
     $g_config                     = array();

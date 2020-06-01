@@ -173,8 +173,8 @@
 
     $g_lang["replace_edge"] = "replace current";
     $g_lang["add_edge"] = "add (multigraph)";
-    $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/es/\" target=\"_blank\">
-We have added Spanish translation 🇪🇸.</a> <a href=\"https://github.com/UnickSoft/graphonline/pull/7\" target=\"_blank\">Thank you acrespo</a>";
+    $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
+We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["text_above_edge"] = "Text above edge";
 
     $g_lang["select_groupe_mac"] = "Use Cmd⌘ to select several objects.";
