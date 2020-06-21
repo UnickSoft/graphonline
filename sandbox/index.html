@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sandbox to create new algorithms</title>
+        <meta name="description" content="Create graph online and use big amount of algorithms: find the shortest path, find adjacency matrix, find minimum spanning tree and others" />        <meta name="keywords" content="graph online, find shortest path, graph visualization, graph by adjacency matrix, adjacency matrix, incidence matrix, search connected component, eulerian cycle, minimum spanning tree" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../i/image/touch_icon/favicon_144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../i/image/touch_icon/favicon_114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../i/image/touch_icon/favicon_72x72.png" />
+        <link rel="apple-touch-icon-precomposed" href="../i/image/touch_icon/favicon_57x57.png" />
+
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+
+        <meta http-equiv="cleartype" content="on">
+        <script src="../i/js/dev/jquery-2.0.3.js" ></script>
+        <meta name="robots" content="noindex">
+
+        <meta name="yandex-verification" content="66de0a468e59b81b" />
+
+        <link rel="stylesheet" charset="UTF-8" type="text/css" href="../tmp/auto_merge_css_js/css/en/css1588510840.css" />
+
+        <script src="../i/js/dev/jquery-ui.js"></script>
+	    <script src="../i/js/dev/jquery.feedback_me.js"></script>
+        <script src="../script/texts.js"></script>
+        <script src="../script/point.js"></script>
+        <script src="../script/EdgeModel.js"></script>
+        <script src="../script/VertexModel.js"></script>
+        <script src="../script/BaseVertex.js"></script>
+        <script src="../script/BaseEdge.js"></script>
+        <script src="../script/BaseVertexDrawer.js"></script>
+        <script src="../script/BaseEdgeDrawer.js"></script>
+        <script src="../script/BaseBackgroundDrawer.js"></script>
+        <script src="../script/Algorithms.js"></script>
+        <script src="../script/EventHandlers.js"></script>
+        <script src="../script/GraphMLCreater.js"></script>
+        <script src="../script/Graph.js"></script>
+        <script src="../script/EnumVertices.js"></script>
+        <script src="../script/Appilcation.js"></script>
+        <script src="../script/main.js"></script>
+        <script src="../script/BaseTraversal.js"></script>
+        <script src="NewAlgorithm.js"></script>
+    </head>
+    <body>
+        <div class="container page-wrap" id="mainContainer">
+<!--            <div class="header"> -->
+<nav class="navbar navbar-default" id="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/en/"><span class="fa fa-sitemap fa-fw"></span> Graph Online</a>
+    </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav navbar-right">
+<li><a href="/en/">Home</a></li>
+<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Create Graph <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/en/create_graph_by_matrix">Using adjacency matrix</a></li>
+<li><a href="/en/create_graph_by_incidence_matrix">Using incidence matrix</a></li>
+<li><a href="/en/graphs_examples">Using graph example</a></li>
+</ul>
+</li>
+<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Help <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/en/help">Quick Start</a></li>
+<li><a href="/en/wiki">Wiki</a></li>
+<li><a href="/en/opensource">Open source</a></li>
+</ul>
+</li>
+<li class=""><a href="/en/news">News</a></li>
+<li class=""><a href="/en/contacts">Contacts</a></li>
+</ul>
+
+        </div>
+    </div>
+</nav>
+            <div class="content">
+
+
+    <h1 style="display:inline;" id="h1Header">Developer sandbox to create new algorithms. <a hraf="README.md">Readme.md</a></h1>
+
+	<section>
+		<ul class="nav nav-pills">
+
+			<div class="btn-group" role="group">
+    			<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="glyphicon glyphicon-cog fa-fw"></span><span class="hidden-phone"> Graph </span><span class="caret"></span></button>
+    			<ul class="dropdown-menu" role="menu">
+      				<li>
+                        <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> Create graph </button>
+				</li>
+				<li class="divider" style="display: none;"></li>
+      		    <li style="display: none;">
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraph"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> Save</button>
+				</li>
+                <li class="divider" style="display: none;"></li>
+                <li style="display: none;">
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveFullGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> Save graph image</button>
+                </li>
+                <li style="display: none;">
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraphImage"><span class="glyphicon glyphicon-camera fa-fw"></span> Workspace screenshot</button>
+                </li>
+                <li style="display: none;">
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SavePrintGraphImage"><span class="glyphicon glyphicon-print fa-fw"></span> Printed image of graph (black&white)</button>
+                </li>
+                <li class="divider hidden-phone"></li>
+                <li class="hidden-phone">
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ExportGraph"><span class="glyphicon glyphicon-download fa-fw"></span> Export to file</button>
+				</li>
+                    
+                <li class="hidden-phone">
+                  <input type="file" id="ImportGraphFiles" accept=".graphml" style="display:none" onchange="handelImportGraph(this.files)">
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ImportGraph"><span class="glyphicon glyphicon-upload fa-fw"></span> Import from file</button>
+				</li>
+                    
+				<li class="divider"></li>
+      				<li>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> Adjacency Matrix</button>
+				</li>
+      				<li>
+		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowIncidenceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> Incidence matrix </button>
+				</li>
+                <li>
+		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowDistanceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> Distance matrix </button>
+				</li>
+                <li>
+		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="GroupRename"><span class="glyphicon glyphicon-pencil fa-fw"></span> Group rename </button>
+				</li>
+				<li class="divider"></li>
+      				<li>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="DeleteAll"><span class="glyphicon glyphicon-remove fa-fw"></span> Remove all</button>
+				</li>
+    			</ul>
+  			</div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-zoom-in fa-fw"></span><span class="hidden-phone"> View </span><span class="caret hidden-phone"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom100"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 100% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom50"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 50% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom25"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 25% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomFit"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> Zoom fit</button> </li>
+                <li class="divider"></li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomIn"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> Zoom in <span style="float:right">+</span></button></li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomOut"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> Zoom out <span style="float:right">-</span></button></li>
+                <li class="divider"></li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="MoveWorspace"><span class="glyphicon glyphicon-fullscreen fa-fw"></span> Move workspace </button> </li>
+            </ul>
+          </div>
+		  <button type="button" class="btn btn-default btn-sm" id="Default"><span class="glyphicon glyphicon-fullscreen fa-fw"></span><span class="hidden-phone"> Default <sub style="color:#AAAAAA">m</sub></span></button>
+          <button type="button" class="btn btn-primary btn-sm" id="AddGraph"><span class="glyphicon glyphicon-plus fa-fw"></span><span class="hidden-phone"> Add vertex <sub style="color:#AAAAAA">v</sub></span></button>
+		  <button type="button" class="btn btn-default btn-sm" id="ConnectGraphs"><span class="glyphicon glyphicon-road fa-fw"></span><span class="hidden-phone"> Connect vertexes <sub style="color:#AAAAAA">e</sub></span></button>
+
+        <!-- Algorithms -->
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openAlgorithmList">
+            <span class="glyphicon glyphicon-cog fa-fw "></span><span class="hidden-phone"> Algorithms </span><span class="caret"></span>
+            </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">
+
+		  <li style="display: none;"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></li>
+
+          </ul>
+        </div>
+
+        <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> Remove object <sub style="color:#AAAAAA">r</sub></span></button>
+            
+            
+        <div class="btn-group hidden-phone" role="group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openSettings">
+            <span class="glyphicon glyphicon-cog fa-fw "></span><span> Settings </span><span class="caret"></span>
+            </button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="Settings">
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyle">Common vertexes</button> </li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyleSelected">Selected vertexes</button> </li>
+                 <li class="divider"></li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyle">Common edges</button> </li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyleSelected">Selected edges</button> </li>
+                 <li class="divider"></li>
+                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupBackgroundStyle">Background color</button> </li>
+          </ul>
+        </div>
+		</ul>
+	</section>		
+
+    <section>
+	<div id="message" class="alert alert-success" role="alert">Graph</div>
+    </section>
+
+    <section id="canvasSection">
+    <span id="CanvasMessage"></span>    
+    <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="glyphicon glyphicon-resize-full fa-fw" id="FullscreenIcon"></span></button>
+	<canvas id="canvas">Your browser is not supported</canvas>
+    <div id="developerTools" class="well well-sm">
+        <h4>Create algorithm</h4> <span class="glyphicon glyphicon-resize-full fa-fw leftTopPosition" id="devToolsZoom"></span>
+        <span>Paste your algorith below and press Run</span>
+        <textarea id="userScript">
+        </textarea>
+        <input type="button" value="Run" id="runUserScript" class="btn btn-success btn-sm"/>
+        <input type="button" value="Submit to site" id="submitUserScript" class="btn btn-default btn-sm" style="float: right;"/>
+    </div>
+    </section>
+
+    <section class="translation">
+    <div id="addEdge">
+		<form>
+		<fieldset>
+              <div id="EdgeWeightControls">
+			  <label id="WeightLabel">Edge weight&nbsp; </label> <input type="range" id="EdgeWeightSlider" min="0" max="29" value="0" oninput="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : 'has no weight');" onchange="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : 'has no weight');"> &nbsp; &nbsp;<input type="text" name="edgeWeight" value="has no weight" id="EdgeWeight" class="inputBox">
+              </div>
+			  <div id="EdgesPresets">
+  			  <span onClick="document.getElementById('EdgeWeight').value='has no weight'; document.getElementById('EdgeWeightSlider').value=0;" style="cursor: pointer" class="defaultWeigth">has no weight</span>
+  			  <span onClick="document.getElementById('EdgeWeight').value='1'; document.getElementById('EdgeWeightSlider').value=1;" style="cursor: pointer"  class="defaultWeigth">1</span>
+			  </div>
+              <div id="EdgeLabelControls">
+			  <label id="EdgeLabel">Text above edge</label>&nbsp;&nbsp;<input type="text" name="edgeLable" value="" id="EdgeLable" class="inputBox">
+              </div>
+              <div id="NewEdgeAction">
+                <div class="InlineStyle PaddingRight">
+                  <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosReplaceEdge" value="replace" checked>
+                  <label for="RadiosReplaceEdge">
+                    replace current                  </label>
+                </div>
+                <div class="InlineStyle PaddingRight">
+                  <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosAddEdge" value="add">
+                  <label for="RadiosAddEdge" id="RadiosAddEdgeLabel">
+                    add (multigraph)                  </label>
+                </div>
+              </div>
+		</fieldset>
+		</form>
+    </div>
+
+    <div id="addVertex">
+        <form>
+        <fieldset>
+            <label id="VertexTitleLable">
+                <p>Enter title</p> <input type="text" name="VertextTitle" value="Title" id="VertexTitle" class="inputBox">
+            </label>
+            <br/><br/><button type="button" id="groupRenameButton" class="btn btn-default btn-xs hidden-phone"> Group rename </button>
+        </fieldset>
+        </form>
+    </div>
+
+    <div id="GroupRenameDialog">
+        <form>
+        <fieldset>
+                <p>Enter text for each vertex in separate line</p> <textarea name="VertextTitleList" id="VertextTitleList" wrap="off" rows="8"></textarea>
+        </fieldset>
+        </form>
+    </div>
+
+	<div id="adjacencyMatrix">
+		<form>
+		<fieldset>
+				<p>Setup adjacency matrix. Use comma "," as separator</p>
+                <p id="AdjacencyMatrixMultiGraphDesc">Multigraph matrix contains weight of minimum edges between vertices.</p>
+				<textarea name="adjacencyMatrixField" id="AdjacencyMatrixField" wrap="off"></textarea>
+				<p id="BadMatrixFormatMessage">Matrix is incorrect. Use comma "," as separator. Matrix should be square</p>
+		</fieldset>
+		</form>
+    </div>
+
+	<div id="incidenceMatrix">
+		<form>
+		<fieldset>
+				<p>Set up incidence matrix. Use comma "," as separator.</p>				
+				<textarea name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
+				<p id="BadIncidenceMatrixFormatMessage">Matrix is incorrect. Use comma "," as separator.</p>
+		</fieldset>
+		</form>
+       </div>
+        
+	<div id="floidMatrix">
+		<form>
+		<fieldset>
+				<p>Matrix of minimal distances</p>
+				<textarea name="floidMatrixField" id="FloidMatrixField" wrap="off"></textarea>
+		</fieldset>
+		</form>
+    </div>
+
+	<div id="saveDialog">
+		<form>
+		<fieldset>
+				<p>Graph was saved. Follow this link to see it. <br/>
+				<input type="text" name="graphName" id="GraphName" onClick="this.select();">
+				</p>
+				<p>Share link in social networks:</p>
+<ul class="share-buttons" id="ShareSavedGraph">
+	<li><a href="http://vkontakte.ru/share.php?url=http://localhost/en/?graph=XXXX&text=Graph Online: Saved Graph" target="_blank" title="Share on Vkontate"><i class="fa fa-vk fa-2x"></i></a></li>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/en/?graph=XXXX&t=Graph Online: Saved Graph" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+	<li><a href="https://twitter.com/intent/tweet?source=http://localhost/en/?graph=XXXX&text=Graph Online: Saved Graph http://localhost/en/?graph=XXXX" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+	<li><a href="https://plus.google.com/share?url=http://localhost/en/?graph=XXXX" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+	<li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost/en/?graph=XXXX&title=Graph Online: Saved Graph&summary=Graph Online: Saved Graph &source=http://localhost/en/?graph=XXXX" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+	<li><a href="mailto:?subject=Graph Online: Saved Graph&body=http://localhost/en/?graph=XXXX" target="_blank" title="Email"><i class="fa fa-envelope fa-2x"></i></a></li>
+</ul>
+
+		</fieldset>
+		</form>
+       </div>
+
+<div id="saveImageDialog">
+<form>
+<fieldset>
+<p id="SaveImageLinks"><a href="http://localhost/tmp/saved/XX/XXXXX.png" target="_blank">Open image in browser</a> or <a href="http://localhost/tmp/saved/XX/XXXXX.png" download>Download saved image</a>
+</p>
+<p class="hidden-phone">
+<a href="http://localhost/tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="http://localhost/tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
+</p>
+<p>Share link in social networks:</p>
+<ul class="share-buttons" id="ShareSavedImageGraph">
+<li><a href="http://vkontakte.ru/share.php?url=http://localhost/tmp/saved/XX/XXXXX.png&text=Graph Online: Saved Graph" target="_blank" title="Share on Vkontate"><i class="fa fa-vk fa-2x"></i></a></li>
+<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/tmp/saved/XX/XXXXX.png&t=Graph Online: Saved Graph" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+<li><a href="https://twitter.com/intent/tweet?source=http://localhost/tmp/saved/XX/XXXXX.png&text=Graph Online: Saved Graph http://localhost/en/tmp/saved/XX/XXXXX.png" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+<li><a href="https://plus.google.com/share?url=http://localhost/tmp/saved/XX/XXXXX.png" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+<li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http://localhost/tmp/saved/XX/XXXXX.png&title=Graph Online: Saved Graph&summary=Graph Online: Saved Graph &source=http://localhost/tmp/saved/XX/XXXXX.png" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+<li><a href="mailto:?subject=Graph Online: Saved Graph&body=http://localhost/tmp/saved/XX/XXXXX.png" target="_blank" title="Email"><i class="fa fa-envelope fa-2x"></i></a></li>
+</ul>
+
+</fieldset>
+</form>
+</div>
+
+	<div id="sentAlgorithm" title="Algorithm was sent">
+		  <p>Your algorithm was sent to check and in success case it will be add to site.</p>
+    </div>
+
+
+       <div id="matrixError" class="translation">
+	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> Cannot create graph. Adjacency Matrix has wrong format. Click "fix matrix" button to fix matrix or "help" button to open help about Adjacency Matrix format</div>
+       </div>
+
+       <div id="matrixErrorInc" class="translation">
+	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> Cannot create graph. Incidence Matrix has wrong format. Click "fix matrix" button to fix matrix or "help" button to open help about Incidence Matrix format</div>
+       </div>
+        
+	<div id="voteDialog">
+		<form>
+		<fieldset>
+				<p>What functions should we add firstly?</p>	
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote1">
+                    <h4 class="list-group-item-heading">Depth-first search and breadth-first search</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote5">
+                    <h4 class="list-group-item-heading">Bellman–Ford algorithm</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote3">
+                    <h4 class="list-group-item-heading">Search strongly connected component</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote2">
+                    <h4 class="list-group-item-heading">Search all paths from vertex A to vertex B</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote4">
+                    <h4 class="list-group-item-heading">Search longest path on graph</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+                            <div class="list-group">
+                  <button type="button" class="list-group-item" id="vote0">
+                    <h4 class="list-group-item-heading">Search Hamiltonian path and cycle</h4>
+                    <p class="list-group-item-text"></p>
+                  </button>
+                </div>
+            		</fieldset>
+		</form>
+    </div>
+        
+        
+	<div id="NeedAlgorithm">
+		<form>
+		<fieldset>
+				<p>Please, write what kind of algorithm would you like to see on this website?</p>
+                <textarea name="needAlgorthmText" id="NeedAlgorithmMessage" rows="5"></textarea>
+                <p>Our service already supports these features: <a href="/en/wiki/Help/FindTheShortestPath" target="_blank" style="text-decoration: underline">Find the shortest path using Dijkstra's algorithm</a>, <a href="/en/wiki/Help/AdjacencyMatrix" target="_blank" style="text-decoration: underline">Adjacency matrix</a>, <a href="/en/wiki/Help/IncidenceMatrix" target="_blank" style="text-decoration: underline">Incidence Matrix</a>.</p>
+		</fieldset>
+		</form>
+    </div>
+        
+    <div id="SetupVertexStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="vertexFillColor" class="col-sm-5 col-form-label">Common Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexFillColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexStrokeColor" class="col-sm-5 col-form-label">Stroke Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexStrokeColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexStrokeSize" class="col-sm-5 col-form-label">Thickness</label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vertexTextColor" class="col-sm-5 col-form-label">Text Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="VertexPreview" width="300" height="150"></canvas>
+    </div>
+        
+    <div id="SetupEdgeStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="edgeStrokeColor" class="col-sm-5 col-form-label">Common Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeTextColor" class="col-sm-5 col-form-label">Text Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeTextColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeFillColor" class="col-sm-5 col-form-label">Text background</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="edgeFillColor" value="#FFAA22">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="EdgePreview" width="300" height="150"></canvas>
+    </div>
+        
+    <div id="SetupBackgroundStyleDialog">
+        <form>
+		<fieldset>
+          <div class="form-group row">
+            <label for="bacgkroundColor" class="col-sm-5 col-form-label">Color</label>
+            <div class="col-sm-5">
+              <input type="color" class="form-control" id="backgroundColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="backgroundTransporent" class="col-sm-5 col-form-label">Opacity</label>
+            <div class="col-sm-5">
+              <input type="range" min="0" max="1" step="0.1" id="backgroundTransporent">
+            </div>
+          </div>
+        </fieldset>
+        </form>
+        
+        <canvas id="BackgroundPreview" width="300" height="150"></canvas>
+    </div>
+	
+    <p id="SelectAndMoveObject" class="translation">Select and move objects by mouse or move workspace.</p>
+    <p id="MoveCursorForMoving" class="translation">Drag cursor to move objects</p>
+
+    <p id="SelectAndMoveObject" class="translation">Select and move objects by mouse or move workspace.</p>
+    <p id="MoveCursorForMoving" class="translation">Drag cursor to move objects</p>
+    <p id="clickToAddVertex" class="translation">Click to workspace to add a new vertex. <span style="float:right;">Vertex enumeration <select id="enumVertexsText"></select></span></p>
+    <p id="selectFisrtVertextToConnect" class="translation">Select first vertex of edge</p>
+    <p id="selectSecondVertextToConnect" class="translation">Select second vertext of edge</p>
+    <p id="selectStartShortPathVertex" class="translation">Select the initial vertex of the shortest path</p>
+    <p id="selectFinishShortPathVertex" class="translation">Select the end vertex of the shortest path</p>
+    <p id="shortPathResult" class="translation">Shortest path length is %d</p>
+    <p id="pathNotExists" class="translation">Path does not exist</p>
+    <p id="selectObjectToDelete" class="translation">Click on the object to remove</p>
+ 
+    <p id="AddEdge" class="translation">Add edge</p>
+	<p id="OrintEdge" class="translation">Directed</p>
+	<p id="NotOrintdge" class="translation">Undirected</p>
+	
+	<p id="AdjacencyMatrixText" class="translation">Adjacency Matrix</p>
+	<p id="Save" class="translation">Save</p>
+	<p id="Cancel" class="translation">Cancel</p>
+	<p id="shortestDist" class="translation">the lowest distance is </p>
+	<p id="IncidenceMatrixText" class="translation">Incidence matrix</p>
+
+
+	<p id="saveDialogTitle" class="translation">Saving Graph</p>
+	<p id="closeButton" class="translation">close</p>
+
+	<p id="connectedComponentResult" class="translation">The number of connected components is </p>
+	<p id="sickConnectedComponentResult" class="translation">The number of weakly connected components is </p>
+
+
+	<p id="whatDoYouThink" class="translation">What do you think about the site?</p>
+	<p id="name" class="translation">Name (email for feedback)</p>
+	<p id="feedback" class="translation">Feedback</p>
+	<p id="send" class="translation">Send</p>
+	<p id="writeToUs" class="translation">To ask us a question or send us a comment, write us at </p>
+
+
+	<p id="fixMatrixButton" class="translation">fix matrix</p>
+	<p id="matrixHelp" class="translation">help</p>
+	<p id="wronMatrixTitle" class="translation">Matrix has wrong format</p>
+
+    <p id="saveImageDialogTitle" class="translation">Save Graph Image</p>
+
+    <p id="fullReport" class="translation">Full report</p>
+    <p id="shortReport" class="translation">Short report</p>
+
+    <p id="hasNotEulerianLoop" class="translation">Graph has not Eulerian cycle</p>
+    <p id="hasEulerianLoop" class="translation">Graph has Eulerian cycle</p>
+    <p id="processing" class="translation">Processing...</p>
+
+    <p id="customEnumVertex" class="translation">Custom text</p>
+    <p id="addVertexText" class="translation">Add vertex</p>
+
+    <p id="renameVertex" class="translation">Rename vertex</p>
+    <p id="renameText" class="translation">Rename</p>
+    <p id="inputMatrix" class="translation"></p>
+    <p id="separator" class="translation"></p>
+    <p id="inputIncidenceMatrix" class="translation"></p>
+    <p id="currentLanguage" class="translation">en</p>
+    <p id="editWeight" class="translation">Edit weight</p>
+    <p id="noWeight" class="translation">has no weight</p>
+    <p id="groupeRenameText" class="translation">Group rename</p>
+    <p id="voteText" class="translation">Vote</p>
+    <p id="recommend_algorithm" class="translation">Recommend algorithms</p>
+
+    <p id="hasNotEulerianPath" class="translation">Graph has not Eulerian path</p>
+    <p id="hasEulerianPath" class="translation">Graph has Eulerian path</p>
+
+    <p id="graphOfMinDist" class="translation">Graph of minimal distances</p>
+    <p id="checkToSave" class="translation">Check to save</p>
+    <p id="showDistMatrix" class="translation">Show distance matrix</p>
+    <p id="distMatrixText" class="translation">Distance matrix</p>
+        
+    <p id="selectStartVertexForMaxFlow" class="translation">Select a source of the maximum flow</p>
+    <p id="selectFinishVertexForMaxFlow" class="translation">Select a sink of the maximum flow</p>
+    <p id="maxFlowResult" class="translation">Maximum flow from %2 to %3 equals %1</p>
+    <p id="flowNotExists" class="translation">Flow from %1 in %2 does not exist</p>
+        
+    <p id="sourceVertex" class="translation">Source</p>
+    <p id="sinkVertex" class="translation">Sink</p>
+        
+    <p id="hasNotHamiltonianLoop" class="translation">Graph has not Hamiltonian cycle</p>
+    <p id="hasHamiltonianLoop" class="translation">Graph has Hamiltonian cycle</p>
+        
+    <p id="hasNotHamiltonianPath" class="translation">Graph has not Hamiltonian path</p>
+    <p id="hasHamiltonianPath" class="translation">Graph has Hamiltonian path</p>
+        
+    <p id="startTraversal" class="translation">Select start traversal vertex</p>
+    <p id="traversalOrder" class="translation">Traversal order: </p>
+
+    <p id="curveEdge" class="translation">Edge bend</p>
+    <p id="undoTranslate" class="translation">Undo</p>
+    <p id="saveGraph" class="translation">Save graph</p>
+    <p id="default" class="translation">Default</p>
+    <p id="vertexDrawStyle" class="translation">Vertex Style</p>
+    <p id="edgeDrawStyle" class="translation">Edge Style</p>
+    <p id="backgroundStyle" class="translation">Background color</p>
+        
+    <p id="graphIsMultiMessage" class="translation">Multigraph does not support all algorithms</p>
+    <p id="graphIsGeneralMessage" class="translation"></p>
+    <p id="defaultWeightPreset" class="translation">has no weight</p>
+        
+    <p id="selectGroupMac" class="translation">Use Cmd⌘ to select several objects.</p>
+    <p id="selectGroupWin" class="translation">Use Ctrl to select several objects.</p>
+    <p id="dragSelectedGroup" class="translation">Drag group.</p>
+    <p id="copySelectedGroup" class="translation">Copy group</p>
+    <p id="removeSelectedGroup" class="translation">Delete group</p>
+        
+    <p id="BFSName" class="translation">Breadth-first search</p>
+    <p id="ColoringName" class="translation">Graph coloring</p>
+    <p id="findConnectedComponent" class="translation">Find connected components</p>
+    <p id="DFSName" class="translation">Depth-first search</p>
+    <p id="EulerinLoopName" class="translation">Find Eulerian cycle</p>
+    <p id="EulerinPath" class="translation">Find Eulerian path</p>
+    <p id="FloidName" class="translation">Floyd–Warshall algorithm</p>
+    <p id="GraphReorder" class="translation">Arrange the graph</p>
+    <p id="HamiltoianCycleName" class="translation">Find Hamiltonian cycle</p>
+    <p id="HamiltonianPath" class="translation">Find Hamiltonian path</p>
+    <p id="MaxFlowName" class="translation">Find Maximum flow</p>
+    <p id="minimumSpanningTree" class="translation">Search of minimum spanning tree</p>
+    <p id="modernGraphStyleName" class="translation">Visualisation based on weight</p>
+    <p id="RadiusAndDiameter" class="translation">Search graph radius and diameter</p>
+    <p id="findShortPathName" class="translation">Find shortest path using Dijkstra's algorithm</p>
+    <p id="VerticesDegreeName" class="translation">Calculate vertexes degree</p>
+        
+</section>
+            </div>
+
+        <!-- Футер приходится обрамить в .container, потому что у него position:absolute и он занимает всю ширину игнорируя паддинги родителя -->
+
+        <footer class="footer" id="footer" >
+           <div class="container hidden-phone" id="footerContent">
+                    <p>© <a href="/en/">Graph Online</a>&nbsp;is online project aimed at&nbsp;creation and easy visualization of graph and <a href="/en/">shortest path searching</a>.</p>
+           </div>
+        </footer>
+        </div>
+
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter25827098 = new Ya.Metrika({id:25827098,
+                    clickmap:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/25827098" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+	<script>
+		if (typeof preLoadPage == 'function')
+		{  
+			preLoadPage();
+		}
+	</script>
+	<script src="../i/js/dev/bootstrap3/bootstrap.min.js" >
+        	        $('.dropdown-toggle').dropdown();
+	</script>
+	<script>
+		if (typeof postLoadPage == 'function')
+		{  
+			postLoadPage();
+		}		
+        
+        createAlgorithmMenu();
+	</script>              
+    </body>
+</html>

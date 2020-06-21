@@ -9,6 +9,6 @@ RewriteBase /
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-RewriteCond $1 !^(index\.php|script/merge\.php|script/*.|robots\.txt|favicon\.ico|sitemap\.xml|i/.*|tmp/.*|upl/.*|lib/ckeditor4/.*|cgi-bin/*.|wiki/*.|en/wiki/*.|google53bafd5cff611af3\.html|script/plugins/*.|awstats/*.)
+RewriteCond $1 !^(index\.php|script/merge\.php|script/*.|robots\.txt|favicon\.ico|sitemap\.xml|i/.*|tmp/.*|upl/.*|lib/ckeditor4/.*|cgi-bin/*.|wiki/*.|en/wiki/*.|google53bafd5cff611af3\.html|script/plugins/*.|awstats/*.|sandbox/*.)
 RewriteRule ^(.*)$ /index.php?q=$1 [L,QSA]
 
