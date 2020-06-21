@@ -13,22 +13,25 @@ function NewAlgorithm(graph, app)
 // inheritance.
 NewAlgorithm.prototype = Object.create(BaseAlgorithm.prototype);
 
+// Algorithm name
 NewAlgorithm.prototype.getName = function(local)
 {
     return "New algorithm";
 }
 
+// Id: CreatorName.AlgorithmName
 NewAlgorithm.prototype.getId = function()
 {
     return "Unknown.Unknown";
 }
 
-// @return message for user.
+// @return message to user.
 NewAlgorithm.prototype.getMessage = function(local)
 {
     return this.message;
 }
 
+// Callback is called, when user select vertex.
 NewAlgorithm.prototype.selectVertex = function(vertex)
 {
     this.message      = "Processing...";
@@ -38,6 +41,7 @@ NewAlgorithm.prototype.selectVertex = function(vertex)
     return true;
 }
 
+// Callback is called, when user deselect vertexs.
 NewAlgorithm.prototype.deselectAll = function()
 {
     this.selectObject = null;
@@ -47,6 +51,9 @@ NewAlgorithm.prototype.deselectAll = function()
     return true;
 }
 
+// After each action if method is called,
+// if algorithm is not ready, it should return null
+// otherwise return struct result.
 NewAlgorithm.prototype.result = function(resultCallback)
 {
     if (this.selectObject)
@@ -54,6 +61,7 @@ NewAlgorithm.prototype.result = function(resultCallback)
         var result = {};
         result["version"] = 1;
         
+        // This is not best way to search neighbours.
         for (var i = 0; i < this.graph.vertices.length; i ++)
         {
             var nextVertex = this.graph.vertices[i];
@@ -62,8 +70,10 @@ NewAlgorithm.prototype.result = function(resultCallback)
                 this.neighbours.push(nextVertex);
         }
     
+        // Return selected objects.
         result.selectedObjects = this.neighbours;
-        this.message      = "Found " + this.neighbours.length + " neighbours";
+        // Change message
+        this.message           = "Found " + this.neighbours.length + " neighbours";
 
         return result;
     }
@@ -73,21 +83,27 @@ NewAlgorithm.prototype.result = function(resultCallback)
 
 NewAlgorithm.prototype.getObjectSelectedGroup = function(object)
 {
+    // To select objects different color, we return different numbers. 
+    // For deselected objects we return 0.
     return (object == this.selectObject) ? 1 :
         (this.neighbours.includes(object) ? 2 : 0);
 }
 
+// This means nothing for now. Just return 0.
 NewAlgorithm.prototype.getPriority = function()
 {
     return 0;
 }
 
-// Algorithm support multi graph
+// Algorithm support multi graph or not.
 NewAlgorithm.prototype.IsSupportMultiGraph = function()
 {
     return false;
 }
 
+// Our algorithm is not instant, because user should select vertex.
+// For example search connected component is instant, 
+// because it is not wait any actions from user.
 NewAlgorithm.prototype.instance = function()
 {
     return false;
