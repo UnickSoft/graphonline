@@ -183,4 +183,21 @@
     $g_lang["drag_select_group"] = "Перемещайте группу.";
     $g_lang["copy_select_group"] = "Копировать";
     $g_lang["remove_select_group"] = "Удалить";
+
+    $g_lang["bfs_name"] = "Поиск в ширину";
+    $g_lang["coloring_name"] = "Раскраска графа";
+    $g_lang["find_connection_component_name"] = "Найти компоненты связности";
+    $g_lang["dfs_name"] = "Поиск в глубину";
+    $g_lang["eulerin_loop_name"] = "Найти Эйлеров цикл";
+    $g_lang["eulerin_path_name"] = "Найти Эйлерову цепь";
+    $g_lang["fiold_name"] = "Алгоритм Флойда — Уоршелла";
+    $g_lang["graph_reorder_name"] = "Упорядочить граф";
+    $g_lang["hamiltoian_cycle_name"] = "Найти Гамильтонов цикл";
+    $g_lang["hamiltonian_path_name"] = "Найти Гамильтонову цепь";
+    $g_lang["max_flow_name"] = "Поиск максимального потока";
+    $g_lang["minimum_spanning_tree"] = "Поиск минимального остовного дерева";
+    $g_lang["modern_graph_style_name"] = "Визуализация на основе весов";
+    $g_lang["radius_and_diameter_name"] = "Поиск радиуса и диаметра графа";
+    $g_lang["find_short_path_name"] = "Поиск кратчайший путь алгоритмом Дейкстры";
+    $g_lang["vertices_degree_name"] = "Рассчитать степень вершин";
 ?>

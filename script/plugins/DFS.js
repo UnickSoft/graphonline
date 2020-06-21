@@ -15,7 +15,7 @@ DFSAlgorithm.prototype.timerInterval = 500;
 
 DFSAlgorithm.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск в глубину" : "Depth-first search";
+    return g_DFSName;// local == "ru" ? "Поиск в глубину" : "Depth-first search";
 }
 
 DFSAlgorithm.prototype.getId = function()

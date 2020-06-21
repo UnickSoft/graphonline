@@ -23,7 +23,7 @@ FindShortPathNew.prototype.infinityValue = 1E9 - 1;
 
 FindShortPathNew.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск кратчайший путь алгоритмом Дейкстры" : "Find shortest path using Dijkstra's algorithm";
+    return g_findShortPathName; //local == "ru" ? "Поиск кратчайший путь алгоритмом Дейкстры" : "Find shortest path using Dijkstra's algorithm";
 }
 
 FindShortPathNew.prototype.getId = function()

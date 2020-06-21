@@ -16,7 +16,7 @@ FindHamiltonianPath.prototype = Object.create(BaseAlgorithmEx.prototype);
 
 FindHamiltonianPath.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти Гамильтонову цепь" : "Find Hamiltonian path";
+    return g_HamiltonianPath;//local == "ru" ? "Найти Гамильтонову цепь" : "Find Hamiltonian path";
 }
 
 FindHamiltonianPath.prototype.getId = function()

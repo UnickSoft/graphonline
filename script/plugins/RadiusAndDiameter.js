@@ -22,7 +22,7 @@ RadiusAndDiameter.prototype = Object.create(BaseAlgorithm.prototype);
 
 RadiusAndDiameter.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск радиуса и диаметра графа": "Search graph radius and diameter";
+    return g_RadiusAndDiameter; //local == "ru" ? "Поиск радиуса и диаметра графа": "Search graph radius and diameter";
 }
 
 RadiusAndDiameter.prototype.getId = function()

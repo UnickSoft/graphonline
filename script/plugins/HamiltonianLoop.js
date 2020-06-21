@@ -16,7 +16,7 @@ FindHamiltonianLoop.prototype = Object.create(BaseAlgorithmEx.prototype);
 
 FindHamiltonianLoop.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти Гамильтонов цикл" : "Find Hamiltonian cycle";
+    return g_HamiltoianCycleName; //local == "ru" ? "Найти Гамильтонов цикл" : "Find Hamiltonian cycle";
 }
 
 FindHamiltonianLoop.prototype.getId = function()

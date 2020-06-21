@@ -16,7 +16,7 @@ FindEulerianLoop.prototype = Object.create(BaseAlgorithmEx.prototype);
 
 FindEulerianLoop.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти Эйлеров цикл" : "Find Eulerian cycle";
+    return g_EulerinLoopName;//local == "ru" ? "Найти Эйлеров цикл" : "Find Eulerian cycle";
 }
 
 FindEulerianLoop.prototype.getId = function()

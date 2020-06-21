@@ -112,6 +112,23 @@ var g_selectGroupText       = "Select using ctrl";
 var g_copyGroupeButton      = "Dublicate";
 var g_removeGroupeButton    = "Remove objects";
 
+var g_BFSName               = "Breadth-first search";   
+var g_ColoringName          = "Graph coloring";
+var g_findConnectedComponent = "Find connected components";
+var g_DFSName               = "Depth-first search";
+var g_EulerinLoopName       = "Find Eulerian cycle";
+var g_EulerinPath           = "Find Eulerian path";
+var g_FloidName             = "Floyd–Warshall algorithm";
+var g_GraphReorder          = "Arrange the graph";
+var g_HamiltoianCycleName   = "Find Hamiltonian cycle";
+var g_HamiltonianPath       = "Find Hamiltonian path";
+var g_MaxFlowName           = "Find Maximum flow";
+var g_minimumSpanningTree   = "Search of minimum spanning tree";
+var g_modernGraphStyleName  = "Visualisation based on weight";
+var g_RadiusAndDiameter     = "Search graph radius and diameter";
+var g_findShortPathName     = "Find shortest path using Dijkstra's algorithm";
+var g_VerticesDegreeName    = "Calculate vertexes degree";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -230,4 +247,21 @@ function loadTexts()
     g_dragGroupText         = document.getElementById("dragSelectedGroup").innerHTML;
     g_copyGroupeButton      = document.getElementById("copySelectedGroup").innerHTML;
     g_removeGroupeButton    = document.getElementById("removeSelectedGroup").innerHTML;
+    
+    g_BFSName               = document.getElementById("BFSName").innerHTML; 
+    g_ColoringName          = document.getElementById("ColoringName").innerHTML;
+    g_findConnectedComponent = document.getElementById("findConnectedComponent").innerHTML;
+    g_DFSName               = document.getElementById("DFSName").innerHTML;
+    g_EulerinLoopName       = document.getElementById("EulerinLoopName").innerHTML;
+    g_EulerinPath           = document.getElementById("EulerinPath").innerHTML;
+    g_FloidName             = document.getElementById("FloidName").innerHTML;
+    g_GraphReorder          = document.getElementById("GraphReorder").innerHTML;
+    g_HamiltoianCycleName   = document.getElementById("HamiltoianCycleName").innerHTML;
+    g_HamiltonianPath       = document.getElementById("HamiltonianPath").innerHTML;
+    g_MaxFlowName           = document.getElementById("MaxFlowName").innerHTML;
+    g_minimumSpanningTree   = document.getElementById("minimumSpanningTree").innerHTML;
+    g_modernGraphStyleName  = document.getElementById("modernGraphStyleName").innerHTML;
+    g_RadiusAndDiameter     = document.getElementById("RadiusAndDiameter").innerHTML;
+    g_findShortPathName     = document.getElementById("findShortPathName").innerHTML;
+    g_VerticesDegreeName    = document.getElementById("VerticesDegreeName").innerHTML;
 }

@@ -16,7 +16,7 @@ VerticesDegree.prototype = Object.create(BaseAlgorithm.prototype);
 
 VerticesDegree.prototype.getName = function(local)
 {
-    return local == "ru" ? "Рассчитать степень вершин" : "Calculate vertexes degree";
+    return g_VerticesDegreeName; //local == "ru" ? "Рассчитать степень вершин" : "Calculate vertexes degree";
 }
 
 VerticesDegree.prototype.getId = function()

@@ -163,7 +163,7 @@
     </div>
     </section>
 
-<? if (L('current_language') != "en"): ?>
+<? if (true || L('current_language') != "en"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
@@ -582,6 +582,23 @@
     <p id="dragSelectedGroup" class="translation"><?= L('drag_select_group')?></p>
     <p id="copySelectedGroup" class="translation"><?= L('copy_select_group')?></p>
     <p id="removeSelectedGroup" class="translation"><?= L('remove_select_group')?></p>
+        
+    <p id="BFSName" class="translation"><?= L('bfs_name')?></p>
+    <p id="ColoringName" class="translation"><?= L('coloring_name')?></p>
+    <p id="findConnectedComponent" class="translation"><?= L('find_connection_component_name')?></p>
+    <p id="DFSName" class="translation"><?= L('dfs_name')?></p>
+    <p id="EulerinLoopName" class="translation"><?= L('eulerin_loop_name')?></p>
+    <p id="EulerinPath" class="translation"><?= L('eulerin_path_name')?></p>
+    <p id="FloidName" class="translation"><?= L('fiold_name')?></p>
+    <p id="GraphReorder" class="translation"><?= L('graph_reorder_name')?></p>
+    <p id="HamiltoianCycleName" class="translation"><?= L('hamiltoian_cycle_name')?></p>
+    <p id="HamiltonianPath" class="translation"><?= L('hamiltonian_path_name')?></p>
+    <p id="MaxFlowName" class="translation"><?= L('max_flow_name')?></p>
+    <p id="minimumSpanningTree" class="translation"><?= L('minimum_spanning_tree')?></p>
+    <p id="modernGraphStyleName" class="translation"><?= L('modern_graph_style_name')?></p>
+    <p id="RadiusAndDiameter" class="translation"><?= L('radius_and_diameter_name')?></p>
+    <p id="findShortPathName" class="translation"><?= L('find_short_path_name')?></p>
+    <p id="VerticesDegreeName" class="translation"><?= L('vertices_degree_name')?></p>
         
 </section>
 <!--

@@ -19,7 +19,7 @@ ModernGraphStyle.prototype = Object.create(BaseAlgorithm.prototype);
 
 ModernGraphStyle.prototype.getName = function(local)
 {
-    return local == "ru" ? "Визуализация на основе весов" : "Visualisation based on weight";
+    return g_modernGraphStyleName;// local == "ru" ? "Визуализация на основе весов" : "Visualisation based on weight";
 }
 
 ModernGraphStyle.prototype.getId = function()

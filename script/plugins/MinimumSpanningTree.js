@@ -14,7 +14,7 @@ MinimumSpanningTree.prototype = Object.create(BaseAlgorithm.prototype);
 
 MinimumSpanningTree.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск минимального остовного дерева" : "Search of minimum spanning tree";
+    return g_minimumSpanningTree; //local == "ru" ? "Поиск минимального остовного дерева" : "Search of minimum spanning tree";
 }
 
 MinimumSpanningTree.prototype.getId = function()

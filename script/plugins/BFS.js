@@ -15,7 +15,7 @@ BFSAlgorithm.prototype.timerInterval = 500;
 
 BFSAlgorithm.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск в ширину" : "Breadth-first search";
+    return g_BFSName;// local == "ru" ? "Поиск в ширину" : "Breadth-first search";
 }
 
 BFSAlgorithm.prototype.getId = function()

@@ -16,7 +16,7 @@ FindEulerianPath.prototype = Object.create(BaseAlgorithmEx.prototype);
 
 FindEulerianPath.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти Эйлерову цепь" : "Find Eulerian path";
+    return g_EulerinPath;//local == "ru" ? "Найти Эйлерову цепь" : "Find Eulerian path";
 }
 
 FindEulerianPath.prototype.getId = function()

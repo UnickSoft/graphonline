@@ -19,7 +19,7 @@ GraphReorder.prototype = Object.create(BaseAlgorithm.prototype);
 
 GraphReorder.prototype.getName = function(local)
 {
-    return local == "ru" ? "Упорядочить граф" : "Arrange the graph";
+    return g_GraphReorder; //local == "ru" ? "Упорядочить граф" : "Arrange the graph";
 }
 
 GraphReorder.prototype.getId = function()

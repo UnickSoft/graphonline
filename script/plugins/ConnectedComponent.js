@@ -18,7 +18,7 @@ FindConnectedComponentNew.prototype = Object.create(BaseAlgorithm.prototype);
 
 FindConnectedComponentNew.prototype.getName = function(local)
 {
-    return local == "ru" ? "Найти компоненты связности" : "Find connected components";
+    return g_findConnectedComponent; //local == "ru" ? "Найти компоненты связности" : "Find connected components";
 }
 
 FindConnectedComponentNew.prototype.getId = function()

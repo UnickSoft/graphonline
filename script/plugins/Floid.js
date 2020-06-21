@@ -25,7 +25,7 @@ FloidAlgorithm.prototype.infinity = 1E8;
 
 FloidAlgorithm.prototype.getName = function(local)
 {
-    return local == "ru" ? "Алгоритм Флойда — Уоршелла" : "Floyd–Warshall algorithm";
+    return g_FloidName; //local == "ru" ? "Алгоритм Флойда — Уоршелла" : "Floyd–Warshall algorithm";
 }
 
 FloidAlgorithm.prototype.getId = function()

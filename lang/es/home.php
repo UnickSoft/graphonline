@@ -182,4 +182,21 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang["drag_select_group"] = "Arrastrar grupo.";
     $g_lang["copy_select_group"] = "Copiar grupo";
     $g_lang["remove_select_group"] = "Borrar grupo";
+
+    $g_lang["bfs_name"] = "Breadth-first search";
+    $g_lang["coloring_name"] = "Graph coloring";
+    $g_lang["find_connection_component_name"] = "Find connected components";
+    $g_lang["dfs_name"] = "Depth-first search";
+    $g_lang["eulerin_loop_name"] = "Find Eulerian cycle";
+    $g_lang["eulerin_path_name"] = "Find Eulerian path";
+    $g_lang["fiold_name"] = "Floyd–Warshall algorithm";
+    $g_lang["graph_reorder_name"] = "Arrange the graph";
+    $g_lang["hamiltoian_cycle_name"] = "Find Hamiltonian cycle";
+    $g_lang["hamiltonian_path_name"] = "Find Hamiltonian path";
+    $g_lang["max_flow_name"] = "Find Maximum flow";
+    $g_lang["minimum_spanning_tree"] = "Search of minimum spanning tree";
+    $g_lang["modern_graph_style_name"] = "Visualisation based on weight";
+    $g_lang["radius_and_diameter_name"] = "Search graph radius and diameter";
+    $g_lang["find_short_path_name"] = "Find shortest path using Dijkstra's algorithm";
+    $g_lang["vertices_degree_name"] = "Calculate vertexes degree";
 ?>

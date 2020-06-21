@@ -27,7 +27,7 @@ FindMaxFlow.prototype.selectedEdges = null;
 
 FindMaxFlow.prototype.getName = function(local)
 {
-    return local == "ru" ? "Поиск максимального потока" : "Find Maximum flow";
+    return g_MaxFlowName; //local == "ru" ? "Поиск максимального потока" : "Find Maximum flow";
 }
 
 FindMaxFlow.prototype.getId = function()
