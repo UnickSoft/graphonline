@@ -73,6 +73,10 @@ define('SITE_IN_DIR',   'graph');
 
 1. If you see page but css is not loaded. Maybe your web server does not support gzip encoding. You can try change FORCE_DISABLE_GZIP field from **false** to **true**. (It is placed in file /lib/ExtraPacker/ExtraPacker.php).
 
+# Create JS algorithms without setting Web Server
+
+You can open HTML file in browser to run your algorithm. Read more here sandbox/README.md.
+
 # 3th-party
 
 1. Micron (http://zmicron.itkd.ru/) is our engine.
