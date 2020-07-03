@@ -36,8 +36,8 @@ $Skin = 'graph';
 ## the "attr" passwords for the PmWiki and Main groups are locked, so
 ## an admin password is a good way to unlock those.  See PmWiki.Passwords
 ## and PmWiki.PasswordsAdmin.
-$DefaultPasswords['admin'] = pmcrypt('123erROR');
-$DefaultPasswords['edit'] = pmcrypt('123erROR');
+$DefaultPasswords['admin'] = pmcrypt('pas');
+$DefaultPasswords['edit'] = pmcrypt('pas');
 #$DefaultPasswords['admin'] = pmcrypt('pas');
 #$DefaultPasswords['edit'] = pmcrypt('pas');
 
