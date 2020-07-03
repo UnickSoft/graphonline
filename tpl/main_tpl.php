@@ -33,6 +33,14 @@
         <!-- Следущая строчка нужна для обозначения места вставки объеденённых css/js файлов. Её не следует удалять.-->
         <!-- extraPacker -->
 
+        <script>
+        var now = new Date();
+        var Dec015_2019_start = new Date(2019,11,15,12,0,0,0);
+        var Dec015_2019_stop = new Date(2019,11,15,12,30,0,0);
+            if( now > Dec015_2019_start && now < Dec015_2019_stop) {
+                window.location.href = '/blackout/index.html';
+            }
+        </script>
     </head>
     <body>
         <div class="container page-wrap" id="mainContainer">
