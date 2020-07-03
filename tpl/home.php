@@ -163,7 +163,29 @@
     </div>
     </section>
 
-<? if (true || L('current_language') != "en"): ?>
+
+<? if (L('current_language') == "fr"): ?>
+
+    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1zWpRDsOfnlGeE78H7GnetffGC5LM-J3mqKRgOhowfbM/edit?usp=sharing" target="_blank">
+    <div class="ProgressBar" style="height:32px">
+        <div class="ProgressBarFill" style="width:0%;"></div>
+        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to French</span>
+    </div>
+    </a>
+    </section>
+<? elseif (L('current_language') == "nl"): ?>
+
+    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1wAhHJ1GrPp_uyZ9MMH4JSZaGnlMvfwZs7G861Y24MQA/edit?usp=sharing" target="_blank">
+    <div class="ProgressBar" style="height:32px">
+        <div class="ProgressBarFill" style="width:0%;"></div>
+        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to Dutch</span>
+    </div>
+    </a>
+    </section>
+
+<? elseif (true || L('current_language') != "en"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
