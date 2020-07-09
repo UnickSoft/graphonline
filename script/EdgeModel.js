@@ -11,6 +11,8 @@ function EdgeModel()
     this.type  = EdgeModels.line;
     this.curvedValue = EdgeModel.prototype.defaultCruved;
     this.default = true;
+    this.sizeOfLoop = 24;
+    this.loopShiftAngel = Math.PI / 6;
 }
 
 EdgeModel.prototype.defaultCruved = 0.1;
@@ -101,9 +103,19 @@ EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, facto
       factor = 1.0;
     }
     
+    
     var pos1 = position1;
     var pos2 = position2;
     var pos0 = mousePos;
+    
+    // Self loop case
+    if (pos1.equals(pos2))
+    {
+        var xCenter = pos1.x - Math.cos(this.GetLoopShiftAngel()) * this.GetLoopSize(); 
+        var yCenter = pos1.y - Math.sin(this.GetLoopShiftAngel()) * this.GetLoopSize();
+        
+        return Math.abs((Point.distance(new Point(xCenter, yCenter), pos0)) - this.GetLoopSize()) <= this.width * 1.5 * factor;
+    }
 		
     var r1  = pos0.distance(pos1);
     var r2  = pos0.distance(pos2);
@@ -127,6 +139,19 @@ EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, facto
 
 EdgeModel.prototype.HitTestCurved = function(position1, position2, mousePos)
 {
+    var pos1 = position1;
+    var pos2 = position2;
+    var pos0 = mousePos;
+    
+    // Self loop case
+    if (pos1.equals(pos2))
+    {
+        var xCenter = pos1.x - Math.cos(this.GetLoopShiftAngel()) * this.GetLoopSize(); 
+        var yCenter = pos1.y - Math.sin(this.GetLoopShiftAngel()) * this.GetLoopSize();
+        
+        return Math.abs((Point.distance(new Point(xCenter, yCenter), pos0)) - this.GetLoopSize()) <= this.width * 1.5;
+    }
+    
     var interval_count = position1.distance(position2) / 100 * 30;
     
     var start = position1;
@@ -174,3 +199,14 @@ EdgeModel.prototype.SetCurvedValue = function (value)
     
     this.default = false;
 }
+
+EdgeModel.prototype.GetLoopSize = function ()
+{
+    return this.sizeOfLoop;
+}
+
+EdgeModel.prototype.GetLoopShiftAngel = function ()
+{
+    return this.loopShiftAngel;
+}
+

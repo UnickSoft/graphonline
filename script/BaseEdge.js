@@ -101,7 +101,7 @@ BaseEdge.prototype.GetPixelLength = function ()
 {
     if (this.vertex1 == this.vertex2)
     {
-        return (new CommonEdgeStyle()).sizeOfLoop * 2 * Math.PI;
+        return this.model.GetLoopSize() * 2 * Math.PI;
     }
     else
     {

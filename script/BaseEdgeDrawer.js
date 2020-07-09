@@ -10,8 +10,6 @@ function CommonEdgeStyle()
  	this.fillStyle   = '#68aeba';
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
- 	this.sizeOfLoop = 24;
-	this.loopShiftAngel = Math.PI / 6;
 }
 
 function CommonPrintEdgeStyle()
@@ -178,7 +176,7 @@ BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
   this.context.lineWidth   = baseEdge.model.width;
   this.context.strokeStyle = arcStyle.strokeStyle;
   this.context.fillStyle   = arcStyle.fillStyle;
-  this.sizeOfLoop          = baseEdge.vertex1.model.diameter / 2;
+  this.model               = baseEdge.model;
 }
 
 BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
@@ -192,8 +190,8 @@ BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
   if (position1.equals(position2))
   {
     this.context.beginPath();
-    this.context.arc(position1.x - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, 
-                     position1.y - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, arcStyle.sizeOfLoop, 0, 2 * Math.PI);
+    this.context.arc(position1.x - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), 
+                     position1.y - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), this.model.GetLoopSize(), 0, 2 * Math.PI);
     this.context.closePath();
     this.context.stroke();
   }
@@ -313,8 +311,8 @@ BaseEdgeDrawer.prototype.GetTextCenterPoint = function (position1, position2, ha
   var centerPoint = Point.interpolate(position1, position2, 0.5);
   if (position1.equals(position2))
   {
-    centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
-    centerPoint.x = centerPoint.x - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+    centerPoint.y = centerPoint.y - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
+    centerPoint.x = centerPoint.x - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
   } 
     
   return centerPoint;
@@ -351,11 +349,11 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
     
     if (positions[0].equals(positions[1]))
     {
-        var sizeInRadian = progressSize / (2 * Math.PI * arcStyle.sizeOfLoop) * 6;
+        var sizeInRadian = progressSize / (2 * Math.PI * this.baseDrawer.model.GetLoopSize()) * 6;
         
         this.context.beginPath();
-        this.context.arc(positions[0].x - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop,
-                         positions[0].y - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, arcStyle.sizeOfLoop, this.progress * 2 * Math.PI, this.progress * 2 * Math.PI + sizeInRadian);
+        this.context.arc(positions[0].x - Math.cos(this.baseDrawer.model.GetLoopShiftAngel()) * this.baseDrawer.model.GetLoopSize(),
+                         positions[0].y - Math.sin(this.baseDrawer.model.GetLoopShiftAngel()) * this.baseDrawer.model.GetLoopSize(), this.baseDrawer.model.GetLoopSize(), this.progress * 2 * Math.PI, this.progress * 2 * Math.PI + sizeInRadian);
         this.context.closePath();
         this.context.stroke();
     }
@@ -387,8 +385,8 @@ CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
   if (position1.equals(position2))
   {
     this.context.beginPath();
-    this.context.arc(position1.x - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, 
-                     position1.y - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop, arcStyle.sizeOfLoop, 0, 2 * Math.PI);
+    this.context.arc(position1.x - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), 
+                     position1.y - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), this.model.GetLoopSize(), 0, 2 * Math.PI);
     this.context.closePath();
     this.context.stroke();
   }
@@ -426,8 +424,8 @@ CurvedArcDrawer.prototype.GetTextCenterPoint = function (position1, position2, h
   var centerPoint = this.model.GetCurvedPoint(position1, position2, 0.5)
   if (position1.equals(position2))
   {
-    centerPoint.y = centerPoint.y - Math.cos(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
-    centerPoint.x = centerPoint.x - Math.sin(arcStyle.loopShiftAngel) * arcStyle.sizeOfLoop * 2;
+    centerPoint.y = centerPoint.y - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
+    centerPoint.x = centerPoint.x - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
   } 
     
   return centerPoint;
