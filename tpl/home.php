@@ -164,13 +164,13 @@
     </section>
 
 
-<? if (L('current_language') == "fr"): ?>
+<? if (L('current_language') == "es"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1zWpRDsOfnlGeE78H7GnetffGC5LM-J3mqKRgOhowfbM/edit?usp=sharing" target="_blank">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1-2cdV-7cNMCNQELGeG5kuJZvLzBZsaoK-3WQqi9PyxY/edit?usp=sharing" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to French</span>
+        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to Spanish</span>
     </div>
     </a>
     </section>

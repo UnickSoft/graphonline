@@ -151,20 +151,20 @@
     $g_lang["copy_select_group"] = "Groupe de copie";
     $g_lang["remove_select_group"] = "Supprimer le groupe";
 
-    $g_lang["bfs_name"] = "Breadth-first search";
-    $g_lang["coloring_name"] = "Graph coloring";
-    $g_lang["find_connection_component_name"] = "Find connected components";
-    $g_lang["dfs_name"] = "Depth-first search";
-    $g_lang["eulerin_loop_name"] = "Find Eulerian cycle";
-    $g_lang["eulerin_path_name"] = "Find Eulerian path";
-    $g_lang["fiold_name"] = "Floyd–Warshall algorithm";
-    $g_lang["graph_reorder_name"] = "Arrange the graph";
-    $g_lang["hamiltoian_cycle_name"] = "Find Hamiltonian cycle";
-    $g_lang["hamiltonian_path_name"] = "Find Hamiltonian path";
-    $g_lang["max_flow_name"] = "Find Maximum flow";
-    $g_lang["minimum_spanning_tree"] = "Search of minimum spanning tree";
-    $g_lang["modern_graph_style_name"] = "Visualisation based on weight";
-    $g_lang["radius_and_diameter_name"] = "Search graph radius and diameter";
-    $g_lang["find_short_path_name"] = "Find shortest path using Dijkstra's algorithm";
-    $g_lang["vertices_degree_name"] = "Calculate vertexes degree";
+    $g_lang["bfs_name"] = "Parcours en largeur";
+    $g_lang["coloring_name"] = "Coloriage du graphe";
+    $g_lang["find_connection_component_name"] = "Recherche de composantes connexes";
+    $g_lang["dfs_name"] = "Parcours en profondeur";
+    $g_lang["eulerin_loop_name"] = "Chercher un cycle eulérien";
+    $g_lang["eulerin_path_name"] = "Chercher un chemin eulérien";
+    $g_lang["fiold_name"] = "Algorithme de Floyd-Warshall";
+    $g_lang["graph_reorder_name"] = "Arrangement du graphe";
+    $g_lang["hamiltoian_cycle_name"] = "Trouver un cycle Hamiltonien";
+    $g_lang["hamiltonian_path_name"] = "Trouver un chemin Hamiltonien";
+    $g_lang["max_flow_name"] = "Recherche du flot maximal";
+    $g_lang["minimum_spanning_tree"] = "Arbre couvrant de poids minimal";
+    $g_lang["modern_graph_style_name"] = "Visualisation pondérée";
+    $g_lang["radius_and_diameter_name"] = "Calcul du rayon et du diamètre du graphe";
+    $g_lang["find_short_path_name"] = "Plus court chemin avec l'algorithme de Dijkstra";
+    $g_lang["vertices_degree_name"] = "Calculer le degré des sommets";
 ?>
