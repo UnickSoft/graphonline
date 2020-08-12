@@ -20,6 +20,7 @@
                           'el' => array('name' => 'Greek'),
                           'es' => array('name' => 'Spanish'),
                           'nl' => array('name' => 'Dutch'),
+                          'sv' => array('name' => 'Swedish')
                        );
 
     $g_config                     = array();

@@ -1,0 +1,9 @@
+<?php
+
+    $g_lang["title_notg"] = "Graf Online hjälp";
+    $g_lang["text"] = "<h2><iframe allowfullscreen=\"\" frameborder=\"0\" height=\"315\" src=\"//www.youtube.com/embed/Sx4tOe3bWNg\" width=\"560\"></iframe></h2><p>&nbsp;</p><ul> <li><a href=\"#addVertex\">Ange noder</a></li> <li><a href=\"#connectVertexes\">Ansluta noder</a></li> <li><a href=\"#findPath\">Hitta på den kortaste vägen</a></li> <li><a href=\"/create_graph_by_matrix_help\">Skapa en graf med grannmatris</a></li> </ul> <h3>Ange noder</h3><p> För att skapa en graf måste du <a href=\"http://graph.unick-soft.ru\">lägga till noder</a>. Välj «Lägg till nod» och klicka på arbetsytan. </p><p>&nbsp;</p><p><img alt=\"Ange noder\" src=\"/i/image/help/addVertex.gif\" /></p><p>&nbsp;</p><h3> Anslut noder. </h3><p>&nbsp;</p><p> För att ansluta noder måste <a href=\"http://graph.unick-soft.ru\">du välja «Anslut noder»</a> och klicka på den första noden och sedan till den andra. </p><p>&nbsp;</p><p><img alt=\"Ansluta Graph Online noder\" src=\"/i/image/help/addEdge.gif\"/></p><p> I dialogrutan måste du välja vikt eller lämna den utan vikt. Du kan också välja typ av graf, dvs riktad eller oriktad. </p><p>&nbsp;</p><h3> Hitta på den kortaste vägen </h3><p> Hitta på den kortaste vägen. Välj «Hitta kortaste sökväg» i rullgardinsmenyn. Därefter väljer du start- och slutkoder. Om det finns en sökväg ser du den på diagrammet. Vi använder Dijkstras algoritm. </p> <p><img alt=\"Hitta på den kortaste vägen\" src=\"/i/image/help/findShortPathes.gif\" /></p><p>&nbsp;</p>";
+    $g_lang["m_title"] = "Graf Online hjälp";
+    $g_lang["m_keyWords"] = "graf, kortaste sökväg, grafvisualisering, hjälp";
+    $g_lang["m_description"] = "Graf Online hjälpsida";
+
+?>
