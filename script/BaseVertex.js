@@ -34,8 +34,8 @@ BaseVertex.prototype.SaveToXML = function ()
 	       "positionX=\""  + this.position.x   + "\" " +
 	       "positionY=\""  + this.position.y   + "\" " +
 	       "id=\""         + this.id   + "\" " +
-	       "mainText=\""   + this.mainText + "\" " +
-	       "upText=\""     + this.upText   + "\" " +
+	       "mainText=\""   + gEncodeToHTML(this.mainText) + "\" " +
+	       "upText=\""     + gEncodeToHTML(this.upText)   + "\" " +
 		"></node>";       
 		                 
 }
@@ -52,8 +52,13 @@ BaseVertex.prototype.LoadFromXML = function (xml)
     
     if (typeof this.mainText === 'undefined')
       this.mainText = this.id;
+    else
+      this.mainText = gDecodeFromHTML(this.mainText);
+    
     if (typeof this.upText === 'undefined')
       this.upText = "";
+    else
+      this.upText = gDecodeFromHTML(this.upText);
 }
 
 BaseVertex.prototype.SetId = function (id)

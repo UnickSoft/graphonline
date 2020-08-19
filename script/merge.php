@@ -3,6 +3,7 @@ $outputFilename = 'example.js';
 
 unlink($outputFilename);
 
+file_put_contents($outputFilename, file_get_contents("utils.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("texts.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("point.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("EdgeModel.js"), FILE_APPEND);

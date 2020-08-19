@@ -54,8 +54,8 @@ BaseEdge.prototype.SaveToXML = function ()
 	       "weight=\""     + this.weight   + "\" " +
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "id=\""         + this.id + "\" " +
-           "text=\""       + this.text + "\" " +
-           "upText=\""     + this.upText + "\" " +
+           "text=\""       + gEncodeToHTML(this.text) + "\" " +
+           "upText=\""     + gEncodeToHTML(this.upText) + "\" " +
            "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
            "arrayStyleFinish=\""       + this.arrayStyleFinish + "\" " +
            this.model.SaveToXML() + 
@@ -85,13 +85,17 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
 	this.hasPair   =    xml.attr('hasPair') == "true";
 	this.useWeight =    xml.attr('useWeight') == "true";
     this.id        =    xml.attr('id');
-    this.text      =    xml.attr("text") == null ? "" : xml.attr("text");
+    this.text      =    xml.attr("text") == null ? "" : gDecodeFromHTML(xml.attr("text"));
     this.arrayStyleStart      =   xml.attr("arrayStyleStart") == null ? "" : xml.attr("arrayStyleStart");
     this.arrayStyleFinish      =  xml.attr("arrayStyleFinish") == null ? "" : xml.attr("arrayStyleFinish");
 	this.upText    = xml.attr('upText');
     if (typeof this.upText === 'undefined')
     {
         this.upText = "";        
+    }
+    else
+    {
+        this.upText = gDecodeFromHTML(this.upText);
     }
     
     this.model.LoadFromXML(xml);
