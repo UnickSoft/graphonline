@@ -148,20 +148,20 @@
     $g_lang["copy_select_group"] = "Kopiëer groep";
     $g_lang["remove_select_group"] = "Verwijder groep";
 
-    $g_lang["bfs_name"] = "Breadth-first search";
-    $g_lang["coloring_name"] = "Graph coloring";
-    $g_lang["find_connection_component_name"] = "Find connected components";
-    $g_lang["dfs_name"] = "Depth-first search";
-    $g_lang["eulerin_loop_name"] = "Find Eulerian cycle";
-    $g_lang["eulerin_path_name"] = "Find Eulerian path";
-    $g_lang["fiold_name"] = "Floyd–Warshall algorithm";
-    $g_lang["graph_reorder_name"] = "Arrange the graph";
-    $g_lang["hamiltoian_cycle_name"] = "Find Hamiltonian cycle";
-    $g_lang["hamiltonian_path_name"] = "Find Hamiltonian path";
-    $g_lang["max_flow_name"] = "Find Maximum flow";
-    $g_lang["minimum_spanning_tree"] = "Search of minimum spanning tree";
-    $g_lang["modern_graph_style_name"] = "Visualisation based on weight";
-    $g_lang["radius_and_diameter_name"] = "Search graph radius and diameter";
-    $g_lang["find_short_path_name"] = "Find shortest path using Dijkstra's algorithm";
-    $g_lang["vertices_degree_name"] = "Calculate vertexes degree";
+    $g_lang["bfs_name"] = "Breedte-eerste zoekopdracht";
+    $g_lang["coloring_name"] = "Grafiekkleuring";
+    $g_lang["find_connection_component_name"] = "Vind aangesloten componenten";
+    $g_lang["dfs_name"] = "Diepte eerst zoeken";
+    $g_lang["eulerin_loop_name"] = "Zoek de euleriaanse cyclus";
+    $g_lang["eulerin_path_name"] = "Zoek het euleriaanse pad";
+    $g_lang["fiold_name"] = "Floyd-Warshall-algoritme";
+    $g_lang["graph_reorder_name"] = "Schik de grafiek";
+    $g_lang["hamiltoian_cycle_name"] = "Vind Hamiltoniaanse cyclus";
+    $g_lang["hamiltonian_path_name"] = "Vind Hamiltoniaans pad";
+    $g_lang["max_flow_name"] = "Vind maximale stroom";
+    $g_lang["minimum_spanning_tree"] = "Zoeken naar minimaal opspannende boom";
+    $g_lang["modern_graph_style_name"] = "Visualisatie op basis van gewicht";
+    $g_lang["radius_and_diameter_name"] = "Zoek grafiek straal en diameter";
+    $g_lang["find_short_path_name"] = "Kortstepad-algoritme (Dijkstra's algoritme)";
+    $g_lang["vertices_degree_name"] = "Bereken hoekpunten graden";
 ?>

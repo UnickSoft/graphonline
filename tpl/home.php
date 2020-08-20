@@ -174,18 +174,18 @@
     </div>
     </a>
     </section>
-<? elseif (L('current_language') == "nl"): ?>
+<? elseif (L('current_language') == "en"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1wAhHJ1GrPp_uyZ9MMH4JSZaGnlMvfwZs7G861Y24MQA/edit?usp=sharing" target="_blank">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/154wpW8e7DonWJoYnXPDuyECM38UFyFX_WLT1y_UZPck/edit#gid=0" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to Dutch</span>
+        <span class="ProgressBarText" style="top:-28px">You may help us with translation to German</span>
     </div>
     </a>
     </section>
 
-<? elseif (true || L('current_language') != "en"): ?>
+<? elseif (false && L('current_language') != "en"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
@@ -199,10 +199,12 @@
 <? else: ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
+    <a class="ProgresssBarLink" href="opensource" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p><?= L('greek_add')?></p></span>
+        <span class="ProgressBarText" style="top:-28px"><p><?= L('opensource_message')?></p></span>
     </div>
+    </a>
     </section>
 
 <? endif; ?>

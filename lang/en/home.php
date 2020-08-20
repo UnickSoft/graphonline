@@ -3,7 +3,7 @@
     $g_lang["title_notg"] = "Find shortest path";
     $g_lang["text"] = "<p>Create graph and find the shortest path. On the Help page you <a href=\"/en/help\">will find tutorial video</a>.</p>\n";
     $g_lang["add_node"] = "Add vertex";
-    $g_lang["connect_nodes"] = "Connect vertexes";
+    $g_lang["connect_nodes"] = "Connect vertices";
     $g_lang["delete"] = "Remove object";
     $g_lang["default"] = "Drag";
     $g_lang["short_path"] = "Find shortest path";
@@ -146,8 +146,8 @@
     $g_lang["opensource_message"] = "Our project is now open source. More details...";
 
     $g_lang["settings"] = "Settings";
-    $g_lang["common_vertex_settings"]   = "Common vertexes";
-    $g_lang["selected_vertex_settings"] = "Selected vertexes";
+    $g_lang["common_vertex_settings"]   = "Common vertices";
+    $g_lang["selected_vertex_settings"] = "Selected vertices";
     $g_lang["common_edge_settings"]     = "Common edges";
     $g_lang["selected_edge_settings"]   = "Selected edges";
 
@@ -198,5 +198,5 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["modern_graph_style_name"] = "Visualisation based on weight";
     $g_lang["radius_and_diameter_name"] = "Search graph radius and diameter";
     $g_lang["find_short_path_name"] = "Find shortest path using Dijkstra's algorithm";
-    $g_lang["vertices_degree_name"] = "Calculate vertexes degree";
+    $g_lang["vertices_degree_name"] = "Calculate vertices degree";
 ?>
