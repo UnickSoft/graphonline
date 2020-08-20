@@ -1,6 +1,9 @@
 
 function gEncodeToHTML(str)
 {
+    if (typeof str !== 'string')
+      return str;
+        
     return str.replace(/&/g, '&amp;')
                .replace(/</g, '&lt;')
                .replace(/>/g, '&gt;')
@@ -10,6 +13,9 @@ function gEncodeToHTML(str)
 
 function gDecodeFromHTML(str)
 {
+   if (typeof str !== 'string')
+     return str;
+    
    return str.replace(/&apos;/g, "'")
                .replace(/&quot;/g, '"')
                .replace(/&gt;/g, '>')
