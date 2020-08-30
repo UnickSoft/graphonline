@@ -163,35 +163,13 @@
     </div>
     </section>
 
-
-<? if (L('current_language') == "es"): ?>
-
-    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1-2cdV-7cNMCNQELGeG5kuJZvLzBZsaoK-3WQqi9PyxY/edit?usp=sharing" target="_blank">
-    <div class="ProgressBar" style="height:32px">
-        <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px">You may help with translation algorithm names to Spanish</span>
-    </div>
-    </a>
-    </section>
-<? elseif (L('current_language') == "en"): ?>
+<? if (L('current_language') == "en"): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/154wpW8e7DonWJoYnXPDuyECM38UFyFX_WLT1y_UZPck/edit#gid=0" target="_blank">
+    <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1iLswxMsTwfEu56RjW21nCov2LS_A-OJlmfJZ-j4Cj80/edit?usp=sharing" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px">You may help us with translation to German</span>
-    </div>
-    </a>
-    </section>
-
-<? elseif (false && L('current_language') != "en"): ?>
-
-    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="opensource" target="_blank">
-    <div class="ProgressBar" style="height:32px">
-        <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p><?= L('opensource_message')?></p></span>
+        <span class="ProgressBarText" style="top:-28px">You may help us with translation to Portuguese</span>
     </div>
     </a>
     </section>
