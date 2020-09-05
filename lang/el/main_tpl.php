@@ -19,5 +19,4 @@
     <a href=\"/el/about\">Σχετικά με το πρότζεκτ</a> και <a href=\"http://graphonline.ru/el/help\">σελίδα βοήθειας</a>.\n
     ";
     $g_lang["lang"] = "Γλώσσα";
-    
 ?>

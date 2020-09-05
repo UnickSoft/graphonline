@@ -15,5 +15,4 @@
     $g_lang["lang"] = "Språk";
     $g_lang["home"] = "Huvudsida";
     $g_lang["back"] = "Tillbaka";
-    
 ?>
