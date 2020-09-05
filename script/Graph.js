@@ -172,6 +172,27 @@ Graph.prototype.FindEdgeMin = function(id1, id2)
 	return res;
 }
 
+Graph.prototype.FindEdgeMinIgnoreDirection = function(id1, id2)
+{
+	var res       = null;
+    var minWeight = this.infinity;
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var edge = this.edges[i];
+		if ((edge.vertex1.id == id1 && edge.vertex2.id == id2)
+		     || (edge.vertex1.id == id2 && edge.vertex2.id == id1))
+		{
+            if (edge.weight < minWeight)
+            {
+                res       = edge;
+                minWeight = edge.weight;
+            }
+		}
+	}
+	
+	return res;
+}
+
 Graph.prototype.FindAllEdges = function(id1, id2)
 {
 	var res       = [];

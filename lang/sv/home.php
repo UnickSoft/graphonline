@@ -162,4 +162,7 @@
     $g_lang["find_short_path_name"] = "Hitta den kortaste vägen med Dijkstras algoritm";
     $g_lang["vertices_degree_name"] = "Кäkna graden av vertikaler";
 
+    $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
+    $g_lang["min_spanning_tree_ignore_direction"] = "We ignored edges direction for calculation.";
+    $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 ?>

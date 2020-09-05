@@ -128,6 +128,9 @@ var g_modernGraphStyleName  = "Visualisation based on weight";
 var g_RadiusAndDiameter     = "Search graph radius and diameter";
 var g_findShortPathName     = "Find shortest path using Dijkstra's algorithm";
 var g_VerticesDegreeName    = "Calculate vertexes degree";
+var g_SpanningTreeResult    = "Min Spanning Tree is";
+var g_SpanningTreeIgnoreDir = "We ignored edges direction for calculation";
+var g_SpanningTreeNotConnected = "Graph is not connected";
 
 function loadTexts()
 {
@@ -264,4 +267,8 @@ function loadTexts()
     g_RadiusAndDiameter     = document.getElementById("RadiusAndDiameter").innerHTML;
     g_findShortPathName     = document.getElementById("findShortPathName").innerHTML;
     g_VerticesDegreeName    = document.getElementById("VerticesDegreeName").innerHTML;
+    
+    g_SpanningTreeResult    = document.getElementById("MinSpanningTreeResult").innerHTML;
+    g_SpanningTreeIgnoreDir = document.getElementById("MinSpanningIgnoreDir").innerHTML;
+    g_SpanningTreeNotConnected = document.getElementById("MinSpanningNotConnected").innerHTML;
 }

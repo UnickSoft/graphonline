@@ -164,4 +164,8 @@
     $g_lang["radius_and_diameter_name"] = "Zoek grafiek straal en diameter";
     $g_lang["find_short_path_name"] = "Kortstepad-algoritme (Dijkstra's algoritme)";
     $g_lang["vertices_degree_name"] = "Bereken hoekpunten graden";
+
+    $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
+    $g_lang["min_spanning_tree_ignore_direction"] = "We ignored edges direction for calculation.";
+    $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 ?>

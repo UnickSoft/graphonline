@@ -200,4 +200,8 @@
     $g_lang["radius_and_diameter_name"] = "Поиск радиуса и диаметра графа";
     $g_lang["find_short_path_name"] = "Поиск кратчайший путь алгоритмом Дейкстры";
     $g_lang["vertices_degree_name"] = "Рассчитать степень вершин";
+
+    $g_lang["min_spanning_tree_res_is"] = "Вес минимального оставного дерева равен ";
+    $g_lang["min_spanning_tree_ignore_direction"] = "Мы игнорировали ориентацию дуг при рассчете.";
+    $g_lang["min_spanning_tree_graph_not_connected"] = "Граф не является связным";
 ?>

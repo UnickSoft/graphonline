@@ -27,11 +27,12 @@ MinimumSpanningTree.prototype.getMessage = function(local)
 {
 	if (!this.isNotConneted )
     {
-    	return local == "ru" ? "Вес минимального оставного дерева равен " + this.MST : "Weight of minimum spanning tree is " + this.MST;
+    	return g_SpanningTreeResult + this.MST + ". " + 
+          (this.graph.hasDirectEdge() ? g_SpanningTreeIgnoreDir : "");
     }
     else
     {
-    	return local == "ru" ? "Граф не является связным" : "Graph is disconnected";    
+    	return g_SpanningTreeNotConnected;    
     }
 }
 
@@ -41,9 +42,10 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
     this.edges = [];
     this.isNotConneted = true;
     var tempVertexes = this.graph.vertices.slice();
-    connectedVertex = getVertexToVertexArray(this.graph, false);
+    connectedVertex = getVertexToVertexArray(this.graph, true);
 
-		if (!this.graph.hasDirectEdge())
+    // We ignore orientation for this algorithm.
+    //if (!this.graph.hasDirectEdge())
     {
     	res = this.resultStartedFrom(tempVertexes[0], connectedVertex);
     	this.isNotConneted = res.isNotConneted;
@@ -53,7 +55,7 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
     		this.edges = res.edges;  
     	}
     }
-    else
+    /*else
     {
     	for (var i = 0; i < tempVertexes.length; i++)
       {
@@ -69,7 +71,7 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
           }
     		}
       }
-    }
+    }*/
     
     var result = {};
     result["version"] = 1;
@@ -105,7 +107,8 @@ MinimumSpanningTree.prototype.resultStartedFrom = function(vertex, connectedVert
                 for (j = 0; j < connectedVertex[element.id].length; j++)
                 {
                     var connectedElement = connectedVertex[element.id][j];
-                    var connectedEdge    = this.graph.FindEdgeMin(element.id, connectedElement.id);
+                    var connectedEdge    = this.graph.FindEdgeMinIgnoreDirection(element.id, connectedElement.id);
+                    
                     if (inTree.indexOf(connectedElement) < 0)
                     {
 						if (minEdge == null || minEdge.weight > connectedEdge.weight)

@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=31")?>" ></script>
+        <script src="<?= Root("script/example.js?v=32")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -601,6 +601,10 @@
     <p id="RadiusAndDiameter" class="translation"><?= L('radius_and_diameter_name')?></p>
     <p id="findShortPathName" class="translation"><?= L('find_short_path_name')?></p>
     <p id="VerticesDegreeName" class="translation"><?= L('vertices_degree_name')?></p>
+        
+    <p id="MinSpanningTreeResult" class="translation"><?= L('min_spanning_tree_res_is')?></p>
+    <p id="MinSpanningIgnoreDir" class="translation"><?= L('min_spanning_tree_ignore_direction')?></p>
+    <p id="MinSpanningNotConnected" class="translation"><?= L('min_spanning_tree_graph_not_connected')?></p>
         
 </section>
 <!--

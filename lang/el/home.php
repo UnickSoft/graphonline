@@ -200,4 +200,8 @@
     $g_lang["radius_and_diameter_name"] = "Search graph radius and diameter";
     $g_lang["find_short_path_name"] = "Find shortest path using Dijkstra's algorithm";
     $g_lang["vertices_degree_name"] = "Calculate vertexes degree";
+
+    $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
+    $g_lang["min_spanning_tree_ignore_direction"] = "We ignored edges direction for calculation.";
+    $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 ?>

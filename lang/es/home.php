@@ -199,4 +199,8 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang["radius_and_diameter_name"] = "Buscar radio y diámetro del grafo";
     $g_lang["find_short_path_name"] = "Encontrar el camino más corto usando el algoritmo de Dijkstra";
     $g_lang["vertices_degree_name"] = "Calcular grado de los vértices";
+
+    $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
+    $g_lang["min_spanning_tree_ignore_direction"] = "We ignored edges direction for calculation.";
+    $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 ?>
