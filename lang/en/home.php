@@ -201,6 +201,6 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["vertices_degree_name"] = "Calculate vertices degree";
 
     $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
-    $g_lang["min_spanning_tree_ignore_direction"] = "We ignored edges direction for calculation.";
+    $g_lang["min_spanning_tree_ignore_direction"] = "In time of calculation we have ignored the edges direction.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 ?>
