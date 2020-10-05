@@ -23,7 +23,7 @@
     $g_lang["adjacency_matrix_description"] = "Ställ in grannmatris. Använd komma \",\" som separator";
     $g_lang["adjacency_matrix_bad_format"] = "Matrisen är felaktig. Använd komma \",\" som separator. Matrisen ska vara kvadratisk";
     $g_lang["delete_all"] = "Ta bort allt";
-    $g_lang["click_to_add_vertex"] = "Klicka på arbetsytan för att lägga till en ny nod. <span style = \"float: right;\> Noduppräkning <select id = \"enumVertexsText\"> </select> </span>
+    $g_lang["click_to_add_vertex"] = "Klicka på arbetsytan för att lägga till en ny nod. <span style=\"float: right;\"> Noduppräkning <select id=\"enumVertexsText\"> </select> </span>
     ";
     $g_lang["select_first_vertext_to_connect"] = "Välj första kantens nod";
     $g_lang["select_second_vertext_to_connect"] = "Välj den andra kantens nod";
