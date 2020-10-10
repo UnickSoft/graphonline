@@ -21,8 +21,8 @@
                           'es' => array('name' => 'Spanish'),
                           'nl' => array('name' => 'Dutch'),
                           'sv' => array('name' => 'Swedish'),
-                          'de' => array('name' => 'German')
-
+                          'de' => array('name' => 'German'),
+                          'pt' => array('name' => 'Portuguese')
                        );
 
     $g_config                     = array();
