@@ -163,7 +163,7 @@
     </div>
     </section>
 
-<? if (L('current_language') == "en" && false): ?>
+<?php if (L('current_language') == "en" && false): ?>
 
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="https://docs.google.com/spreadsheets/d/1iLswxMsTwfEu56RjW21nCov2LS_A-OJlmfJZ-j4Cj80/edit?usp=sharing" target="_blank">
@@ -174,8 +174,7 @@
     </a>
     </section>
 
-<? else: ?>
-
+<?php else: ?>
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
     <div class="ProgressBar" style="height:32px">
@@ -185,7 +184,7 @@
     </a>
     </section>
 
-<? endif; ?>
+<?php endif; ?>
 
 <? if (L('current_language') == "ru" && false): ?>
 <!--

@@ -73,7 +73,7 @@
 <?php } ?>
 <?php endforeach?>
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= $langInfo["name"]?>"> <?= L('lang')?> <span class="caret"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= L('lang')?> icon"> <?= L('lang')?> <span class="caret"></span></a>
 <ul class="dropdown-menu">
 <?php foreach($g_arrLangs as $lang => $langInfo):?>
 <?php if (!array_key_exists('hidden', $langInfo) || !$langInfo["hidden"]):?>

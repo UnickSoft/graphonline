@@ -360,3 +360,8 @@
 {
     padding-top: 4px;   
 }
+
+#message
+{
+    overflow-wrap: break-word;
+}

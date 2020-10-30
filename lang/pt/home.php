@@ -139,6 +139,15 @@
     $g_lang["adjacency_matrix_multigraph_description"] = "Matriz de multigrafo contém pesos das arestas mínimas entre os vértices";
     $g_lang["graph_is_multi_message"] = "Multigrafo não suporta todos os algoritmos";
     $g_lang["graph_is_general_message"] = "";
+
+    $g_lang["text_above_edge"] = "Text above edge";
+
+    $g_lang["select_groupe_mac"] = "Use Cmd⌘ to select several objects.";
+    $g_lang["select_groupe_win"] = "Use Ctrl to select several objects.";
+    $g_lang["drag_select_group"] = "Drag group.";
+    $g_lang["copy_select_group"] = "Copy group";
+    $g_lang["remove_select_group"] = "Delete group";
+
     $g_lang["replace_edge"] = "Substituir atual";
     $g_lang["add_edge"] = "Adicionar (multigrafo)";
     $g_lang["bfs_name"] = "Busca em Largura (BFS)";
