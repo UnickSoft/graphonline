@@ -131,7 +131,7 @@
     $g_lang["export_graph"]    = "Exportar a archivo";
     $g_lang["import_graph"]    = "Importar desde archivo";
 
-    $g_lang["has_hamiltonian_path"] = "El grafo grafo tiene un ciclo hamiltoniano";
+    $g_lang["has_hamiltonian_path"] = "El grafo grafo tiene un camino hamiltoniano";
     $g_lang["has_not_hamiltonian_path"] = "El grafo grafo no tiene un camino hamiltoniano";
 
     $g_lang["has_hamiltonian_loop"] = "El grafo grafo tiene un ciclo hamiltoniano";
