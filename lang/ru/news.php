@@ -4,7 +4,7 @@
 
     $g_lang["m_title"] = "Новости сервиса Граф Онлайн";
     $g_lang["m_keyWords"] = "граф онлайн, новости, графы, поиск пути";
-    $g_lang["m_description"] = "Новости сервиса Грай Онлайн";
+    $g_lang["m_description"] = "Новости сервиса Граф Онлайн";
 
     $g_lang["current_language"] = "ru";
        
