@@ -604,7 +604,21 @@
     <p id="MinSpanningTreeResult" class="translation"><?= L('min_spanning_tree_res_is')?></p>
     <p id="MinSpanningIgnoreDir" class="translation"><?= L('min_spanning_tree_ignore_direction')?></p>
     <p id="MinSpanningNotConnected" class="translation"><?= L('min_spanning_tree_graph_not_connected')?></p>
-        
+
+
+    <p id="SelectFirstGraphIsomorphismCheck" class="translation"><?= L('select_first_graph_isomorphism_check')?></p>
+    <p id="SelectSecondGraphIsomorphismCheck" class="translation"><?= L('select_second_graph_isomorphism_check')?></p>    
+    <p id="SelectFirstGraphPatternCheck" class="translation"><?= L('select_first_graph_pattern_check')?></p>
+    <p id="SelectSecondGraphForSearchSubgraph" class="translation"><?= L('select_second_graph_for_search_subgraph')?></p>
+    <p id="GraphsIsomorph" class="translation"><?= L('graphs_isomorph')?></p>
+    <p id="GraphsNotIsomorph" class="translation"><?= L('graphs_not_isomorph')?></p>
+    <p id="NumberOfIsomorphSubgraphIs" class="translation"><?= L('number_of_isomorph_subgraph_is')?></p>
+    <p id="GraphHasNoIsomorphSubgraph" class="translation"><?= L('graph_has_no_isomorph_subgraph')?></p>
+    <p id="SearchIsomorphSubgraph" class="translation"><?= L('search_isomorph_subgraph')?></p>
+    <p id="SubgraphNo" class="translation"><?= L('subgraph_no')?></p>
+    <p id="GraphHasNoAtleast2Graphs" class="translation"><?= L('graph_has_no_atleast_2_graphs')?></p>
+    <p id="IsomorphismCheck" class="translation"><?= L('isomorphism_check')?></p>
+
 </section>
 <!--
 <script>

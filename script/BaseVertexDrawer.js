@@ -38,7 +38,7 @@ function SelectedVertexStyle1()
 	CommonVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#7a9ba0';
-	this.mainTextColor  = '#7a9ba0';
+	this.mainTextColor  = '#c3d2d5';
 	this.fillStyle   = '#534641';
 }
 
@@ -49,7 +49,7 @@ function SelectedVertexStyle2()
 	CommonVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#8C4C86';
-	this.mainTextColor  = '#8C4C86';
+	this.mainTextColor  = '#dbbdd8';
 	this.fillStyle   = '#253267';
 }
 

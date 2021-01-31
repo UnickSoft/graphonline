@@ -132,6 +132,21 @@ var g_SpanningTreeResult    = "Min Spanning Tree is";
 var g_SpanningTreeIgnoreDir = "We ignored edges direction for calculation";
 var g_SpanningTreeNotConnected = "Graph is not connected";
 
+var g_selectFirstGraphIsomorphismCheck  = "Select first graph for isomorphic check. Click to any node of graph";
+var g_selectSecondGraphIsomorphismCheck = "Select second graph for isomorphic check. Click to any node of graph";
+
+var g_selectFirstGraphPatternCheck       = "Select a template graph by clicking to any node of graph";
+var g_selectSecondGraphForSearchSubgraph = "Choose a graph in which we will look for isomorphic subgraphs. Click to any node of this graph";
+
+var g_graphsIsomorph                    = "Graphs are isomorphic";
+var g_graphsNotIsomorph                 = "Graphs are not isomorphic";
+var g_numberOfIsomorphSubgraphIs        = "Number of isomorphic subgraphs are ";
+var g_graphHasNoIsomorphSubgraph        = "Graph don't contain isomorphic subgraphs";
+var g_searchIsomorphSubgraph            = "Search isomorphic subgraphs";
+var g_subgraphNo                        = "Isomorphic subgraph # ";
+var g_graphHasNoAtleast2Graphs          = "To use the algorithm, you need to create 2 separate graphs";
+var g_IsomorphismCheck                  = "Check Graphs Isomorphism";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -271,4 +286,19 @@ function loadTexts()
     g_SpanningTreeResult    = document.getElementById("MinSpanningTreeResult").innerHTML;
     g_SpanningTreeIgnoreDir = document.getElementById("MinSpanningIgnoreDir").innerHTML;
     g_SpanningTreeNotConnected = document.getElementById("MinSpanningNotConnected").innerHTML;
+
+    g_selectFirstGraphIsomorphismCheck  = document.getElementById("SelectFirstGraphIsomorphismCheck").innerHTML;
+    g_selectSecondGraphIsomorphismCheck = document.getElementById("SelectSecondGraphIsomorphismCheck").innerHTML;
+    
+    g_selectFirstGraphPatternCheck       = document.getElementById("SelectFirstGraphPatternCheck").innerHTML;
+    g_selectSecondGraphForSearchSubgraph = document.getElementById("SelectSecondGraphForSearchSubgraph").innerHTML;
+    
+    g_graphsIsomorph                    = document.getElementById("GraphsIsomorph").innerHTML;
+    g_graphsNotIsomorph                 = document.getElementById("GraphsNotIsomorph").innerHTML;
+    g_numberOfIsomorphSubgraphIs        = document.getElementById("NumberOfIsomorphSubgraphIs").innerHTML;
+    g_graphHasNoIsomorphSubgraph        = document.getElementById("GraphHasNoIsomorphSubgraph").innerHTML;
+    g_searchIsomorphSubgraph            = document.getElementById("SearchIsomorphSubgraph").innerHTML;
+    g_subgraphNo                        = document.getElementById("SubgraphNo").innerHTML;
+    g_graphHasNoAtleast2Graphs          = document.getElementById("GraphHasNoAtleast2Graphs").innerHTML;
+    g_IsomorphismCheck                  = document.getElementById("IsomorphismCheck").innerHTML;
 }

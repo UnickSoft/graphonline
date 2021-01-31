@@ -204,4 +204,18 @@
     $g_lang["min_spanning_tree_res_is"] = "Вес минимального остовного дерева равен ";
     $g_lang["min_spanning_tree_ignore_direction"] = "Мы игнорировали ориентацию дуг при рассчете.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Граф не является связным";
+
+    $g_lang['select_first_graph_isomorphism_check'] = "Выделите первый граф для проверки на изоморфизм. Кликните по любой вершине графа";
+    $g_lang['select_second_graph_isomorphism_check'] = "Выделите второй граф для проверки на изоморфизм. Кликните по любой вершине графа";
+    $g_lang['select_first_graph_pattern_check'] = "Выделите граф, которому должны быть изоморфны подграфов. Кликните по любой вершине графа";
+    $g_lang['select_second_graph_for_search_subgraph'] = "Выделите граф в котором необходимо найти изоморфные подграфы. Кликните по любой вершине графа";
+    $g_lang['graphs_isomorph'] = "Графы изоморфны";
+    $g_lang['graphs_not_isomorph'] = "Графы не изоморфны";
+    $g_lang['number_of_isomorph_subgraph_is'] = "Количество изоморфных подграфов равно ";
+    $g_lang['graph_has_no_isomorph_subgraph'] = "Граф не содержит изоморфных подграфов";
+    $g_lang['search_isomorph_subgraph'] = "Поиск изоморфных подграфов";
+    $g_lang['subgraph_no'] = "Изоморфных подграф № ";
+    $g_lang['graph_has_no_atleast_2_graphs'] = "Для использования алгоритма необходимо создать хотя бы 2 не связных графа";
+    $g_lang['isomorphism_check'] = "Проверка изоморфности графов";
+
 ?>

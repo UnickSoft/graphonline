@@ -156,6 +156,9 @@ BaseAlgorithmEx.prototype = Object.create(BaseAlgorithm.prototype);
 
 BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallback)
 {
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+      console.log(queryString);
+
     var graph = this.graph;
     var creator = new GraphMLCreater(graph.vertices, graph.edges);
     var pathObjects = [];

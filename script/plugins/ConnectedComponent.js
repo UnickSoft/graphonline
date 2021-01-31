@@ -6,7 +6,7 @@
 function FindConnectedComponentNew(graph, app)
 {
     BaseAlgorithm.apply(this, arguments);
-    this.connectedComponentNumber = 0;
+    this.connectedComponentNumber = 0;    
     this.component = {};
     this.selectedObjects = [];
 }

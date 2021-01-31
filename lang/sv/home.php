@@ -165,4 +165,18 @@
     $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";
     $g_lang["min_spanning_tree_ignore_direction"] = "In time of calculation we have ignored the edges direction.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
+
+    $g_lang['select_first_graph_isomorphism_check'] = "Select first graph for isomorphic check. Click to any node of graph";
+    $g_lang['select_second_graph_isomorphism_check'] = "Select second graph for isomorphic check. Click to any node of graph";
+    $g_lang['select_first_graph_pattern_check'] = "Select a template graph by clicking to any node of graph";
+    $g_lang['select_second_graph_for_search_subgraph'] = "Choose a graph in which we will look for isomorphic subgraphs. Click to any node of this graph";
+    $g_lang['graphs_isomorph'] = "Graphs are isomorphic";
+    $g_lang['graphs_not_isomorph'] = "Graphs are not isomorphic";
+    $g_lang['number_of_isomorph_subgraph_is'] = "Number of isomorphic subgraphs are ";
+    $g_lang['graph_has_no_isomorph_subgraph'] = "Graph doesn't contain isomorphic subgraphs";
+    $g_lang['search_isomorph_subgraph'] = "Search isomorphic subgraphs";
+    $g_lang['subgraph_no'] = "Isomorphic subgraph # ";
+    $g_lang['graph_has_no_atleast_2_graphs'] = "To use the algorithm, you need to create 2 separate graphs";
+    $g_lang['isomorphism_check'] = "Check Graphs Isomorphism";
+
 ?>
