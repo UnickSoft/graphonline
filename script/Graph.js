@@ -654,7 +654,6 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 	var colsObj = {};
 
 	//ViewportSize = viewportSize.subtract(new Point((new VertexModel()).diameter * 2, (new VertexModel()).diameter * 2));
-
 	if (this.TestIncidenceMatrix(matrix, rowsObj, colsObj))
 	{
 		rows = rowsObj.rows;
@@ -676,7 +675,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 				{
 
 					var newPos = new Point(0, 0);//this.GetRandomPositionOfVertex (matrix, j, viewportSize);
-                                        newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVertesType));
+                    newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVertesType));
 					this.AddNewVertex(newVertexes[newVertexes.length - 1]);
 				}				
 
@@ -701,11 +700,13 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 					{
 						edgeValue = edgeValue.swap(0, 1);
 						edgeIndex = edgeIndex.swap(0, 1);
-                			} 
+                	}
 				}
                 
                 var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[edgeIndex[0]], this.vertices[edgeIndex[1]],
                                                      edgeValue[0] != edgeValue[1], Math.abs(edgeValue[1]), false);
+
+                this.FixEdgeCurved(nEdgeIndex);
                 if (nEdgeIndex >= 0)
                 {
                     bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
@@ -1062,3 +1063,64 @@ Graph.prototype.isNeedReposition = function ()
     return res;
 }
 
+Graph.prototype.FixEdgeCurved = function (edgeIndex)
+{
+    var edgeObject = this.edges[edgeIndex];
+    var hasPair    = this.hasPair(edgeObject);
+    var neighbourEdges = this.getNeighbourEdges(edgeObject);
+    
+    if (hasPair)
+    {
+        if (edgeObject.model.default)
+            edgeObject.model.type = EdgeModels.cruvled; 
+        
+        var pairEdge = this.FindPairFor(edgeObject);
+        if (pairEdge.model.default)
+        {
+            pairEdge.model.type = EdgeModels.cruvled;
+            if (pairEdge.vertex1 == edgeObject.vertex1 && pairEdge.vertex2 == edgeObject.vertex2)
+                pairEdge.model.curvedValue = -pairEdge.model.curvedValue;
+        }
+    }
+    else if (neighbourEdges.length >= 2)
+    {
+        var cruvled = this.GetAvalibleCruvledValue(neighbourEdges, edgeObject);
+        if (edgeObject.model.default)
+        {
+            edgeObject.model.type        = EdgeModels.cruvled;
+            edgeObject.model.curvedValue = cruvled;
+        }
+    }
+}
+
+Graph.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
+{
+    var values = [];
+    
+    for (var i = 0; i < neighbourEdges.length; i ++)
+    {
+      var edge          = neighbourEdges[i];
+      var sameDirection = (originalEdge.vertex1.id == edge.vertex1.id);
+      if (edge.model.type == EdgeModels.cruvled)
+      {
+        values[(sameDirection ? edge.model.curvedValue : -edge.model.curvedValue)] = true;
+      }
+    }
+    
+    var changeValue  = DefaultHandler.prototype.curvedValue;
+    var defaultValue = 0.0;
+    var maxSearch    = 10;
+    
+    for (var i = 1; i < maxSearch; i ++)
+    {
+        value = i * changeValue;
+        if (!values.hasOwnProperty(value))
+            return value;
+
+        value = - i * changeValue;
+        if (!values.hasOwnProperty(value))
+            return value;
+    }
+    
+    return defaultValue;
+}

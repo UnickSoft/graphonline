@@ -524,33 +524,10 @@ Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, 
 {
 	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, upText), replaceIfExist);
 
+    this.graph.FixEdgeCurved(edge);
+
     var edgeObject = this.graph.edges[edge];
-    var hasPair    = this.graph.hasPair(edgeObject);
-    var neighbourEdges = this.graph.getNeighbourEdges(edgeObject);
-    
-    if (hasPair)
-    {
-        if (edgeObject.model.default)
-            edgeObject.model.type = EdgeModels.cruvled; 
-        
-        var pairEdge = this.graph.FindPairFor(edgeObject);
-        if (pairEdge.model.default)
-        {
-            pairEdge.model.type = EdgeModels.cruvled;
-            if (pairEdge.vertex1 == edgeObject.vertex1 && pairEdge.vertex2 == edgeObject.vertex2)
-                pairEdge.model.curvedValue = -pairEdge.model.curvedValue;
-        }
-    }
-    else if (neighbourEdges.length >= 2)
-    {
-        var cruvled = this.GetAvalibleCruvledValue(neighbourEdges, edgeObject);
-        if (edgeObject.model.default)
-        {
-            edgeObject.model.type        = EdgeModels.cruvled;
-            edgeObject.model.curvedValue = cruvled;
-        }
-    }
-    
+
     if (edgeObject.useWeight)
         this.UpdateEdgePresets(edgeObject.weight);
     
@@ -1552,34 +1529,7 @@ Application.prototype.ResetBackgroundStyle = function ()
 
 Application.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
 {
-    var values = [];
-    
-    for (var i = 0; i < neighbourEdges.length; i ++)
-    {
-      var edge          = neighbourEdges[i];
-      var sameDirection = (originalEdge.vertex1.id == edge.vertex1.id);
-      if (edge.model.type == EdgeModels.cruvled)
-      {
-        values[(sameDirection ? edge.model.curvedValue : -edge.model.curvedValue)] = true;
-      }
-    }
-    
-    var changeValue  = DefaultHandler.prototype.curvedValue;
-    var defaultValue = 0.0;
-    var maxSearch    = 10;
-    
-    for (var i = 1; i < maxSearch; i ++)
-    {
-        value = i * changeValue;
-        if (!values.hasOwnProperty(value))
-            return value;
-
-        value = - i * changeValue;
-        if (!values.hasOwnProperty(value))
-            return value;
-    }
-    
-    return defaultValue;
+    return this.graph.GetAvalibleCruvledValue(neighbourEdges, originalEdge);
 }
 
 Application.prototype.GraphTypeChanged = function()
