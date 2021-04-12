@@ -15,4 +15,6 @@
     $g_lang["separator"] = "Separador:";
     $g_lang["separator_commo"] = "vírgula";
     $g_lang["separator_space"] = "espaço";
+
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

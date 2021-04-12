@@ -8,6 +8,7 @@
 // Current matrix size
 var g_MatrixWidth  = 2;
 var g_MatrixHeight = 3;
+var g_ctrlPressed = false;
 
 function PackMatrix()
 {
@@ -17,7 +18,7 @@ function PackMatrix()
     {
         for (j = 0; j < g_MatrixWidth; j++)
         {
-            var element = document.getElementsByName("field" + i + j)[0];
+            var element = document.getElementsByName("field" + i + "_" + j)[0];
             matrix = matrix + (element.value.length > 0 ? element.value : "0") + ", ";
         }
         matrix = matrix + "\n";
@@ -25,9 +26,83 @@ function PackMatrix()
     return matrix;
 }
 
-function CopyMatrixToTextInput()
+function getCharCode(event) 
+{
+    if (event.which == null) 
+    { // IE
+        return event.keyCode;
+    }
+
+    if (event.which != 0) 
+    { // not IE
+        return event.which; 
+    }
+
+    return null;
+}
+    
+function getChar(event) 
+{
+    var k = getCharCode(event)
+    return String.fromCharCode(k);
+}
+
+function CopyMatrixToTextInput(event)
 {
     document.getElementById("IncidenceMatrixFieldPage").value = PackMatrix();
+    // Move between cells.
+    if (event)
+    {
+        var key = getChar(event);
+        var code = getCharCode(event);
+        console.log(key + " code=" + code);
+        if (g_ctrlPressed)
+        {
+            var moveFocus = function(offsetX, offsetY)
+            {
+                var focused_element = document.activeElement;
+                
+                if (focused_element && focused_element.name.includes("field"))
+                {
+                    var name = focused_element.name;
+                    var coords = name.replace('field','').split("_");
+                    if (coords.length == 2)
+                    {
+                        var focusName = "field" + (parseInt(coords[0]) + offsetY) + "_" + (parseInt(coords[1]) + offsetX)
+                        var element   = document.getElementsByName(focusName)[0];
+                        if (element)
+                        {
+                            element.focus();
+                        }
+                    }
+                }
+            }
+            switch (code)
+            {
+                case 38: // Up
+                {                    
+                    moveFocus(0, -1);
+                    break;
+                }
+                case 40: // Down
+                {
+                    moveFocus(0, 1);
+                    break;
+                }
+                case 37: // Left
+                {
+                    moveFocus(-1, 0);
+                    break;
+                }
+                case 39: // Right
+                {
+                    moveFocus(1, 0);
+                    break;
+                }
+            }
+
+        }
+    }
 }
 
 function _ShowTextInput()
@@ -88,7 +163,7 @@ function CopyMatrixToMatrixInput()
         {
             for (var j = 0; j < cols[0].length; j++)
             {
-                var element = document.getElementsByName("field" + i + j)[0];
+                var element = document.getElementsByName("field" + i + "_" + j)[0];
                 element.value = cols[i][j];
             }
         }
@@ -104,9 +179,9 @@ function CreateInputElement(col, row)
     var input = document.createElement("input");
     input.type = "text";
     input.size = 3;
-    input.name = "field" + col + row;
+    input.name = "field" + col + "_" + row;
     input.value = 0;
-    input.onkeyup = function() {CopyMatrixToTextInput();};
+    input.onkeyup = function(event) {CopyMatrixToTextInput(event);};
     
     return input;
 }
@@ -193,6 +268,15 @@ window.onload = function ()
     
     CopyMatrixToMatrixInput();
 
+    $(document).keydown(function(event) {
+        if (event.which == "17" || event.which == "91")
+          g_ctrlPressed = true;
+    });
+
+    $(document).keyup(function(event) {
+        if (event.which == "17" || event.which == "91")
+            g_ctrlPressed = false;
+    });    
 }
 </script>
 
@@ -228,16 +312,16 @@ window.onload = function ()
 </form>
 <div id="MatrixForm">
 <form id="AdjacencyMatrixFieldInput" role="form">
-<input type="text" name="field00" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
-<input type="text" name="field01" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
+<input type="text" name="field0_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+<input type="text" name="field0_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
 <br name="row0">
 
-<input type="text" name="field10" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
-<input type="text" name="field11" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
+<input type="text" name="field1_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+<input type="text" name="field1_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
 <br name="row1">
 
-<input type="text" name="field20" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
-<input type="text" name="field21" size="3" value = "0" onkeyup="CopyMatrixToTextInput()">
+<input type="text" name="field2_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+<input type="text" name="field2_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
 <br name="row2">
 
 <span name="matrixEnd"></span>
@@ -248,6 +332,7 @@ window.onload = function ()
 <button type="button" onclick="IncSizeH()" value="add" name="add" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>
 <?= L('add_node_to_matrix') ?>
 </button>
+<p><small><?= L('use_ctrl_to_move_cells')?></small></p>
 </div>
 
 

@@ -13,4 +13,6 @@
     $g_lang["m_title"] = "Création d'un graphique à partir de la matrice d'incidence";
     $g_lang["m_keyWords"] = "graphique en ligne, graphique de tracé, création d'un graphique à partir d'une matrice d'incidence, matrice d'incidence";
     $g_lang["m_description"] = "Créer un graphique à partir de la matrice d'incidence en ligne et voir le résultat visuel";
+
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

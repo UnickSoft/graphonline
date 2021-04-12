@@ -17,4 +17,5 @@
     $g_lang["separator_commo"] = "kommatecken";
     $g_lang["separator_space"] = "utrymme";
 
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

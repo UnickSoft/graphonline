@@ -23,5 +23,5 @@
     $g_lang["separator_commo"] = "запятая";
     $g_lang["separator_space"] = "пробел";
     
-    
+    $g_lang["use_ctrl_to_move_cells"] = "Используйте Ctrl + &#8592; &#8593; &#8594; &#8595; клавиши для перемещения между ячейками.";
 ?>

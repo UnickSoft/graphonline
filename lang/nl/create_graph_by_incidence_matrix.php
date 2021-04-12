@@ -12,4 +12,6 @@
     $g_lang["m_title"] = "Bezig met het creëren van een Graaf op basis van een incidentiematrix";
     $g_lang["m_keyWords"] = "Graph Online, plot Graaf, Creëer graaf vanuit incidentiematrix, incidentiematrix";
     $g_lang["m_description"] = "Creëer een graaf door middel van een incidentiematrix online en krijg het resultaat visueel";
+
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

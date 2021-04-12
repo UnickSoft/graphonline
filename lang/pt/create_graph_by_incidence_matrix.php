@@ -14,4 +14,5 @@
     $g_lang["m_keyWords"] = "grafo onilne, plotar grafo, criar grafo a partir de uma matriz de incidência, matriz de incidência ";
     $g_lang["m_description"] = "Crie o grafo online a partir da matriz de incidência e veja o resultado";
 
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

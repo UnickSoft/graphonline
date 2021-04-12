@@ -14,4 +14,6 @@
     $g_lang["m_title"] = "Creating graph from incidence matrix";
     $g_lang["m_keyWords"] = "graph online, plot graph, creating graph from incidence matrix, incidence matrix";
     $g_lang["m_description"] = "Creating graph from incidence matrix online and see visual result";
+
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>

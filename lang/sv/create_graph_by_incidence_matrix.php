@@ -14,4 +14,5 @@
     $g_lang["m_keyWords"] = "incidensmatris, graf, skapa en graf, skapa en graf online, använda insidensmatris";
     $g_lang["m_description"] = "Skapa en graf med incidensmatris online";
 
+    $g_lang["use_ctrl_to_move_cells"] = "Use Ctrl + &#8592; &#8593; &#8594; &#8595; keys to move between cells.";
 ?>
