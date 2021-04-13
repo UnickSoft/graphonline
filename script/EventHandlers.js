@@ -1348,22 +1348,35 @@ SetupVertexStyle.prototype.show = function(index)
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    var style = Object.assign({}, (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]));
-    
+
+    var style = Object.assign(Object.create((index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1])), 
+        (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]));
+
     var fillFields = function()
     {
-        $( "#vertexFillColor" ).val(style.fillStyle);
-        $( "#vertexStrokeColor" ).val(style.strokeStyle);
-        $( "#vertexTextColor" ).val(style.mainTextColor);
-        $( "#vertexStrokeSize" ).val(style.lineWidth);
+        var fullStyle = style.GetStyle({});
+
+        $( "#vertexFillColor" ).val(fullStyle.fillStyle);
+        $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
+        $( "#vertexTextColor" ).val(fullStyle.mainTextColor);
+        $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
     }
     
     var redrawVertex = function()
     {
-        style.fillStyle     = $( "#vertexFillColor" ).val();
-        style.strokeStyle   = $( "#vertexStrokeColor" ).val();
-        style.mainTextColor = $( "#vertexTextColor" ).val();
-        style.lineWidth     = $( "#vertexStrokeSize" ).val();
+        var fullStyle = style.GetStyle({});
+
+        if (fullStyle.fillStyle != $( "#vertexFillColor" ).val())
+            style.fillStyle     = $( "#vertexFillColor" ).val();
+
+        if (fullStyle.strokeStyle != $( "#vertexStrokeColor" ).val())
+            style.strokeStyle   = $( "#vertexStrokeColor" ).val();
+
+        if (fullStyle.mainTextColor != $( "#vertexTextColor" ).val())
+            style.mainTextColor = $( "#vertexTextColor" ).val();
+
+        if (fullStyle.lineWidth != $( "#vertexStrokeSize" ).val())
+            style.lineWidth     = $( "#vertexStrokeSize" ).val();
         
         var canvas  = document.getElementById( "VertexPreview" );
         var context = canvas.getContext('2d');    
@@ -1378,7 +1391,7 @@ SetupVertexStyle.prototype.show = function(index)
         baseVertex.mainText = "1";
         baseVertex.upText   = "Up Text";
         
-        graphDrawer.Draw(baseVertex, style);
+        graphDrawer.Draw(baseVertex, style.GetStyle({}));
         
         context.restore();
     }
@@ -1449,20 +1462,30 @@ SetupEdgeStyle.prototype.show = function(index)
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    var style = Object.assign({}, (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]));
-    
+    var style = Object.assign(Object.create((index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1])), 
+                (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]));
+
     var fillFields = function()
     {
-        $( "#edgeFillColor" ).val(style.fillStyle);
-        $( "#edgeStrokeColor" ).val(style.strokeStyle);
-        $( "#edgeTextColor" ).val(style.weightText);
+        var fullStyle = style.GetStyle({});
+
+        $( "#edgeFillColor" ).val(fullStyle.fillStyle);
+        $( "#edgeStrokeColor" ).val(fullStyle.strokeStyle);
+        $( "#edgeTextColor" ).val(fullStyle.weightText);
     }
     
     var redrawVertex = function()
     {
-        style.fillStyle     = $( "#edgeFillColor" ).val();
-        style.strokeStyle   = $( "#edgeStrokeColor" ).val();
-        style.weightText    = $( "#edgeTextColor" ).val();
+        var fullStyle = style.GetStyle({});
+
+        if (fullStyle.fillStyle != $( "#edgeFillColor" ).val())
+            style.fillStyle     = $( "#edgeFillColor" ).val();
+
+        if (fullStyle.strokeStyle != $( "#edgeStrokeColor" ).val())
+            style.strokeStyle   = $( "#edgeStrokeColor" ).val();
+
+        if (fullStyle.weightText != $( "#edgeTextColor" ).val())
+            style.weightText    = $( "#edgeTextColor" ).val();
         
         var canvas  = document.getElementById( "EdgePreview" );
         var context = canvas.getContext('2d');    
@@ -1477,7 +1500,7 @@ SetupEdgeStyle.prototype.show = function(index)
         var baseVertex2  = new BaseVertex(canvas.width, canvas.height / 2, new BaseEnumVertices(this));
         var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10, "Text");
         
-        graphDrawer.Draw(baseEdge, style);
+        graphDrawer.Draw(baseEdge, style.GetStyle({}));
         
         context.restore();
     }

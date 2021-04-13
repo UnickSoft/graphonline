@@ -22,3 +22,16 @@ function gDecodeFromHTML(str)
                .replace(/&lt;/g, '<')
                .replace(/&amp;/g, '&'); 
 }
+
+function FullArrayCopy(arr)
+{
+  var res = [];
+
+	arr.forEach(function(element) {
+
+    var copyElement = Object.assign(Object.create(element), element);
+    res.push(copyElement);
+	});  
+
+  return res;
+}

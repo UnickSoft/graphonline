@@ -2,9 +2,41 @@
  * Graph drawer.
  */
  
+ function BaseEdgeStyle()
+ {
+   this.baseStyles = [];
+ }
+ 
+ BaseEdgeStyle.prototype.GetStyle = function (baseStyle)
+ {
+   this.baseStyles.forEach(function(element) {
+     var styleObject = globalApplication.GetStyle("edge", element);
+     baseStyle       = styleObject.GetStyle(baseStyle);
+   });
+ 
+   if (this.hasOwnProperty('weightText'))
+     baseStyle.weightText   = this.weightText;
+   if (this.hasOwnProperty('strokeStyle'))
+     baseStyle.strokeStyle = this.strokeStyle;
+   if (this.hasOwnProperty('fillStyle'))
+     baseStyle.fillStyle   = this.fillStyle;
+   if (this.hasOwnProperty('textPadding'))
+     baseStyle.textPadding = this.textPadding;
+     if (this.hasOwnProperty('textStrockeWidth'))
+     baseStyle.textStrockeWidth = this.textStrockeWidth;
+ 
+   return baseStyle;
+ }
+ 
+ BaseEdgeStyle.prototype.ShouldLoad = function (field)
+ {
+   return field != "baseStyles";
+ }
  
 function CommonEdgeStyle()
 {
+  BaseEdgeStyle.apply(this, arguments);
+
 	this.strokeStyle = '#c7b7c7';
 	this.weightText  = '#f0d543';
  	this.fillStyle   = '#68aeba';
@@ -12,77 +44,92 @@ function CommonEdgeStyle()
 	this.textStrockeWidth = 2;
 }
 
+CommonEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
+
 function CommonPrintEdgeStyle()
 {
-	CommonEdgeStyle.apply(this, arguments);
+	BaseEdgeStyle.apply(this, arguments);
     
 	this.strokeStyle = '#000000';
 	this.weightText  = '#000000';
  	this.fillStyle   = '#FFFFFF';
+ 	this.textPadding = 4;
+	this.textStrockeWidth = 2;
 }
 
 function SelectedEdgeStyle0()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#f0d543';
 	this.weightText  = '#f0d543';
 	this.fillStyle   = '#c7627a';
+
+  this.baseStyles.push("common");
 }
-SelectedEdgeStyle0.prototype = Object.create(CommonEdgeStyle.prototype);
+SelectedEdgeStyle0.prototype = Object.create(BaseEdgeStyle.prototype);
 
 function SelectedEdgeStyle1()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#8FBF83';
 	this.weightText  = '#8FBF83';
 	this.fillStyle   = '#F9F9D5';
-}
-SelectedEdgeStyle1.prototype = Object.create(CommonEdgeStyle.prototype);
 
+  this.baseStyles.push("selected");
+}
+SelectedEdgeStyle1.prototype = Object.create(BaseEdgeStyle.prototype);
 
 function SelectedEdgeStyle2()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#8C4C86';
 	this.weightText  = '#8C4C86';
 	this.fillStyle   = '#253267';
+
+  this.baseStyles.push("selected");
 }
-SelectedEdgeStyle2.prototype = Object.create(CommonEdgeStyle.prototype);
+SelectedEdgeStyle2.prototype = Object.create(BaseEdgeStyle.prototype);
 
 
 function SelectedEdgeStyle3()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#6188FF';
 	this.weightText  = '#6188FF';
 	this.fillStyle   = '#E97CF9';
+
+  this.baseStyles.push("selected");
 }
-SelectedEdgeStyle3.prototype = Object.create(CommonEdgeStyle.prototype);
+SelectedEdgeStyle3.prototype = Object.create(BaseEdgeStyle.prototype);
 
 
 function SelectedEdgeStyle4()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#C6B484';
 	this.weightText  = '#C6B484';
 	this.fillStyle   = '#E0DEE1';
+
+  this.baseStyles.push("selected");
 }
-SelectedEdgeStyle4.prototype = Object.create(CommonEdgeStyle.prototype);
+SelectedEdgeStyle4.prototype = Object.create(BaseEdgeStyle.prototype);
 
 function SelectedEdgePrintStyle()
 {
-	CommonEdgeStyle.apply(this, arguments);  
+	BaseEdgeStyle.apply(this, arguments);  
 
 	this.strokeStyle = '#AAAAAA';
 	this.weightText  = '#000000';
 	this.fillStyle   = '#AAAAAA';
+
+  this.baseStyles.push("printed");
 }
-SelectedEdgeStyle0.prototype = Object.create(CommonEdgeStyle.prototype);
+SelectedEdgeStyle0.prototype = Object.create(BaseEdgeStyle.prototype);
 
 var DefaultSelectedEdgeStyles      = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(), 
 	new SelectedEdgeStyle2(), new SelectedEdgeStyle3(), new SelectedEdgeStyle4()];

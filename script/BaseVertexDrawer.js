@@ -1,147 +1,209 @@
 /**
  * Graph drawer.
  */
+
+// Test graph: http://localhost:8080/?graph=oimDPgsdgiAjWGBHZZcst
  
+function BaseVertexStyle()
+{
+  this.baseStyles = [];
+}
+
+BaseVertexStyle.prototype.GetStyle = function (baseStyle)
+{
+	this.baseStyles.forEach(function(element) {
+		var styleObject = globalApplication.GetStyle("vertex", element);
+		baseStyle       = styleObject.GetStyle(baseStyle);
+	});
+
+	if (this.hasOwnProperty('lineWidth'))
+		baseStyle.lineWidth   = this.lineWidth;
+	if (this.hasOwnProperty('strokeStyle'))
+		baseStyle.strokeStyle = this.strokeStyle;
+	if (this.hasOwnProperty('fillStyle'))
+		baseStyle.fillStyle   = this.fillStyle;
+	if (this.hasOwnProperty('mainTextColor'))
+		baseStyle.mainTextColor = this.mainTextColor;
+
+	return baseStyle;
+}
+
+BaseVertexStyle.prototype.ShouldLoad = function (field)
+{
+	return field != "baseStyles";
+}
+
 // Common style of Graphs.
 function CommonVertexStyle()
 {
-  this.lineWidth   = 2;
+  BaseVertexStyle.apply(this, arguments);
+
+  this.lineWidth   = 20;
   this.strokeStyle = '#c7b7c7';
   this.fillStyle   = '#68aeba';
   this.mainTextColor = '#f0d543';
+
+  this.baseStyles = [];
 }
+
+CommonVertexStyle.prototype = Object.create(BaseVertexStyle.prototype);
 
 function CommonPrintVertexStyle()
 {
-  CommonVertexStyle.apply(this, arguments);
-    
-  this.lineWidth   = 2;
+  BaseVertexStyle.apply(this, arguments);
+  
   this.strokeStyle = '#000000';
   this.fillStyle   = '#FFFFFF';
   this.mainTextColor = '#000000';
+
+  this.baseStyles.push("common");
 }
+
+CommonPrintVertexStyle.prototype = Object.create(BaseVertexStyle.prototype);
 
 // Selected style of Graphs.
 function SelectedVertexStyle0()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#f0d543';
 	this.mainTextColor  = '#f0d543';
 	this.fillStyle   = '#c7627a';
+
+	this.baseStyles.push("common");
 }
 
-SelectedVertexStyle0.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle0.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle1()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#7a9ba0';
 	this.mainTextColor  = '#c3d2d5';
 	this.fillStyle   = '#534641';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle1.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle1.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle2()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#8C4C86';
 	this.mainTextColor  = '#dbbdd8';
 	this.fillStyle   = '#253267';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle2.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle2.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle3()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#6188FF';
 	this.mainTextColor  = '#6188FF';
 	this.fillStyle   = '#E97CF9';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle3.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle3.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle4()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#C6B484';
 	this.mainTextColor  = '#C6B484';
 	this.fillStyle   = '#E0DEE1';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle4.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle4.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle5()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle = '#FF6200';
 	this.mainTextColor  = '#FF6200';
 	this.fillStyle   = '#0F4FA8';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle5.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle5.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle6()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle   = '#8CA336';
 	this.mainTextColor = '#8CA336';
 	this.fillStyle     = '#9C344C';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle6.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle6.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle7()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle   = '#B59E22';
 	this.mainTextColor = '#B59E22';
 	this.fillStyle     = '#22387A';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle7.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle7.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle8()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle   = '#08806C';
 	this.mainTextColor = '#08806C';
 	this.fillStyle     = '#CA980D';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle8.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle8.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedVertexStyle9()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle   = '#AA8134';
 	this.mainTextColor = '#AA8134';
 	this.fillStyle     = '#492A73';
+
+	this.baseStyles.push("selected");
 }
 
-SelectedVertexStyle9.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedVertexStyle9.prototype = Object.create(BaseVertexStyle.prototype);
 
 function SelectedPrintVertexStyle()
 {
-	CommonVertexStyle.apply(this, arguments);
+	BaseVertexStyle.apply(this, arguments);
 
 	this.strokeStyle   = '#000000';
 	this.mainTextColor = '#000000';
 	this.fillStyle     = '#AAAAAA';
+
+	this.baseStyles.push("printed");
 }
 
-SelectedPrintVertexStyle.prototype = Object.create(CommonVertexStyle.prototype);
+SelectedPrintVertexStyle.prototype = Object.create(BaseVertexStyle.prototype);
 
 var DefaultSelectedGraphStyles = [new SelectedVertexStyle0(), new SelectedVertexStyle1(),
 	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4(), new SelectedVertexStyle5(), new SelectedVertexStyle6(), new SelectedVertexStyle7(), new SelectedVertexStyle8(), new SelectedVertexStyle9()];

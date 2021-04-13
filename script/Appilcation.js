@@ -28,19 +28,19 @@ function Application(document, window)
     
     this.edgeCommonStyle         = new CommonEdgeStyle();
     this.isEdgeCommonStyleCustom = false;
-    this.edgeSelectedStyles      = DefaultSelectedEdgeStyles.slice();
+    this.edgeSelectedStyles      = FullArrayCopy(DefaultSelectedEdgeStyles);
     this.isEdgeSelectedStylesCustom = false;
     
     this.edgePrintCommonStyle      = new CommonPrintEdgeStyle();
-    this.edgePrintSelectedStyles   = DefaultPrintSelectedEdgeStyles.slice();
+    this.edgePrintSelectedStyles   = FullArrayCopy(DefaultPrintSelectedEdgeStyles);
     
     this.vertexCommonStyle          = new CommonVertexStyle();
     this.isVertexCommonStyleCustom  = false;
-    this.vertexSelectedVertexStyles = DefaultSelectedGraphStyles.slice();
+    this.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
     this.isVertexSelectedVertexStylesCustom  = false;
     
     this.vertexPrintCommonStyle          = new CommonPrintVertexStyle(); 
-    this.vertexPrintSelectedVertexStyles = DefaultPrintSelectedGraphStyles.slice();
+    this.vertexPrintSelectedVertexStyles = FullArrayCopy(DefaultPrintSelectedGraphStyles);
     
     this.backgroundCommonStyle = new CommonBackgroundStyle();
     this.backgroundPrintStyle  = new PrintBackgroundStyle(); 
@@ -361,7 +361,7 @@ Application.prototype._RedrawEdge = function(edge, arcDrawer, commonStyle, selec
 
 Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, commonStyle, selectedStyles)
 {
-    arcDrawer.Draw(edge, style);
+    arcDrawer.Draw(edge, style.GetStyle({}));
 }
 
 Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
@@ -392,7 +392,7 @@ Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSel
 		var currentStyle  = selectedGroup > 0 ?
 				selectedStyle[(selectedGroup - 1) % selectedStyle.length] : commonStyle;
 
-		graphDrawer.Draw(this.graph.vertices[i], currentStyle);
+		graphDrawer.Draw(this.graph.vertices[i], currentStyle.GetStyle({}));
     }	
 }
 
@@ -1403,11 +1403,13 @@ Application.prototype.LoadUserSettings = function(json)
     
     checkValue.push({field: "edgeCommonStyle",
                      value: this.edgeCommonStyle,
-                     check: "isEdgeCommonStyleCustom"});
+                     check: "isEdgeCommonStyleCustom",
+                     deep: false});
     
     checkValue.push({field: "edgeSelectedStyles",
                      value: this.edgeSelectedStyles,
-                     check: "isEdgeSelectedStylesCustom"});
+                     check: "isEdgeSelectedStylesCustom",
+                     deep: true});
 
     //checkValue.push({field: "edgePrintCommonStyle",
     //                 value: this.edgePrintCommonStyle});
@@ -1417,11 +1419,13 @@ Application.prototype.LoadUserSettings = function(json)
     
     checkValue.push({field: "vertexCommonStyle",
                      value: this.vertexCommonStyle,
-                     check: "isVertexCommonStyleCustom"});
+                     check: "isVertexCommonStyleCustom",
+                     deep: false});
     
     checkValue.push({field: "vertexSelectedVertexStyles",
                      value: this.vertexSelectedVertexStyles,
-                     check: "isVertexSelectedVertexStylesCustom"});
+                     check: "isVertexSelectedVertexStylesCustom",
+                     deep: true});
     
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
@@ -1431,7 +1435,8 @@ Application.prototype.LoadUserSettings = function(json)
     
     checkValue.push({field: "backgroundCommonStyle",
                      value: this.backgroundCommonStyle,
-                     check: "isBackgroundCommonStyleCustom"});
+                     check: "isBackgroundCommonStyleCustom",
+                     deep: false});
     
     var decoderStr = this.DecodeFromHTML(json);
     var parsedSave = JSON.parse(decoderStr);
@@ -1441,8 +1446,22 @@ Application.prototype.LoadUserSettings = function(json)
     checkValue.forEach(function(entry) {
             if (parsedSave.hasOwnProperty(entry.field))
             {
-                for(var k in parsedSave[entry.field]) 
-                    entry.value[k] = parsedSave[entry.field][k];
+                for(var k in parsedSave[entry.field])
+                {
+                    if (!entry.deep)
+                    {
+                        if (entry.value.ShouldLoad(k))
+                            entry.value[k] = parsedSave[entry.field][k];
+                    }
+                    else
+                    {
+                        for(var deepK in parsedSave[entry.field][k])
+                        {
+                            if (entry.value[k].ShouldLoad(deepK))
+                                entry.value[k][deepK] = parsedSave[entry.field][k][deepK];
+                        }
+                    }
+                }
                 
                 app[entry.check] = true;
             }
@@ -1482,7 +1501,7 @@ Application.prototype.ResetVertexStyle = function (index)
     }
     else
     {
-        this.vertexSelectedVertexStyles = DefaultSelectedGraphStyles.slice();
+        this.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
         this.isVertexSelectedVertexStylesCustom = false;
     }
 }
@@ -1510,7 +1529,7 @@ Application.prototype.ResetEdgeStyle = function (index)
     }
     else
     {
-        this.edgeSelectedStyles = DefaultSelectedEdgeStyles.slice();
+        this.edgeSelectedStyles = FullArrayCopy(DefaultSelectedEdgeStyles);
         this.isEdgeSelectedStylesCustom = false;
     }
 }
@@ -1567,4 +1586,52 @@ Application.prototype.SetSelectionRect = function(rect)
 Application.prototype.GetSelectionRect = function(rect)
 {
   return this.selectionRect;
+}
+
+Application.prototype.GetStyle = function(type, styleName)
+{
+    if (type == "vertex")
+    {
+        if (styleName == "common")
+        {
+            return this.vertexCommonStyle;
+        }
+        else if (styleName == "selected")
+        {
+            return this.vertexSelectedVertexStyles[0];
+        }
+        else if (styleName == "printed")
+        {
+            return this.vertexPrintCommonStyle;
+        }
+        else if (styleName == "printedSelected")
+        {
+            return this.vertexPrintSelectedVertexStyles[0];
+        }       
+
+        return null;
+    }
+    else if(type == "edge")
+    {
+        if (styleName == "common")
+        {
+            return this.edgeCommonStyle;
+        }
+        else if (styleName == "selected")
+        {
+            return this.edgeSelectedVertexStyles[0];
+        }
+        else if (styleName == "printed")
+        {
+            return this.edgePrintCommonStyle;
+        }
+        else if (styleName == "printedSelected")
+        {
+            return this.edgePrintSelectedVertexStyles[0];
+        }       
+
+        return null;
+    }
+
+    return null;
 }
