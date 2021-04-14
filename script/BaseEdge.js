@@ -153,8 +153,8 @@ BaseEdge.prototype.GetEdgePositions = function()
 {
     var position1 = this.vertex1.position;
     var position2 = this.vertex2.position;
-    var diameter1 = this.vertex1.model.diameter;
-    var diameter2 = this.vertex2.model.diameter;
+    var diameter1 = this.vertex1.model.diameter + parseInt(this.vertex1.currentStyle.lineWidth);
+    var diameter2 = this.vertex2.model.diameter + parseInt(this.vertex2.currentStyle.lineWidth);
 
     var direction = position1.subtract(position2);
     

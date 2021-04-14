@@ -191,7 +191,22 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
   var hasStartStyle  = !position1.equals(position2) && baseEdge.GetStartEdgeStyle() != "";
   var hasFinishStyle = !position1.equals(position2) && baseEdge.GetFinishEdgeStyle() != "";
     
-  this.DrawArc (positions[0], positions[1], arcStyle);
+  var arcPos1 = positions[0];
+  var arcPos2 = positions[1];
+
+  if (hasStartStyle)
+  {
+    var dirArrow = this.GetStartArrowDiretion(positions[0], positions[1], lengthArrow);
+    arcPos1 = arcPos1.add(dirArrow.multiply(lengthArrow / 2));
+  }
+
+  if (hasFinishStyle)
+  {
+    var dirArrow = this.GetFinishArrowDiretion(positions[0], positions[1], lengthArrow);
+    arcPos2 = arcPos2.add(dirArrow.multiply(-lengthArrow / 2));
+  }
+
+  this.DrawArc (arcPos1, arcPos2, arcStyle);
 
   this.context.fillStyle = this.context.strokeStyle;
   this.context.lineWidth = 0;

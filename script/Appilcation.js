@@ -83,7 +83,7 @@ Application.prototype.redrawGraph = function()
 {
     if (!this.isTimerRender)
     {
-        this._redrawGraph();
+        this._redrawGraphInWindow();
         
         this.GraphTypeChanged();
     }
@@ -93,7 +93,7 @@ Application.prototype.redrawGraphTimer = function()
 {
     if (this.isTimerRender)
     {
-        var context = this._redrawGraph();
+        var context = this._redrawGraphInWindow();
         
         // Render path
         if (this.renderPath.length > 1)
@@ -173,7 +173,7 @@ Application.prototype.redrawGraphTimer = function()
     }
 }
 
-Application.prototype._redrawGraph = function()
+Application.prototype._redrawGraphInWindow = function()
 {
     var context = this.canvas.getContext('2d');
     
@@ -182,14 +182,7 @@ Application.prototype._redrawGraph = function()
     context.scale(this.canvasScale, this.canvasScale);
     context.translate(this.canvasPosition.x, this.canvasPosition.y);
     
-    var backgroundDrawer = new BaseBackgroundDrawer(context);
-    
-    backgroundDrawer.Draw(this.backgroundCommonStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), this.canvasPosition, this.canvasScale);
-    
-    this.RedrawEdges(context);
-    this.RedrawNodes(context);
-    if (this.selectionRect != null)
-      this.RedrawSelectionRect(context);
+    this._RedrawGraph(context, this.canvasPosition, this.backgroundCommonStyle, true);
 
     context.restore();
     
@@ -208,12 +201,7 @@ Application.prototype._OffscreenRedrawGraph = function()
 
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    var backgroundDrawer = new BaseBackgroundDrawer(context);
-    
-    backgroundDrawer.Draw(this.backgroundCommonStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), bbox.minPoint.inverse(), this.canvasScale);
-    
-    this.RedrawEdges(context);
-    this.RedrawNodes(context);
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false);
     
     context.restore();
     
@@ -232,12 +220,9 @@ Application.prototype._PrintRedrawGraph = function()
     
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    var backgroundDrawer = new BaseBackgroundDrawer(context);
-    
-    backgroundDrawer.Draw(this.backgroundPrintStyle, Math.max(this.canvas.width, this.GetRealWidth()), Math.max(this.canvas.height, this.GetRealHeight()), bbox.minPoint.inverse(), this.canvasScale);
-    
-    this.RedrawEdges(context, this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
-    this.RedrawNodes(context, this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles);
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false, 
+        this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles, 
+        this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
     
     context.restore();
     
@@ -339,24 +324,29 @@ Application.prototype.GetBaseArcDrawer = function(context, edge)
     return arcDrawer;
 }
 
-Application.prototype.RedrawEdge = function(context, edge, ForceCommonStyle, ForceSelectedStyle)
+Application.prototype.UpdateEdgeCurrentStyle = function(edge, ForceCommonStyle, ForceSelectedStyle)
+{
+    var commonStyle    = (ForceCommonStyle === undefined) ? this.edgeCommonStyle : ForceCommonStyle;
+    var selectedStyles = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
+
+    var selectedGroup = this.handler.GetSelectedGroup(edge);
+    var currentStyle  = selectedGroup > 0 ?
+        selectedStyles[(selectedGroup - 1) % selectedStyles.length] : commonStyle;
+
+    edge.currentStyle = currentStyle;
+}
+
+Application.prototype.RedrawEdge = function(context, edge)
 {
     var curvedArcDrawer = new CurvedArcDrawer(context, edge.model)
     var arcDrawer       = this.GetBaseArcDrawer(context, edge);
     
-    var commonStyle   = (ForceCommonStyle === undefined) ? this.edgeCommonStyle : ForceCommonStyle;
-    var selectedStyle = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
-    
-    this._RedrawEdge(edge, arcDrawer, commonStyle, selectedStyle);
+    this._RedrawEdge(edge, arcDrawer);
 }
 
 Application.prototype._RedrawEdge = function(edge, arcDrawer, commonStyle, selectedStyles)
 {
-    var selectedGroup = this.handler.GetSelectedGroup(edge);
-    var currentStyle  = selectedGroup > 0 ?
-        selectedStyles[(selectedGroup - 1) % selectedStyles.length] : commonStyle;
-    
-    this._RedrawEdgeWithStyle(edge, currentStyle, arcDrawer, commonStyle, selectedStyles);
+    this._RedrawEdgeWithStyle(edge, edge.currentStyle, arcDrawer, commonStyle, selectedStyles);
 }
 
 Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, commonStyle, selectedStyles)
@@ -372,17 +362,34 @@ Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
     this._RedrawEdge(edge, arcDrawer, this.edgeCommonStyle, this.edgeSelectedStyles);
 }
 
-Application.prototype.RedrawEdges = function(context, ForceCommonStyle, ForceSelectedStyle)
+Application.prototype.UpdateEdgesCurrentStyle = function(ForceCommonStyle, ForceSelectedStyle)
 {
     for (i = 0; i < this.graph.edges.length; i ++)
     {
-        this.RedrawEdge(context, this.graph.edges[i], ForceCommonStyle, ForceSelectedStyle);
+        this.UpdateEdgeCurrentStyle(this.graph.edges[i], ForceCommonStyle, ForceSelectedStyle);
     }
 }
 
-Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSelectedStyle)
+Application.prototype.RedrawEdges = function(context)
+{
+    for (i = 0; i < this.graph.edges.length; i ++)
+    {
+        this.RedrawEdge(context, this.graph.edges[i]);
+    }
+}
+
+Application.prototype.RedrawNodes = function(context)
 {
     var graphDrawer   = new BaseVertexDrawer(context);
+
+    for (i = 0; i < this.graph.vertices.length; i ++)
+    {
+		graphDrawer.Draw(this.graph.vertices[i], this.graph.vertices[i].currentStyle.GetStyle({}));
+    }	
+}
+
+Application.prototype.UpdateNodesCurrentStyle = function(ForceCommonStyle, ForceSelectedStyle)
+{
     var commonStyle   = (ForceCommonStyle === undefined) ? this.vertexCommonStyle : ForceCommonStyle;
     var selectedStyle = (ForceSelectedStyle === undefined) ? this.vertexSelectedVertexStyles : ForceSelectedStyle;
 
@@ -392,7 +399,7 @@ Application.prototype.RedrawNodes = function(context, ForceCommonStyle, ForceSel
 		var currentStyle  = selectedGroup > 0 ?
 				selectedStyle[(selectedGroup - 1) % selectedStyle.length] : commonStyle;
 
-		graphDrawer.Draw(this.graph.vertices[i], currentStyle.GetStyle({}));
+        this.graph.vertices[i].currentStyle = currentStyle;
     }	
 }
 
@@ -1634,4 +1641,25 @@ Application.prototype.GetStyle = function(type, styleName)
     }
 
     return null;
+}
+
+Application.prototype._RedrawGraph = function(context, backgroundPosition, backgroundStyle, bDrawSelectedRect,
+    forceVertexCommon, forceVertexSeleceted, forceEdgeCommon, forceEdgeSelected)
+{
+    var backgroundDrawer = new BaseBackgroundDrawer(context);
+    
+    backgroundDrawer.Draw(
+        backgroundStyle, 
+        Math.max(this.canvas.width, this.GetRealWidth()), 
+        Math.max(this.canvas.height, this.GetRealHeight()), 
+        backgroundPosition, 
+        this.canvasScale);
+    
+    this.UpdateEdgesCurrentStyle(forceEdgeCommon, forceEdgeSelected);
+    this.UpdateNodesCurrentStyle(forceVertexCommon, forceVertexSeleceted);
+
+    this.RedrawEdges(context);
+    this.RedrawNodes(context);
+    if (bDrawSelectedRect && this.selectionRect != null)
+        this.RedrawSelectionRect(context);
 }
