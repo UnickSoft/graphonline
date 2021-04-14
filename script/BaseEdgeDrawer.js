@@ -56,6 +56,7 @@ function CommonPrintEdgeStyle()
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
 }
+CommonPrintEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
 
 function SelectedEdgeStyle0()
 {
@@ -129,7 +130,7 @@ function SelectedEdgePrintStyle()
 
   this.baseStyles.push("printed");
 }
-SelectedEdgeStyle0.prototype = Object.create(BaseEdgeStyle.prototype);
+SelectedEdgePrintStyle.prototype = Object.create(BaseEdgeStyle.prototype);
 
 var DefaultSelectedEdgeStyles      = [new SelectedEdgeStyle0(), new SelectedEdgeStyle1(), 
 	new SelectedEdgeStyle2(), new SelectedEdgeStyle3(), new SelectedEdgeStyle4()];
