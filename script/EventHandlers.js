@@ -45,7 +45,7 @@ BaseHandler.prototype.GetSelectedGraph = function(pos)
     var res = null;
     for (var i = 0; i < this.app.graph.vertices.length; i ++)
     {
-		if (this.app.graph.vertices[i].position.distance(pos) < this.app.graph.vertices[i].model.diameter / 2.0)
+		if (this.app.graph.vertices[i].HitTest(pos))
 		{
             // Select last of them.
             res = this.app.graph.vertices[i];
@@ -1376,7 +1376,7 @@ SetupVertexStyle.prototype.show = function(index)
             style.mainTextColor = $( "#vertexTextColor" ).val();
 
         if (fullStyle.lineWidth != $( "#vertexStrokeSize" ).val())
-            style.lineWidth     = $( "#vertexStrokeSize" ).val();
+            style.lineWidth     = parseInt($( "#vertexStrokeSize" ).val());
         
         var canvas  = document.getElementById( "VertexPreview" );
         var context = canvas.getContext('2d');    

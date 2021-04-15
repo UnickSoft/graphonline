@@ -77,3 +77,46 @@ BaseVertex.prototype.IsUndefinedPosition = function ()
 {
     return this.hasUndefinedPosition;
 }
+
+BaseVertex.prototype.HitTest = function (pos)
+{
+  var shape = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}).shape : VertexCircleShape;
+  var width = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}).lineWidth : 0;
+  
+  if (shape == VertexCircleShape)
+  {
+  	return this.position.distance(pos) < this.model.diameter / 2.0 + width;
+  }
+  else if (shape == VertexSquareShape || shape == VertexTriangleShape)
+  {
+    var relativPos  = (new Point(pos.x, pos.y)).subtract(this.position);
+    var lineFinish1 = relativPos.add(new Point(1000, 0));
+    var lineFinish2 = relativPos.add(new Point(-1000, 0));
+
+    var pointsVertex1 = shape == VertexSquareShape ? GetSquarePoints(this.model.diameter + width) : GetTrianglePoints(this.model.diameter + width);
+    pointsVertex1.push(pointsVertex1[0]);
+
+    var hitNumber1 = 0;
+    var hitNumber2 = 0;
+
+    console.log("Points");
+    for (var i = 0; i < pointsVertex1.length - 1; i ++)
+    {
+        console.log(pointsVertex1[i] + " " + pointsVertex1[i + 1]);
+        var hitTest = Point.hitTest(relativPos, lineFinish1, pointsVertex1[i], pointsVertex1[i + 1]);
+        if (hitTest != null)
+        {
+          hitNumber1++;
+        }
+        hitTest = Point.hitTest(relativPos, lineFinish2, pointsVertex1[i], pointsVertex1[i + 1]);
+        if (hitTest != null)
+        {
+          hitNumber2++;
+        }
+    }
+
+    return hitNumber1 == 1 && hitNumber2 == 1;
+  }
+
+  return false;
+}

@@ -151,38 +151,79 @@ BaseEdge.prototype.GetEdgePositionsShift = function()
 
 BaseEdge.prototype.GetEdgePositions = function()
 {
+    var res = [];
+
+    if (this.vertex1 == this.vertex2)
+    {
+        res.push(this.vertex1.position);
+        res.push(this.vertex2.position);
+        return res;
+    }
+    
     var position1 = this.vertex1.position;
     var position2 = this.vertex2.position;
-    var diameter1 = this.vertex1.model.diameter + parseInt(this.vertex1.currentStyle.lineWidth);
-    var diameter2 = this.vertex2.model.diameter + parseInt(this.vertex2.currentStyle.lineWidth);
+    var diameter1 = this.vertex1.model.diameter + parseInt(this.vertex1.currentStyle.GetStyle({}).lineWidth);
+    var diameter2 = this.vertex2.model.diameter + parseInt(this.vertex2.currentStyle.GetStyle({}).lineWidth);
 
     var direction = position1.subtract(position2);
     
     var direction1 = direction;
     var direction2 = direction;
     var d1        = diameter1;
-    var d2        = -diameter2;
+    var d2        = diameter2;
     
     if (this.model.type == EdgeModels.cruvled)
     {
         var dist   = position1.distance(position2);
         var point1  = this.model.GetCurvedPoint(position1, position2, 10.0 / dist);
-        direction1  = position1.subtract(point1);
+        direction1  = position1.subtract(point1);   
         
         var point2  = this.model.GetCurvedPoint(position1, position2, 1.0 - 10.0 / dist);
         direction2  = position2.subtract(point2);
         
         d2         = diameter2;
     }
+    else
+    {
+        direction2 = direction2.multiply(-1);
+    }
 
     direction1.normalize(1.0);
-    direction1 = direction1.multiply(0.5);
     direction2.normalize(1.0);
-    direction2 = direction2.multiply(0.5);
 
-    var res = [];
-    res.push(position1.subtract(direction1.multiply(d1)));
-    res.push(position2.subtract(direction2.multiply(d2)));
+    var vertexes = [];
+    vertexes.push({vertex : this.vertex1, direction : direction1, position : position1, diameter : d1});
+    vertexes.push({vertex : this.vertex2, direction : direction2, position : position2, diameter : d2});
+
+	vertexes.forEach(function(data) 
+        {
+            var shape = data.vertex.currentStyle.GetStyle({}).shape;
+            if (shape == VertexCircleShape)
+            {
+                var direction = data.direction.multiply(0.5);        
+        
+                res.push(data.position.subtract(direction.multiply(data.diameter)));
+            }
+            else if (shape == VertexSquareShape || shape == VertexTriangleShape)
+            {
+                var lineFinish1 = data.direction.multiply(-1).multiply(1000.0);
+            
+                var pointsVertex1 = shape == VertexSquareShape ? GetSquarePoints(data.diameter) : GetTrianglePoints(data.diameter);
+                pointsVertex1.push(pointsVertex1[0]);
+            
+                for (var i = 0; i < pointsVertex1.length - 1; i ++)
+                {
+                    var hitText = Point.hitTest(new Point(0, 0), lineFinish1, pointsVertex1[i], pointsVertex1[i + 1]);
+                    if (hitText != null)
+                    {
+                        res.push(data.position.add(hitText));
+                        break;
+                    }
+                }
+            }
+        });    
+
+
     return res;
 }
 

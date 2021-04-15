@@ -3,6 +3,41 @@
  */
 
 // Test graph: http://localhost:8080/?graph=oimDPgsdgiAjWGBHZZcst
+
+
+// Vertex shape
+const VertexCircleShape = 0,
+      VertexSquareShape = 1,
+      VertexTriangleShape = 2;
+
+function GetSquarePoints(diameter)
+{
+  var res = [];
+
+  var a = diameter;
+  res.push(new Point(-a / 2, - a / 2));
+  res.push(new Point(a / 2, -a / 2));
+  res.push(new Point(a / 2, a / 2));
+  res.push(new Point(-a / 2, a / 2));
+
+  return res;
+}
+
+function GetTrianglePoints(diameter)
+{
+	var res = [];
+
+  	var effectiveDiameter = diameter * 1.5;
+  	var upOffset   = effectiveDiameter / 2;
+  	var downOffset = effectiveDiameter / 4;
+  	var lrOffset   = effectiveDiameter * 3 / (Math.sqrt(3) * 4);
+
+  	res.push(new Point(0, - upOffset));
+	res.push(new Point(lrOffset,   downOffset));
+	res.push(new Point(- lrOffset, downOffset));
+
+  	return res;
+}
  
 function BaseVertexStyle()
 {
@@ -24,7 +59,10 @@ BaseVertexStyle.prototype.GetStyle = function (baseStyle)
 		baseStyle.fillStyle   = this.fillStyle;
 	if (this.hasOwnProperty('mainTextColor'))
 		baseStyle.mainTextColor = this.mainTextColor;
+	if (this.hasOwnProperty('shape'))
+		baseStyle.shape = this.shape;
 
+	baseStyle.lineWidth = parseInt(baseStyle.lineWidth);
 	return baseStyle;
 }
 
@@ -42,6 +80,7 @@ function CommonVertexStyle()
   this.strokeStyle = '#c7b7c7';
   this.fillStyle   = '#68aeba';
   this.mainTextColor = '#f0d543';
+  this.shape       = VertexCircleShape;//VertexSquareShape;
 
   this.baseStyles = [];
 }
@@ -219,7 +258,10 @@ BaseVertexDrawer.prototype.Draw = function(baseGraph, graphStyle)
 {
   this.SetupStyle(graphStyle);
   this.DrawShape(baseGraph);
-  this.context.stroke();
+
+  if (this.currentStyle.lineWidth != 0)
+  	this.context.stroke();
+
   this.context.fill();
   
   this.DrawCenterText(baseGraph.position, baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, true, 16);
@@ -236,6 +278,7 @@ BaseVertexDrawer.prototype.Draw = function(baseGraph, graphStyle)
 
 BaseVertexDrawer.prototype.SetupStyle = function(style)
 {
+  this.currentStyle = style;
   this.context.lineWidth   = style.lineWidth;
   this.context.strokeStyle = style.strokeStyle;
   this.context.fillStyle   = style.fillStyle;
@@ -244,7 +287,35 @@ BaseVertexDrawer.prototype.SetupStyle = function(style)
 BaseVertexDrawer.prototype.DrawShape = function(baseGraph)
 {
   this.context.beginPath();
-  this.context.arc(baseGraph.position.x, baseGraph.position.y, baseGraph.model.diameter / 2.0, 0, 2 * Math.PI);
+  if (this.currentStyle.shape == VertexCircleShape)
+  {
+  	this.context.arc(baseGraph.position.x, baseGraph.position.y, baseGraph.model.diameter / 2.0, 0, 2 * Math.PI);
+  }
+  else if (this.currentStyle.shape == VertexSquareShape)
+  {
+	var points = GetSquarePoints(baseGraph.model.diameter);
+
+	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
+
+	var context = this.context;
+	
+	points.forEach(function(point) {
+		context.lineTo(baseGraph.position.x + point.x, baseGraph.position.y + point.y);
+	  });
+  }
+  else if (this.currentStyle.shape == VertexTriangleShape)
+  {
+	var points = GetTrianglePoints(baseGraph.model.diameter)
+
+	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
+	
+	var context = this.context;
+
+	points.forEach(function(point) {
+		context.lineTo(baseGraph.position.x + point.x, baseGraph.position.y + point.y);
+	  });
+  }
+
   this.context.closePath();
 }
 

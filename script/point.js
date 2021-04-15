@@ -95,6 +95,11 @@ Point.prototype.inverse = function()
 {
     return new Point(-this.x, -this.y);
 };
+
+Point.prototype.cross = function(point)
+{
+    return this.x * point.y - this.y * point.x;
+};
  
 Point.interpolate = function(pt1, pt2, f){
     return new Point(pt1.x * (1.0 - f) + pt2.x * f, pt1.y * (1.0 - f) + pt2.y * f);
@@ -114,6 +119,63 @@ Point.center = function(pt1, pt2){
 
 Point.toString = function(){
 	return x + " " + y;
+}
+
+Point.projection = function (point, line1, line2)
+{
+    var x = line2.y - line1.y;
+    var y = line1.x - line2.x;
+    var l = (line1.cross(line2) + line1.cross(point) + line2.cross(point))/(x*(line2.y - line1.y) + y*(line1.x - line2.x));
+    var res = new Point(point.x + x * l,  point.y + y * l);
+    return res;
+}
+
+Point.hitTest = function (pt11, pt12, pt21, pt22)
+{
+    var res = null;
+    var n   = 0.0;
+
+    var x1 = pt11.x;
+    var y1 = pt11.y;
+    var x2 = pt12.x;
+    var y2 = pt12.y;
+    var x3 = pt21.x;
+    var y3 = pt21.y;
+    var x4 = pt22.x;
+    var y4 = pt22.y;
+
+    if (y2 - y1 != 0.0) 
+    {  // a(y)
+        var q = (x2 - x1) / (y1 - y2);   
+        var sn = (x3 - x4) + (y3 - y4) * q; 
+        if (sn == 0.0) 
+        { 
+            return res; 
+        }  // c(x) + c(y)*q
+
+        var fn = (x3 - x1) + (y3 - y1) * q;   // b(x) + b(y)*q
+        n = fn / sn;
+    }
+    else 
+    {
+        if ((y3 - y4) == 0.0) 
+        { 
+            return res;
+        }  // b(y)
+        n = (y3 - y1) / (y3 - y4);   // c(y)/b(y)
+    }
+    
+    // x3 + (-b(x))*n && y3 +(-b(y))*n
+    res = new Point(x3 + (x4 - x3) * n, y3 + (y4 - y3) * n);
+    
+    var epsilon = 1E-5;
+    if (! (res.x >= Math.min(x1, x2) - epsilon && res.x >= Math.min(x3, x4) - epsilon && res.x <= Math.max(x1, x2) + epsilon && res.x <= Math.max(x3, x4) + epsilon && 
+           res.y >= Math.min(y1, y2) - epsilon && res.y >= Math.min(y3, y4) - epsilon && res.y <= Math.max(y1, y2) + epsilon && res.y <= Math.max(y3, y4) + epsilon))
+    {
+      res = null;
+    }
+    
+    return res;
 }
 
 function Rect(minPoint, maxPoint){
