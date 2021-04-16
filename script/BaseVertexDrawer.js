@@ -76,7 +76,7 @@ function CommonVertexStyle()
 {
   BaseVertexStyle.apply(this, arguments);
 
-  this.lineWidth   = 20;
+  this.lineWidth   = 2;
   this.strokeStyle = '#c7b7c7';
   this.fillStyle   = '#68aeba';
   this.mainTextColor = '#f0d543';
