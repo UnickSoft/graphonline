@@ -23,13 +23,18 @@ function gDecodeFromHTML(str)
                .replace(/&amp;/g, '&'); 
 }
 
+function FullObjectCopy(obj)
+{
+  return Object.assign(Object.create(obj), obj);
+}
+
 function FullArrayCopy(arr)
 {
   var res = [];
 
 	arr.forEach(function(element) {
 
-    var copyElement = Object.assign(Object.create(element), element);
+    var copyElement = FullObjectCopy(element);
     res.push(copyElement);
 	});  
 

@@ -13,6 +13,7 @@ function BaseVertex(x, y, vertexEnumType)
     this.vertexEnumType = vertexEnumType;
     this.model    = new VertexModel();
     this.hasUndefinedPosition = false;
+    this.ownStyles = {};
 };
 
 BaseVertex.prototype.position = new Point(0, 0);
@@ -26,6 +27,7 @@ BaseVertex.prototype.copyFrom = function (other)
     this.vertexEnumType = other.vertexEnumType;
     this.model    = new VertexModel();
     this.hasUndefinedPosition = other.hasUndefinedPosition;
+    this.ownStyles = FullObjectCopy(other.ownStyles);
 }
 
 BaseVertex.prototype.SaveToXML = function ()
@@ -36,8 +38,8 @@ BaseVertex.prototype.SaveToXML = function ()
 	       "id=\""         + this.id   + "\" " +
 	       "mainText=\""   + gEncodeToHTML(this.mainText) + "\" " +
 	       "upText=\""     + gEncodeToHTML(this.upText)   + "\" " +
-		"></node>";       
-		                 
+         ((Object.keys(this.ownStyles).length > 0) ? "ownStyles = \"" + gEncodeToHTML(JSON.stringify(this.ownStyles)) + "\"": "") +
+		"></node>";
 }
 
 BaseVertex.prototype.LoadFromXML = function (xml)
@@ -59,6 +61,23 @@ BaseVertex.prototype.LoadFromXML = function (xml)
       this.upText = "";
     else
       this.upText = gDecodeFromHTML(this.upText);
+
+    var ownStyle = xml.attr('ownStyles');
+    if (typeof ownStyle !== 'undefined')
+    {
+      var parsedSave = gDecodeFromHTML(JSON.parse(ownStyle));
+    
+      for(var indexField in parsedSave)
+      {
+        var index = parseInt(indexField);
+        this.ownStyles[index] = this.getStyleFor(index);
+        for(var field in parsedSave[indexField])
+        {
+            if (this.ownStyles[index].ShouldLoad(field))
+              this.ownStyles[index][field] = parsedSave[indexField][field];
+        }
+      }
+    }
 }
 
 BaseVertex.prototype.SetId = function (id)
@@ -99,10 +118,8 @@ BaseVertex.prototype.HitTest = function (pos)
     var hitNumber1 = 0;
     var hitNumber2 = 0;
 
-    console.log("Points");
     for (var i = 0; i < pointsVertex1.length - 1; i ++)
     {
-        console.log(pointsVertex1[i] + " " + pointsVertex1[i + 1]);
         var hitTest = Point.hitTest(relativPos, lineFinish1, pointsVertex1[i], pointsVertex1[i + 1]);
         if (hitTest != null)
         {
@@ -119,4 +136,41 @@ BaseVertex.prototype.HitTest = function (pos)
   }
 
   return false;
+}
+
+BaseVertex.prototype.resetOwnStyle = function (index)
+{
+  if (this.ownStyles.hasOwnProperty(index))
+  {
+    delete this.ownStyles[index];
+  }
+}
+
+BaseVertex.prototype.setOwnStyle = function (index, style)
+{
+  this.ownStyles[index] = style;
+}
+
+BaseVertex.prototype.getStyleFor = function (index)
+{
+  if (this.ownStyles.hasOwnProperty(index))
+  {
+    return FullObjectCopy(this.ownStyles[index]);
+  }
+  else
+  {
+    var style = null;
+
+    if (index == 0)
+      style = globalApplication.GetStyle("vertex", "common");
+    else
+      style = globalApplication.GetStyle("vertex", "selected");
+
+    return FullObjectCopy(style);
+  }
+}
+
+BaseVertex.prototype.hasOwnStyleFor = function (index)
+{
+  return this.ownStyles.hasOwnProperty(index);
 }

@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=35")?>" ></script>
+        <script src="<?= Root("script/example.js?v=36")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -618,6 +618,12 @@
     <p id="SubgraphNo" class="translation"><?= L('subgraph_no')?></p>
     <p id="GraphHasNoAtleast2Graphs" class="translation"><?= L('graph_has_no_atleast_2_graphs')?></p>
     <p id="IsomorphismCheck" class="translation"><?= L('isomorphism_check')?></p>
+
+    <p id="ActionText" class="translation"><?= L('action')?></p>
+    <p id="CommonEdgeStyleText" class="translation"><?= L('common_edge_style')?></p>
+    <p id="SelectedEdgeStyleText" class="translation"><?= L('selected_edge_style')?></p>
+    <p id="CommonVertexStyleText" class="translation"><?= L('common_vertex_style')?></p>
+    <p id="SelectedVertexStyleText" class="translation"><?= L('selected_vertex_style')?></p>
 
 </section>
 <!--

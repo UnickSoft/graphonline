@@ -217,4 +217,9 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang['graph_has_no_atleast_2_graphs'] = "To use the algorithm, you need to create 2 separate graphs";
     $g_lang['isomorphism_check'] = "Check Graphs Isomorphism";
 
+    $g_lang['action'] = "Actions";
+    $g_lang['common_edge_style'] = "Common edge style";
+    $g_lang['selected_edge_style'] = "Selected edge style";
+    $g_lang['common_vertex_style'] = "Common vertex style";
+    $g_lang['selected_vertex_style'] = "Selected vertex style";
 ?>

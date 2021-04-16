@@ -147,6 +147,12 @@ var g_subgraphNo                        = "Isomorphic subgraph # ";
 var g_graphHasNoAtleast2Graphs          = "To use the algorithm, you need to create 2 separate graphs";
 var g_IsomorphismCheck                  = "Check Graphs Isomorphism";
 
+var g_action = "Action";
+var g_commonEdgeStyle   = "Common Edge Style";
+var g_selectedEdgeStyle = "Selected Edge Style";
+var g_commonVertexStyle   = "Common Vertex Style";
+var g_selectedVertexStyle = "Selected Vertex Style";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -301,4 +307,10 @@ function loadTexts()
     g_subgraphNo                        = document.getElementById("SubgraphNo").innerHTML;
     g_graphHasNoAtleast2Graphs          = document.getElementById("GraphHasNoAtleast2Graphs").innerHTML;
     g_IsomorphismCheck                  = document.getElementById("IsomorphismCheck").innerHTML;
+
+    g_action              = document.getElementById("ActionText").innerHTML;
+    g_commonEdgeStyle     = document.getElementById("CommonEdgeStyleText").innerHTML;
+    g_selectedEdgeStyle   = document.getElementById("SelectedEdgeStyleText").innerHTML;
+    g_commonVertexStyle   = document.getElementById("CommonVertexStyleText").innerHTML;
+    g_selectedVertexStyle = document.getElementById("SelectedVertexStyleText").innerHTML;
 }

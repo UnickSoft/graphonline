@@ -327,11 +327,21 @@ Application.prototype.GetBaseArcDrawer = function(context, edge)
 Application.prototype.UpdateEdgeCurrentStyle = function(edge, ForceCommonStyle, ForceSelectedStyle)
 {
     var commonStyle    = (ForceCommonStyle === undefined) ? this.edgeCommonStyle : ForceCommonStyle;
-    var selectedStyles = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
+    var selectedStyle  = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
 
     var selectedGroup = this.handler.GetSelectedGroup(edge);
-    var currentStyle  = selectedGroup > 0 ?
-        selectedStyles[(selectedGroup - 1) % selectedStyles.length] : commonStyle;
+    var selected = false;
+    if (selectedGroup > 0)
+    {
+        selectedGroup = (selectedGroup - 1) % selectedStyle.length;
+        selected = true;
+    }
+
+    var currentStyle = null;
+    if (edge.hasOwnStyleFor((selected ? 1 : 0) + selectedGroup))
+        currentStyle = edge.getStyleFor((selected ? 1 : 0) + selectedGroup);
+    else
+        currentStyle = selected ? selectedStyle[selectedGroup] : commonStyle;
 
     edge.currentStyle = currentStyle;
 }
@@ -396,8 +406,18 @@ Application.prototype.UpdateNodesCurrentStyle = function(ForceCommonStyle, Force
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
 		var selectedGroup = this.handler.GetSelectedGroup(this.graph.vertices[i]);
-		var currentStyle  = selectedGroup > 0 ?
-				selectedStyle[(selectedGroup - 1) % selectedStyle.length] : commonStyle;
+        var selected = false;
+        if (selectedGroup > 0)
+        {
+            selectedGroup = (selectedGroup - 1) % selectedStyle.length;
+            selected = true;            
+        }
+
+        var currentStyle = null;
+        if (this.graph.vertices[i].hasOwnStyleFor((selected ? 1 : 0) + selectedGroup))
+		    currentStyle = this.graph.vertices[i].getStyleFor((selected ? 1 : 0) + selectedGroup);
+        else
+            currentStyle = selected ? selectedStyle[selectedGroup] : commonStyle;
 
         this.graph.vertices[i].currentStyle = currentStyle;
     }	
@@ -1595,7 +1615,7 @@ Application.prototype.GetSelectionRect = function(rect)
   return this.selectionRect;
 }
 
-Application.prototype.GetStyle = function(type, styleName)
+Application.prototype.GetStyle = function(type, styleName, index)
 {
     if (type == "vertex")
     {
@@ -1605,7 +1625,10 @@ Application.prototype.GetStyle = function(type, styleName)
         }
         else if (styleName == "selected")
         {
-            return this.vertexSelectedVertexStyles[0];
+            if (index == undefined)
+                index = 0;
+
+            return this.vertexSelectedVertexStyles[index];
         }
         else if (styleName == "printed")
         {
@@ -1613,7 +1636,10 @@ Application.prototype.GetStyle = function(type, styleName)
         }
         else if (styleName == "printedSelected")
         {
-            return this.vertexPrintSelectedVertexStyles[0];
+            if (index == undefined)
+                index = 0;
+
+            return this.vertexPrintSelectedVertexStyles[index];
         }       
 
         return null;
@@ -1626,7 +1652,7 @@ Application.prototype.GetStyle = function(type, styleName)
         }
         else if (styleName == "selected")
         {
-            return this.edgeSelectedVertexStyles[0];
+            return this.edgeSelectedStyles[0];
         }
         else if (styleName == "printed")
         {
@@ -1634,7 +1660,7 @@ Application.prototype.GetStyle = function(type, styleName)
         }
         else if (styleName == "printedSelected")
         {
-            return this.edgePrintSelectedVertexStyles[0];
+            return this.edgePrintSelectedStyles[0];
         }       
 
         return null;
@@ -1662,4 +1688,32 @@ Application.prototype._RedrawGraph = function(context, backgroundPosition, backg
     this.RedrawNodes(context);
     if (bDrawSelectedRect && this.selectionRect != null)
         this.RedrawSelectionRect(context);
+}
+
+Application.prototype.GetSelectedVertexes = function()
+{
+    var res = [];
+    for (i = 0; i < this.graph.vertices.length; i ++)
+    {
+        if (this.handler.GetSelectedGroup(this.graph.vertices[i]) > 0)
+        {
+            res.push(this.graph.vertices[i]);
+        }
+    }
+
+    return res;
+}
+
+Application.prototype.GetSelectedEdges = function()
+{
+    var res = [];
+    for (i = 0; i < this.graph.edges.length; i ++)
+    {
+        if (this.handler.GetSelectedGroup(this.graph.edges[i]) > 0)
+        {
+            res.push(this.graph.edges[i]);
+        }
+    }
+
+    return res;
 }

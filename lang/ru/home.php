@@ -218,4 +218,9 @@
     $g_lang['graph_has_no_atleast_2_graphs'] = "Для использования алгоритма необходимо создать хотя бы 2 не связных графа";
     $g_lang['isomorphism_check'] = "Проверка изоморфности графов";
 
+    $g_lang['action'] = "Действия";
+    $g_lang['common_edge_style'] = "Стиль обычной дуги";
+    $g_lang['selected_edge_style'] = "Стиль выделенной дуги";
+    $g_lang['common_vertex_style'] = "Стиль обычной вершины";
+    $g_lang['selected_vertex_style'] = "Стиль выделенной вершины";
 ?>

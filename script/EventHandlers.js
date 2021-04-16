@@ -342,7 +342,17 @@ DefaultHandler.prototype.MouseUp = function(pos)
     this.groupingSelect = false;
     if (this.selectedObject != null && (this.selectedObject instanceof BaseVertex))
     {
-        this.message = g_textsSelectAndMove + " <button type=\"button\" id=\"renameButton\" class=\"btn btn-default btn-xs\" style=\"float:right;z-index:1;position: relative;\">" + g_renameVertex + "</button>";
+        this.message = g_textsSelectAndMove        
+         +  "<div class=\"btn-group\" style=\"float:right;position: relative;\">"
+         +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+         +  " " + g_action + " <span class=\"caret\"></span>"
+         +  " </button>"
+         +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
+         +  " <li><a href=\"#\" id=\"renameButton\">" + g_renameVertex + "</a></li>"
+         +  " <li><a href=\"#\" id=\"changeCommonStyle\">" + g_commonVertexStyle + "</a></li>"
+         +  " <li><a href=\"#\" id=\"changeSelectedStyle\">" + g_selectedVertexStyle + "</a></li>"
+         +  "</ul>"
+         +  "</div>";
         
         var handler = this;
         var callback = function (enumType) {
@@ -354,14 +364,34 @@ DefaultHandler.prototype.MouseUp = function(pos)
                         var customEnum =  new TextEnumVertexsCustom();
                         customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
                      });
+        $('#message').on('click', '#changeCommonStyle', function(){
+            var selectedVertexes = handler.app.GetSelectedVertexes();
+            var setupVertexStyle = new SetupVertexStyle(handler.app);
+            setupVertexStyle.show(0, selectedVertexes);
+        });
+        $('#message').on('click', '#changeSelectedStyle', function(){
+            var selectedVertexes = handler.app.GetSelectedVertexes();
+            var setupVertexStyle = new SetupVertexStyle(handler.app);
+            setupVertexStyle.show(1, selectedVertexes);
+        });                                          
     }
     else if (this.selectedObject != null && (this.selectedObject instanceof BaseEdge))
     {
         this.message = g_textsSelectAndMove
         + "<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-default btn-xs\"> + </button>"
         + " " + g_curveEdge + " "
-        + "<button type=\"button\" id=\"decCurvel\" class=\"btn btn-default btn-xs\"> - </button>"
-        + "&nbsp &nbsp<button type=\"button\" id=\"editEdge\" class=\"btn btn-default btn-xs\" style=\"z-index:1;position: relative;\">" + g_editWeight + "</button></span>";
+        + "<button type=\"button\" id=\"decCurvel\" class=\"btn btn-default btn-xs\"> - </button> &nbsp; "
+        +  "<div class=\"btn-group\" style=\"float:right;position: relative;\">"
+        +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+        +  " " + g_action + " <span class=\"caret\"></span>"
+        +  " </button>"
+        +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
+        +  " <li><a href=\"#\" id=\"editEdge\">" + g_editWeight + "</a></li>"
+        +  " <li><a href=\"#\" id=\"changeCommonStyle\">" + g_commonEdgeStyle + "</a></li>"
+        +  " <li><a href=\"#\" id=\"changeSelectedStyle\">" + g_selectedEdgeStyle + "</a></li>"
+        +  "</ul>"
+        +  "</div>";
+
         var handler = this;
         $('#message').unbind();
         $('#message').on('click', '#editEdge', function(){
@@ -422,6 +452,16 @@ DefaultHandler.prototype.MouseUp = function(pos)
             handler.app.redrawGraph();
             userAction("Edge.Bend");
         });
+        $('#message').on('click', '#changeCommonStyle', function(){
+            var selectedEdges = handler.app.GetSelectedEdges();
+            var setupVertexStyle = new SetupEdgeStyle(handler.app);
+            setupVertexStyle.show(0, selectedEdges);
+        });
+        $('#message').on('click', '#changeSelectedStyle', function(){
+            var selectedEdges = handler.app.GetSelectedEdges();
+            var setupVertexStyle = new SetupEdgeStyle(handler.app);
+            setupVertexStyle.show(1, selectedEdges);
+        });          
     }
     else if (this.selectedObjects.length > 0)
     {
@@ -1342,15 +1382,23 @@ function SetupVertexStyle(app)
 // inheritance.
 SetupVertexStyle.prototype = Object.create(BaseHandler.prototype);
 
-SetupVertexStyle.prototype.show = function(index)
+SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 {
 	var handler = this;
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
+    this.forAll = selectedVertexes == null;
+    var forAll = this.forAll;
 
-    var style = Object.assign(Object.create((index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1])), 
-        (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]));
+    var originStyle = (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]);
+
+    if (!forAll)
+    {
+        originStyle = selectedVertexes[0].getStyleFor(index);
+    }
+
+    var style = FullObjectCopy(originStyle);
 
     var fillFields = function()
     {
@@ -1403,14 +1451,32 @@ SetupVertexStyle.prototype.show = function(index)
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
-                    app.ResetVertexStyle(index);
+                    if (forAll)
+                    {
+                        app.ResetVertexStyle(index);
+                    }
+                    else
+                    {
+                        selectedVertexes.forEach(function(vertex) {
+                            vertex.resetOwnStyle(index);
+                          });
+                    }
                     app.redrawGraph();
                     $( this ).dialog( "close" );
                }
            };
     
 	dialogButtons[g_save] = function() {
-                app.SetVertexStyle(index, style);    
+                if (forAll)
+                {
+                    app.SetVertexStyle(index, style);
+                }
+                else
+                {
+                    selectedVertexes.forEach(function(vertex) {
+                        vertex.setOwnStyle(index, style);
+                    });
+                }
                 app.redrawGraph();
 				$( this ).dialog( "close" );					
 			};
@@ -1456,14 +1522,23 @@ function SetupEdgeStyle(app)
 // inheritance.
 SetupEdgeStyle.prototype = Object.create(BaseHandler.prototype);
 
-SetupEdgeStyle.prototype.show = function(index)
+SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 {
 	var handler = this;
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    var style = Object.assign(Object.create((index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1])), 
-                (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]));
+    this.forAll = selectedEdges == null;
+    var forAll = this.forAll;
+
+    var originStyle = (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]);
+
+    if (!forAll)
+    {
+        originStyle = selectedEdges[0].getStyleFor(index);
+    }
+
+    var style = FullObjectCopy(originStyle);
 
     var fillFields = function()
     {
@@ -1498,6 +1573,10 @@ SetupEdgeStyle.prototype.show = function(index)
         var graphDrawer  = new BaseEdgeDrawer(context);
         var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
         var baseVertex2  = new BaseVertex(canvas.width, canvas.height / 2, new BaseEnumVertices(this));
+
+        baseVertex1.currentStyle = baseVertex1.getStyleFor(0);
+        baseVertex2.currentStyle = baseVertex2.getStyleFor(0);
+
         var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10, "Text");
         
         graphDrawer.Draw(baseEdge, style.GetStyle({}));
@@ -1510,14 +1589,33 @@ SetupEdgeStyle.prototype.show = function(index)
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
-                    app.ResetEdgeStyle(index);
+                    if (forAll)
+                    {
+                        app.ResetEdgeStyle(index);
+                    }
+                    else
+                    {
+                        selectedEdges.forEach(function(edge) {
+                            edge.resetOwnStyle(index);
+                        });
+                    }
+                    
                     app.redrawGraph();
                     $( this ).dialog( "close" );
                }
            };
     
 	dialogButtons[g_save] = function() {
-                app.SetEdgeStyle(index, style);    
+                if (forAll)
+                {
+                    app.SetEdgeStyle(index, style);
+                }
+                else
+                {
+                    selectedEdges.forEach(function(edge) {
+                        edge.setOwnStyle(index, style);
+                    });   
+                }                
                 app.redrawGraph();
 				$( this ).dialog( "close" );					
 			};

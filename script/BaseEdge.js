@@ -25,6 +25,8 @@ function BaseEdge(vertex1, vertex2, isDirect, weight, upText)
     
     if (weight !== undefined)
       this.SetWeight(weight);
+
+    this.ownStyles = {};      
 }
 
 BaseEdge.prototype.copyFrom = function(other)
@@ -43,6 +45,8 @@ BaseEdge.prototype.copyFrom = function(other)
     this.model.copyFrom(other.model);
     
     this.upText    = other.upText;
+
+    this.ownStyles = FullObjectCopy(other.ownStyles);
 }
 
 BaseEdge.prototype.SaveToXML = function ()
@@ -58,6 +62,7 @@ BaseEdge.prototype.SaveToXML = function ()
            "upText=\""     + gEncodeToHTML(this.upText) + "\" " +
            "arrayStyleStart=\""       + this.arrayStyleStart + "\" " +
            "arrayStyleFinish=\""       + this.arrayStyleFinish + "\" " +
+           ((Object.keys(this.ownStyles).length > 0) ? "ownStyles = \"" + gEncodeToHTML(JSON.stringify(this.ownStyles)) + "\" ": "") +
            this.model.SaveToXML() + 
 		"></edge>";       
 }
@@ -97,6 +102,23 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
     {
         this.upText = gDecodeFromHTML(this.upText);
     }
+
+    var ownStyle = xml.attr('ownStyles');
+    if (typeof ownStyle !== 'undefined')
+    {
+      var parsedSave = gDecodeFromHTML(JSON.parse(ownStyle));
+    
+      for(var indexField in parsedSave)
+      {
+        var index = parseInt(indexField);
+        this.ownStyles[index] = this.getStyleFor(index);
+        for(var field in parsedSave[indexField])
+        {
+            if (this.ownStyles[index].ShouldLoad(field))
+              this.ownStyles[index][field] = parsedSave[indexField][field];
+        }
+      }
+    }    
     
     this.model.LoadFromXML(xml);
 }
@@ -243,4 +265,41 @@ BaseEdge.prototype.SetWeight = function(weight)
 BaseEdge.prototype.SetUpText = function(text)
 {
     this.upText = text;
+}
+
+BaseEdge.prototype.resetOwnStyle = function (index)
+{
+  if (this.ownStyles.hasOwnProperty(index))
+  {
+    delete this.ownStyles[index];
+  }
+}
+
+BaseEdge.prototype.setOwnStyle = function (index, style)
+{
+  this.ownStyles[index] = style;
+}
+
+BaseEdge.prototype.getStyleFor = function (index)
+{
+  if (this.ownStyles.hasOwnProperty(index))
+  {
+    return FullObjectCopy(this.ownStyles[index]);
+  }
+  else
+  {
+    var style = null;
+
+    if (index == 0)
+      style = globalApplication.GetStyle("edge", "common");
+    else
+      style = globalApplication.GetStyle("edge", "selected");
+
+    return FullObjectCopy(style);
+  }
+}
+
+BaseEdge.prototype.hasOwnStyleFor = function (index)
+{
+  return this.ownStyles.hasOwnProperty(index);
 }
