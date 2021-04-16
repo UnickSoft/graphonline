@@ -111,7 +111,7 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
       for(var indexField in parsedSave)
       {
         var index = parseInt(indexField);
-        this.ownStyles[index] = this.getStyleFor(index);
+        this.ownStyles[index] = FullObjectCopy(this.getStyleFor(index));
         for(var field in parsedSave[indexField])
         {
             if (this.ownStyles[index].ShouldLoad(field))
@@ -184,8 +184,8 @@ BaseEdge.prototype.GetEdgePositions = function()
     
     var position1 = this.vertex1.position;
     var position2 = this.vertex2.position;
-    var diameter1 = this.vertex1.model.diameter + parseInt(this.vertex1.currentStyle.GetStyle({}).lineWidth);
-    var diameter2 = this.vertex2.model.diameter + parseInt(this.vertex2.currentStyle.GetStyle({}).lineWidth);
+    var diameter1 = this.vertex1.model.diameter + parseInt(this.vertex1.currentStyle.GetStyle({}, this.vertex1).lineWidth);
+    var diameter2 = this.vertex2.model.diameter + parseInt(this.vertex2.currentStyle.GetStyle({}, this.vertex2).lineWidth);
 
     var direction = position1.subtract(position2);
     
@@ -219,18 +219,18 @@ BaseEdge.prototype.GetEdgePositions = function()
 
 	vertexes.forEach(function(data) 
         {
-            var shape = data.vertex.currentStyle.GetStyle({}).shape;
+            var shape = data.vertex.currentStyle.GetStyle({}, data.vertex).shape;
             if (shape == VertexCircleShape)
             {
                 var direction = data.direction.multiply(0.5);        
         
                 res.push(data.position.subtract(direction.multiply(data.diameter)));
             }
-            else if (shape == VertexSquareShape || shape == VertexTriangleShape)
+            else
             {
                 var lineFinish1 = data.direction.multiply(-1).multiply(1000.0);
             
-                var pointsVertex1 = shape == VertexSquareShape ? GetSquarePoints(data.diameter) : GetTrianglePoints(data.diameter);
+                var pointsVertex1 = GetPointsForShape(shape, data.diameter);
                 pointsVertex1.push(pointsVertex1[0]);
             
                 for (var i = 0; i < pointsVertex1.length - 1; i ++)
@@ -284,7 +284,7 @@ BaseEdge.prototype.getStyleFor = function (index)
 {
   if (this.ownStyles.hasOwnProperty(index))
   {
-    return FullObjectCopy(this.ownStyles[index]);
+    return this.ownStyles[index];
   }
   else
   {
@@ -295,7 +295,7 @@ BaseEdge.prototype.getStyleFor = function (index)
     else
       style = globalApplication.GetStyle("edge", "selected");
 
-    return FullObjectCopy(style);
+    return style;
   }
 }
 

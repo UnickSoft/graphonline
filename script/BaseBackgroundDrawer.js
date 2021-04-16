@@ -9,8 +9,17 @@ function CommonBackgroundStyle()
 	this.commonOpacity = 1.0;
 }
 
+CommonBackgroundStyle.prototype.ShouldLoad = function (field)
+{
+  return true;
+}
+
+PrintBackgroundStyle.prototype = Object.create(CommonBackgroundStyle.prototype);
+
 function PrintBackgroundStyle()
 {
+  CommonBackgroundStyle.apply(this, arguments);
+
 	this.commonColor   = '#ffffff';
 	this.commonOpacity = 1.0;
 }

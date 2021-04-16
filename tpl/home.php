@@ -411,7 +411,7 @@
           <div class="form-group row">
             <label for="vertexStrokeSize" class="col-sm-5 col-form-label"><?= L('stroke_size') ?></label>
             <div class="col-sm-5">
-              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10">
+              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10" min="1">
             </div>
           </div>
           <div class="form-group row">
@@ -420,6 +420,17 @@
               <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
             </div>
           </div>
+          <div class="form-group row">
+            <label for="vertexShape" class="col-sm-5 col-form-label">Shape</label>
+            <div class="col-sm-5">
+              <select id="vertexShape">
+                <option value="0">Circle</option>
+                <option value="1">Squere</option>
+                <option value="2">Triangle</option>
+                <option value="3">Pentagon</option>
+              </select>
+            </div>
+          </div>          
         </fieldset>
         </form>
         

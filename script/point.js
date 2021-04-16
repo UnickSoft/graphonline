@@ -58,6 +58,7 @@ Point.prototype.rotate = function(center, degrees){
     this.y = offset.x * Math.sin(radians) + offset.y * Math.cos(radians);
     this.x = this.x + center.x;
     this.y = this.y + center.y;
+    return this;
 };
 
 Point.prototype.offset = function(dx, dy){

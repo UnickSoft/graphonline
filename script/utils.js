@@ -25,7 +25,9 @@ function gDecodeFromHTML(str)
 
 function FullObjectCopy(obj)
 {
-  return Object.assign(Object.create(obj), obj);
+  var newObj = Object.create(Object.getPrototypeOf(obj));
+
+  return Object.assign(newObj, obj);
 }
 
 function FullArrayCopy(arr)

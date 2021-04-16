@@ -220,7 +220,7 @@ Application.prototype._PrintRedrawGraph = function()
     
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false, 
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundPrintStyle, false, 
         this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles, 
         this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
     
@@ -361,7 +361,7 @@ Application.prototype._RedrawEdge = function(edge, arcDrawer, commonStyle, selec
 
 Application.prototype._RedrawEdgeWithStyle = function(edge, style, arcDrawer, commonStyle, selectedStyles)
 {
-    arcDrawer.Draw(edge, style.GetStyle({}));
+    arcDrawer.Draw(edge, style.GetStyle({}, edge));
 }
 
 Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
@@ -394,7 +394,7 @@ Application.prototype.RedrawNodes = function(context)
 
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
-		graphDrawer.Draw(this.graph.vertices[i], this.graph.vertices[i].currentStyle.GetStyle({}));
+		graphDrawer.Draw(this.graph.vertices[i], this.graph.vertices[i].currentStyle.GetStyle({}, this.graph.vertices[i]));
     }	
 }
 
@@ -1615,20 +1615,20 @@ Application.prototype.GetSelectionRect = function(rect)
   return this.selectionRect;
 }
 
-Application.prototype.GetStyle = function(type, styleName, index)
+Application.prototype.GetStyle = function(type, styleName, object, index)
 {
     if (type == "vertex")
     {
         if (styleName == "common")
         {
-            return this.vertexCommonStyle;
+            return object !== undefined ? object.getStyleFor(0) : this.vertexCommonStyle;
         }
         else if (styleName == "selected")
         {
             if (index == undefined)
                 index = 0;
 
-            return this.vertexSelectedVertexStyles[index];
+            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.vertexSelectedVertexStyles[index];
         }
         else if (styleName == "printed")
         {
@@ -1648,11 +1648,11 @@ Application.prototype.GetStyle = function(type, styleName, index)
     {
         if (styleName == "common")
         {
-            return this.edgeCommonStyle;
+            return object !== undefined ? object.getStyleFor(0) : this.edgeCommonStyle;
         }
         else if (styleName == "selected")
         {
-            return this.edgeSelectedStyles[0];
+            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.edgeSelectedStyles[0];
         }
         else if (styleName == "printed")
         {

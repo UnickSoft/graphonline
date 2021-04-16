@@ -1,17 +1,25 @@
 /**
  * Graph drawer.
  */
- 
+
+
+ const lineDashTypes = [
+          [],
+          [4, 4],
+          [12, 12],
+          [16, 4, 4, 4],
+        ];
+
  function BaseEdgeStyle()
  {
    this.baseStyles = [];
  }
  
- BaseEdgeStyle.prototype.GetStyle = function (baseStyle)
+ BaseEdgeStyle.prototype.GetStyle = function (baseStyle, object)
  {
    this.baseStyles.forEach(function(element) {
-     var styleObject = globalApplication.GetStyle("edge", element);
-     baseStyle       = styleObject.GetStyle(baseStyle);
+     var styleObject = globalApplication.GetStyle("edge", element, object);
+     baseStyle       = styleObject.GetStyle(baseStyle, object);
    });
  
    if (this.hasOwnProperty('weightText'))
@@ -22,8 +30,12 @@
      baseStyle.fillStyle   = this.fillStyle;
    if (this.hasOwnProperty('textPadding'))
      baseStyle.textPadding = this.textPadding;
-     if (this.hasOwnProperty('textStrockeWidth'))
+   if (this.hasOwnProperty('textStrockeWidth'))
      baseStyle.textStrockeWidth = this.textStrockeWidth;
+   if (this.hasOwnProperty('lineDash'))
+     baseStyle.lineDash = this.lineDash;
+   if (this.hasOwnProperty('widthFactor'))
+     baseStyle.widthFactor = this.widthFactor;
  
    return baseStyle;
  }
@@ -42,6 +54,8 @@ function CommonEdgeStyle()
  	this.fillStyle   = '#68aeba';
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
+    this.lineDash = lineDashTypes[0];
+    this.widthFactor = 1;
 }
 
 CommonEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
@@ -55,6 +69,8 @@ function CommonPrintEdgeStyle()
  	this.fillStyle   = '#FFFFFF';
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
+
+    this.baseStyles.push("common");
 }
 CommonPrintEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
 
@@ -180,8 +196,8 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
     
   this.SetupStyle(baseEdge, arcStyle);
     
-  var lengthArrow = baseEdge.model.width * 4;
-  var widthArrow  = baseEdge.model.width * 2;
+  var lengthArrow = baseEdge.model.width * 4 * (Math.min(this.style.widthFactor * 1.5, 1));
+  var widthArrow  = baseEdge.model.width * 2 * (Math.min(this.style.widthFactor * 1.5, 1));
   var position1 = baseEdge.vertex1.position;
   var position2 = baseEdge.vertex2.position;
   var direction = position1.subtract(position2); 
@@ -236,10 +252,11 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
 
 BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
 {
-  this.context.lineWidth   = baseEdge.model.width;
+  this.context.lineWidth   = baseEdge.model.width * arcStyle.widthFactor;
   this.context.strokeStyle = arcStyle.strokeStyle;
   this.context.fillStyle   = arcStyle.fillStyle;
   this.model               = baseEdge.model;
+  this.style               = arcStyle;
 }
 
 BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
@@ -249,13 +266,13 @@ BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
       this.drawArc.DrawArc(position1, position2, arcStyle);
       return;
   }
-    
+   
+  this.context.setLineDash(arcStyle.lineDash);
   if (position1.equals(position2))
   {
     this.context.beginPath();
     this.context.arc(position1.x - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), 
                      position1.y - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize(), this.model.GetLoopSize(), 0, 2 * Math.PI);
-    this.context.closePath();
     this.context.stroke();
   }
   else
@@ -263,9 +280,9 @@ BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
     this.context.beginPath();
     this.context.moveTo(position1.x, position1.y);
     this.context.lineTo(position2.x, position2.y);
-    this.context.closePath();
-    this.context.stroke();  
+    this.context.stroke();
   }
+  this.context.setLineDash([]);  
 }
 
 BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcStyle, hasPair)
@@ -417,7 +434,6 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
         this.context.beginPath();
         this.context.arc(positions[0].x - Math.cos(this.baseDrawer.model.GetLoopShiftAngel()) * this.baseDrawer.model.GetLoopSize(),
                          positions[0].y - Math.sin(this.baseDrawer.model.GetLoopShiftAngel()) * this.baseDrawer.model.GetLoopSize(), this.baseDrawer.model.GetLoopSize(), this.progress * 2 * Math.PI, this.progress * 2 * Math.PI + sizeInRadian);
-        this.context.closePath();
         this.context.stroke();
     }
     else
@@ -429,7 +445,6 @@ ProgressArcDrawer.prototype.Draw = function(baseEdge, arcStyle)
         this.context.beginPath();
         this.context.moveTo(startPosition.x, startPosition.y);
         this.context.lineTo(finishPosition.x, finishPosition.y);
-        this.context.closePath();
         this.context.stroke();
     }
 }
@@ -445,6 +460,7 @@ CurvedArcDrawer.prototype = Object.create(BaseEdgeDrawer.prototype);
 
 CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
 {
+  this.context.setLineDash(arcStyle.lineDash);  
   if (position1.equals(position2))
   {
     this.context.beginPath();
@@ -464,6 +480,7 @@ CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
     this.context.bezierCurveTo(firstBezierPoint.x, firstBezierPoint.y, secondBezierPoint.x, secondBezierPoint.y, position2.x, position2.y);
     this.context.stroke(); 
   }
+  this.context.setLineDash([]);
 }
 
 CurvedArcDrawer.prototype.GetStartArrowDiretion = function(position1, position2, lengthArrow) 

@@ -1402,17 +1402,18 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
     var fillFields = function()
     {
-        var fullStyle = style.GetStyle({});
+        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
 
         $( "#vertexFillColor" ).val(fullStyle.fillStyle);
         $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
         $( "#vertexTextColor" ).val(fullStyle.mainTextColor);
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
+        $( "#vertexShape" ).val(fullStyle.shape);         
     }
     
     var redrawVertex = function()
     {
-        var fullStyle = style.GetStyle({});
+        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
 
         if (fullStyle.fillStyle != $( "#vertexFillColor" ).val())
             style.fillStyle     = $( "#vertexFillColor" ).val();
@@ -1425,6 +1426,9 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
         if (fullStyle.lineWidth != $( "#vertexStrokeSize" ).val())
             style.lineWidth     = parseInt($( "#vertexStrokeSize" ).val());
+
+        if (fullStyle.shape != $( "#vertexShape" ).val())
+            style.shape    = parseInt($( "#vertexShape" ).val());
         
         var canvas  = document.getElementById( "VertexPreview" );
         var context = canvas.getContext('2d');    
@@ -1438,8 +1442,10 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
         baseVertex.mainText = "1";
         baseVertex.upText   = "Up Text";
+        if (!forAll)
+            baseVertex.ownStyles = selectedVertexes[0].ownStyles;
         
-        graphDrawer.Draw(baseVertex, style.GetStyle({}));
+        graphDrawer.Draw(baseVertex, style.GetStyle({}, baseVertex));
         
         context.restore();
     }
@@ -1507,6 +1513,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     $( "#vertexStrokeColor" ).change(redrawVertex);
     $( "#vertexTextColor" ).change(redrawVertex);
     $( "#vertexStrokeSize" ).change(redrawVertex);
+    $( "#vertexShape" ).change(redrawVertex);    
 }
 
 /**
@@ -1542,16 +1549,16 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
     var fillFields = function()
     {
-        var fullStyle = style.GetStyle({});
+        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
 
         $( "#edgeFillColor" ).val(fullStyle.fillStyle);
         $( "#edgeStrokeColor" ).val(fullStyle.strokeStyle);
-        $( "#edgeTextColor" ).val(fullStyle.weightText);
+        $( "#edgeTextColor" ).val(fullStyle.weightText);       
     }
     
     var redrawVertex = function()
     {
-        var fullStyle = style.GetStyle({});
+        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
 
         if (fullStyle.fillStyle != $( "#edgeFillColor" ).val())
             style.fillStyle     = $( "#edgeFillColor" ).val();
@@ -1579,7 +1586,10 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         var baseEdge     = new BaseEdge(baseVertex1, baseVertex2, true, 10, "Text");
         
-        graphDrawer.Draw(baseEdge, style.GetStyle({}));
+        if (!forAll)
+            baseEdge.ownStyles = selectedEdges[0].ownStyles;
+
+        graphDrawer.Draw(baseEdge, style.GetStyle({}, baseEdge));
         
         context.restore();
     }

@@ -70,7 +70,7 @@ BaseVertex.prototype.LoadFromXML = function (xml)
       for(var indexField in parsedSave)
       {
         var index = parseInt(indexField);
-        this.ownStyles[index] = this.getStyleFor(index);
+        this.ownStyles[index] = FullObjectCopy(this.getStyleFor(index));
         for(var field in parsedSave[indexField])
         {
             if (this.ownStyles[index].ShouldLoad(field))
@@ -99,20 +99,20 @@ BaseVertex.prototype.IsUndefinedPosition = function ()
 
 BaseVertex.prototype.HitTest = function (pos)
 {
-  var shape = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}).shape : VertexCircleShape;
-  var width = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}).lineWidth : 0;
+  var shape = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}, this).shape : VertexCircleShape;
+  var width = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}, this).lineWidth : 0;
   
   if (shape == VertexCircleShape)
   {
   	return this.position.distance(pos) < this.model.diameter / 2.0 + width;
   }
-  else if (shape == VertexSquareShape || shape == VertexTriangleShape)
+  else
   {
     var relativPos  = (new Point(pos.x, pos.y)).subtract(this.position);
     var lineFinish1 = relativPos.add(new Point(1000, 0));
     var lineFinish2 = relativPos.add(new Point(-1000, 0));
 
-    var pointsVertex1 = shape == VertexSquareShape ? GetSquarePoints(this.model.diameter + width) : GetTrianglePoints(this.model.diameter + width);
+    var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width);
     pointsVertex1.push(pointsVertex1[0]);
 
     var hitNumber1 = 0;
@@ -148,14 +148,14 @@ BaseVertex.prototype.resetOwnStyle = function (index)
 
 BaseVertex.prototype.setOwnStyle = function (index, style)
 {
-  this.ownStyles[index] = style;
+  this.ownStyles[index] = FullObjectCopy(style);
 }
 
 BaseVertex.prototype.getStyleFor = function (index)
 {
   if (this.ownStyles.hasOwnProperty(index))
   {
-    return FullObjectCopy(this.ownStyles[index]);
+    return this.ownStyles[index];
   }
   else
   {
@@ -166,7 +166,7 @@ BaseVertex.prototype.getStyleFor = function (index)
     else
       style = globalApplication.GetStyle("vertex", "selected");
 
-    return FullObjectCopy(style);
+    return style;
   }
 }
 

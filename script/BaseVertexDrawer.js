@@ -6,9 +6,11 @@
 
 
 // Vertex shape
-const VertexCircleShape = 0,
-      VertexSquareShape = 1,
-      VertexTriangleShape = 2;
+const VertexCircleShape   = 0,
+      VertexSquareShape   = 1,
+      VertexTriangleShape = 2,
+	  VertexPentagonShape = 3,
+	  VertexHomeShape     = 4;
 
 function GetSquarePoints(diameter)
 {
@@ -38,17 +40,45 @@ function GetTrianglePoints(diameter)
 
   	return res;
 }
+
+function GetPentagonPoints(diameter)
+{
+	var res = [];
+
+	var baseValue = diameter / 2 * 1.2;
+
+  	res.push(new Point(0, - baseValue));
+	res.push((new Point(0, - baseValue)).rotate(new Point(0, 0), 72));
+	res.push((new Point(0, - baseValue)).rotate(new Point(0, 0), 72 * 2));
+	res.push((new Point(0, - baseValue)).rotate(new Point(0, 0), 72 * 3));
+	res.push((new Point(0, - baseValue)).rotate(new Point(0, 0), 72 * 4));
+	res.push((new Point(0, - baseValue)).rotate(new Point(0, 0), 72 * 5));
+
+  	return res;
+}
+
+function GetPointsForShape(shape, diameter)
+{
+	var pointsVertex1 = null;
+	switch (parseInt(shape))
+	{
+		case VertexSquareShape:   pointsVertex1 = GetSquarePoints(diameter); break;
+		case VertexTriangleShape: pointsVertex1 = GetTrianglePoints(diameter); break;
+		case VertexPentagonShape: pointsVertex1 = GetPentagonPoints(diameter); break;
+	}
+	return pointsVertex1;
+}
  
 function BaseVertexStyle()
 {
   this.baseStyles = [];
 }
 
-BaseVertexStyle.prototype.GetStyle = function (baseStyle)
+BaseVertexStyle.prototype.GetStyle = function (baseStyle, object)
 {
 	this.baseStyles.forEach(function(element) {
-		var styleObject = globalApplication.GetStyle("vertex", element);
-		baseStyle       = styleObject.GetStyle(baseStyle);
+		var styleObject = globalApplication.GetStyle("vertex", element, object);
+		baseStyle       = styleObject.GetStyle(baseStyle, object);
 	});
 
 	if (this.hasOwnProperty('lineWidth'))
@@ -291,24 +321,12 @@ BaseVertexDrawer.prototype.DrawShape = function(baseGraph)
   {
   	this.context.arc(baseGraph.position.x, baseGraph.position.y, baseGraph.model.diameter / 2.0, 0, 2 * Math.PI);
   }
-  else if (this.currentStyle.shape == VertexSquareShape)
+  else
   {
-	var points = GetSquarePoints(baseGraph.model.diameter);
+	var points = GetPointsForShape(this.currentStyle.shape, baseGraph.model.diameter);
 
 	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
 
-	var context = this.context;
-	
-	points.forEach(function(point) {
-		context.lineTo(baseGraph.position.x + point.x, baseGraph.position.y + point.y);
-	  });
-  }
-  else if (this.currentStyle.shape == VertexTriangleShape)
-  {
-	var points = GetTrianglePoints(baseGraph.model.diameter)
-
-	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
-	
 	var context = this.context;
 
 	points.forEach(function(point) {
