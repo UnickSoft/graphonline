@@ -223,4 +223,11 @@
     $g_lang['selected_edge_style'] = "Стиль выделенной дуги";
     $g_lang['common_vertex_style'] = "Стиль обычной вершины";
     $g_lang['selected_vertex_style'] = "Стиль выделенной вершины";
+
+    $g_lang['shape'] = "Форма";
+    $g_lang['circle'] = "Круг";
+    $g_lang['squere'] = "Квадрат";
+    $g_lang['triangle'] = "Треугльник";
+    $g_lang['pentagon'] = "Пятиугольник";
+    $g_lang['vertex_diameter'] = "Размер вершины";
 ?>

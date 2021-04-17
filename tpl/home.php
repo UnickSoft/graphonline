@@ -411,7 +411,7 @@
           <div class="form-group row">
             <label for="vertexStrokeSize" class="col-sm-5 col-form-label"><?= L('stroke_size') ?></label>
             <div class="col-sm-5">
-              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10" min="1">
+              <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10" min="0">
             </div>
           </div>
           <div class="form-group row">
@@ -421,16 +421,22 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="vertexShape" class="col-sm-5 col-form-label">Shape</label>
+            <label for="vertexShape" class="col-sm-5 col-form-label"><?= L('shape')?></label>
             <div class="col-sm-5">
               <select id="vertexShape">
-                <option value="0">Circle</option>
-                <option value="1">Squere</option>
-                <option value="2">Triangle</option>
-                <option value="3">Pentagon</option>
+                <option value="0"><?= L('circle')?></option>
+                <option value="1"><?= L('squere')?></option>
+                <option value="2"><?= L('triangle')?></option>
+                <option value="3"><?= L('pentagon')?></option>
               </select>
             </div>
-          </div>          
+          </div>
+          <div class="form-group row">
+            <label for="vertexSize" class="col-sm-5 col-form-label"><?= L('vertex_diameter')?> </label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="vertexSize" placeholder="10" min="10" min="100">
+            </div>
+          </div>
         </fieldset>
         </form>
         

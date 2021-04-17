@@ -18,7 +18,7 @@
     $g_lang["orint_edge"] = "Riktad";
     $g_lang["not_orint_edge"] = "Oriktad";
     $g_lang["show_adjacency_matrix"] = "Grannmatris";
-    $g_lang["save"] = "Spara kanttyp (riktad eller inte)";
+    $g_lang["save"] = "Spara";
     $g_lang["cancel"] = "Annullera";
     $g_lang["adjacency_matrix_description"] = "Ställ in grannmatris. Använd komma \",\" som separator";
     $g_lang["adjacency_matrix_bad_format"] = "Matrisen är felaktig. Använd komma \",\" som separator. Matrisen ska vara kvadratisk";
@@ -184,4 +184,11 @@
     $g_lang['selected_edge_style'] = "Selected edge style";
     $g_lang['common_vertex_style'] = "Common vertex style";
     $g_lang['selected_vertex_style'] = "Selected vertex style";    
+
+    $g_lang['shape'] = "Shape";
+    $g_lang['circle'] = "Circle";
+    $g_lang['squere'] = "Square";
+    $g_lang['triangle'] = "Triangle";
+    $g_lang['pentagon'] = "Pentagon";
+    $g_lang['vertex_diameter'] = "Vertex size";    
 ?>

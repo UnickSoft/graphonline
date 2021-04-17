@@ -50,6 +50,8 @@ function Application(document, window)
     this.edgePresets = [1, 3, 5, 7, 11, 42];
     this.maxEdgePresets = 6;
     this.selectionRect  = null;
+
+    this.defaultVertexSize = null;
 };
 
 // List of graph.
@@ -400,6 +402,7 @@ Application.prototype.RedrawNodes = function(context)
 
 Application.prototype.UpdateNodesCurrentStyle = function(ForceCommonStyle, ForceSelectedStyle)
 {
+    var force         = ForceCommonStyle !== undefined || ForceSelectedStyle !== undefined;
     var commonStyle   = (ForceCommonStyle === undefined) ? this.vertexCommonStyle : ForceCommonStyle;
     var selectedStyle = (ForceSelectedStyle === undefined) ? this.vertexSelectedVertexStyles : ForceSelectedStyle;
 
@@ -414,7 +417,7 @@ Application.prototype.UpdateNodesCurrentStyle = function(ForceCommonStyle, Force
         }
 
         var currentStyle = null;
-        if (this.graph.vertices[i].hasOwnStyleFor((selected ? 1 : 0) + selectedGroup))
+        if (this.graph.vertices[i].hasOwnStyleFor((selected ? 1 : 0) + selectedGroup) && !force)
 		    currentStyle = this.graph.vertices[i].getStyleFor((selected ? 1 : 0) + selectedGroup);
         else
             currentStyle = selected ? selectedStyle[selectedGroup] : commonStyle;
@@ -1401,6 +1404,10 @@ Application.prototype.SaveUserSettings = function()
     checkValue.push({field: "backgroundCommonStyle",
                      value: this.backgroundCommonStyle,
                      check: this.isBackgroundCommonStyleCustom});
+
+    checkValue.push({field: "defaultVertexSize",
+                      value: this.defaultVertexSize,
+                      check: this.defaultVertexSize != null});                     
     
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
@@ -1453,6 +1460,11 @@ Application.prototype.LoadUserSettings = function(json)
                      value: this.vertexSelectedVertexStyles,
                      check: "isVertexSelectedVertexStylesCustom",
                      deep: true});
+
+    checkValue.push({field: "defaultVertexSize",
+                    value: "defaultVertexSize",
+                    check: null,
+                    deep: false});                  
     
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
@@ -1462,7 +1474,7 @@ Application.prototype.LoadUserSettings = function(json)
     
     checkValue.push({field: "backgroundCommonStyle",
                      value: this.backgroundCommonStyle,
-                     check: "isBackgroundCommonStyleCustom",
+                     check: this.isBackgroundCommonStyleCustom,
                      deep: false});
     
     var decoderStr = this.DecodeFromHTML(json);
@@ -1473,24 +1485,32 @@ Application.prototype.LoadUserSettings = function(json)
     checkValue.forEach(function(entry) {
             if (parsedSave.hasOwnProperty(entry.field))
             {
-                for(var k in parsedSave[entry.field])
+                if (typeof parsedSave[entry.field] === 'number')
                 {
-                    if (!entry.deep)
+                    app[entry.value] = parseInt(parsedSave[entry.field]);
+                }
+                else
+                {
+                    for(var k in parsedSave[entry.field])
                     {
-                        if (entry.value.ShouldLoad(k))
-                            entry.value[k] = parsedSave[entry.field][k];
-                    }
-                    else
-                    {
-                        for(var deepK in parsedSave[entry.field][k])
+                        if (!entry.deep)
                         {
-                            if (entry.value[k].ShouldLoad(deepK))
-                                entry.value[k][deepK] = parsedSave[entry.field][k][deepK];
+                            if (entry.value.ShouldLoad(k))
+                                entry.value[k] = parsedSave[entry.field][k];
+                        }
+                        else
+                        {
+                            for(var deepK in parsedSave[entry.field][k])
+                            {
+                                if (entry.value[k].ShouldLoad(deepK))
+                                    entry.value[k][deepK] = parsedSave[entry.field][k][deepK];
+                            }
                         }
                     }
                 }
                 
-                app[entry.check] = true;
+                if (entry.check != null)
+                    app[entry.check] = true;
             }
         });
 }
@@ -1716,4 +1736,36 @@ Application.prototype.GetSelectedEdges = function()
     }
 
     return res;
+}
+
+Application.prototype.SetDefaultVertexSize = function(diameter)
+{
+    var oldDefaultDiameter = this.GetDefaultVertexSize();
+    this.defaultVertexSize = diameter;
+
+    for (i = 0; i < this.graph.vertices.length; i ++)
+    {
+        if (this.graph.vertices[i].model.diameter == oldDefaultDiameter)
+        {
+            this.graph.vertices[i].model.diameter = diameter;
+        }
+    }     
+}
+
+Application.prototype.GetDefaultVertexSize = function(diameter)
+{
+    if (this.defaultVertexSize != null)
+        return this.defaultVertexSize;
+    else
+        return defaultVertexDiameter;
+}
+
+Application.prototype.ResetVertexSize = function()
+{
+    this.defaultVertexSize = null;
+
+    for (i = 0; i < this.graph.vertices.length; i ++)
+    {
+        this.graph.vertices[i].model.diameter = this.GetDefaultVertexSize();
+    }     
 }

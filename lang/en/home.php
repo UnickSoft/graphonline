@@ -222,4 +222,11 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['selected_edge_style'] = "Selected edge style";
     $g_lang['common_vertex_style'] = "Common vertex style";
     $g_lang['selected_vertex_style'] = "Selected vertex style";
+
+    $g_lang['shape'] = "Shape";
+    $g_lang['circle'] = "Circle";
+    $g_lang['squere'] = "Square";
+    $g_lang['triangle'] = "Triangle";
+    $g_lang['pentagon'] = "Pentagon";
+    $g_lang['vertex_diameter'] = "Vertex size";           
 ?>

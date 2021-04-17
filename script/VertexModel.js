@@ -3,8 +3,9 @@
  *
  */
 
+ const defaultVertexDiameter = 30;
 
 function VertexModel()
 {
-    this.diameter = 30;
+    this.diameter = globalApplication.GetDefaultVertexSize();
 }

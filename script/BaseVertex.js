@@ -38,7 +38,8 @@ BaseVertex.prototype.SaveToXML = function ()
 	       "id=\""         + this.id   + "\" " +
 	       "mainText=\""   + gEncodeToHTML(this.mainText) + "\" " +
 	       "upText=\""     + gEncodeToHTML(this.upText)   + "\" " +
-         ((Object.keys(this.ownStyles).length > 0) ? "ownStyles = \"" + gEncodeToHTML(JSON.stringify(this.ownStyles)) + "\"": "") +
+         ((Object.keys(this.ownStyles).length > 0) ? "ownStyles = \"" + gEncodeToHTML(JSON.stringify(this.ownStyles)) + "\" ": "") +
+         "size=\"" + this.model.diameter + "\" " +
 		"></node>";
 }
 
@@ -78,6 +79,10 @@ BaseVertex.prototype.LoadFromXML = function (xml)
         }
       }
     }
+
+    var size = xml.attr('size');
+    if (typeof size !== 'undefined')
+      this.model.diameter = parseInt(size);
 }
 
 BaseVertex.prototype.SetId = function (id)

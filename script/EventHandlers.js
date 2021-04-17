@@ -1408,7 +1408,8 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
         $( "#vertexTextColor" ).val(fullStyle.mainTextColor);
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
-        $( "#vertexShape" ).val(fullStyle.shape);         
+        $( "#vertexShape" ).val(fullStyle.shape);
+        $( "#vertexSize" ).val(forAll ? (new VertexModel()).diameter : selectedVertexes[0].model.diameter);
     }
     
     var redrawVertex = function()
@@ -1429,6 +1430,8 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
         if (fullStyle.shape != $( "#vertexShape" ).val())
             style.shape    = parseInt($( "#vertexShape" ).val());
+
+        var diameter = parseInt($( "#vertexSize" ).val());
         
         var canvas  = document.getElementById( "VertexPreview" );
         var context = canvas.getContext('2d');    
@@ -1442,6 +1445,8 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
         baseVertex.mainText = "1";
         baseVertex.upText   = "Up Text";
+        baseVertex.model.diameter = diameter;
+
         if (!forAll)
             baseVertex.ownStyles = selectedVertexes[0].ownStyles;
         
@@ -1451,12 +1456,28 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     }
     
     //var dialogButtons = [];
+    var applyDiameter = function(diameter)
+        {
+            if (forAll)
+            {
+                app.SetDefaultVertexSize(diameter);
+            }
+            else
+            {
+                selectedVertexes.forEach(function(vertex) {
+                    vertex.model.diameter = diameter;
+                });
+            }
+        };
     
 	dialogButtons[g_default] = 
            {
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
+
+                    applyDiameter(forAll ? (new VertexModel()).diameter : app.GetDefaultVertexSize());
+
                     if (forAll)
                     {
                         app.ResetVertexStyle(index);
@@ -1473,15 +1494,21 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
            };
     
 	dialogButtons[g_save] = function() {
+
+                applyDiameter(parseInt($( "#vertexSize" ).val()));
+
                 if (forAll)
                 {
                     app.SetVertexStyle(index, style);
                 }
                 else
                 {
-                    selectedVertexes.forEach(function(vertex) {
-                        vertex.setOwnStyle(index, style);
-                    });
+                    if (JSON.stringify(originStyle) !== JSON.stringify(style))
+                    {
+                        selectedVertexes.forEach(function(vertex) {
+                            vertex.setOwnStyle(index, style);
+                        });
+                    }
                 }
                 app.redrawGraph();
 				$( this ).dialog( "close" );					
@@ -1508,12 +1535,15 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     $( "#vertexStrokeColor" ).unbind();
     $( "#vertexTextColor" ).unbind();
     $( "#vertexStrokeSize" ).unbind();
+    $( "#vertexShape" ).unbind();
+    $( "#vertexSize" ).unbind();
     
     $( "#vertexFillColor" ).change(redrawVertex);
     $( "#vertexStrokeColor" ).change(redrawVertex);
     $( "#vertexTextColor" ).change(redrawVertex);
     $( "#vertexStrokeSize" ).change(redrawVertex);
-    $( "#vertexShape" ).change(redrawVertex);    
+    $( "#vertexShape" ).change(redrawVertex);
+    $( "#vertexSize" ).change(redrawVertex);    
 }
 
 /**
