@@ -417,7 +417,7 @@
           <div class="form-group row">
             <label for="vertexTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
+                <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
             </div>
           </div>
           <div class="form-group row">
@@ -462,6 +462,23 @@
             <label for="edgeFillColor" class="col-sm-5 col-form-label"><?= L('text_background') ?></label>
             <div class="col-sm-5">
               <input type="color" class="form-control" id="edgeFillColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeStyle" class="col-sm-5 col-form-label">Line Style</label>
+            <div class="col-sm-5">
+              <select id="edgeStyle">
+                <option value="0">Solid</option>
+                <option value="1">Dotted</option>
+                <option value="2">Dashed</option>
+                <option value="3">Dashdotted</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeWidth" class="col-sm-5 col-form-label">Edge width</label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="edgeWidth" placeholder="3" min="1" min="20">
             </div>
           </div>
         </fieldset>

@@ -1409,7 +1409,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#vertexTextColor" ).val(fullStyle.mainTextColor);
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
         $( "#vertexShape" ).val(fullStyle.shape);
-        $( "#vertexSize" ).val(forAll ? (new VertexModel()).diameter : selectedVertexes[0].model.diameter);
+        $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertexes[0].model.diameter);
     }
     
     var redrawVertex = function()
@@ -1583,7 +1583,9 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         $( "#edgeFillColor" ).val(fullStyle.fillStyle);
         $( "#edgeStrokeColor" ).val(fullStyle.strokeStyle);
-        $( "#edgeTextColor" ).val(fullStyle.weightText);       
+        $( "#edgeTextColor" ).val(fullStyle.weightText);
+        $( "#edgeStyle" ).val(fullStyle.lineDash);
+        $( "#edgeWidth" ).val(forAll ? app.GetDefaultEdgeWidth() : selectedEdges[0].model.width);
     }
     
     var redrawVertex = function()
@@ -1598,6 +1600,11 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         if (fullStyle.weightText != $( "#edgeTextColor" ).val())
             style.weightText    = $( "#edgeTextColor" ).val();
+
+        if (fullStyle.lineDash != $( "#edgeStyle" ).val())
+            style.lineDash    = $( "#edgeStyle" ).val();
+
+        var edgeWidth = parseInt($( "#edgeWidth" ).val());
         
         var canvas  = document.getElementById( "EdgePreview" );
         var context = canvas.getContext('2d');    
@@ -1619,16 +1626,35 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
         if (!forAll)
             baseEdge.ownStyles = selectedEdges[0].ownStyles;
 
+        baseEdge.model.width = edgeWidth;
+
         graphDrawer.Draw(baseEdge, style.GetStyle({}, baseEdge));
         
         context.restore();
     }
     
+    var applyWidth = function(width)
+        {
+            if (forAll)
+            {
+                app.SetDefaultEdgeWidth(width);
+            }
+            else
+            {
+                selectedEdges.forEach(function(edge) {
+                        edge.model.width = width;
+                    });
+            }
+        };    
+
 	dialogButtons[g_default] = 
            {
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
+
+                    applyWidth(forAll ? (new EdgeModel()).width : app.GetDefaultEdgeWidth());
+
                     if (forAll)
                     {
                         app.ResetEdgeStyle(index);
@@ -1646,6 +1672,9 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
            };
     
 	dialogButtons[g_save] = function() {
+
+                applyWidth(parseInt($( "#edgeWidth" ).val()));
+
                 if (forAll)
                 {
                     app.SetEdgeStyle(index, style);
@@ -1680,10 +1709,14 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     $( "#edgeFillColor" ).unbind();
     $( "#edgeStrokeColor" ).unbind();
     $( "#edgeTextColor" ).unbind();
+    $( "#edgeStyle" ).unbind();
+    $( "#edgeWidth" ).unbind();    
     
     $( "#edgeFillColor" ).change(redrawVertex);
     $( "#edgeStrokeColor" ).change(redrawVertex);
     $( "#edgeTextColor" ).change(redrawVertex);
+    $( "#edgeStyle" ).change(redrawVertex);
+    $( "#edgeWidth" ).change(redrawVertex);
 }
 
 /**

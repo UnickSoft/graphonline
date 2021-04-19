@@ -4,10 +4,12 @@
  */
 
 var EdgeModels = {"line": 0, "cruvled" : 1};
+
+const defaultEdgeWidth = 4;
                 
 function EdgeModel()
 {
-    this.width = 4;
+    this.width = globalApplication.GetDefaultEdgeWidth();
     this.type  = EdgeModels.line;
     this.curvedValue = EdgeModel.prototype.defaultCruved;
     this.default = true;

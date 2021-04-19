@@ -34,8 +34,6 @@
      baseStyle.textStrockeWidth = this.textStrockeWidth;
    if (this.hasOwnProperty('lineDash'))
      baseStyle.lineDash = this.lineDash;
-   if (this.hasOwnProperty('widthFactor'))
-     baseStyle.widthFactor = this.widthFactor;
  
    return baseStyle;
  }
@@ -54,8 +52,7 @@ function CommonEdgeStyle()
  	this.fillStyle   = '#68aeba';
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
-    this.lineDash = lineDashTypes[0];
-    this.widthFactor = 1;
+  this.lineDash = 0;
 }
 
 CommonEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
@@ -196,8 +193,8 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
     
   this.SetupStyle(baseEdge, arcStyle);
     
-  var lengthArrow = baseEdge.model.width * 4 * (Math.min(this.style.widthFactor * 1.5, 1));
-  var widthArrow  = baseEdge.model.width * 2 * (Math.min(this.style.widthFactor * 1.5, 1));
+  var lengthArrow = Math.max(baseEdge.model.width * 4, 8);
+  var widthArrow  =  Math.max(baseEdge.model.width * 2, 4);
   var position1 = baseEdge.vertex1.position;
   var position2 = baseEdge.vertex2.position;
   var direction = position1.subtract(position2); 
@@ -252,7 +249,7 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
 
 BaseEdgeDrawer.prototype.SetupStyle = function(baseEdge, arcStyle)
 {
-  this.context.lineWidth   = baseEdge.model.width * arcStyle.widthFactor;
+  this.context.lineWidth   = baseEdge.model.width;
   this.context.strokeStyle = arcStyle.strokeStyle;
   this.context.fillStyle   = arcStyle.fillStyle;
   this.model               = baseEdge.model;
@@ -267,7 +264,7 @@ BaseEdgeDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
       return;
   }
    
-  this.context.setLineDash(arcStyle.lineDash);
+  this.context.setLineDash(lineDashTypes[arcStyle.lineDash]);
   if (position1.equals(position2))
   {
     this.context.beginPath();
@@ -460,7 +457,7 @@ CurvedArcDrawer.prototype = Object.create(BaseEdgeDrawer.prototype);
 
 CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
 {
-  this.context.setLineDash(arcStyle.lineDash);  
+  this.context.setLineDash(lineDashTypes[arcStyle.lineDash]);
   if (position1.equals(position2))
   {
     this.context.beginPath();

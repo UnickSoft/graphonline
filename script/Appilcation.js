@@ -52,6 +52,7 @@ function Application(document, window)
     this.selectionRect  = null;
 
     this.defaultVertexSize = null;
+    this.defaultEdgeWidth = null;
 };
 
 // List of graph.
@@ -1407,7 +1408,11 @@ Application.prototype.SaveUserSettings = function()
 
     checkValue.push({field: "defaultVertexSize",
                       value: this.defaultVertexSize,
-                      check: this.defaultVertexSize != null});                     
+                      check: this.defaultVertexSize != null}); 
+
+    checkValue.push({field: "defaultEdgeWidth",
+                      value: this.defaultEdgeWidth,
+                      check: this.defaultEdgeWidth != null});
     
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
@@ -1464,8 +1469,13 @@ Application.prototype.LoadUserSettings = function(json)
     checkValue.push({field: "defaultVertexSize",
                     value: "defaultVertexSize",
                     check: null,
-                    deep: false});                  
-    
+                    deep: false});
+
+    checkValue.push({field: "defaultEdgeWidth",
+                    value: "defaultEdgeWidth",
+                    check: null,
+                    deep: false});
+
     //checkValue.push({field: "vertexPrintCommonStyle",
     //                 value: this.vertexPrintCommonStyle});
 
@@ -1767,5 +1777,37 @@ Application.prototype.ResetVertexSize = function()
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
         this.graph.vertices[i].model.diameter = this.GetDefaultVertexSize();
+    }     
+}
+
+Application.prototype.SetDefaultEdgeWidth = function(width)
+{
+    var oldDefaultWidth = this.GetDefaultEdgeWidth();
+    this.defaultEdgeWidth = width;
+
+    for (i = 0; i < this.graph.edges.length; i ++)
+    {
+        if (this.graph.vertices[i].model.width == oldDefaultWidth)
+        {
+            this.graph.vertices[i].model.width = width;
+        }
+    }     
+}
+
+Application.prototype.GetDefaultEdgeWidth = function(diameter)
+{
+    if (this.defaultVertexSize != null)
+        return this.defaultEdgeWidth;
+    else
+        return defaultEdgeWidth;
+}
+
+Application.prototype.ResetEdgeWidth = function()
+{
+    this.defaultVertexSize = null;
+
+    for (i = 0; i < this.graph.edges.length; i ++)
+    {
+        this.graph.edges[i].model.width = this.GetDefaultEdgeWidth();
     }     
 }
