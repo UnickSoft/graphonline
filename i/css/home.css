@@ -365,3 +365,8 @@
 {
     overflow-wrap: break-word;
 }
+
+.small-bottom-marging
+{
+    margin-bottom: 4px;
+}

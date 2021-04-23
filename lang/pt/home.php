@@ -194,5 +194,10 @@
     $g_lang['squere'] = "Square";
     $g_lang['triangle'] = "Triangle";
     $g_lang['pentagon'] = "Pentagon";
-    $g_lang['vertex_diameter'] = "Vertex size";    
+    $g_lang['vertex_diameter'] = "Vertex size";
+
+    $g_lang['additional_text_color'] = "Another text color"; 
+    $g_lang['weight_position'] = "Text position";
+    $g_lang['center'] = "Center";
+    $g_lang['on_up'] = "Above";    
 ?>

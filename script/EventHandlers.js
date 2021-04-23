@@ -1407,9 +1407,11 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#vertexFillColor" ).val(fullStyle.fillStyle);
         $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
         $( "#vertexTextColor" ).val(fullStyle.mainTextColor);
+        $( "#upVertexTextColor" ).val(fullStyle.upTextColor);
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
         $( "#vertexShape" ).val(fullStyle.shape);
         $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertexes[0].model.diameter);
+        $( "#commonTextPosition" ).val(fullStyle.commonTextPosition);        
     }
     
     var redrawVertex = function()
@@ -1430,6 +1432,12 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
         if (fullStyle.shape != $( "#vertexShape" ).val())
             style.shape    = parseInt($( "#vertexShape" ).val());
+
+        if (fullStyle.upTextColor != $( "#upVertexTextColor" ).val())
+            style.upTextColor = $( "#upVertexTextColor" ).val(); 
+
+        if (fullStyle.commonTextPosition != $( "#commonTextPosition" ).val())
+            style.commonTextPosition = $( "#commonTextPosition" ).val(); 
 
         var diameter = parseInt($( "#vertexSize" ).val());
         
@@ -1534,16 +1542,20 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     $( "#vertexFillColor" ).unbind();
     $( "#vertexStrokeColor" ).unbind();
     $( "#vertexTextColor" ).unbind();
+    $( "#upVertexTextColor" ).unbind();
     $( "#vertexStrokeSize" ).unbind();
     $( "#vertexShape" ).unbind();
     $( "#vertexSize" ).unbind();
+    $( "#commonTextPosition" ).unbind();
     
     $( "#vertexFillColor" ).change(redrawVertex);
     $( "#vertexStrokeColor" ).change(redrawVertex);
     $( "#vertexTextColor" ).change(redrawVertex);
     $( "#vertexStrokeSize" ).change(redrawVertex);
     $( "#vertexShape" ).change(redrawVertex);
-    $( "#vertexSize" ).change(redrawVertex);    
+    $( "#vertexSize" ).change(redrawVertex);
+    $( "#upVertexTextColor" ).change(redrawVertex);
+    $( "#commonTextPosition" ).change(redrawVertex);
 }
 
 /**

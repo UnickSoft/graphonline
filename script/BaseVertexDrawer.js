@@ -12,6 +12,10 @@ const VertexCircleShape   = 0,
 	  VertexPentagonShape = 3,
 	  VertexHomeShape     = 4;
 
+// Common text position
+const CommonTextCenter = 0,
+      CommonTextUp     = 1;
+
 function GetSquarePoints(diameter)
 {
   var res = [];
@@ -68,6 +72,17 @@ function GetPointsForShape(shape, diameter)
 	}
 	return pointsVertex1;
 }
+
+function GetSizeForShape(shape, diameter)
+{
+	switch (parseInt(shape))
+	{
+		case VertexSquareShape:   return diameter; break;
+		case VertexTriangleShape: return diameter * 1.5; break;
+		case VertexPentagonShape: return diameter * 1.2; break;
+	}
+	return diameter;
+}
  
 function BaseVertexStyle()
 {
@@ -91,6 +106,10 @@ BaseVertexStyle.prototype.GetStyle = function (baseStyle, object)
 		baseStyle.mainTextColor = this.mainTextColor;
 	if (this.hasOwnProperty('shape'))
 		baseStyle.shape = this.shape;
+	if (this.hasOwnProperty('upTextColor'))
+		baseStyle.upTextColor = this.upTextColor;
+	if (this.hasOwnProperty('commonTextPosition'))
+		baseStyle.commonTextPosition = this.commonTextPosition;
 
 	baseStyle.lineWidth = parseInt(baseStyle.lineWidth);
 	return baseStyle;
@@ -110,7 +129,9 @@ function CommonVertexStyle()
   this.strokeStyle = '#c7b7c7';
   this.fillStyle   = '#68aeba';
   this.mainTextColor = '#f0d543';
-  this.shape       = VertexCircleShape;//VertexSquareShape;
+  this.shape       = VertexCircleShape;
+  this.upTextColor = '#68aeba';
+  this.commonTextPosition = CommonTextCenter;
 
   this.baseStyles = [];
 }
@@ -293,12 +314,22 @@ BaseVertexDrawer.prototype.Draw = function(baseGraph, graphStyle)
   	this.context.stroke();
 
   this.context.fill();
+
+  var shapeSize = GetSizeForShape(graphStyle.shape, baseGraph.model.diameter + graphStyle.lineWidth);
   
-  this.DrawCenterText(baseGraph.position, baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, true, 16);
-  
-  // Top text
-  this.DrawCenterText(baseGraph.position.add(new Point(0, - baseGraph.model.diameter / 2.0 - 9.0)), 
-	baseGraph.upText, graphStyle.fillStyle, graphStyle.strokeStyle, false, false, 12.0);
+  if (graphStyle.commonTextPosition == CommonTextCenter)
+  {
+  	this.DrawCenterText(baseGraph.position, baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, true, 16);  
+  	// Top text
+  	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 9.0)), 
+	baseGraph.upText, graphStyle.upTextColor, graphStyle.strokeStyle, false, false, 12.0);
+  }
+  else if (graphStyle.commonTextPosition == CommonTextUp)
+  {
+	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 7.0)), baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, false, 16);  
+	// Top text
+	this.DrawCenterText(baseGraph.position.add(new Point(0, shapeSize / 2.0 + 9.0)), baseGraph.upText, graphStyle.upTextColor, graphStyle.strokeStyle, false, false, 12.0);
+  }
 /*	
   // Bottom text
   this.DrawCenterText(baseGraph.position.add(new Point(0, + baseGraph.model.diameter / 2.0 + 7.0)), 

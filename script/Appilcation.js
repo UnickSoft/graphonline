@@ -1787,9 +1787,9 @@ Application.prototype.SetDefaultEdgeWidth = function(width)
 
     for (i = 0; i < this.graph.edges.length; i ++)
     {
-        if (this.graph.vertices[i].model.width == oldDefaultWidth)
+        if (this.graph.edges[i].model.width == oldDefaultWidth)
         {
-            this.graph.vertices[i].model.width = width;
+            this.graph.edges[i].model.width = width;
         }
     }     
 }

@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=38")?>" ></script>
+        <script src="<?= Root("script/example.js?v=39")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -414,12 +414,27 @@
               <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10" min="0">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row small-bottom-marging">
             <label for="vertexTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
                 <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
             </div>
           </div>
+          <div class="form-group row small-bottom-marging">
+            <label for="upVertexTextColor" class="col-sm-5 col-form-label"><?= L('additional_text_color') ?></label>
+            <div class="col-sm-5">
+                <input type="color" class="form-control" id="upVertexTextColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="commonTextPosition" class="col-sm-5 col-form-label"><?= L('weight_position') ?></label>
+            <div class="col-sm-5">
+              <select id="commonTextPosition">
+                <option value="0"><?= L('center') ?></option>
+                <option value="1"><?= L('on_up') ?></option>
+              </select>
+            </div>
+          </div>                    
           <div class="form-group row">
             <label for="vertexShape" class="col-sm-5 col-form-label"><?= L('shape')?></label>
             <div class="col-sm-5">

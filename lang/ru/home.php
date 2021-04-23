@@ -230,4 +230,9 @@
     $g_lang['triangle'] = "Треугльник";
     $g_lang['pentagon'] = "Пятиугольник";
     $g_lang['vertex_diameter'] = "Размер вершины";
+
+    $g_lang['additional_text_color'] = "Цвет другого текста"; 
+    $g_lang['weight_position'] = "Позиция текста";
+    $g_lang['center'] = "По центру";
+    $g_lang['on_up'] = "Сверху";    
 ?>
