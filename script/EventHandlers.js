@@ -1431,7 +1431,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     
     var redrawVertex = function()
     {
-        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
 
         if (fullStyle.fillStyle != $( "#vertexFillColor" ).val())
             self.style.fillStyle     = $( "#vertexFillColor" ).val();
