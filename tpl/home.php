@@ -427,7 +427,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="commonTextPosition" class="col-sm-5 col-form-label"><?= L('weight_position') ?></label>
+            <label for="commonTextPosition" class="col-sm-5 col-form-label"><?= L('text_position') ?></label>
             <div class="col-sm-5">
               <select id="commonTextPosition">
                 <option value="0"><?= L('center') ?></option>
@@ -452,6 +452,18 @@
               <input type="number" class="form-control" id="vertexSize" placeholder="10" min="10" min="100">
             </div>
           </div>
+          <div class="form-group row" id="VertexSelectedIndexForm">
+            <label for="vertexSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
+            <div class="col-sm-5">
+              <select id="vertexSelectedIndex">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>          
         </fieldset>
         </form>
         
@@ -467,10 +479,25 @@
               <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22">
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row small-bottom-marging">
             <label for="edgeTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
               <input type="color" class="form-control" id="edgeTextColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row small-bottom-marging">
+            <label for="weightEdgeTextColor" class="col-sm-5 col-form-label"><?= L('additional_text_color') ?></label>
+            <div class="col-sm-5">
+                <input type="color" class="form-control" id="weightEdgeTextColor" value="#FFAA22">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="weightTextPosition" class="col-sm-5 col-form-label"><?= L('weight_position') ?></label>
+            <div class="col-sm-5">
+              <select id="weightTextPosition">
+                <option value="0"><?= L('center') ?></option>
+                <option value="1"><?= L('on_up') ?></option>
+              </select>
             </div>
           </div>
           <div class="form-group row">
@@ -480,7 +507,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="edgeStyle" class="col-sm-5 col-form-label">Line Style</label>
+            <label for="edgeStyle" class="col-sm-5 col-form-label"><?= L('line_style') ?></label>
             <div class="col-sm-5">
               <select id="edgeStyle">
                 <option value="0">Solid</option>
@@ -491,11 +518,23 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="edgeWidth" class="col-sm-5 col-form-label">Edge width</label>
+            <label for="edgeWidth" class="col-sm-5 col-form-label"><?= L('edge_width') ?></label>
             <div class="col-sm-5">
               <input type="number" class="form-control" id="edgeWidth" placeholder="3" min="1" min="20">
             </div>
           </div>
+          <div class="form-group row" id="EdgeSelectedIndexForm">
+            <label for="edgeSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
+            <div class="col-sm-5">
+              <select id="edgeSelectedIndex">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>              
         </fieldset>
         </form>
         

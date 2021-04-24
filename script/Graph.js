@@ -953,7 +953,8 @@ Graph.prototype.getGraphBBox = function (viewportSize)
     for(i = 0; i < this.vertices.length; i++)
     {
         var vertex = this.vertices[i];
-        var deltaVector = new Point(vertex.diameterFactor() * diameter, diameter);
+		var factor = vertex.diameterFactor();
+        var deltaVector = new Point(factor.x * diameter, factor.y * diameter);
         pointMin = pointMin.min(vertex.position.subtract(deltaVector));
         pointMax = pointMax.max(vertex.position.add(deltaVector));
     }

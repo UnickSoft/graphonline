@@ -217,71 +217,6 @@ function SelectedVertexStyle4()
 
 SelectedVertexStyle4.prototype = Object.create(BaseVertexStyle.prototype);
 
-function SelectedVertexStyle5()
-{
-	BaseVertexStyle.apply(this, arguments);
-
-	this.strokeStyle = '#FF6200';
-	this.mainTextColor  = '#FF6200';
-	this.fillStyle   = '#0F4FA8';
-
-	this.baseStyles.push("selected");
-}
-
-SelectedVertexStyle5.prototype = Object.create(BaseVertexStyle.prototype);
-
-function SelectedVertexStyle6()
-{
-	BaseVertexStyle.apply(this, arguments);
-
-	this.strokeStyle   = '#8CA336';
-	this.mainTextColor = '#8CA336';
-	this.fillStyle     = '#9C344C';
-
-	this.baseStyles.push("selected");
-}
-
-SelectedVertexStyle6.prototype = Object.create(BaseVertexStyle.prototype);
-
-function SelectedVertexStyle7()
-{
-	BaseVertexStyle.apply(this, arguments);
-
-	this.strokeStyle   = '#B59E22';
-	this.mainTextColor = '#B59E22';
-	this.fillStyle     = '#22387A';
-
-	this.baseStyles.push("selected");
-}
-
-SelectedVertexStyle7.prototype = Object.create(BaseVertexStyle.prototype);
-
-function SelectedVertexStyle8()
-{
-	BaseVertexStyle.apply(this, arguments);
-
-	this.strokeStyle   = '#08806C';
-	this.mainTextColor = '#08806C';
-	this.fillStyle     = '#CA980D';
-
-	this.baseStyles.push("selected");
-}
-
-SelectedVertexStyle8.prototype = Object.create(BaseVertexStyle.prototype);
-
-function SelectedVertexStyle9()
-{
-	BaseVertexStyle.apply(this, arguments);
-
-	this.strokeStyle   = '#AA8134';
-	this.mainTextColor = '#AA8134';
-	this.fillStyle     = '#492A73';
-
-	this.baseStyles.push("selected");
-}
-
-SelectedVertexStyle9.prototype = Object.create(BaseVertexStyle.prototype);
-
 function SelectedPrintVertexStyle()
 {
 	BaseVertexStyle.apply(this, arguments);
@@ -296,7 +231,7 @@ function SelectedPrintVertexStyle()
 SelectedPrintVertexStyle.prototype = Object.create(BaseVertexStyle.prototype);
 
 var DefaultSelectedGraphStyles = [new SelectedVertexStyle0(), new SelectedVertexStyle1(),
-	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4(), new SelectedVertexStyle5(), new SelectedVertexStyle6(), new SelectedVertexStyle7(), new SelectedVertexStyle8(), new SelectedVertexStyle9()];
+	new SelectedVertexStyle2(), new SelectedVertexStyle3(), new SelectedVertexStyle4()];
 
 var DefaultPrintSelectedGraphStyles = [new SelectedPrintVertexStyle()];
 

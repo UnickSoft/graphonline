@@ -232,7 +232,12 @@
     $g_lang['vertex_diameter'] = "Размер вершины";
 
     $g_lang['additional_text_color'] = "Цвет другого текста"; 
-    $g_lang['weight_position'] = "Позиция текста";
     $g_lang['center'] = "По центру";
-    $g_lang['on_up'] = "Сверху";    
+    $g_lang['on_up'] = "Сверху";
+
+    $g_lang['weight_position'] = "Позиция веса";    
+    $g_lang['text_position'] = "Позиция текста";
+    $g_lang['line_style']    = "Стиль дуги";
+    $g_lang['edge_width']    = "Толщина дуги";
+    $g_lang['selected_index'] = "Группа выделения";    
 ?>

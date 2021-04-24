@@ -199,7 +199,12 @@
     $g_lang['vertex_diameter'] = "Vertex size";    
 
     $g_lang['additional_text_color'] = "Another text color"; 
-    $g_lang['weight_position'] = "Text position";
     $g_lang['center'] = "Center";
     $g_lang['on_up'] = "Above";    
+
+    $g_lang['weight_position'] = "Weight position";    
+    $g_lang['text_position'] = "Text position";
+    $g_lang['line_style']    = "Edge style";
+    $g_lang['edge_width']    = "Edge width";
+    $g_lang['selected_index'] = "Selection group";      
 ?>

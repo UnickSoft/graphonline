@@ -94,7 +94,7 @@ BaseVertex.prototype.SetId = function (id)
 
 BaseVertex.prototype.diameterFactor = function ()
 {
-    return 1.0 + (this.mainText.length ? this.mainText.length / 8.0 : 0);
+    return new Point(1.0 + (this.mainText.length ? this.mainText.length / 8.0 : 0), 1.5);
 }
 
 BaseVertex.prototype.IsUndefinedPosition = function ()
@@ -169,7 +169,7 @@ BaseVertex.prototype.getStyleFor = function (index)
     if (index == 0)
       style = globalApplication.GetStyle("vertex", "common");
     else
-      style = globalApplication.GetStyle("vertex", "selected");
+      style = globalApplication.GetStyle("vertex", "selected", undefined, index - 1);
 
     return style;
   }

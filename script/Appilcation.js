@@ -1512,7 +1512,7 @@ Application.prototype.LoadUserSettings = function(json)
                         {
                             for(var deepK in parsedSave[entry.field][k])
                             {
-                                if (entry.value[k].ShouldLoad(deepK))
+                                if (k < entry.value.length && entry.value[k].ShouldLoad(deepK))
                                     entry.value[k][deepK] = parsedSave[entry.field][k][deepK];
                             }
                         }
@@ -1647,6 +1647,10 @@ Application.prototype.GetSelectionRect = function(rect)
 
 Application.prototype.GetStyle = function(type, styleName, object, index)
 {
+    var correctIndex = index;
+    if (correctIndex == undefined)
+        correctIndex = 0;
+
     if (type == "vertex")
     {
         if (styleName == "common")
@@ -1655,10 +1659,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "selected")
         {
-            if (index == undefined)
-                index = 0;
-
-            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.vertexSelectedVertexStyles[index];
+            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.vertexSelectedVertexStyles[correctIndex];
         }
         else if (styleName == "printed")
         {
@@ -1666,10 +1667,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "printedSelected")
         {
-            if (index == undefined)
-                index = 0;
-
-            return this.vertexPrintSelectedVertexStyles[index];
+            return this.vertexPrintSelectedVertexStyles[correctIndex];
         }       
 
         return null;
@@ -1682,7 +1680,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "selected")
         {
-            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.edgeSelectedStyles[0];
+            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.edgeSelectedStyles[correctIndex];
         }
         else if (styleName == "printed")
         {
@@ -1690,8 +1688,8 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "printedSelected")
         {
-            return this.edgePrintSelectedStyles[0];
-        }       
+            return this.edgePrintSelectedStyles[correctIndex];
+        }
 
         return null;
     }
@@ -1796,7 +1794,7 @@ Application.prototype.SetDefaultEdgeWidth = function(width)
 
 Application.prototype.GetDefaultEdgeWidth = function(diameter)
 {
-    if (this.defaultVertexSize != null)
+    if (this.defaultEdgeWidth != null)
         return this.defaultEdgeWidth;
     else
         return defaultEdgeWidth;
@@ -1804,7 +1802,7 @@ Application.prototype.GetDefaultEdgeWidth = function(diameter)
 
 Application.prototype.ResetEdgeWidth = function()
 {
-    this.defaultVertexSize = null;
+    this.defaultEdgeWidth = null;
 
     for (i = 0; i < this.graph.edges.length; i ++)
     {

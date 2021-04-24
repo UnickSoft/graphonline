@@ -10,6 +10,10 @@
           [16, 4, 4, 4],
         ];
 
+// Common text position
+const WeightTextCenter = 0,
+      WeightTextUp     = 1;
+
  function BaseEdgeStyle()
  {
    this.baseStyles = [];
@@ -34,6 +38,10 @@
      baseStyle.textStrockeWidth = this.textStrockeWidth;
    if (this.hasOwnProperty('lineDash'))
      baseStyle.lineDash = this.lineDash;
+   if (this.hasOwnProperty('additionalTextColor'))
+     baseStyle.additionalTextColor = this.additionalTextColor;
+   if (this.hasOwnProperty('weightPosition'))
+     baseStyle.weightPosition = this.weightPosition;
  
    return baseStyle;
  }
@@ -53,6 +61,8 @@ function CommonEdgeStyle()
  	this.textPadding = 4;
 	this.textStrockeWidth = 2;
   this.lineDash = 0;
+  this.additionalTextColor = '#c7b7c7';
+  this.weightPosition = WeightTextCenter;
 }
 
 CommonEdgeStyle.prototype = Object.create(BaseEdgeStyle.prototype);
@@ -234,15 +244,30 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
   }
     
   this.SetupStyle(baseEdge, arcStyle);
-    
-  if (baseEdge.GetText().length > 0)
-  {
-	this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, false);
-  }
 
-  if (baseEdge.GetUpText().length > 0)
+  if (arcStyle.weightPosition == WeightTextCenter)
   {
-    this.DrawUpText(positions[0], positions[1], baseEdge.GetUpText(), arcStyle, false);
+    if (baseEdge.GetText().length > 0)
+    {
+      this.DrawWeight(positions[0], positions[1], baseEdge.GetText(), arcStyle, false);
+    }
+
+    if (baseEdge.GetUpText().length > 0)
+    {
+      this.DrawUpText(positions[0], positions[1], baseEdge.GetUpText(), arcStyle, false, arcStyle.additionalTextColor, baseEdge.model.width / 2 + 20, null);
+    }
+  }
+  else if (arcStyle.weightPosition == WeightTextUp)
+  {
+    if (baseEdge.GetText().length > 0)
+    {
+      this.DrawUpText(positions[0], positions[1], baseEdge.GetText(), arcStyle, false, arcStyle.weightText, baseEdge.model.width / 2 + 10, "16px");
+    }
+    
+    if (baseEdge.GetUpText().length > 0)
+    {
+      this.DrawUpText(positions[0], positions[1], baseEdge.GetUpText(), arcStyle, false, arcStyle.additionalTextColor, - baseEdge.model.width / 2 - 15, null);
+    }
   }
 }
 
@@ -305,16 +330,16 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
   this.context.fillText(text, centerPoint.x - widthText / 2, centerPoint.y);
 }
 
-BaseEdgeDrawer.prototype.DrawUpText = function(position1, position2, text, arcStyle, hasPair)
+BaseEdgeDrawer.prototype.DrawUpText = function(position1, position2, text, arcStyle, hasPair, color, offset, fontSize)
 { 
   var centerPoint = this.GetTextCenterPoint(position1, position2, hasPair, arcStyle);
         
-  this.context.font         = "bold 12px sans-serif";
+  this.context.font         = fontSize == null ? "bold 12px sans-serif" : "bold " + fontSize + " sans-serif";
   this.context.textBaseline = "middle";
 
   var widthText = this.context.measureText(text).width;
 
-  this.context.fillStyle = arcStyle.strokeStyle;	
+  this.context.fillStyle = color;	
 
   var vectorEdge   = new Point(position2.x - position1.x, position2.y - position1.y);
   var angleRadians = Math.atan2(vectorEdge.y, vectorEdge.x);
@@ -323,13 +348,11 @@ BaseEdgeDrawer.prototype.DrawUpText = function(position1, position2, text, arcSt
     vectorEdge   = new Point(position1.x - position2.x, position1.y - position2.y);
     angleRadians = Math.atan2(vectorEdge.y, vectorEdge.x);          
   }
-  var normalize    = vectorEdge.normal().normalizeCopy(20);
+  var normalize    = vectorEdge.normal().normalizeCopy(offset);
   this.context.save();
   this.context.translate(centerPoint.x - normalize.x, centerPoint.y - normalize.y);
   this.context.rotate(angleRadians);
   this.context.textAlign = "center";
-  //context.textAlign = "center";
-  //context.fillText("Your Label Here", labelXposition, 0);
     
   this.context.fillText(text, 0, 0);
 

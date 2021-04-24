@@ -293,7 +293,7 @@ BaseEdge.prototype.getStyleFor = function (index)
     if (index == 0)
       style = globalApplication.GetStyle("edge", "common");
     else
-      style = globalApplication.GetStyle("edge", "selected");
+      style = globalApplication.GetStyle("edge", "selected", undefined, index - 1);
 
     return style;
   }

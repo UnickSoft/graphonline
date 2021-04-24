@@ -1390,19 +1390,24 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     var app   = this.app;
     this.forAll = selectedVertexes == null;
     var forAll = this.forAll;
+    var sefl = this;
 
-    var originStyle = (index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[index - 1]);
-
-    if (!forAll)
+    var applyIndex = function(index)
     {
-        originStyle = selectedVertexes[0].getStyleFor(index);
+        self.index = index;
+        self.originStyle = (self.index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[self.index - 1]);
+        if (!forAll)
+        {
+            self.originStyle = selectedVertexes[0].getStyleFor(self.index);
+        }
+        self.style = FullObjectCopy(self.originStyle);    
     }
 
-    var style = FullObjectCopy(originStyle);
+    applyIndex(index);
 
     var fillFields = function()
     {
-        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
 
         $( "#vertexFillColor" ).val(fullStyle.fillStyle);
         $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
@@ -1411,7 +1416,17 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
         $( "#vertexShape" ).val(fullStyle.shape);
         $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertexes[0].model.diameter);
-        $( "#commonTextPosition" ).val(fullStyle.commonTextPosition);        
+        $( "#commonTextPosition" ).val(fullStyle.commonTextPosition); 
+        
+        if (self.index > 0)
+        {
+            $( "#VertexSelectedIndexForm" ).show();
+            $( "#vertexSelectedIndex" ).val(self.index);        
+        }
+        else
+        {
+            $( "#VertexSelectedIndexForm" ).hide();        
+        }        
     }
     
     var redrawVertex = function()
@@ -1419,25 +1434,25 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         var fullStyle = style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
 
         if (fullStyle.fillStyle != $( "#vertexFillColor" ).val())
-            style.fillStyle     = $( "#vertexFillColor" ).val();
+            self.style.fillStyle     = $( "#vertexFillColor" ).val();
 
         if (fullStyle.strokeStyle != $( "#vertexStrokeColor" ).val())
-            style.strokeStyle   = $( "#vertexStrokeColor" ).val();
+            self.style.strokeStyle   = $( "#vertexStrokeColor" ).val();
 
         if (fullStyle.mainTextColor != $( "#vertexTextColor" ).val())
-            style.mainTextColor = $( "#vertexTextColor" ).val();
+            self.style.mainTextColor = $( "#vertexTextColor" ).val();
 
         if (fullStyle.lineWidth != $( "#vertexStrokeSize" ).val())
-            style.lineWidth     = parseInt($( "#vertexStrokeSize" ).val());
+            self.style.lineWidth     = parseInt($( "#vertexStrokeSize" ).val());
 
         if (fullStyle.shape != $( "#vertexShape" ).val())
-            style.shape    = parseInt($( "#vertexShape" ).val());
+            self.style.shape    = parseInt($( "#vertexShape" ).val());
 
         if (fullStyle.upTextColor != $( "#upVertexTextColor" ).val())
-            style.upTextColor = $( "#upVertexTextColor" ).val(); 
+            self.style.upTextColor = $( "#upVertexTextColor" ).val(); 
 
         if (fullStyle.commonTextPosition != $( "#commonTextPosition" ).val())
-            style.commonTextPosition = $( "#commonTextPosition" ).val(); 
+            self.style.commonTextPosition = $( "#commonTextPosition" ).val(); 
 
         var diameter = parseInt($( "#vertexSize" ).val());
         
@@ -1458,12 +1473,20 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         if (!forAll)
             baseVertex.ownStyles = selectedVertexes[0].ownStyles;
         
-        graphDrawer.Draw(baseVertex, style.GetStyle({}, baseVertex));
+        graphDrawer.Draw(baseVertex, self.style.GetStyle({}, baseVertex));
         
         context.restore();
     }
     
-    //var dialogButtons = [];
+    var changeIndex = function()
+    {
+        var index = parseInt($( "#vertexSelectedIndex" ).val());
+        this.index = index;
+        applyIndex(index);
+        fillFields();
+        redrawVertex();
+    }
+
     var applyDiameter = function(diameter)
         {
             if (forAll)
@@ -1488,12 +1511,12 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
                     if (forAll)
                     {
-                        app.ResetVertexStyle(index);
+                        app.ResetVertexStyle(self.index);
                     }
                     else
                     {
                         selectedVertexes.forEach(function(vertex) {
-                            vertex.resetOwnStyle(index);
+                            vertex.resetOwnStyle(self.index);
                           });
                     }
                     app.redrawGraph();
@@ -1507,14 +1530,14 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
                 if (forAll)
                 {
-                    app.SetVertexStyle(index, style);
+                    app.SetVertexStyle(self.index, self.style);
                 }
                 else
                 {
-                    if (JSON.stringify(originStyle) !== JSON.stringify(style))
+                    if (JSON.stringify(self.originStyle) !== JSON.stringify(self.style))
                     {
                         selectedVertexes.forEach(function(vertex) {
-                            vertex.setOwnStyle(index, style);
+                            vertex.setOwnStyle(self.index, self.style);
                         });
                     }
                 }
@@ -1547,6 +1570,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     $( "#vertexShape" ).unbind();
     $( "#vertexSize" ).unbind();
     $( "#commonTextPosition" ).unbind();
+    $( "#vertexSelectedIndex" ).unbind();
     
     $( "#vertexFillColor" ).change(redrawVertex);
     $( "#vertexStrokeColor" ).change(redrawVertex);
@@ -1556,6 +1580,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     $( "#vertexSize" ).change(redrawVertex);
     $( "#upVertexTextColor" ).change(redrawVertex);
     $( "#commonTextPosition" ).change(redrawVertex);
+    $( "#vertexSelectedIndex" ).change(changeIndex);
 }
 
 /**
@@ -1580,41 +1605,66 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     this.forAll = selectedEdges == null;
     var forAll = this.forAll;
 
-    var originStyle = (index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[index - 1]);
+    var self = this;
 
-    if (!forAll)
+    var applyIndex = function(index)
     {
-        originStyle = selectedEdges[0].getStyleFor(index);
+        self.index = index;
+        var originStyle = (self.index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[self.index - 1]);
+        if (!forAll)
+        {
+            originStyle = selectedEdges[0].getStyleFor(self.index);
+        }
+        self.style = FullObjectCopy(originStyle);    
     }
 
-    var style = FullObjectCopy(originStyle);
+    applyIndex(index);
 
     var fillFields = function()
     {
-        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
 
         $( "#edgeFillColor" ).val(fullStyle.fillStyle);
         $( "#edgeStrokeColor" ).val(fullStyle.strokeStyle);
         $( "#edgeTextColor" ).val(fullStyle.weightText);
         $( "#edgeStyle" ).val(fullStyle.lineDash);
         $( "#edgeWidth" ).val(forAll ? app.GetDefaultEdgeWidth() : selectedEdges[0].model.width);
+
+        $( "#weightEdgeTextColor" ).val(fullStyle.additionalTextColor);
+        $( "#weightTextPosition" ).val(fullStyle.weightPosition);
+
+        if (self.index > 0)
+        {
+            $( "#EdgeSelectedIndexForm" ).show();
+            $( "#edgeSelectedIndex" ).val(self.index);        
+        }
+        else
+        {
+            $( "#EdgeSelectedIndexForm" ).hide();        
+        }
     }
     
     var redrawVertex = function()
     {
-        var fullStyle = style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedEdges[0]);
 
         if (fullStyle.fillStyle != $( "#edgeFillColor" ).val())
-            style.fillStyle     = $( "#edgeFillColor" ).val();
+            self.style.fillStyle     = $( "#edgeFillColor" ).val();
 
         if (fullStyle.strokeStyle != $( "#edgeStrokeColor" ).val())
-            style.strokeStyle   = $( "#edgeStrokeColor" ).val();
+            self.style.strokeStyle   = $( "#edgeStrokeColor" ).val();
 
         if (fullStyle.weightText != $( "#edgeTextColor" ).val())
-            style.weightText    = $( "#edgeTextColor" ).val();
+            self.style.weightText    = $( "#edgeTextColor" ).val();
 
         if (fullStyle.lineDash != $( "#edgeStyle" ).val())
-            style.lineDash    = $( "#edgeStyle" ).val();
+            self.style.lineDash    = $( "#edgeStyle" ).val();
+
+        if (fullStyle.additionalTextColor != $( "#weightEdgeTextColor" ).val())
+            self.style.additionalTextColor    = $( "#weightEdgeTextColor" ).val();
+
+        if (fullStyle.weightPosition != $( "#weightTextPosition" ).val())
+            self.style.weightPosition    = $( "#weightTextPosition" ).val();
 
         var edgeWidth = parseInt($( "#edgeWidth" ).val());
         
@@ -1640,10 +1690,19 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         baseEdge.model.width = edgeWidth;
 
-        graphDrawer.Draw(baseEdge, style.GetStyle({}, baseEdge));
+        graphDrawer.Draw(baseEdge, self.style.GetStyle({}, baseEdge));
         
         context.restore();
     }
+
+    var changeIndex = function()
+    {
+        var index = parseInt($( "#edgeSelectedIndex" ).val());
+        this.index = index;
+        applyIndex(index);
+        fillFields();
+        redrawVertex();
+    }    
     
     var applyWidth = function(width)
         {
@@ -1669,12 +1728,12 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
                     if (forAll)
                     {
-                        app.ResetEdgeStyle(index);
+                        app.ResetEdgeStyle(self.index);
                     }
                     else
                     {
                         selectedEdges.forEach(function(edge) {
-                            edge.resetOwnStyle(index);
+                            edge.resetOwnStyle(self.index);
                         });
                     }
                     
@@ -1689,12 +1748,12 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
                 if (forAll)
                 {
-                    app.SetEdgeStyle(index, style);
+                    app.SetEdgeStyle(self.index, self.style);
                 }
                 else
                 {
                     selectedEdges.forEach(function(edge) {
-                        edge.setOwnStyle(index, style);
+                        edge.setOwnStyle(self.index, self.style);
                     });   
                 }                
                 app.redrawGraph();
@@ -1722,13 +1781,19 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     $( "#edgeStrokeColor" ).unbind();
     $( "#edgeTextColor" ).unbind();
     $( "#edgeStyle" ).unbind();
-    $( "#edgeWidth" ).unbind();    
+    $( "#edgeWidth" ).unbind();
+    $( "#weightEdgeTextColor" ).unbind();
+    $( "#weightTextPosition" ).unbind();
+    $( "#edgeSelectedIndex" ).unbind();    
     
     $( "#edgeFillColor" ).change(redrawVertex);
     $( "#edgeStrokeColor" ).change(redrawVertex);
     $( "#edgeTextColor" ).change(redrawVertex);
     $( "#edgeStyle" ).change(redrawVertex);
     $( "#edgeWidth" ).change(redrawVertex);
+    $( "#weightEdgeTextColor" ).change(redrawVertex);
+    $( "#weightTextPosition" ).change(redrawVertex);    
+    $( "#edgeSelectedIndex" ).change(changeIndex);        
 }
 
 /**
