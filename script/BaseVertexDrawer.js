@@ -115,6 +115,18 @@ BaseVertexStyle.prototype.GetStyle = function (baseStyle, object)
 	return baseStyle;
 }
 
+BaseVertexStyle.prototype.Clear = function ()
+{
+	delete this.lineWidth;
+	delete this.strokeStyle;
+	delete this.fillStyle;
+	delete this.mainTextColor;
+	delete this.shape;
+	delete this.upTextColor;
+	delete this.commonTextPosition;
+	delete this.lineWidth;
+}
+
 BaseVertexStyle.prototype.ShouldLoad = function (field)
 {
 	return field != "baseStyles";

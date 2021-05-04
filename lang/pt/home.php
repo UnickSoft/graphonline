@@ -205,4 +205,6 @@
     $g_lang['line_style']    = "Edge style";
     $g_lang['edge_width']    = "Edge width";
     $g_lang['selected_index'] = "Selection group";      
+
+    $g_lang['all'] = "All";    
 ?>

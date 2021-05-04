@@ -240,4 +240,6 @@
     $g_lang['line_style']    = "Стиль дуги";
     $g_lang['edge_width']    = "Толщина дуги";
     $g_lang['selected_index'] = "Группа выделения";    
+
+    $g_lang['all'] = "Все";
 ?>

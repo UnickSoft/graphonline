@@ -9,6 +9,12 @@ function CommonBackgroundStyle()
 	this.commonOpacity = 1.0;
 }
 
+CommonBackgroundStyle.prototype.Clear = function ()
+{
+  delete this.commonColor;
+  delete this.commonOpacity;
+}
+
 CommonBackgroundStyle.prototype.ShouldLoad = function (field)
 {
   return true;

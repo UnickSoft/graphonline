@@ -45,7 +45,19 @@ const WeightTextCenter = 0,
  
    return baseStyle;
  }
- 
+
+ BaseEdgeStyle.prototype.Clear = function ()
+ {
+    delete this.weightText;
+    delete this.strokeStyle;
+    delete this.fillStyle;
+    delete this.textPadding;
+    delete this.textStrockeWidth;
+    delete this.lineDash;
+    delete this.additionalTextColor;
+    delete this.weightPosition;
+ }
+
  BaseEdgeStyle.prototype.ShouldLoad = function (field)
  {
    return field != "baseStyles";

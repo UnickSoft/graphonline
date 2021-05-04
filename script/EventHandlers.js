@@ -1418,7 +1418,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertexes[0].model.diameter);
         $( "#commonTextPosition" ).val(fullStyle.commonTextPosition); 
         
-        if (self.index > 0)
+        if (self.index > 0 || self.index == "all")
         {
             $( "#VertexSelectedIndexForm" ).show();
             $( "#vertexSelectedIndex" ).val(self.index);        
@@ -1426,7 +1426,40 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         else
         {
             $( "#VertexSelectedIndexForm" ).hide();        
-        }        
+        }
+
+        // Fill color presets.
+        var stylesArray = [];
+        stylesArray.push(app.vertexCommonStyle);
+
+        for (i = 0; i < app.vertexSelectedVertexStyles.length; i ++)
+            stylesArray.push(app.vertexSelectedVertexStyles[i]);
+
+        var colorSet = {};
+        for (i = 0; i < stylesArray.length; i ++)
+        {
+            var style = stylesArray[i];
+            if (style.hasOwnProperty('strokeStyle'))
+                colorSet[style.strokeStyle] = 1;
+            if (style.hasOwnProperty('fillStyle'))
+                colorSet[style.fillStyle] = 1;
+            if (style.hasOwnProperty('mainTextColor'))
+                colorSet[style.mainTextColor] = 1;
+            if (style.hasOwnProperty('upTextColor'))
+                colorSet[style.upTextColor] = 1;
+        }
+
+        $("#vertexFillColorPreset").find('option').remove();
+        $("#upVertexTextColorPreset").find('option').remove();
+        $("#vertexTextColorPreset").find('option').remove();
+        $("#vertexStrokeColorPreset").find('option').remove();
+        for (const property in colorSet)
+        {
+            $("#vertexFillColorPreset").append(new Option(property));
+            $("#upVertexTextColorPreset").append(new Option(property));
+            $("#vertexTextColorPreset").append(new Option(property));
+            $("#vertexStrokeColorPreset").append(new Option(property));
+        }
     }
     
     var redrawVertex = function()
@@ -1480,10 +1513,20 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     
     var changeIndex = function()
     {
-        var index = parseInt($( "#vertexSelectedIndex" ).val());
-        this.index = index;
-        applyIndex(index);
-        fillFields();
+        var val   = $( "#vertexSelectedIndex" ).val();
+        if (val == "all")
+        {
+            applyIndex(1);
+            self.index = "all";
+            fillFields();
+        }
+        else
+        {
+            var index = parseInt(val);
+            self.index = index;
+            applyIndex(index);
+            fillFields();
+        }
         redrawVertex();
     }
 
@@ -1509,14 +1552,28 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
                     applyDiameter(forAll ? (new VertexModel()).diameter : app.GetDefaultVertexSize());
 
+                    var indexes = [];
+                    if (self.index == "all")
+                    {
+                        for (i = 0; i < app.vertexSelectedVertexStyles.length; i ++)
+                            indexes.push(i + 1);
+                    }
+                    else
+                        indexes.push(self.index);
+                    
+
                     if (forAll)
                     {
-                        app.ResetVertexStyle(self.index);
+                        indexes.forEach(function(index) {
+                        	app.ResetVertexStyle(index);
+                        });
                     }
                     else
                     {
                         selectedVertexes.forEach(function(vertex) {
-                            vertex.resetOwnStyle(self.index);
+                        	indexes.forEach(function(index) {
+                            	vertex.resetOwnStyle(index);
+                            });
                           });
                     }
                     app.redrawGraph();
@@ -1528,16 +1585,37 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
                 applyDiameter(parseInt($( "#vertexSize" ).val()));
 
+                var indexes = [];
+                if (self.index == "all")
+                {
+                    indexes.push({index : 1, style : self.style});
+                    for (i = 1; i < app.vertexSelectedVertexStyles.length; i ++)
+                    {
+                        var style = (new BaseVertexStyle());
+                        style.baseStyles.push("selected");
+                        indexes.push({index : i + 1, style : style});
+                    }
+
+                    self.style.baseStyles = [];
+                    self.style.baseStyles = self.style.baseStyles.concat((new SelectedVertexStyle0()).baseStyles);
+                }
+                else
+                    indexes.push({index : self.index, style : self.style});
+
                 if (forAll)
                 {
-                    app.SetVertexStyle(self.index, self.style);
+                	indexes.forEach(function(index) {
+                    	app.SetVertexStyle(index.index, index.style);
+                    });
                 }
                 else
                 {
                     if (JSON.stringify(self.originStyle) !== JSON.stringify(self.style))
                     {
                         selectedVertexes.forEach(function(vertex) {
-                            vertex.setOwnStyle(self.index, self.style);
+                        	indexes.forEach(function(index) {
+                            	vertex.setOwnStyle(index.index, index.style);
+                            });
                         });
                     }
                 }
@@ -1633,7 +1711,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
         $( "#weightEdgeTextColor" ).val(fullStyle.additionalTextColor);
         $( "#weightTextPosition" ).val(fullStyle.weightPosition);
 
-        if (self.index > 0)
+        if (self.index > 0 || self.index == "all")
         {
             $( "#EdgeSelectedIndexForm" ).show();
             $( "#edgeSelectedIndex" ).val(self.index);        
@@ -1642,6 +1720,37 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
         {
             $( "#EdgeSelectedIndexForm" ).hide();        
         }
+
+        // Fill color presets.
+        var stylesArray = [];
+        stylesArray.push(app.edgeCommonStyle);
+
+        for (i = 0; i < app.edgeSelectedStyles.length; i ++)
+            stylesArray.push(app.edgeSelectedStyles[i]);
+
+        var colorSet = {};
+        for (i = 0; i < stylesArray.length; i ++)
+        {
+            var style = stylesArray[i];
+            if (style.hasOwnProperty('strokeStyle'))
+                colorSet[style.strokeStyle] = 1;
+            if (style.hasOwnProperty('fillStyle'))
+                colorSet[style.fillStyle] = 1;
+            if (style.hasOwnProperty('additionalTextColor'))
+                colorSet[style.additionalTextColor] = 1;
+        }
+
+        $("#edgeFillColorPreset").find('option').remove();
+        $("#weightEdgeTextColorPreset").find('option').remove();
+        $("#edgeTextColorPreset").find('option').remove();
+        $("#edgeStrokeColorPreset").find('option').remove();
+        for (const property in colorSet)
+        {
+            $("#edgeFillColorPreset").append(new Option(property));
+            $("#weightEdgeTextColorPreset").append(new Option(property));
+            $("#edgeTextColorPreset").append(new Option(property));
+            $("#edgeStrokeColorPreset").append(new Option(property));
+        }        
     }
     
     var redrawVertex = function()
@@ -1697,10 +1806,21 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
     var changeIndex = function()
     {
-        var index = parseInt($( "#edgeSelectedIndex" ).val());
-        this.index = index;
-        applyIndex(index);
-        fillFields();
+        var val = $( "#edgeSelectedIndex" ).val();
+        if (val == "all")
+        {
+            applyIndex(1);
+            self.index = "all";
+            fillFields();
+        }
+        else
+        {
+            var index = parseInt(val);
+            self.index = index;
+            applyIndex(index);
+            fillFields();    
+        }
+
         redrawVertex();
     }    
     
@@ -1723,17 +1843,28 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
-
                     applyWidth(forAll ? (new EdgeModel()).width : app.GetDefaultEdgeWidth());
+                    var indexes = [];
+                    if (self.index == "all")
+                    {
+                        for (i = 0; i < app.edgeSelectedStyles.length; i ++)
+                            indexes.push(i + 1);
+                    }
+                    else
+                        indexes.push(self.index);
 
                     if (forAll)
-                    {
-                        app.ResetEdgeStyle(self.index);
+                    {                        
+                        indexes.forEach(function(index) {
+                                app.ResetEdgeStyle(index);
+                            });
                     }
                     else
                     {
                         selectedEdges.forEach(function(edge) {
-                            edge.resetOwnStyle(self.index);
+                            indexes.forEach(function(index) {
+                                edge.resetOwnStyle(index);
+                            });                            
                         });
                     }
                     
@@ -1746,15 +1877,37 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
                 applyWidth(parseInt($( "#edgeWidth" ).val()));
 
+                var indexes = [];
+                if (self.index == "all")
+                {
+                    indexes.push({index : 1, style : self.style});
+
+                    for (i = 1; i < app.edgeSelectedStyles.length; i ++)
+                    {
+                        var style = (new BaseEdgeStyle());
+                        style.baseStyles.push("selected");
+                        indexes.push({index : i + 1, style : style});
+                    }
+
+                    self.style.baseStyles = [];
+                    self.style.baseStyles = self.style.baseStyles.concat((new SelectedEdgeStyle0()).baseStyles);
+                }
+                else
+                    indexes.push({index : self.index, style : self.style});
+
                 if (forAll)
                 {
-                    app.SetEdgeStyle(self.index, self.style);
+                    indexes.forEach(function(index) {
+                        app.SetEdgeStyle(index.index, index.style);
+                    });
                 }
                 else
                 {
                     selectedEdges.forEach(function(edge) {
-                        edge.setOwnStyle(self.index, self.style);
-                    });   
+                        indexes.forEach(function(index) {
+                                edge.setOwnStyle(index.index, index.style);
+                            });
+                    });
                 }                
                 app.redrawGraph();
 				$( this ).dialog( "close" );					

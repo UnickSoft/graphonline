@@ -1501,15 +1501,25 @@ Application.prototype.LoadUserSettings = function(json)
                 }
                 else
                 {
+                    if (!entry.deep)
+                        entry.value.Clear();
+
                     for(var k in parsedSave[entry.field])
                     {
                         if (!entry.deep)
                         {
                             if (entry.value.ShouldLoad(k))
+                            {
                                 entry.value[k] = parsedSave[entry.field][k];
+                            }
                         }
                         else
                         {
+                            // Check is number or not
+                            if (k % 1 != 0)
+                                continue;
+
+                            entry.value[k].Clear();
                             for(var deepK in parsedSave[entry.field][k])
                             {
                                 if (k < entry.value.length && entry.value[k].ShouldLoad(deepK))
@@ -1659,7 +1669,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "selected")
         {
-            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.vertexSelectedVertexStyles[correctIndex];
+            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.vertexSelectedVertexStyles[correctIndex];
         }
         else if (styleName == "printed")
         {
@@ -1680,7 +1690,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
         }
         else if (styleName == "selected")
         {
-            return object !== undefined && index == 0 ? object.getStyleFor(1) : this.edgeSelectedStyles[correctIndex];
+            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.edgeSelectedStyles[correctIndex];
         }
         else if (styleName == "printed")
         {

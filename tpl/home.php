@@ -399,13 +399,17 @@
           <div class="form-group row">
             <label for="vertexFillColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="vertexFillColor" value="#FFAA22">
+              <input type="color" class="form-control" id="vertexFillColor" value="#FFAA22" list="vertexFillColorPreset">
+              <datalist id="vertexFillColorPreset">
+              </datalist>
             </div>
           </div>
           <div class="form-group row">
             <label for="vertexStrokeColor" class="col-sm-5 col-form-label"><?= L('stroke_color') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="vertexStrokeColor" value="#FFAA22">
+              <input type="color" class="form-control" id="vertexStrokeColor" value="#FFAA22" list="vertexStrokeColorPreset">
+              <datalist id="vertexStrokeColorPreset">
+              </datalist>              
             </div>
           </div>
           <div class="form-group row">
@@ -417,13 +421,17 @@
           <div class="form-group row small-bottom-marging">
             <label for="vertexTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
-                <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22">
+                <input type="color" class="form-control" id="vertexTextColor" value="#FFAA22" list="vertexTextColorPreset">
+                <datalist id="vertexTextColorPreset">
+                </datalist>                     
             </div>
           </div>
           <div class="form-group row small-bottom-marging">
             <label for="upVertexTextColor" class="col-sm-5 col-form-label"><?= L('additional_text_color') ?></label>
             <div class="col-sm-5">
-                <input type="color" class="form-control" id="upVertexTextColor" value="#FFAA22">
+                <input type="color" class="form-control" id="upVertexTextColor" value="#FFAA22" list="upVertexTextColorPreset">
+                <datalist id="upVertexTextColorPreset">
+                </datalist>
             </div>
           </div>
           <div class="form-group row">
@@ -461,6 +469,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
+                <option value="all"><?= L('all')?></option>
               </select>
             </div>
           </div>          
@@ -476,19 +485,25 @@
           <div class="form-group row">
             <label for="edgeStrokeColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22">
+              <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22" list="edgeStrokeColorPreset">
+              <datalist id="edgeStrokeColorPreset">
+              </datalist>              
             </div>
           </div>
           <div class="form-group row small-bottom-marging">
             <label for="edgeTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="edgeTextColor" value="#FFAA22">
+              <input type="color" class="form-control" id="edgeTextColor" value="#FFAA22" list="edgeTextColorPreset">
+              <datalist id="edgeTextColorPreset">
+              </datalist>                 
             </div>
           </div>
           <div class="form-group row small-bottom-marging">
             <label for="weightEdgeTextColor" class="col-sm-5 col-form-label"><?= L('additional_text_color') ?></label>
             <div class="col-sm-5">
-                <input type="color" class="form-control" id="weightEdgeTextColor" value="#FFAA22">
+              <input type="color" class="form-control" id="weightEdgeTextColor" value="#FFAA22" list="weightEdgeTextColorPreset">
+              <datalist id="weightEdgeTextColorPreset">
+              </datalist>            
             </div>
           </div>
           <div class="form-group row">
@@ -503,7 +518,9 @@
           <div class="form-group row">
             <label for="edgeFillColor" class="col-sm-5 col-form-label"><?= L('text_background') ?></label>
             <div class="col-sm-5">
-              <input type="color" class="form-control" id="edgeFillColor" value="#FFAA22">
+              <input type="color" class="form-control" id="edgeFillColor" value="#FFAA22" list="edgeFillColorPreset">
+              <datalist id="edgeFillColorPreset">
+              </datalist>                     
             </div>
           </div>
           <div class="form-group row">
@@ -532,6 +549,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
+                <option value="all"><?= L('all')?></option>
               </select>
             </div>
           </div>              
