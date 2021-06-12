@@ -99,6 +99,26 @@ Graph.prototype.DeleteVertex = function(vertexObject)
 	}
 }
 
+Graph.prototype.HasConnectedNodes = function(vertexObject)
+{
+	var res = false;
+
+	var index = this.vertices.indexOf(vertexObject);
+	if (index > -1) 
+	{
+ 		for (var i = 0; i < this.edges.length; i++)
+		{
+			if (this.edges[i].vertex1 == vertexObject || this.edges[i].vertex2 == vertexObject)
+			{
+				res = true;
+				break;
+			}
+		}
+	}
+
+	return res;
+}
+
 Graph.prototype.FindVertex = function(id)
 {
 	var res = null;

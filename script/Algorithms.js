@@ -154,13 +154,20 @@ function BaseAlgorithmEx(graph, app)
 // inheritance.
 BaseAlgorithmEx.prototype = Object.create(BaseAlgorithm.prototype);
 
-BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallback)
+BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallback, ignoreSeparateNodes = false)
 {
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
       console.log(queryString);
 
     var graph = this.graph;
-    var creator = new GraphMLCreater(graph.vertices, graph.edges);
+    var ignoreNodes = {};
+
+    if (ignoreSeparateNodes)
+        for (var i = 0; i < graph.vertices.length; i++)
+            if (!graph.HasConnectedNodes(graph.vertices[i]))
+                ignoreNodes[graph.vertices[i].id] = 1;
+
+    var creator = new GraphMLCreater(graph.vertices, graph.edges, ignoreNodes);
     var pathObjects = [];
     var properties = {};
     var result = [];
@@ -204,15 +211,15 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
                       $data.each(function(){
                                  if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
                                  {
-                                 pathObjects.push(graph.FindVertex(id));
+                                    pathObjects.push(graph.FindVertex(id));
                                  }
                                  else
                                  {
-                                 if (!properties[id])
-                                 {
-                                 properties[id] = {};
-                                 }
-                                 properties[id][$(this).attr('key')] = $(this).text();
+                                    if (!properties[id])
+                                    {
+                                        properties[id] = {};
+                                    }
+                                    properties[id][$(this).attr('key')] = $(this).text();
                                  }
                                  });
                       });

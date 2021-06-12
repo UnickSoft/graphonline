@@ -4,10 +4,11 @@
  */
 
 
-function GraphMLCreater(nodes, arcs)
+function GraphMLCreater(nodes, arcs, ignoreNodes = {})
 {
 	this.nodes = nodes;
 	this.arcs = arcs;
+	this.ignoreNodes = ignoreNodes;	
 }
 
 
@@ -27,7 +28,8 @@ GraphMLCreater.prototype.GetXMLString = function()
 	  
 	for (var i = 0; i < this.nodes.length; i++)
 	{
-		xmlBoby = xmlBoby + "<node id=\"" + this.nodes[i].id + "\"/>";
+		if (!this.ignoreNodes.hasOwnProperty(this.nodes[i].id))
+			xmlBoby = xmlBoby + "<node id=\"" + this.nodes[i].id + "\"/>";
 	}
 	var hasDirected = false;
 	for (var i = 0; i < this.arcs.length; i++)

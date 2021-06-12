@@ -37,7 +37,7 @@ FindEulerianPath.prototype.result = function(resultCallback)
     this.CalculateAlgorithm("elpath=cgiInput&report=xml", function (pathObjects, properties, results)
                                                                     {
                                                                         self.resultCallback(pathObjects, properties, results);
-                                                                    });
+                                                                    }, true);
     
     return true;
 }
