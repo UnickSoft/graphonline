@@ -655,7 +655,6 @@ ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
 	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value, $("#RadiosReplaceEdge").prop("checked"), document.getElementById('EdgeLable').value);
     
-    EdgeLable
 	this.SelectFirst();					
 	this.app.NeedRedraw();
 }
@@ -719,6 +718,16 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
                         $(this).off('submit').on('submit', function () {
                             return false;
                         });
+
+                        // Focues weight
+                        setTimeout(function(){ 
+                            const weightInput = document.getElementById('EdgeWeight');
+                            if(weightInput)
+                            {
+                                weightInput.focus();
+                                weightInput.select();        
+                            } 
+                           },0);                        
                 }
         });
     }
@@ -1927,7 +1936,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 		buttons: dialogButtons,
 		dialogClass: 'EdgeDialog'
 	});
-    
+
     redrawVertex();
 
     $( "#edgeFillColor" ).unbind();

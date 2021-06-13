@@ -84,16 +84,35 @@
 		width : 100%;
     }
 
+    #EdgeWeightControls
+    {
+        width: 100%;
+    }
+
     #EdgeWeight
     {
-        width: 86px;
+        width: 100%;
     }
 
     #EdgeWeightSlider
     {
-        width: auto;
+        width: 100%;
         max-width: 100%;
         display: inline-block;
+    }
+
+    #MainEdgeWeightControl
+    {
+        border-width: 1px;
+        border-radius: 4px;
+        border-color: lightgray;
+        border-style: solid;
+        margin: 4px;
+        padding: 6px;
+    }
+
+    #EdgeLable {
+        width: 100%;
     }
 
     #sentAlgorithm
