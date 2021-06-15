@@ -43,8 +43,19 @@ const WeightTextCenter = 0,
    if (this.hasOwnProperty('weightPosition'))
      baseStyle.weightPosition = this.weightPosition;
  
-   return baseStyle;
- }
+   return this.FixNewFields(baseStyle);
+}
+  
+BaseEdgeStyle.prototype.FixNewFields = function (style)
+{
+  if (!style.hasOwnProperty('lineDash'))
+    style.lineDash = 0;
+
+  if (!style.hasOwnProperty('weightPosition'))
+    style.weightPosition = WeightTextCenter;
+
+  return style;
+}
 
  BaseEdgeStyle.prototype.Clear = function ()
  {

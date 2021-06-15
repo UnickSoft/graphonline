@@ -112,7 +112,19 @@ BaseVertexStyle.prototype.GetStyle = function (baseStyle, object)
 		baseStyle.commonTextPosition = this.commonTextPosition;
 
 	baseStyle.lineWidth = parseInt(baseStyle.lineWidth);
-	return baseStyle;
+
+	return this.FixNewFields(baseStyle);
+}
+
+BaseVertexStyle.prototype.FixNewFields = function (style)
+{
+	if (!style.hasOwnProperty('shape'))
+		style.shape = VertexCircleShape;
+
+	if (!style.hasOwnProperty('commonTextPosition'))
+		style.commonTextPosition = CommonTextCenter;
+
+	return style;
 }
 
 BaseVertexStyle.prototype.Clear = function ()
