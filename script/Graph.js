@@ -22,10 +22,12 @@ function Graph()
 
 // infinity
 Graph.prototype.infinity = 1E8;
+// Max vertexes
+Graph.prototype.maxVertexes = 1000;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
-	if (this.vertices.length < 300)
+	if (this.vertices.length <= this.maxVertexes)
 	{
 		vertex.SetId (this.uidGraph);
 		this.uidGraph = this.uidGraph + 1;
