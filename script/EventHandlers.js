@@ -465,13 +465,50 @@ DefaultHandler.prototype.MouseUp = function(pos)
     }
     else if (this.selectedObjects.length > 0)
     {
-        this.message = g_dragGroupText + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>"
-        + "<span style=\"float:right;\">"
-        + "<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-default btn-xs\">"
-        + g_copyGroupeButton + "</button> &nbsp &nbsp"
-        + "<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-default btn-xs\">"
-        + g_removeGroupeButton + "</button>"
-        + "</span>";
+        this.message = g_dragGroupText + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
+
+        var hasVertexes = false;
+        var hasEdges = false;
+        for(var i = 0; i < this.selectedObjects.length; i ++)
+        {
+          var object = this.selectedObjects[i];
+          if (object instanceof BaseVertex)
+          {
+            hasVertexes = true;
+          }
+          else if (object instanceof BaseEdge)
+          {
+            hasEdges = true;
+          }
+        }
+
+        this.message = this.message + "<span style=\"float:right;position: relative;\">";
+
+        this.message = this.message
+            + "<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-default btn-xs\">"
+            + g_copyGroupeButton + "</button> &nbsp &nbsp"
+            + "<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-default btn-xs\">"
+            + g_removeGroupeButton + "</button>"
+
+        this.message = this.message
+            +  " &nbsp &nbsp <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+            +  " " + g_action + " <span class=\"caret\"></span>"
+            +  " </button>"            
+            +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">";
+     
+        if (hasEdges) {
+            this.message = this.message + " <li><a href=\"#\" id=\"changeCommonStyleEdge\">"   + g_commonEdgeStyle + "</a></li>";
+            this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleEdge\">" + g_selectedEdgeStyle + "</a></li>";
+        }
+
+        if (hasVertexes) {
+            this.message = this.message +  " <li><a href=\"#\" id=\"changeCommonStyleVertex\">" + g_commonVertexStyle + "</a></li>";
+            this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleVertex\">" + g_selectedVertexStyle + "</a></li>";
+        }
+
+        this.message = this.message
+        +  "</ul>"
+        +  "</span>";
         
         var handler = this;
         $('#message').unbind();
@@ -550,6 +587,32 @@ DefaultHandler.prototype.MouseUp = function(pos)
             handler.app.redrawGraph();
             handler.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
         });
+
+        if (hasEdges) {
+            $('#message').on('click', '#changeCommonStyleEdge', function(){
+                var selectedEdges = handler.app.GetSelectedEdges();
+                var setupVertexStyle = new SetupEdgeStyle(handler.app);
+                setupVertexStyle.show(0, selectedEdges);
+            });
+            $('#message').on('click', '#changeSelectedStyleEdge', function(){
+                var selectedEdges = handler.app.GetSelectedEdges();
+                var setupVertexStyle = new SetupEdgeStyle(handler.app);
+                setupVertexStyle.show(1, selectedEdges);
+            });    
+        }
+
+        if (hasVertexes) {
+            $('#message').on('click', '#changeCommonStyleVertex', function(){
+                var selectedVertexes = handler.app.GetSelectedVertexes();
+                var setupVertexStyle = new SetupVertexStyle(handler.app);
+                setupVertexStyle.show(0, selectedVertexes);
+            });
+            $('#message').on('click', '#changeSelectedStyleVertex', function(){
+                var selectedVertexes = handler.app.GetSelectedVertexes();
+                var setupVertexStyle = new SetupVertexStyle(handler.app);
+                setupVertexStyle.show(1, selectedVertexes);
+            });  
+        }
     }
     
     this.needRedraw = true;
