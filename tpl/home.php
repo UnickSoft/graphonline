@@ -176,6 +176,51 @@
     </a>
     </section>
 
+
+<?php elseif (L('current_language') == "ru"): ?>
+
+  <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
+  <a href="https://beget.com/?id=215303" target="_blank"><img src="https://cp.beget.com/promo_data/static/static468x60_1.png" border="0"></a>
+  </section>
+
+<!--
+  <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
+
+  <a class="ProgresssBarLink" href="/donate" target="_blank">
+  <div class="ProgressBar" style="height:32px">
+      <div class="ProgressBarFill" style="width:<?= intval($donates / $totalDonate * 100) ?>%;"></div>
+      <span class="ProgressBarText" style="top:-28px"><p>Поддержите наш проект: сбор средств добавления новых алгоритмов.</p></span>
+  </div>
+  </a>
+-->
+<!-- Yandex.RTB R-A-202319-1 -->
+<!--
+<div style="text-align:center;">
+<div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>
+</div>
+<script type="text/javascript">
+  (function(w, d, n, s, t) {
+      w[n] = w[n] || [];
+      w[n].push(function() {
+          Ya.Context.AdvManager.render({
+              blockId: "R-A-202319-1",
+              renderTo: "yandex_rtb_R-A-202319-1",
+              async: true
+          });
+      });
+      t = d.getElementsByTagName("script")[0];
+      s = d.createElement("script");
+      s.type = "text/javascript";
+      s.src = "//an.yandex.ru/system/context.js";
+      s.async = true;
+      t.parentNode.insertBefore(s, t);
+  })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+-->
+<!--
+  </section>
+-->
+
 <?php else: ?>
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="opensource" target="_blank">
@@ -188,45 +233,6 @@
 
 <?php endif; ?>
 
-<? if (L('current_language') == "ru" && false): ?>
-<!--
-    <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-
-    <a class="ProgresssBarLink" href="/donate" target="_blank">
-    <div class="ProgressBar" style="height:32px">
-        <div class="ProgressBarFill" style="width:<?= intval($donates / $totalDonate * 100) ?>%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p>Поддержите наш проект: сбор средств добавления новых алгоритмов.</p></span>
-    </div>
-    </a>
--->
-<!-- Yandex.RTB R-A-202319-1 -->
-<!--
-<div style="text-align:center;">
-<div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>
-</div>
-<script type="text/javascript">
-    (function(w, d, n, s, t) {
-        w[n] = w[n] || [];
-        w[n].push(function() {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-202319-1",
-                renderTo: "yandex_rtb_R-A-202319-1",
-                async: true
-            });
-        });
-        t = d.getElementsByTagName("script")[0];
-        s = d.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//an.yandex.ru/system/context.js";
-        s.async = true;
-        t.parentNode.insertBefore(s, t);
-    })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
--->
-<!--
-    </section>
--->
-<? endif; ?>
     <section class="translation">
     <div id="addEdge">
 		<form>
