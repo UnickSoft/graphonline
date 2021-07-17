@@ -240,6 +240,8 @@ function postLoadPage()
         var key = getChar(event);
         var code = getCharCode(event);
         console.log(key + " code=" + code);
+        var evtobj = window.event ? event : e;
+        var isCtrl = evtobj ? evtobj.ctrlKey : false;
         
         var moveValue = 10;
         if (code == 61 || code == 43) // +
@@ -288,6 +290,11 @@ function postLoadPage()
         else if (key == 'm' || key == 'ь') // move
         {
             selectHandler('Default', 'default');
+        }
+        else if (code == 26 && isCtrl)
+        {
+            userAction("Key_GraphUndo");
+            application.SetHandlerMode("graphUndo");        
         }
     }
  
@@ -463,6 +470,12 @@ function postLoadPage()
         userAction(this.id);
         application.SetHandlerMode("setupBackgroundStyle");
     }
+
+    document.getElementById('GraphUndo').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("graphUndo");
+    }    
     
     document.getElementById('runUserScript').onclick = function ()
     {
@@ -651,8 +664,6 @@ function postLoadPage()
                 loadOneScript();
           
             });
-
-
 
     var devTools = document.getElementById('developerTools');
     devTools.style.left = 0;

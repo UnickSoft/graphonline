@@ -175,6 +175,8 @@ TextEnumVertexsCustom.prototype.ShowDialog = function(callback, buttonText, titl
     var dialogButtons = {};
     app = this.app;
     dialogButtons[buttonText] = function() {
+        app.PushToStack("RenameVertex");
+
         callback(new TextEnumTitle(app, $("#VertexTitle").val()));
         $( this ).dialog( "close" );
     };

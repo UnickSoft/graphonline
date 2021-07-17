@@ -15,7 +15,7 @@ function BaseHandler(app)
 	this.app = app;
     this.app.setRenderPath([]);
     
-    this.app.ClearUndoStack();
+    //this.app.ClearUndoStack();
 }
 
 // Need redraw or nor.
@@ -212,6 +212,7 @@ function DefaultHandler(app)
     this.groupingSelect = false;
     this.selectedLogRect    = false;
     this.selectedLogCtrl    = false;
+    this.saveUndo    = false;
 }
 
 // inheritance.
@@ -225,12 +226,24 @@ DefaultHandler.prototype.MouseMove = function(pos)
 {
 	if (this.dragObject)
 	{
+        if (!this.saveUndo)
+        {
+            this.app.PushToStack("Move");
+            this.saveUndo = true;
+        }
+
                 this.dragObject.position.x = pos.x;
                 this.dragObject.position.y = pos.y;
 		this.needRedraw = true;
 	}
         else if (this.selectedObjects.length > 0 && this.pressed && !this.groupingSelect)
         {
+            if (!this.saveUndo)
+            {
+                this.app.PushToStack("Move");
+                this.saveUndo = true;
+            }
+    
                 var offset = (new Point(pos.x, pos.y)).subtract(this.prevPosition);
                 for (var i = 0; i < this.selectedObjects.length; i ++)
                 {
@@ -241,7 +254,7 @@ DefaultHandler.prototype.MouseMove = function(pos)
                   }
                 }
                 this.prevPosition = pos;
-		this.needRedraw = true;                
+		this.needRedraw = true;         
         }
         else if (this.pressed)
         {
@@ -332,6 +345,7 @@ DefaultHandler.prototype.RenameVertex = function(text)
 
 DefaultHandler.prototype.MouseUp = function(pos) 
 {
+    this.saveUndo = false;
 	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
 	this.dragObject = null;
     this.pressed    = false;
@@ -361,7 +375,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
         };
         $('#message').unbind();
         $('#message').on('click', '#renameButton', function(){
-                        var customEnum =  new TextEnumVertexsCustom();
+                        var customEnum =  new TextEnumVertexsCustom(handler.app);
                         customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
                      });
         $('#message').on('click', '#changeCommonStyle', function(){
@@ -399,6 +413,8 @@ DefaultHandler.prototype.MouseUp = function(pos)
                          var dialogButtons = {};
 
                          dialogButtons[g_save] = function() {
+
+                           handler.app.PushToStack("ChangeCurvelEdge");
                         
                            handler.selectedObject.SetWeight(document.getElementById('EdgeWeight').value);
                            handler.selectedObject.SetUpText(document.getElementById('EdgeLable').value);
@@ -441,12 +457,16 @@ DefaultHandler.prototype.MouseUp = function(pos)
                          });
 
         $('#message').on('click', '#incCurvel', function(){
+            handler.app.PushToStack("ChangeCurvelEdge");
+
             handler.selectedObject.model.ChangeCurvedValue(DefaultHandler.prototype.curvedValue);
             handler.needRedraw = true;
             handler.app.redrawGraph();
             userAction("Edge.Bend");
         });
         $('#message').on('click', '#decCurvel', function(){
+            handler.app.PushToStack("ChangeCurvelEdge");
+
             handler.selectedObject.model.ChangeCurvedValue(-DefaultHandler.prototype.curvedValue);
             handler.needRedraw = true;
             handler.app.redrawGraph();
@@ -514,6 +534,8 @@ DefaultHandler.prototype.MouseUp = function(pos)
         $('#message').unbind();
         
         $('#message').on('click', '#DublicateSelected', function(){
+            handler.app.PushToStack("DublicateSelection");
+
             userAction("GroupSelected.Dublicate");
             
             var newSelected = [];
@@ -578,6 +600,8 @@ DefaultHandler.prototype.MouseUp = function(pos)
         });
         
         $('#message').on('click', '#RemoveSelected', function(){
+            handler.app.PushToStack("RemoveSelection");
+
             userAction("GroupSelected.Remove");
             
             for(var i = 0; i < handler.selectedObjects.length; i ++)
@@ -660,6 +684,8 @@ AddGraphHandler.prototype = Object.create(BaseHandler.prototype);
 
 AddGraphHandler.prototype.MouseDown = function(pos) 
 {
+    this.app.PushToStack("Add");
+
 	this.app.CreateNewGraph(pos.x, pos.y);
 	this.needRedraw = true;
 	this.inited = false;
@@ -750,11 +776,13 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
         }
         
         dialogButtons[g_orintEdge] = function() {
-                    handler.AddNewEdge(selectedObject, true);						
+                    handler.app.PushToStack("Connect");
+                    handler.AddNewEdge(selectedObject, true);	                    
                     $( this ).dialog( "close" );					
                 };
         dialogButtons[g_notOrintEdge] = function() {
-                    handler.AddNewEdge(selectedObject, false);
+                    handler.app.PushToStack("Connect");
+                    handler.AddNewEdge(selectedObject, false);                    
                     $( this ).dialog( "close" );						
                 };
         
@@ -882,31 +910,6 @@ DeleteGraphHandler.prototype.MouseDown = function(pos)
     this.app.PushToStack("Delete");
     this.app.DeleteObject(selectedObject);
 	this.needRedraw = true;
-    
-    this.UpdateUndoButton();
-}
-
-DeleteGraphHandler.prototype.UpdateUndoButton = function()
-{
-    if (!this.app.IsUndoStackEmpty())
-    {
-        this.message = g_selectObjectToDelete + "<span style=\"float:right;\"><button type=\"button\" id=\"undoDelete\" class=\"btn btn-default btn-xs\"> " + g_Undo + " </button>";
-        
-        var handler = this;
-        $('#message').unbind();
-        $('#message').on('click', '#undoDelete', function(){
-            handler.app.Undo();
-            userAction("Undo.Delete");
-            
-            handler.UpdateUndoButton();
-        });
-    }
-    else
-    {
-        this.message = g_selectObjectToDelete;        
-    }
-
-    this.app.updateMessage();
 }
 
 /**
@@ -923,6 +926,8 @@ DeleteAllHandler.prototype = Object.create(BaseHandler.prototype);
 
 DeleteAllHandler.prototype.clear = function() 
 {	
+    this.app.PushToStack("DeleteAll");
+
 	// Selected Graph.
     this.app.graph = new Graph(); 
     this.app.savedGraphName = "";
@@ -966,6 +971,7 @@ ShowAdjacencyMatrix.prototype.show = function()
 		});
 
 	dialogButtons[g_save] = function() {
+                handler.app.PushToStack("ChangeAdjacencyMatrix");
 				handler.app.SetAdjacencyMatrixSmart($( "#AdjacencyMatrixField" ).val());					
 				$( this ).dialog( "close" );					
 			};
@@ -1029,7 +1035,8 @@ ShowIncidenceMatrix.prototype.show = function()
 		});
 
 	dialogButtons[g_save] = function() {
-				handler.app.SetIncidenceMatrixSmart($( "#IncidenceMatrixField" ).val());					
+                handler.app.PushToStack("IncidenceMatrixChanged");
+				handler.app.SetIncidenceMatrixSmart($( "#IncidenceMatrixField" ).val());
 				$( this ).dialog( "close" );					
 			};
 	dialogButtons[g_cancel] = function() {
@@ -1409,6 +1416,8 @@ GroupRenameVertices.prototype.show = function()
     var app = this.app;
     
 	dialogButtons[g_save] = function() {
+                app.PushToStack("Rename");
+
                 var titlesList = $( "#VertextTitleList" ).val().split('\n');
                 for (i = 0; i < Math.min(graph.vertices.length, titlesList.length); i ++)
                 {
@@ -1622,6 +1631,8 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
                class   : "MarginLeft",
                click   : function() {
 
+                    app.PushToStack("ChangeStyle");
+
                     applyDiameter(forAll ? (new VertexModel()).diameter : app.GetDefaultVertexSize());
 
                     var indexes = [];
@@ -1654,6 +1665,8 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
            };
     
 	dialogButtons[g_save] = function() {
+
+                app.PushToStack("ChangeStyle");
 
                 applyDiameter(parseInt($( "#vertexSize" ).val()));
 
@@ -1915,6 +1928,8 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
+                    app.PushToStack("ChangeStyle");
+
                     applyWidth(forAll ? (new EdgeModel()).width : app.GetDefaultEdgeWidth());
                     var indexes = [];
                     if (self.index == "all")
@@ -1946,6 +1961,8 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
            };
     
 	dialogButtons[g_save] = function() {
+
+                app.PushToStack("ChangeStyle");
 
                 applyWidth(parseInt($( "#edgeWidth" ).val()));
 
@@ -2040,7 +2057,7 @@ SetupBackgroundStyle.prototype.show = function()
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    var style = Object.assign({}, app.backgroundCommonStyle);
+    var style = FullObjectCopy(app.backgroundCommonStyle);
     
     var fillFields = function()
     {
@@ -2069,6 +2086,9 @@ SetupBackgroundStyle.prototype.show = function()
                text    : g_default,
                class   : "MarginLeft",
                click   : function() {
+
+                    app.PushToStack("ChangeBackground");
+
                     app.ResetBackgroundStyle();
                     app.redrawGraph();
                     $( this ).dialog( "close" );
@@ -2076,6 +2096,7 @@ SetupBackgroundStyle.prototype.show = function()
            };
     
 	dialogButtons[g_save] = function() {
+                app.PushToStack("ChangeBackground");
                 app.SetBackgroundStyle(style);    
                 app.redrawGraph();
 				$( this ).dialog( "close" );

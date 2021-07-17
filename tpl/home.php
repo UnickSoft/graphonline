@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=46")?>" ></script>
+        <script src="<?= Root("script/example.js?v=47")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -133,6 +133,8 @@
                  <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupBackgroundStyle"><?= L('background_style') ?></button> </li>
           </ul>
         </div>
+
+        <button type="button" class="btn btn-default btn-sm" id="GraphUndo"><span class="glyphicon glyphicon-arrow-left fa-fw"></span><span class="hidden-phone"> <?= L('undo')?> <sub style="color:#AAAAAA">crtl+z</sub></span></button>
 
 <!--
         <? if (!$wasVote && count($voteTopics) > 0): ?>

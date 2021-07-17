@@ -734,6 +734,11 @@ Application.prototype.SetHandlerMode = function(mode)
 		var setupBackgroundStyle = new SetupBackgroundStyle(this);
 		setupBackgroundStyle.show();
     }
+    else if (mode == "graphUndo")
+    {
+		if (!this.IsUndoStackEmpty())
+            this.Undo();
+    }
     else if (g_AlgorithmIds.indexOf(mode) >= 0)
     {
         this.handler = new AlgorithmGraphHandler(this, g_Algorithms[g_AlgorithmIds.indexOf(mode)](this.graph, this));
@@ -818,6 +823,9 @@ Application.prototype.onPostLoadEvent = function()
     		this.LoadGraphFromDisk(graphName);
 	    }
     }
+
+    if (this.IsUndoStackEmpty())
+        document.getElementById('GraphUndo').style.display = 'none';
 
     this.updateMessage();
     this.redrawGraph();
@@ -1341,14 +1349,18 @@ Application.prototype.PushToStack = function(actionName)
 {
     var object        = {};
     object.actionName = actionName;
-    object.graphSave  = this.graph.SaveToXML("");    
+    object.graphSave  = this.graph.SaveToXML(this.SaveUserSettings());    
     
     this.undoStack.push(object);
-    
+
     while (this.undoStack.length > this.maxUndoStackSize)
     {
         this.undoStack.shift();
     }
+
+    //console.log("push undo:" + object.actionName + " size =" + this.undoStack.length);
+
+    document.getElementById('GraphUndo').style.display = 'inline-block';
 }
 
 Application.prototype.Undo = function()
@@ -1358,9 +1370,18 @@ Application.prototype.Undo = function()
     
     var state  = this.undoStack.pop();
     this.graph = new Graph();
-    var empty;
-    this.graph.LoadFromXML(state.graphSave, empty);
+
+    var userSettings = {};
+    this.graph.LoadFromXML(state.graphSave, userSettings);
+    if (userSettings.hasOwnProperty("data") && userSettings["data"].length > 0)
+        this.LoadUserSettings(userSettings["data"]);
+
     this.redrawGraph();
+
+    //console.log("undo:" + state.actionName + " size =" + this.undoStack.length);
+
+    if (this.IsUndoStackEmpty())
+        document.getElementById('GraphUndo').style.display = 'none';    
 }
 
 Application.prototype.ClearUndoStack = function()
