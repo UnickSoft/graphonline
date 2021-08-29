@@ -180,8 +180,8 @@
 <?php elseif (L('current_language') == "ru"): ?>
 
   <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-  <a href="https://beget.com/?id=215303" target="_blank"><img src="https://cp.beget.com/promo_data/static/static468x60_1.png" border="0"></a>
-  </section>
+  <a href="https://beget.com/?id=215303" target="_blank"><img src="https://cp.beget.com/promo_data/static/static468x60_3.png" border="0"></a>
+  </section>  
 
 <!--
   <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
