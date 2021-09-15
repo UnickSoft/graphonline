@@ -43,7 +43,7 @@ RadiusAndDiameter.prototype.getMessage = function(local)
         return (local == "ru" ? "Граф содержит только одну вершину" : "Graph contains only one vertex");
     }
     
-    var text = (local == "ru" ? "Радуис граф: " : "Graph radius: ") + this.radius;
+    var text = (local == "ru" ? "Радиус графа: " : "Graph radius: ") + this.radius;
     
     text = text + " (";
     for (i = 0; i < this.radiusSelectedObjects.length; i++)
@@ -55,7 +55,7 @@ RadiusAndDiameter.prototype.getMessage = function(local)
     }
     text = text + ").";
          
-    text = text + (local == "ru" ? " Диаметр граф: " : "Graph diameter: ") + this.diameter;
+    text = text + (local == "ru" ? " Диаметр графа: " : "Graph diameter: ") + this.diameter;
     
     text = text + " (";
     for (i = 0; i < this.diameterSelectedObjects.length; i++)
