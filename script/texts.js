@@ -138,6 +138,7 @@ var g_selectSecondGraphIsomorphismCheck = "Select second graph for isomorphic ch
 var g_selectFirstGraphPatternCheck       = "Select a template graph by clicking to any node of graph";
 var g_selectSecondGraphForSearchSubgraph = "Choose a graph in which we will look for isomorphic subgraphs. Click to any node of this graph";
 
+// IsomorphismCheck.js
 var g_graphsIsomorph                    = "Graphs are isomorphic";
 var g_graphsNotIsomorph                 = "Graphs are not isomorphic";
 var g_numberOfIsomorphSubgraphIs        = "Number of isomorphic subgraphs are ";
@@ -146,6 +147,14 @@ var g_searchIsomorphSubgraph            = "Search isomorphic subgraphs";
 var g_subgraphNo                        = "Isomorphic subgraph # ";
 var g_graphHasNoAtleast2Graphs          = "To use the algorithm, you need to create 2 separate graphs";
 var g_IsomorphismCheck                  = "Check Graphs Isomorphism";
+
+// RadiusAndDiameter.js
+var g_graphIsDisconnected   = "Graph is disconnected";
+var g_graphIsTrivial        = "Graph contains only one vertex";
+var g_graphRadius           = "Graph radius";
+var g_graphDiameter         = "Graph diameter";
+var g_vertexCentral         = "Central";
+var g_vertexPeripheral      = "Peripheral";
 
 var g_action = "Action";
 var g_commonEdgeStyle   = "Common Edge Style";
@@ -298,7 +307,8 @@ function loadTexts()
     
     g_selectFirstGraphPatternCheck       = document.getElementById("SelectFirstGraphPatternCheck").innerHTML;
     g_selectSecondGraphForSearchSubgraph = document.getElementById("SelectSecondGraphForSearchSubgraph").innerHTML;
-    
+
+    // IsomorphismCheck.js
     g_graphsIsomorph                    = document.getElementById("GraphsIsomorph").innerHTML;
     g_graphsNotIsomorph                 = document.getElementById("GraphsNotIsomorph").innerHTML;
     g_numberOfIsomorphSubgraphIs        = document.getElementById("NumberOfIsomorphSubgraphIs").innerHTML;
@@ -307,6 +317,14 @@ function loadTexts()
     g_subgraphNo                        = document.getElementById("SubgraphNo").innerHTML;
     g_graphHasNoAtleast2Graphs          = document.getElementById("GraphHasNoAtleast2Graphs").innerHTML;
     g_IsomorphismCheck                  = document.getElementById("IsomorphismCheck").innerHTML;
+
+    // RadiusAndDiameter.js
+    g_graphIsDisconnected   = document.getElementById("GraphIsDisconnected").innerHTML;
+    g_graphIsTrivial        = document.getElementById("GraphIsTrivial").innerHTML;
+    g_graphRadius           = document.getElementById("GraphRadius").innerHTML;
+    g_graphDiameter         = document.getElementById("GraphDiameter").innerHTML;
+    g_vertexCentral         = document.getElementById("VertexCentral").innerHTML;
+    g_vertexPeripheral      = document.getElementById("VertexPeripheral").innerHTML;
 
     g_action              = document.getElementById("ActionText").innerHTML;
     g_commonEdgeStyle     = document.getElementById("CommonEdgeStyleText").innerHTML;

@@ -736,7 +736,7 @@
     <p id="MinSpanningIgnoreDir" class="translation"><?= L('min_spanning_tree_ignore_direction')?></p>
     <p id="MinSpanningNotConnected" class="translation"><?= L('min_spanning_tree_graph_not_connected')?></p>
 
-
+    <!-- IsomorphismCheck.js -->
     <p id="SelectFirstGraphIsomorphismCheck" class="translation"><?= L('select_first_graph_isomorphism_check')?></p>
     <p id="SelectSecondGraphIsomorphismCheck" class="translation"><?= L('select_second_graph_isomorphism_check')?></p>    
     <p id="SelectFirstGraphPatternCheck" class="translation"><?= L('select_first_graph_pattern_check')?></p>
@@ -749,6 +749,14 @@
     <p id="SubgraphNo" class="translation"><?= L('subgraph_no')?></p>
     <p id="GraphHasNoAtleast2Graphs" class="translation"><?= L('graph_has_no_atleast_2_graphs')?></p>
     <p id="IsomorphismCheck" class="translation"><?= L('isomorphism_check')?></p>
+
+    <!-- RadiusAndDiameter.js -->
+    <p id="GraphIsDisconnected" class="translation"><?= L('graph_is_disconnected')?></p>
+    <p id="GraphIsTrivial" class="translation"><?= L('graph_is_trivial')?></p>
+    <p id="GraphRadius" class="translation"><?= L('graph_radius')?></p>
+    <p id="GraphDiameter" class="translation"><?= L('graph_diameter')?></p>
+    <p id="VertexCentral" class="translation"><?= L('vertex_central')?></p>
+    <p id="VertexPeripheral" class="translation"><?= L('vertex_peripheral')?></p>
 
     <p id="ActionText" class="translation"><?= L('action')?></p>
     <p id="CommonEdgeStyleText" class="translation"><?= L('common_edge_style')?></p>

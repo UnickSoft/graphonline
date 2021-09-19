@@ -22,7 +22,7 @@ RadiusAndDiameter.prototype = Object.create(BaseAlgorithm.prototype);
 
 RadiusAndDiameter.prototype.getName = function(local)
 {
-    return g_RadiusAndDiameter; //local == "ru" ? "Поиск радиуса и диаметра графа": "Search graph radius and diameter";
+    return g_RadiusAndDiameter;
 }
 
 RadiusAndDiameter.prototype.getId = function()
@@ -35,15 +35,15 @@ RadiusAndDiameter.prototype.getMessage = function(local)
 {
     if (this.isNotConnected)
     {
-        return (local == "ru" ? "Граф не является связным" : "Graph is disconnected");
+        return g_graphIsDisconnected;
     }
     
     if (this.isOneVertex)
     {
-        return (local == "ru" ? "Граф содержит только одну вершину" : "Graph contains only one vertex");
+        return g_graphIsTrivial;
     }
     
-    var text = (local == "ru" ? "Радиус графа: " : "Graph radius: ") + this.radius;
+    var text = g_graphRadius + ": " + this.radius;
     
     text = text + " (";
     for (i = 0; i < this.radiusSelectedObjects.length; i++)
@@ -55,7 +55,7 @@ RadiusAndDiameter.prototype.getMessage = function(local)
     }
     text = text + ").";
          
-    text = text + (local == "ru" ? " Диаметр графа: " : "Graph diameter: ") + this.diameter;
+    text = text + " " + g_graphDiameter + ": " + this.diameter;
     
     text = text + " (";
     for (i = 0; i < this.diameterSelectedObjects.length; i++)
@@ -149,12 +149,12 @@ RadiusAndDiameter.prototype.result = function(resultCallback)
             if (eccentricity[i].value == this.radius)
             {
                 this.centerVertexes.push(this.graph.vertices[i].id);
-                this.graph.vertices[i].upText = (g_language == "ru" ? "Центральная" : "Central");
+                this.graph.vertices[i].upText = g_vertexCentral;
             }
             if (eccentricity[i].value == this.diameter)
             {
                 this.peripheralVertexes.push(this.graph.vertices[i].id);
-                this.graph.vertices[i].upText = (g_language == "ru" ? "Периферийная" : "Peripheral");
+                this.graph.vertices[i].upText = g_vertexPeripheral;
             }
         }
 
