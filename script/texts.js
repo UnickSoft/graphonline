@@ -159,6 +159,8 @@ var g_vertexPeripheral      = "Peripheral";
 // VerticesDegree.js
 var g_maximumDegreeOfGraph = "The maximum degree of a graph is";
 
+var g_done = "Done";
+
 var g_action = "Action";
 var g_commonEdgeStyle   = "Common Edge Style";
 var g_selectedEdgeStyle = "Selected Edge Style";
@@ -331,6 +333,8 @@ function loadTexts()
 
     // VerticesDegree.js
     g_maximumDegreeOfGraph = document.getElementById("MaximumDegreeOfGraph").innerHTML;
+
+    g_done = document.getElementById("Done").innerHTML;
 
     g_action              = document.getElementById("ActionText").innerHTML;
     g_commonEdgeStyle     = document.getElementById("CommonEdgeStyleText").innerHTML;

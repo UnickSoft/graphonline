@@ -195,6 +195,8 @@
     // VerticesDegree.js
     $g_lang['maximum_degree_of_graph'] = "The maximum degree of a graph is";
 
+    $g_lang['done'] = "Done";
+
     $g_lang['action'] = "Actions";
     $g_lang['common_edge_style'] = "Common edge style";
     $g_lang['selected_edge_style'] = "Selected edge style";

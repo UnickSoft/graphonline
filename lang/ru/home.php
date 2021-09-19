@@ -230,6 +230,8 @@
     // VerticesDegree.js
     $g_lang['maximum_degree_of_graph'] = "Максимальная степень вершин графа равна";
 
+    $g_lang['done'] = "Готово";
+
     $g_lang['action'] = "Действия";
     $g_lang['common_edge_style'] = "Стиль обычной дуги";
     $g_lang['selected_edge_style'] = "Стиль выделенной дуги";

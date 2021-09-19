@@ -761,6 +761,8 @@
     <!-- VerticesDegree.js -->
     <p id="MaximumDegreeOfGraph" class="translation"><?= L('maximum_degree_of_graph')?></p>
 
+    <p id="Done" class="translation"><?= L('done')?></p>
+
     <p id="ActionText" class="translation"><?= L('action')?></p>
     <p id="CommonEdgeStyleText" class="translation"><?= L('common_edge_style')?></p>
     <p id="SelectedEdgeStyleText" class="translation"><?= L('selected_edge_style')?></p>
