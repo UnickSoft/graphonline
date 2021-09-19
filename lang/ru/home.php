@@ -230,6 +230,9 @@
     // VerticesDegree.js
     $g_lang['maximum_degree_of_graph'] = "Максимальная степень вершин графа равна";
 
+    // Coloring.js
+    $g_lang['color_number'] = "Найденное количество цветов";
+
     $g_lang['done'] = "Готово";
 
     $g_lang['action'] = "Действия";

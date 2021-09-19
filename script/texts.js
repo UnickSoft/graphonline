@@ -159,6 +159,9 @@ var g_vertexPeripheral      = "Peripheral";
 // VerticesDegree.js
 var g_maximumDegreeOfGraph = "The maximum degree of a graph is";
 
+// Coloring.js
+var g_colorNumber = "Color number is";
+
 var g_done = "Done";
 
 var g_action = "Action";
@@ -333,6 +336,9 @@ function loadTexts()
 
     // VerticesDegree.js
     g_maximumDegreeOfGraph = document.getElementById("MaximumDegreeOfGraph").innerHTML;
+
+    // Coloring.js
+    g_colorNumber = document.getElementById("ColorNumber").innerHTML;
 
     g_done = document.getElementById("Done").innerHTML;
 

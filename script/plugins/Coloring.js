@@ -30,7 +30,7 @@ Coloring.prototype.getId = function()
 // @return message for user.
 Coloring.prototype.getMessage = function(local)
 {
-    return (local == "ru" ? "Найденное количество цветов " : "Color number is ") + this.connectedComponentNumber;
+    return g_colorNumber + " " + this.connectedComponentNumber;
 }
 
 Coloring.prototype.result = function(resultCallback)

@@ -761,6 +761,9 @@
     <!-- VerticesDegree.js -->
     <p id="MaximumDegreeOfGraph" class="translation"><?= L('maximum_degree_of_graph')?></p>
 
+    <!-- Coloring.js -->
+    <p id="ColorNumber" class="translation"><?= L('color_number')?></p>
+
     <p id="Done" class="translation"><?= L('done')?></p>
 
     <p id="ActionText" class="translation"><?= L('action')?></p>

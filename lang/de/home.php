@@ -192,6 +192,9 @@
     // VerticesDegree.js
     $g_lang['maximum_degree_of_graph'] = "The maximum degree of a graph is";
 
+    // Coloring.js
+    $g_lang['color_number'] = "Color number is";
+
     $g_lang['done'] = "Done";
 
     $g_lang['action'] = "Actions";
