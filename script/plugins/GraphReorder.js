@@ -30,7 +30,7 @@ GraphReorder.prototype.getId = function()
 // @return message for user.
 GraphReorder.prototype.getMessage = function(local)
 {
-    return (local == "ru" ? "Готово" : "Done");
+    return g_done;
 }
 
 GraphReorder.prototype.result = function(resultCallback)
