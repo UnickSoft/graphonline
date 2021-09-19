@@ -156,6 +156,9 @@ var g_graphDiameter         = "Graph diameter";
 var g_vertexCentral         = "Central";
 var g_vertexPeripheral      = "Peripheral";
 
+// VerticesDegree.js
+var g_maximumDegreeOfGraph = "The maximum degree of a graph is";
+
 var g_action = "Action";
 var g_commonEdgeStyle   = "Common Edge Style";
 var g_selectedEdgeStyle = "Selected Edge Style";
@@ -325,6 +328,9 @@ function loadTexts()
     g_graphDiameter         = document.getElementById("GraphDiameter").innerHTML;
     g_vertexCentral         = document.getElementById("VertexCentral").innerHTML;
     g_vertexPeripheral      = document.getElementById("VertexPeripheral").innerHTML;
+
+    // VerticesDegree.js
+    g_maximumDegreeOfGraph = document.getElementById("MaximumDegreeOfGraph").innerHTML;
 
     g_action              = document.getElementById("ActionText").innerHTML;
     g_commonEdgeStyle     = document.getElementById("CommonEdgeStyleText").innerHTML;
