@@ -27,7 +27,7 @@ VerticesDegree.prototype.getId = function()
 // @return message for user.
 VerticesDegree.prototype.getMessage = function(local)
 {
-    return (local == "ru" ? "Максимальная степень вершин графа равна " : "The maximum degree of a graph is ") + this.maxDegree;
+    return g_maximumDegreeOfGraph + " " + this.maxDegree;
 }
 
 VerticesDegree.prototype.result = function(resultCallback)

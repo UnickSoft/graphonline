@@ -205,6 +205,7 @@
     $g_lang["min_spanning_tree_ignore_direction"] = "Κατά τον υπολογισμό αγνοήσαμε την κατεύθυνση των ακμών.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Ο γράφος είναι μη συνδεδεμένος";
 
+    // IsomorphismCheck.js
     $g_lang['select_first_graph_isomorphism_check'] = "Επιλέξτε τον πρώτο γράφο για έλεγχο ισομορφισμού. Κάντε κλικ σε οποιονδήποτε κόμβο";
     $g_lang['select_second_graph_isomorphism_check'] = "Επιλέξτε τον δεύτερο κόμβο για έλεγχο ισομορφισμού. Κάντε κλικ σε οποινδήποτε κόμβο";
     $g_lang['select_first_graph_pattern_check'] = "Επιλέξτε ένα πρότυπο γράφου κάνοντας κλικ σε οποιονδήποτε κόμβο.";
@@ -217,6 +218,22 @@
     $g_lang['subgraph_no'] = "Ισομορφικός υπογράφος # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Για να χρησιμοποιήσετε τον αλγόριθμο, πρέπει να δημιουργήσετε 2 ξεχωριστούς γράφους";
     $g_lang['isomorphism_check'] = "Έλεγχος ισομορφισμού γράφων";
+
+    // RadiusAndDiameter.js
+    $g_lang['graph_is_disconnected'] = "Graph is disconnected";    
+    $g_lang['graph_is_trivial'] = "Graph contains only one vertex";
+    $g_lang['graph_radius'] = "Graph radius";
+    $g_lang['graph_diameter'] = "Graph diameter";
+    $g_lang['vertex_central'] = "Central";
+    $g_lang['vertex_peripheral'] = "Peripheral";
+
+    // VerticesDegree.js
+    $g_lang['maximum_degree_of_graph'] = "The maximum degree of a graph is";
+
+    // Coloring.js
+    $g_lang['color_number'] = "Color number is";
+
+    $g_lang['done'] = "Done";
 
     $g_lang['action'] = "Actions";
     $g_lang['common_edge_style'] = "Common edge style";

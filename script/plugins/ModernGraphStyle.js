@@ -30,7 +30,7 @@ ModernGraphStyle.prototype.getId = function()
 // @return message for user.
 ModernGraphStyle.prototype.getMessage = function(local)
 {
-    return (local == "ru" ? "Готово" : "Done");
+    return g_done;
 }
 
 ModernGraphStyle.prototype.result = function(resultCallback)

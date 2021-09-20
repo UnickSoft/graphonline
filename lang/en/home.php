@@ -204,6 +204,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["min_spanning_tree_ignore_direction"] = "In time of calculation we have ignored the edges direction.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Graph is disconnected";
 
+    // IsomorphismCheck.js
     $g_lang['select_first_graph_isomorphism_check'] = "Select first graph for isomorphic check. Click to any node of graph";
     $g_lang['select_second_graph_isomorphism_check'] = "Select second graph for isomorphic check. Click to any node of graph";
     $g_lang['select_first_graph_pattern_check'] = "Select a template graph by clicking to any node of graph";
@@ -216,6 +217,22 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['subgraph_no'] = "Isomorphic subgraph # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "To use the algorithm, you need to create 2 separate graphs";
     $g_lang['isomorphism_check'] = "Check Graphs Isomorphism";
+
+    // RadiusAndDiameter.js
+    $g_lang['graph_is_disconnected'] = "Graph is disconnected";    
+    $g_lang['graph_is_trivial'] = "Graph contains only one vertex";
+    $g_lang['graph_radius'] = "Graph radius";
+    $g_lang['graph_diameter'] = "Graph diameter";
+    $g_lang['vertex_central'] = "Central";
+    $g_lang['vertex_peripheral'] = "Peripheral";
+
+    // VerticesDegree.js
+    $g_lang['maximum_degree_of_graph'] = "The maximum degree of a graph is";
+
+    // Coloring.js
+    $g_lang['color_number'] = "Color number is";
+
+    $g_lang['done'] = "Done";
 
     $g_lang['action'] = "Actions";
     $g_lang['common_edge_style'] = "Common edge style";

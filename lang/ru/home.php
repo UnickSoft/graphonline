@@ -205,6 +205,7 @@
     $g_lang["min_spanning_tree_ignore_direction"] = "Мы игнорировали ориентацию дуг при рассчете.";
     $g_lang["min_spanning_tree_graph_not_connected"] = "Граф не является связным";
 
+    // IsomorphismCheck.js
     $g_lang['select_first_graph_isomorphism_check'] = "Выделите первый граф для проверки на изоморфизм. Кликните по любой вершине графа";
     $g_lang['select_second_graph_isomorphism_check'] = "Выделите второй граф для проверки на изоморфизм. Кликните по любой вершине графа";
     $g_lang['select_first_graph_pattern_check'] = "Выделите граф, которому должны быть изоморфны подграфов. Кликните по любой вершине графа";
@@ -217,6 +218,22 @@
     $g_lang['subgraph_no'] = "Изоморфных подграф № ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Для использования алгоритма необходимо создать хотя бы 2 не связных графа";
     $g_lang['isomorphism_check'] = "Проверка изоморфности графов";
+
+    // RadiusAndDiameter.js
+    $g_lang['graph_is_disconnected'] = "Граф не является связным";
+    $g_lang['graph_is_trivial'] = "Граф содержит только одну вершину";
+    $g_lang['graph_radius'] = "Радиус графа";
+    $g_lang['graph_diameter'] = "Диаметр графа";
+    $g_lang['vertex_central'] = "Центральная";
+    $g_lang['vertex_peripheral'] = "Периферийная";
+
+    // VerticesDegree.js
+    $g_lang['maximum_degree_of_graph'] = "Максимальная степень вершин графа равна";
+
+    // Coloring.js
+    $g_lang['color_number'] = "Найденное количество цветов";
+
+    $g_lang['done'] = "Готово";
 
     $g_lang['action'] = "Действия";
     $g_lang['common_edge_style'] = "Стиль обычной дуги";
