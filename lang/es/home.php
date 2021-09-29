@@ -258,4 +258,13 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang['selected_index'] = "Selection group";
 
     $g_lang['all'] = "All";    
+
+    //FindAllPatches.js
+    $g_lang['find_all_pathes'] = "Find all pathes";
+    $g_lang['number_of_pathes_from'] = "Number of pathes from ";
+    $g_lang['to'] = " to ";
+    $g_lang['are'] = " are ";
+    $g_lang['path_n'] = "Path #";
+    $g_lang['selected_finish_vertex'] = "Select finish vertex";
+    $g_lang['selected_start_vertex'] = "Select start vertex";       
 ?>

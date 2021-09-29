@@ -146,7 +146,7 @@ MinimumSpanningTree.prototype.getObjectSelectedGroup = function(object)
 
 MinimumSpanningTree.prototype.getPriority = function()
 {
-    return -9.5;
+    return -9.3;
 }
 
 // Algorithm support multi graph

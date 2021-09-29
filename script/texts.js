@@ -170,6 +170,15 @@ var g_selectedEdgeStyle = "Selected Edge Style";
 var g_commonVertexStyle   = "Common Vertex Style";
 var g_selectedVertexStyle = "Selected Vertex Style";
 
+// FindAllPatches.js
+var g_findAllPathes = "Find all pathes";
+var g_numberOfPathesFrom = "Number of pathes from "
+var g_to = " to ";
+var g_are = " are ";
+var g_pathN = "Path #";
+var g_selectFinishVertex = "Select finish vertex";
+var g_selectStartVertex = "Select start vertex";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -347,4 +356,13 @@ function loadTexts()
     g_selectedEdgeStyle   = document.getElementById("SelectedEdgeStyleText").innerHTML;
     g_commonVertexStyle   = document.getElementById("CommonVertexStyleText").innerHTML;
     g_selectedVertexStyle = document.getElementById("SelectedVertexStyleText").innerHTML;
+
+    // FindAllPatches.js
+    g_findAllPathes = document.getElementById("FindAllPathes").innerHTML;
+    g_numberOfPathesFrom = document.getElementById("NumberOfPathesFrom").innerHTML;
+    g_to = document.getElementById("To").innerHTML;
+    g_are = document.getElementById("Are").innerHTML;
+    g_pathN = document.getElementById("PathN").innerHTML;
+    g_selectFinishVertex = document.getElementById("SelectFinishVertex").innerHTML;
+    g_selectStartVertex = document.getElementById("SelectStartVertex").innerHTML;
 }

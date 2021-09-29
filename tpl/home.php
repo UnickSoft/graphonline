@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=48")?>" ></script>
+        <script src="<?= Root("script/example.js?v=49")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -772,6 +772,14 @@
     <p id="CommonVertexStyleText" class="translation"><?= L('common_vertex_style')?></p>
     <p id="SelectedVertexStyleText" class="translation"><?= L('selected_vertex_style')?></p>
 
+    <!-- FindAllPatches.js -->
+    <p id="FindAllPathes" class="translation"><?= L('find_all_pathes')?></p>
+    <p id="NumberOfPathesFrom" class="translation"><?= L('number_of_pathes_from')?></p>
+    <p id="To" class="translation"><?= L('to')?></p>
+    <p id="Are" class="translation"><?= L('are')?></p>
+    <p id="PathN" class="translation"><?= L('path_n')?></p>
+    <p id="SelectFinishVertex" class="translation"><?= L('selected_finish_vertex')?></p>
+    <p id="SelectStartVertex" class="translation"><?= L('selected_start_vertex')?></p>
 </section>
 <!--
 <script>

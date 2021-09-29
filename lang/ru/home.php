@@ -259,4 +259,13 @@
     $g_lang['selected_index'] = "Группа выделения";    
 
     $g_lang['all'] = "Все";
+
+    //FindAllPatches.js
+    $g_lang['find_all_pathes'] = "Поиск всех путей";
+    $g_lang['number_of_pathes_from'] = "Количество путей из ";
+    $g_lang['to'] = " в ";
+    $g_lang['are'] = " равно ";
+    $g_lang['path_n'] = "Путь №";
+    $g_lang['selected_finish_vertex'] = "Выделите конечную вершину";
+    $g_lang['selected_start_vertex'] = "Выделите начальную вершину";
 ?>
