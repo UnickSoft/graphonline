@@ -179,6 +179,11 @@ var g_pathN = "Path #";
 var g_selectFinishVertex = "Select finish vertex";
 var g_selectStartVertex = "Select start vertex";
 
+// FindShortPatchsFromOne.js
+var g_findAllPathesFromVertex = "Find all shortest paths from vertex";
+var g_distanceFrom = "Distance from ";
+var g_pathTo = "Path to ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -365,4 +370,9 @@ function loadTexts()
     g_pathN = document.getElementById("PathN").innerHTML;
     g_selectFinishVertex = document.getElementById("SelectFinishVertex").innerHTML;
     g_selectStartVertex = document.getElementById("SelectStartVertex").innerHTML;
+
+    // FindShortPatchsFromOne.js
+    g_findAllPathesFromVertex = document.getElementById("findAllPathsFromVertex").innerHTML;
+    g_distanceFrom = document.getElementById("distanceFrom").innerHTML;
+    g_pathTo = document.getElementById("pathTo").innerHTML;
 }

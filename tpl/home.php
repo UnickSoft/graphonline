@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=49")?>" ></script>
+        <script src="<?= Root("script/example.js?v=50")?>" ></script>
     </head>
 <!--
 <div class="pull-right">
@@ -177,7 +177,7 @@
     </section>
 
 
-<?php elseif (L('current_language') == "ru"): ?>
+<?php elseif (L('current_language') == "ru" && false): ?>
 
   <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
   <a href="https://beget.com/?id=215303" target="_blank"><img src="https://cp.beget.com/promo_data/static/static468x60_3.png" border="0"></a>
@@ -780,6 +780,10 @@
     <p id="PathN" class="translation"><?= L('path_n')?></p>
     <p id="SelectFinishVertex" class="translation"><?= L('selected_finish_vertex')?></p>
     <p id="SelectStartVertex" class="translation"><?= L('selected_start_vertex')?></p>
+
+    <p id="findAllPathsFromVertex" class="translation"><?= L('find_all_paths_from_vertex')?></p>
+    <p id="distanceFrom" class="translation"><?= L('distance_from')?></p>
+    <p id="pathTo" class="translation"><?= L('path_to')?></p>
 </section>
 <!--
 <script>

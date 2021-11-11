@@ -268,4 +268,9 @@
     $g_lang['path_n'] = "Путь №";
     $g_lang['selected_finish_vertex'] = "Выделите конечную вершину";
     $g_lang['selected_start_vertex'] = "Выделите начальную вершину";
+
+    // FindShortPatchsFromOne.js
+    $g_lang['find_all_paths_from_vertex'] = "Найти все кратчайшие пути от вершины";
+    $g_lang['distance_from'] = "Расстояние от ";
+    $g_lang['path_to'] = "Путь до ";
 ?>

@@ -266,5 +266,10 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang['are'] = " are ";
     $g_lang['path_n'] = "Path #";
     $g_lang['selected_finish_vertex'] = "Select finish vertex";
-    $g_lang['selected_start_vertex'] = "Select start vertex";       
+    $g_lang['selected_start_vertex'] = "Select start vertex";   
+    
+    // FindShortPatchsFromOne.js
+    $g_lang['find_all_paths_from_vertex'] = "Find all shortest paths from vertex";
+    $g_lang['distance_from'] = "Distance from ";
+    $g_lang['path_to'] = "Path to ";    
 ?>
