@@ -1,12 +1,12 @@
 <?php
 
-    $g_lang["title_notg"] = "Trouver  le plus court chemin";
+    $g_lang["title_notg"] = "Trouver le plus court chemin";
     $g_lang["text"] = "<p>Créer un graphe et trouver le plus court chemin. Sur la page d'aide <a href=\"/fr/help\"> vous trouverez un tutoriel vidéo</a>.</p>";
     $g_lang["add_node"] = "Ajouter un sommet";
-    $g_lang["connect_nodes"] = "Liéer des sommets";
+    $g_lang["connect_nodes"] = "Lier des sommets";
     $g_lang["delete"] = "Supprimer un objet";
-    $g_lang["default"] = "Par defaut";
-    $g_lang["short_path"] = "Trouver  le plus court chemin";
+    $g_lang["default"] = "Par défaut";
+    $g_lang["short_path"] = "Trouver le plus court chemin";
     $g_lang["save_direction_choose"] = "Enregistrer le type d'arête";
     $g_lang["edge_weight"] = "Poid de l'arête";
     $g_lang["save_weight_choose"] = "Utiliser la valeur pour l'arête suivante";
@@ -122,7 +122,7 @@
     $g_lang["curve_edge"] = "Arête courbe";
     $g_lang["undo"] = "Annuler";
     $g_lang["opensource_message"] = "Notre projet est maintenant open source. Plus de details...";
-    $g_lang["settings"] = "Reglages";
+    $g_lang["settings"] = "Réglages";
     $g_lang["common_vertex_settings"] = "Sommet ordinaire";
     $g_lang["selected_vertex_settings"] = "Sommet sélectionné";
     $g_lang["common_edge_settings"] = "Arête ordinaire";
