@@ -3,7 +3,7 @@
     $g_lang["title_notg"] = "Trouver le plus court chemin";
     $g_lang["text"] = "<p>Créer un graphe et trouver le plus court chemin. Sur la page d'aide <a href=\"/fr/help\"> vous trouverez un tutoriel vidéo</a>.</p>";
     $g_lang["add_node"] = "Ajouter un sommet";
-    $g_lang["connect_nodes"] = "Liér des sommets";
+    $g_lang["connect_nodes"] = "Lier des sommets";
     $g_lang["delete"] = "Supprimer un objet";
     $g_lang["default"] = "Par defaut";
     $g_lang["short_path"] = "Trouver  le plus court chemin";
