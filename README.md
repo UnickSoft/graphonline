@@ -77,6 +77,10 @@ define('SITE_IN_DIR',   'graph');
 
 You can open HTML file in browser to run your algorithm. Read more here sandbox/README.md.
 
+# Offline build
+
+You may download offline build. It is ready to run on local machine and includes tuned web server and other software. https://graphonline.ru/en/wiki/Aricles/OfflineVersion
+
 # 3th-party
 
 1. Micron (http://zmicron.itkd.ru/) is our engine.
