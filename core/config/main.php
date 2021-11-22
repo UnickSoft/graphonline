@@ -22,7 +22,8 @@
                           'nl' => array('name' => 'Dutch'),
                           'sv' => array('name' => 'Swedish'),
                           'de' => array('name' => 'German'),
-                          'pt' => array('name' => 'Portuguese')
+                          'pt' => array('name' => 'Portuguese'),
+                          'bg' => array('name' => 'Български')
                        );
 
     $g_config                     = array();
