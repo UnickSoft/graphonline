@@ -11,7 +11,7 @@ function Application(document, window)
     this.canvas  = this.document.getElementById('canvas');
     this.handler = new AddGraphHandler(this);
     this.savedGraphName = "";
-    this.currentEnumVertesType = new BaseEnumVertices(this);//this.enumVertexesTextList[0];
+    this.currentEnumVertesType = new BaseEnumVertices(this, 1);//this.enumVertexesTextList[0];
     this.findPathReport = 1;
     this.isTimerRender = false;
     globalApplication  = this;
@@ -20,7 +20,7 @@ function Application(document, window)
     this.renderPathLength  = 0;
     this.renderPathCounter = 0;
     this.renderPathLoops = 0;
-    this.enumVertexesTextList = [new BaseEnumVertices(this), new TextEnumVertexs(this), new TextEnumVertexsCyr(this), new TextEnumVertexsGreek(this), new TextEnumVertexsCustom(this)];
+    this.enumVertexesTextList = [new BaseEnumVertices(this, 1), new BaseEnumVertices(this, 0), new TextEnumVertexs(this), new TextEnumVertexsCyr(this), new TextEnumVertexsGreek(this), new TextEnumVertexsCustom(this)];
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
     this.userAction = function(){};

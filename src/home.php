@@ -27,12 +27,15 @@
             
             fclose($cvsFile);
         }
-    }
-    
+
+        if (strlen($graphId) > 0 || strlen($graphName) == 0) {
+            $graphName =  L('graph'). " " . $graphId;
+        }
+    }    
     
     if (strlen($graphName) > 0)
     {
-        $g_lang["m_title"] = $graphName;
+        $g_lang["m_title"] = $g_lang["m_title"] . " (" . $graphName . ")";
         $g_lang["m_keyWords"] = $graphName . ", " . $g_lang["m_keyWords"];
         $g_lang["m_description"] = $g_lang["title_notg"] . ": " . $graphName;
     }

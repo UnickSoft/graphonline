@@ -7,14 +7,15 @@
  * Base Enum Vertexs.
  *
  */ 
-function BaseEnumVertices(app)
+function BaseEnumVertices(app, startNumber)
 {
     this.app = app;
+    this.startNumber = startNumber;
 }
 
 BaseEnumVertices.prototype.GetVertexText = function(id)
 {
-	return id;
+	return this.startNumber + id;
 }
 
 BaseEnumVertices.prototype.GetVertexTextAsync = function(callback)
@@ -24,12 +25,12 @@ BaseEnumVertices.prototype.GetVertexTextAsync = function(callback)
 
 BaseEnumVertices.prototype.GetText = function()
 {
-	return "1, 2, 3...";
+	return this.startNumber + ", " + (this.startNumber + 1) + ", " + (this.startNumber + 2) + "...";
 }
 
 BaseEnumVertices.prototype.GetValue = function()
 {
-	return "Numbers";
+	return "Numbers" + this.startNumber;
 }
 
 function TextEnumTitle(app, title)

@@ -127,10 +127,9 @@
 
     .ui-dialog.EdgeDialog
        {
-      font-size: 15px;         //14px;
-      font-family: 'PT Sans', Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     }
-
 
     .ui-dialog-titlebar-close
     {
