@@ -46,10 +46,14 @@ FindAllPathes.prototype.result = function(resultCallback)
     {
         this.outResultCallback = function (result ) { resultCallback(result); };
         self = this;
-        this.CalculateAlgorithm("prnpaths=cgiInput&start=" + this.firstObject.id + "&finish=" + this.secondObject.id + "&report=xml", function (pathObjects, properties, results)
-                                                                    {
-                                                                        self.resultCallback(pathObjects, properties, results);
-                                                                    });
+        this.CalculateAlgorithm("prnpaths",            [
+            {name: "start", value: this.firstObject.id},
+            {name: "finish", value: this.secondObject.id}
+            ],
+            function (pathObjects, properties, results)
+            {
+                self.resultCallback(pathObjects, properties, results);
+            });
     }
     return null;
 }

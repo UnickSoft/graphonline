@@ -34,7 +34,7 @@ FindHamiltonianLoop.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };
     self = this;
-    this.CalculateAlgorithm("hamloop=cgiInput&report=xml", function (pathObjects, properties, results)
+    this.CalculateAlgorithm("hamloop", [], function (pathObjects, properties, results)
                                                                     {
                                                                         self.resultCallback(pathObjects, properties, results);
                                                                     });

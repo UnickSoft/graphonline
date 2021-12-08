@@ -154,10 +154,10 @@ function BaseAlgorithmEx(graph, app)
 // inheritance.
 BaseAlgorithmEx.prototype = Object.create(BaseAlgorithm.prototype);
 
-BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallback, ignoreSeparateNodes = false)
+BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherParams, resultCallback, ignoreSeparateNodes = false)
 {
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-      console.log(queryString);
+      console.log(algorithmName + " " + otherParams);
 
     var graph = this.graph;
     var ignoreNodes = {};
@@ -175,14 +175,7 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
     var xml = creator.GetXMLString();
     console.log(xml);
 
-    $.ajax({
-         type: "POST",
-         url: "/" + SiteDir + "cgi-bin/GraphCGI.exe?" + queryString,
-         data: xml,
-         dataType: "text",
-         })
-    .done(function( msg )
-        {
+    var processResult = function (msg) {
         console.log(msg);
         $('#debug').text(msg);
         xmlDoc = $.parseXML( msg );
@@ -191,38 +184,38 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
         $results = $xml.find( "result" );
         
         $results.each(function(){
-                      $values = $(this).find( "value" );
-                      
-                      $values.each(function(){
-                                   var type  = $(this).attr('type');
-                                   var value = $(this).text();
-                                   var res = {};
-                                   res.type = type;
-                                   res.value = value;
-                                   result.push(res);
-                                   });
-                      });
+                    $values = $(this).find( "value" );
+                    
+                    $values.each(function(){
+                                var type  = $(this).attr('type');
+                                var value = $(this).text();
+                                var res = {};
+                                res.type = type;
+                                res.value = value;
+                                result.push(res);
+                                });
+                    });
         
         $nodes = $xml.find( "node" );
         
-          $nodes.each(function(){
-                      var id = $(this).attr('id');
-                      $data = $(this).find("data");
-                      $data.each(function(){
-                                 if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
-                                 {
+        $nodes.each(function(){
+                    var id = $(this).attr('id');
+                    $data = $(this).find("data");
+                    $data.each(function(){
+                                if ("hightlightNode" == $(this).attr('key') && $(this).text() == "1")
+                                {
                                     pathObjects.push(graph.FindVertex(id));
-                                 }
-                                 else
-                                 {
+                                }
+                                else
+                                {
                                     if (!properties[id])
                                     {
                                         properties[id] = {};
                                     }
                                     properties[id][$(this).attr('key')] = $(this).text();
-                                 }
-                                 });
-                      });
+                                }
+                                });
+                    });
         
         $edges = $xml.find( "edge" );
         
@@ -249,11 +242,34 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(queryString, resultCallb
         console.log(result);
         
         resultCallback(pathObjects, properties, result);
-        });
+    };
+
+    if (this.app.isSupportEmscripten()) {
+        console.log("Use Emscripten");
+        var delimiter = "<s\\emscript_split\\s>";
+        var processData = algorithmName + delimiter + xml + 
+                          delimiter + "report" + delimiter + "xml";
+        otherParams.forEach ( (param) => processData += delimiter + param.name + delimiter + param.value);
+        var res = this.app.processEmscripten(processData);
+        processResult(res);
+    } else {
+        console.log("Use new CGI");
+        var queryString = algorithmName + "=cgiInput&report=xml";
+        otherParams.forEach ( (param) => queryString += "&" + param.name + "=" + param.value);
+        $.ajax({
+            type: "POST",
+            url: "/" + SiteDir + "cgi-bin/GraphCGI.exe?" + queryString,
+            data: xml,
+            dataType: "text",
+            })
+        .done(function( msg )
+            {
+                processResult(msg);
+            });
+    }
 
     return true;
 }
-
 
 BaseAlgorithmEx.prototype.GetNodesPath = function(array, start, count)
 {

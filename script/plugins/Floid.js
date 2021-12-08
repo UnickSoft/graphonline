@@ -76,19 +76,6 @@ FloidAlgorithm.prototype.result = function(resultCallback)
     this.app.redrawGraph();
     
     return result;
-    
-    /*
-    if (this.firstObject && this.secondObject)
-    {
-        this.outResultCallback = function (result ) { resultCallback(result); };
-        self = this;
-        this.CalculateAlgorithm("dsp=cgiInput&start=" + this.firstObject.id + "&finish=" + this.secondObject.id + "&report=xml", function (pathObjects, properties, results)
-                                                                    {
-                                                                        self.resultCallback(pathObjects, properties, results);
-                                                                    });
-    }
-    return null;
-    */
 }
 
 

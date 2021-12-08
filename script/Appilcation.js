@@ -53,6 +53,7 @@ function Application(document, window)
 
     this.defaultVertexSize = null;
     this.defaultEdgeWidth = null;
+    this.processEmscriptenFunction = null;
 };
 
 // List of graph.
@@ -1839,4 +1840,20 @@ Application.prototype.ResetEdgeWidth = function()
     {
         this.graph.edges[i].model.width = this.GetDefaultEdgeWidth();
     }     
+}
+
+Application.prototype.setEmscripten = function(processFunction) 
+{
+    this.processEmscriptenFunction = processFunction;
+    console.log("Emscripten set");
+}
+
+Application.prototype.isSupportEmscripten = function () 
+{
+    return this.processEmscriptenFunction != null;
+}
+
+Application.prototype.processEmscripten = function (inputData)
+{
+    return this.processEmscriptenFunction(inputData);
 }

@@ -53,7 +53,14 @@ IsomorphismCheck.prototype.result = function(resultCallback)
     {
         this.outResultCallback = function (result ) { resultCallback(result); };
         self = this;
-        this.CalculateAlgorithm("isocheck=cgiInput&graph1=" + this.getGraphEdges(this.firstGraph) + "&graph2=" + this.getGraphEdges(this.secondGraph) + "&report=xml" + (this.searchSubGraphs ? "&searchSubgraphs=true": ""), function (pathObjects, properties, results)
+        var params = [
+          {name : "graph1", value: this.getGraphEdges(this.firstGraph)},
+          {name : "graph2", value: this.getGraphEdges(this.secondGraph)},          
+        ];
+        if (this.searchSubGraphs) {
+          params.push({name: "searchSubgraphs", value: true});          
+        }
+        this.CalculateAlgorithm("isocheck", params, function (pathObjects, properties, results)
                                                                     {
                                                                         self.resultCallback(pathObjects, properties, results);
                                                                     });

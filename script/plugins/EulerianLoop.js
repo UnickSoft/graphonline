@@ -34,7 +34,7 @@ FindEulerianLoop.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };
     self = this;
-    this.CalculateAlgorithm("elloop=cgiInput&report=xml", function (pathObjects, properties, results)
+    this.CalculateAlgorithm("elloop", [], function (pathObjects, properties, results)
                                                                     {
                                                                         self.resultCallback(pathObjects, properties, results);
                                                                     }, true);
