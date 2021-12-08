@@ -1,6 +1,7 @@
 
 var SiteDir           = "";
 var DisableEmscripted = false;
+var algorithmsVersion = 1;
 
 var application = new Application(document, window);
 
@@ -654,7 +655,7 @@ function postLoadPage()
                     else
                     {
                         var script = document.createElement('script');
-                        script.src = "/" + SiteDir + "script/" + scriptList[0];
+                        script.src = "/" + SiteDir + "script/" + scriptList[0] + "?v=" + algorithmsVersion;
                         scriptList.shift();
                         script.onload  = loadOneScript;
                         script.onerror = loadOneScript;
