@@ -28,7 +28,7 @@
             fclose($cvsFile);
         }
 
-        if (strlen($graphId) > 0 || strlen($graphName) == 0) {
+        if (strlen($graphId) > 0 && strlen($graphName) == 0) {
             $graphName =  L('graph'). " " . $graphId;
         }
     }    
