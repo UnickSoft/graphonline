@@ -4,6 +4,7 @@
 ##  Also, be sure to take a look at http://www.pmwiki.org/wiki/Cookbook
 ##  for more details on the types of customizations that can be added
 ##  to PmWiki.
+include_once("cookbook/fastcache.php");
 
 ##  $WikiTitle is the name that appears in the browser's title bar.
 $WikiTitle = 'Вики справка Graph Online';

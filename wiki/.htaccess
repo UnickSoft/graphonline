@@ -1,15 +1,62 @@
-# Use mod_rewrite to enable "Clean URLs" for a PmWiki installation.
 RewriteEngine On
-# Define the rewrite base.
+# Define the rewrite base. This is the URL of the directory that the
+# .htaccess file (if using) resides in
 RewriteBase /wiki
+# Catch requests for index.anything
+#RewriteRule ^index / [R=301]
+# Send requests without parameters to pmwiki.php.
+RewriteRule ^$           pmwiki.php  [L]
+# Send requests for index.php to pmwiki.php.
+RewriteRule ^index\.php$ pmwiki.php  [L]
+
+# Non-capital first letter means that it's not a wiki page
+RewriteRule ^[a-z].*$ - [L]
 
 # Auto redirect to https.
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# Send requests without parameters to pmwiki.php.
-RewriteRule ^$           pmwiki.php  [L]
-# Send requests for index.php to pmwiki.php.
-RewriteRule ^index\.php$ pmwiki.php  [L]
-# Send requests to pmwiki.php, appending the query string part.
-RewriteRule ^([A-Z0-9\xa0-\xff].*)$ pmwiki.php?n=$1  [QSA,L]
+
+## Define the rules that exclude things from the cache:
+# If any of these conditions are true ...
+
+# Posting a form request
+RewriteCond %{REQUEST_METHOD} POST [OR]
+# A session exists -> the user is signed in
+RewriteCond %{HTTP_COOKIE} PHPSESSID [OR]
+# A query string exists; ie. we're not just viewing a page
+RewriteCond %{QUERY_STRING} .
+
+# ... serve the file using pmwiki.php
+RewriteRule ^(.*)$ pmwiki.php?n=$1 [QSA,L]
+
+
+## If we're this far in the script it's ok to serve files from the cache
+
+# Root means that we want the wiki homepage
+RewriteCond %{REQUEST_URI} ^/$
+# Does the file exist?
+# Change 'Main.HomePage' here if you're using a different page
+RewriteCond /wiki/htmlcache/Main.HomePage.html -f
+# If so, serve it.
+# Change 'Main.HomePage' here if you're using a different page
+RewriteRule ^$ htmlcache/Main.HomePage.html [L]
+
+# No . or / in the URL means that we want the group main page
+RewriteCond %{REQUEST_URI} ^/([^./?]+)[./]?$
+# Does the file exist?
+# Change '%1.%1' here if you're using a different group main page format
+RewriteCond /wiki/htmlcache/%1.%1.html -f
+# If so, serve it.
+RewriteRule ^. htmlcache/%1.%1.html [L]
+
+# We want Group.Page
+RewriteCond %{REQUEST_URI} ^/([^./]+)[./]([^./]+)/?$
+# Does the file exist?
+RewriteCond /wiki/htmlcache/%1.%2.html -f
+# If so, serve it.
+RewriteRule ^. htmlcache/%1.%2.html [L]
+
+
+# Cache misses and anything that doesn't fit the above goes to pmwiki.php
+RewriteRule ^(.*)$ pmwiki.php?n=$1 [QSA,L]
