@@ -73,7 +73,7 @@ define('SITE_IN_DIR',   'graph');
 
 1. If you see page but css is not loaded. Maybe your web server does not support gzip encoding. You can try change FORCE_DISABLE_GZIP field from **false** to **true**. (It is placed in file /lib/ExtraPacker/ExtraPacker.php).
 
-# Create JS algorithms without setting Web Server
+# Create JS algorithms without setting up a Web Server
 
 You can open HTML file in browser to run your algorithm. Read more here sandbox/README.md.
 
@@ -81,12 +81,12 @@ You can open HTML file in browser to run your algorithm. Read more here sandbox/
 
 You may download offline build. It is ready to run on local machine and includes tuned web server and other software. https://graphonline.ru/en/wiki/Aricles/OfflineVersion
 
-# 3th-party
+# 3rd-party
 
 1. Micron (http://zmicron.itkd.ru/) is our engine.
 2. PmWiki (https://www.pmwiki.org/) in folders: /wiki/ and /en/wiki/
 3. And others: jquery (https://jquery.com/), bootstrap3 (https://getbootstrap.com/), fontawesome (https://fontawesome.com/).
 
-# Supports & feedback
+# Support & feedback
 
 You can write on github to @UnickSoft or to email admin@graphonline.ru
