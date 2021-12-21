@@ -23,7 +23,8 @@
                           'sv' => array('name' => 'Swedish'),
                           'de' => array('name' => 'German'),
                           'pt' => array('name' => 'Portuguese'),
-                          'bg' => array('name' => 'Български')
+                          'bg' => array('name' => 'Български'),
+                          'ch' => array('name' => '漢語')
                        );
 
     $g_config                     = array();
