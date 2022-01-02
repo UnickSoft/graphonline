@@ -24,5 +24,4 @@ User-agent: Crawler
 Disallow: /
 
 User-agent: Yandex
-Disallow:
 Clean-param: graphName
