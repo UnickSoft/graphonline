@@ -11,6 +11,11 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
         <script src="<?= Root("script/example.js?v=53")?>" ></script>
+
+<!-- Yandex.RTB -->
+<script>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+
     </head>
 <!--
 <div class="pull-right">
@@ -177,10 +182,17 @@
     </section>
 
 
-<?php elseif (L('current_language') == "ru" && false): ?>
+<?php elseif (L('current_language') == "ru"): ?>
 
-  <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-  <a href="https://beget.com/?id=215303" target="_blank"><img src="https://cp.beget.com/promo_data/static/static468x60_3.png" border="0"></a>
+  <section style="height:50px;text-align: center;" id="bottom_info" class="hidden-phone">
+<!-- Yandex.RTB R-A-202319-2 -->
+<div id="yandex_rtb_R-A-202319-2"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.render({
+    renderTo: 'yandex_rtb_R-A-202319-2',
+    blockId: 'R-A-202319-2'
+  })
+})</script>
   </section>  
 
 <!--
