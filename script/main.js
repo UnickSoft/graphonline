@@ -585,17 +585,21 @@ function postLoadPage()
     
     document.getElementById('Fullscreen').onclick = function()
     {
-        var idList = ["h1Header", "h1Text", "navigation", "footerContent"];
+        var idList = ["h1Header", "h1Text", "navigation", "footerContent", "bottom_adv"];
         
         fullscreen = !fullscreen
         
         userAction(fullscreen ? "fullscreen_on" : "fullscreen_off");
         
-        for (var i = 0; i < idList.length; i++)
+        for (var i = 0; i < idList.length; i++) {
+            let element = document.getElementById(idList[i]);
+            if (!element) continue;
+
             if (fullscreen)
-                document.getElementById(idList[i]).style.display = "none";    
+                element.style.display = "none";    
             else
-                document.getElementById(idList[i]).style.display = "block";
+                element.style.display = "block";
+        }
                 
         document.getElementById("mainContainer").className = fullscreen ? "container-fluid page-wrap" : "container page-wrap";
         

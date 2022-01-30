@@ -183,10 +183,11 @@
 
 
 <?php elseif (L('current_language') == "ru"): ?>
-
+<section id="bottom_adv">
   <section style="height:50px;text-align: center;" id="bottom_info" class="hidden-phone">
 <!-- Yandex.RTB R-A-202319-2 -->
-<div id="yandex_rtb_R-A-202319-2"></div>
+
+  <div id="yandex_rtb_R-A-202319-2"></div>
 <script>window.yaContextCb.push(()=>{
   Ya.Context.AdvManager.render({
     renderTo: 'yandex_rtb_R-A-202319-2',
@@ -194,6 +195,7 @@
   })
 })</script>
   </section>  
+</section>
 
 <!--
   <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
