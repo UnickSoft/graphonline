@@ -24,6 +24,8 @@ function Graph()
 Graph.prototype.infinity = 1E8;
 // Max vertexes
 Graph.prototype.maxVertexes = 1000;
+// Offset for edges ids.
+Graph.prototype.edgesOffset = 10000;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
@@ -901,8 +903,11 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
     // Back comportebility.
     if (isNaN(loadedEdgeId))
     {
-        loadedEdgeId = 10000;
-    }
+        loadedEdgeId = this.edgesOffset;
+    } else if (loadedEdgeId < this.edgesOffset)
+	{
+		loadedEdgeId = this.edgesOffset;
+	}
 
 	this.uidGraph = loadedGraphId;
 	this.uidEdge  = loadedEdgeId;
@@ -925,6 +930,11 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 	$edges.each(function(){
 		var edge = new BaseEdge();
 		edge.LoadFromXML($(this), graph);
+		// Fix case with wrong id.
+		if (edge.id < graph.uidEdge) {
+			edge.id = graph.uidEdge;
+			graph.uidEdge++;
+		}
 		edges.push(edge);
 	});
 
