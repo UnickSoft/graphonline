@@ -12,7 +12,7 @@ Client side:
 1. HTML5 support of client side.
 
 Server side:
-1. PHP 5.6
+1. PHP 7.4 or PHP 5.6.
 2. Binary cgi supports. It needs for some algorithm, but almost all can work without it.
 
 # How to run
@@ -44,7 +44,7 @@ In files:
 /wiki/.htaccess
 /en/wiki/.htaccess
 
-8. Some algorithms use binary CGI file (short-path, Eulerian cycle/path and so on). If you want to run them, you need to compile GraphOffline util: https://github.com/UnickSoft/GraphOffline. And place it with name /cgi-bin/GraphCGI.exe or you can take precompiled file(Windows and Mac) from /cgi-bin/GraphOffline/
+8. Some algorithms (short-path, Eulerian cycle/path and so on) use external modul for algorithm. Currently for desktops it is JS file: script\Graphoffline.Emscripten.js. For mobile phones and tablets we continue using binary CGI file. Binary CGI or Graphoffline.Emscripten.js are built from GraphOffline: https://github.com/UnickSoft/GraphOffline. Binary cgi should be placed to /cgi-bin/GraphCGI.exe or you can take precompiled file(Windows and Mac) from /cgi-bin/GraphOffline/
 
 # Additional steps to run from subdirectory:
 
