@@ -7,6 +7,7 @@
      */
 
 
-    require_once BASEPATH . 'lib/Db/Db.php';
-    new Db();
+    // @graphonline: We dont use database.
+    //require_once BASEPATH . 'lib/Db/Db.php';
+    //new Db();
 ?>
