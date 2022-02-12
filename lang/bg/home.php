@@ -272,4 +272,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['find_all_paths_from_vertex'] = "Намерете всички най-кратки пътища от връх";
     $g_lang['distance_from'] = "Разстояние от ";
     $g_lang['path_to'] = "Път до ";
+
+    $g_lang['search_pathes']    = "Search paths";
+    $g_lang['other_algorithms'] = "Other algorithms";
 ?>

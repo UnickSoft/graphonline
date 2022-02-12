@@ -30,6 +30,11 @@ FindHamiltonianLoop.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindHamiltonianLoop.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindHamiltonianLoop.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };

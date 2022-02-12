@@ -30,6 +30,11 @@ FindEulerianPath.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindEulerianPath.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindEulerianPath.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };

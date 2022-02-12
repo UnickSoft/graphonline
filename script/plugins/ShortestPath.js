@@ -37,6 +37,11 @@ FindShortPathNew.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindShortPathNew.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindShortPathNew.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)

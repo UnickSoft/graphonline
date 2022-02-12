@@ -388,3 +388,15 @@
 {
     margin-bottom: 4px;
 }
+
+.small-top-marging
+{
+    margin-top: 4px;
+}
+
+.categoryButton {
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 0px    
+}

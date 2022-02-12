@@ -141,6 +141,11 @@ BaseAlgorithm.prototype.IsSupportMultiGraph = function()
     return false;
 }
 
+BaseAlgorithm.prototype.getCategory = function()
+{
+    return 0;
+}
+
 /**
  * Default handler.
  * Select using mouse, drag.

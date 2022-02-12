@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=54")?>" ></script>
+        <script src="<?= Root("script/example.js?v=55")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -109,17 +109,31 @@
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openAlgorithmList">
             <span class="glyphicon glyphicon-cog fa-fw "></span><span class="hidden-phone"> <?= L('algorithms') ?> </span><span class="caret"></span>
             </button>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">
-<!--
-          <li>
-		  <button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="FindPath"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('short_path')?></button></li>
-          <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="ConnectedComponent"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('connected_component') ?> </button></li>
-		  <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="EulerianLoop"><span class="glyphicon glyphicon-refresh fa-fw"></span> <span><?= L('find_eulerian_loop')?></span></button></li>
--->
-		  <li style="display: none;"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></li>
+          <div class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">
 
-          </ul>
-        </div>
+      <button type="button" class="btn btn-primary categoryButton" id="algorithmCategoryBtn1">
+        <span class="glyphicon glyphicon-chevron-down fa-fw" name="showMark"></span>
+        <span class="glyphicon glyphicon-chevron-right fa-fw" name="hideMark"></span> 
+        <?= L('search_pathes')?>
+      </button>
+      <div id="algorithmCategoryElements1">
+		  <div class="dropdown-item" style="display: none;" id="algTopic1"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></div>
+      <span id="insert1"></span>
+      </div>
+
+      <button type="button" class="btn btn-primary categoryButton" id="algorithmCategoryBtn0">
+        <span class="glyphicon glyphicon-chevron-down fa-fw" name="showMark"></span>
+        <span class="glyphicon glyphicon-chevron-right fa-fw" name="hideMark"></span> 
+        <?= L('other_algorithms')?>
+      </button>
+      <div id="algorithmCategoryElements0">
+      <div class="dropdown-item" style="display: none;" id="algTopic0"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></div>
+      <span id="insert0"></span>
+      </div>
+
+</div>
+  </div>
+
 
         <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> <?= L('delete')?> <sub style="color:#AAAAAA">r</sub></span></button>
             

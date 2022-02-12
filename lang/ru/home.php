@@ -273,4 +273,8 @@
     $g_lang['find_all_paths_from_vertex'] = "Найти все кратчайшие пути от вершины";
     $g_lang['distance_from'] = "Расстояние от ";
     $g_lang['path_to'] = "Путь до ";
+
+    $g_lang['search_pathes']    = "Поиск путей";
+    $g_lang['other_algorithms'] = "Другие алгоритмы";
+
 ?>

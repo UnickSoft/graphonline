@@ -39,6 +39,11 @@ FloidAlgorithm.prototype.getMessage = function(local)
     return this.message;
 }
 
+FloidAlgorithm.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FloidAlgorithm.prototype.result = function(resultCallback)
 {
     var result = {};

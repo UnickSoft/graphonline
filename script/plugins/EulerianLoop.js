@@ -30,6 +30,11 @@ FindEulerianLoop.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindEulerianLoop.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindEulerianLoop.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };

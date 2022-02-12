@@ -1295,6 +1295,7 @@ Application.prototype.getAlgorithmNames = function()
         obj.name = oneFactory.getName(g_language);
         obj.id   = oneFactory.getId();
         obj.priority = oneFactory.getPriority();
+        obj.category = oneFactory.getCategory();
         res.push(obj);
     }
     

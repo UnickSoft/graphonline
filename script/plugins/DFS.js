@@ -70,6 +70,11 @@ DFSAlgorithm.prototype.getPriority = function()
     return -9.5;
 }
 
+DFSAlgorithm.prototype.getCategory = function()
+{
+    return 1;
+}
+
 DFSAlgorithm.prototype.step = function()
 {
     for (var i = this.visited.length - 1; i >= 0; i--)

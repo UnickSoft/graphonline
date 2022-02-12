@@ -272,4 +272,7 @@
     $g_lang['find_all_paths_from_vertex'] = "从一个顶点找所有最短路";
     $g_lang['distance_from'] = "距离从";
     $g_lang['path_to'] = "路线至 ";
+
+    $g_lang['search_pathes']    = "Search paths";
+    $g_lang['other_algorithms'] = "Other algorithms";
 ?>

@@ -29,6 +29,11 @@ BFSAlgorithm.prototype.getMessage = function(local)
     return this.message;
 }
 
+BFSAlgorithm.prototype.getCategory = function()
+{
+    return 1;
+}
+
 BFSAlgorithm.prototype.result = function(resultCallback)
 {
     var result = {};

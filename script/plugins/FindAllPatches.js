@@ -40,6 +40,11 @@ FindAllPathes.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindAllPathes.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindAllPathes.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)

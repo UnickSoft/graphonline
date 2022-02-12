@@ -40,6 +40,11 @@ FindShortPatchsFromOne.prototype.getMessage = function(local)
     return this.message;
 }
 
+FindShortPatchsFromOne.prototype.getCategory = function()
+{
+    return 1;
+}
+
 FindShortPatchsFromOne.prototype.result = function(resultCallback)
 {
     if (this.firstObject)

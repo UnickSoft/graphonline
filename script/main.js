@@ -1,7 +1,7 @@
 
 var SiteDir           = "";
 var DisableEmscripted = false;
-var algorithmsVersion = 1;
+var algorithmsVersion = 2;
 
 var application = new Application(document, window);
 
@@ -111,8 +111,8 @@ function createAlgorithmMenu()
     {
         algorithm = algorithms[i];
         
-        var list   = document.getElementById("algorithmList");
-        var item   = list.lastElementChild;
+        var list   = document.getElementById("algorithmCategoryElements" + algorithm.category);
+        var item   = document.getElementById("algTopic" + algorithm.category);
         var clone  = item.cloneNode(true);
         var button   = clone.getElementsByTagName("button")[0];
         var textSpan = button.getElementsByTagName("span")[1];
@@ -122,8 +122,9 @@ function createAlgorithmMenu()
         
         buttonsList.push(algorithm.id);
         
-        button.onclick = function ()
+        button.onclick = function (e)
         {
+            e["closeThisMenu"] = true;
             userAction(this.id);
             restButtons (this.id);
             application.SetHandlerMode(this.id);
@@ -144,7 +145,7 @@ function createAlgorithmMenu()
               $(data.object).show();
           });
         
-        list.appendChild(clone);
+        list.insertBefore(clone, document.getElementById("insert" + algorithm.category));
         index++;
     }
 
@@ -643,7 +644,6 @@ function postLoadPage()
         });
     }
     
-    
     // Get algorithms list and load it.
     $.get( "/" + SiteDir + "cgi-bin/getPluginsList.php",
             function( data )
@@ -675,6 +675,48 @@ function postLoadPage()
     devTools.style.left = 0;
 	resizeCanvas();
 	application.onPostLoadEvent();
+
+    $(function() {
+        $('#algorithmList').on('click', function(event) {
+            if (!event.originalEvent.closeThisMenu) {
+                event.stopPropagation();
+            }
+        });      
+        $(window).on('click', function() {
+          $('#algorithmList').slideUp();
+        });      
+      });    
+
+
+    let showHideCategory = function(button, elementsListName){
+        let width     = $( button ).width();
+        let elementsList = $(elementsListName);
+        var hideMark = button.querySelector('span[name="hideMark"]')
+        var showMark = button.querySelector('span[name="showMark"]')
+        if (elementsList.is(":visible")) {
+            elementsList.hide();
+            $(hideMark).show();
+            $(showMark).hide();
+        } else {
+            elementsList.show();
+            $(hideMark).hide();
+            $(showMark).show();
+        }            
+        $( button ).width(width);
+
+        userAction("algCategory_" + elementsListName);
+    }
+
+    $(document.getElementById("algorithmCategoryBtn1").querySelector('span[name="hideMark"]')).hide();
+    $(document.getElementById("algorithmCategoryBtn0").querySelector('span[name="hideMark"]')).hide();
+
+    $('#algorithmCategoryBtn1').click(function(){
+        showHideCategory(this, "#algorithmCategoryElements1");
+    });
+
+    $('#algorithmCategoryBtn0').click(function(){
+        showHideCategory(this, "#algorithmCategoryElements0");
+    });
 }
 
 //window.onload = function ()
