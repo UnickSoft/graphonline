@@ -9,7 +9,8 @@ function FindAllPathes(graph, app)
     this.selectedObjects = {};
     this.foundSubGraphs  = {};
     this.nSubgraphIndex  = 0;
-    this.nSubGraphCount  = 0;    
+    this.nSubGraphCount  = 0;
+    this.foundPaths      = {};
 }
 
 
@@ -67,9 +68,17 @@ FindAllPathes.prototype.setResultMessage = function()
 {
     if (this.nSubGraphCount > 0)
     {
+        var currentPath = "";
+        var first = true;
+        this.foundPaths[this.nSubgraphIndex].forEach((nodeId) => {
+            currentPath += (first ? "" : "⇒") + this.graph.FindVertex(nodeId).mainText;
+            first = false;
+        });
+
         this.message = g_numberOfPathesFrom + this.firstObject.mainText + 
         g_to + this.secondObject.mainText + g_are + 
-        this.nSubGraphCount + " <select style=\"float:right\" id=\"enumSubgraphs\"></select>";        
+        this.nSubGraphCount + ". " + g_pathN + (1 + parseInt(this.nSubgraphIndex)) + ": " + currentPath + 
+        " <select style=\"float:right\" id=\"enumSubgraphs\"></select>";
     }
     else
     {
@@ -92,12 +101,12 @@ FindAllPathes.prototype.resultCallback = function(pathObjects, properties, resul
     {
         this.nSubGraphCount = results.length > 0 && results[0].type == 1 ? results[0].value : 0;
       
-        this.setResultMessage();
-  
         this.foundSubGraphs  = {};
+        this.foundPaths     = {};
         for (var i = 0; i < this.nSubGraphCount; i++)
         {
           this.foundSubGraphs[i] = {};
+          this.foundPaths[i]     = [];
         }
   
         var subGraphIndex = 0;
@@ -116,6 +125,8 @@ FindAllPathes.prototype.resultCallback = function(pathObjects, properties, resul
             var index  = subGraphIndex;
             var subgGraph = this.foundSubGraphs[index];
             subgGraph[nodeId] = true;
+
+            this.foundPaths[index].push(nodeId);
   
             if (prevNodeId >= 0)
             {
@@ -125,6 +136,8 @@ FindAllPathes.prototype.resultCallback = function(pathObjects, properties, resul
             prevNodeId = nodeId;
           }
         }
+
+        this.setResultMessage();        
     }
     else
     {
@@ -151,8 +164,9 @@ FindAllPathes.prototype.messageWasChanged = function()
 
       $('#enumSubgraphs').change(function () {
           self.nSubgraphIndex = $('#enumSubgraphs').val();
-          self.app.redrawGraph();
           self.setResultMessage();
+          self.app.redrawGraph();
+          self.app.updateMessage();          
       });
    }
 }

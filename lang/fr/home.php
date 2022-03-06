@@ -229,7 +229,7 @@
 
     //FindAllPatches.js
     $g_lang['find_all_pathes'] = "Find all paths";
-    $g_lang['number_of_pathes_from'] = "Number of pathes from ";
+    $g_lang['number_of_pathes_from'] = "Number of paths from ";
     $g_lang['to'] = " to ";
     $g_lang['are'] = " is ";
     $g_lang['path_n'] = "Path #";
