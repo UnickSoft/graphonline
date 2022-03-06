@@ -1083,13 +1083,13 @@ ShowDistanceMatrix.prototype.GetIncidenceMatrix = function (rawMatrix)
 	{
 		for (var j = 0; j < rawMatrix[i].length; j++)
 		{	
-            if ((new Graph()).infinity == rawMatrix[i][j])
-            {
-                matrix += '\u221E';
-            }
-            else if (i == j)
+            if (i == j)
             {
                 matrix += "0";
+            }
+            else if ((new Graph()).infinity == rawMatrix[i][j])
+            {
+                matrix += '\u221E';
             }
             else
             {
