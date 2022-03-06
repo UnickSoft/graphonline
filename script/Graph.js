@@ -580,6 +580,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 				if (cols[i][j] > 0)
 				{
 					var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[i], this.vertices[j], cols[i][j] != cols[j][i], cols[i][j], true);
+					this.FixEdgeCurved(nEdgeIndex);
                     if (nEdgeIndex >= 0)
                     {
                         bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
