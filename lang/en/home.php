@@ -274,5 +274,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['path_to'] = "Path to ";
 
     $g_lang['search_pathes']    = "Search paths";
-    $g_lang['other_algorithms'] = "Other algorithms";    
+    $g_lang['other_algorithms'] = "Other algorithms";
+
+    $g_lang['use_context_menu'] = "Use context menu for additional actions.";
 ?>

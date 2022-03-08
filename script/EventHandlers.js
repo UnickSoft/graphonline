@@ -10,11 +10,16 @@
  *
  */
  
-function BaseHandler(app)
+function BaseHandler(app, removeStack)
 {
 	this.app = app;
     this.app.setRenderPath([]);
     
+    if (removeStack) {
+        this.removeContextMenu();
+    }
+    this.contextMenuObject = null;
+    this.contextMenuPoint = null;
     //this.app.ClearUndoStack();
 }
 
@@ -66,7 +71,6 @@ BaseHandler.prototype.GetSelectedArc = function(pos)
         if (edge.HitTest(new Point(pos.x, pos.y)))
             return edge;
 	}
-
 	
 	return null;
 }
@@ -196,6 +200,261 @@ BaseHandler.prototype.SelectSecondVertexMenu = function(vertex2Text, vertex)
 BaseHandler.prototype.UpdateSecondVertexMenu = function()
 {}
 
+BaseHandler.prototype.GetSelectedVertex = function()
+{
+    return null;
+}
+
+BaseHandler.prototype.addContextMenu = function()
+{
+    var $contextMenu = $("#contextMenu");
+
+    var handler = this;
+    
+    $("#Context_Delete").click(function() {
+        if (handler.contextMenuObject != null) {
+            handler.app.PushToStack("DeleteObject");
+            handler.app.DeleteObject(handler.contextMenuObject);
+            handler.app.redrawGraph();
+            userAction("DeleteObject_contextMenu");
+        }
+    });
+
+    $("#Context_Rename").click(function() {
+        if (handler.contextMenuObject != null) {
+            var callback = function (enumType) {
+                handler.RenameVertex(enumType.GetVertexText(0), handler.contextMenuObject);
+                userAction("RenameVertex_contextMenu");
+            };            
+            var customEnum =  new TextEnumVertexsCustom(handler.app);
+            customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.contextMenuObject.mainText);
+        }
+    });
+
+    $("#Context_Connect").click(function() {
+        if (handler.contextMenuObject != null && handler.GetSelectedVertex() != null) {
+            var addFunc = function(firstVertex, secondVertex, direct) {
+                handler.app.CreateNewArc(firstVertex, secondVertex, direct, 
+                    document.getElementById('EdgeWeight').value, 
+                    $("#RadiosReplaceEdge").prop("checked"), 
+                    document.getElementById('EdgeLable').value);
+                handler.app.redrawGraph();
+            }
+            handler.ShowCreateEdgeDialog(handler.GetSelectedVertex(), handler.contextMenuObject, addFunc);
+        }
+    });
+
+    $("#Context_Delete_Edge").click(function() {
+        if (handler.contextMenuObject != null) {
+            handler.app.PushToStack("DeleteObject");
+            handler.app.DeleteObject(handler.contextMenuObject);
+            handler.app.redrawGraph();
+            userAction("DeleteObject_contextMenu");
+        }
+    });
+    
+    $("#Context_Edit_Edge").click(function() {
+        if (handler.contextMenuObject != null) {
+            handler.ShowEditEdgeDialog(handler.contextMenuObject);
+        }
+    });
+
+    $("#Context_Add_Edge").click(function() {
+        handler.app.PushToStack("Add");
+        handler.app.CreateNewGraph(handler.contextMenuPoint.x, handler.contextMenuPoint.y);
+        handler.app.redrawGraph();
+    });
+    
+    $("#Context_Back_Color").click(function() {
+        var setupBackgroundStyle = new SetupBackgroundStyle(handler.app);
+		setupBackgroundStyle.show();
+    });
+
+    $("body").on("contextmenu", "canvas", function(e) {
+        handler.contextMenuPoint = {x: e.offsetX, y: e.offsetY};
+        handler.contextMenuObject = handler.GetSelectedObject(handler.contextMenuPoint);
+        if (handler.contextMenuObject instanceof BaseVertex) {
+            $("#edgeContextMenu").hide();
+            $("#backgroundContextMenu").hide();    
+            $("#vertexContextMenu").show();
+            if (handler.GetSelectedVertex() == null)  {
+                $("#Context_Connect").hide();
+            } else {
+                $("#Context_Connect").show();
+            }
+        } else if (handler.contextMenuObject instanceof BaseEdge) {
+            $("#vertexContextMenu").hide();
+            $("#backgroundContextMenu").hide();    
+            $("#edgeContextMenu").show();
+        } else {
+            $("#vertexContextMenu").hide();
+            $("#edgeContextMenu").hide();
+            $("#backgroundContextMenu").show();
+        }
+
+        $contextMenu.css({
+            display: "block",
+            left: e.offsetX,
+            top: e.offsetY
+        });
+        return false;
+    });
+
+    $("body").click(function() {
+        $contextMenu.hide();
+    });    
+}
+
+BaseHandler.prototype.removeContextMenu = function()
+{
+    $("body").off("contextmenu");
+    $("#Context_Delete").off("click");
+    $("#Context_Rename").off("click");
+    $("#Context_Connect").off("click");    
+    $("#Context_Delete_Edge").off("click");  
+    $("#Context_Edit_Edge").off("click"); 
+    $("#Context_Add_Edge").off("click"); 
+    $("#Context_Back_Color").off("click");    
+}
+
+BaseHandler.prototype.RenameVertex = function(text, object)
+{
+    if (object != null && (object instanceof BaseVertex))
+    {
+        this.app.PushToStack("RenameVertex");
+        object.mainText = text;
+        this.app.redrawGraph();
+    }
+}
+
+BaseHandler.prototype.ShowCreateEdgeDialog = function(firstVertex, secondVertex, addEdgeCallBack) {
+    if (!this.app.graph.isMulti())
+    {
+        var hasEdge        = this.app.graph.FindEdgeAny(firstVertex.id, secondVertex.id);
+        var hasReverseEdge = this.app.graph.FindEdgeAny(secondVertex.id, firstVertex.id);
+
+        if (hasEdge == null && hasReverseEdge == null)
+        {
+            $("#RadiosReplaceEdge").prop("checked", true);
+            $("#NewEdgeAction" ).hide();
+        }
+        else {
+            $( "#NewEdgeAction" ).show();
+        }
+    }
+    else
+    {
+        $("#RadiosAddEdge").prop("checked", true);
+        $("#NewEdgeAction" ).hide();
+    }
+
+    var dialogButtons = {};
+    var handler = this;
+
+    dialogButtons[g_orintEdge] = function() {
+                handler.app.PushToStack("Connect");                
+                addEdgeCallBack(firstVertex, secondVertex, true);
+                //handler.AddNewEdge(selectedObject, true);	                    
+                $( this ).dialog( "close" );					
+            };
+    dialogButtons[g_notOrintEdge] = function() {
+                handler.app.PushToStack("Connect");
+                addEdgeCallBack(firstVertex, secondVertex, false);
+                //handler.AddNewEdge(selectedObject, false);                    
+                $( this ).dialog( "close" );						
+            };
+
+    var edgePresets = this.app.GetEdgePresets();
+    var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset 
+        + "'; document.getElementById('EdgeWeightSlider').value='" + g_DefaultWeightPreset 
+        + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
+
+    for(var i = 0; i < edgePresets.length; i ++) 
+    {
+        var edgePreset = edgePresets[i];
+        presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset 
+        + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset 
+        + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
+    }        
+    document.getElementById("EdgesPresets").innerHTML = presetsStr;
+    document.getElementById('EdgeLable').value = "";
+
+    $( "#addEdge" ).dialog({
+        resizable: false,
+        height: "auto",
+        width:  "auto",
+        modal: true,
+        title: g_addEdge,
+        buttons: dialogButtons,
+        dialogClass: 'EdgeDialog',
+        open: function () {
+                    $(this).off('submit').on('submit', function () {
+                        return false;
+                    });
+
+                    // Focues weight
+                    setTimeout(function(){ 
+                        const weightInput = document.getElementById('EdgeWeight');
+                        if(weightInput)
+                        {
+                            weightInput.focus();
+                            weightInput.select();        
+                        } 
+                        },0);                        
+            }
+    });
+}
+
+BaseHandler.prototype.ShowEditEdgeDialog = function(edgeObject) {
+    var dialogButtons = {};
+
+    var handler = this;
+
+    dialogButtons[g_save] = function() {
+        handler.app.PushToStack("ChangeEdge");
+
+        edgeObject.SetWeight(document.getElementById('EdgeWeight').value);
+        edgeObject.SetUpText(document.getElementById('EdgeLable').value);
+            
+        handler.needRedraw = true;
+        handler.app.redrawGraph();
+
+        userAction("ChangeWeight");
+        $( this ).dialog( "close" );
+    };
+
+    document.getElementById('EdgeWeight').value       = edgeObject.useWeight ? edgeObject.weight : g_noWeight;
+    document.getElementById('EdgeWeightSlider').value = edgeObject.useWeight ? edgeObject.weight : 0;
+
+    var edgePresets = handler.app.GetEdgePresets();
+    var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset + "'; document.getElementById('EdgeWeightSlider').value='" +
+        g_DefaultWeightPreset + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
+
+    for(var i = 0; i < edgePresets.length; i ++) 
+    {
+        var edgePreset = edgePresets[i];
+        presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + 
+            edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
+    }        
+    document.getElementById("EdgesPresets").innerHTML = presetsStr;
+    document.getElementById('EdgeLable').value = edgeObject.upText;
+
+    $( "#addEdge" ).dialog({
+        resizable: false,
+        height: "auto",
+        width:  "auto",
+        modal: true,
+        title: g_editWeight,
+        buttons: dialogButtons,
+        dialogClass: 'EdgeDialog',
+        open: function () {
+        $(handler).off('submit').on('submit', function () {
+                                    return false;
+                                    });
+        }
+        });
+}
+
 /**
  * Default handler.
  * Select using mouse, drag.
@@ -203,8 +462,8 @@ BaseHandler.prototype.UpdateSecondVertexMenu = function()
  */
 function DefaultHandler(app)
 {
-	BaseHandler.apply(this, arguments);
-	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
+	BaseHandler.apply(this, arguments, true);
+	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>";
         this.selectedObjects = [];
         this.dragObject     = null;
         this.selectedObject = null;
@@ -213,6 +472,8 @@ function DefaultHandler(app)
     this.selectedLogRect    = false;
     this.selectedLogCtrl    = false;
     this.saveUndo    = false;
+
+    this.addContextMenu();
 }
 
 // inheritance.
@@ -221,6 +482,11 @@ DefaultHandler.prototype = Object.create(BaseHandler.prototype);
 DefaultHandler.prototype.pressed = false;
 // Cuvled change value.
 DefaultHandler.prototype.curvedValue    = 0.1;
+
+DefaultHandler.prototype.GetSelectedVertex = function()
+{
+    return (this.selectedObject instanceof BaseVertex) ? this.selectedObject : null;
+}
 
 DefaultHandler.prototype.MouseMove = function(pos) 
 {
@@ -334,19 +600,10 @@ DefaultHandler.prototype.MouseDown = function(pos)
 	this.app.canvas.style.cursor = "move";
 }
 
-DefaultHandler.prototype.RenameVertex = function(text)
-{
-    if (this.selectedObject != null && (this.selectedObject instanceof BaseVertex))
-    {
-        this.selectedObject.mainText = text;
-        this.app.redrawGraph();
-    }
-}
-
 DefaultHandler.prototype.MouseUp = function(pos) 
 {
     this.saveUndo = false;
-	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
+	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>";
 	this.dragObject = null;
     this.pressed    = false;
     this.app.canvas.style.cursor = "auto";
@@ -370,7 +627,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
         
         var handler = this;
         var callback = function (enumType) {
-                handler.RenameVertex(enumType.GetVertexText(0));
+                handler.RenameVertex(enumType.GetVertexText(0, handler.selectedObject));
                 userAction("RenameVertex");
         };
         $('#message').unbind();
@@ -675,8 +932,9 @@ DefaultHandler.prototype.SelectObjectInRect = function (rect)
  */
 function AddGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments);
+  BaseHandler.apply(this, arguments, true);
   this.message = g_clickToAddVertex;	
+  this.addContextMenu();
 }
 
 // inheritance.
@@ -731,14 +989,20 @@ AddGraphHandler.prototype.ChangedType = function()
  */
 function ConnectionGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments);
-  this.SelectFirst();	
+  BaseHandler.apply(this, arguments, true);
+  this.SelectFirst();
+  this.addContextMenu();	
 }
 
 // inheritance.
 ConnectionGraphHandler.prototype = Object.create(BaseHandler.prototype);
 // First selected.
 ConnectionGraphHandler.prototype.firstObject = null;
+
+ConnectionGraphHandler.prototype.GetSelectedVertex = function()
+{
+    return (this.firstObject instanceof BaseVertex) ? this.firstObject : null;
+}
 
 ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
@@ -754,72 +1018,9 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
     {
         var direct = false;
         var handler = this;
-        var dialogButtons = {};
-        
-        if (!this.app.graph.isMulti())
-        {
-            var hasEdge        = this.app.graph.FindEdgeAny(this.firstObject.id, selectedObject.id);
-            var hasReverseEdge = this.app.graph.FindEdgeAny(selectedObject.id, this.firstObject.id);
 
-            if (hasEdge == null && hasReverseEdge == null)
-            {
-                $("#RadiosReplaceEdge").prop("checked", true);
-                $("#NewEdgeAction" ).hide();
-            }
-            else
-                $( "#NewEdgeAction" ).show();
-        }
-        else
-        {
-            $("#RadiosAddEdge").prop("checked", true);
-            $("#NewEdgeAction" ).hide();
-        }
-        
-        dialogButtons[g_orintEdge] = function() {
-                    handler.app.PushToStack("Connect");
-                    handler.AddNewEdge(selectedObject, true);	                    
-                    $( this ).dialog( "close" );					
-                };
-        dialogButtons[g_notOrintEdge] = function() {
-                    handler.app.PushToStack("Connect");
-                    handler.AddNewEdge(selectedObject, false);                    
-                    $( this ).dialog( "close" );						
-                };
-        
-        var edgePresets = this.app.GetEdgePresets();
-        var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset + "'; document.getElementById('EdgeWeightSlider').value='" + g_DefaultWeightPreset + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
-        
-        for(var i = 0; i < edgePresets.length; i ++) 
-        {
-            var edgePreset = edgePresets[i];
-            presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
-        }        
-        document.getElementById("EdgesPresets").innerHTML = presetsStr;
-        document.getElementById('EdgeLable').value = "";
-        
-        $( "#addEdge" ).dialog({
-            resizable: false,
-            height: "auto",
-            width:  "auto",
-            modal: true,
-            title: g_addEdge,
-            buttons: dialogButtons,
-            dialogClass: 'EdgeDialog',
-            open: function () {
-                        $(this).off('submit').on('submit', function () {
-                            return false;
-                        });
-
-                        // Focues weight
-                        setTimeout(function(){ 
-                            const weightInput = document.getElementById('EdgeWeight');
-                            if(weightInput)
-                            {
-                                weightInput.focus();
-                                weightInput.select();        
-                            } 
-                           },0);                        
-                }
+        this.ShowCreateEdgeDialog(this.firstObject, selectedObject, function (firstVertex, secondVertex, direct) {
+            handler.AddNewEdge(secondVertex, direct);
         });
     }
     else
@@ -893,8 +1094,9 @@ ConnectionGraphHandler.prototype.UpdateSecondVertexMenu = function(vertex2Text)
  */
 function DeleteGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments);
+  BaseHandler.apply(this, arguments, true);
   this.message = g_selectObjectToDelete;
+  this.addContextMenu();
 }
 
 // inheritance.
@@ -1268,7 +1470,7 @@ SavedDialogGraphImageHandler.prototype.showPrint = function()
  */
 function AlgorithmGraphHandler(app, algorithm)
 {
-    BaseHandler.apply(this, arguments);
+    BaseHandler.apply(this, arguments, true);
     this.algorithm = algorithm;
     this.SaveUpText();
     

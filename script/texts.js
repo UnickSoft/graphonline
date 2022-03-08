@@ -184,6 +184,8 @@ var g_findAllPathesFromVertex = "Find all shortest paths from vertex";
 var g_distanceFrom = "Distance from ";
 var g_pathTo = "Path to ";
 
+var g_useContextMenuText = "Use context menu for addition actions."
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -375,4 +377,6 @@ function loadTexts()
     g_findAllPathesFromVertex = document.getElementById("findAllPathsFromVertex").innerHTML;
     g_distanceFrom = document.getElementById("distanceFrom").innerHTML;
     g_pathTo = document.getElementById("pathTo").innerHTML;
+
+    g_useContextMenuText = document.getElementById("UseContextMenuText").innerHTML;
 }

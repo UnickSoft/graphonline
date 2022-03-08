@@ -275,4 +275,6 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     
     $g_lang['search_pathes']    = "Search paths";
     $g_lang['other_algorithms'] = "Other algorithms";    
+
+    $g_lang['use_context_menu'] = "Use context menu for additional actions.";
 ?>

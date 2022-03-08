@@ -466,6 +466,9 @@ Application.prototype.CanvasOnMouseMove  = function(e)
 
 Application.prototype.CanvasOnMouseDown = function(e)
 {
+    // Skip non left button.
+    if(e.which !== 1) return;
+
     var pos = this.getMousePos(this.canvas, e); /// provide this canvas and event
 
 	this.handler.MouseDown(pos);
@@ -480,6 +483,9 @@ Application.prototype.CanvasOnMouseDown = function(e)
 
 Application.prototype.CanvasOnMouseUp = function(e)
 {
+    // Skip non left button.
+    if(e.which !== 1) return;
+
 //	this.dragObject = -1;
 	var pos = this.getMousePos(this.canvas, e);
 

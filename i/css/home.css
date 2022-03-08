@@ -400,3 +400,9 @@
     border: none;
     border-radius: 0px    
 }
+
+#contextMenu {
+    position: absolute;
+    display: none;
+    border: 2px solid #CCCCCC;
+}

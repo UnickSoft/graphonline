@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=58")?>" ></script>
+        <script src="<?= Root("script/example.js?v=59")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -182,6 +182,29 @@
         <input type="button" value="<?= L('developer_tools_run')?>" id="runUserScript" class="btn btn-success btn-sm"/>
         <input type="button" value="<?= L('developer_tools_submit')?>" id="submitUserScript" class="btn btn-default btn-sm" style="float: right;"/>
     </div>
+
+    <div id="contextMenu" class="dropdown clearfix">
+        <div id="edgeContextMenu">
+          <div class="btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Edit_Edge"><?= L('edit_weight')?></button>
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Delete_Edge"><?= L('delete')?></button>
+          </div>
+        </div>
+        <div id="vertexContextMenu">
+          <div class="btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Connect"><?= L('connect_nodes')?></button>
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Rename"><?= L('rename_vertex')?></button>
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Delete"><?= L('delete')?></button>
+          </div>
+        </div>
+        <div id="backgroundContextMenu">
+          <div class="btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Add_Edge"><?= L('add_node')?></button>
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Back_Color"><?= L('background_style') ?></button>
+          </div>
+        </div>
+      </div>
+    </div>    
     </section>
 
 <?php if (L('current_language') == "en" && false): ?>
@@ -812,6 +835,8 @@
     <p id="findAllPathsFromVertex" class="translation"><?= L('find_all_paths_from_vertex')?></p>
     <p id="distanceFrom" class="translation"><?= L('distance_from')?></p>
     <p id="pathTo" class="translation"><?= L('path_to')?></p>
+    <p id="UseContextMenuText" class="translation"><?= L('use_context_menu')?></p>
+    
 </section>
 <!--
 <script>
