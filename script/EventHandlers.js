@@ -10,12 +10,12 @@
  *
  */
  
-function BaseHandler(app, removeStack)
+function BaseHandler(app)
 {
 	this.app = app;
     this.app.setRenderPath([]);
     
-    if (removeStack) {
+    if (this.removeStack) {
         this.removeContextMenu();
     }
     this.contextMenuObject = null;
@@ -259,7 +259,7 @@ BaseHandler.prototype.addContextMenu = function()
         }
     });
 
-    $("#Context_Add_Edge").click(function() {
+    $("#Context_Add_Vertex").click(function() {
         handler.app.PushToStack("Add");
         handler.app.CreateNewGraph(handler.contextMenuPoint.x, handler.contextMenuPoint.y);
         handler.app.redrawGraph();
@@ -313,7 +313,7 @@ BaseHandler.prototype.removeContextMenu = function()
     $("#Context_Connect").off("click");    
     $("#Context_Delete_Edge").off("click");  
     $("#Context_Edit_Edge").off("click"); 
-    $("#Context_Add_Edge").off("click"); 
+    $("#Context_Add_Vertex").off("click"); 
     $("#Context_Back_Color").off("click");    
 }
 
@@ -462,7 +462,8 @@ BaseHandler.prototype.ShowEditEdgeDialog = function(edgeObject) {
  */
 function DefaultHandler(app)
 {
-	BaseHandler.apply(this, arguments, true);
+    this.removeStack = true;
+	BaseHandler.apply(this, arguments);
 	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>";
         this.selectedObjects = [];
         this.dragObject     = null;
@@ -932,7 +933,8 @@ DefaultHandler.prototype.SelectObjectInRect = function (rect)
  */
 function AddGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments, true);
+  this.removeStack = true;
+  BaseHandler.apply(this, arguments);
   this.message = g_clickToAddVertex;	
   this.addContextMenu();
 }
@@ -989,7 +991,8 @@ AddGraphHandler.prototype.ChangedType = function()
  */
 function ConnectionGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments, true);
+  this.removeStack = true;
+  BaseHandler.apply(this, arguments);
   this.SelectFirst();
   this.addContextMenu();	
 }
@@ -1094,7 +1097,8 @@ ConnectionGraphHandler.prototype.UpdateSecondVertexMenu = function(vertex2Text)
  */
 function DeleteGraphHandler(app)
 {
-  BaseHandler.apply(this, arguments, true);
+  this.removeStack = true;
+  BaseHandler.apply(this, arguments);
   this.message = g_selectObjectToDelete;
   this.addContextMenu();
 }
@@ -1470,7 +1474,7 @@ SavedDialogGraphImageHandler.prototype.showPrint = function()
  */
 function AlgorithmGraphHandler(app, algorithm)
 {
-    BaseHandler.apply(this, arguments, true);
+    BaseHandler.apply(this, arguments);
     this.algorithm = algorithm;
     this.SaveUpText();
     

@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=59")?>" ></script>
+        <script src="<?= Root("script/example.js?v=60")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -199,7 +199,7 @@
         </div>
         <div id="backgroundContextMenu">
           <div class="btn-group btn-group-vertical">
-            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Add_Edge"><?= L('add_node')?></button>
+            <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Add_Vertex"><?= L('add_node')?></button>
             <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Back_Color"><?= L('background_style') ?></button>
           </div>
         </div>
