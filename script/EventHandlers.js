@@ -628,7 +628,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
         
         var handler = this;
         var callback = function (enumType) {
-                handler.RenameVertex(enumType.GetVertexText(0, handler.selectedObject));
+                handler.RenameVertex(enumType.GetVertexText(0), handler.selectedObject);
                 userAction("RenameVertex");
         };
         $('#message').unbind();
