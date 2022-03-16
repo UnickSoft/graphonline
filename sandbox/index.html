@@ -37,6 +37,7 @@
         <script src="../script/GraphMLCreater.js"></script>
         <script src="../script/Graph.js"></script>
         <script src="../script/EnumVertices.js"></script>
+        <script src="../script/utils.js"></script>
         <script src="../script/Appilcation.js"></script>
         <script src="../script/main.js"></script>
         <script src="../script/BaseTraversal.js"></script>
@@ -187,6 +188,8 @@
                  <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupBackgroundStyle">Background color</button> </li>
           </ul>
         </div>
+
+        <button type="button" class="btn btn-default btn-sm" id="GraphUndo" style="display: none;"><span class="glyphicon glyphicon-arrow-left fa-fw"></span><span class="hidden-phone"> Undo <sub style="color:#AAAAAA">crtl+z</sub></span></button>
 		</ul>
 	</section>		
 
@@ -604,7 +607,62 @@
     <p id="RadiusAndDiameter" class="translation">Search graph radius and diameter</p>
     <p id="findShortPathName" class="translation">Find shortest path using Dijkstra's algorithm</p>
     <p id="VerticesDegreeName" class="translation">Calculate vertexes degree</p>
-        
+
+    <p id="MinSpanningTreeResult" class="translation">Weight of minimum spanning tree is </p>
+    <p id="MinSpanningIgnoreDir" class="translation">In time of calculation we have ignored the edges direction.</p>
+    <p id="MinSpanningNotConnected" class="translation">Graph is disconnected</p>
+
+    <!-- IsomorphismCheck.js -->
+    <p id="SelectFirstGraphIsomorphismCheck" class="translation">Select first graph for isomorphic check. Click to any node of graph</p>
+    <p id="SelectSecondGraphIsomorphismCheck" class="translation">Select second graph for isomorphic check. Click to any node of graph</p>    
+    <p id="SelectFirstGraphPatternCheck" class="translation">Select a template graph by clicking to any node of graph</p>
+    <p id="SelectSecondGraphForSearchSubgraph" class="translation">Choose a graph in which we will look for isomorphic subgraphs. Click to any node of this graph</p>
+    <p id="GraphsIsomorph" class="translation">Graphs are isomorphic</p>
+    <p id="GraphsNotIsomorph" class="translation">Graphs are not isomorphic</p>
+    <p id="NumberOfIsomorphSubgraphIs" class="translation">Number of isomorphic subgraphs are </p>
+    <p id="GraphHasNoIsomorphSubgraph" class="translation">Graph doesn't contain isomorphic subgraphs</p>
+    <p id="SearchIsomorphSubgraph" class="translation">Search isomorphic subgraphs</p>
+    <p id="SubgraphNo" class="translation">Isomorphic subgraph # </p>
+    <p id="GraphHasNoAtleast2Graphs" class="translation">To use the algorithm, you need to create 2 separate graphs</p>
+    <p id="IsomorphismCheck" class="translation">Check Graphs Isomorphism</p>
+
+    <!-- RadiusAndDiameter.js -->
+    <p id="GraphIsDisconnected" class="translation">Graph is disconnected</p>
+    <p id="GraphIsTrivial" class="translation">Graph contains only one vertex</p>
+    <p id="GraphRadius" class="translation">Graph radius</p>
+    <p id="GraphDiameter" class="translation">Graph diameter</p>
+    <p id="VertexCentral" class="translation">Central</p>
+    <p id="VertexPeripheral" class="translation">Peripheral</p>
+
+    <!-- VerticesDegree.js -->
+    <p id="MaximumDegreeOfGraph" class="translation">The maximum degree of a graph is</p>
+
+    <!-- Coloring.js -->
+    <p id="ColorNumber" class="translation">Color number is</p>
+
+    <p id="Done" class="translation">Done</p>
+
+    <p id="ActionText" class="translation">Actions</p>
+    <p id="CommonEdgeStyleText" class="translation">Common edge style</p>
+    <p id="SelectedEdgeStyleText" class="translation">Selected edge style</p>
+    <p id="CommonVertexStyleText" class="translation">Common vertex style</p>
+    <p id="SelectedVertexStyleText" class="translation">Selected vertex style</p>
+
+    <!-- FindAllPatches.js -->
+    <p id="FindAllPathes" class="translation">Find all paths</p>
+    <p id="NumberOfPathesFrom" class="translation">Number of paths from </p>
+    <p id="To" class="translation"> to </p>
+    <p id="Are" class="translation"> is </p>
+    <p id="PathN" class="translation">Path #</p>
+    <p id="SelectFinishVertex" class="translation">Select finish vertex</p>
+    <p id="SelectStartVertex" class="translation">Select start vertex</p>
+
+    <p id="findAllPathsFromVertex" class="translation">Find all shortest paths from vertex</p>
+    <p id="distanceFrom" class="translation">Distance from </p>
+    <p id="pathTo" class="translation">Path to </p>
+    <p id="UseContextMenuText" class="translation">Use context menu for additional actions.</p>
+    
+
 </section>
             </div>
 
