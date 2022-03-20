@@ -196,6 +196,27 @@ Graph.prototype.FindEdgeMin = function(id1, id2)
 	return res;
 }
 
+Graph.prototype.FindEdgeMax = function(id1, id2)
+{
+	var res       = null;
+    var maxWeight = 0;
+	for (var i = 0; i < this.edges.length; i++)
+	{
+        var edge = this.edges[i];
+		if ((edge.vertex1.id == id1 && edge.vertex2.id == id2)
+		     || (!edge.isDirect && edge.vertex1.id == id2 && edge.vertex2.id == id1))
+		{
+            if (edge.weight > maxWeight)
+            {
+                res       = edge;
+                maxWeight = edge.weight;
+            }
+		}
+	}
+	
+	return res;
+}
+
 Graph.prototype.FindEdgeMinIgnoreDirection = function(id1, id2)
 {
 	var res       = null;

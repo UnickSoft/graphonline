@@ -186,6 +186,9 @@ var g_pathTo = "Path to ";
 
 var g_useContextMenuText = "Use context menu for addition actions."
 
+var g_findLongestPath = "Find the longest path";
+var g_LengthOfLongestPathFrom = "Length of the longest path from ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -379,4 +382,7 @@ function loadTexts()
     g_pathTo = document.getElementById("pathTo").innerHTML;
 
     g_useContextMenuText = document.getElementById("UseContextMenuText").innerHTML;
+
+    g_findLongestPath = document.getElementById("findLongestPath").innerHTML;
+    g_LengthOfLongestPathFrom = document.getElementById("LengthOfLongestPathFrom").innerHTML; 
 }

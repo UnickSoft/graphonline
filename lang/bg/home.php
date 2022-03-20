@@ -277,4 +277,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['other_algorithms'] = "Other algorithms";
 
     $g_lang['use_context_menu'] = "Use context menu for additional actions.";
+
+    $g_lang['find_longest_path'] = "Find the longest path";
+    $g_lang['length_of_longest_path_from'] = "Length of the longest path from "; 
 ?>

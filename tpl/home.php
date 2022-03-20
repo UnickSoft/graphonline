@@ -837,6 +837,8 @@
     <p id="pathTo" class="translation"><?= L('path_to')?></p>
     <p id="UseContextMenuText" class="translation"><?= L('use_context_menu')?></p>
     
+    <p id="findLongestPath" class="translation"><?= L('find_longest_path')?></p>
+    <p id="LengthOfLongestPathFrom" class="translation"><?= L('length_of_longest_path_from')?></p> 
 </section>
 <!--
 <script>

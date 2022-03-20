@@ -278,4 +278,7 @@
     $g_lang['other_algorithms'] = "Другие алгоритмы";
 
     $g_lang['use_context_menu'] = "Используйте контекстное меню для дополнительных действий.";
+
+    $g_lang['find_longest_path'] = "Поиск самого длинного пути";
+    $g_lang['length_of_longest_path_from'] = "Длина самого длинного пути ровна ";   
 ?>
