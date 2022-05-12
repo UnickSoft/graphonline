@@ -219,7 +219,7 @@
     </section>
 
 
-<?php elseif (L('current_language') == "ru"): ?>
+<?php elseif (L('current_language') == "ru" && false): ?>
 <section id="bottom_adv">
   <section style="height:50px;text-align: center;" id="bottom_info" class="hidden-phone">
 <!-- Yandex.RTB R-A-202319-2 -->
