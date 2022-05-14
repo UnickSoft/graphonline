@@ -271,7 +271,7 @@ BaseHandler.prototype.addContextMenu = function()
     });
 
     $("body").on("contextmenu", "canvas", function(e) {
-        handler.contextMenuPoint = {x: e.offsetX, y: e.offsetY};
+        handler.contextMenuPoint = handler.app.getMousePos(handler.app.canvas, e);
         handler.contextMenuObject = handler.GetSelectedObject(handler.contextMenuPoint);
         if (handler.contextMenuObject instanceof BaseVertex) {
             $("#edgeContextMenu").hide();
