@@ -10,7 +10,7 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=62")?>" ></script>
+        <script src="<?= Root("script/example.js?v=63")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -838,7 +838,13 @@
     <p id="UseContextMenuText" class="translation"><?= L('use_context_menu')?></p>
     
     <p id="findLongestPath" class="translation"><?= L('find_longest_path')?></p>
-    <p id="LengthOfLongestPathFrom" class="translation"><?= L('length_of_longest_path_from')?></p> 
+    <p id="LengthOfLongestPathFrom" class="translation"><?= L('length_of_longest_path_from')?></p>
+
+    <p id="additionlActions" class="translation"><?= L('additionl_actions')?></p>
+    <p id="reverseAllEdges" class="translation"><?= L('reverse_all_edges')?></p>
+    <p id="makeAllUndirected" class="translation"><?= L('make_all_undirected')?></p>
+    <p id="makeAllDirected" class="translation"><?= L('make_all_directed')?></p>
+
 </section>
 <!--
 <script>

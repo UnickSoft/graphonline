@@ -189,6 +189,11 @@ var g_useContextMenuText = "Use context menu for addition actions."
 var g_findLongestPath = "Find the longest path";
 var g_LengthOfLongestPathFrom = "Length of the longest path from ";
 
+var g_additionlActions  = "Additional actions";
+var g_reverseAllEdges   = "Reverse all edges";
+var g_makeAllUndirected = "Make all edges undirected";
+var g_makeAllDirected   = "Make all edges directed";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -384,5 +389,10 @@ function loadTexts()
     g_useContextMenuText = document.getElementById("UseContextMenuText").innerHTML;
 
     g_findLongestPath = document.getElementById("findLongestPath").innerHTML;
-    g_LengthOfLongestPathFrom = document.getElementById("LengthOfLongestPathFrom").innerHTML; 
+    g_LengthOfLongestPathFrom = document.getElementById("LengthOfLongestPathFrom").innerHTML;
+
+    g_additionlActions  = document.getElementById("additionlActions").innerHTML;
+    g_reverseAllEdges   = document.getElementById("reverseAllEdges").innerHTML;
+    g_makeAllUndirected = document.getElementById("makeAllUndirected").innerHTML;
+    g_makeAllDirected   = document.getElementById("makeAllDirected").innerHTML;
 }

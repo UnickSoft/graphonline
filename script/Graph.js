@@ -986,6 +986,26 @@ Graph.prototype.hasDirectEdge = function ()
 	return res;
 }
 
+Graph.prototype.hasUndirectEdge = function ()
+{
+	var res = false;
+	for (var i = 0; i < this.edges.length; i++)
+	{
+		if(!this.edges[i].isDirect)
+		{
+			res = true;
+			break;
+		}
+	}
+	
+	return res;
+}
+
+Graph.prototype.hasEdges = function ()
+{
+	return this.edges.length > 0;
+}
+
 Graph.prototype.clampPositions = function (viewportSize)
 {
 	var diameter = (new VertexModel()).diameter;
@@ -1178,4 +1198,45 @@ Graph.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
     }
     
     return defaultValue;
+}
+
+Graph.prototype.reverseAllEdges = function ()
+{
+	for (var i = 0; i < this.edges.length; i++)
+	{
+		if(this.edges[i].isDirect)
+		{
+			let v1 = this.edges[i].vertex1;
+			this.edges[i].vertex1 = this.edges[i].vertex2;
+			this.edges[i].vertex2 = v1;
+		}
+	}
+
+	this.isMultiGraph = this.checkMutiGraph();
+}
+
+Graph.prototype.makeAllEdgesDirected = function ()
+{
+	for (var i = 0; i < this.edges.length; i++)
+	{
+		if(!this.edges[i].isDirect)
+		{
+			this.edges[i].isDirect = true;
+		}
+	}
+
+	this.isMultiGraph = this.checkMutiGraph();
+}
+
+Graph.prototype.makeAllEdgesUndirected = function ()
+{
+	for (var i = 0; i < this.edges.length; i++)
+	{
+		if(this.edges[i].isDirect)
+		{
+			this.edges[i].isDirect = false;
+		}
+	}
+
+	this.isMultiGraph = this.checkMutiGraph();
 }

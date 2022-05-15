@@ -279,5 +279,10 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang['use_context_menu'] = "Use context menu for additional actions.";
 
     $g_lang['find_longest_path'] = "Find the longest path";
-    $g_lang['length_of_longest_path_from'] = "Length of the longest path from ";     
+    $g_lang['length_of_longest_path_from'] = "Length of the longest path from ";
+    
+    $g_lang['additionl_actions'] = "Special actions";
+    $g_lang['reverse_all_edges'] = "Reverse all edges";
+    $g_lang['make_all_undirected'] = "Make all edges undirected";
+    $g_lang['make_all_directed'] = "Make all edges directed";    
 ?>

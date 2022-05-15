@@ -280,5 +280,11 @@
     $g_lang['use_context_menu'] = "Используйте контекстное меню для дополнительных действий.";
 
     $g_lang['find_longest_path'] = "Поиск самого длинного пути";
-    $g_lang['length_of_longest_path_from'] = "Длина самого длинного пути ровна ";   
+    $g_lang['length_of_longest_path_from'] = "Длина самого длинного пути ровна ";
+
+
+    $g_lang['additionl_actions'] = "Особые действия";
+    $g_lang['reverse_all_edges'] = "Поменять направление всех дуг";
+    $g_lang['make_all_undirected'] = "Сделать все дуги неориентированными";
+    $g_lang['make_all_directed'] = "Сделать все дуги ориентированными";  
 ?>
