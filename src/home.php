@@ -6,7 +6,7 @@
     $graphName = "";
     if (isset($_GET["graph"]))
     {
-        $graphId = $_GET["graph"];
+        $graphId = preg_replace( '/[\W]/', '', $_GET["graph"]);
         
         $graphSampleListFile = $g_config['graphSavePath'] . $g_config['graphExamplesFile'];
         
