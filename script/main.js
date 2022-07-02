@@ -404,6 +404,12 @@ function postLoadPage()
         userAction(this.id);
         application.SetHandlerMode("savePrintGraphImage");
     }
+
+    document.getElementById('SaveSvgGraphImage').onclick = function ()
+    {
+        userAction(this.id);
+        application.SetHandlerMode("saveSvgGraphImage");
+    }
     
     document.getElementById('Zoom100').onclick = function ()
     {

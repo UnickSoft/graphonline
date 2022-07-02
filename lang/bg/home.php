@@ -285,4 +285,6 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['reverse_all_edges'] = "Reverse all edges";
     $g_lang['make_all_undirected'] = "Make all edges undirected";
     $g_lang['make_all_directed'] = "Make all edges directed";    
+
+    $g_lang['save_svg_image'] = "Save graph to SVG";  
 ?>

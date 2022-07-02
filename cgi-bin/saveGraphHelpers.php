@@ -39,6 +39,20 @@ function getImageFileName($graphName, $fromRoot=false)
     return $dirName . "/$graphName.png";
 }
 
+function getSvgFileName($graphName, $fromRoot=false)
+{
+    global $g_config;
+    
+    $dirName = ($fromRoot ? "" : "../") . $g_config['graphSavePath'] . substr($graphName, 0, 2);
+
+    if(!file_exists($dirName))
+    {
+        mkdir($dirName, 0777, true);
+    }
+
+    return $dirName . "/$graphName.svg";
+}
+
     
     function saveGraphXML($graph, $name, $fromRoot = false)
     {

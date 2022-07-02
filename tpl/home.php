@@ -10,7 +10,8 @@
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-        <script src="<?= Root("script/example.js?v=63")?>" ></script>
+      <script src="<?= Root("script/canvas2svg.js")?>" ></script>
+        <script src="<?= Root("script/example.js?v=64")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -56,6 +57,9 @@
                 <li>
                     <button type="button" class="btn btn-default btn-sm btn-submenu" id="SavePrintGraphImage"><span class="glyphicon glyphicon-print fa-fw"></span> <?= L('save_print_image')?></button>
                 </li>
+                <li>
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveSvgGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_svg_image')?></button>
+                </li>                
                 <li class="divider hidden-phone"></li>
                 <li class="hidden-phone">
 				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ExportGraph"><span class="glyphicon glyphicon-download fa-fw"></span> <?= L('export_graph')?></button>

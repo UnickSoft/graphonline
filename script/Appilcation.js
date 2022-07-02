@@ -233,6 +233,22 @@ Application.prototype._PrintRedrawGraph = function()
     return canvas;
 }
 
+Application.prototype._printToSVG = function()
+{
+    var bbox = this.graph.getGraphBBox();
+    var context = new C2S(bbox.size().x, bbox.size().y);
+    
+    context.save();
+    
+    context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
+    
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false);
+    
+    context.restore();
+    
+    return context.getSerializedSvg();
+}
+
 Application.prototype.updateRenderPathLength = function()
 {
     this.renderPathLength = 0;
@@ -707,6 +723,11 @@ Application.prototype.SetHandlerMode = function(mode)
         var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
         savedDialogGraphImageHandler.showPrint();           
     }
+    else if (mode == "saveSvgGraphImage")
+    {
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
+        savedDialogGraphImageHandler.showSvg();           
+    }    
     else if (mode == "eulerianLoop")
     {
 		this.handler = new EulerianLoopGraphHandler(this);
@@ -1066,6 +1087,32 @@ Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback, f
      url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
      data: {
            base64data : imageBase64Data
+     },
+     dataType: "text",
+     success: function(data){
+        showDialogCallback();
+    }
+     });
+                          
+    return imageName;
+}
+
+Application.prototype.SaveSVGGraphOnDisk = function (showDialogCallback)
+{
+    var imageName = this.GetNewName();
+                          
+    this.stopRenderTimer();
+    var svgText = this._printToSVG();
+                          
+    var bbox = this.graph.getGraphBBox();
+    
+    var imageBase64Data = canvas.toDataURL();
+
+    $.ajax({
+     type: "POST",
+     url: "/" + SiteDir + "cgi-bin/saveSvg.php?name=" + imageName,
+     data: {
+           svgdata : svgText
      },
      dataType: "text",
      success: function(data){

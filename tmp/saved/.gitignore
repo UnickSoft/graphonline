@@ -1,4 +1,6 @@
 *.png
 *.xml
+*.svg
 **/*.png
 **/*.xml
+**/*.svg

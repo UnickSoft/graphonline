@@ -1457,7 +1457,7 @@ SavedDialogGraphImageHandler.prototype.pathObjects = null;
 // Objects.
 SavedDialogGraphImageHandler.prototype.objects    = null;
 
-SavedDialogGraphImageHandler.prototype.showDialogCallback = function ()
+SavedDialogGraphImageHandler.prototype.showDialogCallback = function (imageExtention)
 {
     var dialogButtons = {};
 
@@ -1465,7 +1465,7 @@ SavedDialogGraphImageHandler.prototype.showDialogCallback = function ()
         $( this ).dialog( "close" );
     };
 
-    var fileLocation = "tmp/saved/" + this.imageName.substr(0, 2) + "/"+ this.imageName + ".png"
+    var fileLocation = "tmp/saved/" + this.imageName.substr(0, 2) + "/"+ this.imageName + "." + imageExtention
 
     document.getElementById("showSavedImageGraph").src     = "/" + fileLocation;
     document.getElementById("showSavedImageGraphRef").href = "/" + fileLocation;
@@ -1492,7 +1492,7 @@ SavedDialogGraphImageHandler.prototype.showWorkspace = function()
 {
     var object = this;
     var callback = function() {
-      object.showDialogCallback();
+      object.showDialogCallback("png");
     };
     
     this.imageName = this.app.SaveGraphImageOnDisk(callback);
@@ -1502,7 +1502,7 @@ SavedDialogGraphImageHandler.prototype.showFullgraph = function()
 {
     var object = this;
     var callback = function() {
-      object.showDialogCallback();
+      object.showDialogCallback("png");
     };
     
     this.imageName = this.app.SaveFullGraphImageOnDisk(callback, false);
@@ -1512,10 +1512,20 @@ SavedDialogGraphImageHandler.prototype.showPrint = function()
 {
     var object = this;
     var callback = function() {
-      object.showDialogCallback();
+      object.showDialogCallback("png");
     };
     
     this.imageName = this.app.SaveFullGraphImageOnDisk(callback, true);
+}
+
+SavedDialogGraphImageHandler.prototype.showSvg = function()
+{
+    var object = this;
+    var callback = function() {
+      object.showDialogCallback("svg");
+    };
+    
+    this.imageName = this.app.SaveSVGGraphOnDisk(callback);
 }
 
 /**

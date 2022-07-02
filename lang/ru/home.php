@@ -287,4 +287,7 @@
     $g_lang['reverse_all_edges'] = "Поменять направление всех дуг";
     $g_lang['make_all_undirected'] = "Сделать все дуги неориентированными";
     $g_lang['make_all_directed'] = "Сделать все дуги ориентированными";  
+
+    $g_lang['save_svg_image'] = "Сохранить граф в SVG";  
+
 ?>

@@ -7,5 +7,5 @@
     $g_config['admin_sector']['after_logout_page'] = 'admin/login'; // Страница на которую мы попадем после выхода из админки 
     
     $g_config['admin_sector']['def_login']         = 'admin'; // Логин для входа в административный раздел
-    $g_config['admin_sector']['def_pwd']           = '123erROR123'; // Пароль для входа в административный раздел
+    $g_config['admin_sector']['def_pwd']           = 'you_passs_here'; // Пароль для входа в административный раздел
 ?>
