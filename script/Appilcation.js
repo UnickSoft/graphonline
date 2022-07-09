@@ -515,15 +515,24 @@ Application.prototype.CanvasOnMouseUp = function(e)
     this.updateMessage();
 }
 
-Application.prototype.multCanvasScale = function(factor)
-{
-    var oldRealWidth = this.GetRealWidth();
-    var oldRealHeight = this.GetRealHeight();
-    
-    this.canvasScale *= factor;
-    
-    this.canvasPosition = this.canvasPosition.add(new Point((this.GetRealWidth()  - oldRealWidth) / 2.0,
-                                                            (this.GetRealHeight() - oldRealHeight) / 2.0));
+Application.prototype.multCanvasScale = function(factor, zoom_to=null)
+{  
+    if (zoom_to) // zoom on cursor
+    {
+        var pos1 = this.getMousePos(this.canvas, zoom_to); // mouse position before zooming
+        this.canvasScale *= factor;
+        var pos2 = this.getMousePos(this.canvas, zoom_to); // mouse position after zooming
+
+        this.canvasPosition = this.canvasPosition.add(new Point(pos2.x-pos1.x, pos2.y-pos1.y));
+    }  
+    else // zoom on center
+    {
+        var oldRealWidth = this.GetRealWidth();
+        var oldRealHeight = this.GetRealHeight();
+        this.canvasScale *= factor;
+        
+        this.canvasPosition = this.canvasPosition.add(new Point((this.GetRealWidth()  - oldRealWidth) / 2.0, (this.GetRealHeight() - oldRealHeight) / 2.0));
+    }
     
     this.redrawGraph();
 }
