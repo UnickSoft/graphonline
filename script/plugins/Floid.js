@@ -207,7 +207,7 @@ FloidAlgorithm.prototype.restore = function()
         
         var edge = this.graph.edges[edgeIndex];
         edge.model.type        = this.egdesCopy[i].model.type;
-        edge.model.curvedValue = this.egdesCopy[i].model.curvedValue;
+        edge.model.curveValue = this.egdesCopy[i].model.curveValue;
 
         //edge.model = this.egdesCopy[i].model;
     }

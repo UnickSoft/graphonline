@@ -3,8 +3,8 @@
  *
  */
 
-// Return list of vertex with connected vertex.
-function getVertexToVertexArray(graph, ignoryDirection)
+// Return list of 'vertex = [connected vertices]'
+function getVertexToVertexArray(graph, ignoreDirection)
 {
 	res = {};
 
@@ -16,7 +16,7 @@ function getVertexToVertexArray(graph, ignoryDirection)
 			res[edge.vertex1.id] = [];
 		}
 		res[edge.vertex1.id].push(edge.vertex2);
-		if (!edge.isDirect || ignoryDirection)
+		if (!edge.isDirect || ignoreDirection)
 		{
 			if (!res.hasOwnProperty(edge.vertex2.id))
 			{
@@ -34,7 +34,7 @@ function getVertexToVertexArray(graph, ignoryDirection)
 var g_Algorithms   = [];
 var g_AlgorithmIds = [];
 
-// Call this function to register your factory algoritm.
+// Call this function to register your factory algorithm.
 function RegisterAlgorithm (factory)
 {
     g_Algorithms.push(factory);
@@ -48,13 +48,13 @@ function BaseAlgorithm (graph, app)
     this.app = app;
 }
 
-// @return name of algorthm. For now we supports only 2 locals: "ru" and "en"
+// @return name of algorithm. For now we supports only 2 locals: "ru" and "en"
 BaseAlgorithm.prototype.getName = function(local)
 {
     return "unknown_name_" + local;
 }
 
-// @return id of algorthm. Please use format: "your id"."algorithm id". Ex. "OlegSh.ConnectedComponent"
+// @return id of algorithm. Please use format: "your id"."algorithm id". Ex. "OlegSh.ConnectedComponent"
 BaseAlgorithm.prototype.getId = function()
 {
     return "unknown.unknown";
@@ -109,7 +109,7 @@ BaseAlgorithm.prototype.needRestoreUpText = function()
     return true;
 }
 
-// @return true, if you change resotry graph after use.
+// @return true, if you change restore graph after use.
 BaseAlgorithm.prototype.wantRestore = function()
 {
     return false;
@@ -126,7 +126,7 @@ BaseAlgorithm.prototype.getObjectSelectedGroup = function(object)
     return 0;
 }
 
-// This methos is called, when messages was updated on html page.
+// This method is called, when messages was updated on html page.
 BaseAlgorithm.prototype.messageWasChanged = function() {}
 
 // Algorithm priority in menu
@@ -172,7 +172,7 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
             if (!graph.HasConnectedNodes(graph.vertices[i]))
                 ignoreNodes[graph.vertices[i].id] = 1;
 
-    var creator = new GraphMLCreater(graph.vertices, graph.edges, ignoreNodes);
+    var creator = new GraphMLCreator(graph.vertices, graph.edges, ignoreNodes);
     var pathObjects = [];
     var properties = {};
     var result = [];

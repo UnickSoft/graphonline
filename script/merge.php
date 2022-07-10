@@ -15,10 +15,10 @@ file_put_contents($outputFilename, file_get_contents("BaseEdgeDrawer.js"), FILE_
 file_put_contents($outputFilename, file_get_contents("BaseBackgroundDrawer.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("Algorithms.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("EventHandlers.js"), FILE_APPEND);
-file_put_contents($outputFilename, file_get_contents("GraphMLCreater.js"), FILE_APPEND);
+file_put_contents($outputFilename, file_get_contents("GraphMLCreator.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("Graph.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("EnumVertices.js"), FILE_APPEND);
-file_put_contents($outputFilename, file_get_contents("Appilcation.js"), FILE_APPEND);
+file_put_contents($outputFilename, file_get_contents("Application.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("main.js"), FILE_APPEND);
 file_put_contents($outputFilename, file_get_contents("BaseTraversal.js"), FILE_APPEND);
 

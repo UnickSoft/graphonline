@@ -11,7 +11,7 @@ function Application(document, window)
     this.canvas  = this.document.getElementById('canvas');
     this.handler = new AddGraphHandler(this);
     this.savedGraphName = "";
-    this.currentEnumVertesType = new BaseEnumVertices(this, 1);//this.enumVertexesTextList[0];
+    this.currentEnumVerticesType = new BaseEnumVertices(this, 1);//this.enumVerticesTextList[0];
     this.findPathReport = 1;
     this.isTimerRender = false;
     globalApplication  = this;
@@ -20,7 +20,7 @@ function Application(document, window)
     this.renderPathLength  = 0;
     this.renderPathCounter = 0;
     this.renderPathLoops = 0;
-    this.enumVertexesTextList = [new BaseEnumVertices(this, 1), new BaseEnumVertices(this, 0), new TextEnumVertexs(this), new TextEnumVertexsCyr(this), new TextEnumVertexsGreek(this), new TextEnumVertexsCustom(this)];
+    this.enumVerticesTextList = [new BaseEnumVertices(this, 1), new BaseEnumVertices(this, 0), new TextEnumVertices(this), new TextEnumVerticesCyr(this), new TextEnumVerticesGreek(this), new TextEnumVerticesCustom(this)];
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
     this.userAction = function(){};
@@ -58,7 +58,7 @@ function Application(document, window)
 
 // List of graph.
 //Application.prototype.graph.vertices     = [];
-// Current draged object.
+// Current dragged object.
 Application.prototype.graph = new Graph();
 Application.prototype.dragObject = -1;
 // List of graph.edges.
@@ -326,17 +326,17 @@ Application.prototype.GetBaseArcDrawer = function(context, edge)
 {
     var arcDrawer = new BaseEdgeDrawer(context);
     
-    if (edge.model.type == EdgeModels.cruvled)
+    if (edge.model.type == EdgeModels.curve)
     {
         var curvedArcDrawer = new CurvedArcDrawer(context, edge.model);
 
         arcDrawer = new BaseEdgeDrawer(context, 
                                         {
-                                            drawArc             : curvedArcDrawer, 
-                                            startArrowDiretion  : curvedArcDrawer,
-                                            finishArrowDiretion : curvedArcDrawer,
-                                            textCenterObject    : curvedArcDrawer,
-                                            getPointOnArc       : curvedArcDrawer
+                                            drawArc              : curvedArcDrawer, 
+                                            startArrowDirection  : curvedArcDrawer,
+                                            finishArrowDirection : curvedArcDrawer,
+                                            textCenterObject     : curvedArcDrawer,
+                                            getPointOnArc        : curvedArcDrawer
                                         }
                                       );
     }
@@ -570,7 +570,7 @@ Application.prototype.CreateNewGraph = function(x, y)
 {
     var app = this;
     
-    this.currentEnumVertesType.GetVertexTextAsync(
+    this.currentEnumVerticesType.GetVertexTextAsync(
                         function (enumType)
                         {
                             app.graph.AddNewVertex(new BaseVertex(x, y, enumType));
@@ -587,7 +587,7 @@ Application.prototype.CreateNewArc = function(graph1, graph2, isDirect, weight, 
 {
 	var edge = this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight, upText), replaceIfExist);
 
-    this.graph.FixEdgeCurved(edge);
+    this.graph.FixEdgeCurve(edge);
 
     var edgeObject = this.graph.edges[edge];
 
@@ -661,9 +661,9 @@ Application.prototype.FindAllEdges = function(id1, id2)
 
 Application.prototype.SetHandlerMode = function(mode)
 {
-    var manipolationHandlers = ["default", "addGraph", "addArc", "delete", "findPath", "connectedComponent", "eulerianLoop"];
+    var manipulationHandlers = ["default", "addGraph", "addArc", "delete", "findPath", "connectedComponent", "eulerianLoop"];
     
-    if (this.handler && (g_AlgorithmIds.indexOf(mode) >= 0 || manipolationHandlers.indexOf(mode) >= 0))
+    if (this.handler && (g_AlgorithmIds.indexOf(mode) >= 0 || manipulationHandlers.indexOf(mode) >= 0))
     {
         this.handler.RestoreAll();
     }
@@ -799,7 +799,7 @@ Application.prototype.getParameterByName = function (name)
 
 Application.prototype.onPostLoadEvent = function()
 {
-    this.SetEnumVertexsType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+    this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
 
     var wasLoad = false;
     var matrix  = document.getElementById("inputMatrix").innerHTML;
@@ -927,7 +927,7 @@ Application.prototype.SetAdjacencyMatrix = function (matrix, separator)
 		res = false;
 	}
 
-	this.graph.SetAdjacencyMatrix(matrix, new Point(this.GetRealWidth(), this.GetRealHeight()), this.currentEnumVertesType, separator);
+	this.graph.SetAdjacencyMatrix(matrix, new Point(this.GetRealWidth(), this.GetRealHeight()), this.currentEnumVerticesType, separator);
     this.AutoAdjustViewport();
 	this.redrawGraph();
 	return res;
@@ -955,7 +955,7 @@ Application.prototype.SetIncidenceMatrix = function (matrix)
 		res = false;
 	}
 
-	this.graph.SetIncidenceMatrix(matrix, new Point(this.GetRealWidth(), this.GetRealHeight()), this.currentEnumVertesType);
+	this.graph.SetIncidenceMatrix(matrix, new Point(this.GetRealWidth(), this.GetRealHeight()), this.currentEnumVerticesType);
     this.AutoAdjustViewport();
 	this.redrawGraph();
 	return res;
@@ -1206,17 +1206,17 @@ Application.prototype.SetDefaultHandler = function()
 	this.SetHandlerMode("default");
 }
 
-Application.prototype.GetEnumVertexsList = function()
+Application.prototype.GetEnumVerticesList = function()
 {
 	var res = [];
 
-	for (var i = 0; i < this.enumVertexesTextList.length; i ++)
+	for (var i = 0; i < this.enumVerticesTextList.length; i ++)
 	{
 		var one = {};
-		one["text"]  = this.enumVertexesTextList[i].GetText();
-		one["value"] = this.enumVertexesTextList[i].GetValue();
+		one["text"]  = this.enumVerticesTextList[i].GetText();
+		one["value"] = this.enumVerticesTextList[i].GetValue();
 
-		one["select"] = this.enumVertexesTextList[i].GetValue() == this.currentEnumVertesType.GetValue();
+		one["select"] = this.enumVerticesTextList[i].GetValue() == this.currentEnumVerticesType.GetValue();
 
 		res.push(one);
 	}
@@ -1224,13 +1224,13 @@ Application.prototype.GetEnumVertexsList = function()
 	return res;
 }
 
-Application.prototype.SetEnumVertexsType = function(value)
+Application.prototype.SetEnumVerticesType = function(value)
 {
-	for (var i = 0; i < this.enumVertexesTextList.length; i ++)
+	for (var i = 0; i < this.enumVerticesTextList.length; i ++)
 	{
-		if (this.enumVertexesTextList[i].GetValue() == value)
+		if (this.enumVerticesTextList[i].GetValue() == value)
 		{
-			this.currentEnumVertesType = this.enumVertexesTextList[i];
+			this.currentEnumVerticesType = this.enumVerticesTextList[i];
 			document.cookie = "enumType=" + value;
 			break;
 		}
@@ -1698,14 +1698,14 @@ Application.prototype.ResetBackgroundStyle = function ()
     this.isBackgroundCommonStyleCustom = false;
 }
 
-Application.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
+Application.prototype.GetAvailableCurveValue = function(neighborEdges, originalEdge)
 {
-    return this.graph.GetAvalibleCruvledValue(neighbourEdges, originalEdge);
+    return this.graph.GetAvailableCurveValue(neighborEdges, originalEdge);
 }
 
 Application.prototype.GraphTypeChanged = function()
 {
-    $("#CanvasMessage").text(this.graph.isMulti() ? g_GrapsIsMultiMessage : g_GrapsIsGeneralMessage);
+    $("#CanvasMessage").text(this.graph.isMulti() ? g_GraphIsMultiMessage : g_GraphIsGeneralMessage);
 }
 
 Application.prototype.UpdateEdgePresets = function(weight)
@@ -1793,7 +1793,7 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
 }
 
 Application.prototype._RedrawGraph = function(context, backgroundPosition, backgroundStyle, bDrawSelectedRect,
-    forceVertexCommon, forceVertexSeleceted, forceEdgeCommon, forceEdgeSelected)
+    forceVertexCommon, forceVertexSelected, forceEdgeCommon, forceEdgeSelected)
 {
     var backgroundDrawer = new BaseBackgroundDrawer(context);
     
@@ -1805,7 +1805,7 @@ Application.prototype._RedrawGraph = function(context, backgroundPosition, backg
         this.canvasScale);
     
     this.UpdateEdgesCurrentStyle(forceEdgeCommon, forceEdgeSelected);
-    this.UpdateNodesCurrentStyle(forceVertexCommon, forceVertexSeleceted);
+    this.UpdateNodesCurrentStyle(forceVertexCommon, forceVertexSelected);
 
     this.RedrawEdges(context);
     this.RedrawNodes(context);

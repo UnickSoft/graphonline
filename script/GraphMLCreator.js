@@ -4,7 +4,7 @@
  */
 
 
-function GraphMLCreater(nodes, arcs, ignoreNodes = {})
+function GraphMLCreator(nodes, arcs, ignoreNodes = {})
 {
 	this.nodes = nodes;
 	this.arcs = arcs;
@@ -12,7 +12,7 @@ function GraphMLCreater(nodes, arcs, ignoreNodes = {})
 }
 
 
-GraphMLCreater.prototype.GetXMLString = function()
+GraphMLCreator.prototype.GetXMLString = function()
 {
 	var mainHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><graphml>";
 	var directedHeader   = "<graph id=\"Graph\" edgedefault=\"directed\">";	
@@ -24,12 +24,12 @@ GraphMLCreater.prototype.GetXMLString = function()
 			"<default>" + defaultWeight + "</default>" +
 			"</key>";
 	
-	var xmlBoby = "";
+	var xmlBody = "";
 	  
 	for (var i = 0; i < this.nodes.length; i++)
 	{
 		if (!this.ignoreNodes.hasOwnProperty(this.nodes[i].id))
-			xmlBoby = xmlBoby + "<node id=\"" + this.nodes[i].id + "\"/>";
+			xmlBody = xmlBody + "<node id=\"" + this.nodes[i].id + "\"/>";
 	}
 	var hasDirected = false;
 	for (var i = 0; i < this.arcs.length; i++)
@@ -50,13 +50,13 @@ GraphMLCreater.prototype.GetXMLString = function()
 		    weightData = "<data key=" + weightKeyId + ">" + arc.weight + "</data>";
 		}
 
-		xmlBoby = xmlBoby + "<edge source=\"" + arc.vertex1.id + "\" target=\""
+		xmlBody = xmlBody + "<edge source=\"" + arc.vertex1.id + "\" target=\""
 			+ arc.vertex2.id + "\" " +
 			(arc.isDirect != hasDirected ? (hasDirected ? "directed=\"false\"" : "directed=\"true\"") : "") +
 		    " id=\"" + arc.id + "\"";
 			
-		xmlBoby = xmlBoby +	((weightData != "") ? ">" + weightData + "</edge>" : "/>")
+		xmlBody = xmlBody +	((weightData != "") ? ">" + weightData + "</edge>" : "/>")
 	}	
-	xml = mainHeader + weightNode + (hasDirected ? directedHeader : undirectedHeader) + xmlBoby + "</graph></graphml>"
+	xml = mainHeader + weightNode + (hasDirected ? directedHeader : undirectedHeader) + xmlBody + "</graph></graphml>"
 	return xml;
 }

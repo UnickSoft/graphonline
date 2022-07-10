@@ -1,10 +1,10 @@
 /*
-  Classes for create text for vertexs.
+  Classes for creating text for vertices.
 */
 
 
 /**
- * Base Enum Vertexs.
+ * Base Enum Vertices.
  *
  */ 
 function BaseEnumVertices(app, startNumber)
@@ -55,7 +55,7 @@ TextEnumTitle.prototype.GetVertexText = function(id)
  * Text Enum
  *
  */
-function TextEnumVertexs(app)
+function TextEnumVertices(app)
 {
 	BaseEnumVertices.apply(this, arguments);
 	this.pattern = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -63,9 +63,9 @@ function TextEnumVertexs(app)
 
 
 // inheritance.
-TextEnumVertexs.prototype = Object.create(BaseEnumVertices.prototype);
+TextEnumVertices.prototype = Object.create(BaseEnumVertices.prototype);
 
-TextEnumVertexs.prototype.GetVertexText = function(id)
+TextEnumVertices.prototype.GetVertexText = function(id)
 {
 	var res = "";
 
@@ -81,12 +81,12 @@ TextEnumVertexs.prototype.GetVertexText = function(id)
 }
 
 
-TextEnumVertexs.prototype.GetText = function()
+TextEnumVertices.prototype.GetText = function()
 {
 	return "A, B, ... Z";
 }
 
-TextEnumVertexs.prototype.GetValue = function()
+TextEnumVertices.prototype.GetValue = function()
 {
 	return "Latin";
 }
@@ -95,22 +95,22 @@ TextEnumVertexs.prototype.GetValue = function()
  * Text Enum
  *
  */
-function TextEnumVertexsCyr(app)
+function TextEnumVerticesCyr(app)
 {
-	TextEnumVertexs.apply(this, arguments);
+	TextEnumVertices.apply(this, arguments);
 	this.pattern = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 }
 
 
 // inheritance.
-TextEnumVertexsCyr.prototype = Object.create(TextEnumVertexs.prototype);
+TextEnumVerticesCyr.prototype = Object.create(TextEnumVertices.prototype);
 
-TextEnumVertexsCyr.prototype.GetText = function()
+TextEnumVerticesCyr.prototype.GetText = function()
 {
 	return "А, Б, ... Я";
 }
 
-TextEnumVertexsCyr.prototype.GetValue = function()
+TextEnumVerticesCyr.prototype.GetValue = function()
 {
 	return "Cyrillic";
 }
@@ -120,22 +120,22 @@ TextEnumVertexsCyr.prototype.GetValue = function()
  * Text Enum
  *
  */
-function TextEnumVertexsGreek(app)
+function TextEnumVerticesGreek(app)
 {
-	TextEnumVertexs.apply(this, arguments);
+	TextEnumVertices.apply(this, arguments);
 	this.pattern = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
 }
 
 
 // inheritance.
-TextEnumVertexsGreek.prototype = Object.create(TextEnumVertexs.prototype);
+TextEnumVerticesGreek.prototype = Object.create(TextEnumVertices.prototype);
 
-TextEnumVertexsGreek.prototype.GetText = function()
+TextEnumVerticesGreek.prototype.GetText = function()
 {
 	return "Α, Β, ... Ω";
 }
 
-TextEnumVertexsGreek.prototype.GetValue = function()
+TextEnumVerticesGreek.prototype.GetValue = function()
 {
 	return "Greek";
 }
@@ -144,7 +144,7 @@ TextEnumVertexsGreek.prototype.GetValue = function()
  * Text Enum
  *
  */
-function TextEnumVertexsCustom(app)
+function TextEnumVerticesCustom(app)
 {
     BaseEnumVertices.apply(this, arguments);
     this.pattern = "";
@@ -153,25 +153,25 @@ function TextEnumVertexsCustom(app)
 
 
 // inheritance.
-TextEnumVertexsCustom.prototype = Object.create(BaseEnumVertices.prototype);
+TextEnumVerticesCustom.prototype = Object.create(BaseEnumVertices.prototype);
 
-TextEnumVertexsCustom.prototype.GetText = function()
+TextEnumVerticesCustom.prototype.GetText = function()
 {
     return g_customEnumVertex;
 }
 
-TextEnumVertexsCustom.prototype.GetValue = function()
+TextEnumVerticesCustom.prototype.GetValue = function()
 {
     return "Custom";
 }
 
-TextEnumVertexsCustom.prototype.GetVertexTextAsync = function(callback)
+TextEnumVerticesCustom.prototype.GetVertexTextAsync = function(callback)
 {
     this.ShowDialog(callback, g_addVertex, g_addVertex, "A");
 }
 
 
-TextEnumVertexsCustom.prototype.ShowDialog = function(callback, buttonText, titleTitle, title)
+TextEnumVerticesCustom.prototype.ShowDialog = function(callback, buttonText, titleTitle, title)
 {
     var dialogButtons = {};
     app = this.app;

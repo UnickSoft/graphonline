@@ -194,13 +194,13 @@ BaseEdge.prototype.GetEdgePositions = function()
     var d1        = diameter1;
     var d2        = diameter2;
     
-    if (this.model.type == EdgeModels.cruvled)
+    if (this.model.type == EdgeModels.curve)
     {
         var dist   = position1.distance(position2);
-        var point1  = this.model.GetCurvedPoint(position1, position2, 10.0 / dist);
+        var point1  = this.model.GetCurvePoint(position1, position2, 10.0 / dist);
         direction1  = position1.subtract(point1);   
         
-        var point2  = this.model.GetCurvedPoint(position1, position2, 1.0 - 10.0 / dist);
+        var point2  = this.model.GetCurvePoint(position1, position2, 1.0 - 10.0 / dist);
         direction2  = position2.subtract(point2);
         
         d2         = diameter2;
