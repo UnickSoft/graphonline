@@ -191,11 +191,11 @@ function postLoadPage()
         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
         if (delta > 0)
         {
-            application.multCanvasScale(1.3);
+            application.multCanvasScale(1.3, e);
         }
         else
         {
-            application.multCanvasScale(1.0 / 1.3);
+            application.multCanvasScale(1.0 / 1.3, e);
         }
     }
     
