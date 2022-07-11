@@ -213,11 +213,11 @@ BaseEdge.prototype.GetEdgePositions = function()
     direction1.normalize(1.0);
     direction2.normalize(1.0);
 
-    var vertexes = [];
-    vertexes.push({vertex : this.vertex1, direction : direction1, position : position1, diameter : d1});
-    vertexes.push({vertex : this.vertex2, direction : direction2, position : position2, diameter : d2});
+    var vertices = [];
+    vertices.push({vertex : this.vertex1, direction : direction1, position : position1, diameter : d1});
+    vertices.push({vertex : this.vertex2, direction : direction2, position : position2, diameter : d2});
 
-	vertexes.forEach(function(data) 
+	vertices.forEach(function(data) 
         {
             var shape = data.vertex.currentStyle.GetStyle({}, data.vertex).shape;
             if (shape == VertexCircleShape)

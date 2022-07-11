@@ -73,7 +73,7 @@ GraphReorder.prototype.result = function(resultCallback)
       var vertexData = [];
       for(i = 0; i < this.vertices.length; i++) // loop through vertices
       {
-         // Has no in newVertexes.
+         // Has no in newVertices.
          var currentVertex = {};
          currentVertex.object    = this.vertices[i];
          currentVertex.net_force = new Point (0, 0);

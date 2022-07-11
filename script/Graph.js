@@ -22,14 +22,14 @@ function Graph()
 
 // infinity
 Graph.prototype.infinity = 1E8;
-// Max vertexes
-Graph.prototype.maxVertexes = 1000;
+// Max vertices
+Graph.prototype.maxVertices = 1000;
 // Offset for edges ids.
 Graph.prototype.edgesOffset = 10000;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
-	if (this.vertices.length <= this.maxVertexes)
+	if (this.vertices.length <= this.maxVertices)
 	{
 		vertex.SetId (this.uidGraph);
 		this.uidGraph = this.uidGraph + 1;
@@ -350,7 +350,7 @@ Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separa
 }
 
 
-Graph.prototype.IsVertexesHasSamePosition = function (position, vertexCount)
+Graph.prototype.IsVerticesHaveSamePosition = function (position, vertexCount)
 {
 	var res = false;
 
@@ -399,7 +399,7 @@ Graph.prototype.GetRandomPositionOfVertex = function (matrix, vertexIndex, viewp
 		point = new Point(Math.random() * viewportSize.x, Math.random() * viewportSize.y);
 	}
 
-	if (this.IsVertexesHasSamePosition (point, matrix.length))
+	if (this.IsVerticesHaveSamePosition (point, matrix.length))
 	{ 
 		point.offset (Math.random() * diameter + + (Math.random() ? -1 : 1) * 4 * diameter, 
 			Math.random() * diameter + + (Math.random() ? -1 : 1) * 4 * diameter);
@@ -412,7 +412,7 @@ Graph.prototype.GetRandomPositionOfVertex = function (matrix, vertexIndex, viewp
 	return point;
 }
 
-Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
+Graph.prototype.VerticesReposition = function (viewportSize, newVertices)
 {
    var maxGravityDistanceSqr = Math.max(viewportSize.x, viewportSize.y) / 5.0;
    maxGravityDistanceSqr  = maxGravityDistanceSqr * maxGravityDistanceSqr;
@@ -434,10 +434,10 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    }
    
    var startAngel = Math.random() * 180.0;
-   for(i = 0; i < newVertexes.length; i++) // loop through vertices
+   for(i = 0; i < newVertices.length; i++) // loop through vertices
    {
-      newVertexes[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2, 
-					(viewportSize.y - diameter * 2) / 2, 360 * i / newVertexes.length + startAngel);
+      newVertices[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2, 
+					(viewportSize.y - diameter * 2) / 2, 360 * i / newVertices.length + startAngel);
    }
     
    var k = 0;
@@ -445,11 +445,11 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    while (k < 1000 && bChanged)
    {
       var vertexData = [];
-      for(i = 0; i < newVertexes.length; i++) // loop through vertices
+      for(i = 0; i < newVertices.length; i++) // loop through vertices
       {
-         // Has no in newVertexes.
+         // Has no in newVertices.
          var currentVertex = {};
-         currentVertex.object    = newVertexes[i];
+         currentVertex.object    = newVertices[i];
          currentVertex.net_force = new Point (0, 0);
          currentVertex.velocity   = new Point (0, 0);
          vertexData.push(currentVertex);
@@ -520,10 +520,10 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    var bbox = this.getGraphBBox();
    if (bbox.size().length() > viewportSize.length() * 1000)
    {
-       for(i = 0; i < newVertexes.length; i++) // loop through vertices
+       for(i = 0; i < newVertices.length; i++) // loop through vertices
        {
-           newVertexes[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2,
-                                         (viewportSize.y - diameter * 2) / 2, 360 * i / newVertexes.length + startAngel);
+           newVertices[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2,
+                                         (viewportSize.y - diameter * 2) / 2, 360 * i / newVertices.length + startAngel);
        }
    }
    else
@@ -539,9 +539,9 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
        
        for (var i = 1; i < count; i++)
        {
-           for(j = 0; j < newVertexes.length; j++) // loop through vertices
+           for(j = 0; j < newVertices.length; j++) // loop through vertices
            {
-               newVertexes[j].position.rotate(center, angle);
+               newVertices[j].position.rotate(center, angle);
            }
            
            var newBBox   = this.getGraphBBox();
@@ -554,9 +554,9 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
        }
        
        // Rotate to best aspect.
-       for(j = 0; j < newVertexes.length; j++) // loop through vertices
+       for(j = 0; j < newVertices.length; j++) // loop through vertices
        {
-           newVertexes[j].position.rotate(center, - angle * (count - bestIndex - 1));
+           newVertices[j].position.rotate(center, - angle * (count - bestIndex - 1));
        }
    }
 }
@@ -584,7 +584,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 			this.DeleteEdge (clonedEdge[i]);
 		}
 		
-		var newVertexes = [];
+		var newVertices = [];
         var bWeightGraph = false;
         
 		for (var i = 0; i < rows.length; i++)
@@ -594,8 +594,8 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 				if (j >= this.vertices.length)
 				{
 					var newPos = this.GetRandomPositionOfVertex (matrix, j, viewportSize);
-                    newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
-					this.AddNewVertex(newVertexes[newVertexes.length - 1]);
+                    newVertices.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
+					this.AddNewVertex(newVertices[newVertices.length - 1]);
 				}
 				
 				if (cols[i][j] > 0)
@@ -624,7 +624,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 			i--;
 		}                        
 
-        this.VertexesReposition(viewportSize, newVertexes);
+        this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 
@@ -709,7 +709,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 		{
 			this.DeleteEdge (clonedEdge[i]);
 		}
-		var newVertexes = [];
+		var newVertices = [];
         var bWeightGraph = false;
 		for (var i = 0; i < cols[0].length; i++)
 		{
@@ -721,8 +721,8 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 				{
 
 					var newPos = new Point(0, 0);//this.GetRandomPositionOfVertex (matrix, j, viewportSize);
-                    newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
-					this.AddNewVertex(newVertexes[newVertexes.length - 1]);
+                    newVertices.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
+					this.AddNewVertex(newVertices[newVertices.length - 1]);
 				}				
 
 				if (cols[j][i] != 0)
@@ -774,7 +774,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 			i--;             
 		}                        
 
-          	this.VertexesReposition(viewportSize, newVertexes);
+          	this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 

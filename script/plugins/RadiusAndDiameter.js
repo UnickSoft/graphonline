@@ -9,8 +9,8 @@ function RadiusAndDiameter(graph, app)
     this.radius   = 0;
     this.diameterSelectedObjects = [];
     this.radiusSelectedObjects = [];
-    this.centerVertexes = [];
-    this.peripheralVertexes = [];
+    this.centerVertices = [];
+    this.peripheralVertices = [];
     this.isNotConnected = false;  
     this.isOneVertex = false;  
 }
@@ -148,12 +148,12 @@ RadiusAndDiameter.prototype.result = function(resultCallback)
 
             if (eccentricity[i].value == this.radius)
             {
-                this.centerVertexes.push(this.graph.vertices[i].id);
+                this.centerVertices.push(this.graph.vertices[i].id);
                 this.graph.vertices[i].upText = g_vertexCentral;
             }
             if (eccentricity[i].value == this.diameter)
             {
-                this.peripheralVertexes.push(this.graph.vertices[i].id);
+                this.peripheralVertices.push(this.graph.vertices[i].id);
                 this.graph.vertices[i].upText = g_vertexPeripheral;
             }
         }
@@ -203,8 +203,8 @@ RadiusAndDiameter.prototype.getObjectSelectedGroup = function(object)
 {
     var res = (this.diameterSelectedObjects.includes(object)) ? 1 : 0;
     res = (this.radiusSelectedObjects.includes(object)) ? 2 : res;
-    //res = (this.centerVertexes.includes(object.id)) ? 3 : res;
-    //res = (this.peripheralVertexes.includes(object.id)) ? 4 : res;
+    //res = (this.centerVertices.includes(object.id)) ? 3 : res;
+    //res = (this.peripheralVertices.includes(object.id)) ? 4 : res;
     
     
     return res;

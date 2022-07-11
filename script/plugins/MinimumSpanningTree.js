@@ -2,7 +2,7 @@
 function MinimumSpanningTree(graph, app)
 {
     BaseAlgorithm.apply(this, arguments);
-    this.isNotConneted = false;
+    this.isNotConnected = false;
     this.MST = 0;
     this.edges = [];
 }
@@ -25,7 +25,7 @@ MinimumSpanningTree.prototype.getId = function()
 // @return message for user.
 MinimumSpanningTree.prototype.getMessage = function(local)
 {
-	if (!this.isNotConneted )
+	if (!this.isNotConnected )
     {
     	return g_SpanningTreeResult + this.MST + ". " + 
           (this.graph.hasDirectEdge() ? g_SpanningTreeIgnoreDir : "");
@@ -40,16 +40,16 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
 {
     this.MST = 0;
     this.edges = [];
-    this.isNotConneted = true;
-    var tempVertexes = this.graph.vertices.slice();
+    this.isNotConnected = true;
+    var tempVertices = this.graph.vertices.slice();
     connectedVertex = getVertexToVertexArray(this.graph, true);
 
     // We ignore orientation for this algorithm.
     //if (!this.graph.hasDirectEdge())
     {
-    	res = this.resultStartedFrom(tempVertexes[0], connectedVertex);
-    	this.isNotConneted = res.isNotConneted;
-    	if (!this.isNotConneted)
+    	res = this.resultStartedFrom(tempVertices[0], connectedVertex);
+    	this.isNotConnected = res.isNotConnected;
+    	if (!this.isNotConnected)
     	{
     		this.MST = res.MST;
     		this.edges = res.edges;  
@@ -57,12 +57,12 @@ MinimumSpanningTree.prototype.result = function(resultCallback)
     }
     /*else
     {
-    	for (var i = 0; i < tempVertexes.length; i++)
+    	for (var i = 0; i < tempVertices.length; i++)
       {
-      	res = this.resultStartedFrom(tempVertexes[i], connectedVertex);
-    		if (!res.isNotConneted)
+      	res = this.resultStartedFrom(tempVertices[i], connectedVertex);
+    		if (!res.isNotConnected)
     		{
-          this.isNotConneted = res.isNotConneted;
+          this.isNotConnected = res.isNotConnected;
     			if (this.MST == 0 || res.MST < this.MST)
           {
             console.log(res);
@@ -85,7 +85,7 @@ MinimumSpanningTree.prototype.resultStartedFrom = function(vertex, connectedVert
     var res = {};
     res.MST = 0;
     res.edges = [];
-    res.isNotConneted = false;
+    res.isNotConnected = false;
     
     var inTree = [];
     inTree.push(vertex);
@@ -133,14 +133,14 @@ MinimumSpanningTree.prototype.resultStartedFrom = function(vertex, connectedVert
         }
     }
     
-    res.isNotConneted = (inTree.length < this.graph.vertices.length);
+    res.isNotConnected = (inTree.length < this.graph.vertices.length);
  
     return res;
 }
 
 MinimumSpanningTree.prototype.getObjectSelectedGroup = function(object)
 {
-	return this.isNotConneted ? 0 : 
+	return this.isNotConnected ? 0 : 
     	(object instanceof  BaseVertex || this.edges.indexOf(object) >= 0) ? 1 : 0;
 }
 

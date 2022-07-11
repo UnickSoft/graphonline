@@ -637,14 +637,14 @@ DefaultHandler.prototype.MouseUp = function(pos)
                         customEnum.ShowDialog(callback, g_rename,  g_renameVertex, handler.selectedObject.mainText);
                      });
         $('#message').on('click', '#changeCommonStyle', function(){
-            var selectedVertexes = handler.app.GetSelectedVertexes();
+            var selectedVertices = handler.app.GetSelectedVertices();
             var setupVertexStyle = new SetupVertexStyle(handler.app);
-            setupVertexStyle.show(0, selectedVertexes);
+            setupVertexStyle.show(0, selectedVertices);
         });
         $('#message').on('click', '#changeSelectedStyle', function(){
-            var selectedVertexes = handler.app.GetSelectedVertexes();
+            var selectedVertices = handler.app.GetSelectedVertices();
             var setupVertexStyle = new SetupVertexStyle(handler.app);
-            setupVertexStyle.show(1, selectedVertexes);
+            setupVertexStyle.show(1, selectedVertices);
         });                                          
     }
     else if (this.selectedObject != null && (this.selectedObject instanceof BaseEdge))
@@ -745,14 +745,14 @@ DefaultHandler.prototype.MouseUp = function(pos)
     {
         this.message = g_dragGroupText + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>";
 
-        var hasVertexes = false;
+        var hasVertices = false;
         var hasEdges = false;
         for(var i = 0; i < this.selectedObjects.length; i ++)
         {
           var object = this.selectedObjects[i];
           if (object instanceof BaseVertex)
           {
-            hasVertexes = true;
+            hasVertices = true;
           }
           else if (object instanceof BaseEdge)
           {
@@ -779,7 +779,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
             this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleEdge\">" + g_selectedEdgeStyle + "</a></li>";
         }
 
-        if (hasVertexes) {
+        if (hasVertices) {
             this.message = this.message +  " <li><a href=\"#\" id=\"changeCommonStyleVertex\">" + g_commonVertexStyle + "</a></li>";
             this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleVertex\">" + g_selectedVertexStyle + "</a></li>";
         }
@@ -883,16 +883,16 @@ DefaultHandler.prototype.MouseUp = function(pos)
             });    
         }
 
-        if (hasVertexes) {
+        if (hasVertices) {
             $('#message').on('click', '#changeCommonStyleVertex', function(){
-                var selectedVertexes = handler.app.GetSelectedVertexes();
+                var selectedVertices = handler.app.GetSelectedVertices();
                 var setupVertexStyle = new SetupVertexStyle(handler.app);
-                setupVertexStyle.show(0, selectedVertexes);
+                setupVertexStyle.show(0, selectedVertices);
             });
             $('#message').on('click', '#changeSelectedStyleVertex', function(){
-                var selectedVertexes = handler.app.GetSelectedVertexes();
+                var selectedVertices = handler.app.GetSelectedVertices();
                 var setupVertexStyle = new SetupVertexStyle(handler.app);
-                setupVertexStyle.show(1, selectedVertexes);
+                setupVertexStyle.show(1, selectedVertices);
             });  
         }
     }
@@ -1729,13 +1729,13 @@ function SetupVertexStyle(app)
 // inheritance.
 SetupVertexStyle.prototype = Object.create(BaseHandler.prototype);
 
-SetupVertexStyle.prototype.show = function(index, selectedVertexes)
+SetupVertexStyle.prototype.show = function(index, selectedVertices)
 {
 	var handler = this;
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    this.forAll = selectedVertexes == null;
+    this.forAll = selectedVertices == null;
     var forAll = this.forAll;
     var self = this;
 
@@ -1745,7 +1745,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         self.originStyle = (self.index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[self.index - 1]);
         if (!forAll)
         {
-            self.originStyle = selectedVertexes[0].getStyleFor(self.index);
+            self.originStyle = selectedVertices[0].getStyleFor(self.index);
         }
         self.style = FullObjectCopy(self.originStyle);    
     }
@@ -1754,7 +1754,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
 
     var fillFields = function()
     {
-        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertices[0]);
 
         $( "#vertexFillColor" ).val(fullStyle.fillStyle);
         $( "#vertexStrokeColor" ).val(fullStyle.strokeStyle);
@@ -1762,7 +1762,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         $( "#upVertexTextColor" ).val(fullStyle.upTextColor);
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
         $( "#vertexShape" ).val(fullStyle.shape);
-        $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertexes[0].model.diameter);
+        $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertices[0].model.diameter);
         $( "#commonTextPosition" ).val(fullStyle.commonTextPosition); 
         
         if (self.index > 0 || self.index == "all")
@@ -1811,7 +1811,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
     
     var redrawVertex = function()
     {
-        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertexes[0]);
+        var fullStyle = self.style.GetStyle({}, forAll ? undefined : selectedVertices[0]);
 
         if (fullStyle.fillStyle != $( "#vertexFillColor" ).val())
             self.style.fillStyle     = $( "#vertexFillColor" ).val();
@@ -1851,7 +1851,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
         baseVertex.model.diameter = diameter;
 
         if (!forAll)
-            baseVertex.ownStyles = selectedVertexes[0].ownStyles;
+            baseVertex.ownStyles = selectedVertices[0].ownStyles;
         
         graphDrawer.Draw(baseVertex, self.style.GetStyle({}, baseVertex));
         
@@ -1885,7 +1885,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
             }
             else
             {
-                selectedVertexes.forEach(function(vertex) {
+                selectedVertices.forEach(function(vertex) {
                     vertex.model.diameter = diameter;
                 });
             }
@@ -1919,7 +1919,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
                     }
                     else
                     {
-                        selectedVertexes.forEach(function(vertex) {
+                        selectedVertices.forEach(function(vertex) {
                         	indexes.forEach(function(index) {
                             	vertex.resetOwnStyle(index);
                             });
@@ -1963,7 +1963,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertexes)
                 {
                     if (JSON.stringify(self.originStyle) !== JSON.stringify(self.style))
                     {
-                        selectedVertexes.forEach(function(vertex) {
+                        selectedVertices.forEach(function(vertex) {
                         	indexes.forEach(function(index) {
                             	vertex.setOwnStyle(index.index, index.style);
                             });

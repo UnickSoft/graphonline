@@ -963,7 +963,7 @@ Application.prototype.SetIncidenceMatrix = function (matrix)
 
 Application.prototype.Test = function ()
 {
-	this.graph.VertexesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices);
+	this.graph.VerticesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices);
 	this.redrawGraph();
 }
 
@@ -1146,7 +1146,7 @@ Application.prototype.LoadGraphFromString = function (str)
     this.graph = graph;
     if (this.graph.isNeedReposition())
     {
-        this.graph.VertexesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices); 
+        this.graph.VerticesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices); 
     }
     this.AutoAdjustViewport();
     this.updateMessage();
@@ -1813,7 +1813,7 @@ Application.prototype._RedrawGraph = function(context, backgroundPosition, backg
         this.RedrawSelectionRect(context);
 }
 
-Application.prototype.GetSelectedVertexes = function()
+Application.prototype.GetSelectedVertices = function()
 {
     var res = [];
     for (i = 0; i < this.graph.vertices.length; i ++)
