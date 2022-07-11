@@ -204,11 +204,26 @@ EdgeModel.prototype.SetCurveValue = function (value)
 
 EdgeModel.prototype.GetLoopSize = function ()
 {
-    return this.sizeOfLoop;
+    if (Math.abs(this.curveValue) <= 0.01)
+    { // without this condition arc disappears when curveValue=0
+        return this.sizeOfLoop; 
+    }
+    else
+    { // bigger curveValue -> bigger loop size
+        return this.sizeOfLoop*Math.abs(this.curveValue)*(1/this.defaultCurve);
+    }
+    
 }
 
 EdgeModel.prototype.GetLoopShiftAngel = function ()
 {
-    return this.loopShiftAngel;
+    if (this.curveValue > 0)
+    { // shift to top-left
+        return this.loopShiftAngel;
+    }
+    else
+    { // shift to bottom-right
+        return this.loopShiftAngel + Math.PI;
+    }
 }
 
