@@ -22,14 +22,14 @@ function Graph()
 
 // infinity
 Graph.prototype.infinity = 1E8;
-// Max vertexes
-Graph.prototype.maxVertexes = 1000;
+// Max vertices
+Graph.prototype.maxVertices = 1000;
 // Offset for edges ids.
 Graph.prototype.edgesOffset = 10000;
 
 Graph.prototype.AddNewVertex = function(vertex)
 {
-	if (this.vertices.length <= this.maxVertexes)
+	if (this.vertices.length <= this.maxVertices)
 	{
 		vertex.SetId (this.uidGraph);
 		this.uidGraph = this.uidGraph + 1;
@@ -138,7 +138,7 @@ Graph.prototype.FindVertex = function(id)
 	return res;
 }
 
-// depricated
+// deprecated
 Graph.prototype.FindEdge = function(id1, id2)
 {
 	return this.FindEdgeAny(id1, id2);
@@ -350,7 +350,7 @@ Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separa
 }
 
 
-Graph.prototype.IsVertexesHasSamePosition = function (position, vertexCount)
+Graph.prototype.IsVerticesHaveSamePosition = function (position, vertexCount)
 {
 	var res = false;
 
@@ -399,7 +399,7 @@ Graph.prototype.GetRandomPositionOfVertex = function (matrix, vertexIndex, viewp
 		point = new Point(Math.random() * viewportSize.x, Math.random() * viewportSize.y);
 	}
 
-	if (this.IsVertexesHasSamePosition (point, matrix.length))
+	if (this.IsVerticesHaveSamePosition (point, matrix.length))
 	{ 
 		point.offset (Math.random() * diameter + + (Math.random() ? -1 : 1) * 4 * diameter, 
 			Math.random() * diameter + + (Math.random() ? -1 : 1) * 4 * diameter);
@@ -412,7 +412,7 @@ Graph.prototype.GetRandomPositionOfVertex = function (matrix, vertexIndex, viewp
 	return point;
 }
 
-Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
+Graph.prototype.VerticesReposition = function (viewportSize, newVertices)
 {
    var maxGravityDistanceSqr = Math.max(viewportSize.x, viewportSize.y) / 5.0;
    maxGravityDistanceSqr  = maxGravityDistanceSqr * maxGravityDistanceSqr;
@@ -434,10 +434,10 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    }
    
    var startAngel = Math.random() * 180.0;
-   for(i = 0; i < newVertexes.length; i++) // loop through vertices
+   for(i = 0; i < newVertices.length; i++) // loop through vertices
    {
-      newVertexes[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2, 
-					(viewportSize.y - diameter * 2) / 2, 360 * i / newVertexes.length + startAngel);
+      newVertices[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2, 
+					(viewportSize.y - diameter * 2) / 2, 360 * i / newVertices.length + startAngel);
    }
     
    var k = 0;
@@ -445,11 +445,11 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    while (k < 1000 && bChanged)
    {
       var vertexData = [];
-      for(i = 0; i < newVertexes.length; i++) // loop through vertices
+      for(i = 0; i < newVertices.length; i++) // loop through vertices
       {
-         // Has no in newVertexes.
+         // Has no in newVertices.
          var currentVertex = {};
-         currentVertex.object    = newVertexes[i];
+         currentVertex.object    = newVertices[i];
          currentVertex.net_force = new Point (0, 0);
          currentVertex.velocity   = new Point (0, 0);
          vertexData.push(currentVertex);
@@ -480,7 +480,7 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
                 
                 if (distance > maxDistance)
                 {
-                    // countin the attraction
+                    // counting the attraction
                     var force = (otherVertex.position.subtract(currentVertex.object.position)).normalize(edgeGravityKof * (distance - maxDistance));
                     currentVertex.net_force = currentVertex.net_force.add(force);
                 }
@@ -516,21 +516,21 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
    }
     
     
-   // Looks like somthing going wrong and will use circle algorithm for reposition.
+   // Looks like something going wrong and will use circle algorithm for reposition.
    var bbox = this.getGraphBBox();
    if (bbox.size().length() > viewportSize.length() * 1000)
    {
-       for(i = 0; i < newVertexes.length; i++) // loop through vertices
+       for(i = 0; i < newVertices.length; i++) // loop through vertices
        {
-           newVertexes[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2,
-                                         (viewportSize.y - diameter * 2) / 2, 360 * i / newVertexes.length + startAngel);
+           newVertices[i].position.orbit(new Point(viewportSize.x / 2, viewportSize.y / 2), (viewportSize.x - diameter * 2) / 2,
+                                         (viewportSize.y - diameter * 2) / 2, 360 * i / newVertices.length + startAngel);
        }
    }
    else
    {
        // Try to rotate graph to fill small area.
        var count = 10;
-       var agnle  = 360.0 / count;
+       var angle  = 360.0 / count;
        var viewportAspect = viewportSize.x / viewportSize.y;
        var bestIndex = 0;
        var graphSize  = bbox.size();
@@ -539,9 +539,9 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
        
        for (var i = 1; i < count; i++)
        {
-           for(j = 0; j < newVertexes.length; j++) // loop through vertices
+           for(j = 0; j < newVertices.length; j++) // loop through vertices
            {
-               newVertexes[j].position.rotate(center, agnle);
+               newVertices[j].position.rotate(center, angle);
            }
            
            var newBBox   = this.getGraphBBox();
@@ -554,14 +554,14 @@ Graph.prototype.VertexesReposition = function (viewportSize, newVertexes)
        }
        
        // Rotate to best aspect.
-       for(j = 0; j < newVertexes.length; j++) // loop through vertices
+       for(j = 0; j < newVertices.length; j++) // loop through vertices
        {
-           newVertexes[j].position.rotate(center, - agnle * (count - bestIndex - 1));
+           newVertices[j].position.rotate(center, - angle * (count - bestIndex - 1));
        }
    }
 }
 
-Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnumVertesType, separator)
+Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnumVerticesType, separator)
 {
     if (separator === undefined) 
     {
@@ -584,7 +584,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 			this.DeleteEdge (clonedEdge[i]);
 		}
 		
-		var newVertexes = [];
+		var newVertices = [];
         var bWeightGraph = false;
         
 		for (var i = 0; i < rows.length; i++)
@@ -594,14 +594,14 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 				if (j >= this.vertices.length)
 				{
 					var newPos = this.GetRandomPositionOfVertex (matrix, j, viewportSize);
-                    newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVertesType));
-					this.AddNewVertex(newVertexes[newVertexes.length - 1]);
+                    newVertices.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
+					this.AddNewVertex(newVertices[newVertices.length - 1]);
 				}
 				
 				if (cols[i][j] > 0)
 				{
 					var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[i], this.vertices[j], cols[i][j] != cols[j][i], cols[i][j], true);
-					this.FixEdgeCurved(nEdgeIndex);
+					this.FixEdgeCurve(nEdgeIndex);
                     if (nEdgeIndex >= 0)
                     {
                         bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
@@ -610,7 +610,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 			}
 		}
         
-        // Set use weight false, because we have unwieghts graph.
+        // Set use weight false, because we have unweighted graph.
         if (!bWeightGraph)
         {
             this.edges.forEach(function(part, index, theArray) {
@@ -624,7 +624,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 			i--;
 		}                        
 
-        this.VertexesReposition(viewportSize, newVertexes);
+        this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 
@@ -694,7 +694,7 @@ Graph.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj, separa
 	return bGoodFormat;
 }
 
-Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnumVertesType)
+Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnumVerticesType)
 {
 	var rowsObj = {};
 	var colsObj = {};
@@ -709,7 +709,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 		{
 			this.DeleteEdge (clonedEdge[i]);
 		}
-		var newVertexes = [];
+		var newVertices = [];
         var bWeightGraph = false;
 		for (var i = 0; i < cols[0].length; i++)
 		{
@@ -721,8 +721,8 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 				{
 
 					var newPos = new Point(0, 0);//this.GetRandomPositionOfVertex (matrix, j, viewportSize);
-                    newVertexes.push(new BaseVertex(newPos.x, newPos.y, currentEnumVertesType));
-					this.AddNewVertex(newVertexes[newVertexes.length - 1]);
+                    newVertices.push(new BaseVertex(newPos.x, newPos.y, currentEnumVerticesType));
+					this.AddNewVertex(newVertices[newVertices.length - 1]);
 				}				
 
 				if (cols[j][i] != 0)
@@ -752,7 +752,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
                 var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[edgeIndex[0]], this.vertices[edgeIndex[1]],
                                                      edgeValue[0] != edgeValue[1], Math.abs(edgeValue[1]), false);
 
-                this.FixEdgeCurved(nEdgeIndex);
+                this.FixEdgeCurve(nEdgeIndex);
                 if (nEdgeIndex >= 0)
                 {
                     bWeightGraph = bWeightGraph || this.edges[nEdgeIndex].weight != 1;
@@ -760,7 +760,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 			}
 		}
         
-        // Set use weight false, because we have unwieghts graph.
+        // Set use weight false, because we have unweighted graph.
         if (!bWeightGraph)
         {
             this.edges.forEach(function(part, index, theArray) {
@@ -774,7 +774,7 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 			i--;             
 		}                        
 
-          	this.VertexesReposition(viewportSize, newVertexes);
+          	this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 
@@ -882,21 +882,21 @@ Graph.prototype.SaveToXML = function (additionalData)
 	var mainHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><graphml>";
 	var header   = "<graph id=\"Graph\" uidGraph=\"" + this.uidGraph + "\"" + " uidEdge=\"" + this.uidEdge + "\">";
 
-	var xmlBoby = "";
+	var xmlBody = "";
 	  
 	for (var i = 0; i < this.vertices.length; i++)
 	{
-		xmlBoby = xmlBoby + this.vertices[i].SaveToXML();
+		xmlBody = xmlBody + this.vertices[i].SaveToXML();
 	}
 
-	xmlBoby = xmlBoby + "";
+	xmlBody = xmlBody + "";
 
 	for (var i = 0; i < this.edges.length; i++)
 	{
-		xmlBoby = xmlBoby + this.edges[i].SaveToXML();
+		xmlBody = xmlBody + this.edges[i].SaveToXML();
 	}
 
-	xmlBoby = xmlBoby + "";
+	xmlBody = xmlBody + "";
     
     additionalField = "";
     if (additionalData.length > 0)
@@ -904,7 +904,7 @@ Graph.prototype.SaveToXML = function (additionalData)
         additionalField = "<additional data=\"" + additionalData + "\"/>"
     }
 
-	return mainHeader + header + xmlBoby + "</graph>" + additionalField + "</graphml>";
+	return mainHeader + header + xmlBody + "</graph>" + additionalField + "</graphml>";
 }
 
 Graph.prototype.LoadFromXML = function (xmlText, additionalData)
@@ -922,7 +922,7 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 		loadedEdgeId  = parseInt($(this).attr('uidEdge'));
 	});
     
-    // Back comportebility.
+    // Backward compatibility
     if (isNaN(loadedEdgeId))
     {
         loadedEdgeId = this.edgesOffset;
@@ -936,14 +936,14 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 
 	$nodes = $xml.find( "node" );	
 
-	var vertexs = [];
+	var vertices = [];
     
 	$nodes.each(function(){
 		var vertex = new BaseVertex();
 		vertex.LoadFromXML($(this));
-        vertexs.push(vertex);
+        vertices.push(vertex);
 	});
-	this.vertices = vertexs;
+	this.vertices = vertices;
 
 	$edges = $xml.find( "edge" );
 
@@ -1033,20 +1033,20 @@ Graph.prototype.getGraphBBox = function (viewportSize)
         pointMax = pointMax.max(vertex.position.add(deltaVector));
     }
     
-    var max_cruvled_length = 32;
+    var max_curve_length = 32;
     
     for(i = 0; i < this.edges.length; i++)
     {
         var edge = this.edges[i];
         
-        if (edge.model.type == EdgeModels.cruvled)
+        if (edge.model.type == EdgeModels.curve)
         {
-            var max_cruvled = edge.vertex2.position.subtract(edge.vertex1.position).length() / max_cruvled_length;
+            var max_curve = edge.vertex2.position.subtract(edge.vertex1.position).length() / max_curve_length;
             
-            for (j = 0; j < max_cruvled; j++)
+            for (j = 0; j < max_curve; j++)
             {
-              var point = edge.model.GetCurvedPoint(edge.vertex1.position, edge.vertex2.position, j / max_cruvled);
-              var deltaVector = new Point(max_cruvled_length, max_cruvled_length);
+              var point = edge.model.GetCurvePoint(edge.vertex1.position, edge.vertex2.position, j / max_curve);
+              var deltaVector = new Point(max_curve_length, max_curve_length);
               pointMin = pointMin.min(point.subtract(deltaVector));
               pointMax = pointMax.max(point.add(deltaVector));
             }
@@ -1063,12 +1063,12 @@ Graph.prototype.hasPair = function (edge)
 
 Graph.prototype.FindPairFor = function (edge)
 {
-    var res = this.getNeighbourEdges(edge);
+    var res = this.getNeighborEdges(edge);
 	
 	return res.length == 1 ? res[0] : null;
 }
 
-Graph.prototype.getNeighbourEdges = function (edge)
+Graph.prototype.getNeighborEdges = function (edge)
 {
 	var res = [];
     
@@ -1138,51 +1138,51 @@ Graph.prototype.isNeedReposition = function ()
     return res;
 }
 
-Graph.prototype.FixEdgeCurved = function (edgeIndex)
+Graph.prototype.FixEdgeCurve = function (edgeIndex)
 {
     var edgeObject = this.edges[edgeIndex];
     var hasPair    = this.hasPair(edgeObject);
-    var neighbourEdges = this.getNeighbourEdges(edgeObject);
+    var neighborEdges = this.getNeighborEdges(edgeObject);
     
     if (hasPair)
     {
         if (edgeObject.model.default)
-            edgeObject.model.type = EdgeModels.cruvled; 
+            edgeObject.model.type = EdgeModels.curve; 
         
         var pairEdge = this.FindPairFor(edgeObject);
         if (pairEdge.model.default)
         {
-            pairEdge.model.type = EdgeModels.cruvled;
+            pairEdge.model.type = EdgeModels.curve;
             if (pairEdge.vertex1 == edgeObject.vertex1 && pairEdge.vertex2 == edgeObject.vertex2)
-                pairEdge.model.curvedValue = -pairEdge.model.curvedValue;
+                pairEdge.model.curveValue = -pairEdge.model.curveValue;
         }
     }
-    else if (neighbourEdges.length >= 2)
+    else if (neighborEdges.length >= 2)
     {
-        var cruvled = this.GetAvalibleCruvledValue(neighbourEdges, edgeObject);
+        var curve = this.GetAvailableCurveValue(neighborEdges, edgeObject);
         if (edgeObject.model.default)
         {
-            edgeObject.model.type        = EdgeModels.cruvled;
-            edgeObject.model.curvedValue = cruvled;
+            edgeObject.model.type        = EdgeModels.curve;
+            edgeObject.model.curveValue = curve;
         }
     }
 }
 
-Graph.prototype.GetAvalibleCruvledValue = function(neighbourEdges, originalEdge)
+Graph.prototype.GetAvailableCurveValue = function(neighborEdges, originalEdge)
 {
     var values = [];
     
-    for (var i = 0; i < neighbourEdges.length; i ++)
+    for (var i = 0; i < neighborEdges.length; i ++)
     {
-      var edge          = neighbourEdges[i];
+      var edge          = neighborEdges[i];
       var sameDirection = (originalEdge.vertex1.id == edge.vertex1.id);
-      if (edge.model.type == EdgeModels.cruvled)
+      if (edge.model.type == EdgeModels.curve)
       {
-        values[(sameDirection ? edge.model.curvedValue : -edge.model.curvedValue)] = true;
+        values[(sameDirection ? edge.model.curveValue : -edge.model.curveValue)] = true;
       }
     }
     
-    var changeValue  = DefaultHandler.prototype.curvedValue;
+    var changeValue  = DefaultHandler.prototype.curveValue;
     var defaultValue = 0.0;
     var maxSearch    = 10;
     

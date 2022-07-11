@@ -1,5 +1,5 @@
 /**
- *  Place here all tests constans.
+ *  Place here all tests constants.
  *
  */
 
@@ -7,7 +7,7 @@
 var g_textsSelectAndMove = "Drag objects";
 var g_moveCursorForMoving = "Move cursor";
 var g_clickToAddVertex = "Click to add vertex";
-var g_selectFisrtVertexToConnect = "Select first vertex to connect";
+var g_selectFirstVertexToConnect = "Select first vertex to connect";
 var g_selectSecondVertexToConnect = "Select second vertex to connect";
 var g_selectStartVertexForShortPath = "Select start vertex for shortest path";
 var g_selectFinishVertexForShortPath = "Select finish vertex for shortest path";
@@ -17,8 +17,8 @@ var g_selectObjectToDelete = "Select object to delete";
 
 
 var g_addEdge = "Add edge";
-var g_orintEdge = "Orient";
-var g_notOrintEdge = "not Orient";
+var g_orintEdge = "Directed";
+var g_notOrintEdge = "Undirected";
 
 var g_adjacencyMatrixText = "Adjacency Matrix";
 var g_save   = "Save";
@@ -102,14 +102,14 @@ var g_Undo           = "Undo";
 var g_default        = "default";
 var g_vertexDraw     = "Vertex draw style";
 var g_edgeDraw       = "Edge draw style";
-var g_backgroundStyle = "Bacgkround style";
+var g_backgroundStyle = "Background style";
 
-var g_GrapsIsMultiMessage   = "Graph is multigraph";
-var g_GrapsIsGeneralMessage = "";
+var g_GraphIsMultiMessage   = "Graph is multigraph";
+var g_GraphIsGeneralMessage = "";
 var g_DefaultWeightPreset   = "no weight";
 var g_dragGroupText         = "Drag group.";
 var g_selectGroupText       = "Select using ctrl";
-var g_copyGroupeButton      = "Dublicate";
+var g_copyGroupeButton      = "Duplicate";
 var g_removeGroupeButton    = "Remove objects";
 
 var g_BFSName               = "Breadth-first search";   
@@ -124,10 +124,10 @@ var g_HamiltoianCycleName   = "Find Hamiltonian cycle";
 var g_HamiltonianPath       = "Find Hamiltonian path";
 var g_MaxFlowName           = "Find Maximum flow";
 var g_minimumSpanningTree   = "Search of minimum spanning tree";
-var g_modernGraphStyleName  = "Visualisation based on weight";
+var g_modernGraphStyleName  = "Visualization based on weight";
 var g_RadiusAndDiameter     = "Search graph radius and diameter";
 var g_findShortPathName     = "Find shortest path using Dijkstra's algorithm";
-var g_VerticesDegreeName    = "Calculate vertexes degree";
+var g_VerticesDegreeName    = "Calculate vertices degree";
 var g_SpanningTreeResult    = "Min Spanning Tree is";
 var g_SpanningTreeIgnoreDir = "We ignored edges direction for calculation";
 var g_SpanningTreeNotConnected = "Graph is not connected";
@@ -171,8 +171,8 @@ var g_commonVertexStyle   = "Common Vertex Style";
 var g_selectedVertexStyle = "Selected Vertex Style";
 
 // FindAllPatches.js
-var g_findAllPathes = "Find all pathes";
-var g_numberOfPathesFrom = "Number of pathes from "
+var g_findAllPathes = "Find all paths";
+var g_numberOfPathesFrom = "Number of paths from "
 var g_to = " to ";
 var g_are = " are ";
 var g_pathN = "Path #";
@@ -189,7 +189,7 @@ var g_useContextMenuText = "Use context menu for addition actions."
 var g_findLongestPath = "Find the longest path";
 var g_LengthOfLongestPathFrom = "Length of the longest path from ";
 
-var g_additionlActions  = "Additional actions";
+var g_additionalActions  = "Additional actions";
 var g_reverseAllEdges   = "Reverse all edges";
 var g_makeAllUndirected = "Make all edges undirected";
 var g_makeAllDirected   = "Make all edges directed";
@@ -199,7 +199,7 @@ function loadTexts()
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
 	g_moveCursorForMoving = document.getElementById("MoveCursorForMoving").innerHTML;
 	g_clickToAddVertex = document.getElementById("clickToAddVertex").innerHTML;
-	g_selectFisrtVertexToConnect = document.getElementById("selectFisrtVertextToConnect").innerHTML;
+	g_selectFirstVertexToConnect = document.getElementById("selectFisrtVertextToConnect").innerHTML;
 	g_selectSecondVertexToConnect = document.getElementById("selectSecondVertextToConnect").innerHTML;
 	g_selectStartVertexForShortPath = document.getElementById("selectStartShortPathVertex").innerHTML;
 	g_selectFinishVertexForShortPath = document.getElementById("selectFinishShortPathVertex").innerHTML;
@@ -299,8 +299,8 @@ function loadTexts()
     
     g_backgroundStyle = document.getElementById("backgroundStyle").innerHTML;
     
-    g_GrapsIsMultiMessage   = document.getElementById("graphIsMultiMessage").innerHTML;
-    g_GrapsIsGeneralMessage = document.getElementById("graphIsGeneralMessage").innerHTML;
+    g_GraphIsMultiMessage   = document.getElementById("graphIsMultiMessage").innerHTML;
+    g_GraphIsGeneralMessage = document.getElementById("graphIsGeneralMessage").innerHTML;
     g_DefaultWeightPreset   = document.getElementById("defaultWeightPreset").innerHTML;
     
     var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
@@ -391,7 +391,7 @@ function loadTexts()
     g_findLongestPath = document.getElementById("findLongestPath").innerHTML;
     g_LengthOfLongestPathFrom = document.getElementById("LengthOfLongestPathFrom").innerHTML;
 
-    g_additionlActions  = document.getElementById("additionlActions").innerHTML;
+    g_additionalActions  = document.getElementById("additionlActions").innerHTML;
     g_reverseAllEdges   = document.getElementById("reverseAllEdges").innerHTML;
     g_makeAllUndirected = document.getElementById("makeAllUndirected").innerHTML;
     g_makeAllDirected   = document.getElementById("makeAllDirected").innerHTML;

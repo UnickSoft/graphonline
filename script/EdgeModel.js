@@ -3,7 +3,7 @@
  *
  */
 
-var EdgeModels = {"line": 0, "cruvled" : 1};
+var EdgeModels = {"line": 0, "curve" : 1};
 
 const defaultEdgeWidth = 4;
                 
@@ -11,19 +11,19 @@ function EdgeModel()
 {
     this.width = globalApplication.GetDefaultEdgeWidth();
     this.type  = EdgeModels.line;
-    this.curvedValue = EdgeModel.prototype.defaultCruved;
+    this.curveValue = EdgeModel.prototype.defaultCurve;
     this.default = true;
     this.sizeOfLoop = 24;
     this.loopShiftAngel = Math.PI / 6;
 }
 
-EdgeModel.prototype.defaultCruved = 0.1;
+EdgeModel.prototype.defaultCurve = 0.1;
 
 EdgeModel.prototype.copyFrom = function(other)
 {
     this.width = other.width;
     this.type  = other.type;
-    this.curvedValue = other.curvedValue;
+    this.curveValue = other.curveValue;
     this.default     = other.default;
 }
 
@@ -31,7 +31,7 @@ EdgeModel.prototype.SaveToXML = function ()
 {
     return "model_width=\"" + this.width + "\" " +
 	       "model_type=\""  + this.type   + "\" " +
-	       "model_curvedValue=\""  + this.curvedValue + "\" "
+	       "model_curveValue=\""  + this.curveValue + "\" "
            "model_default=\""  + this.default + "\" ";
 }
 
@@ -39,11 +39,11 @@ EdgeModel.prototype.LoadFromXML = function (xml, graph)
 {
 	this.width = xml.attr('model_width') == null ? this.width : parseFloat(xml.attr("model_width"));
 	this.type  = xml.attr('model_type')  == null ? this.type  : xml.attr("model_type");
-	this.curvedValue  = xml.attr('model_curvedValue')  == null ? this.curvedValue : parseFloat(xml.attr("model_curvedValue"));
+	this.curveValue  = xml.attr('model_curveValue')  == null ? this.curveValue : parseFloat(xml.attr("model_curveValue"));
     this.default = xml.attr('model_default') == null ? this.default : parseFloat(xml.attr("model_default"));
 }
 
-EdgeModel.prototype.GetCurvedPoint = function(position1, position2, t)
+EdgeModel.prototype.GetCurvePoint = function(position1, position2, t)
 {
     var points = this.GetBezierPoints(position1, position2);
     var firstBezierPoint  = points[0];  
@@ -76,7 +76,7 @@ EdgeModel.prototype.GetBezierPoints = function(position1, position2)
     direction.normalize(1.0);  
     var normal = direction.normal();
     
-    var deltaOffsetPixels = delta * this.curvedValue;
+    var deltaOffsetPixels = delta * this.curveValue;
     var yOffset = normal.multiply(deltaOffsetPixels);
     var firstBezierPointShift  = (direction.multiply(delta * 0.2)).add(yOffset); 
     var secondBezierPointShift = (direction.multiply(-delta * 0.2)).add(yOffset); 
@@ -91,8 +91,8 @@ EdgeModel.prototype.HitTest = function(position1, position2, mousePos)
 {
     if (this.type == EdgeModels.line)
         return this.HitTestLine(position1, position2, mousePos);
-    else if (this.type == EdgeModels.cruvled)
-        return this.HitTestCurved(position1, position2, mousePos);
+    else if (this.type == EdgeModels.curve)
+        return this.HitTestCurve(position1, position2, mousePos);
     
     return false;
 }
@@ -139,7 +139,7 @@ EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, facto
     return false;
 }
 
-EdgeModel.prototype.HitTestCurved = function(position1, position2, mousePos)
+EdgeModel.prototype.HitTestCurve = function(position1, position2, mousePos)
 {
     var pos1 = position1;
     var pos2 = position2;
@@ -159,7 +159,7 @@ EdgeModel.prototype.HitTestCurved = function(position1, position2, mousePos)
     var start = position1;
     for (var i = 0; i < interval_count; i ++)
     {
-        var finish = this.GetCurvedPoint(position1, position2, i / interval_count);
+        var finish = this.GetCurvePoint(position1, position2, i / interval_count);
         
         if (this.HitTestLine(start, finish, mousePos, 2.0))
             return true;
@@ -170,33 +170,33 @@ EdgeModel.prototype.HitTestCurved = function(position1, position2, mousePos)
     return false;
 }
 
-EdgeModel.prototype.ChangeCurvedValue = function (delta)
+EdgeModel.prototype.ChangeCurveValue = function (delta)
 {
     if (this.type == EdgeModels.line)
     {
-        this.type = EdgeModels.cruvled;
-        this.curvedValue = 0.0;
+        this.type = EdgeModels.curve;
+        this.curveValue = 0.0;
     }
 
-    this.curvedValue = this.curvedValue + delta;
+    this.curveValue = this.curveValue + delta;
     
-    if (Math.abs(this.curvedValue) <= 0.01)
+    if (Math.abs(this.curveValue) <= 0.01)
         this.type = EdgeModels.line;
     
     this.default = false;
 }
 
-EdgeModel.prototype.SetCurvedValue = function (value)
+EdgeModel.prototype.SetCurveValue = function (value)
 {
     if (this.type == EdgeModels.line)
     {
-        this.type = EdgeModels.cruvled;
-        this.curvedValue = 0.0;
+        this.type = EdgeModels.curve;
+        this.curveValue = 0.0;
     }
 
-    this.curvedValue = value;
+    this.curveValue = value;
     
-    if (Math.abs(this.curvedValue) <= 0.01)
+    if (Math.abs(this.curveValue) <= 0.01)
         this.type = EdgeModels.line;
     
     this.default = false;
@@ -204,11 +204,26 @@ EdgeModel.prototype.SetCurvedValue = function (value)
 
 EdgeModel.prototype.GetLoopSize = function ()
 {
-    return this.sizeOfLoop;
+    if (Math.abs(this.curveValue) <= 0.01)
+    { // without this condition arc disappears when curveValue=0
+        return this.sizeOfLoop; 
+    }
+    else
+    { // bigger curveValue -> bigger loop size
+        return this.sizeOfLoop*Math.abs(this.curveValue)*(1/this.defaultCurve);
+    }
+    
 }
 
 EdgeModel.prototype.GetLoopShiftAngel = function ()
 {
-    return this.loopShiftAngel;
+    if (this.curveValue > 0)
+    { // shift to top-left
+        return this.loopShiftAngel;
+    }
+    else
+    { // shift to bottom-right
+        return this.loopShiftAngel + Math.PI;
+    }
 }
 

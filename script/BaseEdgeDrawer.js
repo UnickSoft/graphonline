@@ -34,8 +34,8 @@ const WeightTextCenter = 0,
      baseStyle.fillStyle   = this.fillStyle;
    if (this.hasOwnProperty('textPadding'))
      baseStyle.textPadding = this.textPadding;
-   if (this.hasOwnProperty('textStrockeWidth'))
-     baseStyle.textStrockeWidth = this.textStrockeWidth;
+   if (this.hasOwnProperty('textStrokeWidth'))
+     baseStyle.textStrokeWidth = this.textStrokeWidth;
    if (this.hasOwnProperty('lineDash'))
      baseStyle.lineDash = this.lineDash;
    if (this.hasOwnProperty('additionalTextColor'))
@@ -63,7 +63,7 @@ BaseEdgeStyle.prototype.FixNewFields = function (style)
     delete this.strokeStyle;
     delete this.fillStyle;
     delete this.textPadding;
-    delete this.textStrockeWidth;
+    delete this.textStrokeWidth;
     delete this.lineDash;
     delete this.additionalTextColor;
     delete this.weightPosition;
@@ -82,7 +82,7 @@ function CommonEdgeStyle()
 	this.weightText  = '#f0d543';
  	this.fillStyle   = '#68aeba';
  	this.textPadding = 4;
-	this.textStrockeWidth = 2;
+	this.textStrokeWidth = 2;
   this.lineDash = 0;
   this.additionalTextColor = '#c7b7c7';
   this.weightPosition = WeightTextCenter;
@@ -98,7 +98,7 @@ function CommonPrintEdgeStyle()
 	this.weightText  = '#000000';
  	this.fillStyle   = '#FFFFFF';
  	this.textPadding = 4;
-	this.textStrockeWidth = 2;
+	this.textStrokeWidth = 2;
 
     this.baseStyles.push("common");
 }
@@ -194,8 +194,8 @@ function BaseEdgeDrawer(context, drawObjects)
     
   this.drawObject = null;
   this.drawArc = null;
-  this.startArrowDiretion  = null;
-  this.finishArrowDiretion = null;
+  this.startArrowDirection  = null;
+  this.finishArrowDirection = null;
   this.textCenterObject    = null;
   this.getPointOnArc       = null;   
     
@@ -205,10 +205,10 @@ function BaseEdgeDrawer(context, drawObjects)
       this.drawObject = drawObjects.drawObject;
     if (drawObjects.hasOwnProperty("drawArc"))
       this.drawArc = drawObjects.drawArc;
-    if (drawObjects.hasOwnProperty("startArrowDiretion"))
-      this.startArrowDiretion = drawObjects.startArrowDiretion;
-    if (drawObjects.hasOwnProperty("finishArrowDiretion"))
-      this.finishArrowDiretion = drawObjects.finishArrowDiretion;
+    if (drawObjects.hasOwnProperty("startArrowDirection"))
+      this.startArrowDirection = drawObjects.startArrowDirection;
+    if (drawObjects.hasOwnProperty("finishArrowDirection"))
+      this.finishArrowDirection = drawObjects.finishArrowDirection;
     if (drawObjects.hasOwnProperty("textCenterObject"))
       this.textCenterObject = drawObjects.textCenterObject;
     if (drawObjects.hasOwnProperty("getPointOnArc"))
@@ -242,13 +242,13 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
 
   if (hasStartStyle)
   {
-    var dirArrow = this.GetStartArrowDiretion(positions[0], positions[1], lengthArrow);
+    var dirArrow = this.GetStartArrowDirection(positions[0], positions[1], lengthArrow);
     arcPos1 = arcPos1.add(dirArrow.multiply(lengthArrow / 2));
   }
 
   if (hasFinishStyle)
   {
-    var dirArrow = this.GetFinishArrowDiretion(positions[0], positions[1], lengthArrow);
+    var dirArrow = this.GetFinishArrowDirection(positions[0], positions[1], lengthArrow);
     arcPos2 = arcPos2.add(dirArrow.multiply(-lengthArrow / 2));
   }
 
@@ -259,11 +259,11 @@ BaseEdgeDrawer.prototype.Draw = function(baseEdge, arcStyle)
 
   if (hasStartStyle)
   {
-    this.DrawArrow(positions[0], this.GetStartArrowDiretion(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
+    this.DrawArrow(positions[0], this.GetStartArrowDirection(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
   }
   if (hasFinishStyle)
   {
-    this.DrawArrow(positions[1], this.GetFinishArrowDiretion(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
+    this.DrawArrow(positions[1], this.GetFinishArrowDirection(positions[0], positions[1], lengthArrow), lengthArrow, widthArrow);
   }
     
   this.SetupStyle(baseEdge, arcStyle);
@@ -336,7 +336,7 @@ BaseEdgeDrawer.prototype.DrawWeight = function(position1, position2, text, arcSt
         
   this.context.font         = "bold 16px sans-serif";
   this.context.textBaseline = "middle";
-  this.context.lineWidth    = arcStyle.textStrockeWidth;
+  this.context.lineWidth    = arcStyle.textStrokeWidth;
   this.context.fillStyle    = arcStyle.fillStyle;	
 
   var widthText = this.context.measureText(text).width;
@@ -399,11 +399,11 @@ BaseEdgeDrawer.prototype.DrawArrow = function(position, direction, length, width
   this.context.fill();
 }
 
-BaseEdgeDrawer.prototype.GetStartArrowDiretion = function(position1, position2, lengthArrow) 
+BaseEdgeDrawer.prototype.GetStartArrowDirection = function(position1, position2, lengthArrow) 
 {
-    if (this.startArrowDiretion && this.startArrowDiretion != this)
+    if (this.startArrowDirection && this.startArrowDirection != this)
     {
-      return this.startArrowDiretion.GetStartArrowDiretion(position1, position2, lengthArrow);
+      return this.startArrowDirection.GetStartArrowDirection(position1, position2, lengthArrow);
     }
     
     var direction = position1.subtract(position2);
@@ -411,11 +411,11 @@ BaseEdgeDrawer.prototype.GetStartArrowDiretion = function(position1, position2, 
     return direction;
 }
 
-BaseEdgeDrawer.prototype.GetFinishArrowDiretion = function(position1, position2, lengthArrow) 
+BaseEdgeDrawer.prototype.GetFinishArrowDirection = function(position1, position2, lengthArrow) 
 {
-    if (this.finishArrowDiretion && this.finishArrowDiretion != this)
+    if (this.finishArrowDirection && this.finishArrowDirection != this)
     {
-      return this.finishArrowDiretion.GetFinishArrowDiretion(position1, position2, lengthArrow);
+      return this.finishArrowDirection.GetFinishArrowDirection(position1, position2, lengthArrow);
     }
 
     var direction = position2.subtract(position1);
@@ -441,14 +441,14 @@ BaseEdgeDrawer.prototype.GetTextCenterPoint = function (position1, position2, ha
   return centerPoint;
 }
 
-BaseEdgeDrawer.prototype.GetPointOnArc = function (position1, position2, procent)
+BaseEdgeDrawer.prototype.GetPointOnArc = function (position1, position2, percent)
 {
     if (this.getPointOnArc && this.getPointOnArc != this)
     {
-      return this.getPointOnArc.GetPointOnArc(position1, position2, procent);
+      return this.getPointOnArc.GetPointOnArc(position1, position2, percent);
     }
     
-  return Point.interpolate(position1, position2, procent);
+  return Point.interpolate(position1, position2, percent);
 }
 
 function ProgressArcDrawer(context, baseDrawer, progress)
@@ -526,25 +526,25 @@ CurvedArcDrawer.prototype.DrawArc = function(position1, position2, arcStyle)
   this.context.setLineDash([]);
 }
 
-CurvedArcDrawer.prototype.GetStartArrowDiretion = function(position1, position2, lengthArrow) 
+CurvedArcDrawer.prototype.GetStartArrowDirection = function(position1, position2, lengthArrow) 
 {
     var dist = position1.distance(position2);
-    var direction = position1.subtract(this.model.GetCurvedPoint(position1, position2, lengthArrow / dist));
+    var direction = position1.subtract(this.model.GetCurvePoint(position1, position2, lengthArrow / dist));
     direction.normalize(1.0);
     return direction;
 }
 
-CurvedArcDrawer.prototype.GetFinishArrowDiretion = function(position1, position2, lengthArrow) 
+CurvedArcDrawer.prototype.GetFinishArrowDirection = function(position1, position2, lengthArrow) 
 {
     var dist      = position1.distance(position2);
-    var direction = position2.subtract(this.model.GetCurvedPoint(position1, position2, 1.0 - lengthArrow / dist));
+    var direction = position2.subtract(this.model.GetCurvePoint(position1, position2, 1.0 - lengthArrow / dist));
     direction.normalize(1.0);
     return direction;
 }
 
 CurvedArcDrawer.prototype.GetTextCenterPoint = function (position1, position2, hasPair, arcStyle)
 {
-  var centerPoint = this.model.GetCurvedPoint(position1, position2, 0.5)
+  var centerPoint = this.model.GetCurvePoint(position1, position2, 0.5)
   if (position1.equals(position2))
   {
     centerPoint.y = centerPoint.y - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
@@ -554,7 +554,7 @@ CurvedArcDrawer.prototype.GetTextCenterPoint = function (position1, position2, h
   return centerPoint;
 }
 
-CurvedArcDrawer.prototype.GetPointOnArc = function (position1, position2, procent)
+CurvedArcDrawer.prototype.GetPointOnArc = function (position1, position2, percent)
 {   
-  return this.model.GetCurvedPoint(position1, position2, procent);
+  return this.model.GetCurvePoint(position1, position2, percent);
 }

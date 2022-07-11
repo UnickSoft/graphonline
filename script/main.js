@@ -1,6 +1,6 @@
 
 var SiteDir           = "";
-var DisableEmscripted = false;
+var DisableEmscripten = false;
 var algorithmsVersion = 2;
 
 var application = new Application(document, window);
@@ -103,7 +103,7 @@ function preLoadPage()
 
 function createAlgorithmMenu()
 {
-    var algorihtmsBaseId = "Algo";
+    var algorithmBaseId = "Algo";
     var algorithms = application.getAlgorithmNames();
     var index = 0;
 
@@ -283,7 +283,7 @@ function postLoadPage()
         {
             selectHandler('DeleteObject', 'delete');
         }
-        // Disabled becase it is easy to lose graph, when you press miss letter.
+        // Disabled because it is easy to lose graph, when you press miss letter.
         //else if (key == 'n' || key == 'т') // new
         //{
         //    userAction('NewGraph_shortcut');
@@ -740,9 +740,9 @@ $(document).ready(function ()
     document.getElementById('canvas').addEventListener("touchend", touchHandler, true);
     document.getElementById('canvas').addEventListener("touchcancel", touchHandler, true);
 
-    // Try load emscripted implementation
+    // Try load emscripten implementation
     var isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
-    if (!isMobile && !DisableEmscripted) {
+    if (!isMobile && !DisableEmscripten) {
       const jsScript = document.createElement('script');
       jsScript.src   = '/script/Graphoffline.Emscripten.js';
       document.body.appendChild(jsScript);      

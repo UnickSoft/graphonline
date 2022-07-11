@@ -113,9 +113,9 @@ BaseVertex.prototype.HitTest = function (pos)
   }
   else
   {
-    var relativPos  = (new Point(pos.x, pos.y)).subtract(this.position);
-    var lineFinish1 = relativPos.add(new Point(1000, 0));
-    var lineFinish2 = relativPos.add(new Point(-1000, 0));
+    var relativePos  = (new Point(pos.x, pos.y)).subtract(this.position);
+    var lineFinish1 = relativePos.add(new Point(1000, 0));
+    var lineFinish2 = relativePos.add(new Point(-1000, 0));
 
     var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width);
     pointsVertex1.push(pointsVertex1[0]);
@@ -125,12 +125,12 @@ BaseVertex.prototype.HitTest = function (pos)
 
     for (var i = 0; i < pointsVertex1.length - 1; i ++)
     {
-        var hitTest = Point.hitTest(relativPos, lineFinish1, pointsVertex1[i], pointsVertex1[i + 1]);
+        var hitTest = Point.hitTest(relativePos, lineFinish1, pointsVertex1[i], pointsVertex1[i + 1]);
         if (hitTest != null)
         {
           hitNumber1++;
         }
-        hitTest = Point.hitTest(relativPos, lineFinish2, pointsVertex1[i], pointsVertex1[i + 1]);
+        hitTest = Point.hitTest(relativePos, lineFinish2, pointsVertex1[i], pointsVertex1[i + 1]);
         if (hitTest != null)
         {
           hitNumber2++;

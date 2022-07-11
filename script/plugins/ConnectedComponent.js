@@ -47,18 +47,18 @@ FindConnectedComponentNew.prototype.calculate = function(fillUpText = false)
 {
     this.connectedComponentNumber = 0;
     this.component = {};
-    var tempVertexes = this.graph.vertices.slice();
+    var tempVertices = this.graph.vertices.slice();
     connectedVertex = getVertexToVertexArray(this.graph, true);
     var connectedComponentNumber = 0;
     
-    while (tempVertexes.length > 0)
+    while (tempVertices.length > 0)
     {
         connectedComponentNumber++;
         
         var stack = [];
-        stack.push(tempVertexes[0]);
+        stack.push(tempVertices[0]);
         
-        tempVertexes.splice(0, 1);
+        tempVertices.splice(0, 1);
         
         indexInStack = 0;
         
@@ -80,7 +80,7 @@ FindConnectedComponentNew.prototype.calculate = function(fillUpText = false)
                     if (stack.indexOf(nextVertex) < 0)
                     {
                         stack.push(nextVertex);
-                        tempVertexes.splice(tempVertexes.indexOf(nextVertex), 1);
+                        tempVertices.splice(tempVertices.indexOf(nextVertex), 1);
                         if (connectedEdge)
                         {
                             this.component[connectedEdge.id]  = connectedComponentNumber;
