@@ -246,6 +246,7 @@
     $g_lang['squere'] = "Квадрат";
     $g_lang['triangle'] = "Треугльник";
     $g_lang['pentagon'] = "Пятиугольник";
+    $g_lang['textbox'] = "Текстовое поле";
     $g_lang['vertex_diameter'] = "Размер вершины";
 
     $g_lang['additional_text_color'] = "Цвет другого текста"; 

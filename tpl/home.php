@@ -531,6 +531,7 @@
                 <option value="1"><?= L('squere')?></option>
                 <option value="2"><?= L('triangle')?></option>
                 <option value="3"><?= L('pentagon')?></option>
+                <!-- <option value="4"><//?= L('textbox')?></option> -->
               </select>
             </div>
           </div>
