@@ -117,7 +117,7 @@ BaseVertex.prototype.HitTest = function (pos)
     var lineFinish1 = relativePos.add(new Point(1000, 0));
     var lineFinish2 = relativePos.add(new Point(-1000, 0));
 
-    var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width);
+    var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width, this.mainText);
     pointsVertex1.push(pointsVertex1[0]);
 
     var hitNumber1 = 0;

@@ -70,32 +70,34 @@ function GetPentagonPoints(diameter)
 function GetTextboxPoints(diameter, text)
 {
 	var res = [];
-	
-	var tempContext = document.createElement('canvas').getContext('2d');
-	tempContext.font = "bold " + MainTextFontSize + DefaultFont;
-	var textWidth = tempContext.measureText(text).width + diameter / 2;
-
+	var width = diameter;
 	var height = diameter;	
-	res.push(new Point(-textWidth / 2, -height / 2));
-	res.push(new Point(textWidth / 2, -height / 2));
-	res.push(new Point(textWidth / 2, height / 2));
-	res.push(new Point(-textWidth / 2, height / 2));
+	
+	if (text)
+	{
+		var tempContext = document.createElement('canvas').getContext('2d');
+		tempContext.font = "bold " + MainTextFontSize + DefaultFont;
+		width = tempContext.measureText(text).width + diameter / 2;
+	}
+
+	res.push(new Point(-width / 2, -height / 2));
+	res.push(new Point(width / 2, -height / 2));
+	res.push(new Point(width / 2, height / 2));
+	res.push(new Point(-width / 2, height / 2));
 
 	return res;
 }
 
-function GetPointsForShape(shape, baseGraph)
+function GetPointsForShape(shape, diameter, text=null)
 {
-	var pointsVertex1 = null;
-	var diameter = baseGraph.model.diameter;
 	switch (parseInt(shape))
 	{
-		case VertexSquareShape:   pointsVertex1 = GetSquarePoints(diameter); break;
-		case VertexTriangleShape: pointsVertex1 = GetTrianglePoints(diameter); break;
-		case VertexPentagonShape: pointsVertex1 = GetPentagonPoints(diameter); break;
-		case VertextTextboxShape: pointsVertex1 = GetTextboxPoints(diameter, baseGraph.mainText); break;
+		case VertexSquareShape:   return GetSquarePoints(diameter); break;
+		case VertexTriangleShape: return GetTrianglePoints(diameter); break;
+		case VertexPentagonShape: return GetPentagonPoints(diameter); break;
+		case VertextTextboxShape: return GetTextboxPoints(diameter, text); break;
+		default: return null; break;
 	}
-	return pointsVertex1;
 }
 
 function GetSizeForShape(shape, diameter)
@@ -106,8 +108,8 @@ function GetSizeForShape(shape, diameter)
 		case VertexTriangleShape: return diameter * 1.5; break;
 		case VertexPentagonShape: return diameter * 1.2; break;
 		case VertextTextboxShape: return diameter; break;
+		default: return diameter; break;
 	}
-	return diameter;
 }
  
 function BaseVertexStyle()
@@ -342,7 +344,7 @@ BaseVertexDrawer.prototype.DrawShape = function(baseGraph)
   }
   else
   {
-	var points = GetPointsForShape(this.currentStyle.shape, baseGraph);
+	var points = GetPointsForShape(this.currentStyle.shape, baseGraph.model.diameter, baseGraph.mainText);
 
 	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
 
