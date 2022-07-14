@@ -434,8 +434,10 @@ BaseEdgeDrawer.prototype.GetTextCenterPoint = function (position1, position2, ha
   var centerPoint = Point.interpolate(position1, position2, 0.5);
   if (position1.equals(position2))
   {
-    centerPoint.y = centerPoint.y - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
-    centerPoint.x = centerPoint.x - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
+      let sinVal = Math.sin(this.model.GetLoopShiftAngel());
+      let cosVal = Math.cos(this.model.GetLoopShiftAngel());
+      centerPoint.x = centerPoint.x - cosVal * this.model.GetLoopSize();
+      centerPoint.y = centerPoint.y - (sinVal + Math.sign(sinVal) * 1.0)  * this.model.GetLoopSize();
   } 
     
   return centerPoint;
@@ -547,8 +549,10 @@ CurvedArcDrawer.prototype.GetTextCenterPoint = function (position1, position2, h
   var centerPoint = this.model.GetCurvePoint(position1, position2, 0.5)
   if (position1.equals(position2))
   {
-    centerPoint.y = centerPoint.y - Math.cos(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
-    centerPoint.x = centerPoint.x - Math.sin(this.model.GetLoopShiftAngel()) * this.model.GetLoopSize() * 2;
+    let sinVal = Math.sin(this.model.GetLoopShiftAngel());
+    let cosVal = Math.cos(this.model.GetLoopShiftAngel());
+    centerPoint.x = centerPoint.x - cosVal * this.model.GetLoopSize();
+    centerPoint.y = centerPoint.y - (sinVal + Math.sign(sinVal) * 1.0)  * this.model.GetLoopSize();
   } 
     
   return centerPoint;
