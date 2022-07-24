@@ -245,6 +245,7 @@
     $g_lang['squere'] = "方形";
     $g_lang['triangle'] = "三角形";
     $g_lang['pentagon'] = "五边形";
+    $g_lang['textbox'] = "Textbox";
     $g_lang['vertex_diameter'] = "顶点大小";         
     
     $g_lang['additional_text_color'] = "其他文本颜色"; 

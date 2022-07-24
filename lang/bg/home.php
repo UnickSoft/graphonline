@@ -245,6 +245,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['squere'] = "Квадрат";
     $g_lang['triangle'] = "Триъгълник";
     $g_lang['pentagon'] = "Петоъгълник";
+    $g_lang['textbox'] = "Textbox";
     $g_lang['vertex_diameter'] = "Големина на връх";         
     
     $g_lang['additional_text_color'] = "Друг цвят на текста"; 

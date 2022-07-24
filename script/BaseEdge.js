@@ -230,7 +230,7 @@ BaseEdge.prototype.GetEdgePositions = function()
             {
                 var lineFinish1 = data.direction.multiply(-1).multiply(1000.0);
             
-                var pointsVertex1 = GetPointsForShape(shape, data.diameter);
+                var pointsVertex1 = GetPointsForShape(shape, data.diameter, data.vertex.mainText);
                 pointsVertex1.push(pointsVertex1[0]);
             
                 for (var i = 0; i < pointsVertex1.length - 1; i ++)
