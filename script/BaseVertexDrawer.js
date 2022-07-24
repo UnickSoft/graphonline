@@ -10,11 +10,17 @@ const VertexCircleShape   = 0,
       VertexSquareShape   = 1,
       VertexTriangleShape = 2,
 	  VertexPentagonShape = 3,
-	  VertexHomeShape     = 4;
+	  VertexHomeShape     = 4,
+	  VertextTextboxShape = 5;
 
 // Common text position
 const CommonTextCenter = 0,
       CommonTextUp     = 1;
+
+// Fonts
+const DefaultFont = "px sans-serif",
+	  MainTextFontSize = 16,
+	  TopTextFontSize  = 12.0;
 
 function GetSquarePoints(diameter)
 {
@@ -61,16 +67,37 @@ function GetPentagonPoints(diameter)
   	return res;
 }
 
-function GetPointsForShape(shape, diameter)
+function GetTextboxPoints(diameter, text)
 {
-	var pointsVertex1 = null;
+	var res = [];
+	var width = diameter;
+	var height = diameter;	
+	
+	if (text)
+	{
+		var tempContext = document.createElement('canvas').getContext('2d');
+		tempContext.font = "bold " + MainTextFontSize + DefaultFont;
+		width = tempContext.measureText(text).width + diameter / 2;
+	}
+
+	res.push(new Point(-width / 2, -height / 2));
+	res.push(new Point(width / 2, -height / 2));
+	res.push(new Point(width / 2, height / 2));
+	res.push(new Point(-width / 2, height / 2));
+
+	return res;
+}
+
+function GetPointsForShape(shape, diameter, text=null)
+{
 	switch (parseInt(shape))
 	{
-		case VertexSquareShape:   pointsVertex1 = GetSquarePoints(diameter); break;
-		case VertexTriangleShape: pointsVertex1 = GetTrianglePoints(diameter); break;
-		case VertexPentagonShape: pointsVertex1 = GetPentagonPoints(diameter); break;
+		case VertexSquareShape:   return GetSquarePoints(diameter); break;
+		case VertexTriangleShape: return GetTrianglePoints(diameter); break;
+		case VertexPentagonShape: return GetPentagonPoints(diameter); break;
+		case VertextTextboxShape: return GetTextboxPoints(diameter, text); break;
+		default: return null; break;
 	}
-	return pointsVertex1;
 }
 
 function GetSizeForShape(shape, diameter)
@@ -80,8 +107,9 @@ function GetSizeForShape(shape, diameter)
 		case VertexSquareShape:   return diameter; break;
 		case VertexTriangleShape: return diameter * 1.5; break;
 		case VertexPentagonShape: return diameter * 1.2; break;
+		case VertextTextboxShape: return diameter; break;
+		default: return diameter; break;
 	}
-	return diameter;
 }
  
 function BaseVertexStyle()
@@ -278,16 +306,19 @@ BaseVertexDrawer.prototype.Draw = function(baseGraph, graphStyle)
   
   if (graphStyle.commonTextPosition == CommonTextCenter)
   {
-  	this.DrawCenterText(baseGraph.position, baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, true, 16);  
+  	this.DrawCenterText(baseGraph.position, baseGraph.mainText, graphStyle.mainTextColor, 
+						graphStyle.fillStyle, true, true, MainTextFontSize);  
   	// Top text
-  	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 9.0)), 
-	baseGraph.upText, graphStyle.upTextColor, graphStyle.strokeStyle, false, false, 12.0);
+  	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 9.0)), baseGraph.upText, 
+						graphStyle.upTextColor, graphStyle.strokeStyle, false, false, TopTextFontSize);
   }
   else if (graphStyle.commonTextPosition == CommonTextUp)
   {
-	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 7.0)), baseGraph.mainText, graphStyle.mainTextColor, graphStyle.fillStyle, true, false, 16);  
+	this.DrawCenterText(baseGraph.position.add(new Point(0, - shapeSize / 2.0 - 7.0)), baseGraph.mainText, 
+						graphStyle.mainTextColor, graphStyle.fillStyle, true, false, MainTextFontSize);  
 	// Top text
-	this.DrawCenterText(baseGraph.position.add(new Point(0, shapeSize / 2.0 + 9.0)), baseGraph.upText, graphStyle.upTextColor, graphStyle.strokeStyle, false, false, 12.0);
+	this.DrawCenterText(baseGraph.position.add(new Point(0, shapeSize / 2.0 + 9.0)), baseGraph.upText, 
+						graphStyle.upTextColor, graphStyle.strokeStyle, false, false, TopTextFontSize);
   }
 /*	
   // Bottom text
@@ -313,7 +344,7 @@ BaseVertexDrawer.prototype.DrawShape = function(baseGraph)
   }
   else
   {
-	var points = GetPointsForShape(this.currentStyle.shape, baseGraph.model.diameter);
+	var points = GetPointsForShape(this.currentStyle.shape, baseGraph.model.diameter, baseGraph.mainText);
 
 	this.context.moveTo(baseGraph.position.x + points[points.length - 1].x, baseGraph.position.y + points[points.length - 1].y);
 
@@ -348,7 +379,7 @@ BaseVertexDrawer.prototype.DrawText = function(position, text, color, outlineCol
 BaseVertexDrawer.prototype.DrawCenterText = function(position, text, color, outlineColor, bold, outline, size)
 {
 	this.context.textBaseline="middle";
-	this.context.font = (bold ? "bold " : "") + size + "px sans-serif";
+	this.context.font = (bold ? "bold " : "") + size + DefaultFont;
 	var textWidth  = this.context.measureText(text).width;	
 	this.DrawText(new Point(position.x - textWidth / 2, position.y), text, color, outlineColor, outline, this.context.font);
 }
