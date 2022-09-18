@@ -10,6 +10,7 @@
     $g_lang["menu_8"] = "Νέα";
     $g_lang["menu_9"] = "Από παραδείγματα γράφων";
     $g_lang["menu_10"] = "Ανοιχτό λογισμικό";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "
     <a href=\"/en/\">Το Graph Online</a> 
     είναι ενα online πρότζεκτ με στόχο την εύκολη δημιουργία και απεικόνιση γράφων. 

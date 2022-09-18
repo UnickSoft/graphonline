@@ -11,6 +11,7 @@
     $g_lang["menu_8"] = "Nouveau";
     $g_lang["menu_9"] = "En utilisant un graph en exemple";
     $g_lang["menu_10"] = "Droit libre";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "<a href=\"/fr/\">Graph Online</a> est un projet en ligne pour créer et visualiser facilement des graphes, et également rechercher &nbsp;<a href=\"http://graphonline.ru/fr\">le chemin le plus court</a>. L'on peut également créer des graphes à partir de leurs matrices d'adjacence. A propos du projet et acces à la page d'aide.";
     $g_lang["lang"] = "Langue";
     $g_lang["home"] = "Maison";

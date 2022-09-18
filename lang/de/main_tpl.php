@@ -11,6 +11,7 @@
     $g_lang["menu_8"] = "Nachrichten";
     $g_lang["menu_9"] = "anhand dem Beispielgraph";
     $g_lang["menu_10"] = "anhand eines Diagrammbeispiels";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "Graph Online ist ein online Projekt, der sich auf Erstellen und einfache Visualisierung des Graphes und kürzesten Pfad-Suche richtet. Außerdem, können Sie einen Graph via Adjazenzmatrix erstellen.   ";
     $g_lang["lang"] = "Sprache";
     $g_lang["home_notg"] = "Home";

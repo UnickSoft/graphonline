@@ -43,6 +43,8 @@ var g_write_to_us = "Write to us";
 var g_fixMatrix      = "Fix matrix";
 var g_readMatrixHelp = "Matrix format help";
 var g_matrixWrongFormat = "Matrix is wrong";
+var g_pairWrongFormat = "Edge List is wrong";
+var g_fix = "Fix"
 
 var g_save_image_dialog = "Save graph image";
 
@@ -395,4 +397,7 @@ function loadTexts()
     g_reverseAllEdges   = document.getElementById("reverseAllEdges").innerHTML;
     g_makeAllUndirected = document.getElementById("makeAllUndirected").innerHTML;
     g_makeAllDirected   = document.getElementById("makeAllDirected").innerHTML;
+
+    g_pairWrongFormat = document.getElementById("pairWrongFormat").innerHTML;
+    g_fix = document.getElementById("fixButton").innerHTML;;
 }

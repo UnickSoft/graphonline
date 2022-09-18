@@ -23,6 +23,9 @@
 			array(
         		"title" => L("menu_5"),
         		"link"  => SiteRoot("create_graph_by_incidence_matrix"),),
+            array(
+                "title" => L("menu_11"),
+                "link"  => SiteRoot("create_graph_by_edge_list"),),                
 			array(
         		"title" => L("menu_9"),
         		"link"  => SiteRoot("graphs_examples"),)

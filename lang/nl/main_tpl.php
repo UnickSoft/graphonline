@@ -11,6 +11,7 @@
     $g_lang["menu_8"] = "Nieuws";
     $g_lang["menu_9"] = "Gebruik voorbeeld graaf";
     $g_lang["menu_10"] = "Open source";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "Graph Online is een online project met als doel het creëren en eenvoudig visualiseren van grafen en het vinden van een kortste route. Verder kunt u ook grafen creëren middels bogenmatrixen. Meer info over het project vind u op de help pagina ";
     $g_lang["lang"] = "Taal";
 

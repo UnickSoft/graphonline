@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=67")?>" ></script>
+        <script src="<?= Root("script/example.js?v=68")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -445,6 +445,10 @@
        <div id="matrixErrorInc" class="translation">
 	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
+
+       <div id="pairErrorInc" class="translation">
+	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_pair_message')?></div>
+       </div>       
         
 	<div id="voteDialog">
 		<form>
@@ -721,6 +725,7 @@
     <p id="inputMatrix" class="translation"><?= isset($_POST["matrix"]) ? $_POST["matrix"] : ""?></p>
     <p id="separator" class="translation"><?= isset($_POST["separator"]) ? $_POST["separator"] : ""?></p>
     <p id="inputIncidenceMatrix" class="translation"><?= isset($_POST["incidenceMatrix"]) ? $_POST["incidenceMatrix"] : ""?></p>
+    <p id="inputPair" class="translation"><?= isset($_POST["pairs"]) ? str_replace("<", "&lt;", str_replace(">", "&gt;", $_POST["pairs"])) : ""?></p>
     <p id="currentLanguage" class="translation"><?= L('current_language')?></p>
     <p id="editWeight" class="translation"><?= L('edit_weight')?></p>
     <p id="noWeight" class="translation"><?= L('default_weight')?></p>
@@ -849,6 +854,9 @@
     <p id="reverseAllEdges" class="translation"><?= L('reverse_all_edges')?></p>
     <p id="makeAllUndirected" class="translation"><?= L('make_all_undirected')?></p>
     <p id="makeAllDirected" class="translation"><?= L('make_all_directed')?></p>
+
+    <p id="pairWrongFormat" class="translation"><?= L('edge_list_wrong_format')?></p>
+    <p id="fixButton" class="translation"><?= L('fix_button')?></p>
 
 </section>
 <!--

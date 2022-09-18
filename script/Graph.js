@@ -38,6 +38,21 @@ Graph.prototype.AddNewVertex = function(vertex)
 	return this.vertices.length - 1;
 }
 
+Graph.prototype.ClearGraph = function() {
+	// List of vertex.
+	this.vertices = [];
+	// List of arcs.
+	this.edges   = [];
+	// Unique Id of new graph.
+	this.uidGraph = 0;
+	// Unique Id of new edge.
+	this.uidEdge = 10000;
+	// Has direction edge.
+	this.hasDirect = false;
+    // Is graph multi
+    this.isMultiGraph = false;
+}
+
 Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight, replaceIfExists = true)
 {
 	return this.AddNewEdge(new BaseEdge(graph1, graph2, isDirect, weight), replaceIfExists);
@@ -129,6 +144,21 @@ Graph.prototype.FindVertex = function(id)
 	for (var i = 0; i < this.vertices.length; i++)
 	{
 		if (this.vertices[i].id == id)
+		{
+			res = this.vertices[i];
+			break;
+		}
+	}
+	
+	return res;
+}
+
+Graph.prototype.FindVertexByTitle = function(title)
+{
+	var res = null;
+	for (var i = 0; i < this.vertices.length; i++)
+	{
+		if (this.vertices[i].mainText == title)
 		{
 			res = this.vertices[i];
 			break;
@@ -349,6 +379,43 @@ Graph.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separa
 	return bGoodFormat;
 }
 
+Graph.prototype.TestPair = function (pair)
+{
+	let lines = pair.split ("\n");
+	// Check:
+	// a - b
+	// a > b
+    // a < b
+	// a-(1)-b
+	// a-(1)>b
+	// a<(1)-b
+	let regExp = [
+		/^.+-.+$/g,
+		/^.+\>.+$/g,
+		/^.+<.+$/g,
+		/^.+-\(\d+\.?\d+\)-.+$/g,
+		/^.+-\(\d+\.?\d+\)\>.+$/g,
+		/^.+<\(\d+\.?\d+\)\-.+$/g
+	];
+	let res = true;
+	for (let i = 0; i < lines.length; ++i)
+	{
+		let resLine = false;
+		let line = lines[i];
+		if (line == "") {
+			continue;
+		}
+		for (let j = 0; j < regExp.length; ++j) {
+			if (line.match(regExp[j])) {
+				resLine = true;
+			}
+		}
+		res = resLine && res;
+	}
+
+	return res;
+}
+
 
 Graph.prototype.IsVerticesHaveSamePosition = function (position, vertexCount)
 {
@@ -364,6 +431,10 @@ Graph.prototype.IsVerticesHaveSamePosition = function (position, vertexCount)
 	}
 
 	return res;
+}
+
+Graph.prototype.GetRandomPosition = function (viewportSize) {
+	return new Point(Math.random() * viewportSize.x, Math.random() * viewportSize.y);
 }
 
 Graph.prototype.GetRandomPositionOfVertex = function (matrix, vertexIndex, viewportSize)
@@ -625,6 +696,88 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 		}                        
 
         this.VerticesReposition(viewportSize, newVertices);
+	}	
+}
+
+Graph.prototype.SetPair = function (pairs, viewportSize, currentEnumVerticesType)
+{
+	if (this.TestPair(pairs))
+	{
+		this.ClearGraph();
+		
+		let lines = pairs.split ("\n");
+		// Extract:
+		// a - b
+		// a > b
+		// a < b
+		// a-(1)-b
+		// a-(1)>b
+		// a<(1)-b
+		let regExp = [
+			/^(.+)-(.+)$/g,
+			/^(.+)\>(.+)$/g,
+			/^(.+)<(.+)$/g,
+			/^(.+)-\((\d+|\d+\.?\d+)\)-(.+)$/g,
+			/^(.+)-\((\d+|\d+\.?\d+)\)\>(.+)$/g,
+			/^(.+)<\((\d+|\d+\.?\d+)\)\-(.+)$/g,
+		];
+
+		let bWeightGraph = false;
+		var newVertices = [];
+
+		for (var i = 0; i < lines.length; i++)
+		{
+			let line = lines[i];
+			if (line == "") {
+				continue;
+			}
+
+			for (let j = regExp.length - 1; j >= 0; --j) {
+				if (!line.match(regExp[j])) {
+					continue;
+				}
+
+				let groupes = Array.from(line.matchAll(regExp[j]));
+				let groupe  = groupes[0];
+				let vetext1Title = groupe[1];
+				let vertex1 = this.FindVertexByTitle(vetext1Title);
+				if (vertex1 == null) {
+					let newPosition = this.GetRandomPosition(viewportSize);
+					vertex1 = this.vertices[this.AddNewVertex(new BaseVertex(newPosition.x, newPosition.y, currentEnumVerticesType))];
+					vertex1.mainText = vetext1Title;
+					newVertices.push(vertex1);
+				}
+				let vetext2Title = groupe[j <= 2 ? 2 : 3];
+				let vertex2 = this.FindVertexByTitle(vetext2Title);
+				if (vertex2 == null) {
+					let newPosition = this.GetRandomPosition(viewportSize);
+					vertex2 = this.vertices[this.AddNewVertex(new BaseVertex(newPosition.x, newPosition.y, currentEnumVerticesType))];
+					vertex2.mainText = vetext2Title;
+					newVertices.push(vertex2);
+				}
+				let isDirect = j == 1 || j == 2 ||  j == 4 || j == 5;
+				let weight = 1;
+				if (j > 2) {
+					weight = groupe[2];
+					bWeightGraph = true;
+				}
+				let isRevertEdge = j == 2 || j == 5;
+
+				let nEdgeIndex = this.AddNewEdgeSafe(isRevertEdge ? vertex2 : vertex1, isRevertEdge ? vertex1 : vertex2, isDirect, weight, false);
+				this.FixEdgeCurve(nEdgeIndex);
+				break;
+			}
+		}
+		
+        // Set use weight false, because we have unweighted graph.
+        if (!bWeightGraph)
+        {
+            this.edges.forEach(function(part, index, theArray) {
+                               theArray[index].useWeight = false;
+                               });
+        }
+		
+		this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 

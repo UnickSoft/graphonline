@@ -288,4 +288,8 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['make_all_directed'] = "Make all edges directed";      
 
     $g_lang['save_svg_image'] = "Save graph to SVG";  
+                                      
+    $g_lang["bad_inc_pair_message"] = "Cannot create graph. Edge list has wrong format. Click \"fix\" button to fix edge list or \"help\" button to open help about format";
+    $g_lang["edge_list_wrong_format"] = "Edge list format is incorrect";
+    $g_lang["fix_button"] = "fix";
 ?>

@@ -846,6 +846,28 @@ Application.prototype.onPostLoadEvent = function()
 	    wasLoad = true;
     }
 
+    var pairs  = document.getElementById("inputPair").innerHTML;
+
+    if (pairs.length > 0)
+    {    
+        pairs = pairs.replaceAll('&gt;', '>');
+        pairs = pairs.replaceAll('&lt;', '<');
+
+	    if (!this.SetPairSmart(pairs))
+	    {
+            this.userAction("Pair.Failed");
+		    this.ShowPairErrorDialog(pairs);
+	    }
+        else
+        {
+            this.userAction("Pair.Success");
+        }
+
+    	this.updateMessage();
+    	this.redrawGraph();
+	    wasLoad = true;
+    }    
+
     if (!wasLoad)
     {
     	var graphName  = this.getParameterByName("graph");
@@ -933,6 +955,22 @@ Application.prototype.SetAdjacencyMatrix = function (matrix, separator)
 	return res;
 }
 
+Application.prototype.SetPair = function (pair)
+{   
+	var res = true;
+    var r = {};
+	var c = {};
+	if (!this.TestPair(pair))
+	{
+		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=pair&matrix=" + encodeURIComponent(pair), function( data ) {;});
+		res = false;
+	}
+
+	this.graph.SetPair(pair, new Point(this.GetRealWidth(), this.GetRealHeight()), this.currentEnumVerticesType);
+    this.AutoAdjustViewport();
+	this.redrawGraph();
+	return res;
+}
 
 Application.prototype.GetIncidenceMatrix = function ()
 {
@@ -942,6 +980,11 @@ Application.prototype.GetIncidenceMatrix = function ()
 Application.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj)
 {
 	return this.graph.TestIncidenceMatrix(matrix, rowsObj, colsObj);
+}
+
+Application.prototype.TestPair = function (pair)
+{
+	return this.graph.TestPair(pair);
 }
 
 Application.prototype.SetIncidenceMatrix = function (matrix)
@@ -1006,6 +1049,22 @@ Application.prototype.SetIncidenceMatrixSmart = function (matrix)
 	else
 	{
     		res = this.SetIncidenceMatrix(matrix);
+	}
+
+	return res;
+}
+
+Application.prototype.SetPairSmart = function (pair)
+{
+	var res = false;
+
+    if (this.TestPair(pair))
+	{
+    	res = this.SetPair(pair);
+    }
+	else
+	{
+    	res = false;
 	}
 
 	return res;
@@ -1282,6 +1341,34 @@ Application.prototype.ShowIncidenceMatrixErrorDialog = function(matrix)
 	$( "#matrixErrorInc" ).dialog({
 		resizable: false,
 		title: g_matrixWrongFormat,
+		width: 400,
+		modal: true,
+		dialogClass: 'EdgeDialog',
+		buttons: dialogButtons,
+	});
+}
+
+Application.prototype.ShowPairErrorDialog = function(pair)
+{
+	var dialogButtons = {};
+
+	pair = pair.replaceAll(/\n/g,'%0A');
+    pair = pair.replaceAll('>', '&gt;');
+    pair = pair.replaceAll('<', '&lt;');
+
+	dialogButtons[g_readMatrixHelp] = function() {
+			window.location.assign(g_language == "ru" ? "./wiki/Справка/СписокРебер" : "./wiki/Help/EdgeList");
+		};
+	dialogButtons[g_fix] = function() {
+			window.location.assign("./create_graph_by_edge_list?pair=" + pair);
+		};
+	dialogButtons[g_close] = function() {
+			$( this ).dialog( "close" );					
+		}; 
+
+	$( "#pairErrorInc" ).dialog({
+		resizable: false,
+		title: g_pairWrongFormat,
 		width: 400,
 		modal: true,
 		dialogClass: 'EdgeDialog',

@@ -11,6 +11,7 @@
     $g_lang["menu_8"] = "News";
     $g_lang["menu_9"] = "Usando grafo de exemplo";
     $g_lang["menu_10"] = "Open Source";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "Grph Online é um projeto que mira a criação e visualização fácil de um grafo e a busca de seu melhor caminho. Você também pode criar um grafo através de uma matriz de adjacência. Sobre o projeto e visitar a página de ajuda";
     $g_lang["lang"] = "Língua";
     $g_lang["home"] = "Home";

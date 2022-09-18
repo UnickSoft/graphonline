@@ -11,6 +11,7 @@
     $g_lang["menu_8"] = "Nyheter";
     $g_lang["menu_9"] = "Följ exemplet";
     $g_lang["menu_10"] = "Öppen källa";
+    $g_lang["menu_11"] = "Using edge list";
     $g_lang["footer_info"] = "<a href=\"/\">Graf online</a> är att vertz för att skapa och visualisera en graf i två klick eller använda en grannmatris och hitta den kortaste sökvägen för anslutningsdelar som söker efter en Eulercykel. Dela med. Grafvisualisering och kortaste sökväg.";
     $g_lang["lang"] = "Språk";
     $g_lang["home"] = "Huvudsida";
