@@ -24,7 +24,8 @@
                           'de' => array('name' => 'German'),
                           'pt' => array('name' => 'Portuguese'),
                           'bg' => array('name' => 'Български'),
-                          'ch' => array('name' => '漢語')
+                          'ch' => array('name' => '漢語'),
+                          'pl' => array('name' => 'Polski')
                        );
 
     $g_config                     = array();
