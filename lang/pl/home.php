@@ -292,4 +292,6 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang["bad_inc_pair_message"] = "Nie można stworzyć grafu. Lista krawędzi ma zły format. Kliknij \"fix\" przycisk,a= aby naprawić listę krawędzi lub \"help\" przycisk aby otworzyć stronę z pomocą dotyczącą formatu pliku";
     $g_lang["edge_list_wrong_format"] = "Format listy krawędzi jest niepoprawny";
     $g_lang["fix_button"] = "Napraw";
+
+    $g_lang["snowflake"] = "Snowflake";    
 ?>

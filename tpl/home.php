@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=68")?>" ></script>
+        <script src="<?= Root("script/example.js?v=69")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -536,6 +536,7 @@
                 <option value="2"><?= L('triangle')?></option>
                 <option value="3"><?= L('pentagon')?></option>
                 <option value="5"><?= L('textbox')?></option>
+                <option value="6"><?= L('snowflake')?></option>
               </select>
             </div>
           </div>

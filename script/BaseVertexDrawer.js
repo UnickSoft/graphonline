@@ -11,7 +11,8 @@ const VertexCircleShape   = 0,
       VertexTriangleShape = 2,
 	  VertexPentagonShape = 3,
 	  VertexHomeShape     = 4,
-	  VertextTextboxShape = 5;
+	  VertexTextboxShape = 5;
+	  VertexSnowflakeShape = 6;
 
 // Common text position
 const CommonTextCenter = 0,
@@ -88,6 +89,44 @@ function GetTextboxPoints(diameter, text)
 	return res;
 }
 
+function GetShowflakePoints(diameter) 
+{
+	var res = [];
+
+	var superSmallRadius = diameter * 0.8 / 2;
+	var smallRadius = diameter * 0.95 / 2;
+	var bigRadius   = diameter * 1.5 / 2;
+	let angel = 8;
+
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), - angel));
+	res.push(new Point(smallRadius, 0));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), angel));
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 - angel));	
+	res.push(new Point(smallRadius, 0).rotate(new Point(0, 0), 60));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + angel));	
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30 + 60));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 - angel));	
+	res.push(new Point(smallRadius, 0).rotate(new Point(0, 0), 60 + 60));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + angel));	
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30 + 60 + 60));	
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 - angel));	
+	res.push(new Point(smallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60));	
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + angel));	
+
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30 + 60 + 60 + 60));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60 - angel));	
+	res.push(new Point(smallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60));	
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60 + angel));	
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30 + 60 + 60 + 60 + 60));
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60 + 60 - angel));	
+	res.push(new Point(smallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60 + 60));	
+	res.push(new Point(superSmallRadius, 0).rotate(new Point(0, 0), 60 + 60 + 60 + 60 + 60 + angel));	
+	res.push(new Point(bigRadius, 0).rotate(new Point(0, 0), 30 + 60 + 60 + 60 + 60 + 60));
+
+	return res;
+}
+
 function GetPointsForShape(shape, diameter, text=null)
 {
 	switch (parseInt(shape))
@@ -95,7 +134,8 @@ function GetPointsForShape(shape, diameter, text=null)
 		case VertexSquareShape:   return GetSquarePoints(diameter); break;
 		case VertexTriangleShape: return GetTrianglePoints(diameter); break;
 		case VertexPentagonShape: return GetPentagonPoints(diameter); break;
-		case VertextTextboxShape: return GetTextboxPoints(diameter, text); break;
+		case VertexTextboxShape: return GetTextboxPoints(diameter, text); break;
+		case VertexSnowflakeShape:   return GetShowflakePoints(diameter); break;
 		default: return null; break;
 	}
 }
@@ -107,7 +147,9 @@ function GetSizeForShape(shape, diameter)
 		case VertexSquareShape:   return diameter; break;
 		case VertexTriangleShape: return diameter * 1.5; break;
 		case VertexPentagonShape: return diameter * 1.2; break;
-		case VertextTextboxShape: return diameter; break;
+		case VertexTextboxShape: return diameter; break;
+		case VertexSnowflakeShape: return diameter * 1.5; break;
+
 		default: return diameter; break;
 	}
 }
