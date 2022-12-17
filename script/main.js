@@ -185,7 +185,7 @@ function postLoadPage()
 			return application.CanvasOnMouseUp(e);
 		}
     
-    application.canvas.onmousewheel = function (e)
+    application.canvas.onwheel = function (e)
     {
         var e = window.event || e; // old IE support
         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
