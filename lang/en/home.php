@@ -27,7 +27,7 @@
     "<select id=\"enumVertexsText\">" .
     "</select></span>";
     $g_lang["select_first_vertext_to_connect"] = "Select first vertex of edge";
-    $g_lang["select_second_vertext_to_connect"] = "Select second vertext of edge";
+    $g_lang["select_second_vertext_to_connect"] = "Select second vertex of edge";
     $g_lang["select_start_short_path_vertex"] = "Select the initial vertex of the shortest path";
     $g_lang["select_finish_short_path_vertex"] = "Select the end vertex of the shortest path";
     $g_lang["short_path_result"] = "Shortest path length is %d";

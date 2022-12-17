@@ -1058,60 +1058,15 @@ ConnectionGraphHandler.prototype.SelectFirst = function()
 {
 	this.firstObject = null;
     
-    let hasEdges           = this.app.graph.hasEdges();
-    let hasDirectedEdges   = this.app.graph.hasDirectEdge();
-    let hasUndirectedEdges = this.app.graph.hasUndirectEdge();
-
 	this.message     = g_selectFirstVertexToConnect + this.GetSelect2VertexMenu();
-
-    if (!hasEdges) {
-        return;
-    }
-
-    this.message =
-        ". <div class=\"btn-group\" style=\"float:right; position: relative; margin-left: 8px\">"
-        +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
-        +  g_additionalActions + " <span class=\"caret\"></span>"
-        +  " </button> "
-        +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-        +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"reverseAll\">" + g_reverseAllEdges + "</a></li>" : "")
-        +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"makeAllUndirected\">" + g_makeAllUndirected + "</a></li>" : "")
-        +  (hasUndirectedEdges ? " <li><a href=\"#\" id=\"makeAllDirected\">" + g_makeAllDirected + "</a></li>" : "")
-        +  "</ul>"
-        +  "</div> " + this.message;
-
-    let handler = this;
-
-    $('#message').on('click', '#reverseAll', function() {
-            handler.app.PushToStack("ReverseAllEdges");
-
-            handler.app.graph.reverseAllEdges();
-            handler.app.redrawGraph();
-
-            userAction("ReverseAllEdges");
-        });
-    $('#message').on('click', '#makeAllUndirected', function(){        
-        handler.app.PushToStack("makeAllEdgesUndirected");
-
-        handler.app.graph.makeAllEdgesUndirected();
-        handler.app.redrawGraph();
-
-        userAction("makeAllEdgesUndirected");
-    });
-    $('#message').on('click', '#makeAllDirected', function(){        
-        handler.app.PushToStack("makeAllEdgesDirected");
-
-        handler.app.graph.makeAllEdgesDirected();
-        handler.app.redrawGraph();
-
-        userAction("makeAllEdgesDirected");
-    });        
+    this.message = this.AppendSpecialSctionsButton(this.message);
 }
 
 ConnectionGraphHandler.prototype.SelectSecond = function(selectedObject)
 {
 	this.firstObject = selectedObject;
-	this.message     = g_selectSecondVertexToConnect + this.GetSelect2VertexMenu();						
+	this.message     = g_selectSecondVertexToConnect + this.GetSelect2VertexMenu();		
+    this.message = this.AppendSpecialSctionsButton(this.message);				
 }
 
 ConnectionGraphHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
@@ -1140,6 +1095,55 @@ ConnectionGraphHandler.prototype.UpdateSecondVertexMenu = function(vertex2Text)
         vertex2Text.value = this.secondObject.mainText;
     }   
 }
+
+ConnectionGraphHandler.prototype.AppendSpecialSctionsButton = function(baseMessage)
+{
+    let hasEdges           = this.app.graph.hasEdges();
+
+    if (!hasEdges) return baseMessage;
+
+    let hasDirectedEdges   = this.app.graph.hasDirectEdge();
+    let hasUndirectedEdges = this.app.graph.hasUndirectEdge();
+
+    let handler = this;
+
+    $('#message').on('click', '#reverseAll', function() {
+            handler.app.PushToStack("ReverseAllEdges");
+
+            handler.app.graph.reverseAllEdges();
+            handler.app.redrawGraph();
+
+            userAction("ReverseAllEdges");
+        });
+    $('#message').on('click', '#makeAllUndirected', function(){        
+        handler.app.PushToStack("makeAllEdgesUndirected");
+
+        handler.app.graph.makeAllEdgesUndirected();
+        handler.app.redrawGraph();
+
+        userAction("makeAllEdgesUndirected");
+    });
+    $('#message').on('click', '#makeAllDirected', function(){        
+        handler.app.PushToStack("makeAllEdgesDirected");
+
+        handler.app.graph.makeAllEdgesDirected();
+        handler.app.redrawGraph();
+
+        userAction("makeAllEdgesDirected");
+    });     
+        
+    return "<div class=\"btn-group\" style=\"float:right; position: relative; margin-left: 8px\">"
+    +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+    +  g_additionalActions + " <span class=\"caret\"></span>"
+    +  " </button> "
+    +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
+    +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"reverseAll\">" + g_reverseAllEdges + "</a></li>" : "")
+    +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"makeAllUndirected\">" + g_makeAllUndirected + "</a></li>" : "")
+    +  (hasUndirectedEdges ? " <li><a href=\"#\" id=\"makeAllDirected\">" + g_makeAllDirected + "</a></li>" : "")
+    +  "</ul>"
+    +  "</div> " + baseMessage;
+}
+
 
 /**
  * Delete Graph handler.
