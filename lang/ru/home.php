@@ -296,4 +296,7 @@
     $g_lang["fix_button"] = "исправить";
 
     $g_lang["snowflake"] = "Снежинка";
+
+    $g_lang["save_edge_for_future"] = "Сохранить дугу для повторного использования";    
+    $g_lang["reuse_saved_edge"] = "Использовать сохраненную дугу";
 ?>

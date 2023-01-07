@@ -128,6 +128,7 @@ BaseHandler.prototype.InitControls = function()
                if (handler.app.graph.vertices[i].mainText == vertex1Text.value)
                {
 	               handler.SelectFirstVertexMenu(vertex1Text, handler.app.graph.vertices[i]);
+                   userAction("selectVertex1_menu");
                    break;
                }
            }
@@ -146,6 +147,7 @@ BaseHandler.prototype.InitControls = function()
                if (handler.app.graph.vertices[i].mainText == vertex2Text.value)
                {
 	               handler.SelectSecondVertexMenu(vertex2Text, handler.app.graph.vertices[i]);
+                   userAction("selectVertex2_menu");
                    break;
                }
            }
@@ -351,6 +353,9 @@ BaseHandler.prototype.ShowCreateEdgeDialog = function(firstVertex, secondVertex,
     var dialogButtons = {};
     var handler = this;
 
+    $("#CheckSaveDefaultEdge").prop("checked", false);
+    $("#defaultEdgeDialogBlock").show(); 
+
     dialogButtons[g_orintEdge] = function() {
                 handler.app.PushToStack("Connect");                
                 addEdgeCallBack(firstVertex, secondVertex, true);
@@ -438,6 +443,10 @@ BaseHandler.prototype.ShowEditEdgeDialog = function(edgeObject) {
     }        
     document.getElementById("EdgesPresets").innerHTML = presetsStr;
     document.getElementById('EdgeLable').value = edgeObject.upText;
+
+    $("#CheckSaveDefaultEdge").prop("checked", false);
+    
+    $("#defaultEdgeDialogBlock").hide(); 
 
     $( "#addEdge" ).dialog({
         resizable: false,
@@ -667,51 +676,7 @@ DefaultHandler.prototype.MouseUp = function(pos)
         var handler = this;
         $('#message').unbind();
         $('#message').on('click', '#editEdge', function(){
-                         var direct = false;
-                         var dialogButtons = {};
-
-                         dialogButtons[g_save] = function() {
-
-                           handler.app.PushToStack("ChangeCurvelEdge");
-                        
-                           handler.selectedObject.SetWeight(document.getElementById('EdgeWeight').value);
-                           handler.selectedObject.SetUpText(document.getElementById('EdgeLable').value);
-                             
-                            handler.needRedraw = true;
-                            handler.app.redrawGraph();
-
-                            userAction("ChangeWeight");
-                            $( this ).dialog( "close" );
-                         };
-
-                         document.getElementById('EdgeWeight').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : g_noWeight;
-                         document.getElementById('EdgeWeightSlider').value = handler.selectedObject.useWeight ? handler.selectedObject.weight : 0;
-
-                        var edgePresets = handler.app.GetEdgePresets();
-                        var presetsStr  = "<span onClick=\"document.getElementById('EdgeWeight').value='" + g_DefaultWeightPreset + "'; document.getElementById('EdgeWeightSlider').value='" + g_DefaultWeightPreset + "';\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + g_DefaultWeightPreset + "</span>";
-
-                        for(var i = 0; i < edgePresets.length; i ++) 
-                        {
-                            var edgePreset = edgePresets[i];
-                            presetsStr += "<span onClick=\"document.getElementById('EdgeWeight').value='" + edgePreset + "'; document.getElementById('EdgeWeightSlider').value=" + edgePreset + ";\" style=\"cursor: pointer\" class=\"defaultWeigth\">" + edgePreset + "</span>";
-                        }        
-                        document.getElementById("EdgesPresets").innerHTML = presetsStr;
-                        document.getElementById('EdgeLable').value = handler.selectedObject.upText;
-            
-                         $( "#addEdge" ).dialog({
-                                                resizable: false,
-                                                height: "auto",
-                                                width:  "auto",
-                                                modal: true,
-                                                title: g_editWeight,
-                                                buttons: dialogButtons,
-                                                dialogClass: 'EdgeDialog',
-                                                open: function () {
-                                                $(handler).off('submit').on('submit', function () {
-                                                                         return false;
-                                                                         });
-                                                }
-                                                });
+                            handler.ShowEditEdgeDialog(handler.selectedObject);
                          });
 
         $('#message').on('click', '#incCurvel', function(){
@@ -1009,10 +974,34 @@ ConnectionGraphHandler.prototype.GetSelectedVertex = function()
 
 ConnectionGraphHandler.prototype.AddNewEdge = function(selectedObject, isDirect)
 {
-	this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, document.getElementById('EdgeWeight').value, $("#RadiosReplaceEdge").prop("checked"), document.getElementById('EdgeLable').value);
+	let newEdge = this.app.CreateNewArc(this.firstObject, selectedObject, isDirect, 
+        document.getElementById('EdgeWeight').value, 
+        $("#RadiosReplaceEdge").prop("checked"), 
+        document.getElementById('EdgeLable').value);
     
+    if ($("#CheckSaveDefaultEdge").prop("checked")) {
+        let defaultEdge = new BaseEdge();
+        defaultEdge.copyFrom(this.app.graph.edges[newEdge]);
+        this.app.setDefaultEdge(defaultEdge);
+    }
+
 	this.SelectFirst();					
 	this.app.NeedRedraw();
+}
+
+ConnectionGraphHandler.prototype.AddDefaultEdge = function(selectedObject)
+{
+    let defaultEdge = this.app.getDefaultEdge();
+	let newEdge = this.app.CreateNewArc(this.firstObject, selectedObject, defaultEdge.isDirect, 
+        defaultEdge.weight, 
+        false, 
+        defaultEdge.upText);
+    this.app.graph.edges[newEdge].useWeight = defaultEdge.useWeight;
+
+	this.SelectFirst();					
+	this.app.NeedRedraw();
+
+    userAction("CreateDefaultEdge");
 }
 
 ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject) 
@@ -1022,9 +1011,13 @@ ConnectionGraphHandler.prototype.SelectVertex = function(selectedObject)
         var direct = false;
         var handler = this;
 
-        this.ShowCreateEdgeDialog(this.firstObject, selectedObject, function (firstVertex, secondVertex, direct) {
-            handler.AddNewEdge(secondVertex, direct);
-        });
+        if (!this.app.hasDefaultEdge() || !document.getElementById('useDefaultEdge').checked) {
+            this.ShowCreateEdgeDialog(this.firstObject, selectedObject, function (firstVertex, secondVertex, direct) {
+                handler.AddNewEdge(secondVertex, direct);
+            });
+        } else {
+            handler.AddDefaultEdge(selectedObject);
+        }
     }
     else
     {
@@ -1058,14 +1051,16 @@ ConnectionGraphHandler.prototype.SelectFirst = function()
 {
 	this.firstObject = null;
     
-	this.message     = g_selectFirstVertexToConnect + this.GetSelect2VertexMenu();
+	this.message = g_selectFirstVertexToConnect + this.GetUseDefaultEdgeCheckBox() + 
+        this.GetSelect2VertexMenu();
     this.message = this.AppendSpecialSctionsButton(this.message);
 }
 
 ConnectionGraphHandler.prototype.SelectSecond = function(selectedObject)
 {
 	this.firstObject = selectedObject;
-	this.message     = g_selectSecondVertexToConnect + this.GetSelect2VertexMenu();		
+	this.message     = g_selectSecondVertexToConnect + this.GetUseDefaultEdgeCheckBox() + 
+        this.GetSelect2VertexMenu();		
     this.message = this.AppendSpecialSctionsButton(this.message);				
 }
 
@@ -1142,6 +1137,39 @@ ConnectionGraphHandler.prototype.AppendSpecialSctionsButton = function(baseMessa
     +  (hasUndirectedEdges ? " <li><a href=\"#\" id=\"makeAllDirected\">" + g_makeAllDirected + "</a></li>" : "")
     +  "</ul>"
     +  "</div> " + baseMessage;
+}
+
+ConnectionGraphHandler.checkUseDefaultEdge = function (elem, app) 
+{
+    app.setUseDefaultEdge(elem.checked);
+    app.updateMessage();
+};
+
+ConnectionGraphHandler.prototype.GetUseDefaultEdgeCheckBox = function() {
+    if (!this.app.hasDefaultEdge()) {
+        return "";
+    }
+
+    return " <div class=\"messageSwitcher\" style=\"display:inline\">" +
+        "<span id=\"switcher\"><input type=\"checkbox\" id=\"useDefaultEdge\" >" +
+        "<label for=\"useDefaultEdge\" class=\"Switcher\"></label></span> <label for=\"useDefaultEdge\" class=\"switcherText\">" + g_reuseSavedEdge + "</label>" +
+        "</div>";
+}
+
+ConnectionGraphHandler.prototype.InitControls = function() {
+    BaseHandler.prototype.InitControls.call(this)
+
+    if (!this.app.hasDefaultEdge()) {
+        return;
+    }
+
+    let app = this.app;
+    
+    $('#useDefaultEdge').unbind();
+    $('#useDefaultEdge').change(function() {
+        app.setUseDefaultEdge(this.checked);
+    });
+    $("#useDefaultEdge").prop("checked", this.app.getUseDefaultEdge());
 }
 
 

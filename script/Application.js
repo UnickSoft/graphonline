@@ -9,7 +9,7 @@ function Application(document, window)
 {
     this.document = document;
     this.canvas  = this.document.getElementById('canvas');
-    this.handler = new AddGraphHandler(this);
+    this.handler = new DefaultHandler(this);
     this.savedGraphName = "";
     this.currentEnumVerticesType = new BaseEnumVertices(this, 1);//this.enumVerticesTextList[0];
     this.findPathReport = 1;
@@ -54,6 +54,9 @@ function Application(document, window)
     this.defaultVertexSize = null;
     this.defaultEdgeWidth = null;
     this.processEmscriptenFunction = null;
+
+    this.defaultEdge = null;
+    this.useDefaultEdge = false;
 };
 
 // List of graph.
@@ -894,7 +897,7 @@ Application.prototype.onLoad = function()
 {
     this.canvas = this.document.getElementById('canvas');
 
-    this.handler = new AddGraphHandler(this);
+    this.SetDefaultHandler();
 
     this.updateMessage();
     this.redrawGraph();
@@ -2006,4 +2009,29 @@ Application.prototype.isSupportEmscripten = function ()
 Application.prototype.processEmscripten = function (inputData)
 {
     return this.processEmscriptenFunction(inputData);
+}
+
+Application.prototype.setDefaultEdge = function (defaultEdge)
+{
+    this.defaultEdge = defaultEdge;
+}
+
+Application.prototype.hasDefaultEdge = function ()
+{
+    return this.defaultEdge != null;
+}
+
+Application.prototype.getDefaultEdge = function ()
+{
+    return this.defaultEdge;
+}
+
+Application.prototype.setUseDefaultEdge = function (value)
+{
+    this.useDefaultEdge = value;
+}
+
+Application.prototype.getUseDefaultEdge = function ()
+{
+    return this.useDefaultEdge;
 }

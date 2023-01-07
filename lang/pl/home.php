@@ -293,5 +293,8 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang["edge_list_wrong_format"] = "Format listy krawędzi jest niepoprawny";
     $g_lang["fix_button"] = "Napraw";
 
-    $g_lang["snowflake"] = "Snowflake";    
+    $g_lang["snowflake"] = "Snowflake";
+    
+    $g_lang["save_edge_for_future"] = "Save edge to reuse in the future";    
+    $g_lang["reuse_saved_edge"] = "Reuse saved edge";     
 ?>

@@ -196,6 +196,8 @@ var g_reverseAllEdges   = "Reverse all edges";
 var g_makeAllUndirected = "Make all edges undirected";
 var g_makeAllDirected   = "Make all edges directed";
 
+var g_reuseSavedEdge = "Reuse saved edge";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -399,5 +401,7 @@ function loadTexts()
     g_makeAllDirected   = document.getElementById("makeAllDirected").innerHTML;
 
     g_pairWrongFormat = document.getElementById("pairWrongFormat").innerHTML;
-    g_fix = document.getElementById("fixButton").innerHTML;;
+    g_fix = document.getElementById("fixButton").innerHTML;
+
+    g_reuseSavedEdge = document.getElementById("reuseSavedEdge").innerHTML;
 }

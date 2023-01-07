@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=70")?>" ></script>
+        <script src="<?= Root("script/example.js?v=71")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -292,27 +292,27 @@
     <div id="addEdge">
 		<form>
 		<fieldset>
-        <div id="MainEdgeWeightControl">
-              <table id="EdgeWeightControls">
-                <tr>
-                <td rowspan="2">
-  			            <label id="WeightLabel"><?= L('edge_weight')?>&nbsp; </label> 
-                </td>
-                <td>
-                  <input type="text" name="edgeWeight" value="<?= L('default_weight')?>" id="EdgeWeight" class="inputBox">
-                </td>
-                </tr>
-                <tr>
-                <td>
-                  <input type="range" id="EdgeWeightSlider" min="0" max="29" value="0" oninput="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');" onchange="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');">
-                </td>
-                </tr>
-              </table>
-			  <div id="EdgesPresets">
-  			  <span onClick="document.getElementById('EdgeWeight').value='<?= L('default_weight')?>'; document.getElementById('EdgeWeightSlider').value=0;" style="cursor: pointer" class="defaultWeigth"><?= L('default_weight')?></span>
-  			  <span onClick="document.getElementById('EdgeWeight').value='1'; document.getElementById('EdgeWeightSlider').value=1;" style="cursor: pointer"  class="defaultWeigth">1</span>
-			  </div>
-        </div>
+              <div id="MainEdgeWeightControl">
+                    <table id="EdgeWeightControls">
+                      <tr>
+                      <td rowspan="2">
+                          <label id="WeightLabel"><?= L('edge_weight')?>&nbsp; </label> 
+                      </td>
+                      <td>
+                        <input type="text" name="edgeWeight" value="<?= L('default_weight')?>" id="EdgeWeight" class="inputBox">
+                      </td>
+                      </tr>
+                      <tr>
+                      <td>
+                        <input type="range" id="EdgeWeightSlider" min="0" max="29" value="0" oninput="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');" onchange="document.getElementById('EdgeWeight').value = (this.value > 0 ? this.value : '<?= L('default_weight')?>');">
+                      </td>
+                      </tr>
+                    </table>
+                    <div id="EdgesPresets">
+                      <span onClick="document.getElementById('EdgeWeight').value='<?= L('default_weight')?>'; document.getElementById('EdgeWeightSlider').value=0;" style="cursor: pointer" class="defaultWeigth"><?= L('default_weight')?></span>
+                      <span onClick="document.getElementById('EdgeWeight').value='1'; document.getElementById('EdgeWeightSlider').value=1;" style="cursor: pointer"  class="defaultWeigth">1</span>
+                    </div>
+              </div>
               <div id="NewEdgeAction">
                 <div class="InlineStyle PaddingRight">
                   <input class="form-check-input" type="radio" name="NewEdgeActionValue" id="RadiosReplaceEdge" value="replace" checked>
@@ -329,10 +329,17 @@
               </div>
 
               <small>
-                      <div id="EdgeLabelControls">
-			           <label id="EdgeLabel"><?= L('text_above_edge')?></label>&nbsp;&nbsp;<input type="text" name="edgeLable" value="" id="EdgeLable" class="inputBox">
-              </div>
-        </small>
+                <div id="EdgeLabelControls">
+                  <label id="EdgeLabel"><?= L('text_above_edge')?></label>&nbsp;&nbsp;<input type="text" name="edgeLable" value="" id="EdgeLable" class="inputBox">
+                </div>
+
+                <div class="PaddingRight small-top-marging" id="defaultEdgeDialogBlock">
+                  <input class="form-check-input" type="checkbox" name="SaveDefaultEdge" id="CheckSaveDefaultEdge" value="saveAsDefault">
+                  <label for="CheckSaveDefaultEdge">
+                    <?= L('save_edge_for_future')?>
+                  </label>
+                </div>
+              </small>
 		</fieldset>
 		</form>
     </div>
@@ -858,7 +865,8 @@
 
     <p id="pairWrongFormat" class="translation"><?= L('edge_list_wrong_format')?></p>
     <p id="fixButton" class="translation"><?= L('fix_button')?></p>
-
+    <p id="reuseSavedEdge" class="translation"><?= L('reuse_saved_edge')?></p>
+    
 </section>
 <!--
 <script>

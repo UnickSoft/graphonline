@@ -294,4 +294,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["fix_button"] = "fix";
 
     $g_lang["snowflake"] = "Snowflake";    
+
+    $g_lang["save_edge_for_future"] = "Save edge to reuse in the future";    
+    $g_lang["reuse_saved_edge"] = "Reuse saved edge";       
 ?>
