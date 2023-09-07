@@ -198,6 +198,11 @@ var g_makeAllDirected   = "Make all edges directed";
 
 var g_reuseSavedEdge = "Reuse saved edge";
 
+var g_MaxClique = "Max Clique";
+var g_MaxCliqueNotFound = "Max Clique is not found";
+var g_MaxCliqueSizeIs = "Max Clique size is ";
+var g_MaxCliqueContains = ". Clique contains these vertecies: ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -404,4 +409,9 @@ function loadTexts()
     g_fix = document.getElementById("fixButton").innerHTML;
 
     g_reuseSavedEdge = document.getElementById("reuseSavedEdge").innerHTML;
+
+    g_MaxClique = document.getElementById("maxClique").innerHTML;
+    g_MaxCliqueNotFound = document.getElementById("maxCliqueNotFound").innerHTML;
+    g_MaxCliqueSizeIs = document.getElementById("maxCliqueSizeIs").innerHTML;
+    g_MaxCliqueContains = document.getElementById("maxCliqueContains").innerHTML;   
 }

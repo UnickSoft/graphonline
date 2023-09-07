@@ -299,4 +299,9 @@
 
     $g_lang["save_edge_for_future"] = "Сохранить дугу для повторного использования";    
     $g_lang["reuse_saved_edge"] = "Использовать сохраненную дугу";
+
+    $g_lang["max_clique"] = "Максимальная клика";
+    $g_lang["max_clique_not_found"] = "Максимальная клика не найден";
+    $g_lang["max_clique_size_is"] = "Размер Максимальной клики равена ";
+    $g_lang["max_clique_contains"] = ". Клика содержит следующие вершины: ";
 ?>

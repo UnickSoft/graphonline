@@ -258,5 +258,10 @@
     $g_lang["snowflake"] = "Snowflake";
     
     $g_lang["save_edge_for_future"] = "Save edge to reuse in the future";    
-    $g_lang["reuse_saved_edge"] = "Reuse saved edge";     
+    $g_lang["reuse_saved_edge"] = "Reuse saved edge"; 
+    
+    $g_lang["max_clique"] = "Max Clique";
+    $g_lang["max_clique_not_found"] = "Max Clique is not found";
+    $g_lang["max_clique_size_is"] = "Max Clique size is ";
+    $g_lang["max_clique_contains"] = ". Clique contains these vertecies: ";    
 ?>

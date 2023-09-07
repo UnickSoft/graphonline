@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=71")?>" ></script>
+        <script src="<?= Root("script/example.js?v=72")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -866,7 +866,12 @@
     <p id="pairWrongFormat" class="translation"><?= L('edge_list_wrong_format')?></p>
     <p id="fixButton" class="translation"><?= L('fix_button')?></p>
     <p id="reuseSavedEdge" class="translation"><?= L('reuse_saved_edge')?></p>
-    
+
+    <p id="maxClique" class="translation"><?= L('max_clique')?></p>
+    <p id="maxCliqueNotFound" class="translation"><?= L('max_clique_not_found')?></p>
+    <p id="maxCliqueSizeIs" class="translation"><?= L('max_clique_size_is')?></p>
+    <p id="maxCliqueContains" class="translation"><?= L('max_clique_contains')?></p>
+
 </section>
 <!--
 <script>
