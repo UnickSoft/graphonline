@@ -744,7 +744,7 @@ $(document).ready(function ()
     var isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
     if (!isMobile && !DisableEmscripten) {
       const jsScript = document.createElement('script');
-      jsScript.src   = '/script/Graphoffline.Emscripten.js';
+      jsScript.src   = '/script/Graphoffline.Emscripten.js?v=1';
       document.body.appendChild(jsScript);      
       jsScript.addEventListener('load', () => {
         Module['onRuntimeInitialized'] = onRuntimeInitialized;
