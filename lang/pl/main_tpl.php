@@ -12,6 +12,6 @@
     $g_lang["menu_9"] = "Używając przykładowego grafu";
     $g_lang["menu_10"] = "Open source";
     $g_lang["menu_11"] = "Używając listy krawędzi";
-    $g_lang["footer_info"] = "<a href=\"/en/\">Graph Online</a>&nbsp;jest projektem online stworzonym w celu&nbsp;tworzenia i łatwej wizualizacji grafu i <a href=\"/en/\">znajdywaniu najktrótszej ścieżki</a>. Możesz także stworzyć&nbsp;<a href=\"http://graphonline.ru/en/create_graph_by_matrix\">graf używając macierzy sąsiedztwa</a>.&nbsp;<a href=\"/en/about\">O projekcie</a> i <a href=\"http://graphonline.ru/en/help\">sporzjeć na stronę z pomocą</a>.\n";
+    $g_lang["footer_info"] = "<a href=\"/pl/\">Graph Online</a>&nbsp;jest projektem online stworzonym w celu&nbsp;tworzenia i łatwej wizualizacji grafu i <a href=\"/pl/\">znajdywaniu najktrótszej ścieżki</a>. Możesz także stworzyć&nbsp;<a href=\"http://graphonline.ru/pl/create_graph_by_matrix\">graf używając macierzy sąsiedztwa</a>.&nbsp;<a href=\"/pl/about\">O projekcie</a> i <a href=\"http://graphonline.ru/pl/help\">sporzjeć na stronę z pomocą</a>.\n";
     $g_lang["lang"] = "Język";    
 ?>

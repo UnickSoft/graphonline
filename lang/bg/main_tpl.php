@@ -12,6 +12,6 @@
     $g_lang["menu_9"] = "Пример за използване на граф";
     $g_lang["menu_10"] = "Отворен код";
     $g_lang["menu_11"] = "Using edge list";
-    $g_lang["footer_info"] = "<a href=\"/en/\">Онлайн Граф</a>&nbsp;е проект с отворен код, насочен към&nbsp;създаване и лесна визуализация на граф и <a href=\"/en/\">търсене на най-кратък път</a>. Освен това можете да създадете&nbsp;<a href=\"http://graphonline.ru/en/create_graph_by_matrix\">граф от матрица на съседство</a>.&nbsp;<a href=\"/en/about\">Повече за проекта</a> и <a href=\"http://graphonline.ru/en/help\">страница за помощ</a>.\n";
+    $g_lang["footer_info"] = "<a href=\"/bg/\">Онлайн Граф</a>&nbsp;е проект с отворен код, насочен към&nbsp;създаване и лесна визуализация на граф и <a href=\"/bg/\">търсене на най-кратък път</a>. Освен това можете да създадете&nbsp;<a href=\"http://graphonline.ru/bg/create_graph_by_matrix\">граф от матрица на съседство</a>.&nbsp;<a href=\"/bg/about\">Повече за проекта</a> и <a href=\"http://graphonline.ru/bg/help\">страница за помощ</a>.\n";
     $g_lang["lang"] = "Language";    
 ?>
