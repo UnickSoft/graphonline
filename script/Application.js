@@ -897,7 +897,7 @@ Application.prototype.onLoad = function()
 {
     this.canvas = this.document.getElementById('canvas');
 
-    this.SetDefaultHandler();
+    this.SetDefaultHandler()
 
     this.updateMessage();
     this.redrawGraph();
@@ -1193,7 +1193,7 @@ Application.prototype.SaveSVGGraphOnDisk = function (showDialogCallback)
                           
     return imageName;
 }
-                          
+
 Application.prototype.LoadGraphFromString = function (str)
 {
     var graph = new Graph();
@@ -1601,8 +1601,16 @@ Application.prototype.SaveUserSettings = function()
                 
             if (needEnd)
                 res = res + ",";
+
+            let valueJson = "";
+            if (typeof entry.value.saveToJson === "function") {
+                valueJson = entry.value.saveToJson();
+            } else {
+                valueJson = JSON.stringify(entry.value);
+            }
                 
-            res = res + "\"" + entry.field + "\"" + ":" + JSON.stringify(entry.value);
+                
+            res = res + "\"" + entry.field + "\"" + ":" + valueJson;
             needEnd = true;
         });
     
@@ -1676,6 +1684,13 @@ Application.prototype.LoadUserSettings = function(json)
                 }
                 else
                 {
+                    if (typeof entry.value.loadFromJson === "function") {
+                        entry.value.loadFromJson(parsedSave[entry.field], function () {
+                                setTimeout( function() { app.redrawGraph() }, 1000);
+                            });
+                        return;
+                    }
+
                     if (!entry.deep)
                         entry.value.Clear();
 

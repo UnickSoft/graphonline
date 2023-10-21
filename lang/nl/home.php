@@ -135,7 +135,7 @@
     $g_lang["edge_draw_style"] = "Stijl van de weg";
     $g_lang["color"] = "Kleur";
     $g_lang["alpha"] = "Transparantie";
-    $g_lang["background_style"] = "Achtergrond kleur";
+    $g_lang["background_style"] = "Background";
     $g_lang["adjacency_matrix_multigraph_description"] = "Multigraaf matrix bevat het gewicht van de minimale lijnen tussen hoekpunten";
     $g_lang["graph_is_multi_message"] = "Multigraaf ondersteunt niet alle algoritme's";
     $g_lang["graph_is_general_message"] = "";
@@ -267,4 +267,11 @@
     $g_lang["max_clique_not_found"] = "Max Clique is not found";
     $g_lang["max_clique_size_is"] = "Max Clique size is ";
     $g_lang["max_clique_contains"] = ". Clique contains these vertecies: ";    
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
 ?>

@@ -167,7 +167,7 @@
     $g_lang["color"] = "Цвет";
     $g_lang["alpha"] = "Прозрачность";
 
-    $g_lang["background_style"] = "Цвет фона";
+    $g_lang["background_style"] = "Фона";
 
     $g_lang["adjacency_matrix_multigraph_description"] = "Для мультиграфа матрица содержит значения минимальных дуг между вершинами.";
 
@@ -304,4 +304,11 @@
     $g_lang["max_clique_not_found"] = "Максимальная клика не найден";
     $g_lang["max_clique_size_is"] = "Размер Максимальной клики равена ";
     $g_lang["max_clique_contains"] = ". Клика содержит следующие вершины: ";
+
+    $g_lang["remove_background_image"] = "Удалить фоновое изображение";
+    $g_lang["upload"] = "Загрузить";
+    $g_lang["background_image"] = "Фоновое изображение";
+
+    $g_lang['wrong_image_background_format'] = "Неправильный формат изображения. Только JPEG and PNG поддерживается";
+    $g_lang['wrong_image_background_size'] = "Размер изобажения слишком большой. Размер изображения должен быть меньше {0} пикселей.";    
 ?>

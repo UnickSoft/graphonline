@@ -203,6 +203,9 @@ var g_MaxCliqueNotFound = "Max Clique is not found";
 var g_MaxCliqueSizeIs = "Max Clique size is ";
 var g_MaxCliqueContains = ". Clique contains these vertecies: ";
 
+var g_wrongImageFormatPNGAndJPEG = "Wrong image format. We support only JPEG and PNG.";
+var g_wrongImageSizeP1 = "Image size is too big. Image size must be less than {0} pixels.";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -414,4 +417,13 @@ function loadTexts()
     g_MaxCliqueNotFound = document.getElementById("maxCliqueNotFound").innerHTML;
     g_MaxCliqueSizeIs = document.getElementById("maxCliqueSizeIs").innerHTML;
     g_MaxCliqueContains = document.getElementById("maxCliqueContains").innerHTML;   
+
+    g_wrongImageFormatPNGAndJPEG = document.getElementById("wrongImageFormatPNGAndJPEG").innerHTML;
+    g_wrongImageSizeP1 = document.getElementById("wrongImageSizeP1").innerHTML; 
 }
+
+function formatString(string, params) {
+    return string.replace(/{(\d+)}/g, (match, index) => {
+      return typeof params[index] !== 'undefined' ? params[index] : match;
+    });
+  }

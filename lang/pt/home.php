@@ -135,7 +135,7 @@
     $g_lang["edge_draw_style"] = "Estilo da aresta";
     $g_lang["color"] = "Cor";
     $g_lang["alpha"] = "Opacidade";
-    $g_lang["background_style"] = "Cor de fundo do texto";
+    $g_lang["background_style"] = "Background";
     $g_lang["adjacency_matrix_multigraph_description"] = "Matriz de multigrafo contém pesos das arestas mínimas entre os vértices";
     $g_lang["graph_is_multi_message"] = "Multigrafo não suporta todos os algoritmos";
     $g_lang["graph_is_general_message"] = "";
@@ -268,4 +268,11 @@
     $g_lang["max_clique_not_found"] = "Max Clique is not found";
     $g_lang["max_clique_size_is"] = "Max Clique size is ";
     $g_lang["max_clique_contains"] = ". Clique contains these vertecies: ";    
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
 ?>

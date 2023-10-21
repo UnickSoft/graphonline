@@ -135,7 +135,7 @@
     $g_lang["edge_draw_style"] = "Kantenstil";
     $g_lang["color"] = "Farbe";
     $g_lang["alpha"] = "Opazität";
-    $g_lang["background_style"] = "Hintergrundfarbe";
+    $g_lang["background_style"] = "Background";
     $g_lang["adjacency_matrix_multigraph_description"] = "Multigraph-Matrix enthält Gewicht der minimalen Kanten.";
     $g_lang["graph_is_multi_message"] = "Multigraph unterstützt alle Algorithmen nicht";
     $g_lang["graph_is_general_message"] = "";
@@ -260,4 +260,11 @@
 
     $g_lang["save_edge_for_future"] = "Save edge to reuse in the future";    
     $g_lang["reuse_saved_edge"] = "Reuse saved edge";       
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
 ?>

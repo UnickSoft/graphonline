@@ -163,7 +163,7 @@
     $g_lang["color"] = "Barva";
     $g_lang["alpha"] = "Průhlednost";
 
-    $g_lang["background_style"] = "Barva pozadí";
+    $g_lang["background_style"] = "Background";
 
     $g_lang["adjacency_matrix_multigraph_description"] = "Multigrafická matice obsahuje váhu minimálních hran mezi vrcholy.";
 
@@ -301,4 +301,11 @@
     $g_lang["max_clique_not_found"] = "Maximální kliku nebylo nalezeno";
     $g_lang["max_clique_size_is"] = "Velikost maximální kliky je ";
     $g_lang["max_clique_contains"] = ". Klika obsahuje tyto vrcholy: ";    
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
 ?>

@@ -164,7 +164,7 @@
     $g_lang["color"] = "Цвят";
     $g_lang["alpha"] = "Прозрачност";
 
-    $g_lang["background_style"] = "Цвят на фона";
+    $g_lang["background_style"] = "Фон";
 
     $g_lang["adjacency_matrix_multigraph_description"] = "Мултиграф матрица съдържа теглото на минималните ребра между върховете.";
 
@@ -297,4 +297,11 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
 
     $g_lang["save_edge_for_future"] = "Save edge to reuse in the future";    
     $g_lang["reuse_saved_edge"] = "Reuse saved edge";       
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
 ?>

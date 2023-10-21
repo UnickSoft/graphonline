@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=72")?>" ></script>
+        <script src="<?= Root("script/example.js?v=73")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -654,7 +654,7 @@
         
     <div id="SetupBackgroundStyleDialog">
         <form>
-		<fieldset>
+		    <fieldset>
           <div class="form-group row">
             <label for="bacgkroundColor" class="col-sm-5 col-form-label"><?= L('color') ?></label>
             <div class="col-sm-5">
@@ -667,10 +667,27 @@
               <input type="range" min="0" max="1" step="0.1" id="backgroundTransporent">
             </div>
           </div>
+          <div class="form-group row">
+            <label for="formFile" class="col-sm-5 col-form-label"><?= L('background_image') ?></label>
+            <div class="col-sm-7">
+              <input type="file" id="ImportBackgroundImage" accept=".jpg;.png;.jpeg" style="display:none">
+              <button type="button" id="LoadBackgroundFile" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                <?= L('upload') ?>
+              </button>
+              <button type="button" id="RemoveBackgroundFile" class="btn btn-default btn-xs" title="<?= L('remove_background_image') ?>">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+              <!-- <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" /> -->
+              <!-- <input class="form-control" type="file" id="backgroundFile"> -->
+            </div>
+          </div>
         </fieldset>
         </form>
         
-        <canvas id="BackgroundPreview" width="300" height="150"></canvas>
+        <canvas id="BackgroundPreview" width="300" height="150" style="border: 1px solid;"></canvas>
+
+        <div id="UploadBackgroundImageError" class="alert alert-danger" role="alert" style="display: none"></div>
     </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
@@ -872,6 +889,8 @@
     <p id="maxCliqueSizeIs" class="translation"><?= L('max_clique_size_is')?></p>
     <p id="maxCliqueContains" class="translation"><?= L('max_clique_contains')?></p>
 
+    <p id="wrongImageFormatPNGAndJPEG" class="translation"><?= L('wrong_image_background_format')?></p>
+    <p id="wrongImageSizeP1" class="translation"><?= L('wrong_image_background_size')?></p>
 </section>
 <!--
 <script>

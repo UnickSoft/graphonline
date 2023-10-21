@@ -164,7 +164,7 @@
     $g_lang["color"] = "Color";
     $g_lang["alpha"] = "Opacity";
 
-    $g_lang["background_style"] = "Background color";
+    $g_lang["background_style"] = "Background";
 
     $g_lang["adjacency_matrix_multigraph_description"] = "Multigraph matrix contains weight of minimum edges between vertices.";
 
@@ -301,5 +301,12 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["max_clique"] = "Max Clique";
     $g_lang["max_clique_not_found"] = "Max Clique is not found";
     $g_lang["max_clique_size_is"] = "Max Clique size is ";
-    $g_lang["max_clique_contains"] = ". Clique contains these vertecies: ";    
+    $g_lang["max_clique_contains"] = ". Clique contains these vertecies: "; 
+
+    $g_lang["remove_background_image"] = "Remove background image";
+    $g_lang["upload"] = "Upload";
+    $g_lang["background_image"] = "Background image";
+
+    $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";
 ?>

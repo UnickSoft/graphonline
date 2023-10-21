@@ -2344,10 +2344,44 @@ function SetupBackgroundStyle(app)
 {
   BaseHandler.apply(this, arguments);
   this.message = "";	
+  this.maxImageSize = 2048;
 }
 
 // inheritance.
 SetupBackgroundStyle.prototype = Object.create(BaseHandler.prototype);
+
+
+SetupBackgroundStyle.prototype.handleImportBackgroundFile = function(files, updateBackgroundCallback) {
+    var graphFileToLoad = files[0];
+    var re = /(?:\.([^.]+))?$/;
+    var imageExtension = re.exec(graphFileToLoad.name)[1].toLowerCase();
+
+    if (!(imageExtension == "png" || imageExtension == "jpg" || imageExtension == "jpeg")) {
+        $("#UploadBackgroundImageError").html(g_wrongImageFormatPNGAndJPEG);
+        $("#UploadBackgroundImageError").show();
+        return;
+    }
+
+    let self = this;
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent){
+        var textFromFileLoaded = fileLoadedEvent.target.result;        
+        var image = new Image();
+        image.onload = function() {
+            console.log(this.width + 'x' + this.height);
+            if (this.width > self.maxImageSize || this.height > self.maxImageSize) {
+                $("#UploadBackgroundImageError").html(formatString(g_wrongImageSizeP1, [self.maxImageSize]));
+                $("#UploadBackgroundImageError").show();
+                return;
+            }
+            updateBackgroundCallback(image);
+          }
+        image.src = 'data:image/' + imageExtension + ';base64' + textFromFileLoaded;
+        ImportBackgroundImage.value = "";
+    };
+
+    fileReader.readAsDataURL(graphFileToLoad);
+}
 
 SetupBackgroundStyle.prototype.show = function()
 {
@@ -2372,12 +2406,44 @@ SetupBackgroundStyle.prototype.show = function()
         var context = canvas.getContext('2d');    
         
         context.save();
-
+        let bestScale = 1.0;
+        if (style.image != null) {
+            let wScale = canvas.width / style.image.width;
+            let hScale = canvas.height / style.image.height;
+            bestScale = Math.min(wScale, hScale);         
+            context.scale(bestScale, bestScale);
+        }
         var backgroundDrawer = new BaseBackgroundDrawer(context);
-        backgroundDrawer.Draw(style, canvas.width, canvas.height, new Point(0, 0), 1.0);
+        backgroundDrawer.Draw(style, canvas.width, canvas.height, new Point(0, 0), bestScale);
         
         context.restore();
+
+        if (style.image != null) {
+            $( "#RemoveBackgroundFile" ).show();
+        } else {
+            $( "#RemoveBackgroundFile" ).hide();
+        }
     }
+
+    var loadFile = function() {
+        userAction("background_loadFromFile");
+        
+        if (ImportBackgroundImage) {
+            ImportBackgroundImage.click();
+        }
+    }
+
+    var updateBackgroundImage = function(image) {
+        style.image = image;
+        $("#UploadBackgroundImageError").hide();
+        redrawVertex();
+    }
+
+    var clearBackgroundImage = function() {
+        style.image = null;
+        $("#UploadBackgroundImageError").hide();
+        redrawVertex();
+    }    
     
 	dialogButtons[g_default] = 
            {
@@ -2415,11 +2481,21 @@ SetupBackgroundStyle.prototype.show = function()
 		dialogClass: 'EdgeDialog'
 	});
     
-    redrawVertex();
+    try {
+        redrawVertex();
+    } catch (error) {
+        console.error(error);
+    }
 
     $( "#backgroundColor" ).unbind();
     $( "#backgroundTransporent" ).unbind();
+    $( "#LoadBackgroundFile" ).unbind();
+    $( "#ImportBackgroundImage" ).unbind();    
+    $( "#RemoveBackgroundFile" ).unbind();    
     
     $( "#backgroundColor" ).change(redrawVertex);
     $( "#backgroundTransporent" ).change(redrawVertex);
+    $( "#LoadBackgroundFile" ).click(loadFile);
+    $( "#ImportBackgroundImage" ).change( function ()  {handler.handleImportBackgroundFile(this.files, updateBackgroundImage);});
+    $( "#RemoveBackgroundFile" ).click(clearBackgroundImage);
 }
