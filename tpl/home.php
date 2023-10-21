@@ -11,7 +11,7 @@
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
 	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
       <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=73")?>" ></script>
+        <script src="<?= Root("script/example.js?v=74")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -670,7 +670,7 @@
           <div class="form-group row">
             <label for="formFile" class="col-sm-5 col-form-label"><?= L('background_image') ?></label>
             <div class="col-sm-7">
-              <input type="file" id="ImportBackgroundImage" accept=".jpg;.png;.jpeg" style="display:none">
+              <input type="file" id="ImportBackgroundImage" accept="image/jpg, image/png, image/jpeg" style="display:none">
               <button type="button" id="LoadBackgroundFile" class="btn btn-default btn-xs">
                 <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
                 <?= L('upload') ?>
