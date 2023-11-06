@@ -3,7 +3,21 @@
 globalVersion = 75;
 
 {
-    let asyncFilesLoad = null;
+    let asyncFilesLoad = function () {
+        doIncludeAsync ([            
+            include ("shared/canvas2svg.js"),
+            include ("features/group_rename_handler/index.js"),
+            include ("features/saved_graph_handler/index.js"),
+            include ("features/saved_graph_image_handler/index.js"),
+            include ("features/show_adjacency_matrix/index.js"),
+            include ("features/show_distance_matrix/index.js"),
+            include ("features/show_incidence_matrix/index.js"),
+            include ("features/setup_background_style/index.js"),
+            include ("features/setup_edge_style/index.js"),
+            include ("features/setup_vertex_style/index.js"),
+        ]);
+    }
+
     function onloadEditor() {
         console.log("onload() call");
         asyncFilesLoad();
@@ -35,21 +49,5 @@ globalVersion = 75;
         include ("model/Application.js", modulDir),
         include ("ui/main.js", modulDir)],
     onloadEditor);
-
-
-    asyncFilesLoad = function () {
-        doIncludeAsync ([            
-            include ("shared/canvas2svg.js"),
-            include ("features/group_rename_handler/index.js"),
-            include ("features/saved_graph_handler/index.js"),
-            include ("features/saved_graph_image_handler/index.js"),
-            include ("features/show_adjacency_matrix/index.js"),
-            include ("features/show_distance_matrix/index.js"),
-            include ("features/show_incidence_matrix/index.js"),
-            include ("features/setup_background_style/index.js"),
-            include ("features/setup_edge_style/index.js"),
-            include ("features/setup_vertex_style/index.js"),
-        ]);
-    }
 
 }
