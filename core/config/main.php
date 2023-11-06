@@ -12,7 +12,7 @@
     define('DOMAIN_COOKIE', '');
 
     // Массив языков сайта
-    define('DEF_LANG', 'ru');
+    define('DEF_LANG', 'en');
     $g_arrLangs = array(
                           'en' => array('name' => 'English'),
                           'ru' => array('name' => 'Русский'),
@@ -93,4 +93,5 @@
     $g_config['vote']                   = "./tmp/vote/vote.txt";
     $g_config['voteTopics']             = "./tmp/vote/voteTopics.txt_";
     $g_config['use_js_cache']           = true;
+    $g_config['engine_version']         = 1;    
 ?>
