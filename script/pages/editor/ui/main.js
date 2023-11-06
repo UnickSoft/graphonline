@@ -1,5 +1,4 @@
 
-var SiteDir           = "";
 var DisableEmscripten = false;
 var algorithmsVersion = 2;
 
@@ -33,7 +32,7 @@ var g_ctrlPressed = false;
 function restButtons (me)
 {
     var needSetDefault = false;
-	for (var i = 0; i < buttonsList.length; i ++)
+	for (let i = 0; i < buttonsList.length; i ++)
 	{
 		if (buttonsList[i] != me)
 		{
@@ -49,7 +48,7 @@ function restButtons (me)
 	}
 	if (needSetDefault)
 	{
-		document.getElementById(buttonsList[i]).className = "btn btn-primary btn-sm";
+		document.getElementById(me).className = "btn btn-primary btn-sm";
 	}
 	else
 	{
@@ -651,31 +650,7 @@ function postLoadPage()
     }
     
     // Get algorithms list and load it.
-    $.get( "/" + SiteDir + "cgi-bin/getPluginsList.php",
-            function( data )
-            {
-                var scriptList = JSON.parse(data);
-          
-                var loadOneScript = function()
-                {
-                    if (scriptList.length == 0)
-                    {
-                        createAlgorithmMenu();
-                    }
-                    else
-                    {
-                        var script = document.createElement('script');
-                        script.src = "/" + SiteDir + "script/" + scriptList[0] + "?v=" + algorithmsVersion;
-                        scriptList.shift();
-                        script.onload  = loadOneScript;
-                        script.onerror = loadOneScript;
-                        document.head.appendChild(script);
-                    }
-                }
-          
-                loadOneScript();
-          
-            });
+    loadAsyncAlgorithms(createAlgorithmMenu);
 
     var devTools = document.getElementById('developerTools');
     devTools.style.left = 0;
@@ -743,16 +718,16 @@ $(document).ready(function ()
     // Try load emscripten implementation
     var isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
     if (!isMobile && !DisableEmscripten) {
-      const jsScript = document.createElement('script');
-      jsScript.src   = '/script/Graphoffline.Emscripten.js?v=1';
-      document.body.appendChild(jsScript);      
-      jsScript.addEventListener('load', () => {
+      let fullPathToGraphffoline = "features/graphoffline/Graphoffline.Emscripten.js";
+      doIncludeAsync ([
+    	include (fullPathToGraphffoline),
+      ], () => {
         Module['onRuntimeInitialized'] = onRuntimeInitialized;
         var process = Module.cwrap('ProcessAlgorithm', 'string', ['string']);
         function onRuntimeInitialized() {
           application.setEmscripten(process);
         }
-      });
+      })
     }
 /*
 	$(document).ready(function(){

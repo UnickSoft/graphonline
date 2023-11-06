@@ -1,6 +1,8 @@
     <head>
 	    <link rel="stylesheet" type="text/css" href="<?= Root('i/css/create_graph_by_incidence_matrix.css')?>" />
-	    <script src="<?= Root('script/Graph.js')?>"></script>
+        <script src="<?= RootCacheJS("script/shared/config.js")?>" ></script>
+        <script src="<?= RootCacheJS("script/shared/loader.js")?>" ></script>
+	    <script src="<?= RootCacheJS('script/pages/create_graph_by_incidence_matrix/api/index.js')?>"></script>
     </head>
 
 <script>
@@ -304,11 +306,11 @@ window.onload = function ()
 
 <form action="./" method="post" id="matrixForm">
 				<textarea name="incidenceMatrix" id="IncidenceMatrixFieldPage" wrap="off" style="display: none;">
-<? if (!isset($_GET["incidenceMatrix"])): ?>
+<?php if (!isset($_GET["incidenceMatrix"])): ?>
 1, 0
 1, 1
 0, -1
-<? else: ?><?= $_GET["incidenceMatrix"] ?><? endif;?></textarea>
+<?php else: ?><?= $_GET["incidenceMatrix"] ?><?php endif;?></textarea>
 </form>
 <div id="MatrixForm">
 <form id="AdjacencyMatrixFieldInput" role="form">

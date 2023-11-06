@@ -421,9 +421,3 @@ function loadTexts()
     g_wrongImageFormatPNGAndJPEG = document.getElementById("wrongImageFormatPNGAndJPEG").innerHTML;
     g_wrongImageSizeP1 = document.getElementById("wrongImageSizeP1").innerHTML; 
 }
-
-function formatString(string, params) {
-    return string.replace(/{(\d+)}/g, (match, index) => {
-      return typeof params[index] !== 'undefined' ? params[index] : match;
-    });
-  }

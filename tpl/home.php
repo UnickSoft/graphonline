@@ -9,9 +9,10 @@
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery.feedback_me.css')?>" />
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
-	    <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
-      <script src="<?= Root("script/canvas2svg.js")?>" ></script>
-        <script src="<?= Root("script/example.js?v=74")?>" ></script>
+        <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
+
+        <script src="<?= RootCacheJS("script/shared/config.js")?>" ></script>
+        <script src="<?= RootCacheJS("script/shared/loader.js")?>" ></script>
 
 <!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
@@ -104,8 +105,8 @@
                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="MoveWorspace"><span class="glyphicon glyphicon-fullscreen fa-fw"></span> <?= L('move_workspace') ?> </button> </li>
             </ul>
           </div>
-		  <button type="button" class="btn btn-default btn-sm" id="Default"><span class="glyphicon glyphicon-fullscreen fa-fw"></span><span class="hidden-phone"> <?= L('default')?> <sub style="color:#AAAAAA">m</sub></span></button>
-          <button type="button" class="btn btn-primary btn-sm" id="AddGraph"><span class="glyphicon glyphicon-plus fa-fw"></span><span class="hidden-phone"> <?= L('add_node')?> <sub style="color:#AAAAAA">v</sub></span></button>
+		  <button type="button" class="btn btn-primary btn-sm" id="Default"><span class="glyphicon glyphicon-fullscreen fa-fw"></span><span class="hidden-phone"> <?= L('default')?> <sub style="color:#AAAAAA">m</sub></span></button>
+      <button type="button" class="btn btn-default btn-sm" id="AddGraph"><span class="glyphicon glyphicon-plus fa-fw"></span><span class="hidden-phone"> <?= L('add_node')?> <sub style="color:#AAAAAA">v</sub></span></button>
 		  <button type="button" class="btn btn-default btn-sm" id="ConnectGraphs"><span class="glyphicon glyphicon-road fa-fw"></span><span class="hidden-phone"> <?= L('connect_nodes')?> <sub style="color:#AAAAAA">e</sub></span></button>
 
         <!-- Algorithms -->
@@ -278,10 +279,10 @@
 
 <?php else: ?>
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
-    <a class="ProgresssBarLink" href="opensource" target="_blank">
+    <a class="ProgresssBarLink" href="mailto:admin@graphonline.ru" target="_blank">
     <div class="ProgressBar" style="height:32px">
         <div class="ProgressBarFill" style="width:0%;"></div>
-        <span class="ProgressBarText" style="top:-28px"><p><?= L('opensource_message')?></p></span>
+        <span class="ProgressBarText" style="top:-28px"><p><?= L('we_are_improving')?></p></span>
     </div>
     </a>
     </section>
@@ -892,6 +893,8 @@
     <p id="wrongImageFormatPNGAndJPEG" class="translation"><?= L('wrong_image_background_format')?></p>
     <p id="wrongImageSizeP1" class="translation"><?= L('wrong_image_background_size')?></p>
 </section>
+
+<script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>
 <!--
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});

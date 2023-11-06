@@ -1,0 +1,594 @@
+moduleLoader.beginCacheLoading(["/script/entities/graph/api/index.js?v=75","/script/shared/point.js?v=75","/script/entities/edge/api/index.js?v=75","/script/entities/edge/model/BaseEdge.js?v=75","/script/entities/edge/model/EdgeModel.js?v=75","/script/entities/vertex/api/index.js?v=75","/script/entities/vertex/model/BaseVertex.js?v=75","/script/entities/vertex/model/VertexModel.js?v=75","/script/entities/graph/model/Graph.js?v=75",]);globalVersion=75;{let modulDir="pages/create_graph_by_matrix/";doInclude([include("entities/graph/api/index.js")]);}
+{let modulDir="entities/graph/";doInclude([include("shared/point.js"),include("entities/edge/api/index.js"),include("entities/vertex/api/index.js"),include("model/Graph.js",modulDir)])}function Point(x,y){this.x=x||0;this.y=y||0;};Point.prototype.x=null;Point.prototype.y=null;Point.prototype.add=function(v){return new Point(this.x+v.x,this.y+v.y);};Point.prototype.addValue=function(v){return new Point(this.x+v,this.y+v);};Point.prototype.clone=function(){return new Point(this.x,this.y);};Point.prototype.degreesTo=function(v){var dx=this.x-v.x;var dy=this.y-v.y;var angle=Math.atan2(dy,dx);return angle*(180/Math.PI);};Point.prototype.distance=function(v){return Math.sqrt(this.distanceSqr(v));};Point.prototype.distanceSqr=function(v){var x=this.x-v.x;var y=this.y-v.y;return x*x+y*y;};Point.prototype.equals=function(toCompare){return this.x==toCompare.x&&this.y==toCompare.y;};Point.prototype.interpolate=function(v,f){return new Point((this.x+v.x)*f,(this.y+v.y)*f);};Point.prototype.length=function(){return Math.sqrt(this.x*this.x+this.y*this.y);};Point.prototype.normalize=function(thickness){var l=this.length();this.x=this.x/l*thickness;this.y=this.y/l*thickness;return new Point(this.x,this.y);};Point.prototype.normalizeCopy=function(thickness){var l=this.length();return new Point(this.x/l*thickness,this.y/l*thickness);};Point.prototype.orbit=function(origin,arcWidth,arcHeight,degrees){var radians=degrees*(Math.PI/180);this.x=origin.x+arcWidth*Math.cos(radians);this.y=origin.y+arcHeight*Math.sin(radians);};Point.prototype.rotate=function(center,degrees){var radians=degrees*(Math.PI/180);offset=this.subtract(center);this.x=offset.x*Math.cos(radians)-offset.y*Math.sin(radians);this.y=offset.x*Math.sin(radians)+offset.y*Math.cos(radians);this.x=this.x+center.x;this.y=this.y+center.y;return this;};Point.prototype.offset=function(dx,dy){this.x+=dx;this.y+=dy;};Point.prototype.subtract=function(v){return new Point(this.x-v.x,this.y-v.y);};Point.prototype.subtractValue=function(value){return new Point(this.x-value,this.y-value);};Point.prototype.multiply=function(value){return new Point(this.x*value,this.y*value);};Point.prototype.toString=function(){return"(x="+this.x+", y="+this.y+")";};Point.prototype.normal=function(){return new Point(-this.y,this.x);};Point.prototype.min=function(point)
+{return new Point(Math.min(this.x,point.x),Math.min(this.y,point.y));};Point.prototype.max=function(point)
+{return new Point(Math.max(this.x,point.x),Math.max(this.y,point.y));};Point.prototype.inverse=function()
+{return new Point(-this.x,-this.y);};Point.prototype.cross=function(point)
+{return this.x*point.y-this.y*point.x;};Point.interpolate=function(pt1,pt2,f){return new Point(pt1.x*(1.0-f)+pt2.x*f,pt1.y*(1.0-f)+pt2.y*f);};Point.polar=function(len,angle){return new Point(len*Math.cos(angle),len*Math.sin(angle));};Point.distance=function(pt1,pt2){var x=pt1.x-pt2.x;var y=pt1.y-pt2.y;return Math.sqrt(x*x+y*y);};Point.center=function(pt1,pt2){return new Point((pt1.x+pt2.x)/2.0,(pt1.y+pt2.y)/2.0);};Point.toString=function(){return x+" "+y;}
+Point.projection=function(point,line1,line2)
+{var x=line2.y-line1.y;var y=line1.x-line2.x;var l=(line1.cross(line2)+line1.cross(point)+line2.cross(point))/(x*(line2.y-line1.y)+y*(line1.x-line2.x));var res=new Point(point.x+x*l,point.y+y*l);return res;}
+Point.hitTest=function(pt11,pt12,pt21,pt22)
+{var res=null;var n=0.0;var x1=pt11.x;var y1=pt11.y;var x2=pt12.x;var y2=pt12.y;var x3=pt21.x;var y3=pt21.y;var x4=pt22.x;var y4=pt22.y;if(y2-y1!=0.0)
+{var q=(x2-x1)/(y1-y2);var sn=(x3-x4)+(y3-y4)*q;if(sn==0.0)
+{return res;}
+var fn=(x3-x1)+(y3-y1)*q;n=fn/sn;}
+else
+{if((y3-y4)==0.0)
+{return res;}
+n=(y3-y1)/(y3-y4);}
+res=new Point(x3+(x4-x3)*n,y3+(y4-y3)*n);var epsilon=1E-5;if(!(res.x>=Math.min(x1,x2)-epsilon&&res.x>=Math.min(x3,x4)-epsilon&&res.x<=Math.max(x1,x2)+epsilon&&res.x<=Math.max(x3,x4)+epsilon&&res.y>=Math.min(y1,y2)-epsilon&&res.y>=Math.min(y3,y4)-epsilon&&res.y<=Math.max(y1,y2)+epsilon&&res.y<=Math.max(y3,y4)+epsilon))
+{res=null;}
+return res;}
+function Rect(minPoint,maxPoint){this.minPoint=minPoint;this.maxPoint=maxPoint;};Rect.prototype.center=function()
+{return Point.center(this.minPoint,this.maxPoint);};Rect.prototype.size=function()
+{return this.maxPoint.subtract(this.minPoint);};Rect.prototype.left=function()
+{return this.minPoint.x;};Rect.prototype.top=function()
+{return this.minPoint.y;};Rect.prototype.isIn=function(v)
+{return this.minPoint.x<=v.x&&this.minPoint.y<=v.y&&this.maxPoint.x>v.x&&this.maxPoint.y>v.y;};{let modulDir="entities/edge/";doInclude([include("model/BaseEdge.js",modulDir),include("model/EdgeModel.js",modulDir)])}
+function BaseEdge(vertex1,vertex2,isDirect,weight,upText)
+{this.vertex1=vertex1;this.vertex2=vertex2;this.arrayStyleStart="";this.arrayStyleFinish="";this.isDirect=isDirect;this.weight=0;this.text="";this.useWeight=false;this.id=0;this.model=new EdgeModel();if(upText===undefined)
+this.upText="";else
+this.upText=upText;if(weight!==undefined)
+this.SetWeight(weight);this.ownStyles={};}
+BaseEdge.prototype.copyFrom=function(other)
+{this.vertex1=other.vertex1;this.vertex2=other.vertex2;this.arrayStyleStart=other.arrayStyleStart;this.arrayStyleFinish=other.arrayStyleFinish;this.isDirect=other.isDirect;this.weight=other.weight;this.text=other.text;this.useWeight=other.useWeight;this.id=other.id;this.model=new EdgeModel();this.model.copyFrom(other.model);this.upText=other.upText;this.ownStyles=FullObjectCopy(other.ownStyles);}
+BaseEdge.prototype.SaveToXML=function()
+{return"<edge "+"source=\""+this.vertex1.id+"\" "+"target=\""+this.vertex2.id+"\" "+"isDirect=\""+this.isDirect+"\" "+"weight=\""+this.weight+"\" "+"useWeight=\""+this.useWeight+"\" "+"id=\""+this.id+"\" "+"text=\""+gEncodeToHTML(this.text)+"\" "+"upText=\""+gEncodeToHTML(this.upText)+"\" "+"arrayStyleStart=\""+this.arrayStyleStart+"\" "+"arrayStyleFinish=\""+this.arrayStyleFinish+"\" "+
+((Object.keys(this.ownStyles).length>0)?"ownStyles = \""+gEncodeToHTML(JSON.stringify(this.ownStyles))+"\" ":"")+
+this.model.SaveToXML()+"></edge>";}
+BaseEdge.prototype.LoadFromXML=function(xml,graph)
+{var attr=xml.attr('vertex1');if(typeof attr==='undefined')
+{attr=xml.attr('source');}
+this.vertex1=graph.FindVertex(typeof attr!=='undefined'?attr:xml.attr('graph1'));var attr=xml.attr('vertex2');if(typeof attr==='undefined')
+{attr=xml.attr('target');}
+this.vertex2=graph.FindVertex(typeof attr!=='undefined'?attr:xml.attr('graph2'));this.isDirect=xml.attr('isDirect')=="true";this.weight=parseFloat(xml.attr('weight'));if(isNaN(this.weight))
+{this.weight=1;}
+this.hasPair=xml.attr('hasPair')=="true";this.useWeight=xml.attr('useWeight')=="true";this.id=xml.attr('id');this.text=xml.attr("text")==null?"":gDecodeFromHTML(xml.attr("text"));this.arrayStyleStart=xml.attr("arrayStyleStart")==null?"":xml.attr("arrayStyleStart");this.arrayStyleFinish=xml.attr("arrayStyleFinish")==null?"":xml.attr("arrayStyleFinish");this.upText=xml.attr('upText');if(typeof this.upText==='undefined')
+{this.upText="";}
+else
+{this.upText=gDecodeFromHTML(this.upText);}
+var ownStyle=xml.attr('ownStyles');if(typeof ownStyle!=='undefined')
+{var parsedSave=gDecodeFromHTML(JSON.parse(ownStyle));for(var indexField in parsedSave)
+{var index=parseInt(indexField);this.ownStyles[index]=FullObjectCopy(this.getStyleFor(index));for(var field in parsedSave[indexField])
+{if(this.ownStyles[index].ShouldLoad(field))
+this.ownStyles[index][field]=parsedSave[indexField][field];}}}
+this.model.LoadFromXML(xml);}
+BaseEdge.prototype.GetPixelLength=function()
+{if(this.vertex1==this.vertex2)
+{return this.model.GetLoopSize()*2*Math.PI;}
+else
+{return Point.distance(this.vertex1.position,this.vertex2.position);}}
+BaseEdge.prototype.GetWeight=function()
+{return this.useWeight?this.weight:1;}
+BaseEdge.prototype.GetText=function()
+{return this.text.length>0?this.text:(this.useWeight?this.weight.toString():"");}
+BaseEdge.prototype.GetUpText=function()
+{return this.upText;}
+BaseEdge.prototype.GetStartEdgeStyle=function()
+{return this.arrayStyleStart;}
+BaseEdge.prototype.GetFinishEdgeStyle=function()
+{return(this.arrayStyleFinish!=""?this.arrayStyleFinish:(this.isDirect?"arrow":""));}
+BaseEdge.prototype.HitTest=function(pos)
+{var positions=this.GetEdgePositionsShift();return this.model.HitTest(positions[0],positions[1],pos);}
+BaseEdge.prototype.GetEdgePositionsShift=function()
+{return this.GetEdgePositions();}
+BaseEdge.prototype.GetEdgePositions=function()
+{var res=[];if(this.vertex1==this.vertex2)
+{res.push(this.vertex1.position);res.push(this.vertex2.position);return res;}
+var position1=this.vertex1.position;var position2=this.vertex2.position;var diameter1=this.vertex1.model.diameter+parseInt(this.vertex1.currentStyle.GetStyle({},this.vertex1).lineWidth);var diameter2=this.vertex2.model.diameter+parseInt(this.vertex2.currentStyle.GetStyle({},this.vertex2).lineWidth);var direction=position1.subtract(position2);var direction1=direction;var direction2=direction;var d1=diameter1;var d2=diameter2;if(this.model.type==EdgeModels.curve)
+{var dist=position1.distance(position2);var point1=this.model.GetCurvePoint(position1,position2,10.0/dist);direction1=position1.subtract(point1);var point2=this.model.GetCurvePoint(position1,position2,1.0-10.0/dist);direction2=position2.subtract(point2);d2=diameter2;}
+else
+{direction2=direction2.multiply(-1);}
+direction1.normalize(1.0);direction2.normalize(1.0);var vertices=[];vertices.push({vertex:this.vertex1,direction:direction1,position:position1,diameter:d1});vertices.push({vertex:this.vertex2,direction:direction2,position:position2,diameter:d2});vertices.forEach(function(data)
+{var shape=data.vertex.currentStyle.GetStyle({},data.vertex).shape;if(shape==VertexCircleShape)
+{var direction=data.direction.multiply(0.5);res.push(data.position.subtract(direction.multiply(data.diameter)));}
+else
+{var lineFinish1=data.direction.multiply(-1).multiply(1000.0);var pointsVertex1=GetPointsForShape(shape,data.diameter,data.vertex.mainText);pointsVertex1.push(pointsVertex1[0]);for(var i=0;i<pointsVertex1.length-1;i++)
+{var hitText=Point.hitTest(new Point(0,0),lineFinish1,pointsVertex1[i],pointsVertex1[i+1]);if(hitText!=null)
+{res.push(data.position.add(hitText));break;}}}});return res;}
+BaseEdge.prototype.SetWeight=function(weight)
+{var useWeight=false;if(!isNaN(parseInt(weight,10)))
+{useWeight=true;}
+weight=(!isNaN(parseInt(weight,10))&&weight>=0)?weight:1;this.weight=Number(weight);this.useWeight=useWeight;}
+BaseEdge.prototype.SetUpText=function(text)
+{this.upText=text;}
+BaseEdge.prototype.resetOwnStyle=function(index)
+{if(this.ownStyles.hasOwnProperty(index))
+{delete this.ownStyles[index];}}
+BaseEdge.prototype.setOwnStyle=function(index,style)
+{this.ownStyles[index]=style;}
+BaseEdge.prototype.getStyleFor=function(index)
+{if(this.ownStyles.hasOwnProperty(index))
+{return this.ownStyles[index];}
+else
+{var style=null;if(index==0)
+style=globalApplication.GetStyle("edge","common");else
+style=globalApplication.GetStyle("edge","selected",undefined,index-1);return style;}}
+BaseEdge.prototype.hasOwnStyleFor=function(index)
+{return this.ownStyles.hasOwnProperty(index);}
+var EdgeModels={"line":0,"curve":1};const defaultEdgeWidth=4;function EdgeModel()
+{this.width=globalApplication.GetDefaultEdgeWidth();this.type=EdgeModels.line;this.curveValue=EdgeModel.prototype.defaultCurve;this.default=true;this.sizeOfLoop=24;this.loopShiftAngel=Math.PI/6;}
+EdgeModel.prototype.defaultCurve=0.1;EdgeModel.prototype.copyFrom=function(other)
+{this.width=other.width;this.type=other.type;this.curveValue=other.curveValue;this.default=other.default;}
+EdgeModel.prototype.SaveToXML=function()
+{return"model_width=\""+this.width+"\" "+"model_type=\""+this.type+"\" "+"model_curveValue=\""+this.curveValue+"\" "+"model_default=\""+this.default+"\" ";}
+EdgeModel.prototype.LoadFromXML=function(xml,graph)
+{this.width=xml.attr('model_width')==null?this.width:parseFloat(xml.attr("model_width"));this.type=xml.attr('model_type')==null?this.type:xml.attr("model_type");this.curveValue=xml.attr('model_curveValue')==null?this.curveValue:parseFloat(xml.attr("model_curveValue"));this.default=xml.attr('model_default')==null?this.default:parseFloat(xml.attr("model_default"));}
+EdgeModel.prototype.GetCurvePoint=function(position1,position2,t)
+{var points=this.GetBezierPoints(position1,position2);var firstBezierPoint=points[0];var secondBezierPoint=points[1];var B0_t=Math.pow(1-t,3);var B1_t=3*t*Math.pow(1-t,2);var B2_t=3*t*t*(1-t)
+var B3_t=t*t*t;var ax=position1.x;var ay=position1.y;var dx=position2.x;var dy=position2.y;var bx=firstBezierPoint.x;var by=firstBezierPoint.y;var cx=secondBezierPoint.x;var cy=secondBezierPoint.y;var px_t=(B0_t*ax)+(B1_t*bx)+(B2_t*cx)+(B3_t*dx);var py_t=(B0_t*ay)+(B1_t*by)+(B2_t*cy)+(B3_t*dy);return new Point(px_t,py_t);}
+EdgeModel.prototype.GetBezierPoints=function(position1,position2)
+{var direction=position2.subtract(position1);var delta=direction.length();direction.normalize(1.0);var normal=direction.normal();var deltaOffsetPixels=delta*this.curveValue;var yOffset=normal.multiply(deltaOffsetPixels);var firstBezierPointShift=(direction.multiply(delta*0.2)).add(yOffset);var secondBezierPointShift=(direction.multiply(-delta*0.2)).add(yOffset);var firstBezierPoint=position1.add(firstBezierPointShift);var secondBezierPoint=position2.add(secondBezierPointShift);return[firstBezierPoint,secondBezierPoint];}
+EdgeModel.prototype.HitTest=function(position1,position2,mousePos)
+{if(this.type==EdgeModels.line)
+return this.HitTestLine(position1,position2,mousePos);else if(this.type==EdgeModels.curve)
+return this.HitTestCurve(position1,position2,mousePos);return false;}
+EdgeModel.prototype.HitTestLine=function(position1,position2,mousePos,factor)
+{if(factor===undefined)
+{factor=1.0;}
+var pos1=position1;var pos2=position2;var pos0=mousePos;if(pos1.equals(pos2))
+{var xCenter=pos1.x-Math.cos(this.GetLoopShiftAngel())*this.GetLoopSize();var yCenter=pos1.y-Math.sin(this.GetLoopShiftAngel())*this.GetLoopSize();return Math.abs((Point.distance(new Point(xCenter,yCenter),pos0))-this.GetLoopSize())<=this.width*1.5*factor;}
+var r1=pos0.distance(pos1);var r2=pos0.distance(pos2);var r12=pos1.distance(pos2);if(r1>=(new Point(r2,r12)).length()||r2>=(new Point(r1,r12)).length())
+{}
+else
+{var distance=((pos1.y-pos2.y)*pos0.x+(pos2.x-pos1.x)*pos0.y+(pos1.x*pos2.y-pos2.x*pos1.y))/r12;if(Math.abs(distance)<=this.width*1.5*factor)
+{return true;}}
+return false;}
+EdgeModel.prototype.HitTestCurve=function(position1,position2,mousePos)
+{var pos1=position1;var pos2=position2;var pos0=mousePos;if(pos1.equals(pos2))
+{var xCenter=pos1.x-Math.cos(this.GetLoopShiftAngel())*this.GetLoopSize();var yCenter=pos1.y-Math.sin(this.GetLoopShiftAngel())*this.GetLoopSize();return Math.abs((Point.distance(new Point(xCenter,yCenter),pos0))-this.GetLoopSize())<=this.width*1.5;}
+var interval_count=position1.distance(position2)/100*30;var start=position1;for(var i=0;i<interval_count;i++)
+{var finish=this.GetCurvePoint(position1,position2,i/interval_count);if(this.HitTestLine(start,finish,mousePos,2.0))
+return true;start=finish;}
+return false;}
+EdgeModel.prototype.ChangeCurveValue=function(delta)
+{if(this.type==EdgeModels.line)
+{this.type=EdgeModels.curve;this.curveValue=0.0;}
+this.curveValue=this.curveValue+delta;if(Math.abs(this.curveValue)<=0.01)
+this.type=EdgeModels.line;this.default=false;}
+EdgeModel.prototype.SetCurveValue=function(value)
+{if(this.type==EdgeModels.line)
+{this.type=EdgeModels.curve;this.curveValue=0.0;}
+this.curveValue=value;if(Math.abs(this.curveValue)<=0.01)
+this.type=EdgeModels.line;this.default=false;}
+EdgeModel.prototype.GetLoopSize=function()
+{if(Math.abs(this.curveValue)<=0.01)
+{return this.sizeOfLoop;}
+else
+{let normalCurve=this.curveValue;if(this.type==EdgeModels.line){normalCurve=this.defaultCurve;}
+else if(normalCurve>=0.0){normalCurve+=this.defaultCurve}
+return this.sizeOfLoop*Math.abs(normalCurve)*(1/this.defaultCurve);}}
+EdgeModel.prototype.GetLoopShiftAngel=function()
+{if(this.type==EdgeModels.line||this.curveValue>=0.0)
+{return this.loopShiftAngel;}
+else
+{return this.loopShiftAngel+Math.PI;}}
+{let modulDir="entities/vertex/";doInclude([include("model/BaseVertex.js",modulDir),include("model/VertexModel.js",modulDir)])}
+function BaseVertex(x,y,vertexEnumType)
+{this.position=new Point(x,y);this.id=0;this.mainText="";this.upText="";this.vertexEnumType=vertexEnumType;this.model=new VertexModel();this.hasUndefinedPosition=false;this.ownStyles={};};BaseVertex.prototype.position=new Point(0,0);BaseVertex.prototype.copyFrom=function(other)
+{this.position=new Point(other.position.x,other.position.y);this.id=other.id;this.mainText=other.mainText;this.upText=other.upText;this.vertexEnumType=other.vertexEnumType;this.model=new VertexModel();this.hasUndefinedPosition=other.hasUndefinedPosition;this.ownStyles=FullObjectCopy(other.ownStyles);}
+BaseVertex.prototype.SaveToXML=function()
+{return"<node "+"positionX=\""+this.position.x+"\" "+"positionY=\""+this.position.y+"\" "+"id=\""+this.id+"\" "+"mainText=\""+gEncodeToHTML(this.mainText)+"\" "+"upText=\""+gEncodeToHTML(this.upText)+"\" "+
+((Object.keys(this.ownStyles).length>0)?"ownStyles = \""+gEncodeToHTML(JSON.stringify(this.ownStyles))+"\" ":"")+"size=\""+this.model.diameter+"\" "+"></node>";}
+BaseVertex.prototype.LoadFromXML=function(xml)
+{var xmlX=xml.attr('positionX');var xmlY=xml.attr('positionY');this.hasUndefinedPosition=(typeof xmlX==='undefined')||(typeof xmlY==='undefined');this.position=new Point(parseFloat(xmlX),parseFloat(xmlY));this.id=xml.attr('id');this.mainText=xml.attr('mainText');this.upText=xml.attr('upText');if(typeof this.mainText==='undefined')
+this.mainText=this.id;else
+this.mainText=gDecodeFromHTML(this.mainText);if(typeof this.upText==='undefined')
+this.upText="";else
+this.upText=gDecodeFromHTML(this.upText);var ownStyle=xml.attr('ownStyles');if(typeof ownStyle!=='undefined')
+{var parsedSave=gDecodeFromHTML(JSON.parse(ownStyle));for(var indexField in parsedSave)
+{var index=parseInt(indexField);this.ownStyles[index]=FullObjectCopy(this.getStyleFor(index));for(var field in parsedSave[indexField])
+{if(this.ownStyles[index].ShouldLoad(field))
+this.ownStyles[index][field]=parsedSave[indexField][field];}}}
+var size=xml.attr('size');if(typeof size!=='undefined')
+this.model.diameter=parseInt(size);}
+BaseVertex.prototype.SetId=function(id)
+{this.id=id;if(this.vertexEnumType!=null)
+this.mainText=this.vertexEnumType.GetVertexText(id);}
+BaseVertex.prototype.diameterFactor=function()
+{return new Point(1.0+(this.mainText.length?this.mainText.length/8.0:0),1.5);}
+BaseVertex.prototype.IsUndefinedPosition=function()
+{return this.hasUndefinedPosition;}
+BaseVertex.prototype.HitTest=function(pos)
+{var shape=this.hasOwnProperty('currentStyle')?this.currentStyle.GetStyle({},this).shape:VertexCircleShape;var width=this.hasOwnProperty('currentStyle')?this.currentStyle.GetStyle({},this).lineWidth:0;if(shape==VertexCircleShape)
+{return this.position.distance(pos)<this.model.diameter/2.0+width;}
+else
+{var relativePos=(new Point(pos.x,pos.y)).subtract(this.position);var lineFinish1=relativePos.add(new Point(1000,0));var lineFinish2=relativePos.add(new Point(-1000,0));var pointsVertex1=GetPointsForShape(shape,this.model.diameter+width,this.mainText);pointsVertex1.push(pointsVertex1[0]);var hitNumber1=0;var hitNumber2=0;for(var i=0;i<pointsVertex1.length-1;i++)
+{var hitTest=Point.hitTest(relativePos,lineFinish1,pointsVertex1[i],pointsVertex1[i+1]);if(hitTest!=null)
+{hitNumber1++;}
+hitTest=Point.hitTest(relativePos,lineFinish2,pointsVertex1[i],pointsVertex1[i+1]);if(hitTest!=null)
+{hitNumber2++;}}
+return hitNumber1==1&&hitNumber2==1;}
+return false;}
+BaseVertex.prototype.resetOwnStyle=function(index)
+{if(this.ownStyles.hasOwnProperty(index))
+{delete this.ownStyles[index];}}
+BaseVertex.prototype.setOwnStyle=function(index,style)
+{this.ownStyles[index]=FullObjectCopy(style);}
+BaseVertex.prototype.getStyleFor=function(index)
+{if(this.ownStyles.hasOwnProperty(index))
+{return this.ownStyles[index];}
+else
+{var style=null;if(index==0)
+style=globalApplication.GetStyle("vertex","common");else
+style=globalApplication.GetStyle("vertex","selected",undefined,index-1);return style;}}
+BaseVertex.prototype.hasOwnStyleFor=function(index)
+{return this.ownStyles.hasOwnProperty(index);}
+const defaultVertexDiameter=30;function VertexModel()
+{this.diameter=globalApplication.GetDefaultVertexSize();}
+function Graph()
+{this.vertices=[];this.edges=[];this.uidGraph=0;this.uidEdge=10000;this.hasDirect=false;this.isMultiGraph=false;};Graph.prototype.infinity=1E8;Graph.prototype.maxVertices=1000;Graph.prototype.edgesOffset=10000;Graph.prototype.AddNewVertex=function(vertex)
+{if(this.vertices.length<=this.maxVertices)
+{vertex.SetId(this.uidGraph);this.uidGraph=this.uidGraph+1;this.vertices.push(vertex);}
+return this.vertices.length-1;}
+Graph.prototype.ClearGraph=function(){this.vertices=[];this.edges=[];this.uidGraph=0;this.uidEdge=10000;this.hasDirect=false;this.isMultiGraph=false;}
+Graph.prototype.AddNewEdgeSafe=function(graph1,graph2,isDirect,weight,replaceIfExists=true)
+{return this.AddNewEdge(new BaseEdge(graph1,graph2,isDirect,weight),replaceIfExists);}
+Graph.prototype.AddNewEdge=function(edge,replaceIfExists)
+{edge.id=this.uidEdge;this.uidEdge=this.uidEdge+1;var edge1=this.FindEdgeAny(edge.vertex1.id,edge.vertex2.id);var edgeRevert=this.FindEdgeAny(edge.vertex2.id,edge.vertex1.id);if(!edge.isDirect)
+{if(edge1!=null&&replaceIfExists)
+this.DeleteEdge(edge1);if(edgeRevert!=null&&replaceIfExists)
+this.DeleteEdge(edgeRevert);this.edges.push(edge);}
+else
+{if(edge1!=null&&replaceIfExists)
+this.DeleteEdge(edge1);if(edgeRevert!=null&&!edgeRevert.isDirect&&replaceIfExists)
+this.DeleteEdge(edgeRevert);this.edges.push(edge);}
+this.isMultiGraph=this.checkMutiGraph();return this.edges.length-1;}
+Graph.prototype.DeleteEdge=function(edgeObject)
+{var index=this.edges.indexOf(edgeObject);if(index>-1)
+{this.edges.splice(index,1);}
+this.isMultiGraph=this.checkMutiGraph();}
+Graph.prototype.DeleteVertex=function(vertexObject)
+{var index=this.vertices.indexOf(vertexObject);if(index>-1)
+{for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].vertex1==vertexObject||this.edges[i].vertex2==vertexObject)
+{this.DeleteEdge(this.edges[i]);i--;}}
+this.vertices.splice(index,1);}}
+Graph.prototype.HasConnectedNodes=function(vertexObject)
+{var res=false;var index=this.vertices.indexOf(vertexObject);if(index>-1)
+{for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].vertex1==vertexObject||this.edges[i].vertex2==vertexObject)
+{res=true;break;}}}
+return res;}
+Graph.prototype.FindVertex=function(id)
+{var res=null;for(var i=0;i<this.vertices.length;i++)
+{if(this.vertices[i].id==id)
+{res=this.vertices[i];break;}}
+return res;}
+Graph.prototype.FindVertexByTitle=function(title)
+{var res=null;for(var i=0;i<this.vertices.length;i++)
+{if(this.vertices[i].mainText==title)
+{res=this.vertices[i];break;}}
+return res;}
+Graph.prototype.FindEdge=function(id1,id2)
+{return this.FindEdgeAny(id1,id2);}
+Graph.prototype.FindEdgeById=function(edgeId)
+{var res=null;for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].id==edgeId)
+{res=this.edges[i];break;}}
+return res;}
+Graph.prototype.FindEdgeAny=function(id1,id2)
+{var res=null;for(var i=0;i<this.edges.length;i++)
+{if((this.edges[i].vertex1.id==id1&&this.edges[i].vertex2.id==id2)||(!this.edges[i].isDirect&&this.edges[i].vertex1.id==id2&&this.edges[i].vertex2.id==id1))
+{res=this.edges[i];break;}}
+return res;}
+Graph.prototype.FindEdgeMin=function(id1,id2)
+{var res=null;var minWeight=this.infinity;for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(!edge.isDirect&&edge.vertex1.id==id2&&edge.vertex2.id==id1))
+{if(edge.weight<minWeight)
+{res=edge;minWeight=edge.weight;}}}
+return res;}
+Graph.prototype.FindEdgeMax=function(id1,id2)
+{var res=null;var maxWeight=0;for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(!edge.isDirect&&edge.vertex1.id==id2&&edge.vertex2.id==id1))
+{if(edge.weight>maxWeight)
+{res=edge;maxWeight=edge.weight;}}}
+return res;}
+Graph.prototype.FindEdgeMinIgnoreDirection=function(id1,id2)
+{var res=null;var minWeight=this.infinity;for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(edge.vertex1.id==id2&&edge.vertex2.id==id1))
+{if(edge.weight<minWeight)
+{res=edge;minWeight=edge.weight;}}}
+return res;}
+Graph.prototype.FindAllEdges=function(id1,id2)
+{var res=[];for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(!edge.isDirect&&edge.vertex1.id==id2&&edge.vertex2.id==id1))
+{res.push(edge);}}
+return res;}
+Graph.prototype.GetAdjacencyMatrixStr=function()
+{var matrix="";for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.vertices.length;j++)
+{var edge=this.FindEdgeMin(this.vertices[i].id,this.vertices[j].id);if(edge!=null)
+{matrix+=edge.weight;}
+else
+{matrix+="0";}
+if(j!=this.vertices.length)
+{matrix+=", ";}}
+matrix=matrix+"\n";}
+return matrix;}
+Graph.prototype.GetAdjacencyMatrix=function()
+{var matrix=[];for(var i=0;i<this.vertices.length;i++)
+{matrix.push([]);var v1=this.vertices[i];for(var j=0;j<this.vertices.length;j++)
+{var v2=this.vertices[j];var edge=this.FindEdgeMin(v1.id,v2.id);if(edge!=null)
+{matrix[i][j]=edge.GetWeight();}
+else
+{matrix[i][j]=this.infinity;}}}
+return matrix;}
+Graph.prototype.TestAdjacencyMatrix=function(matrix,rowsObj,colsObj,separator)
+{if(separator===undefined)
+{separator=",";}
+var bGoodFormat=true;rowsObj.rows=[];rowsObj.rows=matrix.split("\n");for(j=0;j<rowsObj.rows.length;++j)
+{if(rowsObj.rows[j]==="")
+{rowsObj.rows.splice(j--,1);}}
+colsObj.cols=[];for(var i=0;i<rowsObj.rows.length;i++)
+{colsObj.cols[i]=this.SplitMatrixString(rowsObj.rows[i],separator);for(j=0;j<colsObj.cols[i].length;++j)
+{if(colsObj.cols[i][j]==="")
+{colsObj.cols[i].splice(j--,1);}}
+if(colsObj.cols[i].length!=rowsObj.rows.length)
+{bGoodFormat=false;break;}}
+return bGoodFormat;}
+Graph.prototype.TestPair=function(pair)
+{let lines=pair.split("\n");let regExp=[/^.+-.+$/g,/^.+\>.+$/g,/^.+<.+$/g,/^.+-\(\d+\.?\d+\)-.+$/g,/^.+-\(\d+\.?\d+\)\>.+$/g,/^.+<\(\d+\.?\d+\)\-.+$/g];let res=true;for(let i=0;i<lines.length;++i)
+{let resLine=false;let line=lines[i];if(line==""){continue;}
+for(let j=0;j<regExp.length;++j){if(line.match(regExp[j])){resLine=true;}}
+res=resLine&&res;}
+return res;}
+Graph.prototype.IsVerticesHaveSamePosition=function(position,vertexCount)
+{var res=false;for(var j=0;j<Math.min(this.vertices.length,vertexCount);j++)
+{if(position.distance(this.vertices[j].position)<this.vertices[j].model.diameter*2)
+{res=true;break;}}
+return res;}
+Graph.prototype.GetRandomPosition=function(viewportSize){return new Point(Math.random()*viewportSize.x,Math.random()*viewportSize.y);}
+Graph.prototype.GetRandomPositionOfVertex=function(matrix,vertexIndex,viewportSize)
+{var point=new Point(0,0);var relatedVertex=[];for(var j=0;j<matrix.length;j++)
+{if(j<this.vertices.length&&(cols[vertexIndex][j]>0||cols[j][vertexIndex]>0)&&j!=vertexIndex)
+{relatedVertex.push(this.vertices[j]);}}
+var diameter=(new VertexModel()).diameter;if(relatedVertex.length>1)
+{for(var j=0;j<relatedVertex.length;j++)
+{point=point.add(relatedVertex[j].position);}
+point=point.multiply(1/relatedVertex.length);point.offset(Math.random()*diameter+(Math.random()?-1:1)*2*diameter,Math.random()*diameter+(Math.random()?-1:1)*2*diameter);}
+else
+{point=new Point(Math.random()*viewportSize.x,Math.random()*viewportSize.y);}
+if(this.IsVerticesHaveSamePosition(point,matrix.length))
+{point.offset(Math.random()*diameter+ +(Math.random()?-1:1)*4*diameter,Math.random()*diameter+ +(Math.random()?-1:1)*4*diameter);}
+point.x=Math.min(Math.max(point.x,diameter),viewportSize.x);point.y=Math.min(Math.max(point.y,diameter),viewportSize.y);return point;}
+Graph.prototype.VerticesReposition=function(viewportSize,newVertices)
+{var maxGravityDistanceSqr=Math.max(viewportSize.x,viewportSize.y)/5.0;maxGravityDistanceSqr=maxGravityDistanceSqr*maxGravityDistanceSqr;var velocityDamping=0.85;var diameter=(new VertexModel()).diameter;var maxDistance=diameter*3;var gravityDistanceSqr=10*(maxDistance*maxDistance);var edgeGravityKof=10/(maxDistance);var kCenterForce=10/(maxDistance*10);var centerPoint=viewportSize.multiply(0.5);var velocityMax=maxDistance*10;var edgesMatrix={};for(var i=0;i<this.edges.length;i++)
+{edgesMatrix[this.edges[i].vertex1.id+this.edges[i].vertex2.id*1000]=1;edgesMatrix[this.edges[i].vertex2.id+this.edges[i].vertex1.id*1000]=1;}
+var startAngel=Math.random()*180.0;for(i=0;i<newVertices.length;i++)
+{newVertices[i].position.orbit(new Point(viewportSize.x/2,viewportSize.y/2),(viewportSize.x-diameter*2)/2,(viewportSize.y-diameter*2)/2,360*i/newVertices.length+startAngel);}
+var k=0;var bChanged=true;while(k<1000&&bChanged)
+{var vertexData=[];for(i=0;i<newVertices.length;i++)
+{var currentVertex={};currentVertex.object=newVertices[i];currentVertex.net_force=new Point(0,0);currentVertex.velocity=new Point(0,0);vertexData.push(currentVertex);for(j=0;j<this.vertices.length;j++)
+{otherVertex=this.vertices[j];if(otherVertex==currentVertex.object)continue;var rsq=currentVertex.object.position.distanceSqr(otherVertex.position);{var force=(currentVertex.object.position.subtract(otherVertex.position)).normalize(gravityDistanceSqr/rsq);currentVertex.net_force=currentVertex.net_force.add(force);}}
+for(j=0;j<this.vertices.length;j++)
+{otherVertex=this.vertices[j];if(edgesMatrix.hasOwnProperty(currentVertex.object.id+1000*otherVertex.id))
+{var distance=currentVertex.object.position.distance(otherVertex.position);if(distance>maxDistance)
+{var force=(otherVertex.position.subtract(currentVertex.object.position)).normalize(edgeGravityKof*(distance-maxDistance));currentVertex.net_force=currentVertex.net_force.add(force);}}}
+var distanceToCenter=centerPoint.distance(currentVertex.object.position);var force=centerPoint.subtract(currentVertex.object.position).normalize(distanceToCenter*kCenterForce);currentVertex.net_force=currentVertex.net_force.add(force);currentVertex.velocity=currentVertex.velocity.add(currentVertex.net_force);}
+bChanged=false;for(i=0;i<vertexData.length;i++)
+{var v=vertexData[i];var velocity=v.velocity;if(velocity.length()>velocityMax)
+{velocity=velocity.normalize(velocityMax);}
+v.object.position=v.object.position.add(velocity);if(velocity.length()>=1)
+{bChanged=true;}}
+k++;}
+var bbox=this.getGraphBBox();if(bbox.size().length()>viewportSize.length()*1000)
+{for(i=0;i<newVertices.length;i++)
+{newVertices[i].position.orbit(new Point(viewportSize.x/2,viewportSize.y/2),(viewportSize.x-diameter*2)/2,(viewportSize.y-diameter*2)/2,360*i/newVertices.length+startAngel);}}
+else
+{var count=10;var angle=360.0/count;var viewportAspect=viewportSize.x/viewportSize.y;var bestIndex=0;var graphSize=bbox.size();var bestAspect=graphSize.x/graphSize.y;var center=bbox.center();for(var i=1;i<count;i++)
+{for(j=0;j<newVertices.length;j++)
+{newVertices[j].position.rotate(center,angle);}
+var newBBox=this.getGraphBBox();var newAspect=newBBox.size().x/newBBox.size().y;if(Math.abs(newAspect-viewportAspect)<Math.abs(bestAspect-viewportAspect))
+{bestAspect=newAspect;bestIndex=i;}}
+for(j=0;j<newVertices.length;j++)
+{newVertices[j].position.rotate(center,-angle*(count-bestIndex-1));}}}
+Graph.prototype.SetAdjacencyMatrix=function(matrix,viewportSize,currentEnumVerticesType,separator)
+{if(separator===undefined)
+{separator=",";}
+var rowsObj={};var colsObj={};if(this.TestAdjacencyMatrix(matrix,rowsObj,colsObj,separator))
+{rows=rowsObj.rows;cols=colsObj.cols;var clonedEdge=this.edges.slice(0);for(var i=0;i<clonedEdge.length;i++)
+{this.DeleteEdge(clonedEdge[i]);}
+var newVertices=[];var bWeightGraph=false;for(var i=0;i<rows.length;i++)
+{for(var j=0;j<rows.length;j++)
+{if(j>=this.vertices.length)
+{var newPos=this.GetRandomPositionOfVertex(matrix,j,viewportSize);newVertices.push(new BaseVertex(newPos.x,newPos.y,currentEnumVerticesType));this.AddNewVertex(newVertices[newVertices.length-1]);}
+if(cols[i][j]>0)
+{var nEdgeIndex=this.AddNewEdgeSafe(this.vertices[i],this.vertices[j],cols[i][j]!=cols[j][i],cols[i][j],true);this.FixEdgeCurve(nEdgeIndex);if(nEdgeIndex>=0)
+{bWeightGraph=bWeightGraph||this.edges[nEdgeIndex].weight!=1;}}}}
+if(!bWeightGraph)
+{this.edges.forEach(function(part,index,theArray){theArray[index].useWeight=false;});}
+for(var i=rows.length;i<Math.max(this.vertices.length,rows.length);i++)
+{this.DeleteVertex(this.vertices[i]);i--;}
+this.VerticesReposition(viewportSize,newVertices);}}
+Graph.prototype.SetPair=function(pairs,viewportSize,currentEnumVerticesType)
+{if(this.TestPair(pairs))
+{this.ClearGraph();let lines=pairs.split("\n");let regExp=[/^(.+)-(.+)$/g,/^(.+)\>(.+)$/g,/^(.+)<(.+)$/g,/^(.+)-\((\d+|\d+\.?\d+)\)-(.+)$/g,/^(.+)-\((\d+|\d+\.?\d+)\)\>(.+)$/g,/^(.+)<\((\d+|\d+\.?\d+)\)\-(.+)$/g,];let bWeightGraph=false;var newVertices=[];for(var i=0;i<lines.length;i++)
+{let line=lines[i];if(line==""){continue;}
+for(let j=regExp.length-1;j>=0;--j){if(!line.match(regExp[j])){continue;}
+let groupes=Array.from(line.matchAll(regExp[j]));let groupe=groupes[0];let vetext1Title=groupe[1];let vertex1=this.FindVertexByTitle(vetext1Title);if(vertex1==null){let newPosition=this.GetRandomPosition(viewportSize);vertex1=this.vertices[this.AddNewVertex(new BaseVertex(newPosition.x,newPosition.y,currentEnumVerticesType))];vertex1.mainText=vetext1Title;newVertices.push(vertex1);}
+let vetext2Title=groupe[j<=2?2:3];let vertex2=this.FindVertexByTitle(vetext2Title);if(vertex2==null){let newPosition=this.GetRandomPosition(viewportSize);vertex2=this.vertices[this.AddNewVertex(new BaseVertex(newPosition.x,newPosition.y,currentEnumVerticesType))];vertex2.mainText=vetext2Title;newVertices.push(vertex2);}
+let isDirect=j==1||j==2||j==4||j==5;let weight=1;if(j>2){weight=groupe[2];bWeightGraph=true;}
+let isRevertEdge=j==2||j==5;let nEdgeIndex=this.AddNewEdgeSafe(isRevertEdge?vertex2:vertex1,isRevertEdge?vertex1:vertex2,isDirect,weight,false);this.FixEdgeCurve(nEdgeIndex);break;}}
+if(!bWeightGraph)
+{this.edges.forEach(function(part,index,theArray){theArray[index].useWeight=false;});}
+this.VerticesReposition(viewportSize,newVertices);}}
+Graph.prototype.TestIncidenceMatrix=function(matrix,rowsObj,colsObj,separator)
+{if(separator===undefined)
+{separator=",";}
+var bGoodFormat=true;rowsObj.rows=[];rowsObj.rows=matrix.split("\n");for(j=0;j<rowsObj.rows.length;++j)
+{if(rowsObj.rows[j]==="")
+{rowsObj.rows.splice(j--,1);}}
+colsObj.cols=[];var columnCount=0;for(var i=0;i<rowsObj.rows.length;i++)
+{colsObj.cols[i]=this.SplitMatrixString(rowsObj.rows[i],separator);for(j=0;j<colsObj.cols[i].length;++j)
+{if(colsObj.cols[i][j]==="")
+{colsObj.cols[i].splice(j--,1);}}
+if(i==0)
+{columnCount=colsObj.cols[i].length;}
+if(colsObj.cols[i].length!=columnCount)
+{bGoodFormat=false;break;}}
+if(bGoodFormat)
+{for(var i=0;i<colsObj.cols[0].length;i++)
+{var values=[];for(j=0;j<colsObj.cols.length;++j)
+{if(colsObj.cols[j][i]!=0)
+{values.push(colsObj.cols[j][i]);}}
+if(!(values.length<=1||(values.length==2&&(values[0]==values[1]||values[0]==-values[1]))))
+{bGoodFormat=false;break;}}}
+return bGoodFormat;}
+Graph.prototype.SetIncidenceMatrix=function(matrix,viewportSize,currentEnumVerticesType)
+{var rowsObj={};var colsObj={};if(this.TestIncidenceMatrix(matrix,rowsObj,colsObj))
+{rows=rowsObj.rows;cols=colsObj.cols;var clonedEdge=this.edges.slice(0);for(var i=0;i<clonedEdge.length;i++)
+{this.DeleteEdge(clonedEdge[i]);}
+var newVertices=[];var bWeightGraph=false;for(var i=0;i<cols[0].length;i++)
+{var edgeValue=[];var edgeIndex=[];for(var j=0;j<cols.length;j++)
+{if(j>=this.vertices.length)
+{var newPos=new Point(0,0);newVertices.push(new BaseVertex(newPos.x,newPos.y,currentEnumVerticesType));this.AddNewVertex(newVertices[newVertices.length-1]);}
+if(cols[j][i]!=0)
+{edgeValue.push(cols[j][i]);edgeIndex.push(j);}}
+if(edgeIndex.length==1)
+{edgeValue.push(edgeValue[0]);edgeIndex.push(edgeIndex[0]);}
+if(edgeIndex.length==2)
+{if(edgeValue[0]!=edgeValue[1])
+{if(edgeValue[1]>0)
+{edgeValue=edgeValue.swap(0,1);edgeIndex=edgeIndex.swap(0,1);}}
+var nEdgeIndex=this.AddNewEdgeSafe(this.vertices[edgeIndex[0]],this.vertices[edgeIndex[1]],edgeValue[0]!=edgeValue[1],Math.abs(edgeValue[1]),false);this.FixEdgeCurve(nEdgeIndex);if(nEdgeIndex>=0)
+{bWeightGraph=bWeightGraph||this.edges[nEdgeIndex].weight!=1;}}}
+if(!bWeightGraph)
+{this.edges.forEach(function(part,index,theArray){theArray[index].useWeight=false;});}
+for(var i=cols.length;i<Math.max(this.vertices.length,cols.length);i++)
+{this.DeleteVertex(this.vertices[i]);i--;}
+this.VerticesReposition(viewportSize,newVertices);}}
+Graph.prototype.GetIncidenceMatrix=function()
+{var matrix="";for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.edges.length;j++)
+{if(this.edges[j].vertex1==this.vertices[i])
+{matrix+=this.edges[j].weight;}
+else if(this.edges[j].vertex2==this.vertices[i]&&!this.edges[j].isDirect)
+{matrix+=this.edges[j].weight;}
+else if(this.edges[j].vertex2==this.vertices[i]&&this.edges[j].isDirect)
+{matrix+=-this.edges[j].weight;}
+else
+{matrix+="0";}
+if(j!=this.edges.length-1)
+{matrix+=", ";}}
+matrix=matrix+"\n";}
+return matrix;}
+Graph.prototype.SplitMatrixString=function(line,separator)
+{if(separator===undefined)
+{separator=",";}
+var res=[];var i=0;var isZeroOneLine=true;for(i=0;i<line.length;i++)
+{if(line.charAt(i)!='0'&&line.charAt(i)!='1')
+{isZeroOneLine=false;break;}}
+if(!isZeroOneLine)
+{if(separator!=",")
+{line=line.replace(/,/g,".");}
+for(i=0;i<line.length;i++)
+{if(("0123456789.-e").indexOf(line.charAt(i))<0)
+{if(i>0)
+{res.push(line.substr(0,i));}
+if(i==0)
+{i=1;}
+line=line.substr(i,line.length-i);i=-1;}}
+if(line.length>0)
+{res.push(line);}}
+else
+{for(i=0;i<line.length;i++)
+{res.push(line.charAt(i));}}
+console.log(res);return res;}
+Graph.prototype.SaveToXML=function(additionalData)
+{var mainHeader="<?xml version=\"1.0\" encoding=\"UTF-8\"?><graphml>";var header="<graph id=\"Graph\" uidGraph=\""+this.uidGraph+"\""+" uidEdge=\""+this.uidEdge+"\">";var xmlBody="";for(var i=0;i<this.vertices.length;i++)
+{xmlBody=xmlBody+this.vertices[i].SaveToXML();}
+xmlBody=xmlBody+"";for(var i=0;i<this.edges.length;i++)
+{xmlBody=xmlBody+this.edges[i].SaveToXML();}
+xmlBody=xmlBody+"";additionalField="";if(additionalData.length>0)
+{additionalField="<additional data=\""+additionalData+"\"/>"}
+return mainHeader+header+xmlBody+"</graph>"+additionalField+"</graphml>";}
+Graph.prototype.LoadFromXML=function(xmlText,additionalData)
+{xmlDoc=$.parseXML(xmlText);var $xml=$(xmlDoc);$graphs=$xml.find("graph");var loadedGraphId=0;var loadedEdgeId=0;$graphs.each(function(){loadedGraphId=parseInt($(this).attr('uidGraph'));loadedEdgeId=parseInt($(this).attr('uidEdge'));});if(isNaN(loadedEdgeId))
+{loadedEdgeId=this.edgesOffset;}else if(loadedEdgeId<this.edgesOffset)
+{loadedEdgeId=this.edgesOffset;}
+this.uidGraph=loadedGraphId;this.uidEdge=loadedEdgeId;$nodes=$xml.find("node");var vertices=[];$nodes.each(function(){var vertex=new BaseVertex();vertex.LoadFromXML($(this));vertices.push(vertex);});this.vertices=vertices;$edges=$xml.find("edge");var edges=[];var graph=this;$edges.each(function(){var edge=new BaseEdge();edge.LoadFromXML($(this),graph);if(edge.id<graph.uidEdge){edge.id=graph.uidEdge;graph.uidEdge++;}
+edges.push(edge);});this.edges=edges;$additional=$xml.find("additional");if($additional.length!=0&&additionalData!=null)
+{additionalData["data"]=$additional.attr('data');}
+this.isMultiGraph=this.checkMutiGraph();}
+Graph.prototype.hasDirectEdge=function()
+{var res=false;for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].isDirect)
+{res=true;break;}}
+return res;}
+Graph.prototype.hasUndirectEdge=function()
+{var res=false;for(var i=0;i<this.edges.length;i++)
+{if(!this.edges[i].isDirect)
+{res=true;break;}}
+return res;}
+Graph.prototype.hasEdges=function()
+{return this.edges.length>0;}
+Graph.prototype.clampPositions=function(viewportSize)
+{var diameter=(new VertexModel()).diameter;for(i=0;i<this.vertices.length;i++)
+{this.vertices[i].position.x=Math.min(Math.max(this.vertices[i].position.x,diameter),viewportSize.x-diameter);this.vertices[i].position.y=Math.min(Math.max(this.vertices[i].position.y,diameter),viewportSize.y-diameter);}}
+Graph.prototype.getGraphBBox=function(viewportSize)
+{var pointMin=new Point(1e5,1e5);var pointMax=new Point(-1e5,-1e5);var diameter=(new VertexModel()).diameter;for(i=0;i<this.vertices.length;i++)
+{var vertex=this.vertices[i];var factor=vertex.diameterFactor();var deltaVector=new Point(factor.x*diameter,factor.y*diameter);pointMin=pointMin.min(vertex.position.subtract(deltaVector));pointMax=pointMax.max(vertex.position.add(deltaVector));}
+var max_curve_length=32;for(i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if(edge.model.type==EdgeModels.curve)
+{var max_curve=edge.vertex2.position.subtract(edge.vertex1.position).length()/max_curve_length;for(j=0;j<max_curve;j++)
+{var point=edge.model.GetCurvePoint(edge.vertex1.position,edge.vertex2.position,j/max_curve);var deltaVector=new Point(max_curve_length,max_curve_length);pointMin=pointMin.min(point.subtract(deltaVector));pointMax=pointMax.max(point.add(deltaVector));}}}
+return new Rect(pointMin,pointMax);}
+Graph.prototype.hasPair=function(edge)
+{return this.FindPairFor(edge)!=null;}
+Graph.prototype.FindPairFor=function(edge)
+{var res=this.getNeighborEdges(edge);return res.length==1?res[0]:null;}
+Graph.prototype.getNeighborEdges=function(edge)
+{var res=[];for(var i=0;i<this.edges.length;i++)
+{var curEdge=this.edges[i];if(curEdge==edge)
+continue;if((curEdge.vertex1.id==edge.vertex1.id&&curEdge.vertex2.id==edge.vertex2.id)||(curEdge.vertex1.id==edge.vertex2.id&&curEdge.vertex2.id==edge.vertex1.id))
+{res.push(curEdge);}}
+return res;}
+Graph.prototype.checkMutiGraph=function()
+{var res=false;var start={};for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if(start.hasOwnProperty(edge.vertex1.id)&&start[edge.vertex1.id]==edge.vertex2.id)
+{res=true;break;}
+start[edge.vertex1.id]=edge.vertex2.id;if(!edge.isDirect)
+{if(start.hasOwnProperty(edge.vertex2.id)&&start[edge.vertex2.id]==edge.vertex1.id)
+{res=true;break;}
+start[edge.vertex2.id]=edge.vertex1.id;}}
+return res;}
+Graph.prototype.isMulti=function()
+{return this.isMultiGraph;}
+Graph.prototype.isNeedReposition=function()
+{var res=false;for(var i=0;i<this.vertices.length;i++)
+{res=res||this.vertices[i].IsUndefinedPosition();}
+return res;}
+Graph.prototype.FixEdgeCurve=function(edgeIndex)
+{var edgeObject=this.edges[edgeIndex];var hasPair=this.hasPair(edgeObject);var neighborEdges=this.getNeighborEdges(edgeObject);if(hasPair)
+{if(edgeObject.model.default)
+edgeObject.model.type=EdgeModels.curve;var pairEdge=this.FindPairFor(edgeObject);if(pairEdge.model.default)
+{pairEdge.model.type=EdgeModels.curve;if(pairEdge.vertex1==edgeObject.vertex1&&pairEdge.vertex2==edgeObject.vertex2)
+pairEdge.model.curveValue=-pairEdge.model.curveValue;}}
+else if(neighborEdges.length>=2)
+{var curve=this.GetAvailableCurveValue(neighborEdges,edgeObject);if(edgeObject.model.default)
+{edgeObject.model.type=EdgeModels.curve;edgeObject.model.curveValue=curve;}}}
+Graph.prototype.GetAvailableCurveValue=function(neighborEdges,originalEdge)
+{var values=[];for(var i=0;i<neighborEdges.length;i++)
+{var edge=neighborEdges[i];var sameDirection=(originalEdge.vertex1.id==edge.vertex1.id);if(edge.model.type==EdgeModels.curve)
+{values[(sameDirection?edge.model.curveValue:-edge.model.curveValue)]=true;}}
+var changeValue=DefaultHandler.prototype.curveValue;var defaultValue=0.0;var maxSearch=10;for(var i=1;i<maxSearch;i++)
+{value=i*changeValue;if(!values.hasOwnProperty(value))
+return value;value=-i*changeValue;if(!values.hasOwnProperty(value))
+return value;}
+return defaultValue;}
+Graph.prototype.reverseAllEdges=function()
+{for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].isDirect)
+{let v1=this.edges[i].vertex1;this.edges[i].vertex1=this.edges[i].vertex2;this.edges[i].vertex2=v1;}}
+this.isMultiGraph=this.checkMutiGraph();}
+Graph.prototype.makeAllEdgesDirected=function()
+{for(var i=0;i<this.edges.length;i++)
+{if(!this.edges[i].isDirect)
+{this.edges[i].isDirect=true;}}
+this.isMultiGraph=this.checkMutiGraph();}
+Graph.prototype.makeAllEdgesUndirected=function()
+{for(var i=0;i<this.edges.length;i++)
+{if(this.edges[i].isDirect)
+{this.edges[i].isDirect=false;}}
+this.isMultiGraph=this.checkMutiGraph();}
+moduleLoader.endCacheLoading();

@@ -1,11 +1,12 @@
     <head>
 	    <link rel="stylesheet" type="text/css" href="<?= Root('i/css/create_graph_by_pair.css')?>" />
-	   <script src="<?= Root('script/Graph.js')?>"></script>
+        <script src="<?= RootCacheJS("script/shared/config.js")?>" ></script>
+        <script src="<?= RootCacheJS("script/shared/loader.js")?>" ></script>
 
+	    <script src="<?= RootCacheJS('script/pages/create_graph_by_edge_list/api/index.js')?>"></script>
     </head>
 
     <script>
-
     function checkFormat()
     {
         var graph = new Graph();

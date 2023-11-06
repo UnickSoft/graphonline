@@ -3,7 +3,7 @@
  *
  */
 
- const defaultVertexDiameter = 30;
+const defaultVertexDiameter = 30;
 
 function VertexModel()
 {

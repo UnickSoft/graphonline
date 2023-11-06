@@ -14,7 +14,7 @@
   <div class="col-md-4">
     <div class="thumbnail">
       <a href="./?graph=<?= $examples[$i]["id"] ?>">
-        <img src="/<? echo (getImageFileName($examples[$i]["id"], true)); ?>" alt="<?= $examples[$i]["title_" . $g_lang["current_language"]] ?>" style="width:100%">
+        <img src="/<?php echo (getImageFileName($examples[$i]["id"], true)); ?>" alt="<?= $examples[$i]["title_" . $g_lang["current_language"]] ?>" style="width:100%">
         <div class="caption">
           <p><?= $examples[$i]["title_" . $g_lang["current_language"]] ?></p>
         </div>

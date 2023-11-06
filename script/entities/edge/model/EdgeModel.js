@@ -31,7 +31,7 @@ EdgeModel.prototype.SaveToXML = function ()
 {
     return "model_width=\"" + this.width + "\" " +
 	       "model_type=\""  + this.type   + "\" " +
-	       "model_curveValue=\""  + this.curveValue + "\" "
+	       "model_curveValue=\""  + this.curveValue + "\" " +
            "model_default=\""  + this.default + "\" ";
 }
 

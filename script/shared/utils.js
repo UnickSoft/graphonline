@@ -42,3 +42,9 @@ function FullArrayCopy(arr)
 
   return res;
 }
+
+function formatString(string, params) {
+    return string.replace(/{(\d+)}/g, (match, index) => {
+      return typeof params[index] !== 'undefined' ? params[index] : match;
+    });
+  }

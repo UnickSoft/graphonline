@@ -148,6 +148,8 @@
 
     $g_lang["opensource_message"] = "Наш проект стал проектом с открытым исходным кодом. Подробнее...";
 
+    $g_lang["we_are_improving"] = "Мы улучшаем Graphonline, если вы столкнулись с проблемами напишете нам: admin@graphonline.ru";
+
     $g_lang["settings"] = "Настройки";
     $g_lang["common_vertex_settings"]   = "Обычных вершин";
     $g_lang["selected_vertex_settings"] = "Выделенных вершин";

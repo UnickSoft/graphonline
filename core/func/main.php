@@ -173,11 +173,15 @@
         return SITE_ROOT . "{$dir}{$uri}";
     }
 
-    function RootCacheJS($uri = '', $version = '') {
+    function RootCacheJS($uri = '') {
         global $g_config;
-        
-        return Root(($g_config['use_js_cache'] ? $uri . ".cache" :
-                    $uri) . "?v=" . $version);
+
+        $cacheFilePath = Root($uri . ".cache");
+        $filePath      = Root($uri);
+        $cacheExists   = file_exists("." . $cacheFilePath);
+        $finalFileName = $cacheExists && $g_config['use_js_cache'] ? $cacheFilePath : $filePath;
+
+        return $finalFileName . "?v=" . $g_config['engine_version'];
     }
 
     /**
