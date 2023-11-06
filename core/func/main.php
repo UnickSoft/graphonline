@@ -173,6 +173,13 @@
         return SITE_ROOT . "{$dir}{$uri}";
     }
 
+    function RootCacheJS($uri = '', $version = '') {
+        global $g_config;
+        
+        return Root(($g_config['use_js_cache'] ? $uri . ".cache" :
+                    $uri) . "?v=" . $version);
+    }
+
     /**
      * Путь до корня сайта с подставкой языка, нужна для ссылок
      */
