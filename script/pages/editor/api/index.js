@@ -3,7 +3,8 @@
 globalVersion = 75;
 
 {
-    let asyncFilesLoad = function () {
+    function onloadEditor() {
+        console.log("onload() call");
         doIncludeAsync ([            
             include ("shared/canvas2svg.js"),
             include ("features/group_rename_handler/index.js"),
@@ -16,11 +17,6 @@ globalVersion = 75;
             include ("features/setup_edge_style/index.js"),
             include ("features/setup_vertex_style/index.js"),
         ]);
-    }
-
-    function onloadEditor() {
-        console.log("onload() call");
-        asyncFilesLoad();
         preLoadPage();
         postLoadPage();
     }

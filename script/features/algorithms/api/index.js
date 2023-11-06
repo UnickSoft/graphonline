@@ -7,6 +7,7 @@ doInclude ([
 ])
 
 function loadAsyncAlgorithms(onFinish) {
+    let modulDir = "features/algorithms/";
     let pluginsList = ["BFS.js",
                     "Coloring.js",
                     "ConnectedComponent.js",
