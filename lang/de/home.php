@@ -120,6 +120,7 @@
     $g_lang["curve_edge"] = "Kantenbiegung";
     $g_lang["undo"] = "ruckgängig machen";
     $g_lang["opensource_message"] = "Unser Projekt ist jetzt open source. Mehr Details..";
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
     $g_lang["settings"] = "Einstellungen";
     $g_lang["common_vertex_settings"] = "Gemeinsame Knoten";
     $g_lang["selected_vertex_settings"] = "Gewählte Knoten";

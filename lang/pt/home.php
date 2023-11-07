@@ -120,6 +120,7 @@
     $g_lang["curve_edge"] = "Curvar aresta";
     $g_lang["undo"] = "Desfazer";
     $g_lang["opensource_message"] = "Nosso projeto agora é open source. Mais detalhes...";
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
     $g_lang["settings"] = "Configurações";
     $g_lang["common_vertex_settings"] = "Vértices em comum";
     $g_lang["selected_vertex_settings"] = "Vértices selecionados";

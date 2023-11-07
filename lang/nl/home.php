@@ -120,6 +120,7 @@
     $g_lang["curve_edge"] = "Gebogen lijn";
     $g_lang["undo"] = "Ongedaan maken";
     $g_lang["opensource_message"] = "Ons project is nu open source. Voor meer details klik hier.";
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
     $g_lang["settings"] = "Instellingen";
     $g_lang["common_vertex_settings"] = "Standaard knopen";
     $g_lang["selected_vertex_settings"] = "Geselecteerde knopen";

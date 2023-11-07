@@ -146,6 +146,8 @@
 
     $g_lang["opensource_message"] = "Το πρότζεκτ είναι ανοιχτού κώδικα. Περισσότερες λεπτομέρειες...";
 
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
+
     $g_lang["settings"] = "Ρυθμίσεις";
     $g_lang["common_vertex_settings"]   = "Στύλ κορυφών";
     $g_lang["selected_vertex_settings"] = "Στύλ επιλεγμένων κορυφών";

@@ -145,6 +145,8 @@
 
     $g_lang["opensource_message"] = "我们的项目目前已经开. 更多细节...";
 
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
+
     $g_lang["settings"] = "Settings";
     $g_lang["common_vertex_settings"]   = "常规顶点";
     $g_lang["selected_vertex_settings"] = "选择顶点";

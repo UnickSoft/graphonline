@@ -12,7 +12,7 @@
     define('DOMAIN_COOKIE', '');
 
     // Массив языков сайта
-    define('DEF_LANG', 'en');
+    define('DEF_LANG', 'ru');
     $g_arrLangs = array(
                           'en' => array('name' => 'English'),
                           'ru' => array('name' => 'Русский'),

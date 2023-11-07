@@ -122,6 +122,7 @@
     $g_lang["curve_edge"] = "Arête courbe";
     $g_lang["undo"] = "Annuler";
     $g_lang["opensource_message"] = "Notre projet est maintenant open source. Plus de details...";
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
     $g_lang["settings"] = "Réglages";
     $g_lang["common_vertex_settings"] = "Sommet ordinaire";
     $g_lang["selected_vertex_settings"] = "Sommet sélectionné";

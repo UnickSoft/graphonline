@@ -124,6 +124,7 @@
     $g_lang["curve_edge"] = "Bågböj";
     $g_lang["undo"] = "Annullera";
     $g_lang["opensource_message"] = "Vårt projekt har blivit ett öppen källkodsprojekt. Mer information";
+    $g_lang["we_are_improving"] = "We are improving Graphonline, if you faced with any problem please let us know: admin@graphonline.ru";
     $g_lang["settings"] = "Inställningar";
     $g_lang["common_vertex_settings"] = "Vanliga noder";
     $g_lang["selected_vertex_settings"] = "Valda hörn";
