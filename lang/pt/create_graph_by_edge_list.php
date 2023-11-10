@@ -1,19 +1,19 @@
 <?php
 
-    $g_lang['head_no_tags'] = 'Creating graph by Edge List';
-    $g_lang['text'] = '<p>On this page you can enter&nbsp;edge list and plot graph</p>';
-    $g_lang['pair_description'] = 'Enter edge list. Each edge should be placed on a new line. Use "<b>-</b>" as separator between vertices. E.g. <b>1-2</b>. <small>Read about extended format below.</small>';    
-    $g_lang['plot_graph_button'] = 'Plot graph';
-    $g_lang['pair_bad_format'] = 'Edge list format is incorrect. Format of edge should be like: vertex1-vertex2. <small>Read about extension format below.</small>';
-    $g_lang['ex_pair_format'] = "Extended format";
-    $g_lang['ex_pair_forma_description'] ="Using extended format you may set up directed and weighted edges. Разные варианты использования:
+    $g_lang['head_no_tags'] = 'Criar um grafo a partir de uma Lista de Arestas';
+    $g_lang['text'] = '<p>Nesta página você pode criar uma&nbsp;lista de arestas e desenhar o grafo</p>';
+    $g_lang['pair_description'] = 'Criar lista de arestas. Cada aresta deve ser colocada em uma nova linha. Use "<b>-</b>" como separados entre os vértices. E.g. <b>1-2</b>. <small>Leia sobre formato estendido abaixo.</small>';    
+    $g_lang['plot_graph_button'] = 'Representação gráfica';
+    $g_lang['pair_bad_format'] = 'O formato de Lista de Arestas está incorreto. O formato da aresta deve ser: vértice1-vértice2. <small>Leia sobre formato de extensão abaixo.</small>';
+    $g_lang['ex_pair_format'] = "Formato estendido";
+    $g_lang['ex_pair_forma_description'] = "Utilizando o formato estendido você pode definir arestas direcionadas e/ou valoradas. Exemplos de uso:
         <ul>
-            <li><b>a-b</b> - edge between <b>a</b> and <b>b</b>.</li>                                
-            <li><b>a>b</b> - directed edge from <b>a</b> to <b>b</b>.</li>
-            <li><b>a&lt;b</b> - directed edge from <b>a</b> to <b>b</b>. </li>
-            <li><b>a-(8)-b</b> - weighted edge between <b>a</b> and <b>b</b> with weigth <b>8</b>.</li>
-            <li><b>a-(3.5)>b</b> - directed edge from <b>a</b> to <b>b</b> with weight <b>3.5</b>.</li>
-            <li><b>a<(1)-b</b> - directed edge from <b>b</b> to <b>a</b> with weight <b>1</b>.</li>
+            <li><b>a-b</b> - aresta entre <b>a</b> e <b>b</b>.</li>                                
+            <li><b>a>b</b> - aresta direcionada de <b>a</b> a <b>b</b>.</li>
+            <li><b>a&lt;b</b> - aresta direcionada de <b>a</b> a <b>b</b>. </li>
+            <li><b>a-(8)-b</b> - aresta valorada entre <b>a</b> e <b>b</b> com peso <b>8</b>.</li>
+            <li><b>a-(3.5)>b</b> - aresta direcionada de <b>a</b> a <b>b</b> com peso <b>3.5</b>.</li>
+            <li><b>a<(1)-b</b> - aresta direcionada de <b>b</b> a <b>a</b> com peso <b>1</b>.</li>
         </ul>";
-    $g_lang['edge_list'] = 'Edge List';
+    $g_lang['edge_list'] = 'Lista de Arestas';
 ?>
