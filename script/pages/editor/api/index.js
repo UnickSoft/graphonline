@@ -1,7 +1,3 @@
-
-// Global version needs to force reload scripts from server.
-globalVersion = 75;
-
 {
     function onloadEditor() {
         console.log("onload() call");

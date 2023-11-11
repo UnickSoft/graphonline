@@ -46,7 +46,8 @@
                                array('link' => SiteRoot('admin/page_saved_graph'), 'name' => 'Статистика',     'label' => 'Статистика сохранений'),
                                array('link' => SiteRoot('admin/page_example_graph'), 'name' => 'Примеры',     'label' => 'Примеры графов'),
                                array('link' => SiteRoot('admin/page_vote'), 'name' => 'Голосование',     'label' => 'Результаты голосования'),
-                                array('link' => SiteRoot('admin/page_test_graphcgi'), 'name' => 'Тестирование CGI',     'label' => 'Тестирования GraphCGI')
+                               array('link' => SiteRoot('admin/page_test_graphcgi'), 'name' => 'Тестирование CGI',     'label' => 'Тестирования GraphCGI'),
+                               array('link' => SiteRoot('admin/page_update_script_cache'), 'name' => 'Обновить кэш скрипта',     'label' => 'Обновить кэш скрипта')
                            )
             );
 
