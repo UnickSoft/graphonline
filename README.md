@@ -19,13 +19,11 @@ Server side:
 
 1. Download repository to local website folder. It should be placed into root of domen. If you want to run graphonline from subdirectory read "Additional steps to run from subdirectory" below.
 2. Change access rights of directory /tmp (it is actually for Non-Windows system, you should set rwx). PHP scripts should be able to create and to modify files inside it.
-3. Run file from browser: /script/merge.php. It merges all js files into one /script/example.js.
-4. Run file from browser: /cgi-bin/getPluginsList.php?reset. It creates file with list of plug-ins. Just optimization.
-5. Change default root password in file: /core/config/admin_sector.php
+3. Change default root password in file: /core/config/admin_sector.php
 ```
 $g_config['admin_sector']['def_pwd'] = 'rootPass';
 ```
-6. Change password to wiki. Change lines:
+4. Change password to wiki. Change lines:
 ```
 $DefaultPasswords['admin'] = pmcrypt('pas');
 $DefaultPasswords['edit'] = pmcrypt('pas');
@@ -34,7 +32,7 @@ In files:
 /wiki/local/config.php
 /en/wiki/local/config.php
 
-7. Maybe you need to disable autoredirect to https. Comments or remove lines:
+5. Maybe you need to disable autoredirect to https. Comments or remove lines:
 ```
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
@@ -44,7 +42,7 @@ In files:
 /wiki/.htaccess
 /en/wiki/.htaccess
 
-8. Some algorithms (short-path, Eulerian cycle/path and so on) use external modul for algorithm. Currently for desktops it is JS file: script\Graphoffline.Emscripten.js. For mobile phones and tablets we continue using binary CGI file. Binary CGI or Graphoffline.Emscripten.js are built from GraphOffline: https://github.com/UnickSoft/GraphOffline. Binary cgi should be placed to /cgi-bin/GraphCGI.exe or you can take precompiled file(Windows and Mac) from /cgi-bin/GraphOffline/
+6. Some algorithms (short-path, Eulerian cycle/path and so on) use external modul for algorithm. Currently for desktops it is JS file: script\Graphoffline.Emscripten.js. For mobile phones and tablets we continue using binary CGI file. Binary CGI or Graphoffline.Emscripten.js are built from GraphOffline: https://github.com/UnickSoft/GraphOffline. Binary cgi should be placed to /cgi-bin/GraphCGI.exe or you can take precompiled file(Windows and Mac) from /cgi-bin/GraphOffline/
 
 # Additional steps to run from subdirectory:
 
@@ -68,6 +66,11 @@ define('SITE_IN_DIR',   'graph');
 ```
 @fa-font-path:        "/graph/i/fonts/dev/fontawesome";
 ```
+
+# Additional steps if you want to change js scripts from script directory:
+1. We use our own js cache. It is files *.js.cache located in in script/pages. If you remove these cache files the browser will load scripts from source files. You may need to disable browser cache. Or change setting: $g_config['use_js_cache']
+2. If you want to update cache use this admin page: /admin/page_update_script_cache. Just click to all links and wait until the cache will be updated.
+3. If you change cache files and you want browsers to redownload script cache incripent number in setting $g_config['engine_version'].
 
 # Fix problems
 
