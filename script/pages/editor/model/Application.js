@@ -5,9 +5,10 @@
  
 var globalApplication = null;
  
-function Application(document, window)
+function Application(document, window, listener)
 {
     this.document = document;
+    this.listener = listener;
     this.canvas  = this.document.getElementById('canvas');
     this.handler = new DefaultHandler(this);
     this.savedGraphName = "";
@@ -20,10 +21,15 @@ function Application(document, window)
     this.renderPathLength  = 0;
     this.renderPathCounter = 0;
     this.renderPathLoops = 0;
-    this.enumVerticesTextList = [new BaseEnumVertices(this, 1), new BaseEnumVertices(this, 0), new TextEnumVertices(this), new TextEnumVerticesCyr(this), new TextEnumVerticesGreek(this), new TextEnumVerticesCustom(this)];
+    this.enumVerticesTextList = [new BaseEnumVertices(this, 1), 
+        new BaseEnumVertices(this, 0), 
+        new TextEnumVertices(this), 
+        new TextEnumVerticesCyr(this), 
+        new TextEnumVerticesGreek(this), 
+        new TextEnumVerticesCustom(this)];
+
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
-    this.userAction = function(){};
     this.undoStack  = [];
     
     this.edgeCommonStyle         = new CommonEdgeStyle();
@@ -816,12 +822,12 @@ Application.prototype.onPostLoadEvent = function()
     {   
 	    if (!this.SetAdjacencyMatrixSmart(matrix, separator))
 	    {
-           this.userAction("AdjacencyMatrix.Failed");
-		   this.ShowAdjacencyMatrixErrorDialog(matrix);
+           userAction("AdjacencyMatrix.Failed");
+		   this.listener.ShowAdjacencyMatrixErrorDialog(matrix);
 	    }
         else
         {
-           this.userAction("AdjacencyMatrix.Success");
+           userAction("AdjacencyMatrix.Success");
         }
 
     	this.updateMessage();
@@ -836,12 +842,12 @@ Application.prototype.onPostLoadEvent = function()
     {    
 	    if (!this.SetIncidenceMatrixSmart(matrix))
 	    {
-            this.userAction("IncidenceMatrix.Failed");
-		    this.ShowIncidenceMatrixErrorDialog(matrix);
+            userAction("IncidenceMatrix.Failed");
+		    this.listener.ShowIncidenceMatrixErrorDialog(matrix);
 	    }
         else
         {
-            this.userAction("IncidenceMatrix.Success");
+            userAction("IncidenceMatrix.Success");
         }
 
     	this.updateMessage();
@@ -858,12 +864,12 @@ Application.prototype.onPostLoadEvent = function()
 
 	    if (!this.SetPairSmart(pairs))
 	    {
-            this.userAction("Pair.Failed");
-		    this.ShowPairErrorDialog(pairs);
+            userAction("Pair.Failed");
+		    this.listener.ShowPairErrorDialog(pairs);
 	    }
         else
         {
-            this.userAction("Pair.Success");
+            userAction("Pair.Success");
         }
 
     	this.updateMessage();
@@ -881,7 +887,7 @@ Application.prototype.onPostLoadEvent = function()
                           
        	if (graphName.length > 0)
 	    {
-            this.userAction("LoadGraphFromDisk");
+            userAction("LoadGraphFromDisk");
     		this.LoadGraphFromDisk(graphName);
 	    }
     }
@@ -1023,16 +1029,16 @@ Application.prototype.SetAdjacencyMatrixSmart = function (matrix, separator)
     
 	var res = false;
 	if (this.TestAdjacencyMatrix(matrix, {}, {}, separator))
-        {
-    		res = this.SetAdjacencyMatrix(matrix, separator);
+    {
+    	res = this.SetAdjacencyMatrix(matrix, separator);
 	}
-        else if (this.TestIncidenceMatrix(matrix, {}, {}))
+    else if (this.TestIncidenceMatrix(matrix, {}, {}))
 	{
-    		res = this.SetIncidenceMatrix(matrix);
-        }
+    	res = this.SetIncidenceMatrix(matrix);
+    }
 	else
 	{
-    		res = this.SetAdjacencyMatrix(matrix);
+    	res = this.SetAdjacencyMatrix(matrix);
 	}
 	return res;
 }
@@ -1264,7 +1270,7 @@ Application.prototype.GetGraphName = function()
 
 Application.prototype.SetDefaultHandler = function()
 {
-	restButtons ('Default');
+	this.listener.restButtons ('Default');
 	this.SetHandlerMode("default");
 }
 
@@ -1299,86 +1305,7 @@ Application.prototype.SetEnumVerticesType = function(value)
 	}
 
 }
-
-
-Application.prototype.ShowAdjacencyMatrixErrorDialog = function(matrix)
-{
-	var dialogButtons = {};
-
-	matrixRes = matrix.replace(/\n/g,'%0A');
-	dialogButtons[g_readMatrixHelp] = function() {
-			window.location.assign(g_language == "ru" ? "./wiki/Справка/МатрицаСмежности#matrixFormat" : "./wiki/Help/AdjacencyMatrix#matrixFormat");
-		};
-	dialogButtons[g_fixMatrix] = function() {
-			window.location.assign("./create_graph_by_matrix?matrix=" + matrixRes);
-		};
-	dialogButtons[g_close] = function() {
-			$( this ).dialog( "close" );					
-		}; 
-
-	$( "#matrixError" ).dialog({
-		resizable: false,
-		title: g_matrixWrongFormat,
-		width: 400,
-		modal: true,
-		dialogClass: 'EdgeDialog',
-		buttons: dialogButtons,
-	});
-}
-
-Application.prototype.ShowIncidenceMatrixErrorDialog = function(matrix)
-{
-	var dialogButtons = {};
-
-	matrixRes = matrix.replace(/\n/g,'%0A');
-	dialogButtons[g_readMatrixHelp] = function() {
-			window.location.assign(g_language == "ru" ? "./wiki/Справка/МатрицаИнцидентности#matrixFormat" : "./wiki/Help/IncidenceMatrix#matrixFormat");
-		};
-	dialogButtons[g_fixMatrix] = function() {
-			window.location.assign("./create_graph_by_incidence_matrix?incidenceMatrix=" + matrixRes);
-		};
-	dialogButtons[g_close] = function() {
-			$( this ).dialog( "close" );					
-		}; 
-
-	$( "#matrixErrorInc" ).dialog({
-		resizable: false,
-		title: g_matrixWrongFormat,
-		width: 400,
-		modal: true,
-		dialogClass: 'EdgeDialog',
-		buttons: dialogButtons,
-	});
-}
-
-Application.prototype.ShowPairErrorDialog = function(pair)
-{
-	var dialogButtons = {};
-
-	pair = pair.replaceAll(/\n/g,'%0A');
-    pair = pair.replaceAll('>', '&gt;');
-    pair = pair.replaceAll('<', '&lt;');
-
-	dialogButtons[g_readMatrixHelp] = function() {
-			window.location.assign(g_language == "ru" ? "./wiki/Справка/СписокРебер" : "./wiki/Help/EdgeList");
-		};
-	dialogButtons[g_fix] = function() {
-			window.location.assign("./create_graph_by_edge_list?pair=" + pair);
-		};
-	dialogButtons[g_close] = function() {
-			$( this ).dialog( "close" );					
-		}; 
-
-	$( "#pairErrorInc" ).dialog({
-		resizable: false,
-		title: g_pairWrongFormat,
-		width: 400,
-		modal: true,
-		dialogClass: 'EdgeDialog',
-		buttons: dialogButtons,
-	});
-}
-                          
+                         
 Application.prototype.SetFindPathReport = function (value)
 {
     this.findPathReport = value;

@@ -1,5 +1,5 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=75","/script/entities/graph/api/index.js?v=75","/script/shared/point.js?v=75","/script/entities/edge/api/index.js?v=75","/script/entities/edge/model/BaseEdge.js?v=75","/script/entities/edge/model/EdgeModel.js?v=75","/script/entities/vertex/api/index.js?v=75","/script/entities/vertex/model/BaseVertex.js?v=75","/script/entities/vertex/model/VertexModel.js?v=75","/script/entities/graph/model/Graph.js?v=75","/script/features/draw_graph/api/index.js?v=75","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=75","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=75","/script/features/draw_graph/model/BaseVertexDrawer.js?v=75","/script/features/algorithms/api/index.js?v=75","/script/features/algorithms/model/Algorithms.js?v=75","/script/features/algorithms/model/BaseTraversal.js?v=75","/script/features/base_handler/index.js?v=75","/script/features/default_handler/index.js?v=75","/script/features/add_vertices_handler/index.js?v=75","/script/features/connect_vertices_handler/index.js?v=75","/script/features/delete_objects_handler/index.js?v=75","/script/features/algorithm_handler/index.js?v=75","/script/features/serialization/api/index.js?v=75","/script/features/serialization/model/GraphMLCreator.js?v=75","/script/features/enum_vertices/EnumVertices.js?v=75","/script/pages/editor/model/texts.js?v=75","/script/pages/editor/model/Application.js?v=75","/script/pages/editor/ui/main.js?v=75",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);preLoadPage();postLoadPage();}
-let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/Application.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=75","/script/entities/graph/api/index.js?v=75","/script/shared/point.js?v=75","/script/entities/edge/api/index.js?v=75","/script/entities/edge/model/BaseEdge.js?v=75","/script/entities/edge/model/EdgeModel.js?v=75","/script/entities/vertex/api/index.js?v=75","/script/entities/vertex/model/BaseVertex.js?v=75","/script/entities/vertex/model/VertexModel.js?v=75","/script/entities/graph/model/Graph.js?v=75","/script/features/draw_graph/api/index.js?v=75","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=75","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=75","/script/features/draw_graph/model/BaseVertexDrawer.js?v=75","/script/features/algorithms/api/index.js?v=75","/script/features/algorithms/model/Algorithms.js?v=75","/script/features/algorithms/model/BaseTraversal.js?v=75","/script/features/base_handler/index.js?v=75","/script/features/default_handler/index.js?v=75","/script/features/add_vertices_handler/index.js?v=75","/script/features/connect_vertices_handler/index.js?v=75","/script/features/delete_objects_handler/index.js?v=75","/script/features/algorithm_handler/index.js?v=75","/script/features/serialization/api/index.js?v=75","/script/features/serialization/model/GraphMLCreator.js?v=75","/script/features/enum_vertices/EnumVertices.js?v=75","/script/pages/editor/model/texts.js?v=75","/script/pages/editor/model/Application.js?v=75","/script/pages/editor/ui/ya_metrika.js?v=75","/script/pages/editor/ui/editor.js?v=75","/script/pages/editor/ui/main.js?v=75",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
 return str;return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
@@ -11,6 +11,7 @@ function FullObjectCopy(obj)
 function FullArrayCopy(arr)
 {var res=[];arr.forEach(function(element){var copyElement=FullObjectCopy(element);res.push(copyElement);});return res;}
 function formatString(string,params){return string.replace(/{(\d+)}/g,(match,index)=>{return typeof params[index]!=='undefined'?params[index]:match;});}
+Array.prototype.swap=function(x,y){var b=this[x];this[x]=this[y];this[y]=b;return this;}
 {let modulDir="entities/graph/";doInclude([include("shared/point.js"),include("entities/edge/api/index.js"),include("entities/vertex/api/index.js"),include("model/Graph.js",modulDir)])}function Point(x,y){this.x=x||0;this.y=y||0;};Point.prototype.x=null;Point.prototype.y=null;Point.prototype.add=function(v){return new Point(this.x+v.x,this.y+v.y);};Point.prototype.addValue=function(v){return new Point(this.x+v,this.y+v);};Point.prototype.clone=function(){return new Point(this.x,this.y);};Point.prototype.degreesTo=function(v){var dx=this.x-v.x;var dy=this.y-v.y;var angle=Math.atan2(dy,dx);return angle*(180/Math.PI);};Point.prototype.distance=function(v){return Math.sqrt(this.distanceSqr(v));};Point.prototype.distanceSqr=function(v){var x=this.x-v.x;var y=this.y-v.y;return x*x+y*y;};Point.prototype.equals=function(toCompare){return this.x==toCompare.x&&this.y==toCompare.y;};Point.prototype.interpolate=function(v,f){return new Point((this.x+v.x)*f,(this.y+v.y)*f);};Point.prototype.length=function(){return Math.sqrt(this.x*this.x+this.y*this.y);};Point.prototype.normalize=function(thickness){var l=this.length();this.x=this.x/l*thickness;this.y=this.y/l*thickness;return new Point(this.x,this.y);};Point.prototype.normalizeCopy=function(thickness){var l=this.length();return new Point(this.x/l*thickness,this.y/l*thickness);};Point.prototype.orbit=function(origin,arcWidth,arcHeight,degrees){var radians=degrees*(Math.PI/180);this.x=origin.x+arcWidth*Math.cos(radians);this.y=origin.y+arcHeight*Math.sin(radians);};Point.prototype.rotate=function(center,degrees){var radians=degrees*(Math.PI/180);offset=this.subtract(center);this.x=offset.x*Math.cos(radians)-offset.y*Math.sin(radians);this.y=offset.x*Math.sin(radians)+offset.y*Math.cos(radians);this.x=this.x+center.x;this.y=this.y+center.y;return this;};Point.prototype.offset=function(dx,dy){this.x+=dx;this.y+=dy;};Point.prototype.subtract=function(v){return new Point(this.x-v.x,this.y-v.y);};Point.prototype.subtractValue=function(value){return new Point(this.x-value,this.y-value);};Point.prototype.multiply=function(value){return new Point(this.x*value,this.y*value);};Point.prototype.toString=function(){return"(x="+this.x+", y="+this.y+")";};Point.prototype.normal=function(){return new Point(-this.y,this.x);};Point.prototype.min=function(point)
 {return new Point(Math.min(this.x,point.x),Math.min(this.y,point.y));};Point.prototype.max=function(point)
 {return new Point(Math.max(this.x,point.x),Math.max(this.y,point.y));};Point.prototype.inverse=function()
@@ -1320,8 +1321,8 @@ var g_findLongestPath="Find the longest path";var g_LengthOfLongestPathFrom="Len
 {g_textsSelectAndMove=document.getElementById("SelectAndMoveObject").innerHTML;g_moveCursorForMoving=document.getElementById("MoveCursorForMoving").innerHTML;g_clickToAddVertex=document.getElementById("clickToAddVertex").innerHTML;g_selectFirstVertexToConnect=document.getElementById("selectFisrtVertextToConnect").innerHTML;g_selectSecondVertexToConnect=document.getElementById("selectSecondVertextToConnect").innerHTML;g_selectStartVertexForShortPath=document.getElementById("selectStartShortPathVertex").innerHTML;g_selectFinishVertexForShortPath=document.getElementById("selectFinishShortPathVertex").innerHTML;g_shortestPathResult=document.getElementById("shortPathResult").innerHTML;g_pathNotExists=document.getElementById("pathNotExists").innerHTML;g_selectObjectToDelete=document.getElementById("selectObjectToDelete").innerHTML;g_addEdge=document.getElementById("AddEdge").innerHTML;g_orintEdge=document.getElementById("OrintEdge").innerHTML;g_notOrintEdge=document.getElementById("NotOrintdge").innerHTML;g_adjacencyMatrixText=document.getElementById("AdjacencyMatrixText").innerHTML;g_save=document.getElementById("Save").innerHTML;g_cancel=document.getElementById("Cancel").innerHTML;g_shortestDistance=document.getElementById("shortestDist").innerHTML;g_incidenceMatrixText=document.getElementById("IncidenceMatrixText").innerHTML;g_save_dialog=document.getElementById("saveDialogTitle").innerHTML;g_close=document.getElementById("closeButton").innerHTML;g_sickConnectedComponent=document.getElementById("sickConnectedComponentResult").innerHTML;g_connectedComponent=document.getElementById("connectedComponentResult").innerHTML;g_what_do_you_think=document.getElementById("whatDoYouThink").innerHTML;g_name=document.getElementById("name").innerHTML;g_feedback=document.getElementById("feedback").innerHTML;g_send=document.getElementById("send").innerHTML;g_write_to_us=document.getElementById("writeToUs").innerHTML;g_fixMatrix=document.getElementById("fixMatrixButton").innerHTML;g_readMatrixHelp=document.getElementById("matrixHelp").innerHTML;g_matrixWrongFormat=document.getElementById("wronMatrixTitle").innerHTML;g_save_image_dialog=document.getElementById("saveImageDialogTitle").innerHTML;g_fullReport=document.getElementById("fullReport").innerHTML;g_shortReport=document.getElementById("shortReport").innerHTML;g_hasEulerianLoop=document.getElementById("hasEulerianLoop").innerHTML;g_hasNotEulerianLoop=document.getElementById("hasNotEulerianLoop").innerHTML;g_processing=document.getElementById("processing").innerHTML;g_customEnumVertex=document.getElementById("customEnumVertex").innerHTML;g_addVertex=document.getElementById("addVertexText").innerHTML;g_renameVertex=document.getElementById("renameVertex").innerHTML;g_rename=document.getElementById("renameText").innerHTML;g_language=document.getElementById("currentLanguage").innerHTML;g_editWeight=document.getElementById("editWeight").innerHTML;g_noWeight=document.getElementById("noWeight").innerHTML;g_groupRename=document.getElementById("groupeRenameText").innerHTML;g_vote=document.getElementById("voteText").innerHTML;g_recommendAlgorithm=document.getElementById("recommend_algorithm").innerHTML;g_hasEulerianPath=document.getElementById("hasEulerianPath").innerHTML;g_hasNotEulerianPath=document.getElementById("hasNotEulerianPath").innerHTML;g_graphOfMinDist=document.getElementById("graphOfMinDist").innerHTML;g_checkToSave=document.getElementById("checkToSave").innerHTML;g_showDistMatrix=document.getElementById("showDistMatrix").innerHTML;g_minDistMatrixText=document.getElementById("distMatrixText").innerHTML;g_selectStartVertexForMaxFlow=document.getElementById("selectStartVertexForMaxFlow").innerHTML;g_selectFinishVertexForMaxFlow=document.getElementById("selectFinishVertexForMaxFlow").innerHTML;g_maxFlowResult=document.getElementById("maxFlowResult").innerHTML;g_flowNotExists=document.getElementById("flowNotExists").innerHTML;g_sourceVertex=document.getElementById("sourceVertex").innerHTML;g_sinkVertex=document.getElementById("sinkVertex").innerHTML;g_hasHamiltonianLoop=document.getElementById("hasHamiltonianLoop").innerHTML;g_hasNotHamiltonianLoop=document.getElementById("hasNotHamiltonianLoop").innerHTML;g_hasHamiltonianPath=document.getElementById("hasHamiltonianPath").innerHTML;g_hasNotHamiltonianPath=document.getElementById("hasNotHamiltonianPath").innerHTML;g_startTraversal=document.getElementById("startTraversal").innerHTML;g_traversalOrder=document.getElementById("traversalOrder").innerHTML;g_curveEdge=document.getElementById("curveEdge").innerHTML;g_Undo=document.getElementById("undoTranslate").innerHTML;g_save_graph=document.getElementById("saveGraph").innerHTML;g_default=document.getElementById("default").innerHTML;g_vertexDraw=document.getElementById("vertexDrawStyle").innerHTML;g_edgeDraw=document.getElementById("edgeDrawStyle").innerHTML;g_backgroundStyle=document.getElementById("backgroundStyle").innerHTML;g_GraphIsMultiMessage=document.getElementById("graphIsMultiMessage").innerHTML;g_GraphIsGeneralMessage=document.getElementById("graphIsGeneralMessage").innerHTML;g_DefaultWeightPreset=document.getElementById("defaultWeightPreset").innerHTML;var isMac=navigator.platform.toUpperCase().indexOf('MAC')>=0;if(isMac)
 g_selectGroupText=document.getElementById("selectGroupMac").innerHTML;else
 g_selectGroupText=document.getElementById("selectGroupWin").innerHTML;g_dragGroupText=document.getElementById("dragSelectedGroup").innerHTML;g_copyGroupeButton=document.getElementById("copySelectedGroup").innerHTML;g_removeGroupeButton=document.getElementById("removeSelectedGroup").innerHTML;g_BFSName=document.getElementById("BFSName").innerHTML;g_ColoringName=document.getElementById("ColoringName").innerHTML;g_findConnectedComponent=document.getElementById("findConnectedComponent").innerHTML;g_DFSName=document.getElementById("DFSName").innerHTML;g_EulerinLoopName=document.getElementById("EulerinLoopName").innerHTML;g_EulerinPath=document.getElementById("EulerinPath").innerHTML;g_FloidName=document.getElementById("FloidName").innerHTML;g_GraphReorder=document.getElementById("GraphReorder").innerHTML;g_HamiltoianCycleName=document.getElementById("HamiltoianCycleName").innerHTML;g_HamiltonianPath=document.getElementById("HamiltonianPath").innerHTML;g_MaxFlowName=document.getElementById("MaxFlowName").innerHTML;g_minimumSpanningTree=document.getElementById("minimumSpanningTree").innerHTML;g_modernGraphStyleName=document.getElementById("modernGraphStyleName").innerHTML;g_RadiusAndDiameter=document.getElementById("RadiusAndDiameter").innerHTML;g_findShortPathName=document.getElementById("findShortPathName").innerHTML;g_VerticesDegreeName=document.getElementById("VerticesDegreeName").innerHTML;g_SpanningTreeResult=document.getElementById("MinSpanningTreeResult").innerHTML;g_SpanningTreeIgnoreDir=document.getElementById("MinSpanningIgnoreDir").innerHTML;g_SpanningTreeNotConnected=document.getElementById("MinSpanningNotConnected").innerHTML;g_selectFirstGraphIsomorphismCheck=document.getElementById("SelectFirstGraphIsomorphismCheck").innerHTML;g_selectSecondGraphIsomorphismCheck=document.getElementById("SelectSecondGraphIsomorphismCheck").innerHTML;g_selectFirstGraphPatternCheck=document.getElementById("SelectFirstGraphPatternCheck").innerHTML;g_selectSecondGraphForSearchSubgraph=document.getElementById("SelectSecondGraphForSearchSubgraph").innerHTML;g_graphsIsomorph=document.getElementById("GraphsIsomorph").innerHTML;g_graphsNotIsomorph=document.getElementById("GraphsNotIsomorph").innerHTML;g_numberOfIsomorphSubgraphIs=document.getElementById("NumberOfIsomorphSubgraphIs").innerHTML;g_graphHasNoIsomorphSubgraph=document.getElementById("GraphHasNoIsomorphSubgraph").innerHTML;g_searchIsomorphSubgraph=document.getElementById("SearchIsomorphSubgraph").innerHTML;g_subgraphNo=document.getElementById("SubgraphNo").innerHTML;g_graphHasNoAtleast2Graphs=document.getElementById("GraphHasNoAtleast2Graphs").innerHTML;g_IsomorphismCheck=document.getElementById("IsomorphismCheck").innerHTML;g_graphIsDisconnected=document.getElementById("GraphIsDisconnected").innerHTML;g_graphIsTrivial=document.getElementById("GraphIsTrivial").innerHTML;g_graphRadius=document.getElementById("GraphRadius").innerHTML;g_graphDiameter=document.getElementById("GraphDiameter").innerHTML;g_vertexCentral=document.getElementById("VertexCentral").innerHTML;g_vertexPeripheral=document.getElementById("VertexPeripheral").innerHTML;g_maximumDegreeOfGraph=document.getElementById("MaximumDegreeOfGraph").innerHTML;g_colorNumber=document.getElementById("ColorNumber").innerHTML;g_done=document.getElementById("Done").innerHTML;g_action=document.getElementById("ActionText").innerHTML;g_commonEdgeStyle=document.getElementById("CommonEdgeStyleText").innerHTML;g_selectedEdgeStyle=document.getElementById("SelectedEdgeStyleText").innerHTML;g_commonVertexStyle=document.getElementById("CommonVertexStyleText").innerHTML;g_selectedVertexStyle=document.getElementById("SelectedVertexStyleText").innerHTML;g_findAllPathes=document.getElementById("FindAllPathes").innerHTML;g_numberOfPathesFrom=document.getElementById("NumberOfPathesFrom").innerHTML;g_to=document.getElementById("To").innerHTML;g_are=document.getElementById("Are").innerHTML;g_pathN=document.getElementById("PathN").innerHTML;g_selectFinishVertex=document.getElementById("SelectFinishVertex").innerHTML;g_selectStartVertex=document.getElementById("SelectStartVertex").innerHTML;g_findAllPathesFromVertex=document.getElementById("findAllPathsFromVertex").innerHTML;g_distanceFrom=document.getElementById("distanceFrom").innerHTML;g_pathTo=document.getElementById("pathTo").innerHTML;g_useContextMenuText=document.getElementById("UseContextMenuText").innerHTML;g_findLongestPath=document.getElementById("findLongestPath").innerHTML;g_LengthOfLongestPathFrom=document.getElementById("LengthOfLongestPathFrom").innerHTML;g_additionalActions=document.getElementById("additionlActions").innerHTML;g_reverseAllEdges=document.getElementById("reverseAllEdges").innerHTML;g_makeAllUndirected=document.getElementById("makeAllUndirected").innerHTML;g_makeAllDirected=document.getElementById("makeAllDirected").innerHTML;g_pairWrongFormat=document.getElementById("pairWrongFormat").innerHTML;g_fix=document.getElementById("fixButton").innerHTML;g_reuseSavedEdge=document.getElementById("reuseSavedEdge").innerHTML;g_MaxClique=document.getElementById("maxClique").innerHTML;g_MaxCliqueNotFound=document.getElementById("maxCliqueNotFound").innerHTML;g_MaxCliqueSizeIs=document.getElementById("maxCliqueSizeIs").innerHTML;g_MaxCliqueContains=document.getElementById("maxCliqueContains").innerHTML;g_wrongImageFormatPNGAndJPEG=document.getElementById("wrongImageFormatPNGAndJPEG").innerHTML;g_wrongImageSizeP1=document.getElementById("wrongImageSizeP1").innerHTML;}
-var globalApplication=null;function Application(document,window)
-{this.document=document;this.canvas=this.document.getElementById('canvas');this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.SetDefaultTransformations();this.algorithmsValues={};this.userAction=function(){};this.undoStack=[];this.edgeCommonStyle=new CommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.edgePrintCommonStyle=new CommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexCommonStyle=new CommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.vertexPrintCommonStyle=new CommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundCommonStyle=new CommonBackgroundStyle();this.backgroundPrintStyle=new PrintBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.getMousePos=function(canvas,e)
+var globalApplication=null;function Application(document,window,listener)
+{this.document=document;this.listener=listener;this.canvas=this.document.getElementById('canvas');this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.SetDefaultTransformations();this.algorithmsValues={};this.undoStack=[];this.edgeCommonStyle=new CommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.edgePrintCommonStyle=new CommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexCommonStyle=new CommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.vertexPrintCommonStyle=new CommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundCommonStyle=new CommonBackgroundStyle();this.backgroundPrintStyle=new PrintBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.getMousePos=function(canvas,e)
 {var rect=canvas.getBoundingClientRect();return{x:(e.clientX-rect.left)/this.canvasScale-this.canvasPosition.x,y:(e.clientY-rect.top)/this.canvasScale-this.canvasPosition.y};}
 Application.prototype.redrawGraph=function()
 {if(!this.isTimerRender)
@@ -1534,27 +1535,27 @@ Application.prototype.getParameterByName=function(name)
 Application.prototype.onPostLoadEvent=function()
 {this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/,"$1"));var wasLoad=false;var matrix=document.getElementById("inputMatrix").innerHTML;var separator=document.getElementById("separator").innerHTML=="space"?" ":",";console.log(matrix);console.log("separator: \""+separator+"\"");matrix=(matrix.length<=0)?this.getParameterByName("matrix"):matrix;if(matrix.length>0)
 {if(!this.SetAdjacencyMatrixSmart(matrix,separator))
-{this.userAction("AdjacencyMatrix.Failed");this.ShowAdjacencyMatrixErrorDialog(matrix);}
+{userAction("AdjacencyMatrix.Failed");this.listener.ShowAdjacencyMatrixErrorDialog(matrix);}
 else
-{this.userAction("AdjacencyMatrix.Success");}
+{userAction("AdjacencyMatrix.Success");}
 this.updateMessage();this.redrawGraph();wasLoad=true;}
 var matrix=document.getElementById("inputIncidenceMatrix").innerHTML;matrix=(matrix.length<=0)?this.getParameterByName("incidenceMatrix"):matrix;if(matrix.length>0)
 {if(!this.SetIncidenceMatrixSmart(matrix))
-{this.userAction("IncidenceMatrix.Failed");this.ShowIncidenceMatrixErrorDialog(matrix);}
+{userAction("IncidenceMatrix.Failed");this.listener.ShowIncidenceMatrixErrorDialog(matrix);}
 else
-{this.userAction("IncidenceMatrix.Success");}
+{userAction("IncidenceMatrix.Success");}
 this.updateMessage();this.redrawGraph();wasLoad=true;}
 var pairs=document.getElementById("inputPair").innerHTML;if(pairs.length>0)
 {pairs=pairs.replaceAll('&gt;','>');pairs=pairs.replaceAll('&lt;','<');if(!this.SetPairSmart(pairs))
-{this.userAction("Pair.Failed");this.ShowPairErrorDialog(pairs);}
+{userAction("Pair.Failed");this.listener.ShowPairErrorDialog(pairs);}
 else
-{this.userAction("Pair.Success");}
+{userAction("Pair.Success");}
 this.updateMessage();this.redrawGraph();wasLoad=true;}
 if(!wasLoad)
 {var graphName=this.getParameterByName("graph");if(graphName.length<=0)
 {graphName=document.cookie.replace(/(?:(?:^|.*;\s*)graphName\s*\=\s*([^;]*).*$)|^.*$/,"$1");}
 if(graphName.length>0)
-{this.userAction("LoadGraphFromDisk");this.LoadGraphFromDisk(graphName);}}
+{userAction("LoadGraphFromDisk");this.LoadGraphFromDisk(graphName);}}
 if(this.IsUndoStackEmpty())
 document.getElementById('GraphUndo').style.display='none';this.updateMessage();this.redrawGraph();}
 Application.prototype.onLoad=function()
@@ -1651,7 +1652,7 @@ return name;}
 Application.prototype.GetGraphName=function()
 {return this.savedGraphName;}
 Application.prototype.SetDefaultHandler=function()
-{restButtons('Default');this.SetHandlerMode("default");}
+{this.listener.restButtons('Default');this.SetHandlerMode("default");}
 Application.prototype.GetEnumVerticesList=function()
 {var res=[];for(var i=0;i<this.enumVerticesTextList.length;i++)
 {var one={};one["text"]=this.enumVerticesTextList[i].GetText();one["value"]=this.enumVerticesTextList[i].GetValue();one["select"]=this.enumVerticesTextList[i].GetValue()==this.currentEnumVerticesType.GetValue();res.push(one);}
@@ -1660,12 +1661,6 @@ Application.prototype.SetEnumVerticesType=function(value)
 {for(var i=0;i<this.enumVerticesTextList.length;i++)
 {if(this.enumVerticesTextList[i].GetValue()==value)
 {this.currentEnumVerticesType=this.enumVerticesTextList[i];document.cookie="enumType="+value;break;}}}
-Application.prototype.ShowAdjacencyMatrixErrorDialog=function(matrix)
-{var dialogButtons={};matrixRes=matrix.replace(/\n/g,'%0A');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/МатрицаСмежности#matrixFormat":"./wiki/Help/AdjacencyMatrix#matrixFormat");};dialogButtons[g_fixMatrix]=function(){window.location.assign("./create_graph_by_matrix?matrix="+matrixRes);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#matrixError").dialog({resizable:false,title:g_matrixWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
-Application.prototype.ShowIncidenceMatrixErrorDialog=function(matrix)
-{var dialogButtons={};matrixRes=matrix.replace(/\n/g,'%0A');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/МатрицаИнцидентности#matrixFormat":"./wiki/Help/IncidenceMatrix#matrixFormat");};dialogButtons[g_fixMatrix]=function(){window.location.assign("./create_graph_by_incidence_matrix?incidenceMatrix="+matrixRes);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#matrixErrorInc").dialog({resizable:false,title:g_matrixWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
-Application.prototype.ShowPairErrorDialog=function(pair)
-{var dialogButtons={};pair=pair.replaceAll(/\n/g,'%0A');pair=pair.replaceAll('>','&gt;');pair=pair.replaceAll('<','&lt;');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/СписокРебер":"./wiki/Help/EdgeList");};dialogButtons[g_fix]=function(){window.location.assign("./create_graph_by_edge_list?pair="+pair);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#pairErrorInc").dialog({resizable:false,title:g_pairWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
 Application.prototype.SetFindPathReport=function(value)
 {this.findPathReport=value;}
 Application.prototype.GetFindPathReport=function()
@@ -1853,70 +1848,43 @@ Application.prototype.setUseDefaultEdge=function(value)
 {this.useDefaultEdge=value;}
 Application.prototype.getUseDefaultEdge=function()
 {return this.useDefaultEdge;}
-var DisableEmscripten=false;var algorithmsVersion=2;var application=new Application(document,window);var waitCounter=false;var fullscreen=false;var userAction=function(str)
+var waitCounter=false;var userAction=function(str)
 {if(typeof window.yaCounter25827098!=="undefined")
 {console.log(g_language+"/"+str);window.yaCounter25827098.hit(window.location.protocol+"//"+window.location.hostname+(g_language!="ru"?"/"+g_language:"")+"/UserAction#"+str);}
 else if(!waitCounter)
 {waitCounter=true;setTimeout(function()
 {userAction(str);},2000);}}
-var isIe=(navigator.userAgent.toLowerCase().indexOf("msie")!=-1||navigator.userAgent.toLowerCase().indexOf("trident")!=-1);var buttonsList=['AddGraph','ConnectGraphs','DeleteObject','Default'];var g_ctrlPressed=false;function restButtons(me)
-{var needSetDefault=false;for(let i=0;i<buttonsList.length;i++)
-{if(buttonsList[i]!=me)
-{document.getElementById(buttonsList[i]).className="btn btn-default btn-sm";}
-else
-{if(document.getElementById(buttonsList[i]).className!="btn btn-default btn-sm")
-{needSetDefault=true;}}}
-if(needSetDefault)
-{document.getElementById(me).className="btn btn-primary btn-sm";}
-else
-{document.getElementById(me).className="btn btn-primary btn-sm";}}
-var single=0;function resizeCanvas()
-{var adv=document.getElementById('bottom_info');var canvas=document.getElementById('canvas');canvas.width=document.getElementById('canvasSection').offsetWidth;var mainContainer=document.getElementById('mainContainer');var offset=(mainContainer.offsetTop+mainContainer.offsetHeight)-(canvas.offsetTop+canvas.offsetHeight)+($("#footerContent").css("display")==='block'?0:24);canvas.height=$(window).height()-document.getElementById('canvas').offsetTop-(adv&&$("#bottom_info").css("display")==='block'?document.getElementById('bottom_info').offsetHeight:0)-($("#footer").css("display")==='block'?document.getElementById('footer').offsetHeight:0)-offset;application.redrawGraph();}
-function touchHandler(event)
-{var touches=event.changedTouches,first=touches[0],type="";switch(event.type)
-{case"touchstart":type="mousedown";break;case"touchmove":type="mousemove";break;case"touchend":type="mouseup";break;default:return;}
-var simulatedEvent=document.createEvent("MouseEvent");simulatedEvent.initMouseEvent(type,true,true,window,1,first.screenX,first.screenY,first.clientX,first.clientY,false,false,false,false,0,null);first.target.dispatchEvent(simulatedEvent);event.preventDefault();}
-function preLoadPage()
-{loadTexts();application.onLoad();}
-function createAlgorithmMenu()
-{var algorithmBaseId="Algo";var algorithms=application.getAlgorithmNames();var index=0;for(var i=0;i<algorithms.length;i++)
-{algorithm=algorithms[i];var list=document.getElementById("algorithmCategoryElements"+algorithm.category);var item=document.getElementById("algTopic"+algorithm.category);var clone=item.cloneNode(true);var button=clone.getElementsByTagName("button")[0];var textSpan=button.getElementsByTagName("span")[1];button.id=algorithm.id;textSpan.innerHTML=algorithm.name;clone.style.display="block";buttonsList.push(algorithm.id);button.onclick=function(e)
-{e["closeThisMenu"]=true;userAction(this.id);restButtons(this.id);application.SetHandlerMode(this.id);}
-var eventData={};eventData.index=i;eventData.object=clone;eventData.algorithm=algorithm;$("#openAlgorithmList").bind('click',eventData,function(_eventData){var data=_eventData.data;var algorithm=g_Algorithms[g_AlgorithmIds.indexOf(data.algorithm.id)](application.graph,application);if(application.graph.isMulti()&&!algorithm.IsSupportMultiGraph())
-$(data.object).hide();else
-$(data.object).show();});list.insertBefore(clone,document.getElementById("insert"+algorithm.category));index++;}}
-function handelImportGraph(files){var graphFileToLoad=files[0];var fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){var textFromFileLoaded=fileLoadedEvent.target.result;console.log(textFromFileLoaded);application.LoadGraphFromString(textFromFileLoaded);ImportGraphFiles.value="";};fileReader.readAsText(graphFileToLoad,"UTF-8");}
-function postLoadPage()
-{application.userAction=userAction;application.canvas.onmousemove=function(e)
-{return application.CanvasOnMouseMove(e);};application.canvas.onmousedown=function(e)
-{return application.CanvasOnMouseDown(e);};application.canvas.onmouseup=function(e)
-{return application.CanvasOnMouseUp(e);}
-application.canvas.onwheel=function(e)
+var g_ctrlPressed=false;function Editor(document,window){let self=this;this.application=new Application(document,window,self);this.fullscreen=false;this.buttonsList=['AddGraph','ConnectGraphs','DeleteObject','Default'];}
+Editor.prototype.initMouseActions=function(){let self=this;this.application.canvas.onmousemove=function(e)
+{return self.application.CanvasOnMouseMove(e);};this.application.canvas.onmousedown=function(e)
+{return self.application.CanvasOnMouseDown(e);};this.application.canvas.onmouseup=function(e)
+{return self.application.CanvasOnMouseUp(e);}
+this.application.canvas.onwheel=function(e)
 {var e=window.event||e;var delta=Math.max(-1,Math.min(1,(e.wheelDelta||-e.detail)));if(delta>0)
-{application.multCanvasScale(1.3,e);}
+{self.application.multCanvasScale(1.3,e);}
 else
-{application.multCanvasScale(1.0/1.3,e);}}
-function getCharCode(event){if(event.which==null){return event.keyCode;}
+{self.application.multCanvasScale(1.0/1.3,e);}}}
+Editor.prototype.initKeyActions=function(){let self=this;function getCharCode(event){if(event.which==null){return event.keyCode;}
 if(event.which!=0&&event.charCode!=0){return event.which;}
 return null;}
 function getChar(event){return String.fromCharCode(getCharCode(event));}
 function selectHandler(buttonName,handlerName)
-{userAction(buttonName+"_shortcut");restButtons(buttonName);application.SetHandlerMode(handlerName);}
+{userAction(buttonName+"_shortcut");self.restButtons(buttonName);self.application.SetHandlerMode(handlerName);}
 document.onkeypress=function(e)
 {if(event.defaultPrevented||($('#addVertex').hasClass('ui-dialog-content')&&$('#addVertex').dialog('isOpen'))||($('#adjacencyMatrix').hasClass('ui-dialog-content')&&$('#adjacencyMatrix').dialog('isOpen'))||($('#addEdge').hasClass('ui-dialog-content')&&$('#addEdge').dialog('isOpen'))||($('#incidenceMatrix').hasClass('ui-dialog-content')&&$('#incidenceMatrix').dialog('isOpen'))||($('#saveDialog').hasClass('ui-dialog-content')&&$('#saveDialog').dialog('isOpen'))||($('#saveImageDialog').hasClass('ui-dialog-content')&&$('#saveImageDialog').dialog('isOpen'))||($('#GroupRenameDialog').hasClass('ui-dialog-content')&&$('#GroupRenameDialog').dialog('isOpen'))||$('#developerTools').css("display")!="none"||($('#NeedAlgorithm').hasClass('ui-dialog-content')&&$('#NeedAlgorithm').dialog('isOpen')))
 {console.log("prevent");return;}
 var key=getChar(event);var code=getCharCode(event);console.log(key+" code="+code);var evtobj=window.event?event:e;var isCtrl=evtobj?evtobj.ctrlKey:false;var moveValue=10;if(code==61||code==43)
-{application.multCanvasScale(1.5);}
+{self.application.multCanvasScale(1.5);}
 else if(code==45)
-{application.multCanvasScale(1/1.5);}
+{self.application.multCanvasScale(1/1.5);}
 else if(key=='w'||key=='ц')
-{application.onCanvasMove(new Point(0,moveValue));}
+{self.application.onCanvasMove(new Point(0,moveValue));}
 else if(key=='s'||key=='ы')
-{application.onCanvasMove(new Point(0,-moveValue));}
+{self.application.onCanvasMove(new Point(0,-moveValue));}
 else if(key=='a'||key=='ф')
-{application.onCanvasMove(new Point(moveValue,0));}
+{self.application.onCanvasMove(new Point(moveValue,0));}
 else if(key=='d'||key=='в')
-{application.onCanvasMove(new Point(-moveValue,0));}
+{self.application.onCanvasMove(new Point(-moveValue,0));}
 else if(key=='v'||key=='м')
 {selectHandler('AddGraph','addGraph');}
 else if(key=='e'||key=='у')
@@ -1926,70 +1894,72 @@ else if(key=='r'||key=='к')
 else if(key=='m'||key=='ь')
 {selectHandler('Default','default');}
 else if(code==26&&isCtrl)
-{userAction("Key_GraphUndo");application.SetHandlerMode("graphUndo");}}
+{userAction("Key_GraphUndo");self.application.SetHandlerMode("graphUndo");}}
 $(document).keydown(function(event){if(event.which=="17"||event.which=="91")
-g_ctrlPressed=true;});$(document).keyup(function(){g_ctrlPressed=false;});document.getElementById('ShowAdjacencyMatrix').onclick=function()
-{userAction(this.id);application.SetHandlerMode("showAdjacencyMatrix");}
+g_ctrlPressed=true;});$(document).keyup(function(){g_ctrlPressed=false;});}
+Editor.prototype.initButtonActions=function()
+{let self=this;document.getElementById('ShowAdjacencyMatrix').onclick=function()
+{userAction(this.id);self.application.SetHandlerMode("showAdjacencyMatrix");}
 document.getElementById('ShowIncidenceMatrix').onclick=function()
-{userAction(this.id);application.SetHandlerMode("showIncidenceMatrix");}
+{userAction(this.id);self.application.SetHandlerMode("showIncidenceMatrix");}
 document.getElementById('ShowDistanceMatrix').onclick=function()
-{userAction(this.id);application.SetHandlerMode("showDistanceMatrix");}
+{userAction(this.id);self.application.SetHandlerMode("showDistanceMatrix");}
 document.getElementById('GroupRename').onclick=function()
-{userAction(this.id);application.SetHandlerMode("GroupRename");}
+{userAction(this.id);self.application.SetHandlerMode("GroupRename");}
 document.getElementById('groupRenameButton').onclick=function()
-{userAction(this.id);application.SetHandlerMode("GroupRename");}
+{userAction(this.id);self.application.SetHandlerMode("GroupRename");}
 document.getElementById('Default').onclick=function()
-{userAction(this.id);restButtons('Default');application.SetHandlerMode("default");document.getElementById('Default').className="btn btn-primary btn-sm";}
+{userAction(this.id);self.restButtons('Default');self.application.SetHandlerMode("default");document.getElementById('Default').className="btn btn-primary btn-sm";}
 document.getElementById('AddGraph').onclick=function()
-{userAction(this.id);restButtons('AddGraph');application.SetHandlerMode(document.getElementById('AddGraph').className!=""?"addGraph":"default");}
+{userAction(this.id);self.restButtons('AddGraph');self.application.SetHandlerMode(document.getElementById('AddGraph').className!=""?"addGraph":"default");}
 document.getElementById('ConnectGraphs').onclick=function()
-{userAction(this.id);restButtons('ConnectGraphs');application.SetHandlerMode(document.getElementById('ConnectGraphs').className!=""?"addArc":"default");}
+{userAction(this.id);self.restButtons('ConnectGraphs');self.application.SetHandlerMode(document.getElementById('ConnectGraphs').className!=""?"addArc":"default");}
 document.getElementById('DeleteObject').onclick=function()
-{userAction(this.id);restButtons('DeleteObject');application.SetHandlerMode(document.getElementById('DeleteObject').className!=""?"delete":"default");}
+{userAction(this.id);self.restButtons('DeleteObject');self.application.SetHandlerMode(document.getElementById('DeleteObject').className!=""?"delete":"default");}
 document.getElementById('DeleteAll').onclick=function()
-{userAction(this.id);application.SetHandlerMode("deleteAll");}
+{userAction(this.id);self.application.SetHandlerMode("deleteAll");}
 document.getElementById('SaveGraph').onclick=function()
-{userAction(this.id);application.SetHandlerMode("saveDialog");}
+{userAction(this.id);self.application.SetHandlerMode("saveDialog");}
 document.getElementById('NewGraph').onclick=function()
-{userAction(this.id);application.SetHandlerMode("deleteAll");application.SetDefaultTransformations();}
+{userAction(this.id);self.application.SetHandlerMode("deleteAll");self.application.SetDefaultTransformations();}
 document.getElementById('SaveGraphImage').onclick=function()
-{userAction(this.id);application.SetHandlerMode("saveDialogImage");}
+{userAction(this.id);self.application.SetHandlerMode("saveDialogImage");}
 document.getElementById('SaveFullGraphImage').onclick=function()
-{userAction(this.id);application.SetHandlerMode("saveDialogFullImage");}
+{userAction(this.id);self.application.SetHandlerMode("saveDialogFullImage");}
 document.getElementById('SavePrintGraphImage').onclick=function()
-{userAction(this.id);application.SetHandlerMode("savePrintGraphImage");}
+{userAction(this.id);self.application.SetHandlerMode("savePrintGraphImage");}
 document.getElementById('SaveSvgGraphImage').onclick=function()
-{userAction(this.id);application.SetHandlerMode("saveSvgGraphImage");}
+{userAction(this.id);self.application.SetHandlerMode("saveSvgGraphImage");}
 document.getElementById('Zoom100').onclick=function()
-{userAction(this.id);application.setCanvasScale(1.0);}
+{userAction(this.id);self.application.setCanvasScale(1.0);}
 document.getElementById('Zoom50').onclick=function()
-{userAction(this.id);application.setCanvasScale(50/100);}
+{userAction(this.id);self.application.setCanvasScale(50/100);}
 document.getElementById('Zoom25').onclick=function()
-{userAction(this.id);application.setCanvasScale(25/100);}
+{userAction(this.id);self.application.setCanvasScale(25/100);}
 document.getElementById('ZoomFit').onclick=function()
-{userAction(this.id);application.OnAutoAdjustViewport();}
+{userAction(this.id);self.application.OnAutoAdjustViewport();}
 document.getElementById('ZoomIn').onclick=function()
-{userAction(this.id);application.multCanvasScale(1.5);}
+{userAction(this.id);self.application.multCanvasScale(1.5);}
 document.getElementById('ZoomOut').onclick=function()
-{userAction(this.id);application.multCanvasScale(1.0/1.5);}
+{userAction(this.id);self.application.multCanvasScale(1.0/1.5);}
 document.getElementById('MoveWorspace').onclick=function()
-{userAction(this.id);restButtons('Default');application.SetHandlerMode("default");document.getElementById('Default').className="btn btn-primary btn-sm";}
+{userAction(this.id);self.restButtons('Default');self.application.SetHandlerMode("default");document.getElementById('Default').className="btn btn-primary btn-sm";}
 document.getElementById('SetupVertexStyle').onclick=function()
-{userAction(this.id);application.SetHandlerMode("setupVertexStyle");}
+{userAction(this.id);self.application.SetHandlerMode("setupVertexStyle");}
 document.getElementById('SetupVertexStyleSelected').onclick=function()
-{userAction(this.id);application.SetHandlerMode("setupVertexStyleSelected");}
+{userAction(this.id);self.application.SetHandlerMode("setupVertexStyleSelected");}
 document.getElementById('SetupEdgeStyle').onclick=function()
-{userAction(this.id);application.SetHandlerMode("setupEdgeStyle");}
+{userAction(this.id);self.application.SetHandlerMode("setupEdgeStyle");}
 document.getElementById('SetupEdgeStyleSelected').onclick=function()
-{userAction(this.id);application.SetHandlerMode("setupEdgeStyleSelected");}
+{userAction(this.id);self.application.SetHandlerMode("setupEdgeStyleSelected");}
 document.getElementById('SetupBackgroundStyle').onclick=function()
-{userAction(this.id);application.SetHandlerMode("setupBackgroundStyle");}
+{userAction(this.id);self.application.SetHandlerMode("setupBackgroundStyle");}
 document.getElementById('GraphUndo').onclick=function()
-{userAction(this.id);application.SetHandlerMode("graphUndo");}
+{userAction(this.id);self.application.SetHandlerMode("graphUndo");}
 document.getElementById('runUserScript').onclick=function()
 {var el=document.getElementById('userScript');var oldScript=document.getElementById("userScriptSource");if(oldScript)
 {document.head.removeChild(oldScript);}
-var script=document.createElement('script');script.type="text/javascript";script.innerHTML=el.value;script.id="userScriptSource";document.head.appendChild(script);application.SetHandlerMode("user.algorithm");}
+var script=document.createElement('script');script.type="text/javascript";script.innerHTML=el.value;script.id="userScriptSource";document.head.appendChild(script);self.application.SetHandlerMode("user.algorithm");}
 document.getElementById('submitUserScript').onclick=function()
 {var script=document.getElementById('userScript');var data="message="+script.value+"&";$.ajax({type:"POST",url:"/feedback",data:data});$("#sentAlgorithm").dialog({resizable:false,height:"auto",width:400,modal:true,dialogClass:'EdgeDialog'});}
 document.getElementById('devToolsZoom').onclick=function()
@@ -1998,7 +1968,7 @@ document.getElementById('devToolsZoom').onclick=function()
 else
 {devTools["isMin"]=false;devTools.style.width="100%";}}
 document.getElementById('ExportGraph').onclick=function()
-{userAction(this.id);var graphAsString=application.graph.SaveToXML("");var savedGraphName=application.GetNewGraphName();var element=document.createElement('a');element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(graphAsString));element.setAttribute('download',"graph_"+savedGraphName+".graphml");element.style.display='none';document.body.appendChild(element);element.click();document.body.removeChild(element);}
+{userAction(this.id);var graphAsString=self.application.graph.SaveToXML("");var savedGraphName=self.application.GetNewGraphName();var element=document.createElement('a');element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(graphAsString));element.setAttribute('download',"graph_"+savedGraphName+".graphml");element.style.display='none';document.body.appendChild(element);element.click();document.body.removeChild(element);}
 document.getElementById('ImportGraph').onclick=function()
 {userAction(this.id);if(ImportGraphFiles){ImportGraphFiles.click();}}
 document.getElementById('openAlgorithmList').onclick=function()
@@ -2008,24 +1978,64 @@ document.getElementById('openAlgorithmList').onclick=function()
 else
 {algorithmList.style.right="0";}},1);}
 document.getElementById('Fullscreen').onclick=function()
-{var idList=["h1Header","h1Text","navigation","footerContent","bottom_adv"];fullscreen=!fullscreen
-userAction(fullscreen?"fullscreen_on":"fullscreen_off");for(var i=0;i<idList.length;i++){let element=document.getElementById(idList[i]);if(!element)continue;if(fullscreen)
+{var idList=["h1Header","h1Text","navigation","footerContent","bottom_adv"];self.fullscreen=!self.fullscreen
+userAction(self.fullscreen?"fullscreen_on":"fullscreen_off");for(var i=0;i<idList.length;i++){let element=document.getElementById(idList[i]);if(!element)continue;if(self.fullscreen)
 element.style.display="none";else
 element.style.display="block";}
-document.getElementById("mainContainer").className=fullscreen?"container-fluid page-wrap":"container page-wrap";document.getElementById("FullscreenIcon").className=fullscreen?"glyphicon glyphicon-resize-small fa-fw":"glyphicon glyphicon-resize-full fa-fw";resizeCanvas();}
-if(document.getElementById('VoteButton')!==null)
+document.getElementById("mainContainer").className=self.fullscreen?"container-fluid page-wrap":"container page-wrap";document.getElementById("FullscreenIcon").className=self.fullscreen?"glyphicon glyphicon-resize-small fa-fw":"glyphicon glyphicon-resize-full fa-fw";resizeCanvas();}}
+Editor.prototype.initVoteButton=function()
+{let self=this;if(document.getElementById('VoteButton')!==null)
 document.getElementById('VoteButton').onclick=function()
 {var dialogButtons={};for(var i=0;i<6&&document.getElementById('vote'+i)!==null;i++)
 {document.getElementById('vote'+i)["voteIndex"]=i;document.getElementById('vote'+i).onclick=function()
-{console.log("Vote"+this["voteIndex"]);$.ajax({type:"GET",url:"/"+SiteDir+"cgi-bin/vote.php?index="+this["voteIndex"],dataType:"text"});$("#voteDialog").dialog('close');$("#VoteButton").hide();}}
-dialogButtons[g_close]=function(){$(this).dialog("close");};$("#voteDialog").dialog({resizable:false,title:g_vote,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
-loadAsyncAlgorithms(createAlgorithmMenu);var devTools=document.getElementById('developerTools');devTools.style.left=0;resizeCanvas();application.onPostLoadEvent();$(function(){$('#algorithmList').on('click',function(event){if(!event.originalEvent.closeThisMenu){event.stopPropagation();}});$(window).on('click',function(){$('#algorithmList').slideUp();});});let showHideCategory=function(button,elementsListName){let width=$(button).width();let elementsList=$(elementsListName);var hideMark=button.querySelector('span[name="hideMark"]')
+{console.log("Vote"+self["voteIndex"]);$.ajax({type:"GET",url:"/"+SiteDir+"cgi-bin/vote.php?index="+self["voteIndex"],dataType:"text"});$("#voteDialog").dialog('close');$("#VoteButton").hide();}}
+dialogButtons[g_close]=function(){$(self).dialog("close");};$("#voteDialog").dialog({resizable:false,title:g_vote,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}}
+Editor.prototype.initAlgorithmList=function()
+{$(function(){$('#algorithmList').on('click',function(event){if(!event.originalEvent.closeThisMenu){event.stopPropagation();}});$(window).on('click',function(){$('#algorithmList').slideUp();});});let showHideCategory=function(button,elementsListName){let width=$(button).width();let elementsList=$(elementsListName);var hideMark=button.querySelector('span[name="hideMark"]')
 var showMark=button.querySelector('span[name="showMark"]')
 if(elementsList.is(":visible")){elementsList.hide();$(hideMark).show();$(showMark).hide();}else{elementsList.show();$(hideMark).hide();$(showMark).show();}
 $(button).width(width);userAction("algCategory_"+elementsListName);}
 $(document.getElementById("algorithmCategoryBtn1").querySelector('span[name="hideMark"]')).hide();$(document.getElementById("algorithmCategoryBtn0").querySelector('span[name="hideMark"]')).hide();$('#algorithmCategoryBtn1').click(function(){showHideCategory(this,"#algorithmCategoryElements1");});$('#algorithmCategoryBtn0').click(function(){showHideCategory(this,"#algorithmCategoryElements0");});}
+Editor.prototype.init=function()
+{this.application.onLoad();this.initMouseActions();this.initKeyActions();this.initButtonActions();this.initVoteButton();let self=this;loadAsyncAlgorithms(function(){self.createAlgorithmMenu();});var devTools=document.getElementById('developerTools');devTools.style.left=0;resizeCanvas();this.application.onPostLoadEvent();this.initAlgorithmList();}
+Editor.prototype.redraw=function(){this.application.redrawGraph();}
+Editor.prototype.createAlgorithmMenu=function()
+{let self=this;var algorithmBaseId="Algo";var algorithms=this.application.getAlgorithmNames();var index=0;for(var i=0;i<algorithms.length;i++)
+{algorithm=algorithms[i];var list=document.getElementById("algorithmCategoryElements"+algorithm.category);var item=document.getElementById("algTopic"+algorithm.category);var clone=item.cloneNode(true);var button=clone.getElementsByTagName("button")[0];var textSpan=button.getElementsByTagName("span")[1];button.id=algorithm.id;textSpan.innerHTML=algorithm.name;clone.style.display="block";this.buttonsList.push(algorithm.id);button.onclick=function(e)
+{e["closeThisMenu"]=true;userAction(this.id);self.restButtons(this.id);self.application.SetHandlerMode(this.id);}
+var eventData={};eventData.index=i;eventData.object=clone;eventData.algorithm=algorithm;$("#openAlgorithmList").bind('click',eventData,function(_eventData){var data=_eventData.data;var algorithm=g_Algorithms[g_AlgorithmIds.indexOf(data.algorithm.id)](self.application.graph,self.application);if(self.application.graph.isMulti()&&!self.algorithm.IsSupportMultiGraph())
+$(data.object).hide();else
+$(data.object).show();});list.insertBefore(clone,document.getElementById("insert"+algorithm.category));index++;}}
+Editor.prototype.restButtons=function(me)
+{var needSetDefault=false;for(let i=0;i<this.buttonsList.length;i++)
+{if(this.buttonsList[i]!=me)
+{document.getElementById(this.buttonsList[i]).className="btn btn-default btn-sm";}
+else
+{if(document.getElementById(this.buttonsList[i]).className!="btn btn-default btn-sm")
+{needSetDefault=true;}}}
+if(needSetDefault)
+{document.getElementById(me).className="btn btn-primary btn-sm";}
+else
+{document.getElementById(me).className="btn btn-primary btn-sm";}}
+Editor.prototype.ShowIncidenceMatrixErrorDialog=function(matrix)
+{var dialogButtons={};matrixRes=matrix.replace(/\n/g,'%0A');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/МатрицаИнцидентности#matrixFormat":"./wiki/Help/IncidenceMatrix#matrixFormat");};dialogButtons[g_fixMatrix]=function(){window.location.assign("./create_graph_by_incidence_matrix?incidenceMatrix="+matrixRes);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#matrixErrorInc").dialog({resizable:false,title:g_matrixWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
+Editor.prototype.ShowPairErrorDialog=function(pair)
+{var dialogButtons={};pair=pair.replaceAll(/\n/g,'%0A');pair=pair.replaceAll('>','&gt;');pair=pair.replaceAll('<','&lt;');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/СписокРебер":"./wiki/Help/EdgeList");};dialogButtons[g_fix]=function(){window.location.assign("./create_graph_by_edge_list?pair="+pair);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#pairErrorInc").dialog({resizable:false,title:g_pairWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
+Editor.prototype.ShowAdjacencyMatrixErrorDialog=function(matrix)
+{var dialogButtons={};matrixRes=matrix.replace(/\n/g,'%0A');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/МатрицаСмежности#matrixFormat":"./wiki/Help/AdjacencyMatrix#matrixFormat");};dialogButtons[g_fixMatrix]=function(){window.location.assign("./create_graph_by_matrix?matrix="+matrixRes);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#matrixError").dialog({resizable:false,title:g_matrixWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
+let DisableEmscripten=false;let editor=new Editor(document,window);function resizeCanvas()
+{var adv=document.getElementById('bottom_info');var canvas=document.getElementById('canvas');canvas.width=document.getElementById('canvasSection').offsetWidth;var mainContainer=document.getElementById('mainContainer');var offset=(mainContainer.offsetTop+mainContainer.offsetHeight)-(canvas.offsetTop+canvas.offsetHeight)+
+($("#footerContent").css("display")==='block'?0:24);canvas.height=$(window).height()-document.getElementById('canvas').offsetTop-
+(adv&&$("#bottom_info").css("display")==='block'?document.getElementById('bottom_info').offsetHeight:0)-
+($("#footer").css("display")==='block'?document.getElementById('footer').offsetHeight:0)-offset;editor.redraw();}
+function touchHandler(event)
+{var touches=event.changedTouches,first=touches[0],type="";switch(event.type)
+{case"touchstart":type="mousedown";break;case"touchmove":type="mousemove";break;case"touchend":type="mouseup";break;default:return;}
+var simulatedEvent=document.createEvent("MouseEvent");simulatedEvent.initMouseEvent(type,true,true,window,1,first.screenX,first.screenY,first.clientX,first.clientY,false,false,false,false,0,null);first.target.dispatchEvent(simulatedEvent);event.preventDefault();}
+function handelImportGraph(files){var graphFileToLoad=files[0];var fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){var textFromFileLoaded=fileLoadedEvent.target.result;console.log(textFromFileLoaded);editor.application.LoadGraphFromString(textFromFileLoaded);ImportGraphFiles.value="";};fileReader.readAsText(graphFileToLoad,"UTF-8");}
+function postLoadPage()
+{loadTexts();editor.init();}
 $(document).ready(function()
 {window.onresize=function(event)
 {resizeCanvas();}
-document.getElementById('canvas').addEventListener("touchstart",touchHandler,true);document.getElementById('canvas').addEventListener("touchmove",touchHandler,true);document.getElementById('canvas').addEventListener("touchend",touchHandler,true);document.getElementById('canvas').addEventListener("touchcancel",touchHandler,true);var isMobile=navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);if(!isMobile&&!DisableEmscripten){let fullPathToGraphffoline="features/graphoffline/Graphoffline.Emscripten.js";doIncludeAsync([include(fullPathToGraphffoline),],()=>{Module['onRuntimeInitialized']=onRuntimeInitialized;var process=Module.cwrap('ProcessAlgorithm','string',['string']);function onRuntimeInitialized(){application.setEmscripten(process);}})}});Array.prototype.swap=function(x,y){var b=this[x];this[x]=this[y];this[y]=b;return this;}
-moduleLoader.endCacheLoading();
+document.getElementById('canvas').addEventListener("touchstart",touchHandler,true);document.getElementById('canvas').addEventListener("touchmove",touchHandler,true);document.getElementById('canvas').addEventListener("touchend",touchHandler,true);document.getElementById('canvas').addEventListener("touchcancel",touchHandler,true);var isMobile=navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);if(!isMobile&&!DisableEmscripten){let fullPathToGraphffoline="features/graphoffline/Graphoffline.Emscripten.js";doIncludeAsync([include(fullPathToGraphffoline),],()=>{Module['onRuntimeInitialized']=onRuntimeInitialized;var process=Module.cwrap('ProcessAlgorithm','string',['string']);function onRuntimeInitialized(){editor.application.setEmscripten(process);}})}});moduleLoader.endCacheLoading();

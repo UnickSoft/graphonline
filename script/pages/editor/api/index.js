@@ -13,7 +13,6 @@
             include ("features/setup_edge_style/index.js"),
             include ("features/setup_vertex_style/index.js"),
         ]);
-        preLoadPage();
         postLoadPage();
     }
 
@@ -39,6 +38,8 @@
 
         include ("model/texts.js", modulDir),
         include ("model/Application.js", modulDir),
+        include ("ui/ya_metrika.js", modulDir),
+        include ("ui/editor.js", modulDir),
         include ("ui/main.js", modulDir)],
     onloadEditor);
 
