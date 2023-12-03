@@ -142,7 +142,7 @@ GraphReorder.prototype.result = function(resultCallback)
 
 
     this.app.OnAutoAdjustViewport();
-    this.app.SetHandlerMode("default");
+    this.app.SetDefaultHandler();
     // Looks like somthing going wrong and will use circle algorithm for reposition.
     //var bbox = this.getGraphBBox();
 

@@ -470,7 +470,7 @@ Application.prototype.RedrawSelectionRect = function(context)
 
 Application.prototype.updateMessage = function()
 {
-	this.document.getElementById('message').innerHTML = this.handler.GetMessage(); 
+    this.listener.updateMessage(this.handler.GetMessage());
 	this.handler.InitControls();
 }
 
@@ -668,135 +668,24 @@ Application.prototype.FindAllEdges = function(id1, id2)
 	return this.graph.FindAllEdges(id1, id2);
 }
 
-Application.prototype.SetHandlerMode = function(mode)
+Application.prototype.SetHandler = function(newHandler)
 {
-    var manipulationHandlers = ["default", "addGraph", "addArc", "delete", "findPath", "connectedComponent", "eulerianLoop"];
-    
-    if (this.handler && (g_AlgorithmIds.indexOf(mode) >= 0 || manipulationHandlers.indexOf(mode) >= 0))
+    if (this.handler)
     {
         this.handler.RestoreAll();
-    }
-    
-	if (mode == "default")
-	{
-		this.handler = new DefaultHandler(this);
-	}
-	else if (mode == "addGraph")
-	{
-		this.handler = new AddGraphHandler(this);
-	}
-	else if (mode == "addArc")
-	{
-		this.handler = new ConnectionGraphHandler(this);
-	}
-	else if (mode == "delete")
-	{
-		this.handler = new DeleteGraphHandler(this);
-	}
-	else if (mode == "deleteAll")
-	{
-		var removeAll = new DeleteAllHandler(this);
-		removeAll.clear();
-	}	
-	else if (mode == "findPath")
-	{
-		this.handler = new FindPathGraphHandler(this);
-	}
-	else if (mode == "showAdjacencyMatrix")
-	{
-		var showAdjacencyMatrix = new ShowAdjacencyMatrix(this);
-		showAdjacencyMatrix.show();
-	}
-	else if (mode == "showIncidenceMatrix")
-	{
-		var showIncidenceMatrix = new ShowIncidenceMatrix(this);
-		showIncidenceMatrix.show();
-	}
-    else if (mode == "showDistanceMatrix")
-	{
-		var showDistanceMatrix = new ShowDistanceMatrix(this);
-		showDistanceMatrix.show();
-	}
-	else if (mode == "connectedComponent")
-	{
-		this.handler = new ConnectedComponentGraphHandler(this);
-	}  
-	else if (mode == "saveDialog")
-	{
-		var savedDialogGraphHandler = new SavedDialogGraphHandler(this);
-		savedDialogGraphHandler.show();
-	}
-    else if (mode == "saveDialogImage")
-    {
-        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.showWorkspace();
-    }
-    else if (mode == "saveDialogFullImage")
-    {
-        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.showFullgraph();           
-    }
-    else if (mode == "savePrintGraphImage")
-    {
-        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.showPrint();           
-    }
-    else if (mode == "saveSvgGraphImage")
-    {
-        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(this);
-        savedDialogGraphImageHandler.showSvg();           
-    }    
-    else if (mode == "eulerianLoop")
-    {
-		this.handler = new EulerianLoopGraphHandler(this);
-    }
-    else if (mode == "GroupRename")
-    {
-		var groupRenameVertices = new GroupRenameVertices(this);
-		groupRenameVertices.show();
-    }
-    else if (mode == "setupVertexStyle")
-    {
-		var setupVertexStyle = new SetupVertexStyle(this);
-		setupVertexStyle.show(0);
-    }
-    else if (mode == "setupVertexStyleSelected")
-    {
-		var setupVertexStyle = new SetupVertexStyle(this);
-		setupVertexStyle.show(1); 
-    }
-    else if (mode == "setupEdgeStyle")
-    {
-		var setupEdgeStyle = new SetupEdgeStyle(this);
-		setupEdgeStyle.show(0);
-    }
-    else if (mode == "setupEdgeStyleSelected")
-    {
-		var setupEdgeStyle = new SetupEdgeStyle(this);
-		setupEdgeStyle.show(1); 
-    }
-    else if (mode == "setupBackgroundStyle")
-    {
-		var setupBackgroundStyle = new SetupBackgroundStyle(this);
-		setupBackgroundStyle.show();
-    }
-    else if (mode == "graphUndo")
-    {
-		if (!this.undoStack.IsUndoStackEmpty())
-            this.Undo();
-    }
-    else if (g_AlgorithmIds.indexOf(mode) >= 0)
-    {
-        this.handler = new AlgorithmGraphHandler(this, g_Algorithms[g_AlgorithmIds.indexOf(mode)](this.graph, this));
-    }
-    
-    console.log(mode);
+    } 
 
-    this.setRenderPath([]);
-	this.updateMessage();
-	this.redrawGraph();
+    this.handler = newHandler;
+
+    this.ToDefaultStateAndRedraw();
 }
 
+Application.prototype.ToDefaultStateAndRedraw = function()
+{
+    this.setRenderPath([]);
+	this.updateMessage();
+	this.redrawGraph();    
+}
 
 Application.prototype.getParameterByName = function (name)
 {
@@ -1218,11 +1107,9 @@ Application.prototype.GetGraphName = function()
     return this.savedGraphName;
 }
 
-
 Application.prototype.SetDefaultHandler = function()
 {
-	this.listener.restButtons ('Default');
-	this.SetHandlerMode("default");
+	this.listener.SetDefaultHandler();
 }
 
 Application.prototype.GetEnumVerticesList = function()
@@ -1665,7 +1552,7 @@ Application.prototype.GetAvailableCurveValue = function(neighborEdges, originalE
 
 Application.prototype.GraphTypeChanged = function()
 {
-    $("#CanvasMessage").text(this.graph.isMulti() ? g_GraphIsMultiMessage : g_GraphIsGeneralMessage);
+    this.listener.OnGraphTypeChanged(this.graph.isMulti());
 }
 
 Application.prototype.UpdateEdgePresets = function(weight)

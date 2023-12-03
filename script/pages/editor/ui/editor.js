@@ -60,11 +60,11 @@ Editor.prototype.initKeyActions = function() {
           return String.fromCharCode(getCharCode(event)); // остальные
       }
       
-      function selectHandler(buttonName, handlerName)
+      function selectHandler(buttonName, handler)
       {
               userAction(buttonName + "_shortcut");
               self.restButtons (buttonName);
-              self.application.SetHandlerMode(handlerName);  
+              self.application.SetHandler(handler);  
       }
       
       document.onkeypress   = function (e)
@@ -118,15 +118,15 @@ Editor.prototype.initKeyActions = function() {
           }
           else if (key == 'v' || key == 'м') // vertex
           {
-              selectHandler('AddGraph', 'addGraph');
+              selectHandler('AddGraph', new AddGraphHandler(self.application));
           }
           else if (key == 'e' || key == 'у') // edge
           {
-              selectHandler('ConnectGraphs', 'addArc');
+              selectHandler('ConnectGraphs', new ConnectionGraphHandler(self.application));
           }
           else if (key == 'r' || key == 'к') // delete
           {
-              selectHandler('DeleteObject', 'delete');
+              selectHandler('DeleteObject', new DeleteGraphHandler(self.application));
           }
           // Disabled because it is easy to lose graph, when you press miss letter.
           //else if (key == 'n' || key == 'т') // new
@@ -137,12 +137,12 @@ Editor.prototype.initKeyActions = function() {
           //}
           else if (key == 'm' || key == 'ь') // move
           {
-              selectHandler('Default', 'default');
+              selectHandler('Default', new DefaultHandler(self.application));
           }
           else if (code == 26 && isCtrl)
           {
               userAction("Key_GraphUndo");
-              self.application.SetHandlerMode("graphUndo");        
+              self.application.Undo();
           }
       }
    
@@ -158,40 +158,45 @@ Editor.prototype.initKeyActions = function() {
 
 Editor.prototype.initButtonActions = function()
 {
-    let self = this;
+    let self = this;  
 
 	document.getElementById('ShowAdjacencyMatrix').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("showAdjacencyMatrix");
+            var showAdjacencyMatrix = new ShowAdjacencyMatrix(self.application);
+            showAdjacencyMatrix.show();
 		}
 	document.getElementById('ShowIncidenceMatrix').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("showIncidenceMatrix");
+            var showIncidenceMatrix = new ShowIncidenceMatrix(self.application);
+            showIncidenceMatrix.show();
 		}
 	document.getElementById('ShowDistanceMatrix').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("showDistanceMatrix");
+            var showDistanceMatrix = new ShowDistanceMatrix(self.application);
+            showDistanceMatrix.show();
 		}
     
 	document.getElementById('GroupRename').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("GroupRename");
+            var groupRenameVertices = new GroupRenameVertices(self.application);
+            groupRenameVertices.show();
 		}
 	document.getElementById('groupRenameButton').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("GroupRename");
+            var groupRenameVertices = new GroupRenameVertices(self.application);
+            groupRenameVertices.show();
 		}    
 		
 	document.getElementById('Default').onclick = function ()
 		{
             userAction(this.id);
 			self.restButtons ('Default');
-		 self.application.SetHandlerMode("default");
+		    self.application.SetHandler(new DefaultHandler(self.application));
 			document.getElementById('Default').className = "btn btn-primary btn-sm";			
 		}		
 		
@@ -199,64 +204,73 @@ Editor.prototype.initButtonActions = function()
 		{
             userAction(this.id);
 			self.restButtons ('AddGraph');
-		 self.application.SetHandlerMode(document.getElementById('AddGraph').className != "" ? "addGraph" : "default");
+		    self.application.SetHandler(document.getElementById('AddGraph').className != "" ? new AddGraphHandler(self.application) : new DefaultHandler(self.application));
 		}
 	
 	document.getElementById('ConnectGraphs').onclick = function ()
 		{
             userAction(this.id);
 			self.restButtons ('ConnectGraphs');
-		 self.application.SetHandlerMode(document.getElementById('ConnectGraphs').className != "" ? "addArc" : "default");
+		 self.application.SetHandler(document.getElementById('ConnectGraphs').className != "" ? new ConnectionGraphHandler(self.application) : new DefaultHandler(self.application));
 		}	
 	
 	document.getElementById('DeleteObject').onclick = function ()
 		{
             userAction(this.id);
 			self.restButtons ('DeleteObject');
-		 self.application.SetHandlerMode(document.getElementById('DeleteObject').className != "" ? "delete" : "default");
+		    self.application.SetHandler(document.getElementById('DeleteObject').className != "" ? new DeleteGraphHandler(tself.applicationhis) : new DefaultHandler(self.application));
 		}
 
 	document.getElementById('DeleteAll').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("deleteAll");
-		}
+            var removeAll = new DeleteAllHandler(self.application);
+            removeAll.clear();
+            self.application.ToDefaultStateAndRedraw();
+		} 
 
 	document.getElementById('SaveGraph').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("saveDialog");
+            var savedDialogGraphHandler = new SavedDialogGraphHandler(self.application);
+            savedDialogGraphHandler.show();
 		}
 
 	document.getElementById('NewGraph').onclick = function ()
 		{
             userAction(this.id);
-		 self.application.SetHandlerMode("deleteAll");
+            var removeAll = new DeleteAllHandler(self.application);
+            removeAll.clear();
+            self.application.ToDefaultStateAndRedraw();
             self.application.SetDefaultTransformations();
 		}
     
     document.getElementById('SaveGraphImage').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("saveDialogImage");
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(self.application);
+        savedDialogGraphImageHandler.showWorkspace();
     }
     
     document.getElementById('SaveFullGraphImage').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("saveDialogFullImage");
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(self.application);
+        savedDialogGraphImageHandler.showFullgraph();    
     }
 
     document.getElementById('SavePrintGraphImage').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("savePrintGraphImage");
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(self.application);
+        savedDialogGraphImageHandler.showPrint();    
     }
 
     document.getElementById('SaveSvgGraphImage').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("saveSvgGraphImage");
+        var savedDialogGraphImageHandler = new SavedDialogGraphImageHandler(self.application);
+        savedDialogGraphImageHandler.showSvg();
     }
     
     document.getElementById('Zoom100').onclick = function ()
@@ -299,43 +313,50 @@ Editor.prototype.initButtonActions = function()
     {
         userAction(this.id);
         self.restButtons ('Default');
-        self.application.SetHandlerMode("default");
+        self.application.SetHandler(new DefaultHandler(self.application));
         document.getElementById('Default').className = "btn btn-primary btn-sm";
     }
+
     document.getElementById('SetupVertexStyle').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("setupVertexStyle");
+		var setupVertexStyle = new SetupVertexStyle(self.application);
+		setupVertexStyle.show(0);
     }
     document.getElementById('SetupVertexStyleSelected').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("setupVertexStyleSelected");
+		var setupVertexStyle = new SetupVertexStyle(self.application);
+		setupVertexStyle.show(1); 
     }
     document.getElementById('SetupEdgeStyle').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("setupEdgeStyle");
+		var setupEdgeStyle = new SetupEdgeStyle(self.application);
+		setupEdgeStyle.show(0);
     }
     document.getElementById('SetupEdgeStyleSelected').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("setupEdgeStyleSelected");
+		var setupEdgeStyle = new SetupEdgeStyle(self.application);
+		setupEdgeStyle.show(1); 
     }
     document.getElementById('SetupBackgroundStyle').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("setupBackgroundStyle");
+		var setupBackgroundStyle = new SetupBackgroundStyle(self.application);
+		setupBackgroundStyle.show();
     }
 
     document.getElementById('GraphUndo').onclick = function ()
     {
         userAction(this.id);
-        self.application.SetHandlerMode("graphUndo");
-    }    
+        self.application.Undo();
+    }
     
     document.getElementById('runUserScript').onclick = function ()
     {
+        /* TODO Currently is not supported.
         var el = document.getElementById('userScript');
         
         var oldScript = document.getElementById("userScriptSource");
@@ -351,6 +372,7 @@ Editor.prototype.initButtonActions = function()
         document.head.appendChild(script);
         
         self.application.SetHandlerMode("user.algorithm");
+        */
     }
     
     document.getElementById('submitUserScript').onclick = function ()
@@ -601,7 +623,8 @@ Editor.prototype.createAlgorithmMenu = function()
             e["closeThisMenu"] = true;
             userAction(this.id);
             self.restButtons (this.id);
-            self.application.SetHandlerMode(this.id);
+            self.application.SetHandler(new AlgorithmGraphHandler(self.application, 
+                g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph, self.application)));
         }
         
         var eventData = {};
@@ -727,4 +750,20 @@ Editor.prototype.ShowAdjacencyMatrixErrorDialog = function(matrix)
 		dialogClass: 'EdgeDialog',
 		buttons: dialogButtons,
 	});
+}
+
+Editor.prototype.SetDefaultHandler = function()
+{
+    this.restButtons ('Default');
+    this.application.SetHandler(new DefaultHandler(this.application));
+}
+
+Editor.prototype.OnGraphTypeChanged = function(isMulti)
+{
+    $("#CanvasMessage").text(isMulti ? g_GraphIsMultiMessage : g_GraphIsGeneralMessage);
+}
+
+Editor.prototype.updateMessage = function(message)
+{
+    $("#message").html(message);
 }
