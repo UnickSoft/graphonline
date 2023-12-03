@@ -30,7 +30,7 @@ function Application(document, window, listener)
 
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
-    this.undoStack  = [];
+    this.undoStack  = new UndoStack(this.maxUndoStackSize);
     
     this.edgeCommonStyle         = new CommonEdgeStyle();
     this.isEdgeCommonStyleCustom = false;
@@ -782,7 +782,7 @@ Application.prototype.SetHandlerMode = function(mode)
     }
     else if (mode == "graphUndo")
     {
-		if (!this.IsUndoStackEmpty())
+		if (!this.undoStack.IsUndoStackEmpty())
             this.Undo();
     }
     else if (g_AlgorithmIds.indexOf(mode) >= 0)
@@ -892,7 +892,7 @@ Application.prototype.onPostLoadEvent = function()
 	    }
     }
 
-    if (this.IsUndoStackEmpty())
+    if (this.undoStack.IsUndoStackEmpty())
         document.getElementById('GraphUndo').style.display = 'none';
 
     this.updateMessage();
@@ -1083,8 +1083,6 @@ Application.prototype.SetPairSmart = function (pair)
 Application.prototype.SaveGraphOnDisk = function ()
 {
 	var graphAsString = this.graph.SaveToXML(this.SaveUserSettings());
-    
-    var styleSave = this.SaveUserSettings();
 	
 	if (this.savedGraphName.length <= 0)
 	{
@@ -1092,16 +1090,11 @@ Application.prototype.SaveGraphOnDisk = function ()
 	}
 
 	var app = this;
-	$.ajax({
-	type: "POST",
-	url: "/" + SiteDir + "cgi-bin/saveGraph.php?name=" + this.savedGraphName,
-	data: graphAsString,
-	dataType: "text"
-	})
-	.done(function( msg ) 
-	{
-	        document.cookie = "graphName=" + app.savedGraphName;
-	});
+
+    DiskSaveLoad.SaveGraphOnDisk(this.savedGraphName, graphAsString, function( msg ) 
+        {
+                document.cookie = "graphName=" + app.savedGraphName;
+        });
 }
                           
 Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
@@ -1124,23 +1117,11 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
         
         rectParams = "&x=" + Math.round(pos.x * this.canvasScale) + "&y=" + Math.round(pos.y * this.canvasScale)
             + "&width=" + Math.round(bbox.size().x * this.canvasScale) + "&height=" + Math.round(bbox.size().y * this.canvasScale);
-        
-        //console.log(rectParams);
     }
 
     var imageBase64Data = this.canvas.toDataURL();
 
-    $.ajax({
-     type: "POST",
-     url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
-     data: {
-           base64data : imageBase64Data
-     },
-     dataType: "text",
-     success: function(data){
-        showDialogCallback();
-    }
-     });
+    DiskSaveLoad.SaveGraphImageOnDisk(imageName, rectParams, imageBase64Data, showDialogCallback);
                           
     return imageName;
 }
@@ -1159,17 +1140,7 @@ Application.prototype.SaveFullGraphImageOnDisk = function (showDialogCallback, f
 
     var imageBase64Data = canvas.toDataURL();
 
-    $.ajax({
-     type: "POST",
-     url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
-     data: {
-           base64data : imageBase64Data
-     },
-     dataType: "text",
-     success: function(data){
-        showDialogCallback();
-    }
-     });
+    DiskSaveLoad.SaveGraphImageOnDisk(imageName, rectParams, imageBase64Data, showDialogCallback);
                           
     return imageName;
 }
@@ -1180,22 +1151,8 @@ Application.prototype.SaveSVGGraphOnDisk = function (showDialogCallback)
                           
     this.stopRenderTimer();
     var svgText = this._printToSVG();
-                          
-    var bbox = this.graph.getGraphBBox();
-    
-    var imageBase64Data = canvas.toDataURL();
 
-    $.ajax({
-     type: "POST",
-     url: "/" + SiteDir + "cgi-bin/saveSvg.php?name=" + imageName,
-     data: {
-           svgdata : svgText
-     },
-     dataType: "text",
-     success: function(data){
-        showDialogCallback();
-    }
-     });
+    DiskSaveLoad.SaveSVGGraphOnDisk(imageName, svgText, showDialogCallback);
                           
     return imageName;
 }
@@ -1223,18 +1180,12 @@ Application.prototype.LoadGraphFromString = function (str)
 
 Application.prototype.LoadGraphFromDisk = function (graphName)
 {
-	var  app = this;
-
-	$.ajax({
-	type: "GET",
-	url: "/" + SiteDir + "cgi-bin/loadGraph.php?name=" + graphName
-	})
-	.done(function( msg ) 
+    var  app = this;
+    DiskSaveLoad.LoadGraphFromDisk(graphName, function( msg ) 
 	{
        app.LoadGraphFromString(msg);
 	});
 }
-
 
 Application.prototype.GetNewGraphName = function()
 {
@@ -1428,51 +1379,28 @@ Application.prototype.IsGraphFitOnViewport = function()
 
 Application.prototype.PushToStack = function(actionName)
 {
-    var object        = {};
-    object.actionName = actionName;
-    object.graphSave  = this.graph.SaveToXML(this.SaveUserSettings());    
-    
-    this.undoStack.push(object);
-
-    while (this.undoStack.length > this.maxUndoStackSize)
-    {
-        this.undoStack.shift();
-    }
-
-    //console.log("push undo:" + object.actionName + " size =" + this.undoStack.length);
+    this.undoStack.PushToStack(actionName, this.graph.SaveToXML(this.SaveUserSettings()));
 
     document.getElementById('GraphUndo').style.display = 'inline-block';
 }
 
 Application.prototype.Undo = function()
 {
-    if (this.IsUndoStackEmpty())
+    let data = this.undoStack.Undo();
+
+    if (data == null)
         return;
     
-    var state  = this.undoStack.pop();
     this.graph = new Graph();
-
     var userSettings = {};
-    this.graph.LoadFromXML(state.graphSave, userSettings);
+    this.graph.LoadFromXML(data, userSettings);
     if (userSettings.hasOwnProperty("data") && userSettings["data"].length > 0)
         this.LoadUserSettings(userSettings["data"]);
 
     this.redrawGraph();
 
-    //console.log("undo:" + state.actionName + " size =" + this.undoStack.length);
-
-    if (this.IsUndoStackEmpty())
+    if (this.undoStack.IsUndoStackEmpty())
         document.getElementById('GraphUndo').style.display = 'none';    
-}
-
-Application.prototype.ClearUndoStack = function()
-{
-    this.undoStack = [];
-}
-
-Application.prototype.IsUndoStackEmpty = function()
-{
-    return (this.undoStack.length <= 0);
 }
 
 Application.prototype.SaveUserSettings = function()

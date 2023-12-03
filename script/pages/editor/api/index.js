@@ -37,6 +37,8 @@
         include ("features/enum_vertices/EnumVertices.js"),
 
         include ("model/texts.js", modulDir),
+        include ("model/UndoStack.js", modulDir),
+        include ("model/DiskSaveLoad.js", modulDir),     
         include ("model/Application.js", modulDir),
         include ("ui/ya_metrika.js", modulDir),
         include ("ui/editor.js", modulDir),
