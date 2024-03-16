@@ -748,9 +748,9 @@
 
     <p id="renameVertex" class="translation"><?= L('rename_vertex')?></p>
     <p id="renameText" class="translation"><?= L('rename_text')?></p>
-    <p id="inputMatrix" class="translation"><?= isset($_POST["matrix"]) ? $_POST["matrix"] : ""?></p>
-    <p id="separator" class="translation"><?= isset($_POST["separator"]) ? $_POST["separator"] : ""?></p>
-    <p id="inputIncidenceMatrix" class="translation"><?= isset($_POST["incidenceMatrix"]) ? $_POST["incidenceMatrix"] : ""?></p>
+    <p id="inputMatrix" class="translation"><?= isset($_POST["matrix"]) ? htmlspecialchars ($_POST["matrix"]) : ""?></p>
+    <p id="separator" class="translation"><?= isset($_POST["separator"]) ? htmlspecialchars ($_POST["separator"]) : ""?></p>
+    <p id="inputIncidenceMatrix" class="translation"><?= isset($_POST["incidenceMatrix"]) ? htmlspecialchars ($_POST["incidenceMatrix"]) : ""?></p>
     <p id="inputPair" class="translation"><?= isset($_POST["pairs"]) ? str_replace("<", "&lt;", str_replace(">", "&gt;", $_POST["pairs"])) : ""?></p>
     <p id="currentLanguage" class="translation"><?= L('current_language')?></p>
     <p id="editWeight" class="translation"><?= L('edit_weight')?></p>
