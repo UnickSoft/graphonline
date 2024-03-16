@@ -218,7 +218,7 @@ Editor.prototype.initButtonActions = function()
 		{
             userAction(this.id);
 			self.restButtons ('DeleteObject');
-		    self.application.SetHandler(document.getElementById('DeleteObject').className != "" ? new DeleteGraphHandler(tself.applicationhis) : new DefaultHandler(self.application));
+		    self.application.SetHandler(document.getElementById('DeleteObject').className != "" ? new DeleteGraphHandler(self.application) : new DefaultHandler(self.application));
 		}
 
 	document.getElementById('DeleteAll').onclick = function ()
