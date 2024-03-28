@@ -587,7 +587,7 @@ Editor.prototype.init = function()
     devTools.style.left = 0;
 
 	resizeCanvas();
- this.application.onPostLoadEvent();
+    this.application.onPostLoadEvent();
 
     this.initAlgorithmList();
 }

@@ -1993,7 +1993,7 @@ Editor.prototype.OnGraphTypeChanged=function(isMulti)
 {$("#CanvasMessage").text(isMulti?g_GraphIsMultiMessage:g_GraphIsGeneralMessage);}
 Editor.prototype.updateMessage=function(message)
 {$("#message").html(message);}
-let DisableEmscripten=false;let editor=new Editor(document,window);function resizeCanvas()
+let DisableEmscripten=false;let PostLoadedCalled=false;let editor=new Editor(document,window);function resizeCanvas()
 {var adv=document.getElementById('bottom_info');var canvas=document.getElementById('canvas');canvas.width=document.getElementById('canvasSection').offsetWidth;var mainContainer=document.getElementById('mainContainer');var offset=(mainContainer.offsetTop+mainContainer.offsetHeight)-(canvas.offsetTop+canvas.offsetHeight)+
 ($("#footerContent").css("display")==='block'?0:24);canvas.height=$(window).height()-document.getElementById('canvas').offsetTop-
 (adv&&$("#bottom_info").css("display")==='block'?document.getElementById('bottom_info').offsetHeight:0)-
@@ -2004,7 +2004,8 @@ function touchHandler(event)
 var simulatedEvent=document.createEvent("MouseEvent");simulatedEvent.initMouseEvent(type,true,true,window,1,first.screenX,first.screenY,first.clientX,first.clientY,false,false,false,false,0,null);first.target.dispatchEvent(simulatedEvent);event.preventDefault();}
 function handelImportGraph(files){var graphFileToLoad=files[0];var fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){var textFromFileLoaded=fileLoadedEvent.target.result;console.log(textFromFileLoaded);editor.application.LoadGraphFromString(textFromFileLoaded);ImportGraphFiles.value="";};fileReader.readAsText(graphFileToLoad,"UTF-8");}
 function postLoadPage()
-{loadTexts();editor.init();}
+{if(!PostLoadedCalled)
+{loadTexts();editor.init();PostLoadedCalled=true;}}
 $(document).ready(function()
 {window.onresize=function(event)
 {resizeCanvas();}

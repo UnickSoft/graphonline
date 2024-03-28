@@ -1,5 +1,6 @@
 
 let DisableEmscripten = false;
+let PostLoadedCalled  = false;
 
 let editor = new Editor(document, window);
 
@@ -58,8 +59,12 @@ function handelImportGraph(files) {
 
 function postLoadPage()
 {
-    loadTexts();
-    editor.init();
+    if (!PostLoadedCalled) 
+    {
+        loadTexts();
+        editor.init();
+        PostLoadedCalled = true;
+    }
 }
 
 $(document).ready(function ()
