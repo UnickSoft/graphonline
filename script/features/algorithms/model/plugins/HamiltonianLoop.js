@@ -104,6 +104,11 @@ FindHamiltonianLoop.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+FindHamiltonianLoop.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateFindHamiltonianLoop(graph, app)
 {

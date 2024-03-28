@@ -289,6 +289,11 @@ IsomorphismCheck.prototype.messageWasChanged = function()
    }
 }
 
+IsomorphismCheck.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateIsomorphismCheck(graph, app)
 {

@@ -102,6 +102,11 @@ FindHamiltonianPath.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+FindHamiltonianPath.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateFindHamiltonianPath(graph, app)
 {

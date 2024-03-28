@@ -92,6 +92,11 @@ VerticesDegree.prototype.IsSupportMultiGraph = function ()
     return true;
 }
 
+VerticesDegree.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmVerticesDegree(graph, app)
 {

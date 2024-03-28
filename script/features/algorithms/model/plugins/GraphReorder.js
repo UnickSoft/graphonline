@@ -165,6 +165,11 @@ GraphReorder.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+GraphReorder.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmGraphReorder(graph, app)
 {

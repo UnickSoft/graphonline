@@ -188,6 +188,11 @@ ModernGraphStyle.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+ModernGraphStyle.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmModernGraphStyle(graph, app)
 {

@@ -87,6 +87,11 @@ FindEulerianLoop.prototype.getPriority = function()
     return -7.5;
 }
 
+FindEulerianLoop.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateFindEulerianLoop(graph, app)
 {

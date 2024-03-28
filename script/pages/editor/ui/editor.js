@@ -636,10 +636,15 @@ Editor.prototype.createAlgorithmMenu = function()
             var data      = _eventData.data;
             var algorithm = g_Algorithms[g_AlgorithmIds.indexOf(data.algorithm.id)](self.application.graph, self.application);
             
-            if (self.application.graph.isMulti() && !self.algorithm.IsSupportMultiGraph())
+            if ((self.application.graph.isMulti() && !algorithm.IsSupportMultiGraph()) || 
+                (self.application.graph.hasNegative() && !algorithm.IsSupportNegativeWeight()))
+            {
               $(data.object).hide();
+            }
             else
+            {
               $(data.object).show();
+            }
           });
         
         list.insertBefore(clone, document.getElementById("insert" + algorithm.category));

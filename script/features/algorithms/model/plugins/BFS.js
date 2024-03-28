@@ -115,6 +115,11 @@ BFSAlgorithm.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+BFSAlgorithm.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateBFSAlgorithm(graph, app)
 {

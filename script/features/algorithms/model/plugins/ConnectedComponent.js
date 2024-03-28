@@ -119,6 +119,11 @@ FindConnectedComponentNew.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+FindConnectedComponentNew.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 
 // Factory for connected components.
 function CreateConnectedComponetsNew(graph, app)

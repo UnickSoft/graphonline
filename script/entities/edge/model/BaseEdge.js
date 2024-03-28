@@ -256,7 +256,7 @@ BaseEdge.prototype.SetWeight = function(weight)
 	{
 		useWeight = true;
 	}
-	weight = (!isNaN(parseInt(weight, 10)) && weight >= 0) ? weight : 1;
+	weight = (!isNaN(parseInt(weight, 10))/*&& weight >= 0*/) ? weight : 1;
     
     this.weight    = Number(weight);
     this.useWeight = useWeight;

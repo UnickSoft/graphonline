@@ -375,6 +375,10 @@ Coloring.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+Coloring.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
 
 // Factory for connected components.
 function CreateColoring(graph, app)

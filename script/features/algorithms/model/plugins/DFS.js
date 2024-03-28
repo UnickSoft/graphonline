@@ -114,6 +114,11 @@ DFSAlgorithm.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+DFSAlgorithm.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateDFSAlgorithm(graph, app)
 {

@@ -221,6 +221,11 @@ RadiusAndDiameter.prototype.IsSupportMultiGraph = function ()
     return true;
 }
 
+RadiusAndDiameter.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateAlgorithmRadiusAndDiameter(graph, app)
 {

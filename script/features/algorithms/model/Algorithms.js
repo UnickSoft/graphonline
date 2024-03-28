@@ -146,6 +146,12 @@ BaseAlgorithm.prototype.getCategory = function()
     return 0;
 }
 
+// Algorithm support negative edge weight
+BaseAlgorithm.prototype.IsSupportNegativeWeight = function()
+{
+    return false;
+}
+
 /**
  * Default handler.
  * Select using mouse, drag.

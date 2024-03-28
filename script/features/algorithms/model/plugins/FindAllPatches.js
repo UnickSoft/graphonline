@@ -221,6 +221,10 @@ FindAllPathes.prototype.getPriority = function()
     return -9.4;
 }
 
+FindAllPathes.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
 
 // Factory for connected components.
 function CreateFindAllPathes(graph, app)

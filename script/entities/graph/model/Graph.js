@@ -18,6 +18,8 @@ function Graph()
 	this.hasDirect = false;
     // Is graph multi
     this.isMultiGraph = false;
+    // Has negative weight
+    this.hasNegativeWeight = false;
 };
 
 // infinity
@@ -51,6 +53,7 @@ Graph.prototype.ClearGraph = function() {
 	this.hasDirect = false;
     // Is graph multi
     this.isMultiGraph = false;
+    this.hasNegativeWeight = false;
 }
 
 Graph.prototype.AddNewEdgeSafe = function(graph1, graph2, isDirect, weight, replaceIfExists = true)
@@ -85,6 +88,7 @@ Graph.prototype.AddNewEdge = function(edge, replaceIfExists)
 	}
     
     this.isMultiGraph = this.checkMutiGraph();
+    this.hasNegativeWeight = this.checkNegativeWeight();
 	
 	return this.edges.length - 1;
 }
@@ -99,6 +103,7 @@ Graph.prototype.DeleteEdge = function(edgeObject)
 	}
     
     this.isMultiGraph = this.checkMutiGraph();
+    this.hasNegativeWeight = this.checkNegativeWeight();
 }
 
 Graph.prototype.DeleteVertex = function(vertexObject)
@@ -669,7 +674,7 @@ Graph.prototype.SetAdjacencyMatrix = function (matrix, viewportSize, currentEnum
 					this.AddNewVertex(newVertices[newVertices.length - 1]);
 				}
 				
-				if (cols[i][j] > 0)
+				if (cols[i][j] != 0)
 				{
 					var nEdgeIndex = this.AddNewEdgeSafe(this.vertices[i], this.vertices[j], cols[i][j] != cols[j][i], cols[i][j], true);
 					this.FixEdgeCurve(nEdgeIndex);
@@ -717,9 +722,9 @@ Graph.prototype.SetPair = function (pairs, viewportSize, currentEnumVerticesType
 			/^(.+)-(.+)$/g,
 			/^(.+)\>(.+)$/g,
 			/^(.+)<(.+)$/g,
-			/^(.+)-\((\d+|\d+\.?\d+)\)-(.+)$/g,
-			/^(.+)-\((\d+|\d+\.?\d+)\)\>(.+)$/g,
-			/^(.+)<\((\d+|\d+\.?\d+)\)\-(.+)$/g,
+			/^(.+)-\((-?\d+|-?\d+\.?\d+)\)-(.+)$/g,
+			/^(.+)-\((-?\d+|-?\d+\.?\d+)\)\>(.+)$/g,
+			/^(.+)<\((-?\d+|-?\d+\.?\d+)\)\-(.+)$/g,
 		];
 
 		let bWeightGraph = false;
@@ -1122,6 +1127,7 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
     }
     
     this.isMultiGraph = this.checkMutiGraph();
+    this.hasNegativeWeight = this.checkNegativeWeight();
 }
 
 Graph.prototype.hasDirectEdge = function ()
@@ -1276,9 +1282,27 @@ Graph.prototype.checkMutiGraph = function ()
 	return res;
 }
 
+Graph.prototype.checkNegativeWeight = function ()
+{
+    var res = false;
+
+    for (var i = 0; i < this.edges.length && !res; i++)
+	{
+        var edge = this.edges[i];
+        res = edge.GetWeight() < 0;
+    }
+    
+    return res;
+}
+
 Graph.prototype.isMulti = function ()
 {
 	return this.isMultiGraph;
+}
+
+Graph.prototype.hasNegative = function ()
+{
+    return this.hasNegativeWeight;
 }
 
 Graph.prototype.isNeedReposition = function ()
