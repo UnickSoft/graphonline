@@ -188,13 +188,13 @@ FindMaxFlow.prototype.getPriority = function()
 }
 
 // @return true, if you change resotry graph after use.
-BaseAlgorithm.prototype.wantRestore = function()
+FindMaxFlow.prototype.wantRestore = function()
 {
     return true;
 }
 
 // calls this method if wantRestore return true.
-BaseAlgorithm.prototype.restore = function()
+FindMaxFlow.prototype.restore = function()
 {
     if (this.selectedEdges != null)
     {
@@ -214,6 +214,11 @@ BaseAlgorithm.prototype.restore = function()
             this.resetUpText[i].upText = "";
         }
     }
+}
+
+FindMaxFlow.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
 }
 
 

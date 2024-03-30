@@ -218,6 +218,10 @@ FindLongestPath.prototype.getPriority = function()
     return -9.4;
 }
 
+FindLongestPath.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
 
 // Factory for connected components.
 function CreateFindLongestPath(graph, app)

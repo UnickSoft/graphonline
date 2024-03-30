@@ -234,7 +234,7 @@ Graph.prototype.FindEdgeMin = function(id1, id2)
 Graph.prototype.FindEdgeMax = function(id1, id2)
 {
 	var res       = null;
-    var maxWeight = 0;
+    var maxWeight = -this.infinity;
 	for (var i = 0; i < this.edges.length; i++)
 	{
         var edge = this.edges[i];

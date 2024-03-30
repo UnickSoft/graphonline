@@ -82,7 +82,7 @@ $(document).ready(function ()
     // Try load emscripten implementation
     var isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
     if (!isMobile && !DisableEmscripten) {
-      let fullPathToGraphffoline = "features/graphoffline/Graphoffline.Emscripten.js";
+      let fullPathToGraphffoline = "features/graphoffline/Graphoffline.Emscripten.js" + "?v=" + globalVersion;
       doIncludeAsync ([
     	include (fullPathToGraphffoline),
       ], () => {

@@ -209,6 +209,11 @@ FindShortPatchsFromOne.prototype.IsSupportMultiGraph = function()
     return true;
 }
 
+FindShortPatchsFromOne.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 // Factory for connected components.
 function CreateFindShortPatchsFromOne(graph, app)
 {

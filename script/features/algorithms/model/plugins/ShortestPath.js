@@ -221,6 +221,11 @@ FindShortPathNew.prototype.IsSupportMultiGraph = function ()
     return true;
 }
 
+FindShortPathNew.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
 
 // Factory for connected components.
 function CreateFindShortPathNew(graph, app)

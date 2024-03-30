@@ -155,6 +155,10 @@ MinimumSpanningTree.prototype.IsSupportMultiGraph = function ()
     return true;
 }
 
+MinimumSpanningTree.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
 
 // Factory for algorithm.
 function CreateMinimumSpanningTree(graph, app)
