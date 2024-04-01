@@ -223,7 +223,7 @@ FindShortPathNew.prototype.IsSupportMultiGraph = function ()
 
 FindShortPathNew.prototype.IsSupportNegativeWeight = function()
 {
-    return true;
+    return false;
 }
 
 
