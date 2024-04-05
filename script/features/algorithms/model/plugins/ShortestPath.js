@@ -46,16 +46,28 @@ FindShortPathNew.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)
     {
-        this.outResultCallback = function (result ) { resultCallback(result); };
-        self = this;
-        this.CalculateAlgorithm("dsp", 
-            [
-            {name: "start", value: this.firstObject.id},
-            {name: "finish", value: this.secondObject.id}
-            ], function (pathObjects, properties, results)
-            {
-                self.resultCallback(pathObjects, properties, results);
-        });
+        if (!this.graph.hasNegative())
+        {
+            this.outResultCallback = function (result ) { resultCallback(result); };
+            self = this;
+            this.CalculateAlgorithm("dsp", 
+                [
+                {name: "start", value: this.firstObject.id},
+                {name: "finish", value: this.secondObject.id}
+                ], function (pathObjects, properties, results)
+                {
+                    self.resultCallback(pathObjects, properties, results);
+            });
+        } else {
+            this.outResultCallback = function (result ) { resultCallback(result); };
+            self = this;
+            this.CalculateAlgorithm("blf", [
+                {name: "start", value : this.firstObject.id}   
+                ], function (pathObjects, properties, results)
+                {
+                    self.resultCallbackBellmanFord(pathObjects, properties, results);
+                });
+        }
     }
     return null;
 }
@@ -105,6 +117,104 @@ FindShortPathNew.prototype.resultCallback = function(pathObjects, properties, re
     
     this.outResultCallback(outputResult);
 }
+
+FindShortPathNew.prototype.resultCallbackBellmanFord = function(pathObjects, properties, results)
+{
+    var outputResult = {};
+    outputResult["version"] = 1;
+    outputResult["minPath"] = true;
+    
+    this.pathObjects = pathObjects;
+    this.properties = properties;
+    
+    var bFound = results.length > 0 && results[0].value < this.infinityValue && (results[0].type == 1 || results[0].type == 2);
+    
+    if (bFound)
+    {
+        this.selectedObjects = {};
+
+        let prevNodeId = -1;
+
+        let currentDistance = 0;
+        let currentSelectedObjects = [];
+        let currentSelectedNodes = [];
+
+        let dataForTargetVertex = {};
+        
+        let pushVertex = function (currentDistance, currentSelectedObjects, currentSelectedNodes) {
+            let targetVertexId = currentSelectedObjects[currentSelectedObjects.length - 1];
+            dataForTargetVertex[targetVertexId] = {distance: currentDistance, objects: currentSelectedObjects, nodes: currentSelectedNodes};
+        }
+        
+        for (var i = 0; i < results.length; i++)
+        {
+          if (results[i].type == 6)
+          {
+            pushVertex(currentDistance, currentSelectedObjects, currentSelectedNodes);
+            currentDistance = 0;
+            prevNodeId = -1;
+            currentSelectedObjects = [];
+            currentSelectedNodes = [];
+          }
+  
+          if (results[i].type == 4)
+          {
+            var nodeId = parseInt(results[i].value);
+            var vertex = this.graph.FindVertex(nodeId);
+            if (prevNodeId >= 0)
+            {
+              var edgeObject = this.graph.FindEdgeMin(prevNodeId, nodeId);
+              currentSelectedObjects.push(edgeObject.id);
+              currentDistance += edgeObject.GetWeight();
+            }
+            prevNodeId = nodeId;
+            currentSelectedObjects.push(nodeId);
+            currentSelectedNodes.push(nodeId);              
+          }
+        }
+        
+        pushVertex(currentDistance, currentSelectedObjects, currentSelectedNodes);
+        
+        let pathObjectsToTarget = dataForTargetVertex[this.secondObject.id].objects;
+        let distanceToTarget    = dataForTargetVertex[this.secondObject.id].distance;
+        let pathNodes = dataForTargetVertex[this.secondObject.id].nodes;
+
+        for (var i = 0; i < pathObjectsToTarget.length; i++)
+        {
+            this.selectedObjects[pathObjectsToTarget[i]] = 1;
+        }
+    
+        this.message = g_shortestPathResult.replace("%d", (distanceToTarget * 1).toString());
+        
+        outputResult["paths"] = [];
+        outputResult["paths"].push(pathNodes);
+        
+        this.message = this.message + ": ";
+        for (var i = 0; i < pathNodes.length; i++)
+        {
+            this.message = this.message + this.graph.FindVertex(pathNodes[i]).mainText + ((i < pathNodes.length - 1) ? "&rArr;" : "");
+        }
+
+        for (let targetId in dataForTargetVertex) 
+        {
+            this.properties[targetId] = {};
+            this.properties[targetId]['lowestDistance'] = dataForTargetVertex[targetId].distance;
+        }
+        
+        this.message = this.message + " <select style=\"float:right\" id=\"enumReport\"></select>";
+        
+        this.updateUpText();
+    }
+    else
+    {
+        this.message = g_pathNotExists;
+    }
+    this.secondObject = null;
+    this.firstObject = null;
+    
+    this.outResultCallback(outputResult);
+}
+
 
 FindShortPathNew.prototype.selectVertex = function(vertex)
 {
@@ -223,7 +333,7 @@ FindShortPathNew.prototype.IsSupportMultiGraph = function ()
 
 FindShortPathNew.prototype.IsSupportNegativeWeight = function()
 {
-    return false;
+    return true;
 }
 
 
