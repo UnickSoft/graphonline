@@ -104,8 +104,9 @@ BaseVertex.prototype.IsUndefinedPosition = function ()
 
 BaseVertex.prototype.HitTest = function (pos)
 {
-  var shape = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}, this).shape : VertexCircleShape;
-  var width = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}, this).lineWidth : 0;
+  var style = this.hasOwnProperty('currentStyle') ? this.currentStyle.GetStyle({}, this) : null;
+  var shape = style != null ? style.shape : VertexCircleShape;
+  var width = style != null ? style.lineWidth : 0;
   
   if (shape == VertexCircleShape)
   {
@@ -116,8 +117,12 @@ BaseVertex.prototype.HitTest = function (pos)
     var relativePos  = (new Point(pos.x, pos.y)).subtract(this.position);
     var lineFinish1 = relativePos.add(new Point(1000, 0));
     var lineFinish2 = relativePos.add(new Point(-1000, 0));
-
-    var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width, this.mainText);
+    if (style == null)
+    {
+      console.error("Some thing wrong with style");
+    }
+    var pointsVertex1 = GetPointsForShape(shape, this.model.diameter + width, 
+      style != null ? {style: style, text: this.mainText} : null);
     pointsVertex1.push(pointsVertex1[0]);
 
     var hitNumber1 = 0;

@@ -310,5 +310,7 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
     $g_lang["background_image"] = "Background image";
 
     $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
-    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";
+    
+    $g_lang['text_size'] = "Text size";
 ?>

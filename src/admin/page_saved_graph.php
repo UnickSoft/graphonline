@@ -73,6 +73,12 @@ if (isset($_POST["submit"]) && $_POST["submit"] == "delete1YImages")
                 return;
             }
         }
+
+        // Ignore test graphs
+        if (str_ends_with ($item["id"], "_test"))
+        {
+            return;
+        }
         
         if (unlink($file))
         {

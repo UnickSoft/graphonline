@@ -6,9 +6,8 @@
 // Only latic.
 function isValidName($name)
 {
-	return preg_match("(^[a-zA-Z]+$)", $name);
+	return preg_match("(^[a-zA-Z]+[_test]*$)", $name);
 }
-
 
 function getXMLFileName($graphName, $fromRoot=false)
 {

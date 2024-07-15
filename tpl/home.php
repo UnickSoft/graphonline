@@ -510,6 +510,12 @@
               <input type="number" class="form-control" id="vertexStrokeSize" placeholder="10" min="0">
             </div>
           </div>
+          <div class="form-group row">
+            <label for="textSize" class="col-sm-5 col-form-label"><?= L('text_size') ?></label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="textSize" placeholder="10" min="5" min="500">
+            </div>
+          </div>
           <div class="form-group row small-bottom-marging">
             <label for="vertexTextColor" class="col-sm-5 col-form-label"><?= L('text_color') ?></label>
             <div class="col-sm-5">
@@ -582,6 +588,12 @@
               <input type="color" class="form-control" id="edgeStrokeColor" value="#FFAA22" list="edgeStrokeColorPreset">
               <datalist id="edgeStrokeColorPreset">
               </datalist>              
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="edgeTextSize" class="col-sm-5 col-form-label"><?= L('text_size') ?></label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="edgeTextSize" placeholder="10" min="5" min="500">
             </div>
           </div>
           <div class="form-group row small-bottom-marging">

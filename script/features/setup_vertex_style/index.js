@@ -49,8 +49,9 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
         $( "#vertexStrokeSize" ).val(fullStyle.lineWidth);
         $( "#vertexShape" ).val(fullStyle.shape);
         $( "#vertexSize" ).val(forAll ? app.GetDefaultVertexSize() : selectedVertices[0].model.diameter);
-        $( "#commonTextPosition" ).val(fullStyle.commonTextPosition); 
-        
+        $( "#commonTextPosition" ).val(fullStyle.commonTextPosition);
+        $( "#textSize" ).val(fullStyle.mainTextFontSize);
+
         if (self.index > 0 || self.index == "all")
         {
             $( "#VertexSelectedIndexForm" ).show();
@@ -119,6 +120,9 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
 
         if (fullStyle.commonTextPosition != $( "#commonTextPosition" ).val())
             self.style.commonTextPosition = $( "#commonTextPosition" ).val(); 
+
+        if (fullStyle.mainTextFontSize != $( "#textSize" ).val())
+            self.style.mainTextFontSize = parseInt($( "#textSize" ).val()); 
 
         var diameter = parseInt($( "#vertexSize" ).val());
         
@@ -286,6 +290,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
     $( "#vertexSize" ).unbind();
     $( "#commonTextPosition" ).unbind();
     $( "#vertexSelectedIndex" ).unbind();
+    $( "#textSize" ).unbind();
     
     $( "#vertexFillColor" ).change(redrawVertex);
     $( "#vertexStrokeColor" ).change(redrawVertex);
@@ -296,4 +301,5 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
     $( "#upVertexTextColor" ).change(redrawVertex);
     $( "#commonTextPosition" ).change(redrawVertex);
     $( "#vertexSelectedIndex" ).change(changeIndex);
+    $( "#textSize" ).change(redrawVertex);
 }

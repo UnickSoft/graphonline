@@ -51,6 +51,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         $( "#weightEdgeTextColor" ).val(fullStyle.additionalTextColor);
         $( "#weightTextPosition" ).val(fullStyle.weightPosition);
+        $( "#edgeTextSize" ).val(fullStyle.mainTextFontSize);
 
         if (self.index > 0 || self.index == "all")
         {
@@ -115,6 +116,9 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         if (fullStyle.weightPosition != $( "#weightTextPosition" ).val())
             self.style.weightPosition    = $( "#weightTextPosition" ).val();
+
+        if (fullStyle.mainTextFontSize != $( "#edgeTextSize" ).val())
+            self.style.mainTextFontSize = parseInt($( "#edgeTextSize" ).val());
 
         var edgeWidth = parseInt($( "#edgeWidth" ).val());
         
@@ -283,6 +287,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     $( "#weightEdgeTextColor" ).unbind();
     $( "#weightTextPosition" ).unbind();
     $( "#edgeSelectedIndex" ).unbind();    
+    $( "#edgeTextSize" ).unbind();    
     
     $( "#edgeFillColor" ).change(redrawVertex);
     $( "#edgeStrokeColor" ).change(redrawVertex);
@@ -292,4 +297,5 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     $( "#weightEdgeTextColor" ).change(redrawVertex);
     $( "#weightTextPosition" ).change(redrawVertex);    
     $( "#edgeSelectedIndex" ).change(changeIndex);        
+    $( "#edgeTextSize" ).change(redrawVertex);
 }

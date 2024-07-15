@@ -219,7 +219,8 @@ BaseEdge.prototype.GetEdgePositions = function()
 
 	vertices.forEach(function(data) 
         {
-            var shape = data.vertex.currentStyle.GetStyle({}, data.vertex).shape;
+            var style = data.vertex.currentStyle.GetStyle({}, data.vertex);
+            var shape = style.shape;
             if (shape == VertexCircleShape)
             {
                 var direction = data.direction.multiply(0.5);        
@@ -230,7 +231,7 @@ BaseEdge.prototype.GetEdgePositions = function()
             {
                 var lineFinish1 = data.direction.multiply(-1).multiply(1000.0);
             
-                var pointsVertex1 = GetPointsForShape(shape, data.diameter, data.vertex.mainText);
+                var pointsVertex1 = GetPointsForShape(shape, data.diameter, {style: style, text: data.vertex.mainText});
                 pointsVertex1.push(pointsVertex1[0]);
             
                 for (var i = 0; i < pointsVertex1.length - 1; i ++)

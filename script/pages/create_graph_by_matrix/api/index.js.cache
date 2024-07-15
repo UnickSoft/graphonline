@@ -79,10 +79,10 @@ var position1=this.vertex1.position;var position2=this.vertex2.position;var diam
 else
 {direction2=direction2.multiply(-1);}
 direction1.normalize(1.0);direction2.normalize(1.0);var vertices=[];vertices.push({vertex:this.vertex1,direction:direction1,position:position1,diameter:d1});vertices.push({vertex:this.vertex2,direction:direction2,position:position2,diameter:d2});vertices.forEach(function(data)
-{var shape=data.vertex.currentStyle.GetStyle({},data.vertex).shape;if(shape==VertexCircleShape)
+{var style=data.vertex.currentStyle.GetStyle({},data.vertex);var shape=style.shape;if(shape==VertexCircleShape)
 {var direction=data.direction.multiply(0.5);res.push(data.position.subtract(direction.multiply(data.diameter)));}
 else
-{var lineFinish1=data.direction.multiply(-1).multiply(1000.0);var pointsVertex1=GetPointsForShape(shape,data.diameter,data.vertex.mainText);pointsVertex1.push(pointsVertex1[0]);for(var i=0;i<pointsVertex1.length-1;i++)
+{var lineFinish1=data.direction.multiply(-1).multiply(1000.0);var pointsVertex1=GetPointsForShape(shape,data.diameter,{style:style,text:data.vertex.mainText});pointsVertex1.push(pointsVertex1[0]);for(var i=0;i<pointsVertex1.length-1;i++)
 {var hitText=Point.hitTest(new Point(0,0),lineFinish1,pointsVertex1[i],pointsVertex1[i+1]);if(hitText!=null)
 {res.push(data.position.add(hitText));break;}}}});return res;}
 BaseEdge.prototype.SetWeight=function(weight)
@@ -189,10 +189,12 @@ BaseVertex.prototype.diameterFactor=function()
 BaseVertex.prototype.IsUndefinedPosition=function()
 {return this.hasUndefinedPosition;}
 BaseVertex.prototype.HitTest=function(pos)
-{var shape=this.hasOwnProperty('currentStyle')?this.currentStyle.GetStyle({},this).shape:VertexCircleShape;var width=this.hasOwnProperty('currentStyle')?this.currentStyle.GetStyle({},this).lineWidth:0;if(shape==VertexCircleShape)
+{var style=this.hasOwnProperty('currentStyle')?this.currentStyle.GetStyle({},this):null;var shape=style!=null?style.shape:VertexCircleShape;var width=style!=null?style.lineWidth:0;if(shape==VertexCircleShape)
 {return this.position.distance(pos)<this.model.diameter/2.0+width;}
 else
-{var relativePos=(new Point(pos.x,pos.y)).subtract(this.position);var lineFinish1=relativePos.add(new Point(1000,0));var lineFinish2=relativePos.add(new Point(-1000,0));var pointsVertex1=GetPointsForShape(shape,this.model.diameter+width,this.mainText);pointsVertex1.push(pointsVertex1[0]);var hitNumber1=0;var hitNumber2=0;for(var i=0;i<pointsVertex1.length-1;i++)
+{var relativePos=(new Point(pos.x,pos.y)).subtract(this.position);var lineFinish1=relativePos.add(new Point(1000,0));var lineFinish2=relativePos.add(new Point(-1000,0));if(style==null)
+{console.error("Some thing wrong with style");}
+var pointsVertex1=GetPointsForShape(shape,this.model.diameter+width,style!=null?{style:style,text:this.mainText}:null);pointsVertex1.push(pointsVertex1[0]);var hitNumber1=0;var hitNumber2=0;for(var i=0;i<pointsVertex1.length-1;i++)
 {var hitTest=Point.hitTest(relativePos,lineFinish1,pointsVertex1[i],pointsVertex1[i+1]);if(hitTest!=null)
 {hitNumber1++;}
 hitTest=Point.hitTest(relativePos,lineFinish2,pointsVertex1[i],pointsVertex1[i+1]);if(hitTest!=null)

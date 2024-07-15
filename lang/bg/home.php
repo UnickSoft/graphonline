@@ -303,5 +303,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["background_image"] = "Background image";
 
     $g_lang['wrong_image_background_format'] = "Wrong image format. Only JPEG and PNG are supported";
-    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";    
+    $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";
+
+    $g_lang['text_size'] = "Text size";
 ?>
