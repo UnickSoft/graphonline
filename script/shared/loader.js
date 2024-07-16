@@ -1,5 +1,5 @@
 // Global version needs to force reload scripts from server.
-let globalVersion = 77;
+let globalVersion = 78;
 
 var include = function(filename, localDir) {
     return {filename: filename, localDir: localDir};
