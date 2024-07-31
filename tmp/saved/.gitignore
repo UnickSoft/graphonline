@@ -4,3 +4,4 @@
 **/*.png
 **/*.xml
 **/*.svg
+!XX/XXXXX.png
