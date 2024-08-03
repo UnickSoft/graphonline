@@ -201,6 +201,8 @@
     $g_lang["modern_graph_style_name"] = "Визуализация на основе весов";
     $g_lang["radius_and_diameter_name"] = "Поиск радиуса и диаметра графа";
     $g_lang["find_short_path_name"] = "Поиск кратчайший путь алгоритмом Дейкстры";
+    $g_lang["find_short_path_belman_ford_name"] = "Поиск кратчайший путь алгоритмом Беллмана-Форда";
+
     $g_lang["vertices_degree_name"] = "Рассчитать степень вершин";
 
     $g_lang["min_spanning_tree_res_is"] = "Вес минимального остовного дерева равен ";

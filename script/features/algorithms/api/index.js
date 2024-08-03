@@ -30,7 +30,7 @@ function loadAsyncAlgorithms(onFinish) {
                     "ShortestPath.js",
                     "VerticesDegree.js"];
 
-    doIncludeAsync (pluginsList.map((plugin) =>  include ("model/plugins/" + plugin + "?v=" + globalVersion, modulDir)), onFinish);
+    doIncludeAsync (pluginsList.map((plugin) =>  include ("model/plugins/" + plugin, modulDir)), onFinish);
 }
 
 }

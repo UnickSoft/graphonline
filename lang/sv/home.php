@@ -161,6 +161,7 @@
     $g_lang["modern_graph_style_name"] = "Мiktbaserad visualisering";
     $g_lang["radius_and_diameter_name"] = "Hitta radien och diametern på en graf";
     $g_lang["find_short_path_name"] = "Hitta den kortaste vägen med Dijkstras algoritm";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "Кäkna graden av vertikaler";
 
     $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";

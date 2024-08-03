@@ -60,9 +60,9 @@
 
     $g_config['extrapacker']                           = array();
     $g_config['extrapacker']['dir']                    = 'auto_merge_css_js';
-    $g_config['extrapacker']['packHtml']               = true;
+    $g_config['extrapacker']['packHtml']               = false;
     $g_config['extrapacker']['packCss']                = true;
-    $g_config['extrapacker']['packJs']                 = true;
+    $g_config['extrapacker']['packJs']                 = false;
     $g_config['extrapacker']['arrExeptions_js']        = array();
     $g_config['extrapacker']['arrExeptionsNotAdd_js']  = array();
     $g_config['extrapacker']['arrExeptions_css']       = array();
@@ -93,5 +93,5 @@
     $g_config['vote']                   = "./tmp/vote/vote.txt";
     $g_config['voteTopics']             = "./tmp/vote/voteTopics.txt_";
     $g_config['use_js_cache']           = true;
-    $g_config['engine_version']         = 82;    
+    $g_config['engine_version']         = 83;    
 ?>

@@ -201,6 +201,7 @@
     $g_lang["modern_graph_style_name"] = "Απεικόνιση με βάση το βάρος";
     $g_lang["radius_and_diameter_name"] = "Αναζήτηση ακτίνας και διαμέτρου του γράφου";
     $g_lang["find_short_path_name"] = "Εύρεση συντομότερου μονοπατιού με χρήση του αλγορίθμου Dijkstra";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "Υπολογισμός βαθμών κορυφών";
 
     $g_lang["min_spanning_tree_res_is"] = "Το βάρος του ελάχιστου ζευγνύοντος δέντρου είναι ";

@@ -425,7 +425,7 @@
 <p id="SaveImageLinks"><a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank"><?= L('open_saved_image_browser')?></a> <?= L('or')?> <a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" download><?= L('download_saved_image')?></a>
 </p>
 <p class="hidden-phone">
-<a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
+<a href="<?= $protocol . $shareImagePageURL ?>tmp/saved/XX/XXXXX.png" target="_blank" class="hidden-phone showShareImage" id="showSavedImageGraphRef"><img src="<?= $protocol . $shareImagePageURL ?>/tmp/saved/XX/XXXXX.png" id="showSavedImageGraph" class="showShareImage"></a>
 </p>
 <p><?= L('share_graph_description') ?></p>
 <ul class="share-buttons" id="ShareSavedImageGraph">
@@ -829,6 +829,8 @@
     <p id="modernGraphStyleName" class="translation"><?= L('modern_graph_style_name')?></p>
     <p id="RadiusAndDiameter" class="translation"><?= L('radius_and_diameter_name')?></p>
     <p id="findShortPathName" class="translation"><?= L('find_short_path_name')?></p>
+    <p id="findShortPathBellmanFordName" class="translation"><?= L('find_short_path_belman_ford_name')?></p>
+
     <p id="VerticesDegreeName" class="translation"><?= L('vertices_degree_name')?></p>
         
     <p id="MinSpanningTreeResult" class="translation"><?= L('min_spanning_tree_res_is')?></p>

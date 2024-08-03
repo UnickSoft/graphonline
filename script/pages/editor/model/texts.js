@@ -129,6 +129,7 @@ var g_minimumSpanningTree   = "Search of minimum spanning tree";
 var g_modernGraphStyleName  = "Visualization based on weight";
 var g_RadiusAndDiameter     = "Search graph radius and diameter";
 var g_findShortPathName     = "Find shortest path using Dijkstra's algorithm";
+var g_findShortPathBellmanFordName = "Find shortest path using Bellman–Ford algorithm";
 var g_VerticesDegreeName    = "Calculate vertices degree";
 var g_SpanningTreeResult    = "Min Spanning Tree is";
 var g_SpanningTreeIgnoreDir = "We ignored edges direction for calculation";
@@ -340,6 +341,7 @@ function loadTexts()
     g_modernGraphStyleName  = document.getElementById("modernGraphStyleName").innerHTML;
     g_RadiusAndDiameter     = document.getElementById("RadiusAndDiameter").innerHTML;
     g_findShortPathName     = document.getElementById("findShortPathName").innerHTML;
+    g_findShortPathBellmanFordName = document.getElementById("findShortPathBellmanFordName").innerHTML;
     g_VerticesDegreeName    = document.getElementById("VerticesDegreeName").innerHTML;
     
     g_SpanningTreeResult    = document.getElementById("MinSpanningTreeResult").innerHTML;

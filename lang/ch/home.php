@@ -200,6 +200,7 @@
     $g_lang["modern_graph_style_name"] = "根据权重的可视化";
     $g_lang["radius_and_diameter_name"] = "找图的半径和直径";
     $g_lang["find_short_path_name"] = "用Dijkstra算法找最短路";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "计算顶点的度";
 
     $g_lang["min_spanning_tree_res_is"] = "最小生成树的权重是 ";

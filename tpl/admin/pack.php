@@ -1,7 +1,7 @@
 <?php if (!isset($_GET["cacheFiles"]) && isset($_GET["target"])): ?>
 <head>
-<script src="/script/shared/config.js" ></script>
-<script src="/script/shared/loader.js" ></script>
+<script src="/script/shared/config.js?v=<?= $g_config['engine_version'] ?>" ></script>
+<script src="/script/shared/loader.js?v=<?= $g_config['engine_version'] ?>" ></script>
 <script src="<?= $_GET["target"] ?>" ></script>
 <script>
   setTimeout(

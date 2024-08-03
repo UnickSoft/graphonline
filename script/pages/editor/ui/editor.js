@@ -533,7 +533,7 @@ Editor.prototype.initAlgorithmList = function()
             if (!event.originalEvent.closeThisMenu) {
                 event.stopPropagation();
             }
-        });      
+        });
         $(window).on('click', function() {
           $('#algorithmList').slideUp();
         });
@@ -644,6 +644,10 @@ Editor.prototype.createAlgorithmMenu = function()
             else
             {
               $(data.object).show();
+
+              // Update button text
+              var textSpan = data.object.getElementsByTagName("span")[1];
+              textSpan.innerHTML = algorithm.getName();
             }
           });
         

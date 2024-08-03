@@ -198,6 +198,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["modern_graph_style_name"] = "Визуализация на база тегло";
     $g_lang["radius_and_diameter_name"] = "Намерете радиус и диаметър на граф";
     $g_lang["find_short_path_name"] = "Намерете най-краткия път с помощта на алгоритъма на Дейкстра";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "Изчислете степента на връх";
 
     $g_lang["min_spanning_tree_res_is"] = "Теглото на минималното обхващащо дърво е ";

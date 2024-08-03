@@ -167,6 +167,7 @@
     $g_lang["modern_graph_style_name"] = "Visualisation pondérée";
     $g_lang["radius_and_diameter_name"] = "Calcul du rayon et du diamètre du graphe";
     $g_lang["find_short_path_name"] = "Plus court chemin avec l'algorithme de Dijkstra";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "Calculer le degré des sommets";
 
     $g_lang["min_spanning_tree_res_is"] = "Weight of minimum spanning tree is ";

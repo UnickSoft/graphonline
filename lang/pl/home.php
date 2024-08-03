@@ -200,6 +200,7 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang["modern_graph_style_name"] = "Wizualizajca bazująca na wadze";
     $g_lang["radius_and_diameter_name"] = "Znajdź średnicę i cięciwe grafu";
     $g_lang["find_short_path_name"] = "Znajdź najkrótszą ścieżkę używając algiorytmu Dijkstra";
+    $g_lang["find_short_path_belman_ford_name"] = "Find shortest path using Bellman–Ford's algorithm";
     $g_lang["vertices_degree_name"] = "Policz stopień wierzchołków";
 
     $g_lang["min_spanning_tree_res_is"] = "Waga minimalnego drzewa rozpinającego to ";
