@@ -54,7 +54,7 @@ BaseEdge.prototype.SaveToXML = function ()
 	return "<edge " + 
 	       "source=\""     + this.vertex1.id   + "\" " +
 	       "target=\""     + this.vertex2.id   + "\" " +
-	       "isDirect=\""   + this.isDirect + "\" " +
+	       "directed=\""   + this.isDirect + "\" " +
 	       "weight=\""     + this.weight   + "\" " +
 	       "useWeight=\""  + this.useWeight + "\" " +
 	       "id=\""         + this.id + "\" " +
@@ -67,7 +67,7 @@ BaseEdge.prototype.SaveToXML = function ()
 		"></edge>";       
 }
 
-BaseEdge.prototype.LoadFromXML = function (xml, graph)
+BaseEdge.prototype.LoadFromXML = function (xml, graph, defaultLoadEdges)
 {
     var attr       =    xml.attr('vertex1');
     if (typeof attr === 'undefined')
@@ -81,7 +81,30 @@ BaseEdge.prototype.LoadFromXML = function (xml, graph)
         attr = xml.attr('target');
     }
 	this.vertex2   =    graph.FindVertex(typeof attr !== 'undefined' ? attr : xml.attr('graph2'));
-	this.isDirect  =    xml.attr('isDirect') == "true";
+
+    /*
+    if (directed)
+    else if (isDirect)
+    else edgedefault
+    */
+    var directedAttribute = xml.attr('directed');
+    if (typeof directedAttribute !== 'undefined')
+    {
+        this.isDirect = directedAttribute == "true";
+    }
+    else
+    { 
+        var isDirectedAttribute = xml.attr('isDirect');
+        if (typeof isDirectedAttribute !== 'undefined')
+        {
+            this.isDirect = isDirectedAttribute == "true";
+        }
+        else
+        {
+            this.isDirect = defaultLoadEdges == "directed";
+        }
+    }
+
 	this.weight    =    parseFloat(xml.attr('weight'));
     if (isNaN(this.weight))
     {

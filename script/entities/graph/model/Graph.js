@@ -1074,10 +1074,12 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 
 	var loadedGraphId = 0;
 	var loadedEdgeId = 0;
+	var defaultLoadEdges = "";
     
 	$graphs.each(function(){
 		loadedGraphId = parseInt($(this).attr('uidGraph'));
 		loadedEdgeId  = parseInt($(this).attr('uidEdge'));
+		defaultLoadEdges = $(this).attr('edgedefault');
 	});
     
     // Backward compatibility
@@ -1087,6 +1089,11 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
     } else if (loadedEdgeId < this.edgesOffset)
 	{
 		loadedEdgeId = this.edgesOffset;
+	}
+
+	if (defaultLoadEdges != "directed" && defaultLoadEdges != "undirected")
+	{
+		defaultLoadEdges = "undirected";
 	}
 
 	this.uidGraph = loadedGraphId;
@@ -1109,7 +1116,7 @@ Graph.prototype.LoadFromXML = function (xmlText, additionalData)
 	var graph = this;
 	$edges.each(function(){
 		var edge = new BaseEdge();
-		edge.LoadFromXML($(this), graph);
+		edge.LoadFromXML($(this), graph, defaultLoadEdges);
 		// Fix case with wrong id.
 		if (edge.id < graph.uidEdge) {
 			edge.id = graph.uidEdge;

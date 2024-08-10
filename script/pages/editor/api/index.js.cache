@@ -45,15 +45,22 @@ this.SetWeight(weight);this.ownStyles={};}
 BaseEdge.prototype.copyFrom=function(other)
 {this.vertex1=other.vertex1;this.vertex2=other.vertex2;this.arrayStyleStart=other.arrayStyleStart;this.arrayStyleFinish=other.arrayStyleFinish;this.isDirect=other.isDirect;this.weight=other.weight;this.text=other.text;this.useWeight=other.useWeight;this.id=other.id;this.model=new EdgeModel();this.model.copyFrom(other.model);this.upText=other.upText;this.ownStyles=FullObjectCopy(other.ownStyles);}
 BaseEdge.prototype.SaveToXML=function()
-{return"<edge "+"source=\""+this.vertex1.id+"\" "+"target=\""+this.vertex2.id+"\" "+"isDirect=\""+this.isDirect+"\" "+"weight=\""+this.weight+"\" "+"useWeight=\""+this.useWeight+"\" "+"id=\""+this.id+"\" "+"text=\""+gEncodeToHTML(this.text)+"\" "+"upText=\""+gEncodeToHTML(this.upText)+"\" "+"arrayStyleStart=\""+this.arrayStyleStart+"\" "+"arrayStyleFinish=\""+this.arrayStyleFinish+"\" "+
+{return"<edge "+"source=\""+this.vertex1.id+"\" "+"target=\""+this.vertex2.id+"\" "+"directed=\""+this.isDirect+"\" "+"weight=\""+this.weight+"\" "+"useWeight=\""+this.useWeight+"\" "+"id=\""+this.id+"\" "+"text=\""+gEncodeToHTML(this.text)+"\" "+"upText=\""+gEncodeToHTML(this.upText)+"\" "+"arrayStyleStart=\""+this.arrayStyleStart+"\" "+"arrayStyleFinish=\""+this.arrayStyleFinish+"\" "+
 ((Object.keys(this.ownStyles).length>0)?"ownStyles = \""+gEncodeToHTML(JSON.stringify(this.ownStyles))+"\" ":"")+
 this.model.SaveToXML()+"></edge>";}
-BaseEdge.prototype.LoadFromXML=function(xml,graph)
+BaseEdge.prototype.LoadFromXML=function(xml,graph,defaultLoadEdges)
 {var attr=xml.attr('vertex1');if(typeof attr==='undefined')
 {attr=xml.attr('source');}
 this.vertex1=graph.FindVertex(typeof attr!=='undefined'?attr:xml.attr('graph1'));var attr=xml.attr('vertex2');if(typeof attr==='undefined')
 {attr=xml.attr('target');}
-this.vertex2=graph.FindVertex(typeof attr!=='undefined'?attr:xml.attr('graph2'));this.isDirect=xml.attr('isDirect')=="true";this.weight=parseFloat(xml.attr('weight'));if(isNaN(this.weight))
+this.vertex2=graph.FindVertex(typeof attr!=='undefined'?attr:xml.attr('graph2'));var directedAttribute=xml.attr('directed');if(typeof directedAttribute!=='undefined')
+{this.isDirect=directedAttribute=="true";}
+else
+{var isDirectedAttribute=xml.attr('isDirect');if(typeof isDirectedAttribute!=='undefined')
+{this.isDirect=isDirectedAttribute=="true";}
+else
+{this.isDirect=defaultLoadEdges=="directed";}}
+this.weight=parseFloat(xml.attr('weight'));if(isNaN(this.weight))
 {this.weight=1;}
 this.hasPair=xml.attr('hasPair')=="true";this.useWeight=xml.attr('useWeight')=="true";this.id=xml.attr('id');this.text=xml.attr("text")==null?"":gDecodeFromHTML(xml.attr("text"));this.arrayStyleStart=xml.attr("arrayStyleStart")==null?"":xml.attr("arrayStyleStart");this.arrayStyleFinish=xml.attr("arrayStyleFinish")==null?"":xml.attr("arrayStyleFinish");this.upText=xml.attr('upText');if(typeof this.upText==='undefined')
 {this.upText="";}
@@ -518,10 +525,12 @@ xmlBody=xmlBody+"";additionalField="";if(additionalData.length>0)
 {additionalField="<additional data=\""+additionalData+"\"/>"}
 return mainHeader+header+xmlBody+"</graph>"+additionalField+"</graphml>";}
 Graph.prototype.LoadFromXML=function(xmlText,additionalData)
-{xmlDoc=$.parseXML(xmlText);var $xml=$(xmlDoc);$graphs=$xml.find("graph");var loadedGraphId=0;var loadedEdgeId=0;$graphs.each(function(){loadedGraphId=parseInt($(this).attr('uidGraph'));loadedEdgeId=parseInt($(this).attr('uidEdge'));});if(isNaN(loadedEdgeId))
+{xmlDoc=$.parseXML(xmlText);var $xml=$(xmlDoc);$graphs=$xml.find("graph");var loadedGraphId=0;var loadedEdgeId=0;var defaultLoadEdges="";$graphs.each(function(){loadedGraphId=parseInt($(this).attr('uidGraph'));loadedEdgeId=parseInt($(this).attr('uidEdge'));defaultLoadEdges=$(this).attr('edgedefault');});if(isNaN(loadedEdgeId))
 {loadedEdgeId=this.edgesOffset;}else if(loadedEdgeId<this.edgesOffset)
 {loadedEdgeId=this.edgesOffset;}
-this.uidGraph=loadedGraphId;this.uidEdge=loadedEdgeId;$nodes=$xml.find("node");var vertices=[];$nodes.each(function(){var vertex=new BaseVertex();vertex.LoadFromXML($(this));vertices.push(vertex);});this.vertices=vertices;$edges=$xml.find("edge");var edges=[];var graph=this;$edges.each(function(){var edge=new BaseEdge();edge.LoadFromXML($(this),graph);if(edge.id<graph.uidEdge){edge.id=graph.uidEdge;graph.uidEdge++;}
+if(defaultLoadEdges!="directed"&&defaultLoadEdges!="undirected")
+{defaultLoadEdges="undirected";}
+this.uidGraph=loadedGraphId;this.uidEdge=loadedEdgeId;$nodes=$xml.find("node");var vertices=[];$nodes.each(function(){var vertex=new BaseVertex();vertex.LoadFromXML($(this));vertices.push(vertex);});this.vertices=vertices;$edges=$xml.find("edge");var edges=[];var graph=this;$edges.each(function(){var edge=new BaseEdge();edge.LoadFromXML($(this),graph,defaultLoadEdges);if(edge.id<graph.uidEdge){edge.id=graph.uidEdge;graph.uidEdge++;}
 edges.push(edge);});this.edges=edges;$additional=$xml.find("additional");if($additional.length!=0&&additionalData!=null)
 {additionalData["data"]=$additional.attr('data');}
 this.isMultiGraph=this.checkMutiGraph();this.hasNegativeWeight=this.checkNegativeWeight();}
