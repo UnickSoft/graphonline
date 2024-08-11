@@ -1184,24 +1184,24 @@ Graph.prototype.clampPositions = function (viewportSize)
 }
 
 // Use to setup scaling.
-Graph.prototype.getGraphBBox = function (viewportSize)
+// vertexStyle is not used now.
+Graph.prototype.getGraphBBox = function (vertexStyle)
 {
     var pointMin = new Point(1e5, 1e5);
     var pointMax = new Point(-1e5, -1e5);
     var diameter = (new VertexModel()).diameter;
     
-    for(i = 0; i < this.vertices.length; i++)
+    for (i = 0; i < this.vertices.length; i++)
     {
         var vertex = this.vertices[i];
-		var factor = vertex.diameterFactor();
-        var deltaVector = new Point(factor.x * diameter, factor.y * diameter);
-        pointMin = pointMin.min(vertex.position.subtract(deltaVector));
-        pointMax = pointMax.max(vertex.position.add(deltaVector));
+		var bbox = vertex.getBBox(vertexStyle == undefined ? vertex.getStyleFor(0) : vertexStyle);
+        pointMin = pointMin.min(vertex.position.subtract(bbox));
+        pointMax = pointMax.max(vertex.position.add(bbox));
     }
     
     var max_curve_length = 32;
     
-    for(i = 0; i < this.edges.length; i++)
+    for (i = 0; i < this.edges.length; i++)
     {
         var edge = this.edges[i];
         

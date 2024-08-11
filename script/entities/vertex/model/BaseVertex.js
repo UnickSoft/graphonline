@@ -92,11 +92,6 @@ BaseVertex.prototype.SetId = function (id)
       this.mainText = this.vertexEnumType.GetVertexText(id);		                 
 }
 
-BaseVertex.prototype.diameterFactor = function ()
-{
-    return new Point(1.0 + (this.mainText.length ? this.mainText.length / 8.0 : 0), 1.5);
-}
-
 BaseVertex.prototype.IsUndefinedPosition = function ()
 {
     return this.hasUndefinedPosition;
@@ -183,4 +178,24 @@ BaseVertex.prototype.getStyleFor = function (index)
 BaseVertex.prototype.hasOwnStyleFor = function (index)
 {
   return this.ownStyles.hasOwnProperty(index);
+}
+
+BaseVertex.prototype.getDefaultDiameterFactor = function (textSize)
+{
+    var textFactor = defaultVertexDiameter * 8.0 / (2.0 * textSize);
+    return new Point(1.0 + (this.mainText.length ? this.mainText.length / textFactor : 0), 1.5);
+}
+
+BaseVertex.prototype.getBBox = function (style)
+{
+  var textSize = DefaultMainTextFontSize;
+  if (style !== undefined)
+  {
+    textSize = style.mainTextFontSize;
+  }
+  var defaultDiameter = (new VertexModel()).diameter;
+  var vertexDiameter = this.model.diameter;
+  var factor = this.getDefaultDiameterFactor(textSize);
+  return new Point(Math.max(factor.x * defaultDiameter, vertexDiameter), 
+                   Math.max(factor.y * defaultDiameter, vertexDiameter));
 }
