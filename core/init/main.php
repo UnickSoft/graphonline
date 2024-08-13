@@ -4,7 +4,13 @@
     header('Content-type: text/html; charset=' . $g_config['charset']);
 
     GetQuery(); // Что бы определился язык сайта
-
+    $redirectUrl = GetRedirectURL(); // Check redirect
+    if ($redirectUrl != NULL)
+    {
+        header("HTTP/1.1 301 Moved Permanently"); 
+        header("Location: $redirectUrl");
+        exit();
+    }
     // Подключаем все языковые файлы из автозагруки
     $dirs  = array_unique(
                             array(

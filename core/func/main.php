@@ -383,4 +383,38 @@
         }
         return $g_lang[$name];
     }
+
+    // Requare redirect
+    function GetRedirectURL()
+    {
+        global $g_arrLangs;
+        // Language doesn't have special domain.
+        if (!isset($g_arrLangs[LANG]['domain']))
+        {
+            return NULL;
+        }
+        $newDomain = $g_arrLangs[LANG]['domain'];
+        
+        // If we have any params then ignore redirect.
+        if (count(array_values($_GET)) > 1)
+        {
+            return NULL;
+        }
+
+        // Skip for localhost
+        if (strcasecmp($_SERVER['SERVER_NAME'], '127.0.0.1') == 0
+            ||
+            strcasecmp($_SERVER['SERVER_NAME'], 'localhost') == 0)
+        {
+            return NULL;
+        }
+        
+        // Domain is the same.
+        if (strcasecmp($_SERVER['SERVER_NAME'], $newDomain) == 0)
+        {
+            return NULL;
+        }
+
+        return $_SERVER['REQUEST_SCHEME'] . "://"  . $newDomain . $_SERVER['REQUEST_URI'];
+    }
 ?>

@@ -1,6 +1,7 @@
 <?php
     
-    include ("./src/donate.php");
+    // Dont need now.
+    //include ("./src/donate.php");
     include ("./src/vote_func.php");
     
     $graphName = "";
