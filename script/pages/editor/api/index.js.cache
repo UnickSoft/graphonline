@@ -236,7 +236,7 @@ BaseVertex.prototype.hasOwnStyleFor=function(index)
 BaseVertex.prototype.getDefaultDiameterFactor=function(textSize)
 {var textFactor=defaultVertexDiameter*8.0/(2.0*textSize);return new Point(1.0+(this.mainText.length?this.mainText.length/textFactor:0),1.5);}
 BaseVertex.prototype.getBBox=function(style)
-{var textSize=DefaultMainTextFontSize;if(style!==undefined)
+{var textSize=DefaultMainTextFontSize;if(style!==undefined&&style.mainTextFontSize!==undefined)
 {textSize=style.mainTextFontSize;}
 var defaultDiameter=(new VertexModel()).diameter;var vertexDiameter=this.model.diameter;var factor=this.getDefaultDiameterFactor(textSize);return new Point(Math.max(factor.x*defaultDiameter,vertexDiameter),Math.max(factor.y*defaultDiameter,vertexDiameter));}
 const defaultVertexDiameter=30;function VertexModel()

@@ -189,7 +189,7 @@ BaseVertex.prototype.getDefaultDiameterFactor = function (textSize)
 BaseVertex.prototype.getBBox = function (style)
 {
   var textSize = DefaultMainTextFontSize;
-  if (style !== undefined)
+  if (style !== undefined && style.mainTextFontSize !== undefined)
   {
     textSize = style.mainTextFontSize;
   }
