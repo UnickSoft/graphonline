@@ -34,12 +34,15 @@
         <!-- extraPacker -->
 
         <script>
-        var now = new Date();
-        var Dec015_2019_start = new Date(2019,11,15,12,0,0,0);
-        var Dec015_2019_stop = new Date(2019,11,15,12,30,0,0);
-            if( now > Dec015_2019_start && now < Dec015_2019_stop) {
-                window.location.href = '/blackout/index.html';
-            }
+            var now = new Date();
+            var Dec015_2019_start = new Date(2019,11,15,12,0,0,0);
+            var Dec015_2019_stop = new Date(2019,11,15,12,30,0,0);
+                if( now > Dec015_2019_start && now < Dec015_2019_stop) {
+                    window.location.href = '/blackout/index.html';
+                }
+
+            // Global version needs to force reload scripts from server.
+            globalVersion = <?= $g_config['engine_version'] ?>;
         </script>
     </head>
     <body>

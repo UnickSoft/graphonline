@@ -1,6 +1,3 @@
-// Global version needs to force reload scripts from server.
-let globalVersion = 80;
-
 var include = function(filename, localDir) {
     return {filename: filename, localDir: localDir};
 };
@@ -14,6 +11,8 @@ class ModuleLoader {
         this.syncLoaded = [];
         this.cacheLoading = false;
         this.callsAfterCacheResolve = [];
+        
+        console.log("globalVersion = " + globalVersion);
     }
 
     getFullname = function (filename, localDir)

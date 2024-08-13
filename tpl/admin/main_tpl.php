@@ -17,6 +17,11 @@
 
         <!-- extraPacker -->
         <meta name="robots" content="noindex, nofollow">
+
+        <script>
+            // Global version needs to force reload scripts from server.
+            globalVersion = <?= $g_config['engine_version'] ?>;
+        </script>
     </head>
     <body>
         <?php IncludeCom('admin/admin_menu', array('menu' => $menu, 'logo' => $logo))?>
