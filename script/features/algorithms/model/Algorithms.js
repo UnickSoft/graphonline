@@ -255,16 +255,8 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
         resultCallback(pathObjects, properties, result);
     };
 
-    if (this.app.isSupportEmscripten()) {
-        console.log("Use Emscripten");
-        var delimiter = "<s\\emscript_split\\s>";
-        var processData = algorithmName + delimiter + xml + 
-                          delimiter + "report" + delimiter + "xml";
-        otherParams.forEach ( (param) => processData += delimiter + param.name + delimiter + param.value);
-        var res = this.app.processEmscripten(processData);
-        processResult(res);
-    } else {
-        console.log("Use new CGI");
+    var callCGIAlgorithms = function ()
+    {
         var queryString = algorithmName + "=cgiInput&report=xml";
         otherParams.forEach ( (param) => queryString += "&" + param.name + "=" + param.value);
         $.ajax({
@@ -277,6 +269,27 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
             {
                 processResult(msg);
             });
+    };
+
+    if (this.app.isSupportEmscripten()) {
+        console.log("Use Emscripten");
+        var delimiter = "<s\\emscript_split\\s>";
+        var processData = algorithmName + delimiter + xml + 
+                          delimiter + "report" + delimiter + "xml";
+        otherParams.forEach ( (param) => processData += delimiter + param.name + delimiter + param.value);
+        var res = {};
+        try {
+            res = this.app.processEmscripten(processData);
+        }
+        catch (error) {
+            console.log("Error on Emscripten: " + error + "\n" + error.stack);
+            callCGIAlgorithms();
+            return true;
+        }
+        processResult(res);
+    } else {
+        console.log("Use new CGI");
+        callCGIAlgorithms();
     }
 
     return true;

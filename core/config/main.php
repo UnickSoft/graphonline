@@ -93,5 +93,5 @@
     $g_config['vote']                   = "./tmp/vote/vote.txt";
     $g_config['voteTopics']             = "./tmp/vote/voteTopics.txt_";
     $g_config['use_js_cache']           = true;
-    $g_config['engine_version']         = 85;
+    $g_config['engine_version']         = 86;
 ?>
