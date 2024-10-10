@@ -1,6 +1,6 @@
 <?php
 
-include ("cgi-bin/saveGraphHelpers.php");
+include ("backend/saveGraphHelpers.php");
 include ("./src/vote_func.php");
 
 $g_lang["current_language"] = "ru";

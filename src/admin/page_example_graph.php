@@ -1,6 +1,6 @@
 <?php
 
-include ("cgi-bin/saveGraphHelpers.php");
+include ("backend/saveGraphHelpers.php");
 include ("./src/graphs_examples_func.php");
 
 //ini_set('display_errors', 1);

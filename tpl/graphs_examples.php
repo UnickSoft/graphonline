@@ -1,6 +1,6 @@
 
 <?php
- include ("cgi-bin/saveGraphHelpers.php");
+ include ("backend/saveGraphHelpers.php");
 ?>
     <h1><?= L('head_no_tags')?></h1>
     <p><?= L('text')?></p>

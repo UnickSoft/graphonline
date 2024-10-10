@@ -7,7 +7,7 @@ DiskSaveLoad.LoadGraphFromDisk = function (graphName, callback)
 {
 	$.ajax({
 	type: "GET",
-	url: "/" + SiteDir + "cgi-bin/loadGraph.php?name=" + graphName
+	url: "/" + SiteDir + "backend/loadGraph.php?name=" + graphName
 	})
 	.done(callback);
 }
@@ -16,7 +16,7 @@ DiskSaveLoad.SaveSVGGraphOnDisk = function (imageName, svgText, callback)
 {
     $.ajax({
      type: "POST",
-     url: "/" + SiteDir + "cgi-bin/saveSvg.php?name=" + imageName,
+     url: "/" + SiteDir + "backend/saveSvg.php?name=" + imageName,
      data: {
            svgdata : svgText
      },
@@ -31,7 +31,7 @@ DiskSaveLoad.SaveGraphOnDisk = function (savedGraphName, graphAsString, callback
 {
 	$.ajax({
 	type: "POST",
-	url: "/" + SiteDir + "cgi-bin/saveGraph.php?name=" + savedGraphName,
+	url: "/" + SiteDir + "backend/saveGraph.php?name=" + savedGraphName,
 	data: graphAsString,
 	dataType: "text"
 	})
@@ -42,7 +42,7 @@ DiskSaveLoad.SaveGraphImageOnDisk = function (imageName, rectParams, imageBase64
 {
     $.ajax({
      type: "POST",
-     url: "/" + SiteDir + "cgi-bin/saveImage.php?name=" + imageName + rectParams,
+     url: "/" + SiteDir + "backend/saveImage.php?name=" + imageName + rectParams,
      data: {
            base64data : imageBase64Data
      },

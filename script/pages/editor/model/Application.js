@@ -843,7 +843,7 @@ Application.prototype.SetAdjacencyMatrix = function (matrix, separator)
 	var c = {};
 	if (!this.TestAdjacencyMatrix(matrix, r, c, separator))
 	{
-		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=adjacency&matrix=" + encodeURIComponent(matrix), function( data ) {;});
+		$.get( "/" + SiteDir + "backend/addFailedMatrix.php?text=adjacency&matrix=" + encodeURIComponent(matrix), function( data ) {;});
 		res = false;
 	}
 
@@ -860,7 +860,7 @@ Application.prototype.SetPair = function (pair)
 	var c = {};
 	if (!this.TestPair(pair))
 	{
-		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=pair&matrix=" + encodeURIComponent(pair), function( data ) {;});
+		$.get( "/" + SiteDir + "backend/addFailedMatrix.php?text=pair&matrix=" + encodeURIComponent(pair), function( data ) {;});
 		res = false;
 	}
 
@@ -892,7 +892,7 @@ Application.prototype.SetIncidenceMatrix = function (matrix)
 	var c = {};
 	if (!this.TestIncidenceMatrix(matrix, r, c))
 	{
-		$.get( "/" + SiteDir + "cgi-bin/addFailedMatrix.php?text=incidence&matrix=" + encodeURIComponent(matrix), function( data ) {;});
+		$.get( "/" + SiteDir + "backend/addFailedMatrix.php?text=incidence&matrix=" + encodeURIComponent(matrix), function( data ) {;});
 		res = false;
 	}
 

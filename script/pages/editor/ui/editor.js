@@ -503,7 +503,7 @@ Editor.prototype.initVoteButton = function()
                 console.log("Vote" + self["voteIndex"]);
                 $.ajax({
                 type: "GET",
-                url: "/" + SiteDir + "cgi-bin/vote.php?index=" + self["voteIndex"],
+                url: "/" + SiteDir + "backend/vote.php?index=" + self["voteIndex"],
                 dataType: "text"
                 });
                 $("#voteDialog").dialog('close');
