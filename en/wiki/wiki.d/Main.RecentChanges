@@ -1,9 +1,28 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36
+agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+author=ZAP
 charset=UTF-8
+csum=ZAP
 ctime=1484933901
-host=188.143.232.32
+host=188.255.35.115
 name=Main.RecentChanges
-rev=3
-text=* [[Main/HomePage]]  . . . January 23, 2017, at 07:25 PM by [[~Anisha]]: [=8LFIQkMt=]%0a
-time=1485188756
+rev=80
+targets=Main.HomePage,Profiles.Anisha
+text=* [[Main/HomePage]]  . . . February 13, 2024, at 09:25 PM by [[~ZAP]]: [=ZAP=]%0a* [[Main/AllRecentChanges]]  . . . February 13, 2024, at 09:20 PM by [[~ZAP]]: [=ZAP=]%0a* [[Main/RecentChanges]]  . . . February 13, 2024, at 09:17 PM by [[~ZAP]]: [=ZAP=]%0a
+time=1707848700
+author:1707848269=ZAP
+csum:1707848269=ZAP
+diff:1707848269:1707848256:minor=1c1,3%0a%3c * [[Main/HomePage]]  . . . January 23, 2017, at 07:25 PM by [[~Anisha]]: [=8LFIQkMt=]%0a---%0a> * [[Main/AllRecentChanges]]  . . . February 13, 2024, at 09:17 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/HomePage]]  . . . February 13, 2024, at 09:17 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/RecentChanges]]  . . . February 13, 2024, at 09:15 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707848269=188.255.35.115
+author:1707848140=ZAP
+csum:1707848140=ZAP
+diff:1707848140:1707848139:minor=1c1,3%0a%3c * [[Main/HomePage]]  . . . January 23, 2017, at 07:25 PM by [[~Anisha]]: [=8LFIQkMt=]%0a---%0a> * [[Main/HomePage]]  . . . February 13, 2024, at 09:15 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/AllRecentChanges]]  . . . February 13, 2024, at 09:15 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/RecentChanges]]  . . . February 13, 2024, at 09:14 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707848140=188.255.35.115
+author:1707848047=ZAP
+csum:1707848047=ZAP
+diff:1707848047:1707848047:minor=1c1,3%0a%3c * [[Main/HomePage]]  . . . January 23, 2017, at 07:25 PM by [[~Anisha]]: [=8LFIQkMt=]%0a---%0a> * [[Main/AllRecentChanges]]  . . . February 13, 2024, at 09:14 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/HomePage]]  . . . February 13, 2024, at 09:13 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/RecentChanges]]  . . . February 13, 2024, at 09:13 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707848047=188.255.35.115
+author:1707848013=ZAP
+csum:1707848013=ZAP
+diff:1707848013:1707848013:minor=1c1,2%0a%3c * [[Main/HomePage]]  . . . January 23, 2017, at 07:25 PM by [[~Anisha]]: [=8LFIQkMt=]%0a---%0a> * [[Main/AllRecentChanges]]  . . . February 13, 2024, at 09:13 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Main/HomePage]]  . . . February 13, 2024, at 09:13 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707848013=188.255.35.115

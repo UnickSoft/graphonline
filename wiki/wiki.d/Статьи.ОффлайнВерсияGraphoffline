@@ -1,0 +1,26 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 OPR/80.0.4170.63
+author=
+charset=UTF-8
+csum=
+ctime=1635791421
+description=Сборки graphonline для запуска локально 
+host=78.155.188.162
+name=Статьи.ОффлайнВерсияGraphoffline
+rev=4
+targets=
+text=(:Title Offline версия graphonline :)%0a(:Description Сборки graphonline для запуска локально :)%0a%0a!! Сборка для Windows%0a%0a[+++ [[https://graphonline.ru/tmp/graphonline.zip | Скачать сборку graphonline.zip]] +++]%0a%0a!!! Как использовать%0a%0aДля запуска необходимо запустить файл: run_graphonline_offline.bat Он запустит веб сервер и откроет страницу http://localhost:8080%0a%0a!!! Решение проблем с запуском%0a%0aСборка использует Uniform Server Zero XII в качестве веб-сервера. Если возникли проблемы с его запуском то необходимо установить: vc_redist_x64/86.exe [[https://www.microsoft.com/en-us/download/details.aspx?id=49984]]%0a%0aТакже можно запустить веб-сервер вручную:%0a#. Запустить файл UniController.exe. Закрыть все всплывающие окна.%0a#. Нажать на кнопку Start Apach. Через какое-то время индикатор справа от кнопки должен стать зелёным.%0a#. Нажать на кнопку View www, чтобы открыть сайт.%0a%0aЕсли эти шаги не помогли, напишите нам удобным для вас способом [[https://graphonline.ru/contacts]]%0a%0a
+time=1635791565
+title=Offline версия graphonline 
+author:1635791565=
+diff:1635791565:1635791479:=6c6%0a%3c [+++ [[https://graphonline.ru/tmp/graphonline.zip | Скачать сборку graphonline.zip]] +++]%0a---%0a>  [[https://graphonline.ru/tmp/graphonline.zip | Скачать сборку graphonline.zip]]%0a
+host:1635791565=78.155.188.162
+author:1635791479=
+diff:1635791479:1635791457:=17,19c17,19%0a%3c #. Запустить файл UniController.exe. Закрыть все всплывающие окна.%0a%3c #. Нажать на кнопку Start Apach. Через какое-то время индикатор справа от кнопки должен стать зелёным.%0a%3c #. Нажать на кнопку View www, чтобы открыть сайт.%0a---%0a> 1. Запустить файл UniController.exe. Закрыть все всплывающие окна.%0a> 2. Нажать на кнопку Start Apach. Через какое-то время индикатор справа от кнопки должен стать зелёным.%0a> 4. Нажать на кнопку View www, чтобы открыть сайт.%0a
+host:1635791479=78.155.188.162
+author:1635791457=
+diff:1635791457:1635791421:=14c14%0a%3c Сборка использует Uniform Server Zero XII в качестве веб-сервера. Если возникли проблемы с его запуском то необходимо установить: vc_redist_x64/86.exe [[https://www.microsoft.com/en-us/download/details.aspx?id=49984]]%0a---%0a> Сборка использует Uniform Server Zero XII в качестве веб-сервера. Если возникли проблемы с его запуском то необходимо установить: vc_redist_x64/86.exe https://www.microsoft.com/en-us/download/details.aspx?id=49984%0a
+host:1635791457=78.155.188.162
+author:1635791421=
+diff:1635791421:1635791421:=1,22d0%0a%3c (:Title Offline версия graphonline :)%0a%3c (:Description Сборки graphonline для запуска локально :)%0a%3c %0a%3c !! Сборка для Windows%0a%3c %0a%3c  [[https://graphonline.ru/tmp/graphonline.zip | Скачать сборку graphonline.zip]]%0a%3c %0a%3c !!! Как использовать%0a%3c %0a%3c Для запуска необходимо запустить файл: run_graphonline_offline.bat Он запустит веб сервер и откроет страницу http://localhost:8080%0a%3c %0a%3c !!! Решение проблем с запуском%0a%3c %0a%3c Сборка использует Uniform Server Zero XII в качестве веб-сервера. Если возникли проблемы с его запуском то необходимо установить: vc_redist_x64/86.exe https://www.microsoft.com/en-us/download/details.aspx?id=49984%0a%3c %0a%3c Также можно запустить веб-сервер вручную:%0a%3c 1. Запустить файл UniController.exe. Закрыть все всплывающие окна.%0a%3c 2. Нажать на кнопку Start Apach. Через какое-то время индикатор справа от кнопки должен стать зелёным.%0a%3c 4. Нажать на кнопку View www, чтобы открыть сайт.%0a%3c %0a%3c Если эти шаги не помогли, напишите нам удобным для вас способом [[https://graphonline.ru/contacts]]%0a%3c %0a
+host:1635791421=78.155.188.162

@@ -1,0 +1,44 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+author=ZAP
+charset=UTF-8
+csum=ZAP
+ctime=1635792005
+host=188.255.35.115
+name=Aricles.RecentChanges
+rev=76
+targets=Aricles.OfflineVersion
+text=* [[Aricles/Aricles]]  . . . February 13, 2024, at 08:55 PM by [[~ZAP]]: [=ZAP=]%0a* [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:54 PM by [[~ZAP]]: [=ZAP=]%0a* [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a
+time=1707846926
+author:1707846886=ZAP
+csum:1707846886=ZAP
+diff:1707846886:1707846886:cWindowssystemini=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:54 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:54 PM by [[~cWindowssystemini]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:53 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846886=188.255.35.115
+author:1707846819=ZAP
+csum:1707846819=ZAP
+diff:1707846819:1707846792:minor=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:53 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:53 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:52 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846819=188.255.35.115
+author:1707846767=ZAP
+csum:1707846767=ZAP
+diff:1707846767:1707846731:minor=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:52 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:51 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:50 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846767=188.255.35.115
+author:1707846632=ZAP
+csum:1707846632=ZAP
+diff:1707846632:1707846632:minor=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:50 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:50 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846632=188.255.35.115
+author:1707846591=ZAP
+csum:1707846591=ZAP
+diff:1707846591:1707846591:minor=1c1,2%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846591=188.255.35.115
+author:1707846589=ZAP
+csum:1707846589=ZAP
+diff:1707846589:1707846589:minor=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846589=188.255.35.115
+author:1707846583=ZAP
+csum:1707846583=ZAP
+diff:1707846583:1707846583:minor=1c1,3%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/RecentChanges]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846583=188.255.35.115
+author:1707846573=ZAP
+csum:1707846573=ZAP
+diff:1707846573:1707846573:minor=1c1,2%0a%3c * [[Aricles/OfflineVersion]]  . . . November 01, 2021, at 09:40 PM by ?: [==]%0a---%0a> * [[Aricles/Aricles]]  . . . February 13, 2024, at 08:49 PM by [[~ZAP]]: [=ZAP=]%0a> * [[Aricles/OfflineVersion]]  . . . February 13, 2024, at 03:17 PM by [[~ZAP]]: [=ZAP=]%0a
+host:1707846573=188.255.35.115

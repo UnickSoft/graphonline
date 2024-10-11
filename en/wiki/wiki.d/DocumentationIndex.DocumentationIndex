@@ -1,0 +1,16 @@
+version=pmwiki-2.2.75 ordered=1 urlencoded=1
+agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+author=ZAP
+charset=UTF-8
+csum=ZAP
+ctime=1707848436
+host=188.255.35.115
+name=DocumentationIndex.DocumentationIndex
+rev=1
+targets=
+text='-'_Small text_'-'%0a'_v2_'%0a
+time=1707848436
+author:1707848436=ZAP
+csum:1707848436=ZAP
+diff:1707848436:1707848436:minor=1,2d0%0a%3c '-'_Small text_'-'%0a%3c '_v2_'%0a
+host:1707848436=188.255.35.115

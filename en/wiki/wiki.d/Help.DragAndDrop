@@ -1,18 +1,21 @@
 version=pmwiki-2.2.75 ordered=1 urlencoded=1
-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.1165
+agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 OPR/69.0.3686.77
 author=
 charset=UTF-8
 csum=
 ctime=1471353416
 description=How to drag and drop vertices in Graph Online
-host=37.146.179.134
+host=185.16.137.80
 name=Help.DragAndDrop
 passwdedit=@lock
-rev=3
+rev=4
 targets=
-text=(:Title Drag and drop:)%0a(:Description How to drag and drop vertices in Graph Online:)%0a%0aIn order to drag a vertex you have to choose "Drag and drop"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a%0ahttp://images.unick-soft.ru/photos/share/Capture03_2.gif
-time=1495230265
+text=(:Title Drag and drop:)%0a(:Description How to drag and drop vertices in Graph Online:)%0a%0aIn order to drag a vertex you have to choose "Drag and drop"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a%0ahttp://images.unick-soft.ru/photos/share/Capture03_2.gif%0a%0aIf you want select several objects, you should press Ctrl (For Mac Cmd) and select objects by mouse.
+time=1597685793
 title=Drag and drop
+author:1597685793=
+diff:1597685793:1495230265:=6,8c6%0a%3c http://images.unick-soft.ru/photos/share/Capture03_2.gif%0a%3c %0a%3c If you want select several objects, you should press Ctrl (For Mac Cmd) and select objects by mouse.%0a\ No newline at end of file%0a---%0a> http://images.unick-soft.ru/photos/share/Capture03_2.gif%0a\ No newline at end of file%0a
+host:1597685793=185.16.137.80
 author:1471450741=
 diff:1471450741:1471353416:=4c4%0a%3c In order to drag a vertex you have to choose "Drag and drop"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a---%0a> In order to drag a vertex you have to choose "Drag"  http://images.unick-soft.ru/photos/share/moveNode.png and select vertices and drag them. The edges will move after the vertices.%0a
 host:1471450741=128.68.33.133
