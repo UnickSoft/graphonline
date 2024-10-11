@@ -17,10 +17,9 @@ DiskSaveLoad.SaveSVGGraphOnDisk = function (imageName, svgText, callback)
     $.ajax({
      type: "POST",
      url: "/" + SiteDir + "backend/saveSvg.php?name=" + imageName,
-     data: {
-           svgdata : svgText
-     },
+     data: svgText,
      dataType: "text",
+     contentType: "text/xml; charset=utf-8",
      success: callback
      });
                           

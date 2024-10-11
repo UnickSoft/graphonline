@@ -8,7 +8,7 @@ $name  = $_GET["name"];
 if (isValidName($name))
 {
     $imageFilename = getSvgFileName($name);
-    $svgData     = $_POST['svgdata'];
+    $svgData     = file_get_contents('php://input');
     
     file_put_contents($imageFilename, $svgData);
     
