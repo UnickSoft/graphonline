@@ -187,14 +187,14 @@
     /**
      * Путь до корня сайта с подставкой языка, нужна для ссылок
      */
-    function SiteRoot($uri = '')
+    function SiteRoot($uri = '', $add_lang = true)
     {
         global $g_config;
 
         $uri  = $uri == $g_config['defaultComponent'] ? '' : $uri;
 
         $dir  = SITE_IN_DIR ? (SITE_IN_DIR . '/') : '';
-        $lang = LANG == DEF_LANG ? '' : (LANG . '/');
+        $lang = LANG == DEF_LANG || !$add_lang ? '' : (LANG . '/');
         $ret  = $lang || $uri ? "/{$dir}?q={$lang}{$uri}" : "/{$dir}";
         $ret  = empty($ret) ? '/' : $ret;
         $ret  = $g_config['useModRewrite'] ?

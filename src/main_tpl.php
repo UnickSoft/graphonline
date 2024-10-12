@@ -42,7 +42,7 @@
                             "link"  => SiteRoot("help"),),
                       array(
                             "title" => L("menu_6"),
-                            "link"  => SiteRoot("wiki"),),
+                            "link"  => SiteRoot(LANG != 'ru' ? "en/wiki" : "wiki", false),),
                       array(
                             "title" => L("menu_10"),
                             "link"  => SiteRoot("opensource"),)
