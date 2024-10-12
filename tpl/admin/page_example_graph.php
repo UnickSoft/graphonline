@@ -51,4 +51,10 @@
         </p>
 <?php endfor; ?>
     </div>
+    <h3>Example files list</h3>
+    <div>
+<?php for ($i = 0; $i < count($examples); $i++): ?>
+        <?= getXMLFileName($examples[$i]["id"], true) ?> <?= getImageFileName($examples[$i]["id"], true) ?>
+<?php endfor; ?>
+    </div>
 
