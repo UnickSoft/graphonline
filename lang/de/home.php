@@ -1,6 +1,6 @@
 <?php
     $g_lang["title_notg"] = "Kürzesten Weg finden";
-    $g_lang["text"] = "<o>Erstelle einen Graphen und finde den kürzesten Weg. Auf der Hilfe-Seite findest du ein <a href=\"/de/help\">Erklärvideo</a>.</p>.";
+    $g_lang["text"] = "<p>Erstelle einen Graphen und finde den kürzesten Weg. Auf der Hilfe-Seite findest du ein <a href=\"/de/help\">Erklärvideo</a>.</p>";
     $g_lang["add_node"] = "Knoten hinzufügen";
     $g_lang["connect_nodes"] = "Knoten verbinden";
     $g_lang["delete"] = "Objekt entfernen";
