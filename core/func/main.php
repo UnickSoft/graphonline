@@ -398,7 +398,8 @@
         // If we have any params then ignore redirect.
         if (count(array_values($_GET)) > 1)
         {
-            return NULL;
+            // Redirect with params.
+            //return NULL;
         }
 
         // Skip for localhost

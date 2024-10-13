@@ -19,7 +19,7 @@
                           'fr' => array('name' => 'Français'),
                           'el' => array('name' => 'Greek'),
                           'es' => array('name' => 'Spanish'),
-                          'nl' => array('name' => 'Dutch'),
+                          'nl' => array('name' => 'Dutch', 'domain' => 'graphonline.top'),
                           'sv' => array('name' => 'Swedish'),
                           'de' => array('name' => 'German'),
                           'pt' => array('name' => 'Portuguese'),

@@ -11,7 +11,7 @@ $domains = array(
 
 function isCurrentDomain($domain)
 {
-    return strtolower($domain) == strtolower($_SERVER['SERVER_NAME']);
+    return strcasecmp($domain, $_SERVER['SERVER_NAME']) == 0;
 }
 
 
