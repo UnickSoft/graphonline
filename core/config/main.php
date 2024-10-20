@@ -18,15 +18,15 @@
                           'ru' => array('name' => 'Русский'),
                           'fr' => array('name' => 'Français'),
                           'el' => array('name' => 'Greek', 'domain' => 'graphonline.top'),
-                          'es' => array('name' => 'Spanish'),
+                          'es' => array('name' => 'Spanish', 'domain' => 'graphonline.top'),
                           'nl' => array('name' => 'Dutch', 'domain' => 'graphonline.top'),
                           'sv' => array('name' => 'Swedish', 'domain' => 'graphonline.top'),
                           'de' => array('name' => 'German'),
                           'pt' => array('name' => 'Portuguese'),
                           'bg' => array('name' => 'Български', 'domain' => 'graphonline.top'),
                           'ch' => array('name' => '漢語'),
-                          'pl' => array('name' => 'Polski'),
-                          'cs' => array('name' => 'Čeština')
+                          'pl' => array('name' => 'Polski', 'domain' => 'graphonline.top'),
+                          'cs' => array('name' => 'Čeština', 'domain' => 'graphonline.top')
                        );
 
     $g_config                     = array();
