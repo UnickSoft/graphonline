@@ -15,16 +15,16 @@
     define('DEF_LANG', 'ru');
     $g_arrLangs = array(
                           'en' => array('name' => 'English'),
-                          'ru' => array('name' => 'Русский'),
-                          'fr' => array('name' => 'Français'),
+                          'ru' => array('name' => 'Русский', 'domain' => 'graphonline.ru'),
+                          'fr' => array('name' => 'Français', 'domain' => 'graphonline.top'),
                           'el' => array('name' => 'Greek', 'domain' => 'graphonline.top'),
                           'es' => array('name' => 'Spanish', 'domain' => 'graphonline.top'),
                           'nl' => array('name' => 'Dutch', 'domain' => 'graphonline.top'),
                           'sv' => array('name' => 'Swedish', 'domain' => 'graphonline.top'),
-                          'de' => array('name' => 'German'),
-                          'pt' => array('name' => 'Portuguese'),
+                          'de' => array('name' => 'German', 'domain' => 'graphonline.top'),
+                          'pt' => array('name' => 'Portuguese', 'domain' => 'graphonline.top'),
                           'bg' => array('name' => 'Български', 'domain' => 'graphonline.top'),
-                          'ch' => array('name' => '漢語'),
+                          'ch' => array('name' => '漢語', 'domain' => 'graphonline.top'),
                           'pl' => array('name' => 'Polski', 'domain' => 'graphonline.top'),
                           'cs' => array('name' => 'Čeština', 'domain' => 'graphonline.top')
                        );
