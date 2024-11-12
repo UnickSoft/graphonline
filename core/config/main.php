@@ -14,7 +14,7 @@
     // Массив языков сайта
     define('DEF_LANG', 'ru');
     $g_arrLangs = array(
-                          'en' => array('name' => 'English'),
+                          'en' => array('name' => 'English', 'domain' => 'graphonline.top'),
                           'ru' => array('name' => 'Русский', 'domain' => 'graphonline.ru'),
                           'fr' => array('name' => 'Français', 'domain' => 'graphonline.top'),
                           'el' => array('name' => 'Greek', 'domain' => 'graphonline.top'),
