@@ -282,6 +282,7 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
             res = this.app.processEmscripten(processData);
         }
         catch (error) {
+            userAction("emscripten_error_" + algorithmName);
             console.log("Error on Emscripten: " + error + "\n" + error.stack);
             callCGIAlgorithms();
             return true;
