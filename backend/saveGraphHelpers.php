@@ -6,14 +6,21 @@
 // Only latic.
 function isValidName($name)
 {
-	return preg_match("(^[a-zA-Z]+[_test]*$)", $name);
+	return preg_match("(^[autosave_]*+[a-zA-Z]+[_test]*$)", $name);
+}
+
+function isAutoSave($name)
+{
+	return strpos($name, 'autosave_') === 0;
 }
 
 function getXMLFileName($graphName, $fromRoot=false)
 {
     global $g_config;
     
-	$dirName = ($fromRoot ? "" : "../") . $g_config['graphSavePath'] . substr($graphName, 0, 2);
+    $auto_save = isAutoSave($graphName);
+
+	$dirName = ($fromRoot ? "" : "../") . $g_config['graphSavePath'] . ($auto_save ? 'autosave' : substr($graphName, 0, 2));
 
 	if(!file_exists($dirName))
 	{
@@ -53,21 +60,21 @@ function getSvgFileName($graphName, $fromRoot=false)
 }
 
     
-    function saveGraphXML($graph, $name, $fromRoot = false)
+function saveGraphXML($graph, $name, $fromRoot = false)
+{
+    $res = false;
+    if (isValidName($name))
     {
-        $res = false;
-        if (isValidName($name))
+        $file = fopen(getXMLFileName($name, $fromRoot), "w");
+        if ($file)
         {
-            $file = fopen(getXMLFileName($name, $fromRoot), "w");
-            if ($file)
-            {
-                fprintf($file, "%s", gzcompress($graph, -1));
-                fclose($file);
-                $res = true;
-            }
+            fprintf($file, "%s", gzcompress($graph, -1));
+            fclose($file);
+            $res = true;
         }
-        return $res;
     }
+    return $res;
+}
 
 
 ?>

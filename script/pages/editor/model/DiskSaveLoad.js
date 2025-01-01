@@ -49,3 +49,32 @@ DiskSaveLoad.SaveGraphImageOnDisk = function (imageName, rectParams, imageBase64
      success: callback
      });
 }
+
+DiskSaveLoad.SaveAutoSaveGraphOnDisk = function (savedGraphName, graphAsString, callback)
+{
+	$.ajax({
+	type: "POST",
+	url: "/" + SiteDir + "backend/saveGraph.php?name=autosave_" + savedGraphName,
+	data: graphAsString,
+	dataType: "text"
+	})
+	.done(callback);
+}
+
+DiskSaveLoad.LoadAutoSaveGraphFromDisk = function (graphName, callback)
+{
+	$.ajax({
+	type: "GET",
+	url: "/" + SiteDir + "backend/loadGraph.php?name=autosave_" + graphName
+	})
+	.done(callback);
+}
+
+DiskSaveLoad.RemoveAutoSaveGraphFromDisk = function (graphName, callback)
+{
+	$.ajax({
+	type: "GET",
+	url: "/" + SiteDir + "backend/removeGraph.php?name=autosave_" + graphName
+	})
+	.done(callback);
+}

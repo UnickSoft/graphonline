@@ -51,6 +51,8 @@ function handelImportGraph(files) {
         var textFromFileLoaded = fileLoadedEvent.target.result;
         console.log(textFromFileLoaded);
         editor.application.LoadGraphFromString(textFromFileLoaded);
+        // Save graph to auto save after import.
+        editor.application.saveAutoSave(textFromFileLoaded);
         ImportGraphFiles.value = "";
     };
 

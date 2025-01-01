@@ -7,6 +7,10 @@
         <p>Всего сохранёных графов - <?= $totalGraphCount ?> шт</p>
         <p>Общий размер сохранённых графов - <?= $totalGraphSize ?> Кб</p>
         <p>За последние полгода сохранено - <?= $ageGraph / $totalGraphCount * 100 ?> %</p>
+        <h2>Автосохраннёных графов</h2>
+        <p>Всего Автосохраннёных графов - <?= $totalAutosaveGraphCount ?> шт</p>
+        <p>Общий размер сохранённых графов - <?= $totalAutosaveGraphSize ?> Кб</p>
+        <p>За последние месяц сохранено - <?= $ageAutosaveGraph / $totalAutosaveGraphCount * 100 ?> %</p>
         <h2>Сохранённые изображения</h2>
         <p>Всего сохранёных изображений - <?= $totalImages ?> шт</p>
         <p>Общий размер сохранённых изображений - <?= $totalImagesSize ?> Кб</p>

@@ -63,6 +63,14 @@ function Application(document, window, listener)
 
     this.defaultEdge = null;
     this.useDefaultEdge = false;
+
+    this.lastSavedAutoSave = "";
+    // Start autosave timer.
+    setInterval(function()
+    {
+        var graphXML = this.graph.SaveToXML(this.SaveUserSettings());
+        this.saveAutoSave(graphXML);
+    }.bind(this), this.autosaveTimeInterval);
 };
 
 // List of graph.
@@ -80,6 +88,10 @@ Application.prototype.status = {};
 Application.prototype.graphNameLength = 16;
 // Max undo stack size
 Application.prototype.maxUndoStackSize = 8;
+// Max autosave graph size for cookie.
+Application.prototype.maxAutosaveSizeForCookie = 2000; // Max cookie size is at least 4096.
+// Auto save time interval
+Application.prototype.autosaveTimeInterval = 1000 * 60; // in ms. 1 minutes.
 
 Application.prototype.getMousePos = function(canvas, e)
 {
@@ -684,7 +696,7 @@ Application.prototype.ToDefaultStateAndRedraw = function()
 {
     this.setRenderPath([]);
 	this.updateMessage();
-	this.redrawGraph();    
+	this.redrawGraph();
 }
 
 Application.prototype.getParameterByName = function (name)
@@ -769,12 +781,20 @@ Application.prototype.onPostLoadEvent = function()
     if (!wasLoad)
     {
     	var graphName  = this.getParameterByName("graph");
-	    if (graphName.length <= 0)
+        var is_user_graph = graphName.length > 0;
+	    if (!is_user_graph)
 	    {
            graphName = document.cookie.replace(/(?:(?:^|.*;\s*)graphName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	    }
-                          
-       	if (graphName.length > 0)
+
+        // Load from auto save only if it is graph name from cookie
+        // or name was empty.
+        if (!is_user_graph && this.hasAutoSave())
+        {
+            userAction("LoadGraphFromAutoSave");
+            this.loadAutoSave();
+        }
+        else if (graphName.length > 0)
 	    {
             userAction("LoadGraphFromDisk");
     		this.LoadGraphFromDisk(graphName);
@@ -972,17 +992,18 @@ Application.prototype.SetPairSmart = function (pair)
 Application.prototype.SaveGraphOnDisk = function ()
 {
 	var graphAsString = this.graph.SaveToXML(this.SaveUserSettings());
-	
+	var app = this;
+
 	if (this.savedGraphName.length <= 0)
 	{
 		this.savedGraphName = this.GetNewGraphName();
 	}
 
-	var app = this;
-
     DiskSaveLoad.SaveGraphOnDisk(this.savedGraphName, graphAsString, function( msg ) 
         {
                 document.cookie = "graphName=" + app.savedGraphName;
+                // Remove cookie after save, beacuse we have this graph in cookcie.
+                app.removeAutosave();
         });
 }
                           
@@ -1073,6 +1094,8 @@ Application.prototype.LoadGraphFromDisk = function (graphName)
     DiskSaveLoad.LoadGraphFromDisk(graphName, function( msg ) 
 	{
        app.LoadGraphFromString(msg);
+       // Remove auto save after load from disk.
+       app.removeAutosave();
 	});
 }
 
@@ -1791,4 +1814,153 @@ Application.prototype.setUseDefaultEdge = function (value)
 Application.prototype.getUseDefaultEdge = function ()
 {
     return this.useDefaultEdge;
+}
+
+Application.prototype.loadGraphFromZippedBase64 = function (base64Str, callback)
+{
+    decompress_base64_zip_into_text(base64Str, callback);
+}
+
+Application.prototype.isAutoSaveGraphName = function (str)
+{
+    // If it is graph file name or Base64 graph.
+    return str.length > 0 && str.length <= this.graphNameLength;
+}
+
+Application.prototype.saveAutoSave = function (graphXML, callback)
+{
+    compress_text_into_zip_base64(graphXML, function(base64Str) {
+        if (this.lastSavedAutoSave == base64Str)
+        {
+            if (callback)
+            {
+                callback();
+            }
+            return;
+        }
+    
+        if (base64Str.length < this.maxAutosaveSizeForCookie)
+        {
+            this.setAutoSaveCookie(base64Str);
+            let saveGraphData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            if (saveGraphData == base64Str)
+            {
+                this.lastSavedAutoSave = base64Str;
+                console.log("Auto save to cookie");
+                if (callback)
+                {
+                    callback();
+                }
+                return;
+            }
+            else
+            {
+                console.log("Failed to save autosave to cookie");
+                document.cookie = "auto_save=";
+            }
+        }
+    
+        let autoSaveGraphName = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    
+        if (!this.isAutoSaveGraphName(autoSaveGraphName))
+        {
+            autoSaveGraphName = this.GetNewGraphName();
+        }
+    
+        let app = this;
+        
+        // Backend zip graph xml by itself.
+        DiskSaveLoad.SaveAutoSaveGraphOnDisk(autoSaveGraphName, graphXML, function( msg ) 
+        {
+            app.setAutoSaveCookie(autoSaveGraphName);
+            app.lastSavedAutoSave = base64Str;
+            if (callback)
+            {
+                callback();
+            }
+            console.log("Auto save to file");
+        }.bind(base64Str));
+    }.bind(this));
+}
+
+Application.prototype.hasAutoSave = function ()
+{
+    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("autoSaveData: '" + autoSaveData + "'");
+    return (autoSaveData.length > 0);
+}
+
+Application.prototype.loadAutoSave = function (callback)
+{
+    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    if (autoSaveData.length < 0)
+    {
+        console.log("Auto save to cookie is empty");
+        return;
+    }
+
+    let app = this;
+	if (!this.isAutoSaveGraphName(autoSaveData))
+    {
+        this.loadGraphFromZippedBase64(autoSaveData, function(xmlGraph){
+            app.LoadGraphFromString(xmlGraph);
+            console.log("Load graph from cookie");
+            if (callback)
+            {
+                callback();
+            }
+        });
+        return;
+    }
+
+    DiskSaveLoad.LoadAutoSaveGraphFromDisk(autoSaveData, function( msg ) 
+	{
+        app.LoadGraphFromString(msg);
+        if (callback)
+        {
+            callback();
+        }
+	});
+}
+
+Application.prototype.removeAutosave = function (callback)
+{
+    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    this.lastSavedAutoSave = "";
+    if (autoSaveData.length < 0)
+    {
+        console.log("Auto save to cookie is empty");
+        return;
+    }
+
+    if (!this.isAutoSaveGraphName(autoSaveData))
+    {
+        document.cookie = "auto_save=";
+        console.log("Remove auto save from cookie");
+        if (callback)
+        {
+            callback();
+        }
+        return;
+    }
+
+    DiskSaveLoad.RemoveAutoSaveGraphFromDisk(autoSaveData, function( msg ) 
+    {
+        document.cookie = "auto_save=";
+        console.log("Remove auto save file");
+        if (callback)
+        {
+            callback();
+        }
+    });
+}
+
+Application.prototype.setAutoSaveCookie = function (value)
+{
+    var now = new Date();
+    var time = now.getTime();
+    var expireTime = time + 1000 * 3600 * 24 * 7; // In a week.
+    now.setTime(expireTime);
+    document.cookie = 'auto_save=' + value + ';expires=' + now.toUTCString() + ';path=/';
 }

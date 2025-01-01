@@ -20,6 +20,7 @@
 
     doInclude ([
         include ("shared/utils.js"),
+        include ("shared/gzip.js"),
         
         include ("entities/graph/api/index.js"),
         include ("features/draw_graph/api/index.js"),
@@ -38,7 +39,7 @@
 
         include ("model/texts.js", modulDir),
         include ("model/UndoStack.js", modulDir),
-        include ("model/DiskSaveLoad.js", modulDir),     
+        include ("model/DiskSaveLoad.js", modulDir),
         include ("model/Application.js", modulDir),
         include ("ui/ya_metrika.js", modulDir),
         include ("ui/editor.js", modulDir),

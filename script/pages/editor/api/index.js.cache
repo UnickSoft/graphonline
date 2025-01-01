@@ -1,5 +1,5 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=89","/script/entities/graph/api/index.js?v=89","/script/shared/point.js?v=89","/script/entities/edge/api/index.js?v=89","/script/entities/edge/model/BaseEdge.js?v=89","/script/entities/edge/model/EdgeModel.js?v=89","/script/entities/vertex/api/index.js?v=89","/script/entities/vertex/model/BaseVertex.js?v=89","/script/entities/vertex/model/VertexModel.js?v=89","/script/entities/graph/model/Graph.js?v=89","/script/features/draw_graph/api/index.js?v=89","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=89","/script/features/draw_graph/model/EdgeStyle.js?v=89","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=89","/script/features/draw_graph/model/VertexShape.js?v=89","/script/features/draw_graph/model/VertexStyle.js?v=89","/script/features/draw_graph/model/BaseVertexDrawer.js?v=89","/script/features/algorithms/api/index.js?v=89","/script/features/algorithms/model/Algorithms.js?v=89","/script/features/algorithms/model/BaseTraversal.js?v=89","/script/features/base_handler/index.js?v=89","/script/features/default_handler/index.js?v=89","/script/features/add_vertices_handler/index.js?v=89","/script/features/connect_vertices_handler/index.js?v=89","/script/features/delete_objects_handler/index.js?v=89","/script/features/algorithm_handler/index.js?v=89","/script/features/serialization/api/index.js?v=89","/script/features/serialization/model/GraphMLCreator.js?v=89","/script/features/enum_vertices/EnumVertices.js?v=89","/script/pages/editor/model/texts.js?v=89","/script/pages/editor/model/UndoStack.js?v=89","/script/pages/editor/model/DiskSaveLoad.js?v=89","/script/pages/editor/model/Application.js?v=89","/script/pages/editor/ui/ya_metrika.js?v=89","/script/pages/editor/ui/editor.js?v=89","/script/pages/editor/ui/main.js?v=89",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
-let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=90","/script/shared/gzip.js?v=90","/script/entities/graph/api/index.js?v=90","/script/shared/point.js?v=90","/script/entities/edge/api/index.js?v=90","/script/entities/edge/model/BaseEdge.js?v=90","/script/entities/edge/model/EdgeModel.js?v=90","/script/entities/vertex/api/index.js?v=90","/script/entities/vertex/model/BaseVertex.js?v=90","/script/entities/vertex/model/VertexModel.js?v=90","/script/entities/graph/model/Graph.js?v=90","/script/features/draw_graph/api/index.js?v=90","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=90","/script/features/draw_graph/model/EdgeStyle.js?v=90","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=90","/script/features/draw_graph/model/VertexShape.js?v=90","/script/features/draw_graph/model/VertexStyle.js?v=90","/script/features/draw_graph/model/BaseVertexDrawer.js?v=90","/script/features/algorithms/api/index.js?v=90","/script/features/algorithms/model/Algorithms.js?v=90","/script/features/algorithms/model/BaseTraversal.js?v=90","/script/features/base_handler/index.js?v=90","/script/features/default_handler/index.js?v=90","/script/features/add_vertices_handler/index.js?v=90","/script/features/connect_vertices_handler/index.js?v=90","/script/features/delete_objects_handler/index.js?v=90","/script/features/algorithm_handler/index.js?v=90","/script/features/serialization/api/index.js?v=90","/script/features/serialization/model/GraphMLCreator.js?v=90","/script/features/enum_vertices/EnumVertices.js?v=90","/script/pages/editor/model/texts.js?v=90","/script/pages/editor/model/UndoStack.js?v=90","/script/pages/editor/model/DiskSaveLoad.js?v=90","/script/pages/editor/model/Application.js?v=90","/script/pages/editor/ui/ya_metrika.js?v=90","/script/pages/editor/ui/editor.js?v=90","/script/pages/editor/ui/main.js?v=90",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("shared/gzip.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
 return str;return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
@@ -11,7 +11,22 @@ function FullObjectCopy(obj)
 function FullArrayCopy(arr)
 {var res=[];arr.forEach(function(element){var copyElement=FullObjectCopy(element);res.push(copyElement);});return res;}
 function formatString(string,params){return string.replace(/{(\d+)}/g,(match,index)=>{return typeof params[index]!=='undefined'?params[index]:match;});}
-Array.prototype.swap=function(x,y){var b=this[x];this[x]=this[y];this[y]=b;return this;}
+Array.prototype.swap=function(x,y){var b=this[x];this[x]=this[y];this[y]=b;return this;};async function compress_text_into_zip_base64(str,callback,mode="gzip")
+{try
+{const blobToBase64=blob=>new Promise((resolve,_)=>{const reader=new FileReader();reader.onloadend=()=>resolve(reader.result.split(',')[1]);reader.readAsDataURL(blob);});const byteArray=new TextEncoder().encode(str);const cs=new CompressionStream(mode);const writer=cs.writable.getWriter();writer.write(byteArray);writer.close();return await new Response(cs.readable).blob().then(blobToBase64).then(res=>callback(res));}
+catch(err)
+{console.error(err)}
+return"";}
+async function decompress_base64_zip_into_text(str,callback,mode="gzip")
+{try
+{const bytes=Uint8Array.from(atob(str),c=>c.charCodeAt(0));const cs=new DecompressionStream(mode)
+const writer=cs.writable.getWriter()
+writer.write(bytes)
+writer.close()
+return await new Response(cs.readable).arrayBuffer().then(arr=>callback(new TextDecoder().decode(arr)),async _=>{throw new Error(await Promise.reject(await writer.closed))});}
+catch(err)
+{console.error(err)}
+return"";}
 {let modulDir="entities/graph/";doInclude([include("shared/point.js"),include("entities/edge/api/index.js"),include("entities/vertex/api/index.js"),include("model/Graph.js",modulDir)])}function Point(x,y){this.x=x||0;this.y=y||0;};Point.prototype.x=null;Point.prototype.y=null;Point.prototype.add=function(v){return new Point(this.x+v.x,this.y+v.y);};Point.prototype.addValue=function(v){return new Point(this.x+v,this.y+v);};Point.prototype.clone=function(){return new Point(this.x,this.y);};Point.prototype.degreesTo=function(v){var dx=this.x-v.x;var dy=this.y-v.y;var angle=Math.atan2(dy,dx);return angle*(180/Math.PI);};Point.prototype.distance=function(v){return Math.sqrt(this.distanceSqr(v));};Point.prototype.distanceSqr=function(v){var x=this.x-v.x;var y=this.y-v.y;return x*x+y*y;};Point.prototype.equals=function(toCompare){return this.x==toCompare.x&&this.y==toCompare.y;};Point.prototype.interpolate=function(v,f){return new Point((this.x+v.x)*f,(this.y+v.y)*f);};Point.prototype.length=function(){return Math.sqrt(this.x*this.x+this.y*this.y);};Point.prototype.normalize=function(thickness){var l=this.length();this.x=this.x/l*thickness;this.y=this.y/l*thickness;return new Point(this.x,this.y);};Point.prototype.normalizeCopy=function(thickness){var l=this.length();return new Point(this.x/l*thickness,this.y/l*thickness);};Point.prototype.orbit=function(origin,arcWidth,arcHeight,degrees){var radians=degrees*(Math.PI/180);this.x=origin.x+arcWidth*Math.cos(radians);this.y=origin.y+arcHeight*Math.sin(radians);};Point.prototype.rotate=function(center,degrees){var radians=degrees*(Math.PI/180);offset=this.subtract(center);this.x=offset.x*Math.cos(radians)-offset.y*Math.sin(radians);this.y=offset.x*Math.sin(radians)+offset.y*Math.cos(radians);this.x=this.x+center.x;this.y=this.y+center.y;return this;};Point.prototype.offset=function(dx,dy){this.x+=dx;this.y+=dy;};Point.prototype.subtract=function(v){return new Point(this.x-v.x,this.y-v.y);};Point.prototype.subtractValue=function(value){return new Point(this.x-value,this.y-value);};Point.prototype.multiply=function(value){return new Point(this.x*value,this.y*value);};Point.prototype.toString=function(){return"(x="+this.x+", y="+this.y+")";};Point.prototype.normal=function(){return new Point(-this.y,this.x);};Point.prototype.min=function(point)
 {return new Point(Math.min(this.x,point.x),Math.min(this.y,point.y));};Point.prototype.max=function(point)
 {return new Point(Math.max(this.x,point.x),Math.max(this.y,point.y));};Point.prototype.inverse=function()
@@ -1371,8 +1386,15 @@ DiskSaveLoad.SaveGraphOnDisk=function(savedGraphName,graphAsString,callback)
 {$.ajax({type:"POST",url:"/"+SiteDir+"backend/saveGraph.php?name="+savedGraphName,data:graphAsString,dataType:"text"}).done(callback);}
 DiskSaveLoad.SaveGraphImageOnDisk=function(imageName,rectParams,imageBase64Data,callback)
 {$.ajax({type:"POST",url:"/"+SiteDir+"backend/saveImage.php?name="+imageName+rectParams,data:{base64data:imageBase64Data},dataType:"text",success:callback});}
+DiskSaveLoad.SaveAutoSaveGraphOnDisk=function(savedGraphName,graphAsString,callback)
+{$.ajax({type:"POST",url:"/"+SiteDir+"backend/saveGraph.php?name=autosave_"+savedGraphName,data:graphAsString,dataType:"text"}).done(callback);}
+DiskSaveLoad.LoadAutoSaveGraphFromDisk=function(graphName,callback)
+{$.ajax({type:"GET",url:"/"+SiteDir+"backend/loadGraph.php?name=autosave_"+graphName}).done(callback);}
+DiskSaveLoad.RemoveAutoSaveGraphFromDisk=function(graphName,callback)
+{$.ajax({type:"GET",url:"/"+SiteDir+"backend/removeGraph.php?name=autosave_"+graphName}).done(callback);}
 var globalApplication=null;function Application(document,window,listener)
-{this.document=document;this.listener=listener;this.canvas=this.document.getElementById('canvas');this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.SetDefaultTransformations();this.algorithmsValues={};this.undoStack=new UndoStack(this.maxUndoStackSize);this.edgeCommonStyle=new CommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.edgePrintCommonStyle=new CommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexCommonStyle=new CommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.vertexPrintCommonStyle=new CommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundCommonStyle=new CommonBackgroundStyle();this.backgroundPrintStyle=new PrintBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.getMousePos=function(canvas,e)
+{this.document=document;this.listener=listener;this.canvas=this.document.getElementById('canvas');this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.SetDefaultTransformations();this.algorithmsValues={};this.undoStack=new UndoStack(this.maxUndoStackSize);this.edgeCommonStyle=new CommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.edgePrintCommonStyle=new CommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexCommonStyle=new CommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.vertexPrintCommonStyle=new CommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundCommonStyle=new CommonBackgroundStyle();this.backgroundPrintStyle=new PrintBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;this.lastSavedAutoSave="";setInterval(function()
+{var graphXML=this.graph.SaveToXML(this.SaveUserSettings());this.saveAutoSave(graphXML);}.bind(this),this.autosaveTimeInterval);};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.maxAutosaveSizeForCookie=2000;Application.prototype.autosaveTimeInterval=1000*60;Application.prototype.getMousePos=function(canvas,e)
 {var rect=canvas.getBoundingClientRect();return{x:(e.clientX-rect.left)/this.canvasScale-this.canvasPosition.x,y:(e.clientY-rect.top)/this.canvasScale-this.canvasPosition.y};}
 Application.prototype.redrawGraph=function()
 {if(!this.isTimerRender)
@@ -1555,9 +1577,11 @@ else
 {userAction("Pair.Success");}
 this.updateMessage();this.redrawGraph();wasLoad=true;}
 if(!wasLoad)
-{var graphName=this.getParameterByName("graph");if(graphName.length<=0)
+{var graphName=this.getParameterByName("graph");var is_user_graph=graphName.length>0;if(!is_user_graph)
 {graphName=document.cookie.replace(/(?:(?:^|.*;\s*)graphName\s*\=\s*([^;]*).*$)|^.*$/,"$1");}
-if(graphName.length>0)
+if(!is_user_graph&&this.hasAutoSave())
+{userAction("LoadGraphFromAutoSave");this.loadAutoSave();}
+else if(graphName.length>0)
 {userAction("LoadGraphFromDisk");this.LoadGraphFromDisk(graphName);}}
 if(this.undoStack.IsUndoStackEmpty())
 document.getElementById('GraphUndo').style.display='none';this.updateMessage();this.redrawGraph();}
@@ -1623,10 +1647,10 @@ else
 {res=false;}
 return res;}
 Application.prototype.SaveGraphOnDisk=function()
-{var graphAsString=this.graph.SaveToXML(this.SaveUserSettings());if(this.savedGraphName.length<=0)
+{var graphAsString=this.graph.SaveToXML(this.SaveUserSettings());var app=this;if(this.savedGraphName.length<=0)
 {this.savedGraphName=this.GetNewGraphName();}
-var app=this;DiskSaveLoad.SaveGraphOnDisk(this.savedGraphName,graphAsString,function(msg)
-{document.cookie="graphName="+app.savedGraphName;});}
+DiskSaveLoad.SaveGraphOnDisk(this.savedGraphName,graphAsString,function(msg)
+{document.cookie="graphName="+app.savedGraphName;app.removeAutosave();});}
 Application.prototype.SaveGraphImageOnDisk=function(showDialogCallback)
 {var imageName=this.GetNewName();this.stopRenderTimer();this.redrawGraph();var bbox=this.graph.getGraphBBox();var rectParams="";if(this.IsGraphFitOnViewport())
 {var canvasWidth=this.GetRealWidth();var canvasHeight=this.GetRealHeight();var canvasPositionInverse=this.canvasPosition.inverse();var pos=bbox.minPoint.subtract(canvasPositionInverse);rectParams="&x="+Math.round(pos.x*this.canvasScale)+"&y="+Math.round(pos.y*this.canvasScale)
@@ -1643,7 +1667,7 @@ this.LoadUserSettings(userSettings["data"]);this.SetDefaultTransformations();thi
 this.AutoAdjustViewport();this.updateMessage();this.redrawGraph();}
 Application.prototype.LoadGraphFromDisk=function(graphName)
 {var app=this;DiskSaveLoad.LoadGraphFromDisk(graphName,function(msg)
-{app.LoadGraphFromString(msg);});}
+{app.LoadGraphFromString(msg);app.removeAutosave();});}
 Application.prototype.GetNewGraphName=function()
 {var name=this.GetNewName();if(this.isVertexCommonStyleCustom||this.isVertexSelectedVertexStylesCustom||this.isBackgroundCommonStyleCustom||this.isEdgeCommonStyleCustom||this.isEdgeSelectedStylesCustom)
 {name=name+"ZZcst";}
@@ -1845,6 +1869,51 @@ Application.prototype.setUseDefaultEdge=function(value)
 {this.useDefaultEdge=value;}
 Application.prototype.getUseDefaultEdge=function()
 {return this.useDefaultEdge;}
+Application.prototype.loadGraphFromZippedBase64=function(base64Str,callback)
+{decompress_base64_zip_into_text(base64Str,callback);}
+Application.prototype.isAutoSaveGraphName=function(str)
+{return str.length>0&&str.length<=this.graphNameLength;}
+Application.prototype.saveAutoSave=function(graphXML,callback)
+{compress_text_into_zip_base64(graphXML,function(base64Str){if(this.lastSavedAutoSave==base64Str)
+{if(callback)
+{callback();}
+return;}
+if(base64Str.length<this.maxAutosaveSizeForCookie)
+{this.setAutoSaveCookie(base64Str);let saveGraphData=document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/,"$1");if(saveGraphData==base64Str)
+{this.lastSavedAutoSave=base64Str;console.log("Auto save to cookie");if(callback)
+{callback();}
+return;}
+else
+{console.log("Failed to save autosave to cookie");document.cookie="auto_save=";}}
+let autoSaveGraphName=document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/,"$1");if(!this.isAutoSaveGraphName(autoSaveGraphName))
+{autoSaveGraphName=this.GetNewGraphName();}
+let app=this;DiskSaveLoad.SaveAutoSaveGraphOnDisk(autoSaveGraphName,graphXML,function(msg)
+{app.setAutoSaveCookie(autoSaveGraphName);app.lastSavedAutoSave=base64Str;if(callback)
+{callback();}
+console.log("Auto save to file");}.bind(base64Str));}.bind(this));}
+Application.prototype.hasAutoSave=function()
+{let autoSaveData=document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/,"$1");console.log("autoSaveData: '"+autoSaveData+"'");return(autoSaveData.length>0);}
+Application.prototype.loadAutoSave=function(callback)
+{let autoSaveData=document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/,"$1");if(autoSaveData.length<0)
+{console.log("Auto save to cookie is empty");return;}
+let app=this;if(!this.isAutoSaveGraphName(autoSaveData))
+{this.loadGraphFromZippedBase64(autoSaveData,function(xmlGraph){app.LoadGraphFromString(xmlGraph);console.log("Load graph from cookie");if(callback)
+{callback();}});return;}
+DiskSaveLoad.LoadAutoSaveGraphFromDisk(autoSaveData,function(msg)
+{app.LoadGraphFromString(msg);if(callback)
+{callback();}});}
+Application.prototype.removeAutosave=function(callback)
+{let autoSaveData=document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/,"$1");this.lastSavedAutoSave="";if(autoSaveData.length<0)
+{console.log("Auto save to cookie is empty");return;}
+if(!this.isAutoSaveGraphName(autoSaveData))
+{document.cookie="auto_save=";console.log("Remove auto save from cookie");if(callback)
+{callback();}
+return;}
+DiskSaveLoad.RemoveAutoSaveGraphFromDisk(autoSaveData,function(msg)
+{document.cookie="auto_save=";console.log("Remove auto save file");if(callback)
+{callback();}});}
+Application.prototype.setAutoSaveCookie=function(value)
+{var now=new Date();var time=now.getTime();var expireTime=time+1000*3600*24*7;now.setTime(expireTime);document.cookie='auto_save='+value+';expires='+now.toUTCString()+';path=/';}
 var waitCounter=false;var userAction=function(str)
 {if(typeof window.yaCounter25827098!=="undefined")
 {console.log(g_language+"/"+str);window.yaCounter25827098.hit(window.location.protocol+"//"+window.location.hostname+(g_language!="ru"?"/"+g_language:"")+"/UserAction#"+str);}
@@ -2034,7 +2103,7 @@ function touchHandler(event)
 {var touches=event.changedTouches,first=touches[0],type="";switch(event.type)
 {case"touchstart":type="mousedown";break;case"touchmove":type="mousemove";break;case"touchend":type="mouseup";break;default:return;}
 var simulatedEvent=document.createEvent("MouseEvent");simulatedEvent.initMouseEvent(type,true,true,window,1,first.screenX,first.screenY,first.clientX,first.clientY,false,false,false,false,0,null);first.target.dispatchEvent(simulatedEvent);event.preventDefault();}
-function handelImportGraph(files){var graphFileToLoad=files[0];var fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){var textFromFileLoaded=fileLoadedEvent.target.result;console.log(textFromFileLoaded);editor.application.LoadGraphFromString(textFromFileLoaded);ImportGraphFiles.value="";};fileReader.readAsText(graphFileToLoad,"UTF-8");}
+function handelImportGraph(files){var graphFileToLoad=files[0];var fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){var textFromFileLoaded=fileLoadedEvent.target.result;console.log(textFromFileLoaded);editor.application.LoadGraphFromString(textFromFileLoaded);editor.application.saveAutoSave(textFromFileLoaded);ImportGraphFiles.value="";};fileReader.readAsText(graphFileToLoad,"UTF-8");}
 function postLoadPage()
 {if(!PostLoadedCalled)
 {loadTexts();editor.init();PostLoadedCalled=true;}}

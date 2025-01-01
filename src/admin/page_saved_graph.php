@@ -39,11 +39,20 @@ $age6mLessCallback = function($age)
     return $age <= 6;
 };
 
+$age1mLessCallback = function($age)
+{
+    return $age <= 1;
+};
+
 $graphTimes = array();
 
 $totalGraphCount = 0;
 $totalGraphSize  = 0; // In Kb
 $ageGraph        = 0;
+
+$totalAutosaveGraphCount = 0;
+$totalAutosaveGraphSize  = 0; // In Kb
+$ageAutosaveGraph        = 0;
 
 $totalImages = 0;
 $totalImagesSize = 0; // In Kb
@@ -99,6 +108,7 @@ $ageActionCallback = function(&$ageCount, $file)
 };
 
 processFiles($g_config['graphSavePath'] . "*.xml", $totalGraphCount, $totalGraphSize, $ageGraph, $age6mLessCallback, $ageActionCallback);
+processFiles($g_config['graphSavePath'] . "autosave/*.xml", $totalAutosaveGraphCount, $totalAutosaveGraphSize, $ageAutosaveGraph, $age1mLessCallback, $ageActionCallback);
 processFiles($g_config['graphSavePath'] . "*.png", $totalImages, $totalImagesSize, $ageImage, $age6mLessCallback, $ageActionCallback);
 
 $totalGraphSize = intval($totalGraphSize);
