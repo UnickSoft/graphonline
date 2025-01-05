@@ -40,7 +40,7 @@ EdgeModel.prototype.LoadFromXML = function (xml, graph)
 	this.width = xml.attr('model_width') == null ? this.width : parseFloat(xml.attr("model_width"));
 	this.type  = xml.attr('model_type')  == null ? this.type  : xml.attr("model_type");
 	this.curveValue  = xml.attr('model_curveValue')  == null ? this.curveValue : parseFloat(xml.attr("model_curveValue"));
-    this.default = xml.attr('model_default') == null ? this.default : parseFloat(xml.attr("model_default"));
+    this.default = xml.attr('model_default') == null ? this.default : xml.attr("model_default") == "true";
 }
 
 EdgeModel.prototype.GetCurvePoint = function(position1, position2, t)

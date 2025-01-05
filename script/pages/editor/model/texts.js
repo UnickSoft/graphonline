@@ -207,6 +207,10 @@ var g_MaxCliqueContains = ". Clique contains these vertecies: ";
 var g_wrongImageFormatPNGAndJPEG = "Wrong image format. We support only JPEG and PNG.";
 var g_wrongImageSizeP1 = "Image size is too big. Image size must be less than {0} pixels.";
 
+var g_originalGraph = "Original graph";
+var g_autoSavedGraph = "Autosaved graph";
+var g_selectGraphToLoad = "Would you like to load original graph or autosaved graph?";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -422,4 +426,8 @@ function loadTexts()
 
     g_wrongImageFormatPNGAndJPEG = document.getElementById("wrongImageFormatPNGAndJPEG").innerHTML;
     g_wrongImageSizeP1 = document.getElementById("wrongImageSizeP1").innerHTML; 
+
+    g_originalGraph     = document.getElementById("originalGraph").innerHTML;
+    g_autoSavedGraph    = document.getElementById("autoSavedGraph").innerHTML;
+    g_selectGraphToLoad = document.getElementById("selectGraphToLoad").innerHTML;
 }

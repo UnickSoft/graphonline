@@ -7,7 +7,8 @@ doInclude ([
     include ("model/BaseEdgeDrawer.js", modulDir),
     include ("model/VertexShape.js", modulDir),
     include ("model/VertexStyle.js", modulDir),
-    include ("model/BaseVertexDrawer.js", modulDir)
+    include ("model/BaseVertexDrawer.js", modulDir),
+    include ("model/GraphFullStyle.js", modulDir)
 ])
 
 }

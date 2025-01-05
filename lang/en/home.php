@@ -315,4 +315,10 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['wrong_image_background_size'] = "Image size is too big. Image size must be less than {0} pixels.";
 
     $g_lang['text_size'] = "Text size";
+
+    $g_lang['you_have_autosave'] = "You have autosave for this graph.";
+    $g_lang['load_oiginal_or_autosaved'] = "Would you like to load original graph or autosaved graph?";
+    $g_lang['use_mouse_for_moving'] = "Use🖱️for moving";
+    $g_lang['original_graph'] = "Original graph";
+    $g_lang['autosaved_graph'] = "Autosaved graph";
 ?>

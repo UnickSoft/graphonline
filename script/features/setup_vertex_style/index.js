@@ -28,7 +28,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
     var applyIndex = function(index)
     {
         self.index = index;
-        self.originStyle = (self.index == 0 ? app.vertexCommonStyle : app.vertexSelectedVertexStyles[self.index - 1]);
+        self.originStyle = (self.index == 0 ? app.style.vertexCommonStyle : app.style.vertexSelectedVertexStyles[self.index - 1]);
         if (!forAll)
         {
             self.originStyle = selectedVertices[0].getStyleFor(self.index);
@@ -64,10 +64,10 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
 
         // Fill color presets.
         var stylesArray = [];
-        stylesArray.push(app.vertexCommonStyle);
+        stylesArray.push(app.style.vertexCommonStyle);
 
-        for (i = 0; i < app.vertexSelectedVertexStyles.length; i ++)
-            stylesArray.push(app.vertexSelectedVertexStyles[i]);
+        for (i = 0; i < app.style.vertexSelectedVertexStyles.length; i ++)
+            stylesArray.push(app.style.vertexSelectedVertexStyles[i]);
 
         var colorSet = {};
         for (i = 0; i < stylesArray.length; i ++)
@@ -132,7 +132,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
         context.save();
 
         var backgroundDrawer = new BaseBackgroundDrawer(context);
-        backgroundDrawer.Draw(app.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
+        backgroundDrawer.Draw(app.style.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer = new BaseVertexDrawer(context);
         var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
@@ -189,12 +189,12 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
 
                     app.PushToStack("ChangeStyle");
 
-                    applyDiameter(forAll ? (new VertexModel()).diameter : app.GetDefaultVertexSize());
+                    applyDiameter(forAll ? defaultVertexDiameter : app.GetDefaultVertexSize());
 
                     var indexes = [];
                     if (self.index == "all")
                     {
-                        for (i = 0; i < app.vertexSelectedVertexStyles.length; i ++)
+                        for (i = 0; i < app.style.vertexSelectedVertexStyles.length; i ++)
                             indexes.push(i + 1);
                     }
                     else
@@ -230,7 +230,7 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
                 if (self.index == "all")
                 {
                     indexes.push({index : 1, style : self.style});
-                    for (i = 1; i < app.vertexSelectedVertexStyles.length; i ++)
+                    for (i = 1; i < app.style.vertexSelectedVertexStyles.length; i ++)
                     {
                         var style = (new BaseVertexStyle());
                         style.baseStyles.push("selected");

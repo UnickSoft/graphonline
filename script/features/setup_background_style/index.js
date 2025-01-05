@@ -55,7 +55,7 @@ SetupBackgroundStyle.prototype.show = function()
 	var dialogButtons = {};
     var graph = this.app.graph;
     var app   = this.app;
-    var style = FullObjectCopy(app.backgroundCommonStyle);
+    var style = FullObjectCopy(app.style.backgroundCommonStyle);
     
     var fillFields = function()
     {

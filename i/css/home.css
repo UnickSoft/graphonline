@@ -463,3 +463,7 @@ label.switcherText {
     padding: 4px;
     background-color: #FFFFFF;
 }
+
+#autoSaveOrOriginalGraph .btn-xs{
+    font-size: 12px;
+}

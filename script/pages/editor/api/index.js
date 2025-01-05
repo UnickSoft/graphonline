@@ -32,6 +32,7 @@
         include ("features/connect_vertices_handler/index.js"),
         include ("features/delete_objects_handler/index.js"),
         include ("features/algorithm_handler/index.js"),
+        include ("features/select_auto_save_graph_or_not/index.js"),
 
         include ("features/serialization/api/index.js"),
 

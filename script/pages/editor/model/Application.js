@@ -31,55 +31,36 @@ function Application(document, window, listener)
     this.SetDefaultTransformations();
     this.algorithmsValues = {};
     this.undoStack  = new UndoStack(this.maxUndoStackSize);
-    
-    this.edgeCommonStyle         = new CommonEdgeStyle();
-    this.isEdgeCommonStyleCustom = false;
-    this.edgeSelectedStyles      = FullArrayCopy(DefaultSelectedEdgeStyles);
-    this.isEdgeSelectedStylesCustom = false;
+
+    this.style = new GraphFullStyle(function() 
+        {
+            this.redrawGraph();
+        }.bind(this));
     
     this.edgePrintCommonStyle      = new CommonPrintEdgeStyle();
     this.edgePrintSelectedStyles   = FullArrayCopy(DefaultPrintSelectedEdgeStyles);
     
-    this.vertexCommonStyle          = new CommonVertexStyle();
-    this.isVertexCommonStyleCustom  = false;
-    this.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
-    this.isVertexSelectedVertexStylesCustom  = false;
-    
     this.vertexPrintCommonStyle          = new CommonPrintVertexStyle(); 
     this.vertexPrintSelectedVertexStyles = FullArrayCopy(DefaultPrintSelectedGraphStyles);
-    
-    this.backgroundCommonStyle = new CommonBackgroundStyle();
-    this.backgroundPrintStyle  = new PrintBackgroundStyle(); 
-    this.isBackgroundCommonStyleCustom  = false;
+    this.backgroundPrintStyle  = new PrintBackgroundStyle();
     this.renderPathWithEdges = false;
     
     this.edgePresets = [1, 3, 5, 7, 11, 42];
     this.maxEdgePresets = 6;
     this.selectionRect  = null;
 
-    this.defaultVertexSize = null;
-    this.defaultEdgeWidth = null;
     this.processEmscriptenFunction = null;
 
     this.defaultEdge = null;
     this.useDefaultEdge = false;
 
     this.lastSavedAutoSave = "";
-    // Start autosave timer.
-    setInterval(function()
-    {
-        var graphXML = this.graph.SaveToXML(this.SaveUserSettings());
-        this.saveAutoSave(graphXML);
-    }.bind(this), this.autosaveTimeInterval);
+    this.lastGraphName = ""; // It could be last loaded or last saved graph.
 };
 
-// List of graph.
-//Application.prototype.graph.vertices     = [];
 // Current dragged object.
 Application.prototype.graph = new Graph();
 Application.prototype.dragObject = -1;
-// List of graph.edges.
-//Application.prototype.graph.edges       = [];
 // User handler.
 Application.prototype.handler = null;
 // Hold status.
@@ -92,6 +73,8 @@ Application.prototype.maxUndoStackSize = 8;
 Application.prototype.maxAutosaveSizeForCookie = 2000; // Max cookie size is at least 4096.
 // Auto save time interval
 Application.prototype.autosaveTimeInterval = 1000 * 60; // in ms. 1 minutes.
+// We add postfix into name of graphs with styles.
+Application.prototype.styliedGraphNamePostfix = "ZZcst";
 
 Application.prototype.getMousePos = function(canvas, e)
 {
@@ -207,7 +190,7 @@ Application.prototype._redrawGraphInWindow = function()
     context.scale(this.canvasScale, this.canvasScale);
     context.translate(this.canvasPosition.x, this.canvasPosition.y);
     
-    this._RedrawGraph(context, this.canvasPosition, this.backgroundCommonStyle, true);
+    this._RedrawGraph(context, this.canvasPosition, this.style.backgroundCommonStyle, true);
 
     context.restore();
     
@@ -226,7 +209,7 @@ Application.prototype._OffscreenRedrawGraph = function()
 
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false);
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
     
     context.restore();
     
@@ -263,7 +246,7 @@ Application.prototype._printToSVG = function()
     
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundCommonStyle, false);
+    this._RedrawGraph(context, bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
     
     context.restore();
     
@@ -367,8 +350,8 @@ Application.prototype.GetBaseArcDrawer = function(context, edge)
 
 Application.prototype.UpdateEdgeCurrentStyle = function(edge, ForceCommonStyle, ForceSelectedStyle)
 {
-    var commonStyle    = (ForceCommonStyle === undefined) ? this.edgeCommonStyle : ForceCommonStyle;
-    var selectedStyle  = (ForceSelectedStyle === undefined) ? this.edgeSelectedStyles : ForceSelectedStyle;
+    var commonStyle    = (ForceCommonStyle === undefined) ? this.style.edgeCommonStyle : ForceCommonStyle;
+    var selectedStyle  = (ForceSelectedStyle === undefined) ? this.style.edgeSelectedStyles : ForceSelectedStyle;
 
     var selectedGroup = this.handler.GetSelectedGroup(edge);
     var selected = false;
@@ -410,7 +393,7 @@ Application.prototype.RedrawEdgeProgress = function(context, edge, progress)
     var progressDraw     = new ProgressArcDrawer(context, this.GetBaseArcDrawer(context, edge), progress);
     var arcDrawer        = new BaseEdgeDrawer(context, {drawObject : progressDraw});
 
-    this._RedrawEdge(edge, arcDrawer, this.edgeCommonStyle, this.edgeSelectedStyles);
+    this._RedrawEdge(edge, arcDrawer, this.style.edgeCommonStyle, this.style.edgeSelectedStyles);
 }
 
 Application.prototype.UpdateEdgesCurrentStyle = function(ForceCommonStyle, ForceSelectedStyle)
@@ -442,8 +425,8 @@ Application.prototype.RedrawNodes = function(context)
 Application.prototype.UpdateNodesCurrentStyle = function(ForceCommonStyle, ForceSelectedStyle)
 {
     var force         = ForceCommonStyle !== undefined || ForceSelectedStyle !== undefined;
-    var commonStyle   = (ForceCommonStyle === undefined) ? this.vertexCommonStyle : ForceCommonStyle;
-    var selectedStyle = (ForceSelectedStyle === undefined) ? this.vertexSelectedVertexStyles : ForceSelectedStyle;
+    var commonStyle   = (ForceCommonStyle === undefined) ? this.style.vertexCommonStyle : ForceCommonStyle;
+    var selectedStyle = (ForceSelectedStyle === undefined) ? this.style.vertexSelectedVertexStyles : ForceSelectedStyle;
 
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
@@ -469,7 +452,7 @@ Application.prototype.RedrawSelectionRect = function(context)
 {
   context.lineWidth    = 1.0 / this.canvasScale;
       
-  context.strokeStyle  = this.edgeSelectedStyles[0].strokeStyle;	
+  context.strokeStyle  = this.style.edgeSelectedStyles[0].strokeStyle;	
   context.setLineDash([6, 3]);
   context.beginPath();
   context.rect(this.selectionRect.left(), this.selectionRect.top(), 
@@ -712,6 +695,7 @@ Application.prototype.onPostLoadEvent = function()
     this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
 
     var wasLoad = false;
+    let startAutoSave = true;
     var matrix  = document.getElementById("inputMatrix").innerHTML;
     var separator = document.getElementById("separator").innerHTML == "space" ? " " : ",";
     
@@ -780,7 +764,7 @@ Application.prototype.onPostLoadEvent = function()
 
     if (!wasLoad)
     {
-    	var graphName  = this.getParameterByName("graph");
+    	var graphName = this.getParameterByName("graph");
         var is_user_graph = graphName.length > 0;
 	    if (!is_user_graph)
 	    {
@@ -796,8 +780,17 @@ Application.prototype.onPostLoadEvent = function()
         }
         else if (graphName.length > 0)
 	    {
-            userAction("LoadGraphFromDisk");
-    		this.LoadGraphFromDisk(graphName);
+            if (this.getAutoSaveRefGraphCookie() == graphName)
+            {
+                this.showSelectGraphDialog(graphName);
+                console.log("Show select graph dialog");
+                startAutoSave = false;
+            }
+            else
+            {
+                userAction("LoadGraphFromDisk");
+                this.LoadGraphFromDisk(graphName);
+            }
 	    }
     }
 
@@ -806,6 +799,11 @@ Application.prototype.onPostLoadEvent = function()
 
     this.updateMessage();
     this.redrawGraph();
+
+    if (startAutoSave)
+    {
+        this.startAutoSaveTimer();
+    }
 }
 
 Application.prototype.onLoad = function()
@@ -928,7 +926,6 @@ Application.prototype.Test = function ()
 	this.redrawGraph();
 }
 
-
 Application.prototype.SetAdjacencyMatrixSmart = function (matrix, separator)
 {
     if (separator === undefined) 
@@ -1002,8 +999,9 @@ Application.prototype.SaveGraphOnDisk = function ()
     DiskSaveLoad.SaveGraphOnDisk(this.savedGraphName, graphAsString, function( msg ) 
         {
                 document.cookie = "graphName=" + app.savedGraphName;
-                // Remove cookie after save, beacuse we have this graph in cookcie.
+                // Remove cookie after save, beacuse we have this graph name in cookies.
                 app.removeAutosave();
+                app.lastGraphName = app.savedGraphName; // Update last graph name after save.
         });
 }
                           
@@ -1071,8 +1069,6 @@ Application.prototype.LoadGraphFromString = function (str)
 {
     var graph = new Graph();
     
-    //console.log(str);
-    
     var userSettings = {};
     graph.LoadFromXML(str, userSettings);
     if (userSettings.hasOwnProperty("data") && userSettings["data"].length > 0)
@@ -1088,6 +1084,12 @@ Application.prototype.LoadGraphFromString = function (str)
     this.redrawGraph();   
 }
 
+Application.prototype.LoadNewGraphFromString = function (str)
+{
+    this.LoadGraphFromString(str); 
+    this.lastGraphName = ""; // if we import graph we forget the name.
+}
+
 Application.prototype.LoadGraphFromDisk = function (graphName)
 {
     var  app = this;
@@ -1096,6 +1098,7 @@ Application.prototype.LoadGraphFromDisk = function (graphName)
        app.LoadGraphFromString(msg);
        // Remove auto save after load from disk.
        app.removeAutosave();
+       app.lastGraphName = graphName; // Save graph name on loading.
 	});
 }
 
@@ -1103,10 +1106,10 @@ Application.prototype.GetNewGraphName = function()
 {
     var name = this.GetNewName();
     
-    if (this.isVertexCommonStyleCustom || this.isVertexSelectedVertexStylesCustom || 
-       this.isBackgroundCommonStyleCustom || this.isEdgeCommonStyleCustom || this.isEdgeSelectedStylesCustom)
+    if (this.style.isVertexCommonStyleCustom || this.style.isVertexSelectedVertexStylesCustom || 
+       this.style.isBackgroundCommonStyleCustom || this.style.isEdgeCommonStyleCustom || this.style.isEdgeSelectedStylesCustom)
     {
-        name = name + "ZZcst";
+        name = name + this.styliedGraphNamePostfix;
     }
     
     return name;
@@ -1315,202 +1318,26 @@ Application.prototype.Undo = function()
 
 Application.prototype.SaveUserSettings = function()
 {
-    var res = "{";
-    
-    var needEnd    = false;
-    var checkValue = [];
-    
-    checkValue.push({field: "edgeCommonStyle",
-                     value: this.edgeCommonStyle,
-                     check: this.isEdgeCommonStyleCustom});
-    
-    checkValue.push({field: "edgeSelectedStyles",
-                     value: this.edgeSelectedStyles,
-                     check: this.isEdgeSelectedStylesCustom});
-
-    //checkValue.push({field: "edgePrintCommonStyle",
-    //                 value: this.edgePrintCommonStyle});
-
-    //checkValue.push({field: "edgePrintSelectedStyles",
-    //                 value: this.edgePrintSelectedStyles});
-    
-    checkValue.push({field: "vertexCommonStyle",
-                     value: this.vertexCommonStyle,
-                     check: this.isVertexCommonStyleCustom});
-    
-    checkValue.push({field: "vertexSelectedVertexStyles",
-                     value: this.vertexSelectedVertexStyles,
-                     check: this.isVertexSelectedVertexStylesCustom});
-    
-    checkValue.push({field: "backgroundCommonStyle",
-                     value: this.backgroundCommonStyle,
-                     check: this.isBackgroundCommonStyleCustom});
-
-    checkValue.push({field: "defaultVertexSize",
-                      value: this.defaultVertexSize,
-                      check: this.defaultVertexSize != null}); 
-
-    checkValue.push({field: "defaultEdgeWidth",
-                      value: this.defaultEdgeWidth,
-                      check: this.defaultEdgeWidth != null});
-    
-    //checkValue.push({field: "vertexPrintCommonStyle",
-    //                 value: this.vertexPrintCommonStyle});
-
-    //checkValue.push({field: "vertexPrintSelectedVertexStyles",
-    //                 value: this.vertexPrintSelectedVertexStyles});
-    
-    checkValue.forEach(function(entry) {
-            if (!entry.check)
-                return;
-                
-            if (needEnd)
-                res = res + ",";
-
-            let valueJson = "";
-            if (typeof entry.value.saveToJson === "function") {
-                valueJson = entry.value.saveToJson();
-            } else {
-                valueJson = JSON.stringify(entry.value);
-            }
-                
-                
-            res = res + "\"" + entry.field + "\"" + ":" + valueJson;
-            needEnd = true;
-        });
-    
-    res = res + "}";
-    
-    return this.EncodeToHTML(res);
+    return "{" + this.style.Save() + "}";
 }
 
 Application.prototype.LoadUserSettings = function(json)
 {
-    var checkValue = [];
-    
-    checkValue.push({field: "edgeCommonStyle",
-                     value: this.edgeCommonStyle,
-                     check: "isEdgeCommonStyleCustom",
-                     deep: false});
-    
-    checkValue.push({field: "edgeSelectedStyles",
-                     value: this.edgeSelectedStyles,
-                     check: "isEdgeSelectedStylesCustom",
-                     deep: true});
-
-    //checkValue.push({field: "edgePrintCommonStyle",
-    //                 value: this.edgePrintCommonStyle});
-
-    //checkValue.push({field: "edgePrintSelectedStyles",
-    //                 value: this.edgePrintSelectedStyles});
-    
-    checkValue.push({field: "vertexCommonStyle",
-                     value: this.vertexCommonStyle,
-                     check: "isVertexCommonStyleCustom",
-                     deep: false});
-    
-    checkValue.push({field: "vertexSelectedVertexStyles",
-                     value: this.vertexSelectedVertexStyles,
-                     check: "isVertexSelectedVertexStylesCustom",
-                     deep: true});
-
-    checkValue.push({field: "defaultVertexSize",
-                    value: "defaultVertexSize",
-                    check: null,
-                    deep: false});
-
-    checkValue.push({field: "defaultEdgeWidth",
-                    value: "defaultEdgeWidth",
-                    check: null,
-                    deep: false});
-
-    //checkValue.push({field: "vertexPrintCommonStyle",
-    //                 value: this.vertexPrintCommonStyle});
-
-    //checkValue.push({field: "vertexPrintSelectedVertexStyles",
-    //                 value: this.vertexPrintSelectedVertexStyles});
-    
-    checkValue.push({field: "backgroundCommonStyle",
-                     value: this.backgroundCommonStyle,
-                     check: this.isBackgroundCommonStyleCustom,
-                     deep: false});
-    
-    var decoderStr = this.DecodeFromHTML(json);
-    var parsedSave = JSON.parse(decoderStr);
-    
-    var app = this;
-    
-    checkValue.forEach(function(entry) {
-            if (parsedSave.hasOwnProperty(entry.field))
-            {
-                if (typeof parsedSave[entry.field] === 'number')
-                {
-                    app[entry.value] = parseInt(parsedSave[entry.field]);
-                }
-                else
-                {
-                    if (typeof entry.value.loadFromJson === "function") {
-                        entry.value.loadFromJson(parsedSave[entry.field], function () {
-                                setTimeout( function() { app.redrawGraph() }, 1000);
-                            });
-                        return;
-                    }
-
-                    if (!entry.deep)
-                        entry.value.Clear();
-
-                    for(var k in parsedSave[entry.field])
-                    {
-                        if (!entry.deep)
-                        {
-                            if (entry.value.ShouldLoad(k))
-                            {
-                                entry.value[k] = parsedSave[entry.field][k];
-                            }
-                        }
-                        else
-                        {
-                            // Check is number or not
-                            if (k % 1 != 0)
-                                continue;
-
-                            entry.value[k].Clear();
-                            for(var deepK in parsedSave[entry.field][k])
-                            {
-                                if (k < entry.value.length && entry.value[k].ShouldLoad(deepK))
-                                    entry.value[k][deepK] = parsedSave[entry.field][k][deepK];
-                            }
-                        }
-                    }
-                }
-                
-                if (entry.check != null)
-                    app[entry.check] = true;
-            }
-        });
+    this.style.Load(json);
 }
 
-Application.prototype.EncodeToHTML = function (str)
-{
-    return gEncodeToHTML(str);
-}
-
-Application.prototype.DecodeFromHTML = function (str)
-{
-   return gDecodeFromHTML(str); 
-}
 
 Application.prototype.SetVertexStyle = function (index, style)
 {
     if (index == 0)
     {
-        this.vertexCommonStyle = style;
-        this.isVertexCommonStyleCustom = true;
+        this.style.vertexCommonStyle = style;
+        this.style.isVertexCommonStyleCustom = true;
     }
     else
     {
-        this.vertexSelectedVertexStyles[index - 1] = style;
-        this.isVertexSelectedVertexStylesCustom = true;
+        this.style.vertexSelectedVertexStyles[index - 1] = style;
+        this.style.isVertexSelectedVertexStylesCustom = true;
     }
 }
 
@@ -1518,13 +1345,13 @@ Application.prototype.ResetVertexStyle = function (index)
 {
     if (index == 0)
     {
-        this.vertexCommonStyle = new CommonVertexStyle();
-        this.isVertexCommonStyleCustom = false;
+        this.style.vertexCommonStyle = new CommonVertexStyle();
+        this.style.isVertexCommonStyleCustom = false;
     }
     else
     {
-        this.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
-        this.isVertexSelectedVertexStylesCustom = false;
+        this.style.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
+        this.style.isVertexSelectedVertexStylesCustom = false;
     }
 }
 
@@ -1532,13 +1359,13 @@ Application.prototype.SetEdgeStyle = function (index, style)
 {
     if (index == 0)
     {
-        this.edgeCommonStyle = style;
-        this.isEdgeCommonStyleCustom = true;
+        this.style.edgeCommonStyle = style;
+        this.style.isEdgeCommonStyleCustom = true;
     }
     else
     {
-        this.edgeSelectedStyles[index - 1] = style;
-        this.isEdgeSelectedStylesCustom = true;
+        this.style.edgeSelectedStyles[index - 1] = style;
+        this.style.isEdgeSelectedStylesCustom = true;
     }
 }
 
@@ -1546,26 +1373,26 @@ Application.prototype.ResetEdgeStyle = function (index)
 {
     if (index == 0)
     {
-        this.edgeCommonStyle = new CommonEdgeStyle();
-        this.isEdgeCommonStyleCustom = false;
+        this.style.edgeCommonStyle = new CommonEdgeStyle();
+        this.style.isEdgeCommonStyleCustom = false;
     }
     else
     {
-        this.edgeSelectedStyles = FullArrayCopy(DefaultSelectedEdgeStyles);
-        this.isEdgeSelectedStylesCustom = false;
+        this.style.edgeSelectedStyles = FullArrayCopy(DefaultSelectedEdgeStyles);
+        this.style.isEdgeSelectedStylesCustom = false;
     }
 }
 
 Application.prototype.SetBackgroundStyle = function (style)
 {
-    this.backgroundCommonStyle         = style;
-    this.isBackgroundCommonStyleCustom = true;
+    this.style.backgroundCommonStyle         = style;
+    this.style.isBackgroundCommonStyleCustom = true;
 }
 
 Application.prototype.ResetBackgroundStyle = function ()
 {
-    this.backgroundCommonStyle         = new CommonBackgroundStyle();
-    this.isBackgroundCommonStyleCustom = false;
+    this.style.backgroundCommonStyle         = new CommonBackgroundStyle();
+    this.style.isBackgroundCommonStyleCustom = false;
 }
 
 Application.prototype.GetAvailableCurveValue = function(neighborEdges, originalEdge)
@@ -1620,11 +1447,11 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
     {
         if (styleName == "common")
         {
-            return object !== undefined ? object.getStyleFor(0) : this.vertexCommonStyle;
+            return object !== undefined ? object.getStyleFor(0) : this.style.vertexCommonStyle;
         }
         else if (styleName == "selected")
         {
-            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.vertexSelectedVertexStyles[correctIndex];
+            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.style.vertexSelectedVertexStyles[correctIndex];
         }
         else if (styleName == "printed")
         {
@@ -1641,11 +1468,11 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
     {
         if (styleName == "common")
         {
-            return object !== undefined ? object.getStyleFor(0) : this.edgeCommonStyle;
+            return object !== undefined ? object.getStyleFor(0) : this.style.edgeCommonStyle;
         }
         else if (styleName == "selected")
         {
-            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.edgeSelectedStyles[correctIndex];
+            return object !== undefined && object.hasOwnStyleFor(correctIndex + 1) ? object.getStyleFor(correctIndex + 1) : this.style.edgeSelectedStyles[correctIndex];
         }
         else if (styleName == "printed")
         {
@@ -1714,7 +1541,7 @@ Application.prototype.GetSelectedEdges = function()
 Application.prototype.SetDefaultVertexSize = function(diameter)
 {
     var oldDefaultDiameter = this.GetDefaultVertexSize();
-    this.defaultVertexSize = diameter;
+    this.style.defaultVertexSize = diameter;
 
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
@@ -1727,15 +1554,15 @@ Application.prototype.SetDefaultVertexSize = function(diameter)
 
 Application.prototype.GetDefaultVertexSize = function(diameter)
 {
-    if (this.defaultVertexSize != null)
-        return this.defaultVertexSize;
+    if (this.style.defaultVertexSize != null)
+        return this.style.defaultVertexSize;
     else
         return defaultVertexDiameter;
 }
 
 Application.prototype.ResetVertexSize = function()
 {
-    this.defaultVertexSize = null;
+    this.style.defaultVertexSize = null;
 
     for (i = 0; i < this.graph.vertices.length; i ++)
     {
@@ -1746,7 +1573,7 @@ Application.prototype.ResetVertexSize = function()
 Application.prototype.SetDefaultEdgeWidth = function(width)
 {
     var oldDefaultWidth = this.GetDefaultEdgeWidth();
-    this.defaultEdgeWidth = width;
+    this.style.defaultEdgeWidth = width;
 
     for (i = 0; i < this.graph.edges.length; i ++)
     {
@@ -1759,15 +1586,15 @@ Application.prototype.SetDefaultEdgeWidth = function(width)
 
 Application.prototype.GetDefaultEdgeWidth = function(diameter)
 {
-    if (this.defaultEdgeWidth != null)
-        return this.defaultEdgeWidth;
+    if (this.style.defaultEdgeWidth != null)
+        return this.style.defaultEdgeWidth;
     else
         return defaultEdgeWidth;
 }
 
 Application.prototype.ResetEdgeWidth = function()
 {
-    this.defaultEdgeWidth = null;
+    this.style.defaultEdgeWidth = null;
 
     for (i = 0; i < this.graph.edges.length; i ++)
     {
@@ -1824,7 +1651,7 @@ Application.prototype.loadGraphFromZippedBase64 = function (base64Str, callback)
 Application.prototype.isAutoSaveGraphName = function (str)
 {
     // If it is graph file name or Base64 graph.
-    return str.length > 0 && str.length <= this.graphNameLength;
+    return str.length > 0 && str.length <= this.graphNameLength + this.styliedGraphNamePostfix.length;
 }
 
 Application.prototype.saveAutoSave = function (graphXML, callback)
@@ -1842,7 +1669,7 @@ Application.prototype.saveAutoSave = function (graphXML, callback)
         if (base64Str.length < this.maxAutosaveSizeForCookie)
         {
             this.setAutoSaveCookie(base64Str);
-            let saveGraphData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            let saveGraphData = this.getAutoSaveCookie();
             if (saveGraphData == base64Str)
             {
                 this.lastSavedAutoSave = base64Str;
@@ -1856,11 +1683,11 @@ Application.prototype.saveAutoSave = function (graphXML, callback)
             else
             {
                 console.log("Failed to save autosave to cookie");
-                document.cookie = "auto_save=";
+                this.removeAutoSaveCookie();
             }
         }
     
-        let autoSaveGraphName = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        let autoSaveGraphName = this.getAutoSaveCookie();
     
         if (!this.isAutoSaveGraphName(autoSaveGraphName))
         {
@@ -1885,14 +1712,26 @@ Application.prototype.saveAutoSave = function (graphXML, callback)
 
 Application.prototype.hasAutoSave = function ()
 {
-    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log("autoSaveData: '" + autoSaveData + "'");
+    let autoSaveData = this.getAutoSaveCookie();
     return (autoSaveData.length > 0);
 }
 
 Application.prototype.loadAutoSave = function (callback)
 {
-    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    let app = this;
+    this.getAutoSaveGraph(function(xmlGraph){
+        app.LoadGraphFromString(xmlGraph);
+        app.lastGraphName = app.getAutoSaveRefGraphCookie();
+        if (callback)
+        {
+            callback();
+        }
+    });
+}
+
+Application.prototype.getAutoSaveGraph = function (callback)
+{
+    let autoSaveData = this.getAutoSaveCookie();
 
     if (autoSaveData.length < 0)
     {
@@ -1904,30 +1743,29 @@ Application.prototype.loadAutoSave = function (callback)
 	if (!this.isAutoSaveGraphName(autoSaveData))
     {
         this.loadGraphFromZippedBase64(autoSaveData, function(xmlGraph){
-            app.LoadGraphFromString(xmlGraph);
             console.log("Load graph from cookie");
             if (callback)
             {
-                callback();
+                callback(xmlGraph);
             }
         });
         return;
     }
 
-    DiskSaveLoad.LoadAutoSaveGraphFromDisk(autoSaveData, function( msg ) 
+    DiskSaveLoad.LoadAutoSaveGraphFromDisk(autoSaveData, function( xmlGraph ) 
 	{
-        app.LoadGraphFromString(msg);
         if (callback)
         {
-            callback();
+            callback(xmlGraph);
         }
 	});
 }
 
 Application.prototype.removeAutosave = function (callback)
 {
-    let autoSaveData = document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    let autoSaveData = this.getAutoSaveCookie();
     this.lastSavedAutoSave = "";
+    let app = this;
     if (autoSaveData.length < 0)
     {
         console.log("Auto save to cookie is empty");
@@ -1936,7 +1774,7 @@ Application.prototype.removeAutosave = function (callback)
 
     if (!this.isAutoSaveGraphName(autoSaveData))
     {
-        document.cookie = "auto_save=";
+        app.removeAutoSaveCookie();
         console.log("Remove auto save from cookie");
         if (callback)
         {
@@ -1947,7 +1785,7 @@ Application.prototype.removeAutosave = function (callback)
 
     DiskSaveLoad.RemoveAutoSaveGraphFromDisk(autoSaveData, function( msg ) 
     {
-        document.cookie = "auto_save=";
+        app.removeAutoSaveCookie();
         console.log("Remove auto save file");
         if (callback)
         {
@@ -1963,4 +1801,101 @@ Application.prototype.setAutoSaveCookie = function (value)
     var expireTime = time + 1000 * 3600 * 24 * 7; // In a week.
     now.setTime(expireTime);
     document.cookie = 'auto_save=' + value + ';expires=' + now.toUTCString() + ';path=/';
+    document.cookie = 'auto_save_ref_graph=' + this.lastGraphName + ';expires=' + now.toUTCString() + ';path=/';
+}
+
+Application.prototype.removeAutoSaveCookie = function (value)
+{
+    document.cookie = "auto_save=;path=/";
+    document.cookie = "auto_save_ref_graph=;path=/";
+}
+
+Application.prototype.getAutoSaveCookie = function (value)
+{
+    return document.cookie.replace(/(?:(?:^|.*;\s*)auto_save\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+
+Application.prototype.getAutoSaveRefGraphCookie = function (value)
+{
+    return document.cookie.replace(/(?:(?:^|.*;\s*)auto_save_ref_graph\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+}
+
+Application.prototype.CreateNewGraphObject = function ()
+{
+    this.graph = new Graph(); 
+    this.savedGraphName = "";
+    this.lastGraphName = ""; // Reset name on create new graph.
+}
+
+Application.prototype.showSelectGraphDialog = function(graphName)
+{
+    let app = this;
+    DiskSaveLoad.LoadGraphFromDisk(graphName, function( graphOriginXML ) 
+	{
+        app.getAutoSaveGraph(function(xmlGraph){
+            // We moodify id after each load, so we need to remove it from xml before compare.
+            let remove_id_from_xml = function(graphXML)
+            {
+                graphXML = graphXML.replace(/uidEdge=\"([0-9]+)\"/i,"")
+                graphXML = graphXML.replaceAll(/id=\"([0-9]+)\"/g,"")
+                return graphXML;
+            };
+
+            if (remove_id_from_xml(xmlGraph) == remove_id_from_xml(graphOriginXML))
+            {
+                app.onSelectOgirinalGraph(graphName);
+                return;
+            }
+
+            var autosaveGraph = new Graph();
+            var userSettings1 = {};
+            autosaveGraph.LoadFromXML(xmlGraph, userSettings1);
+            let styleAutoSave = new GraphFullStyle(null);
+            if (userSettings1.hasOwnProperty("data") && userSettings1["data"].length > 0)
+                styleAutoSave.Load(userSettings1["data"]);
+            
+            var originalGraph = new Graph();
+            var userSettings2 = {};
+            originalGraph.LoadFromXML(graphOriginXML, userSettings2);
+            let styleOriginal = new GraphFullStyle(null);
+            if (userSettings2.hasOwnProperty("data") && userSettings2["data"].length > 0)
+                styleOriginal.Load(userSettings2["data"]);
+
+            (new SelectGraphDialog(app, 
+                originalGraph, styleOriginal,
+                autosaveGraph, styleAutoSave,
+                function() {
+                    app.onSelectOgirinalGraph(graphName);
+                },
+                function() {
+                    app.onSelectAutosaveGraph();
+                })).show();
+        });
+	});
+}
+
+Application.prototype.startAutoSaveTimer = function()
+{
+    // Start autosave timer.
+    setInterval(function()
+    {
+        var graphXML = this.graph.SaveToXML(this.SaveUserSettings());
+        this.saveAutoSave(graphXML);
+    }.bind(this), this.autosaveTimeInterval);
+}
+
+Application.prototype.onSelectOgirinalGraph = function(graphName)
+{
+    this.LoadGraphFromDisk(graphName);
+    this.startAutoSaveTimer();
+    userAction("LoadGraphFromDisk_userSelect");
+    console.log("User selected original graph");
+}
+
+Application.prototype.onSelectAutosaveGraph = function()
+{
+    this.loadAutoSave();
+    this.startAutoSaveTimer();
+    userAction("LoadGraphFromAutoSave_userSelect");
+    console.log("User selected auto-save graph");
 }

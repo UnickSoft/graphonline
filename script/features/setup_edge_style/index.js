@@ -29,7 +29,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
     var applyIndex = function(index)
     {
         self.index = index;
-        var originStyle = (self.index == 0 ? app.edgeCommonStyle : app.edgeSelectedStyles[self.index - 1]);
+        var originStyle = (self.index == 0 ? app.style.edgeCommonStyle : app.style.edgeSelectedStyles[self.index - 1]);
         if (!forAll)
         {
             originStyle = selectedEdges[0].getStyleFor(self.index);
@@ -65,10 +65,10 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 
         // Fill color presets.
         var stylesArray = [];
-        stylesArray.push(app.edgeCommonStyle);
+        stylesArray.push(app.style.edgeCommonStyle);
 
-        for (i = 0; i < app.edgeSelectedStyles.length; i ++)
-            stylesArray.push(app.edgeSelectedStyles[i]);
+        for (i = 0; i < app.style.edgeSelectedStyles.length; i ++)
+            stylesArray.push(app.style.edgeSelectedStyles[i]);
 
         var colorSet = {};
         for (i = 0; i < stylesArray.length; i ++)
@@ -128,7 +128,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
         context.save();
         
         var backgroundDrawer = new BaseBackgroundDrawer(context);
-        backgroundDrawer.Draw(app.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
+        backgroundDrawer.Draw(app.style.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer  = new BaseEdgeDrawer(context);
         var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
@@ -190,11 +190,11 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
                click   : function() {
                     app.PushToStack("ChangeStyle");
 
-                    applyWidth(forAll ? (new EdgeModel()).width : app.GetDefaultEdgeWidth());
+                    applyWidth(forAll ? defaultEdgeWidth : app.GetDefaultEdgeWidth());
                     var indexes = [];
                     if (self.index == "all")
                     {
-                        for (i = 0; i < app.edgeSelectedStyles.length; i ++)
+                        for (i = 0; i < app.style.edgeSelectedStyles.length; i ++)
                             indexes.push(i + 1);
                     }
                     else
@@ -231,7 +231,7 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
                 {
                     indexes.push({index : 1, style : self.style});
 
-                    for (i = 1; i < app.edgeSelectedStyles.length; i ++)
+                    for (i = 1; i < app.style.edgeSelectedStyles.length; i ++)
                     {
                         var style = (new BaseEdgeStyle());
                         style.baseStyles.push("selected");

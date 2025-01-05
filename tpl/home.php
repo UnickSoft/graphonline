@@ -702,6 +702,42 @@
 
         <div id="UploadBackgroundImageError" class="alert alert-danger" role="alert" style="display: none"></div>
     </div>
+
+    <div id="autoSaveOrOriginalGraph">
+      <form>
+        <fieldset>
+        <p><?= L('you_have_autosave') ?></br><b><?= L('load_oiginal_or_autosaved') ?></b></p>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <p><?= L('original_graph') ?></p>
+            <canvas id="OriginalGraphpPreview" width="300" height="200" style="border: 1px solid;"></canvas>
+            <div>
+              <button type="button" class="btn btn-default btn-xs zoom-plus" title="+">
+                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs zoom-minus" title="-">
+                <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+              </button>
+              <span><?= L('use_mouse_for_moving') ?></span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <p><?= L('autosaved_graph') ?></p>
+            <canvas id="AutoSaveGraphpPreview" width="300" height="200" style="border: 1px solid;"></canvas>
+            <div>
+              <button type="button" class="btn btn-default btn-xs zoom-plus" title="+">
+                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs zoom-minus" title="-">
+                <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+              </button>
+              <span><?= L('use_mouse_for_moving') ?></span>
+            </div>
+          </div>
+        </div>
+        </fieldset>
+      </form>
+    </div>
 	
     <p id="SelectAndMoveObject" class="translation"><?= L('select_and_move_objects')?></p>
     <p id="MoveCursorForMoving" class="translation"><?= L('move_cursor_for_moving')?></p>
@@ -906,6 +942,10 @@
 
     <p id="wrongImageFormatPNGAndJPEG" class="translation"><?= L('wrong_image_background_format')?></p>
     <p id="wrongImageSizeP1" class="translation"><?= L('wrong_image_background_size')?></p>
+
+    <p id="originalGraph" class="translation"><?= L('original_graph')?></p>
+    <p id="autoSavedGraph" class="translation"><?= L('autosaved_graph')?></p>
+    <p id="selectGraphToLoad" class="translation"><?= L('load_oiginal_or_autosaved')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>

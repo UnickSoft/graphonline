@@ -88,9 +88,9 @@ DefaultHandler.prototype.MouseMove = function(pos)
           }
           else
           {
-                // Move work space
-                this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
-                this.needRedraw = true;
+            // Move work space
+            this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
+            this.needRedraw = true;
           }
         }
 }

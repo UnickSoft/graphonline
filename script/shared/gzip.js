@@ -20,7 +20,8 @@ async function compress_text_into_zip_base64(str, callback, mode = "gzip")
   }
   catch (err)
   {
-    console.error(err)
+    console.log(err);
+    callback("");
   }
   return "";
 }
@@ -42,7 +43,8 @@ async function decompress_base64_zip_into_text(str, callback, mode = "gzip")
   }
   catch (err)
   {
-    console.error(err)
+    console.log(err);
+    callback("");
   }
   return "";
 }

@@ -45,8 +45,7 @@ DeleteAllHandler.prototype.clear = function()
 {	
     this.app.PushToStack("DeleteAll");
 
-	// Selected Graph.
-    this.app.graph = new Graph(); 
-    this.app.savedGraphName = "";
+	  // Selected Graph.
+    this.app.CreateNewGraphObject();
     this.needRedraw = true;
 }
