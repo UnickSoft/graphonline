@@ -49,22 +49,22 @@ BaseHandler.prototype.GetSelectedGraph = function(pos)
 		}
 	}
 
-	
 	return res;
 }
 
 BaseHandler.prototype.GetSelectedArc = function(pos)
 {
 	// Selected Arc.
+    let res = null;
     for (var i = 0; i < this.app.graph.edges.length; i ++)
     {
         var edge = this.app.graph.edges[i];
         
         if (edge.HitTest(new Point(pos.x, pos.y)))
-            return edge;
+            res = edge; // Take last becase it will be on the top on rendering.
 	}
 	
-	return null;
+	return res;
 }
 
 BaseHandler.prototype.GetSelectedObject = function(pos)

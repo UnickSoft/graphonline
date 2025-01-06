@@ -90,7 +90,7 @@ EdgeModel.prototype.GetBezierPoints = function(position1, position2)
 EdgeModel.prototype.HitTest = function(position1, position2, mousePos)
 {
     if (this.type == EdgeModels.line)
-        return this.HitTestLine(position1, position2, mousePos);
+        return this.HitTestLine(position1, position2, mousePos, 1.0, false);
     else if (this.type == EdgeModels.curve)
         return this.HitTestCurve(position1, position2, mousePos);
     
@@ -98,20 +98,19 @@ EdgeModel.prototype.HitTest = function(position1, position2, mousePos)
 }
 
 
-EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, factor)
+EdgeModel.prototype.HitTestLine = function(position1, position2, mousePos, factor, ignoreSelfLoop)
 {
     if (factor === undefined) 
     {
       factor = 1.0;
     }
     
-    
     var pos1 = position1;
     var pos2 = position2;
     var pos0 = mousePos;
     
     // Self loop case
-    if (pos1.equals(pos2))
+    if (pos1.equals(pos2) && !ignoreSelfLoop)
     {
         var xCenter = pos1.x - Math.cos(this.GetLoopShiftAngel()) * this.GetLoopSize(); 
         var yCenter = pos1.y - Math.sin(this.GetLoopShiftAngel()) * this.GetLoopSize();
@@ -161,7 +160,7 @@ EdgeModel.prototype.HitTestCurve = function(position1, position2, mousePos)
     {
         var finish = this.GetCurvePoint(position1, position2, i / interval_count);
         
-        if (this.HitTestLine(start, finish, mousePos, 2.0))
+        if (this.HitTestLine(start, finish, mousePos, 2.0, true))
             return true;
         
         start = finish;
