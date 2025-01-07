@@ -11,6 +11,7 @@
         <p>Всего Автосохраннёных графов - <?= $totalAutosaveGraphCount ?> шт</p>
         <p>Общий размер сохранённых графов - <?= $totalAutosaveGraphSize ?> Кб</p>
         <p>За последние месяц сохранено - <?= $ageAutosaveGraph / $totalAutosaveGraphCount * 100 ?> %</p>
+        <p><a href="../backend/clear_autosave_graphs.php" target="_blank" style="border-style: groove; padding: 4px">Удалить старые автосохранения</a></p>
         <h2>Сохранённые изображения</h2>
         <p>Всего сохранёных изображений - <?= $totalImages ?> шт</p>
         <p>Общий размер сохранённых изображений - <?= $totalImagesSize ?> Кб</p>
