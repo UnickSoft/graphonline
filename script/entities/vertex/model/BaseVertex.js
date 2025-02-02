@@ -3,6 +3,18 @@
  *
  */
 
+/*
+ Utility method to get text width
+ without render.
+*/
+function GetTextWidth(text, font) 
+{
+  const canvas = GetTextWidth.canvas || (GetTextWidth.canvas = document.createElement("canvas"));
+  const context = canvas.getContext("2d");
+  context.font = font;
+  const metrics = context.measureText(text);
+  return metrics.width;
+}
  
 function BaseVertex(x, y, vertexEnumType)
 {
@@ -196,6 +208,11 @@ BaseVertex.prototype.getBBox = function (style)
   var defaultDiameter = (new VertexModel()).diameter;
   var vertexDiameter = this.model.diameter;
   var factor = this.getDefaultDiameterFactor(textSize);
-  return new Point(Math.max(factor.x * defaultDiameter, vertexDiameter), 
-                   Math.max(factor.y * defaultDiameter, vertexDiameter));
+  // Devide by 1.5 to make it smaller, because it is too big.
+  let textWidth = (GetTextWidth(this.mainText, textSize + "px sans-serif") + 8) / 1.5;
+  let textHeight = textSize + 4;
+  let isTextAbove = style.commonTextPosition == 1;
+
+  return new Point(Math.max(factor.x * defaultDiameter, vertexDiameter, textWidth), 
+                   Math.max(factor.y * defaultDiameter, vertexDiameter + (isTextAbove ? textHeight : 0), textHeight));
 }

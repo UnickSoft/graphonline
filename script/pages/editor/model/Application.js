@@ -190,7 +190,8 @@ Application.prototype._redrawGraphInWindow = function()
     context.scale(this.canvasScale, this.canvasScale);
     context.translate(this.canvasPosition.x, this.canvasPosition.y);
     
-    this._RedrawGraph(context, this.canvasPosition, this.style.backgroundCommonStyle, true);
+    this._RedrawGraph(context, {width: this.canvas.width, height: this.canvas.height, scale: this.canvasScale}, 
+        this.canvasPosition, this.style.backgroundCommonStyle, true);
 
     context.restore();
     
@@ -209,7 +210,8 @@ Application.prototype._OffscreenRedrawGraph = function()
 
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
+    this._RedrawGraph(context, {width: canvas.width, height: canvas.height, scale: 1.0}, 
+        bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
     
     context.restore();
     
@@ -228,7 +230,8 @@ Application.prototype._PrintRedrawGraph = function()
     
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.backgroundPrintStyle, false, 
+    this._RedrawGraph(context, {width: canvas.width, height: canvas.height, scale: 1.0}, 
+        bbox.minPoint.inverse(), this.backgroundPrintStyle, false, 
         this.vertexPrintCommonStyle, this.vertexPrintSelectedVertexStyles, 
         this.edgePrintCommonStyle,   this.edgePrintSelectedStyles);
     
@@ -246,7 +249,8 @@ Application.prototype._printToSVG = function()
     
     context.translate(bbox.minPoint.inverse().x, bbox.minPoint.inverse().y);
     
-    this._RedrawGraph(context, bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
+    this._RedrawGraph(context, {width: bbox.size().x, height: bbox.size().y, scale: 1.0}, 
+        bbox.minPoint.inverse(), this.style.backgroundCommonStyle, false);
     
     context.restore();
     
@@ -1489,17 +1493,17 @@ Application.prototype.GetStyle = function(type, styleName, object, index)
     return null;
 }
 
-Application.prototype._RedrawGraph = function(context, backgroundPosition, backgroundStyle, bDrawSelectedRect,
+Application.prototype._RedrawGraph = function(context, canvasParams, backgroundPosition, backgroundStyle, bDrawSelectedRect,
     forceVertexCommon, forceVertexSelected, forceEdgeCommon, forceEdgeSelected)
 {
     var backgroundDrawer = new BaseBackgroundDrawer(context);
     
     backgroundDrawer.Draw(
         backgroundStyle, 
-        Math.max(this.canvas.width, this.GetRealWidth()), 
-        Math.max(this.canvas.height, this.GetRealHeight()), 
+        Math.max(canvasParams.width, this.GetRealWidth()), 
+        Math.max(canvasParams.height, this.GetRealHeight()), 
         backgroundPosition, 
-        this.canvasScale);
+        canvasParams.scale);
     
     this.UpdateEdgesCurrentStyle(forceEdgeCommon, forceEdgeSelected);
     this.UpdateNodesCurrentStyle(forceVertexCommon, forceVertexSelected);
