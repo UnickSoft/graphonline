@@ -11,7 +11,7 @@
         <script src="<?= Root("i/js/dev/jquery-2.0.3.js")?>" ></script>
 
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/funcs.css')?>" />
-        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/bootstrap.css')?>" />
+        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap3/bootstrap.css')?>" />
 
         <script src="<?= Root("i/js/dev/bootstrap3/bootstrap.min.js")?>" ></script>
 

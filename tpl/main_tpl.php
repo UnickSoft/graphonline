@@ -25,7 +25,7 @@
         <?php IncludeCom('dev/font_ptsans')?>
         <?php IncludeCom('dev/fontawesome')?>
 
-        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/bootstrap.css')?>" />
+        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap3/bootstrap.css')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/main_tpl.css')?>" />
 
         <meta name="yandex-verification" content="66de0a468e59b81b" />
