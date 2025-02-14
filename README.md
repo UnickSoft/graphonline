@@ -62,10 +62,6 @@ define('SITE_IN_DIR',   'graph');
 ```
 4. Run merge.php to apply changes. Run http://localhost/graph/script/merge.php
 
-5. Change path to fontawesome. Change path in file i/css/dev/fontawesome/variables.less line @fa-font-path:
-```
-@fa-font-path:        "/graph/i/fonts/dev/fontawesome";
-```
 
 # Additional steps if you want to change js scripts from script directory:
 1. We use our own js cache. It is files *.js.cache located in in script/pages. If you remove these cache files the browser will load scripts from source files. You may need to disable browser cache. Or change setting: $g_config['use_js_cache']
@@ -88,7 +84,7 @@ You may download offline build. It is ready to run on local machine and includes
 
 1. Micron (http://zmicron.itkd.ru/) is our engine.
 2. PmWiki (https://www.pmwiki.org/) in folders: /wiki/ and /en/wiki/
-3. And others: jquery (https://jquery.com/), bootstrap3 (https://getbootstrap.com/), fontawesome (https://fontawesome.com/).
+3. And others: jquery (https://jquery.com/), bootstrap5 (https://getbootstrap.com/), bootstrap icons (https://icons.getbootstrap.com/).
 
 # Support & feedback
 
