@@ -440,24 +440,7 @@ Editor.prototype.initButtonActions = function()
     
     document.getElementById('openAlgorithmList').onclick = function()
     {
-        // Show menu first
-        setTimeout(function() 
-                   {
-                        var button = document.getElementById('openAlgorithmList');
-                        var buttonRect = button.getBoundingClientRect();
-                        var algorithmList = document.getElementById('algorithmList');
-            
-                        var delta = buttonRect.right - algorithmList.offsetWidth;
-                        if (delta < 0)
-                        {
-                            var value = (delta - 4) + "px";
-                            algorithmList.style.right = value;
-                        }
-                        else
-                        {
-                             algorithmList.style.right = "0";   
-                        }
-                   }, 1);
+        return;
     }
     
     document.getElementById('Fullscreen').onclick = function()
@@ -480,7 +463,7 @@ Editor.prototype.initButtonActions = function()
                 
         document.getElementById("mainContainer").className = self.fullscreen ? "container-fluid page-wrap" : "container page-wrap";
         
-        document.getElementById("FullscreenIcon").className = self.fullscreen ? "glyphicon glyphicon-resize-small fa-fw" : "glyphicon glyphicon-resize-full fa-fw";
+        document.getElementById("FullscreenIcon").className = self.fullscreen ? "bi bi-fullscreen-exit" : "bi bi-arrows-fullscreen";
 
         resizeCanvas();
     }
@@ -528,6 +511,8 @@ Editor.prototype.initVoteButton = function()
 
 Editor.prototype.initAlgorithmList = function()
 {
+    return;
+    /*
     $(function() {
         $('#algorithmList').on('click', function(event) {
             if (!event.originalEvent.closeThisMenu) {
@@ -538,7 +523,8 @@ Editor.prototype.initAlgorithmList = function()
           $('#algorithmList').slideUp();
         });
       });
-
+    */
+   
     let showHideCategory = function(button, elementsListName){
         let width     = $( button ).width();
         let elementsList = $(elementsListName);
@@ -610,19 +596,19 @@ Editor.prototype.createAlgorithmMenu = function()
         var list   = document.getElementById("algorithmCategoryElements" + algorithm.category);
         var item   = document.getElementById("algTopic" + algorithm.category);
         var clone  = item.cloneNode(true);
-        var button   = clone.getElementsByTagName("button")[0];
+        var button   = clone.getElementsByTagName("a")[0];
         var textSpan = button.getElementsByTagName("span")[1];
         button.id = algorithm.id;
         textSpan.innerHTML = algorithm.name;
         clone.style.display = "block";
         
-        this.buttonsList.push(algorithm.id);
+        //this.buttonsList.push(algorithm.id);
         
         button.onclick = function (e)
         {
             e["closeThisMenu"] = true;
             userAction(this.id);
-            self.restButtons (this.id);
+            self.restButtons ("");
             self.application.SetHandler(new AlgorithmGraphHandler(self.application, 
                 g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph, self.application)));
         }
@@ -663,24 +649,27 @@ Editor.prototype.restButtons = function(me)
 	{
 		if (this.buttonsList[i] != me)
 		{
-			document.getElementById(this.buttonsList[i]).className = "btn btn-default btn-sm";
+			document.getElementById(this.buttonsList[i]).className = "btn btn-outline-secondary btn-sm";
 		}
 		else
 		{
-			if (document.getElementById(this.buttonsList[i]).className != "btn btn-default btn-sm")
+			if (document.getElementById(this.buttonsList[i]).className != "btn btn-outline-secondary btn-sm")
 			{
 				needSetDefault = true;	
 			}
 		}
 	}
-	if (needSetDefault)
-	{
-		document.getElementById(me).className = "btn btn-primary btn-sm";
-	}
-	else
-	{
-		document.getElementById(me).className = "btn btn-primary btn-sm";
-	}
+    if (me != "")
+    {
+        if (needSetDefault)
+        {
+            document.getElementById(me).className = "btn btn-primary btn-sm";
+        }
+        else
+        {
+            document.getElementById(me).className = "btn btn-primary btn-sm";
+        }
+    }
 }
 
 Editor.prototype.ShowIncidenceMatrixErrorDialog = function(matrix)

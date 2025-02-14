@@ -216,7 +216,7 @@ FloidAlgorithm.prototype.restore = function()
 FloidAlgorithm.prototype.updateMessage = function(save)
 {
     this.message = g_graphOfMinDist + " <label style=\"margin-bottom: 0px\">" + g_checkToSave + " <input id=\"saveFloidGraph\" type=\"checkbox\"" + (save ? "checked" : "") + "></label>" +
-        "<button type=\"button\" class=\"btn btn-default btn-xs\" id=\"showFloidMatrix\" style=\"float:right\">" + g_showDistMatrix + "</button>"
+        "<button type=\"button\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\" id=\"showFloidMatrix\" style=\"float:right\">" + g_showDistMatrix + "</button>"
 }
 
 // Algorithm support multi graph

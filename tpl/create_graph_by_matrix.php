@@ -17,13 +17,23 @@
 				</div>
 				<div class="row">
 				<div class="col-md-4">
-<form>
+<form id="matrixViewForm">
+<!--
 <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default active" id="showMatrix"><input type="radio" name="matrixInputType"> <?= L('matrix_matrix_input') ?></label>
-    <label class="btn btn-default" id="showText"><input type="radio" name="matrixInputType"> <?= L('text_matrix_input') ?></label>
+    <label class="btn btn-default active" id="showMatrix"><input type="radio" name="matrixInputType" id="showMatrixRadio" checked> <?= L('matrix_matrix_input') ?></label>
+    <label class="btn btn-default" id="showText"><input type="radio" name="matrixInputType" id="showTextRadio" > <?= L('text_matrix_input') ?></label>
 </div>
+-->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="javascript:;" id="showMatrix"> <?= L('matrix_matrix_input') ?></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="javascript:;" id="showText"> <?= L('text_matrix_input') ?></a>
+  </li>
+</ul>
 </form>
-<form action="./" method="post" id="matrixForm">
+<form action="./" method="post" id="matrixForm" class="pb-2">
 				<textarea name="matrix" id="AdjacencyMatrixFieldPage" wrap="off" style="display: none;">
 <?php if (!isset($_GET["matrix"])): ?>
 0, 1, 0
@@ -32,37 +42,37 @@
 <?php else: ?><?= $_GET["matrix"] ?><?php endif;?></textarea>
 <div id="idSeparatorList" style="display: none;">
 <?= L('separator') ?>
-    <input type="radio" name="separator" value="commo" id="commoSep" checked> <label for="commoSep"><?= L('separator_commo') ?></label>
-    <input type="radio" name="separator" value="space" id="spaceSep"> <label for="spaceSep"><?= L('separator_space') ?></label>
+    <label for="commoSep"><input type="radio" name="separator" value="commo" id="commoSep" checked> <?= L('separator_commo') ?></label>
+    <label for="spaceSep"><input type="radio" name="separator" value="space" id="spaceSep"> <?= L('separator_space') ?></label>
 </div>
 </form>
-<div id="MatrixForm">
-<form id="AdjacencyMatrixFieldInput" role="form">
-<input type="text" name="field0_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field0_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field0_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<br name="row0">
+<div id="MatrixForm" class="pb-0">
+    <form id="AdjacencyMatrixFieldInput" role="form">
+    <input type="text" name="field0_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field0_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field0_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <br name="row0">
 
-<input type="text" name="field1_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field1_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field1_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<br name="row1">
+    <input type="text" name="field1_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field1_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field1_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <br name="row1">
 
-<input type="text" name="field2_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field2_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<input type="text" name="field2_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
-<br name="row2">
+    <input type="text" name="field2_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field2_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <input type="text" name="field2_2" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
+    <br name="row2">
 
-<span name="matrixEnd"></span>
-</form>
-<button type="button" onclick="IncSize()" value="add" name="add" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>
+    <span name="matrixEnd"></span>
+    </form>
+    <p><small><?= L('use_ctrl_to_move_cells')?></small></p>
+</div>
+<button type="button" onclick="IncSize()" value="add" name="add" class="btn btn-outline-secondary menu-text"><span class="bi bi-plus-circle"></span>
     <?= L('add_node_to_matrix') ?>
 </button>
-<p><small><?= L('use_ctrl_to_move_cells')?></small></p>
-</div>
 				</div>
 				<div class="col-md-4">
-		  		<button type="button" class="btn btn-default btn-lg" id="CreateByAdjacencyMatrix"><span class="glyphicon glyphicon-ok"></span> <?= L('plot_graph_button')?></button>
+		  		<button type="button" class="btn btn-outline-success btn-lg" id="CreateByAdjacencyMatrix"><span class="bi bi-check-lg"></span> <?= L('plot_graph_button')?></button>
 				<div id="BadFormatMessage" class="alert alert-warning" role="alert">
 					<?= L('adjacency_matrix_bad_format')?>
 				</div>

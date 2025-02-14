@@ -62,7 +62,7 @@ b-c
                 </form>
             </div>
             <div class="col-md-4">
-                <button type="button" class="btn btn-default btn-lg" id="CreateByPair"><span class="glyphicon glyphicon-ok"></span> <?= L('plot_graph_button')?></button>
+                <button type="button" class="btn btn-outline-success btn-lg" id="CreateByPair"><span class="bi bi-check-lg"></span> <?= L('plot_graph_button')?></button>
                     <div id="BadFormatMessage" class="alert alert-warning" role="alert">
                         <?= L('pair_bad_format')?>
                     </div>

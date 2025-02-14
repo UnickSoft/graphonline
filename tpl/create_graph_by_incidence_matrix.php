@@ -126,18 +126,16 @@ function _ShowMatrixInput()
 function ShowTextInput()
 {
     _ShowTextInput();
-    document.getElementById("showMatrix").className = "btn btn-default";
-    document.getElementById("showText").className = "btn btn-default active";
+    document.getElementById("showMatrix").className = "nav-link";// btn-secondary";
+    document.getElementById("showText").className = "nav-link active"; //btn-secondary 
 }
 
 function ShowMatrixInput()
 {
     _ShowMatrixInput();
-    document.getElementById("showMatrix").className = "btn btn-default active";
-    document.getElementById("showText").className = "btn btn-default";
+    document.getElementById("showMatrix").className = "nav-link active"; // btn-secondary 
+    document.getElementById("showText").className = "nav-link"; // btn-secondary
 }
-
-
 
 function CopyMatrixToMatrixInput()
 {
@@ -260,12 +258,12 @@ window.onload = function ()
     
     $( "#showMatrix" ).on('click', function (eventObject)
                           {
-                          _ShowMatrixInput();
+                          ShowMatrixInput();
                           });
     
     $( "#showText" ).on('click', function (eventObject)
                         {
-                        _ShowTextInput();
+                        ShowTextInput();
                         });
     
     CopyMatrixToMatrixInput();
@@ -299,8 +297,14 @@ window.onload = function ()
 
 <form>
 <div class="btn-group" data-toggle="buttons">
-<label class="btn btn-default active" id="showMatrix"><input type="radio" name="matrixInputType"> <?= L('matrix_matrix_input') ?></label>
-<label class="btn btn-default" id="showText"><input type="radio" name="matrixInputType"> <?= L('text_matrix_input') ?></label>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="javascript:;" id="showMatrix"> <?= L('matrix_matrix_input') ?></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="javascript:;" id="showText"> <?= L('text_matrix_input') ?></a>
+  </li>
+</ul>
 </div>
 </form>
 
@@ -313,7 +317,7 @@ window.onload = function ()
 <?php else: ?><?= $_GET["incidenceMatrix"] ?><?php endif;?></textarea>
 </form>
 <div id="MatrixForm">
-<form id="AdjacencyMatrixFieldInput" role="form">
+<form id="AdjacencyMatrixFieldInput" role="form" class="mb-2">
 <input type="text" name="field0_0" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
 <input type="text" name="field0_1" size="3" value = "0" onkeyup="CopyMatrixToTextInput(event)">
 <br name="row0">
@@ -328,10 +332,10 @@ window.onload = function ()
 
 <span name="matrixEnd"></span>
 </form>
-<button type="button" onclick="IncSizeW()" value="add" name="add" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>
+<button type="button" onclick="IncSizeW()" value="add" name="add" class="btn btn-outline-secondary menu-text mb-2"><span class="bi bi-plus-circle"></span>
 <?= L('add_edge_to_matrix') ?>
 </button>
-<button type="button" onclick="IncSizeH()" value="add" name="add" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>
+<button type="button" onclick="IncSizeH()" value="add" name="add" class="btn btn-outline-secondary menu-text"><span class="bi bi-plus-circle"></span>
 <?= L('add_node_to_matrix') ?>
 </button>
 <p><small><?= L('use_ctrl_to_move_cells')?></small></p>
@@ -340,7 +344,7 @@ window.onload = function ()
 
 				</div>
 				<div class="col-md-4">
-		  		<button type="button" class="btn btn-default btn-lg" id="CreateByIncidenceMatrix"><span class="glyphicon glyphicon-th"></span> <?= L('plot_graph_button')?></button>
+		  		<button type="button" class="btn btn-outline-success btn-lg" id="CreateByIncidenceMatrix"><span class="bi bi-check-lg"></span> <?= L('plot_graph_button')?></button>
 				<div id="BadFormatMessage" class="alert alert-warning" role="alert">
 					<?= L('incidence_matrix_bad_format')?>
 				</div>

@@ -21,11 +21,12 @@
 
         <script src="<?= Root("i/js/dev/jquery-2.0.3.js")?>" ></script>
 
-<!--        <?php IncludeCom('dev/jquery')?> -->
+<!--        <?php /*IncludeCom('dev/jquery')*/?> -->
         <?php IncludeCom('dev/font_ptsans')?>
-        <?php IncludeCom('dev/fontawesome')?>
+<!--        <?php /*IncludeCom('dev/fontawesome')*/?> -->
 
-        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap3/bootstrap.css')?>" />
+        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap5/bootstrap.css')?>" />
+        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap-icons/bootstrap-icons.css')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/main_tpl.css')?>" />
 
         <meta name="yandex-verification" content="66de0a468e59b81b" />
@@ -48,46 +49,50 @@
     <body>
         <div class="container page-wrap" id="mainContainer">
 <!--            <div class="header"> -->
-<nav class="navbar navbar-default" id="navigation">
+<nav class="navbar navbar-expand-lg navbar-default" id="navigation">
     <div class="container-fluid">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="<?= SiteRoot()?>"><span class="fa fa-sitemap fa-fw"></span> Graph Online</a>
-    </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<ul class="nav navbar-nav navbar-right">
-<?php foreach ($menu as $m):?>
-<?php if (!isset($m["list"])) { ?>
-<li class="<?= $m["is_active"] ? "active" : ""?>"><a href="<?= $m["link"]?>"><?= $m["title"]?></a></li>
-<?php }	else { ?>
-<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <?= $m["title"]?> <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<?php foreach ($m["list"] as $subm):?>
-<li><a href="<?= $subm["link"]?>"><?= $subm["title"]?></a></li>
-<?php endforeach?>
-</ul>
-</li>
-<?php } ?>
-<?php endforeach?>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= L('lang')?> icon"> <?= L('lang')?> <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<?php foreach($g_arrLangs as $lang => $langInfo):?>
-<?php if (!array_key_exists('hidden', $langInfo) || !$langInfo["hidden"]):?>
-<li><a href="<?= ChangeLang($lang, GetCurUrl())?>" title="<?= $langInfo["name"]?>" class="<?= $lang == LANG ? "selected" : ""?>"><img src="<?= Root("i/image/flags/{$lang}.png")?>" alt="<?= $langInfo["name"]?>"> <?= $langInfo["name"]?></a></li>
-<?php endif?>
-<?php endforeach?>
-</ul>
-</li>
-</ul>
-
-
+        <div class="collapse navbar-collapse" id="navbarMainContent">
+            <ul class="navbar-nav ms-auto">
+            <?php foreach ($menu as $key => $m):?>
+            <?php if (!isset($m["list"])) { ?>
+                <li class="nav-item <?= $m["is_active"] ? "active" : ""?>">
+                    <a class="nav-link" href="<?= $m["link"]?>"><?= $m["title"]?></a>
+                </li>
+                <?php }	else { ?>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="id_menu_<?= $key ?>" data-bs-toggle="dropdown" aria-expanded="false"> 
+                        <?= $m["title"]?> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="id_menu_<?= $key ?>">
+                        <?php foreach ($m["list"] as $subm):?>
+                        <li><a class="dropdown-item" href="<?= $subm["link"]?>"><?= $subm["title"]?></a></li>
+                        <?php endforeach?>
+                    </ul>
+                </li>
+                <?php } ?>
+            <?php endforeach?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="id_menu_lang" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= L('lang')?> icon"> <?= L('lang')?> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="id_menu_lang">
+                        <?php foreach($g_arrLangs as $lang => $langInfo):?>
+                        <?php if (!array_key_exists('hidden', $langInfo) || !$langInfo["hidden"]):?>
+                            <li>
+                                <a href="<?= ChangeLang($lang, GetCurUrl())?>" title="<?= $langInfo["name"]?>" class="<?= $lang == LANG ? "selected" : ""?> dropdown-item">
+                                    <img src="<?= Root("i/image/flags/{$lang}.png")?>" alt="<?= $langInfo["name"]?>"> <?= $langInfo["name"]?>
+                                </a>
+                            </li>
+                        <?php endif?>
+                        <?php endforeach?>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -143,8 +148,12 @@
 			preLoadPage();
 		}
 	</script>
-	<script src="<?= Root("i/js/dev/bootstrap3/bootstrap.min.js")?>" >
-        	        $('.dropdown-toggle').dropdown();
+	<script src="<?= Root("i/js/dev/bootstrap5/bootstrap.bundle.min.js")?>" >
+            var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+            var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                return new bootstrap.Dropdown(dropdownToggleEl)
+            })
+        	//$('.dropdown-toggle').dropdown();
 	</script>
 	<script>
 		if (typeof postLoadPage == 'function')

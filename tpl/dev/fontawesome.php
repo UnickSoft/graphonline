@@ -1,4 +1,4 @@
-
+<!--
     <head>
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/fontawesome/bordered-pulled.less')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/fontawesome/core.less')?>" />
@@ -13,3 +13,4 @@
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/fontawesome/stacked.less')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/fontawesome/variables.less')?>" />
     </head>
+-->

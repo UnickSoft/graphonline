@@ -119,15 +119,15 @@ function _ShowMatrixInput()
 function ShowTextInput()
 {
     _ShowTextInput();
-    document.getElementById("showMatrix").className = "btn btn-default";
-    document.getElementById("showText").className = "btn btn-default active";
+    document.getElementById("showMatrix").className = "nav-link";// btn-secondary";
+    document.getElementById("showText").className = "nav-link active"; //btn-secondary 
 }
 
 function ShowMatrixInput()
 {
     _ShowMatrixInput();
-    document.getElementById("showMatrix").className = "btn btn-default active";
-    document.getElementById("showText").className = "btn btn-default";
+    document.getElementById("showMatrix").className = "nav-link active"; // btn-secondary 
+    document.getElementById("showText").className = "nav-link"; // btn-secondary
 }
 
 function CopyMatrixToMatrixInput()
@@ -246,12 +246,12 @@ window.onload = function ()
     
     $( "#showMatrix" ).on('click', function (eventObject)
                           {
-                          _ShowMatrixInput();
+                          ShowMatrixInput();
                           });
     
     $( "#showText" ).on('click', function (eventObject)
                         {
-                        _ShowTextInput();
+                        ShowTextInput();
                         });
     
     $('input:radio[name="separator"]').change( function(){

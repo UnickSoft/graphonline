@@ -180,14 +180,14 @@ ConnectionGraphHandler.prototype.AppendSpecialSctionsButton = function(baseMessa
         userAction("makeAllEdgesDirected");
     });     
         
-    return "<div class=\"btn-group\" style=\"float:right; position: relative; margin-left: 8px\">"
-    +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+    return "<div class=\"dropdown\" style=\"float:right; position: relative; margin-left: 8px\">"
+    +  "<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" id=\"dropdownMenuForEdges\" data-bs-toggle=\"dropdown\" saria-expanded=\"false\">"
     +  g_additionalActions + " <span class=\"caret\"></span>"
     +  " </button> "
-    +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-    +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"reverseAll\">" + g_reverseAllEdges + "</a></li>" : "")
-    +  (hasDirectedEdges ? " <li><a href=\"#\" id=\"makeAllUndirected\">" + g_makeAllUndirected + "</a></li>" : "")
-    +  (hasUndirectedEdges ? " <li><a href=\"#\" id=\"makeAllDirected\">" + g_makeAllDirected + "</a></li>" : "")
+    +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\" aria-labelledby=\"dropdownMenuForEdges\">"
+    +  (hasDirectedEdges ? " <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"reverseAll\">" + g_reverseAllEdges + "</a></li>" : "")
+    +  (hasDirectedEdges ? " <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"makeAllUndirected\">" + g_makeAllUndirected + "</a></li>" : "")
+    +  (hasUndirectedEdges ? " <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"makeAllDirected\">" + g_makeAllDirected + "</a></li>" : "")
     +  "</ul>"
     +  "</div> " + baseMessage;
 }

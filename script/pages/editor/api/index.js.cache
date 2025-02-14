@@ -1137,29 +1137,29 @@ this.needRedraw=true;this.pressed=true;this.prevPosition=pos;this.app.canvas.sty
 DefaultHandler.prototype.MouseUp=function(pos)
 {this.saveUndo=false;this.message=g_textsSelectAndMove+" <span class=\"hidden-phone\">"+g_selectGroupText+"</span>"+" <span class=\"hidden-phone\">"+g_useContextMenuText+"</span>";this.dragObject=null;this.pressed=false;this.app.canvas.style.cursor="auto";this.app.SetSelectionRect(null);this.groupingSelect=false;if(this.selectedObject!=null&&(this.selectedObject instanceof BaseVertex))
 {this.message=g_textsSelectAndMove
-+"<div class=\"btn-group\" style=\"float:right;position: relative;\">"
-+"<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
++"<div style=\"float:right;position: relative;\">"
++"<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
 +" "+g_action+" <span class=\"caret\"></span>"
-+" </button>"
-+"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-+" <li><a href=\"#\" id=\"renameButton\">"+g_renameVertex+"</a></li>"
-+" <li><a href=\"#\" id=\"changeCommonStyle\">"+g_commonVertexStyle+"</a></li>"
-+" <li><a href=\"#\" id=\"changeSelectedStyle\">"+g_selectedVertexStyle+"</a></li>"
++"</button>"
++"<ul class=\"dropdown-menu\" style=\"z-index:15; position: absolute;\">"
++" <li><a href=\"#\" class=\"dropdown-item\" id=\"renameButton\">"+g_renameVertex+"</a></li>"
++" <li><a href=\"#\" class=\"dropdown-item\" id=\"changeCommonStyle\">"+g_commonVertexStyle+"</a></li>"
++" <li><a href=\"#\" class=\"dropdown-item\" id=\"changeSelectedStyle\">"+g_selectedVertexStyle+"</a></li>"
 +"</ul>"
 +"</div>";var handler=this;var callback=function(enumType){handler.RenameVertex(enumType.GetVertexText(0),handler.selectedObject);userAction("RenameVertex");};$('#message').unbind();$('#message').on('click','#renameButton',function(){var customEnum=new TextEnumVerticesCustom(handler.app);customEnum.ShowDialog(callback,g_rename,g_renameVertex,handler.selectedObject.mainText);});$('#message').on('click','#changeCommonStyle',function(){var selectedVertices=handler.app.GetSelectedVertices();var setupVertexStyle=new SetupVertexStyle(handler.app);setupVertexStyle.show(0,selectedVertices);});$('#message').on('click','#changeSelectedStyle',function(){var selectedVertices=handler.app.GetSelectedVertices();var setupVertexStyle=new SetupVertexStyle(handler.app);setupVertexStyle.show(1,selectedVertices);});}
 else if(this.selectedObject!=null&&(this.selectedObject instanceof BaseEdge))
 {this.message=g_textsSelectAndMove
-+"<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-default btn-xs\"> + </button>"
++"<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\"> + </button>"
 +" "+g_curveEdge+" "
-+"<button type=\"button\" id=\"decCurvel\" class=\"btn btn-default btn-xs\"> - </button> &nbsp; "
-+"<div class=\"btn-group\" style=\"float:right;position: relative;\">"
-+"<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
++"<button type=\"button\" id=\"decCurvel\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\"> - </button> &nbsp; "
++"<div style=\"float:right;position: relative;\">"
++"<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
 +" "+g_action+" <span class=\"caret\"></span>"
 +" </button>"
 +"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-+" <li><a href=\"#\" id=\"editEdge\">"+g_editWeight+"</a></li>"
-+" <li><a href=\"#\" id=\"changeCommonStyle\">"+g_commonEdgeStyle+"</a></li>"
-+" <li><a href=\"#\" id=\"changeSelectedStyle\">"+g_selectedEdgeStyle+"</a></li>"
++" <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"editEdge\">"+g_editWeight+"</a></li>"
++" <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"changeCommonStyle\">"+g_commonEdgeStyle+"</a></li>"
++" <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"changeSelectedStyle\">"+g_selectedEdgeStyle+"</a></li>"
 +"</ul>"
 +"</div>";var handler=this;$('#message').unbind();$('#message').on('click','#editEdge',function(){handler.ShowEditEdgeDialog(handler.selectedObject);});$('#message').on('click','#incCurvel',function(){handler.app.PushToStack("ChangeCurvelEdge");handler.selectedObject.model.ChangeCurveValue(DefaultHandler.prototype.curveValue);handler.needRedraw=true;handler.app.redrawGraph();userAction("Edge.Bend");});$('#message').on('click','#decCurvel',function(){handler.app.PushToStack("ChangeCurvelEdge");handler.selectedObject.model.ChangeCurveValue(-DefaultHandler.prototype.curveValue);handler.needRedraw=true;handler.app.redrawGraph();userAction("Edge.Bend");});$('#message').on('click','#changeCommonStyle',function(){var selectedEdges=handler.app.GetSelectedEdges();var setupVertexStyle=new SetupEdgeStyle(handler.app);setupVertexStyle.show(0,selectedEdges);});$('#message').on('click','#changeSelectedStyle',function(){var selectedEdges=handler.app.GetSelectedEdges();var setupVertexStyle=new SetupEdgeStyle(handler.app);setupVertexStyle.show(1,selectedEdges);});}
 else if(this.selectedObjects.length>0)
@@ -1169,16 +1169,16 @@ else if(this.selectedObjects.length>0)
 else if(object instanceof BaseEdge)
 {hasEdges=true;}}
 this.message=this.message+"<span style=\"float:right;position: relative;\">";this.message=this.message
-+"<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-default btn-xs\">"
++"<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\">"
 +g_copyGroupeButton+"</button> &nbsp &nbsp"
-+"<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-default btn-xs\">"
++"<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\">"
 +g_removeGroupeButton+"</button>"
 this.message=this.message
-+" &nbsp &nbsp <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
++" &nbsp &nbsp <button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
 +" "+g_action+" <span class=\"caret\"></span>"
 +" </button>"
-+"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">";if(hasEdges){this.message=this.message+" <li><a href=\"#\" id=\"changeCommonStyleEdge\">"+g_commonEdgeStyle+"</a></li>";this.message=this.message+" <li><a href=\"#\" id=\"changeSelectedStyleEdge\">"+g_selectedEdgeStyle+"</a></li>";}
-if(hasVertices){this.message=this.message+" <li><a href=\"#\" id=\"changeCommonStyleVertex\">"+g_commonVertexStyle+"</a></li>";this.message=this.message+" <li><a href=\"#\" id=\"changeSelectedStyleVertex\">"+g_selectedVertexStyle+"</a></li>";}
++"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">";if(hasEdges){this.message=this.message+" <li><a href=\"javascript:;\" id=\"changeCommonStyleEdge\" class=\"dropdown-item\">"+g_commonEdgeStyle+"</a></li>";this.message=this.message+" <li><a href=\"javascript:;\" id=\"changeSelectedStyleEdge\" class=\"dropdown-item\">"+g_selectedEdgeStyle+"</a></li>";}
+if(hasVertices){this.message=this.message+" <li><a href=\"javascript:;\" id=\"changeCommonStyleVertex\" class=\"dropdown-item\">"+g_commonVertexStyle+"</a></li>";this.message=this.message+" <li><a href=\"javascript:;\" id=\"changeSelectedStyleVertex\" class=\"dropdown-item\">"+g_selectedVertexStyle+"</a></li>";}
 this.message=this.message
 +"</ul>"
 +"</span>";var handler=this;$('#message').unbind();$('#message').on('click','#DublicateSelected',function(){handler.app.PushToStack("DublicateSelection");userAction("GroupSelected.Dublicate");var newSelected=[];var copyVertex={};for(var i=0;i<handler.selectedObjects.length;i++)
@@ -1262,14 +1262,14 @@ ConnectionGraphHandler.prototype.UpdateSecondVertexMenu=function(vertex2Text)
 {if(this.secondObject)
 {vertex2Text.value=this.secondObject.mainText;}}
 ConnectionGraphHandler.prototype.AppendSpecialSctionsButton=function(baseMessage)
-{let hasEdges=this.app.graph.hasEdges();if(!hasEdges)return baseMessage;let hasDirectedEdges=this.app.graph.hasDirectEdge();let hasUndirectedEdges=this.app.graph.hasUndirectEdge();let handler=this;$('#message').on('click','#reverseAll',function(){handler.app.PushToStack("ReverseAllEdges");handler.app.graph.reverseAllEdges();handler.app.redrawGraph();userAction("ReverseAllEdges");});$('#message').on('click','#makeAllUndirected',function(){handler.app.PushToStack("makeAllEdgesUndirected");handler.app.graph.makeAllEdgesUndirected();handler.app.redrawGraph();userAction("makeAllEdgesUndirected");});$('#message').on('click','#makeAllDirected',function(){handler.app.PushToStack("makeAllEdgesDirected");handler.app.graph.makeAllEdgesDirected();handler.app.redrawGraph();userAction("makeAllEdgesDirected");});return"<div class=\"btn-group\" style=\"float:right; position: relative; margin-left: 8px\">"
-+"<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+{let hasEdges=this.app.graph.hasEdges();if(!hasEdges)return baseMessage;let hasDirectedEdges=this.app.graph.hasDirectEdge();let hasUndirectedEdges=this.app.graph.hasUndirectEdge();let handler=this;$('#message').on('click','#reverseAll',function(){handler.app.PushToStack("ReverseAllEdges");handler.app.graph.reverseAllEdges();handler.app.redrawGraph();userAction("ReverseAllEdges");});$('#message').on('click','#makeAllUndirected',function(){handler.app.PushToStack("makeAllEdgesUndirected");handler.app.graph.makeAllEdgesUndirected();handler.app.redrawGraph();userAction("makeAllEdgesUndirected");});$('#message').on('click','#makeAllDirected',function(){handler.app.PushToStack("makeAllEdgesDirected");handler.app.graph.makeAllEdgesDirected();handler.app.redrawGraph();userAction("makeAllEdgesDirected");});return"<div class=\"dropdown\" style=\"float:right; position: relative; margin-left: 8px\">"
++"<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" id=\"dropdownMenuForEdges\" data-bs-toggle=\"dropdown\" saria-expanded=\"false\">"
 +g_additionalActions+" <span class=\"caret\"></span>"
 +" </button> "
-+"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-+(hasDirectedEdges?" <li><a href=\"#\" id=\"reverseAll\">"+g_reverseAllEdges+"</a></li>":"")
-+(hasDirectedEdges?" <li><a href=\"#\" id=\"makeAllUndirected\">"+g_makeAllUndirected+"</a></li>":"")
-+(hasUndirectedEdges?" <li><a href=\"#\" id=\"makeAllDirected\">"+g_makeAllDirected+"</a></li>":"")
++"<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\" aria-labelledby=\"dropdownMenuForEdges\">"
++(hasDirectedEdges?" <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"reverseAll\">"+g_reverseAllEdges+"</a></li>":"")
++(hasDirectedEdges?" <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"makeAllUndirected\">"+g_makeAllUndirected+"</a></li>":"")
++(hasUndirectedEdges?" <li><a href=\"javascript:;\" class=\"dropdown-item\" id=\"makeAllDirected\">"+g_makeAllDirected+"</a></li>":"")
 +"</ul>"
 +"</div> "+baseMessage;}
 ConnectionGraphHandler.checkUseDefaultEdge=function(elem,app)
@@ -2151,17 +2151,17 @@ document.getElementById('ExportGraph').onclick=function()
 document.getElementById('ImportGraph').onclick=function()
 {userAction(this.id);if(ImportGraphFiles){ImportGraphFiles.click();}}
 document.getElementById('openAlgorithmList').onclick=function()
-{setTimeout(function()
+{return;setTimeout(function()
 {var button=document.getElementById('openAlgorithmList');var buttonRect=button.getBoundingClientRect();var algorithmList=document.getElementById('algorithmList');var delta=buttonRect.right-algorithmList.offsetWidth;if(delta<0)
 {var value=(delta-4)+"px";algorithmList.style.right=value;}
 else
-{algorithmList.style.right="0";}},1);}
+{algorithmList.style.right="0";}},1);document.getElementById('openAlgorithmList').removeAttribute("onclick");}
 document.getElementById('Fullscreen').onclick=function()
 {var idList=["h1Header","h1Text","navigation","footerContent","bottom_adv"];self.fullscreen=!self.fullscreen
 userAction(self.fullscreen?"fullscreen_on":"fullscreen_off");for(var i=0;i<idList.length;i++){let element=document.getElementById(idList[i]);if(!element)continue;if(self.fullscreen)
 element.style.display="none";else
 element.style.display="block";}
-document.getElementById("mainContainer").className=self.fullscreen?"container-fluid page-wrap":"container page-wrap";document.getElementById("FullscreenIcon").className=self.fullscreen?"glyphicon glyphicon-resize-small fa-fw":"glyphicon glyphicon-resize-full fa-fw";resizeCanvas();}}
+document.getElementById("mainContainer").className=self.fullscreen?"container-fluid page-wrap":"container page-wrap";document.getElementById("FullscreenIcon").className=self.fullscreen?"bi bi-fullscreen-exit":"bi bi-arrows-fullscreen";resizeCanvas();}}
 Editor.prototype.initVoteButton=function()
 {let self=this;if(document.getElementById('VoteButton')!==null)
 document.getElementById('VoteButton').onclick=function()
@@ -2170,7 +2170,7 @@ document.getElementById('VoteButton').onclick=function()
 {console.log("Vote"+self["voteIndex"]);$.ajax({type:"GET",url:"/"+SiteDir+"backend/vote.php?index="+self["voteIndex"],dataType:"text"});$("#voteDialog").dialog('close');$("#VoteButton").hide();}}
 dialogButtons[g_close]=function(){$(self).dialog("close");};$("#voteDialog").dialog({resizable:false,title:g_vote,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}}
 Editor.prototype.initAlgorithmList=function()
-{$(function(){$('#algorithmList').on('click',function(event){if(!event.originalEvent.closeThisMenu){event.stopPropagation();}});$(window).on('click',function(){$('#algorithmList').slideUp();});});let showHideCategory=function(button,elementsListName){let width=$(button).width();let elementsList=$(elementsListName);var hideMark=button.querySelector('span[name="hideMark"]')
+{return;let showHideCategory=function(button,elementsListName){let width=$(button).width();let elementsList=$(elementsListName);var hideMark=button.querySelector('span[name="hideMark"]')
 var showMark=button.querySelector('span[name="showMark"]')
 if(elementsList.is(":visible")){elementsList.hide();$(hideMark).show();$(showMark).hide();}else{elementsList.show();$(hideMark).hide();$(showMark).show();}
 $(button).width(width);userAction("algCategory_"+elementsListName);}
@@ -2180,8 +2180,8 @@ Editor.prototype.init=function()
 Editor.prototype.redraw=function(){this.application.redrawGraph();}
 Editor.prototype.createAlgorithmMenu=function()
 {let self=this;var algorithmBaseId="Algo";var algorithms=this.application.getAlgorithmNames();var index=0;for(var i=0;i<algorithms.length;i++)
-{algorithm=algorithms[i];var list=document.getElementById("algorithmCategoryElements"+algorithm.category);var item=document.getElementById("algTopic"+algorithm.category);var clone=item.cloneNode(true);var button=clone.getElementsByTagName("button")[0];var textSpan=button.getElementsByTagName("span")[1];button.id=algorithm.id;textSpan.innerHTML=algorithm.name;clone.style.display="block";this.buttonsList.push(algorithm.id);button.onclick=function(e)
-{e["closeThisMenu"]=true;userAction(this.id);self.restButtons(this.id);self.application.SetHandler(new AlgorithmGraphHandler(self.application,g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph,self.application)));}
+{algorithm=algorithms[i];var list=document.getElementById("algorithmCategoryElements"+algorithm.category);var item=document.getElementById("algTopic"+algorithm.category);var clone=item.cloneNode(true);var button=clone.getElementsByTagName("a")[0];var textSpan=button.getElementsByTagName("span")[1];button.id=algorithm.id;textSpan.innerHTML=algorithm.name;clone.style.display="block";button.onclick=function(e)
+{e["closeThisMenu"]=true;userAction(this.id);self.restButtons("");self.application.SetHandler(new AlgorithmGraphHandler(self.application,g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph,self.application)));}
 var eventData={};eventData.index=i;eventData.object=clone;eventData.algorithm=algorithm;$("#openAlgorithmList").bind('click',eventData,function(_eventData){var data=_eventData.data;var algorithm=g_Algorithms[g_AlgorithmIds.indexOf(data.algorithm.id)](self.application.graph,self.application);if((self.application.graph.isMulti()&&!algorithm.IsSupportMultiGraph())||(self.application.graph.hasNegative()&&!algorithm.IsSupportNegativeWeight()))
 {$(data.object).hide();}
 else
@@ -2189,14 +2189,15 @@ else
 Editor.prototype.restButtons=function(me)
 {var needSetDefault=false;for(let i=0;i<this.buttonsList.length;i++)
 {if(this.buttonsList[i]!=me)
-{document.getElementById(this.buttonsList[i]).className="btn btn-default btn-sm";}
+{document.getElementById(this.buttonsList[i]).className="btn btn-outline-secondary btn-sm";}
 else
-{if(document.getElementById(this.buttonsList[i]).className!="btn btn-default btn-sm")
+{if(document.getElementById(this.buttonsList[i]).className!="btn btn-outline-secondary btn-sm")
 {needSetDefault=true;}}}
-if(needSetDefault)
+if(me!="")
+{if(needSetDefault)
 {document.getElementById(me).className="btn btn-primary btn-sm";}
 else
-{document.getElementById(me).className="btn btn-primary btn-sm";}}
+{document.getElementById(me).className="btn btn-primary btn-sm";}}}
 Editor.prototype.ShowIncidenceMatrixErrorDialog=function(matrix)
 {var dialogButtons={};matrixRes=matrix.replace(/\n/g,'%0A');dialogButtons[g_readMatrixHelp]=function(){window.location.assign(g_language=="ru"?"./wiki/Справка/МатрицаИнцидентности#matrixFormat":"./wiki/Help/IncidenceMatrix#matrixFormat");};dialogButtons[g_fixMatrix]=function(){window.location.assign("./create_graph_by_incidence_matrix?incidenceMatrix="+matrixRes);};dialogButtons[g_close]=function(){$(this).dialog("close");};$("#matrixErrorInc").dialog({resizable:false,title:g_matrixWrongFormat,width:400,modal:true,dialogClass:'EdgeDialog',buttons:dialogButtons,});}
 Editor.prototype.ShowPairErrorDialog=function(pair)

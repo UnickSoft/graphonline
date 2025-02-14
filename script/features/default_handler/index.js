@@ -163,14 +163,14 @@ DefaultHandler.prototype.MouseUp = function(pos)
     if (this.selectedObject != null && (this.selectedObject instanceof BaseVertex))
     {
         this.message = g_textsSelectAndMove        
-         +  "<div class=\"btn-group\" style=\"float:right;position: relative;\">"
-         +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+         +  "<div style=\"float:right;position: relative;\">"
+         +  "<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
          +  " " + g_action + " <span class=\"caret\"></span>"
-         +  " </button>"
-         +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-         +  " <li><a href=\"#\" id=\"renameButton\">" + g_renameVertex + "</a></li>"
-         +  " <li><a href=\"#\" id=\"changeCommonStyle\">" + g_commonVertexStyle + "</a></li>"
-         +  " <li><a href=\"#\" id=\"changeSelectedStyle\">" + g_selectedVertexStyle + "</a></li>"
+         +  "</button>"
+         +  "<ul class=\"dropdown-menu\" style=\"z-index:15; position: absolute;\">"
+         +  " <li><a href=\"#\" class=\"dropdown-item\" id=\"renameButton\">" + g_renameVertex + "</a></li>"
+         +  " <li><a href=\"#\" class=\"dropdown-item\" id=\"changeCommonStyle\">" + g_commonVertexStyle + "</a></li>"
+         +  " <li><a href=\"#\" class=\"dropdown-item\" id=\"changeSelectedStyle\">" + g_selectedVertexStyle + "</a></li>"
          +  "</ul>"
          +  "</div>";
         
@@ -198,17 +198,17 @@ DefaultHandler.prototype.MouseUp = function(pos)
     else if (this.selectedObject != null && (this.selectedObject instanceof BaseEdge))
     {
         this.message = g_textsSelectAndMove
-        + "<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-default btn-xs\"> + </button>"
+        + "<span style=\"float:right;\"><button type=\"button\" id=\"incCurvel\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\"> + </button>"
         + " " + g_curveEdge + " "
-        + "<button type=\"button\" id=\"decCurvel\" class=\"btn btn-default btn-xs\"> - </button> &nbsp; "
-        +  "<div class=\"btn-group\" style=\"float:right;position: relative;\">"
-        +  "<button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+        + "<button type=\"button\" id=\"decCurvel\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\"> - </button> &nbsp; "
+        +  "<div style=\"float:right;position: relative;\">"
+        +  "<button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
         +  " " + g_action + " <span class=\"caret\"></span>"
         +  " </button>"
         +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">"
-        +  " <li><a href=\"#\" id=\"editEdge\">" + g_editWeight + "</a></li>"
-        +  " <li><a href=\"#\" id=\"changeCommonStyle\">" + g_commonEdgeStyle + "</a></li>"
-        +  " <li><a href=\"#\" id=\"changeSelectedStyle\">" + g_selectedEdgeStyle + "</a></li>"
+        +  " <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"editEdge\">" + g_editWeight + "</a></li>"
+        +  " <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"changeCommonStyle\">" + g_commonEdgeStyle + "</a></li>"
+        +  " <li><a class=\"dropdown-item\" href=\"javascript:;\" id=\"changeSelectedStyle\">" + g_selectedEdgeStyle + "</a></li>"
         +  "</ul>"
         +  "</div>";
 
@@ -267,25 +267,25 @@ DefaultHandler.prototype.MouseUp = function(pos)
         this.message = this.message + "<span style=\"float:right;position: relative;\">";
 
         this.message = this.message
-            + "<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-default btn-xs\">"
+            + "<button type=\"button\" id=\"DublicateSelected\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\">"
             + g_copyGroupeButton + "</button> &nbsp &nbsp"
-            + "<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-default btn-xs\">"
+            + "<button type=\"button\" id=\"RemoveSelected\" class=\"btn btn-outline-secondary btn-sm menu-text white-btn\">"
             + g_removeGroupeButton + "</button>"
 
         this.message = this.message
-            +  " &nbsp &nbsp <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"
+            +  " &nbsp &nbsp <button type=\"button\" class=\"btn btn-outline-secondary dropdown-toggle btn-sm menu-text white-btn\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">"
             +  " " + g_action + " <span class=\"caret\"></span>"
             +  " </button>"            
             +  "<ul class=\"dropdown-menu dropdown-menu-right\" style=\"z-index:15; position: absolute;\">";
      
         if (hasEdges) {
-            this.message = this.message + " <li><a href=\"#\" id=\"changeCommonStyleEdge\">"   + g_commonEdgeStyle + "</a></li>";
-            this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleEdge\">" + g_selectedEdgeStyle + "</a></li>";
+            this.message = this.message + " <li><a href=\"javascript:;\" id=\"changeCommonStyleEdge\" class=\"dropdown-item\">"   + g_commonEdgeStyle + "</a></li>";
+            this.message = this.message +  " <li><a href=\"javascript:;\" id=\"changeSelectedStyleEdge\" class=\"dropdown-item\">" + g_selectedEdgeStyle + "</a></li>";
         }
 
         if (hasVertices) {
-            this.message = this.message +  " <li><a href=\"#\" id=\"changeCommonStyleVertex\">" + g_commonVertexStyle + "</a></li>";
-            this.message = this.message +  " <li><a href=\"#\" id=\"changeSelectedStyleVertex\">" + g_selectedVertexStyle + "</a></li>";
+            this.message = this.message +  " <li><a href=\"javascript:;\" id=\"changeCommonStyleVertex\" class=\"dropdown-item\">" + g_commonVertexStyle + "</a></li>";
+            this.message = this.message +  " <li><a href=\"javascript:;\" id=\"changeSelectedStyleVertex\" class=\"dropdown-item\">" + g_selectedVertexStyle + "</a></li>";
         }
 
         this.message = this.message

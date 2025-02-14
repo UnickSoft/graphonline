@@ -652,9 +652,9 @@ function _ShowTextInput()
 function _ShowMatrixInput()
 {$("#MatrixForm").show();$("#AdjacencyMatrixFieldPage").hide();$("#TextDescription").hide();$("#MatrixDescription").show();$("#idSeparatorList").hide();}
 function ShowTextInput()
-{_ShowTextInput();document.getElementById("showMatrix").className="btn btn-default";document.getElementById("showText").className="btn btn-default active";}
+{_ShowTextInput();document.getElementById("showMatrix").className="nav-link";document.getElementById("showText").className="nav-link active";}
 function ShowMatrixInput()
-{_ShowMatrixInput();document.getElementById("showMatrix").className="btn btn-default active";document.getElementById("showText").className="btn btn-default";}
+{_ShowMatrixInput();document.getElementById("showMatrix").className="nav-link active";document.getElementById("showText").className="nav-link";}
 function CopyMatrixToMatrixInput()
 {var graph=new Graph();var colsObj={};var rowsObj={};if(graph.TestAdjacencyMatrix($("#AdjacencyMatrixFieldPage").val(),rowsObj,colsObj))
 {var rows=rowsObj.rows;var cols=colsObj.cols;for(var i=g_MatrixSize;i<rows.length;i++)
@@ -686,8 +686,8 @@ window.onload=function()
 {$("#matrixForm").submit();}}
 $("#AdjacencyMatrixFieldPage").on('keyup change',function(eventObject)
 {checkFormat();});$("#BadFormatMessage").hide();$("#AdjacencyMatrixFieldPage").hide();$("#showMatrix").on('click',function(eventObject)
-{_ShowMatrixInput();});$("#showText").on('click',function(eventObject)
-{_ShowTextInput();});$('input:radio[name="separator"]').change(function(){checkFormat()});CopyMatrixToMatrixInput();$(document).keydown(function(event){if(event.which=="17"||event.which=="91")
+{ShowMatrixInput();});$("#showText").on('click',function(eventObject)
+{ShowTextInput();});$('input:radio[name="separator"]').change(function(){checkFormat()});CopyMatrixToMatrixInput();$(document).keydown(function(event){if(event.which=="17"||event.which=="91")
 g_ctrlPressed=true;});$(document).keyup(function(event){if(event.which=="17"||event.which=="91")
 g_ctrlPressed=false;});}
 moduleLoader.endCacheLoading();

@@ -1,11 +1,9 @@
 
     <head>
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/home.css')?>" />
-	    <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.theme.css')?>" />
+	      <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.theme.css')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.css')?>" />
-<!--
-        <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery-ui.structure.css')?>" />
--->
+
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery.feedback_me.css')?>" />
 
         <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
@@ -19,157 +17,229 @@
 <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     </head>
-<!--
-<div class="pull-right">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:inline-block;width:240px;height:100px"
-     style="display:inline-block;width:240px;height:100px"
-     data-ad-client="ca-pub-6777969915840976"
-     data-ad-slot="6397293847"></ins>
-</div>
--->
 
     <h1 style="display:inline;" id="h1Header"><?= L('title_notg')?></h1>
 
     <span class="hidden-xs" id="h1Text"><?= L('text')?></span>
 
-	<section>
-		<ul class="nav nav-pills">
-
-			<div class="btn-group" role="group">
-    			<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			<span class="glyphicon glyphicon-cog fa-fw"></span><span class="hidden-phone"> <?= L('graph')?> </span><span class="caret"></span></button>
-    			<ul class="dropdown-menu" role="menu">
-      				<li>
-                        <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> <?= L('new_graph')?> </button>
-				</li>
-				<li class="divider"></li>
-      				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraph"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save')?></button>
-				</li>
-                <li class="divider"></li>
-                <li>
-                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveFullGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_full_image')?></button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraphImage"><span class="glyphicon glyphicon-camera fa-fw"></span> <?= L('save_image')?></button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SavePrintGraphImage"><span class="glyphicon glyphicon-print fa-fw"></span> <?= L('save_print_image')?></button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveSvgGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_svg_image')?></button>
-                </li>                
-                <li class="divider hidden-phone"></li>
-                <li class="hidden-phone">
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ExportGraph"><span class="glyphicon glyphicon-download fa-fw"></span> <?= L('export_graph')?></button>
-				</li>
+    <section>
+      <ul class="nav nav-pills" id="main-menu">
+			    <li class="nav-item dropdown">
+    			    <a class="dropdown-toggle btn btn-sm btn-outline-secondary" data-bs-toggle="dropdown" href="javascript:;" role="button" aria-expanded="false" aria-haspopup="true">
+			          <span class="bi bi-menu-app menu-text"></span><span class="hidden-phone menu-text"> <?= L('graph')?> </span>
+              </a>
+    			    <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="NewGraph" >
+                      <span class="bi bi-plus"></span> <?= L('new_graph')?> 
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SaveGraph">
+                      <span class="bi bi-floppy"></span> <?= L('save')?>
+                    </a>
+                  </li>
+                  <!--
+                  <li class="hidden-phone">
+                    <a class="dropdown-item dropdown-toggle btn btn-sm btn-submenu" href="javascript:;" role="button">
+                    <span class="bi bi-clock-history"></span>  Last used graphs
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu">
+                      <li>
+                        <a class="dropdown-item btn btn-sm" href="javascript:;" role="button">Graph 1</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item btn btn-sm" href="javascript:;" role="button">Graph 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  -->
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="SaveFullGraphImage">
+                      <span class="bi bi-floppy fa-fw"></span> <?= L('save_full_image')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SaveGraphImage">
+                      <span class="bi bi-camera fa-fw"></span> <?= L('save_image')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SavePrintGraphImage">
+                      <span class="bi bi-printer fa-fw"></span> <?= L('save_print_image')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SaveSvgGraphImage">
+                      <span class="bi bi-filetype-svg fa-fw"></span> <?= L('save_svg_image')?>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li class="hidden-phone">
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="ExportGraph">
+                      <span class="bi bi-download fa-fw"></span> <?= L('export_graph')?>
+                    </a>
+                  </li>
                     
-                <li class="hidden-phone">
-                  <input type="file" id="ImportGraphFiles" accept=".graphml" style="display:none" onchange="handelImportGraph(this.files)">
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ImportGraph"><span class="glyphicon glyphicon-upload fa-fw"></span> <?= L('import_graph')?></button>
-				</li>
+                  <li class="hidden-phone">
+                      <input type="file" id="ImportGraphFiles" accept=".graphml" style="display:none" onchange="handelImportGraph(this.files)">
+                      <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="ImportGraph">
+                        <span class="bi bi-upload fa-fw"></span> <?= L('import_graph')?>
+                      </a>
+                  </li>
                     
-				<li class="divider"></li>
-      				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_adjacency_matrix')?></button>
-				</li>
-      				<li>
-		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowIncidenceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_incidence_matrix')?> </button>
-				</li>
-                <li>
-		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowDistanceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('distMatrixText')?> </button>
-				</li>
-                <li>
-		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="GroupRename"><span class="glyphicon glyphicon-pencil fa-fw"></span> <?= L('group_rename')?> </button>
-				</li>
-				<li class="divider"></li>
-      				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="DeleteAll"><span class="glyphicon glyphicon-remove fa-fw"></span> <?= L('delete_all')?></button>
-				</li>
-    			</ul>
-  			</div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-zoom-in fa-fw"></span><span class="hidden-phone"> <?= L('view')?> </span><span class="caret hidden-phone"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom100"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 100% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom50"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 50% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom25"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 25% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomFit"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_fit') ?></button> </li>
-                <li class="divider"></li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomIn"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_in') ?> <span style="float:right">+</span></button></li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomOut"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_out') ?> <span style="float:right">-</span></button></li>
-                <li class="divider"></li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="MoveWorspace"><span class="glyphicon glyphicon-fullscreen fa-fw"></span> <?= L('move_workspace') ?> </button> </li>
-            </ul>
-          </div>
-		  <button type="button" class="btn btn-primary btn-sm" id="Default"><span class="glyphicon glyphicon-fullscreen fa-fw"></span><span class="hidden-phone"> <?= L('default')?> <sub style="color:#AAAAAA">m</sub></span></button>
-      <button type="button" class="btn btn-default btn-sm" id="AddGraph"><span class="glyphicon glyphicon-plus fa-fw"></span><span class="hidden-phone"> <?= L('add_node')?> <sub style="color:#AAAAAA">v</sub></span></button>
-		  <button type="button" class="btn btn-default btn-sm" id="ConnectGraphs"><span class="glyphicon glyphicon-road fa-fw"></span><span class="hidden-phone"> <?= L('connect_nodes')?> <sub style="color:#AAAAAA">e</sub></span></button>
-
-        <!-- Algorithms -->
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openAlgorithmList">
-            <span class="glyphicon glyphicon-cog fa-fw "></span><span class="hidden-phone"> <?= L('algorithms') ?> </span><span class="caret"></span>
-            </button>
-          <div class="dropdown-menu dropdown-menu-right" role="menu" id="algorithmList">
-
-      <button type="button" class="btn btn-primary categoryButton" id="algorithmCategoryBtn1">
-        <span class="glyphicon glyphicon-chevron-down fa-fw" name="showMark"></span>
-        <span class="glyphicon glyphicon-chevron-right fa-fw" name="hideMark"></span> 
-        <?= L('search_pathes')?>
-      </button>
-      <div id="algorithmCategoryElements1">
-		  <div class="dropdown-item" style="display: none;" id="algTopic1"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></div>
-      <span id="insert1"></span>
-      </div>
-
-      <button type="button" class="btn btn-primary categoryButton" id="algorithmCategoryBtn0">
-        <span class="glyphicon glyphicon-chevron-down fa-fw" name="showMark"></span>
-        <span class="glyphicon glyphicon-chevron-right fa-fw" name="hideMark"></span> 
-        <?= L('other_algorithms')?>
-      </button>
-      <div id="algorithmCategoryElements0">
-      <div class="dropdown-item" style="display: none;" id="algTopic0"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></div>
-      <span id="insert0"></span>
-      </div>
-
-</div>
-  </div>
-
-
-        <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span><span class="hidden-phone"> <?= L('delete')?> <sub style="color:#AAAAAA">r</sub></span></button>
-            
-            
-        <div class="btn-group hidden-phone" role="group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="openSettings">
-            <span class="glyphicon glyphicon-cog fa-fw "></span><span> <?= L('settings')?> </span><span class="caret"></span>
-            </button>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu" id="Settings">
-                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyle"><?= L('common_vertex_settings')?></button> </li>
-                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupVertexStyleSelected"><?= L('selected_vertex_settings')?></button> </li>
-                 <li class="divider"></li>
-                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyle"><?= L('common_edge_settings')?></button> </li>
-                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupEdgeStyleSelected"><?= L('selected_edge_settings')?></button> </li>
-                 <li class="divider"></li>
-                 <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="SetupBackgroundStyle"><?= L('background_style') ?></button> </li>
-          </ul>
-        </div>
-
-        <button type="button" class="btn btn-default btn-sm" id="GraphUndo"><span class="glyphicon glyphicon-arrow-left fa-fw"></span><span class="hidden-phone"> <?= L('undo')?> <sub style="color:#AAAAAA">crtl+z</sub></span></button>
-
-<!--
-        <? if (!$wasVote && count($voteTopics) > 0): ?>
-        <button type="button" class="btn btn-success" id="VoteButton"><span class="glyphicon glyphicon-thumbs-up"></span> <?= L('vote') ?></button>
-        <? endif ?>
--->
-<!--
-		  <button type="button" class="btn btn-default" id="Test"><span class="glyphicon glyphicon-remove"></span> Test repos</button>
--->
-		</ul>
-	</section>		
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="ShowAdjacencyMatrix">
+                      <span class="bi bi-grid-3x3 fa-fw"></span> <?= L('show_adjacency_matrix')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="ShowIncidenceMatrix">
+                      <span class="bi bi-grid-3x3 fa-fw"></span> <?= L('show_incidence_matrix')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="ShowDistanceMatrix">
+                      <span class="bi bi-grid-3x3 fa-fw"></span> <?= L('distMatrixText')?>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="GroupRename">
+                      <span class="bi bi-pencil fa-fw"></span> <?= L('group_rename')?>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="DeleteAll">
+                      <span class="bi bi-trash fa-fw"></span> <?= L('delete_all')?>
+                    </a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn btn-sm btn-outline-secondary" data-bs-toggle="dropdown" href="javascript:;" role="button" aria-expanded="false" aria-haspopup="true">
+                <span class="bi bi-zoom-in menu-text"></span> <span class="hidden-phone menu-text"><?= L('view')?></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="Zoom100"><span class="bi bi-zoom-in fa-fw"></span> 100% </a> 
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="Zoom50"><span class="bi bi-zoom-in fa-fw"></span> 50% </a> 
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="Zoom25"><span class="bi bi-zoom-in fa-fw"></span> 25% </a> 
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="ZoomFit"><span class="bi bi-zoom-in fa-fw"></span> <?= L('zoom_fit') ?></a> 
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="ZoomIn"><span class="bi bi-zoom-in fa-fw"></span> <?= L('zoom_in') ?> <span style="float:right">+</span></a>
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="ZoomOut">
+                      <span class="bi bi bi-zoom-out fa-fw"></span> <?= L('zoom_out') ?> <span style="float:right">-</span>
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="MoveWorspace"><span class="bi bi-fullscreen fa-fw"></span> <?= L('move_workspace') ?> </a> 
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="javascript:;" role="button" id="Default">
+              <span class="bi bi-cursor menu-text"></span><span class="hidden-phone menu-text"> <?= L('default')?> <sub style="color:#AAAAAA">m</sub></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="javascript:;" role="button" id="AddGraph">
+              <span class="bi bi-plus menu-text"></span><span class="hidden-phone menu-text"> <?= L('add_node')?> <sub style="color:#AAAAAA">v</sub></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="javascript:;" role="button" id="ConnectGraphs">
+              <span class="bi bi-share menu-text"></span><span class="hidden-phone menu-text"> <?= L('connect_nodes')?> <sub style="color:#AAAAAA">e</sub></span>
+            </a>
+          </li>
+          <!-- Algorithms -->
+          <li class="nav-item">
+              <a class="dropdown-toggle btn btn-sm btn-outline-secondary" id="openAlgorithmList" data-bs-toggle="dropdown" href="javascript:;" role="button" aria-expanded="false" aria-haspopup="true">
+                <span class="bi bi-calculator menu-text"></span><span class="hidden-phone menu-text"> <?= L('algorithms') ?> </span><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right multi-column columns-2" role="menu" id="algorithmList">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <ul id="algorithmCategoryElements1" class="multi-column-dropdown">
+                        <li id="algTopic1" style="display: none;">
+                          <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="">
+                            <span class="bi bi-search fa-fw"></span> <span></span>
+                          </a>
+                        </li>
+                        <span id="insert1"></span>
+                      </ul>
+                    </div>
+                    <div class="col-sm-6">
+                      <ul id="algorithmCategoryElements0" class="multi-column-dropdown">
+                        <li id="algTopic0" style="display: none;">
+                            <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="">
+                              <span class="bi bi-search fa-fw"></span> <span></span>
+                            </a>
+                        </li>
+                        <span id="insert0"></span>
+                      </ul>
+                    </div>
+                  </div>
+              </ul>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="javascript:;" role="button"  id="DeleteObject">
+              <span class="bi bi-eraser menu-text"></span><span class="hidden-phone menu-text"> <?= L('delete')?> <sub style="color:#AAAAAA">r</sub></span>
+            </a>
+          </li>
+          <li class="nav-item dropdown hidden-phone">
+              <a class="dropdown-toggle btn btn-sm btn-outline-secondary" data-bs-toggle="dropdown" href="javascript:;" role="button" aria-expanded="false" aria-haspopup="true" id="openSettings">
+                <span class="bi bi-tools menu-text"></span><span class="menu-text"> <?= L('settings')?> </span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu" id="Settings">
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyle"><?= L('common_vertex_settings')?></a>
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyleSelected"><?= L('selected_vertex_settings')?></a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyle"><?= L('common_edge_settings')?></a>
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyleSelected"><?= L('selected_edge_settings')?></a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupBackgroundStyle"><?= L('background_style') ?></a>
+                  </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="javascript:;" role="button" id="GraphUndo">
+              <span class="bi bi-arrow-left menu-text"></span><span class="hidden-phone menu-text"> <?= L('undo')?> <sub style="color:#AAAAAA">crtl+z</sub></span>
+            </a>
+          </li>
+          <!--
+              <? if (!$wasVote && count($voteTopics) > 0): ?>
+              <button type="button" class="btn btn-success" id="VoteButton"><span class="bi bi-thumbs-up"></span> <?= L('vote') ?></button>
+              <? endif ?>
+              -->
+          <!--
+              <button type="button" class="btn btn-default" id="Test"><span class="bi bi-remove"></span> Test repos</button>
+              -->
+      </ul>
+    </section>
 
     <section>
 	<div id="message" class="alert alert-success" role="alert">Graph</div>
@@ -177,10 +247,10 @@
 
     <section id="canvasSection">
     <span id="CanvasMessage"></span>    
-    <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="glyphicon glyphicon-resize-full fa-fw" id="FullscreenIcon"></span></button>
+    <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="bi bi-arrows-fullscreen" id="FullscreenIcon"></span></button>
 	<canvas id="canvas"><?= L('browser_no_support')?></canvas>
     <div id="developerTools" class="well well-sm">
-        <h4><?= L('developer_tools_title')?></h4> <span class="glyphicon glyphicon-resize-full fa-fw leftTopPosition" id="devToolsZoom"></span>
+        <h4><?= L('developer_tools_title')?></h4> <span class="bi bi-arrows-fullscreen fa-fw leftTopPosition" id="devToolsZoom"></span>
         <span><?= L('developer_tools_text')?></span>
         <textarea id="userScript">
         </textarea>
@@ -188,7 +258,7 @@
         <input type="button" value="<?= L('developer_tools_submit')?>" id="submitUserScript" class="btn btn-default btn-sm" style="float: right;"/>
     </div>
 
-    <div id="contextMenu" class="dropdown clearfix">
+    <div id="contextMenu" class="dropdown clearfix white-btn">
         <div id="edgeContextMenu">
           <div class="btn-group btn-group-vertical">
             <button type="button" class="btn btn-default btn-sm btn-submenu" id="Context_Edit_Edge"><?= L('edit_weight')?></button>
@@ -351,7 +421,7 @@
             <label id="VertexTitleLable">
                 <p><?= L('enter_vertex_title')?></p> <input type="text" name="VertextTitle" value="Title" id="VertexTitle" class="inputBox">
             </label>
-            <br/><br/><button type="button" id="groupRenameButton" class="btn btn-default btn-xs hidden-phone"> <?= L('group_rename')?> </button>
+            <br/><br/><button type="button" id="groupRenameButton" class="btn btn-outline-secondary btn-sm menu-text hidden-phone"> <?= L('group_rename')?> </button>
         </fieldset>
         </form>
     </div>
@@ -447,15 +517,15 @@
 
 
        <div id="matrixError" class="translation">
-	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
+	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
        </div>
 
        <div id="matrixErrorInc" class="translation">
-	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
+	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
 
        <div id="pairErrorInc" class="translation">
-	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_pair_message')?></div>
+	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_inc_pair_message')?></div>
        </div>       
         
 	<div id="voteDialog">
@@ -486,7 +556,7 @@
     </div>
         
     <div id="SetupVertexStyleDialog">
-        <form>
+        <form class="pb-2">
 		<fieldset>
           <div class="form-group row">
             <label for="vertexFillColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
@@ -535,7 +605,7 @@
           <div class="form-group row">
             <label for="commonTextPosition" class="col-sm-5 col-form-label"><?= L('text_position') ?></label>
             <div class="col-sm-5">
-              <select id="commonTextPosition">
+              <select id="commonTextPosition" class="form-control">
                 <option value="0"><?= L('center') ?></option>
                 <option value="1"><?= L('on_up') ?></option>
               </select>
@@ -544,7 +614,7 @@
           <div class="form-group row">
             <label for="vertexShape" class="col-sm-5 col-form-label"><?= L('shape')?></label>
             <div class="col-sm-5">
-              <select id="vertexShape">
+              <select id="vertexShape" class="form-control">
                 <option value="0"><?= L('circle')?></option>
                 <option value="1"><?= L('squere')?></option>
                 <option value="2"><?= L('triangle')?></option>
@@ -563,7 +633,7 @@
           <div class="form-group row" id="VertexSelectedIndexForm">
             <label for="vertexSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
             <div class="col-sm-5">
-              <select id="vertexSelectedIndex">
+              <select id="vertexSelectedIndex" class="form-control">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -580,7 +650,7 @@
     </div>
         
     <div id="SetupEdgeStyleDialog">
-        <form>
+        <form class="pb-2">
 		<fieldset>
           <div class="form-group row">
             <label for="edgeStrokeColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
@@ -615,7 +685,7 @@
           <div class="form-group row">
             <label for="weightTextPosition" class="col-sm-5 col-form-label"><?= L('weight_position') ?></label>
             <div class="col-sm-5">
-              <select id="weightTextPosition">
+              <select id="weightTextPosition" class="form-control" >
                 <option value="0"><?= L('center') ?></option>
                 <option value="1"><?= L('on_up') ?></option>
               </select>
@@ -632,7 +702,7 @@
           <div class="form-group row">
             <label for="edgeStyle" class="col-sm-5 col-form-label"><?= L('line_style') ?></label>
             <div class="col-sm-5">
-              <select id="edgeStyle">
+              <select id="edgeStyle" class="form-control">
                 <option value="0">Solid</option>
                 <option value="1">Dotted</option>
                 <option value="2">Dashed</option>
@@ -649,7 +719,7 @@
           <div class="form-group row" id="EdgeSelectedIndexForm">
             <label for="edgeSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
             <div class="col-sm-5">
-              <select id="edgeSelectedIndex">
+              <select id="edgeSelectedIndex" class="form-control">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -685,11 +755,11 @@
             <div class="col-sm-7">
               <input type="file" id="ImportBackgroundImage" accept="image/jpg, image/png, image/jpeg" style="display:none">
               <button type="button" id="LoadBackgroundFile" class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                <span class="bi bi-upload" aria-hidden="true"></span>
                 <?= L('upload') ?>
               </button>
               <button type="button" id="RemoveBackgroundFile" class="btn btn-default btn-xs" title="<?= L('remove_background_image') ?>">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                <span class="bi bi-trash" aria-hidden="true"></span>
               </button>
               <!-- <input type="button" value="Browse..." onclick="document.getElementById('selectedFile').click();" /> -->
               <!-- <input class="form-control" type="file" id="backgroundFile"> -->
@@ -713,10 +783,10 @@
             <canvas id="OriginalGraphpPreview" width="300" height="200" style="border: 1px solid;"></canvas>
             <div>
               <button type="button" class="btn btn-default btn-xs zoom-plus" title="+">
-                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                <span class="bi bi-zoom-in" aria-hidden="true"></span>
               </button>
               <button type="button" class="btn btn-default btn-xs zoom-minus" title="-">
-                <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                <span class="bi bi-zoom-out" aria-hidden="true"></span>
               </button>
               <span><?= L('use_mouse_for_moving') ?></span>
             </div>
@@ -726,10 +796,10 @@
             <canvas id="AutoSaveGraphpPreview" width="300" height="200" style="border: 1px solid;"></canvas>
             <div>
               <button type="button" class="btn btn-default btn-xs zoom-plus" title="+">
-                <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                <span class="bi bi-zoom-in" aria-hidden="true"></span>
               </button>
               <button type="button" class="btn btn-default btn-xs zoom-minus" title="-">
-                <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                <span class="bi bi-zoom-out" aria-hidden="true"></span>
               </button>
               <span><?= L('use_mouse_for_moving') ?></span>
             </div>

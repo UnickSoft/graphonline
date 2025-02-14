@@ -56,6 +56,12 @@
         </div>
     </nav>
 
-    <script src="/i/js/dev/bootstrap3/bootstrap.min.js">
-        	        $('.dropdown-toggle').dropdown();
+    <script type="text/javascript" src="/i/js/dev/bootstrap3/bootstrap.min.js">
+	</script>
+
+    <script type="text/javascript">
+        window.onload = function () 
+        {
+            $('.dropdown-toggle').dropdown();
+        };
 	</script>

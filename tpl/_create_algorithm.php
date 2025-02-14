@@ -32,76 +32,76 @@
 
 			<div class="btn-group" role="group">
     			<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			<span class="glyphicon glyphicon-cog fa-fw"></span>
+			<span class="bi bi-cog fa-fw"></span>
       				<?= L('graph')?>
       			<span class="caret"></span>
 			</button>
     			<ul class="dropdown-menu" role="menu">
       				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> <?= L('new_graph')?></button>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="NewGraph"><span class="bi bi-plus fa-fw"></span> <?= L('new_graph')?></button>
 				</li>
 				<li class="divider"></li>
       				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraph"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save')?></button>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraph"><span class="bi bi-floppy-disk fa-fw"></span> <?= L('save')?></button>
 				</li>
                 <li>
-                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraphImage"><span class="glyphicon glyphicon-floppy-disk fa-fw"></span> <?= L('save_image')?></button>
+                    <button type="button" class="btn btn-default btn-sm btn-submenu" id="SaveGraphImage"><span class="bi bi-floppy-disk fa-fw"></span> <?= L('save_image')?></button>
                 </li>
 				<li class="divider"></li>
       				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_adjacency_matrix')?></button>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowAdjacencyMatrix"><span class="bi bi-th fa-fw"></span> <?= L('show_adjacency_matrix')?></button>
 				</li>
       				<li>
-		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowIncidenceMatrix"><span class="glyphicon glyphicon-th fa-fw"></span> <?= L('show_incidence_matrix')?> </button>
+		  		  <button type="button" class="btn btn-default btn-sm btn-submenu" id="ShowIncidenceMatrix"><span class="bi bi-th fa-fw"></span> <?= L('show_incidence_matrix')?> </button>
 				</li>
 				<li class="divider"></li>
       				<li>
-				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="DeleteAll"><span class="glyphicon glyphicon-remove fa-fw"></span> <?= L('delete_all')?></button>
+				  <button type="button" class="btn btn-default btn-sm btn-submenu" id="DeleteAll"><span class="bi bi-remove fa-fw"></span> <?= L('delete_all')?></button>
 				</li>
     			</ul>
   			</div>
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('view')?>
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="bi bi-zoom-in fa-fw"></span> <?= L('view')?>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom100"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 100% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom50"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 50% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom25"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> 25% </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomFit"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_fit') ?></button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom100"><span class="bi bi-zoom-in fa-fw"></span> 100% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom50"><span class="bi bi-zoom-in fa-fw"></span> 50% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="Zoom25"><span class="bi bi-zoom-in fa-fw"></span> 25% </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomFit"><span class="bi bi-zoom-in fa-fw"></span> <?= L('zoom_fit') ?></button> </li>
                 <li class="divider"></li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomIn"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_in') ?> </button> </li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomOut"><span class="glyphicon glyphicon-zoom-in fa-fw"></span> <?= L('zoom_out') ?> </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomIn"><span class="bi bi-zoom-in fa-fw"></span> <?= L('zoom_in') ?> </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="ZoomOut"><span class="bi bi-zoom-in fa-fw"></span> <?= L('zoom_out') ?> </button> </li>
                 <li class="divider"></li>
-                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="MoveWorspace"><span class="glyphicon glyphicon-fullscreen fa-fw"></span> <?= L('move_workspace') ?> </button> </li>
+                <li> <button type="button" class="btn btn-default btn-sm btn-submenu" id="MoveWorspace"><span class="bi bi-fullscreen fa-fw"></span> <?= L('move_workspace') ?> </button> </li>
             </ul>
           </div>
-		  <button type="button" class="btn btn-default btn-sm" id="Default"><span class="glyphicon glyphicon-fullscreen fa-fw"></span> <?= L('default')?></button>
-          <button type="button" class="btn btn-primary btn-sm" id="AddGraph"><span class="glyphicon glyphicon-plus fa-fw"></span> <?= L('add_node')?></button>
-		  <button type="button" class="btn btn-default btn-sm" id="ConnectGraphs"><span class="glyphicon glyphicon-road fa-fw"></span> <?= L('connect_nodes')?></button>
+		  <button type="button" class="btn btn-default btn-sm" id="Default"><span class="bi bi-fullscreen fa-fw"></span> <?= L('default')?></button>
+          <button type="button" class="btn btn-primary btn-sm" id="AddGraph"><span class="bi bi-plus fa-fw"></span> <?= L('add_node')?></button>
+		  <button type="button" class="btn btn-default btn-sm" id="ConnectGraphs"><span class="bi bi-road fa-fw"></span> <?= L('connect_nodes')?></button>
 
         <!-- Algorithms -->
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span class="glyphicon glyphicon-cog fa-fw"></span>
+            <span class="bi bi-cog fa-fw"></span>
                 <?= L('algorithms') ?>
             <span class="caret"></span>
             </button>
           <ul class="dropdown-menu" role="menu" id="algorithmList">
             <li>
 <!--
-		  <button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="FindPath"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('short_path')?></button></li>
-          <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="ConnectedComponent"><span class="glyphicon glyphicon-search fa-fw"></span> <?= L('connected_component') ?> </button></li>
-		  <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="EulerianLoop"><span class="glyphicon glyphicon-refresh fa-fw"></span> <span><?= L('find_eulerian_loop')?></span></button></li>
+		  <button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="FindPath"><span class="bi bi-search fa-fw"></span> <?= L('short_path')?></button></li>
+          <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="ConnectedComponent"><span class="bi bi-search fa-fw"></span> <?= L('connected_component') ?> </button></li>
+		  <li><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id="EulerianLoop"><span class="bi bi-refresh fa-fw"></span> <span><?= L('find_eulerian_loop')?></span></button></li>
 -->
-		  <li style="display: none;"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="glyphicon glyphicon-search fa-fw"></span> <span></span></button></li>
+		  <li style="display: none;"><button type="button" class="btn btn-default btn-sm" style="width: 100%; text-align: left; border: none;" id=""><span class="bi bi-search fa-fw"></span> <span></span></button></li>
 
           </ul>
         </div>
 
-        <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="glyphicon glyphicon-remove fa-fw"></span> <?= L('delete')?></button>
+        <button type="button" class="btn btn-default btn-sm" id="DeleteObject"><span class="bi bi-remove fa-fw"></span> <?= L('delete')?></button>
 <!--
-		  <button type="button" class="btn btn-default" id="Test"><span class="glyphicon glyphicon-remove"></span> Test repos</button>
+		  <button type="button" class="btn btn-default" id="Test"><span class="bi bi-remove"></span> Test repos</button>
 -->
 		</ul>
 	</section>		
@@ -214,11 +214,11 @@
 
 
        <div id="matrixError" class="translation">
-	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
+	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
        </div>
 
        <div id="matrixErrorInc" class="translation">
-	<div><span class="glyphicon glyphicon-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
+	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
 
 	
