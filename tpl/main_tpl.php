@@ -49,9 +49,9 @@
     <body>
         <div class="container page-wrap" id="mainContainer">
 <!--            <div class="header"> -->
-<nav class="navbar navbar-expand-lg navbar-default" id="navigation">
+<nav class="navbar navbar-expand-lg navbar-default navbar-light" id="navigation">
     <div class="container-fluid">
-        <a class="navbar-brand" href="<?= SiteRoot()?>"><span class="fa fa-sitemap fa-fw"></span> Graph Online</a>
+        <a class="navbar-brand" href="<?= SiteRoot()?>"><span class="bi bi-share"></span> Graph Online</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -104,7 +104,7 @@
 
         <footer class="footer" id="footer" >
            <div class="container hidden-phone" id="footerContent">
-                    <p>© <?= L('footer_info')?> 2015 - <?= date("Y")?></p>
+                    <p>© <?= L('footer_info')?> 2015 - <?= date("Y")?><sub>r<?= $g_config['engine_version'] ?></sub></p>
            </div>
         </footer>
         </div>

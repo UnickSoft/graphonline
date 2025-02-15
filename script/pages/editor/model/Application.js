@@ -56,6 +56,8 @@ function Application(document, window, listener)
 
     this.lastSavedAutoSave = "";
     this.lastGraphName = ""; // It could be last loaded or last saved graph.
+
+    this.lastUsedGraphs = [];
 };
 
 // Current dragged object.
@@ -75,6 +77,8 @@ Application.prototype.maxAutosaveSizeForCookie = 2000; // Max cookie size is at 
 Application.prototype.autosaveTimeInterval = 1000 * 60; // in ms. 1 minutes.
 // We add postfix into name of graphs with styles.
 Application.prototype.styliedGraphNamePostfix = "ZZcst";
+// Max size of last used graph list. It is saved into cookie and takes about 300 bytes.
+Application.prototype.maxLastUsedGraphCount = 5;
 
 Application.prototype.getMousePos = function(canvas, e)
 {
@@ -818,6 +822,10 @@ Application.prototype.onLoad = function()
 
     this.updateMessage();
     this.redrawGraph();
+
+    // Updated last used graphs.
+    this.LoadLastUsedGraphsFromCookie();
+    this.UpdateLastUsedGraphsMenu();
 }
 
 Application.prototype.NeedRedraw = function()
@@ -1006,6 +1014,8 @@ Application.prototype.SaveGraphOnDisk = function ()
                 // Remove cookie after save, beacuse we have this graph name in cookies.
                 app.removeAutosave();
                 app.lastGraphName = app.savedGraphName; // Update last graph name after save.
+                // Update last used graphs.
+                app.PushLastUsedGraph(app.savedGraphName);
         });
 }
                           
@@ -1902,4 +1912,86 @@ Application.prototype.onSelectAutosaveGraph = function()
     this.startAutoSaveTimer();
     userAction("LoadGraphFromAutoSave_userSelect");
     console.log("User selected auto-save graph");
+}
+
+Application.prototype.UpdateLastUsedGraphsMenu = function()
+{
+    let isEmpty = this.lastUsedGraphs.length == 0;
+    document.getElementById('LastUsedGraphsMenu').style.display = isEmpty ? 'none' : 'block';
+    let graphsList = document.getElementById('LastUsedGraphsList');
+    graphsList.innerHTML = '';
+
+    if (isEmpty)
+    {
+        return;
+    }
+
+    let FormatGraphName = function(graph)
+    {
+        let MAX_GRAPH_NAME_LENGTH = 20;
+        let graphName = graph.graph;
+        if (graphName.length > MAX_GRAPH_NAME_LENGTH)
+        {
+            graphName = graphName.substring(0, MAX_GRAPH_NAME_LENGTH / 2) + "..." + 
+                graphName.substring(graphName.length - MAX_GRAPH_NAME_LENGTH / 2);
+        }
+        return graphName + " " + "<span class=\"bi bi-clock\"></span>" + 
+            graph.date.toLocaleDateString(g_language + "-" + g_language);
+    };
+
+    for (let i = 0; i < this.lastUsedGraphs.length; i++)
+    {
+        let graph = this.lastUsedGraphs[i];
+
+        graphsList.innerHTML = graphsList.innerHTML +
+        "<li>" + 
+            "<a class=\"dropdown-item btn btn-sm\" href=\"./?graph=" + graph.graph + "\" role=\"button\">" + 
+                 FormatGraphName(graph) + 
+            "</a>" +
+        "</li>";
+    }
+}
+
+Application.prototype.PushLastUsedGraph = function(graphName)
+{
+    let graph = {graph: graphName, date: new Date()};
+    let index = this.lastUsedGraphs.findIndex(function(item) { return item.graph == graphName; });
+    if (index >= 0)
+    {
+        this.UpdateLastUsedGraphsMenu();
+        return;
+    }
+
+    this.lastUsedGraphs.unshift(graph);
+    if (this.lastUsedGraphs.length > this.maxLastUsedGraphCount)
+    {
+        this.lastUsedGraphs.pop();
+    }
+
+    this.SaveLastUsedGraphsToCookie();
+    this.UpdateLastUsedGraphsMenu();
+}
+
+Application.prototype.SaveLastUsedGraphsToCookie = function()
+{
+    let graphs = JSON.stringify(this.lastUsedGraphs);
+    var now = new Date();
+    var time = now.getTime();
+    var expireTime = time + 1000 * 3600 * 24 * 7; // In a week.
+    now.setTime(expireTime);
+    document.cookie = "lastUsedGraphs=" + graphs + ';expires=' + now.toUTCString() + ";path=/";
+}
+
+Application.prototype.LoadLastUsedGraphsFromCookie = function()
+{
+    let graphs = document.cookie.replace(/(?:(?:^|.*;\s*)lastUsedGraphs\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    if (graphs.length > 0)
+    {
+        this.lastUsedGraphs = JSON.parse(graphs);
+        for (let i = 0; i < this.lastUsedGraphs.length; i++)
+        {
+            let graph = this.lastUsedGraphs[i];
+            graph.date = new Date(graph.date);
+        }
+    }
 }

@@ -320,4 +320,6 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang['use_mouse_for_moving'] = "Use🖱️for moving";
     $g_lang['original_graph'] = "Original graph";
     $g_lang['autosaved_graph'] = "Autosaved graph";
+
+    $g_lang['open_last_used_graph'] = "Open Recent Graph";
 ?>

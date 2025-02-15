@@ -288,6 +288,11 @@
 	background-color: #999;
 }
  
+#navigation .navbar-toggler-icon
+{
+    background: url(/i/image/menu.svg) no-repeat;
+}
+
 @media (max-width: 767px) {
 	.dropdown-menu.multi-column {
 		min-width: 240px !important;

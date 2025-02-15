@@ -34,18 +34,11 @@
                       <span class="bi bi-plus"></span> <?= L('new_graph')?> 
                     </a>
                   </li>
-                  <li><hr class="dropdown-divider hidden-phone"></li>
-                  <li>
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SaveGraph">
-                      <span class="bi bi-floppy"></span> <?= L('save')?>
-                    </a>
-                  </li>
-                  <!--
-                  <li class="hidden-phone">
+                  <li style="display:none;" id="LastUsedGraphsMenu">
                     <a class="dropdown-item dropdown-toggle btn btn-sm btn-submenu" href="javascript:;" role="button">
-                    <span class="bi bi-clock-history"></span>  Last used graphs
+                    <span class="bi bi-clock-history"></span> <?= L('open_last_used_graph') ?>
                     </a>
-                    <ul class="dropdown-menu dropdown-submenu">
+                    <ul class="dropdown-menu dropdown-submenu" id="LastUsedGraphsList">
                       <li>
                         <a class="dropdown-item btn btn-sm" href="javascript:;" role="button">Graph 1</a>
                       </li>
@@ -54,7 +47,12 @@
                       </li>
                     </ul>
                   </li>
-                  -->
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SaveGraph">
+                      <span class="bi bi-floppy"></span> <?= L('save')?>
+                    </a>
+                  </li>
                   <li><hr class="dropdown-divider hidden-phone"></li>
                   <li>
                     <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button"  id="SaveFullGraphImage">
