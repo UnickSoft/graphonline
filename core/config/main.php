@@ -15,6 +15,7 @@
     define('DEF_LANG', 'ru');
     $g_arrLangs = array(
                           'en' => array('name' => 'English', 'domain' => 'graphonline.top'),
+                          'ua' => array('name' => 'Українська', 'domain' => 'graphonline.top'),
                           'ru' => array('name' => 'Русский', 'domain' => 'graphonline.ru'),
                           'fr' => array('name' => 'Français', 'domain' => 'graphonline.top'),
                           'el' => array('name' => 'Greek', 'domain' => 'graphonline.top'),
