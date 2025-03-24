@@ -10,7 +10,7 @@
         <ul>
             <li><b>a-b</b> - aresta entre <b>a</b> e <b>b</b>.</li>                                
             <li><b>a>b</b> - aresta direcionada de <b>a</b> a <b>b</b>.</li>
-            <li><b>a&lt;b</b> - aresta direcionada de <b>a</b> a <b>b</b>. </li>
+            <li><b>a&lt;b</b> - aresta direcionada de <b>b</b> a <b>a</b>. </li>
             <li><b>a-(8)-b</b> - aresta valorada entre <b>a</b> e <b>b</b> com peso <b>8</b>.</li>
             <li><b>a-(3.5)>b</b> - aresta direcionada de <b>a</b> a <b>b</b> com peso <b>3.5</b>.</li>
             <li><b>a<(1)-b</b> - aresta direcionada de <b>b</b> a <b>a</b> com peso <b>1</b>.</li>

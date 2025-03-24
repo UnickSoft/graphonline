@@ -10,7 +10,7 @@
         <ul>
             <li><b>a-b</b> - krawędź pomiędzy <b>a</b> i <b>b</b>.</li>                                
             <li><b>a>b</b> - skierowana krawędź z <b>a</b> do <b>b</b>.</li>
-            <li><b>a&lt;b</b> - skierowana krawędź z <b>a</b> do <b>b</b>. </li>
+            <li><b>a&lt;b</b> - skierowana krawędź z <b>b</b> do <b>a</b>. </li>
             <li><b>a-(8)-b</b> - krawędź z wagą pomiędzy <b>a</b> i <b>b</b> o wadze <b>8</b>.</li>
             <li><b>a-(3.5)>b</b> - skierowana krawędź z <b>a</b> do <b>b</b> o wadze <b>3.5</b>.</li>
             <li><b>a<(1)-b</b> - skierowana krawędź z <b>b</b> do <b>a</b> o wadze <b>1</b>.</li>

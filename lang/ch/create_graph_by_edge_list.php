@@ -10,7 +10,7 @@
         <ul>
             <li><b>a-b</b> - edge between <b>a</b> and <b>b</b>.</li>                                
             <li><b>a>b</b> - directed edge from <b>a</b> to <b>b</b>.</li>
-            <li><b>a&lt;b</b> - directed edge from <b>a</b> to <b>b</b>. </li>
+            <li><b>a&lt;b</b> - directed edge from <b>b</b> to <b>a</b>. </li>
             <li><b>a-(8)-b</b> - weighted edge between <b>a</b> and <b>b</b> with weigth <b>8</b>.</li>
             <li><b>a-(3.5)>b</b> - directed edge from <b>a</b> to <b>b</b> with weight <b>3.5</b>.</li>
             <li><b>a<(1)-b</b> - directed edge from <b>b</b> to <b>a</b> with weight <b>1</b>.</li>

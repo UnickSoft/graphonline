@@ -10,7 +10,7 @@ $g_lang['ex_pair_forma_description'] = "Pomocí rozšířeného formátu můžet
         <ul>
             <li><b>a-b</b> - hrana mezi vrcholy <b>a</b> a <b>b</b>.</li>
             <li><b>a>b</b> - orientovaná hrana z vrcholu <b>a</b> do vrcholu <b>b</b>.</li>
-            <li><b>a&lt;b</b> - orientovaná hrana z vrcholu <b>a</b> do vrcholu <b>b</b>.</li>
+            <li><b>a&lt;b</b> - orientovaná hrana z vrcholu <b>b</b> do vrcholu <b>a</b>.</li>
             <li><b>a-(8)-b</b> - ohodnocená hrana mezi vrcholy <b>a</b> a <b>b</b> s váhou <b>8</b>.</li>
             <li><b>a-(3.5)>b</b> - orientovaná hrana z vrcholu <b>a</b> do vrcholu <b>b</b> s váhou <b>3.5</b>.</li>
             <li><b>a<(1)-b</b> - orientovaná hrana z vrcholu <b>b</b> do vrcholu <b>a</b> s váhou <b>1</b>.</li>
