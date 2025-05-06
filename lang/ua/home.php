@@ -195,7 +195,7 @@
     $g_lang["fiold_name"] = "Алгоритм Флойда — Уоршелла";
     $g_lang["graph_reorder_name"] = "Впорядкувати граф";
     $g_lang["hamiltoian_cycle_name"] = "Знайти Гамільтонів цикл";
-    $g_lang["hamiltonian_path_name"] = "Знайти Гамильтоновий ланцюг";
+    $g_lang["hamiltonian_path_name"] = "Знайти Гамільтонів ланцюг";
     $g_lang["max_flow_name"] = "Пошук максимального потоку";
     $g_lang["minimum_spanning_tree"] = "Пошук мінімального остовного дерева";
     $g_lang["modern_graph_style_name"] = "Візуалізація на основі ваг";
