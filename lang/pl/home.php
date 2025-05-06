@@ -219,7 +219,7 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang['search_isomorph_subgraph'] = "Szukanie izomorficznych podgrafów";
     $g_lang['subgraph_no'] = "Graf izomorficzny # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Aby użyć tego algorytmu, musisz stworzyć dwa osobne grafy";
-    $g_lang['isomorphism_check'] = "Sprawdzanie izomorficzności grafu";
+    $g_lang['isomorphism_check'] = "Sprawdzanie izomorficzności grafu<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Graf jest odłączony";    

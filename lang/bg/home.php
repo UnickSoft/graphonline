@@ -217,7 +217,7 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['search_isomorph_subgraph'] = "Търсене на изоморфични подграфи";
     $g_lang['subgraph_no'] = "Изоморфичen подграф # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "За да използвате алгоритъма, трябва да създадете 2 отделни графи";
-    $g_lang['isomorphism_check'] = "Проверете за изоморфизъм в граф";
+    $g_lang['isomorphism_check'] = "Проверете за изоморфизъм в граф<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Графът не е свързан";    

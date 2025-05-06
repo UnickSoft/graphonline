@@ -184,7 +184,7 @@
     $g_lang['search_isomorph_subgraph'] = "Search isomorphic subgraphs";
     $g_lang['subgraph_no'] = "Isomorphic subgraph # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "To use the algorithm, you need to create 2 separate graphs";
-    $g_lang['isomorphism_check'] = "Check Graphs Isomorphism";
+    $g_lang['isomorphism_check'] = "Check Graphs Isomorphism<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Graph is disconnected";    

@@ -220,7 +220,7 @@
     $g_lang['search_isomorph_subgraph'] = "Αναζήτηση ισομορφικών υπογράφων";
     $g_lang['subgraph_no'] = "Ισομορφικός υπογράφος # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Για να χρησιμοποιήσετε τον αλγόριθμο, πρέπει να δημιουργήσετε 2 ξεχωριστούς γράφους";
-    $g_lang['isomorphism_check'] = "Έλεγχος ισομορφισμού γράφων";
+    $g_lang['isomorphism_check'] = "Έλεγχος ισομορφισμού γράφων<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Graph is disconnected";    

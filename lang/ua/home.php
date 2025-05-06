@@ -221,7 +221,7 @@
     $g_lang['search_isomorph_subgraph'] = "Пошук ізоморфних підграфів";
     $g_lang['subgraph_no'] = "Ізоморфний підграф № ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Для використання алгоритму необхідно створити хоча б 2 не звʼязних графа";
-    $g_lang['isomorphism_check'] = "Перевірка ізоморфності графів";
+    $g_lang['isomorphism_check'] = "Перевірка ізоморфності графів<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Граф не є звʼязним";

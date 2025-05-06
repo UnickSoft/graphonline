@@ -218,7 +218,7 @@
     $g_lang['search_isomorph_subgraph'] = "Hledat izomorfní podgrafy";
     $g_lang['subgraph_no'] = "Izomorfní podgraf # ";
     $g_lang['graph_has_no_atleast_2_graphs'] = "Pro použití tohoto algoritmu musíte vytvořit alespoň 2 oddělené grafy";
-    $g_lang['isomorphism_check'] = "Kontrola izomorfismu grafů";
+    $g_lang['isomorphism_check'] = "Kontrola izomorfismu grafů<sub>beta</sup>";
 
     // RadiusAndDiameter.js
     $g_lang['graph_is_disconnected'] = "Graf je nespojený";    
