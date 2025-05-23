@@ -165,8 +165,33 @@ function BaseAlgorithmEx(graph, app)
 // inheritance.
 BaseAlgorithmEx.prototype = Object.create(BaseAlgorithm.prototype);
 
+/* This class add animation during processing algorithm. Add animation for ...*/
+class ProcessingMessage 
+{
+    constructor(algorithm_object) {
+      this.algorithm_object = algorithm_object;
+      this.processing_index = 0;
+      this.original_message = this.algorithm_object.message;
+      this.processing_timer = setInterval(function() 
+      {
+          this.processing_index = (this.processing_index + 1) % 3;
+          this.algorithm_object.message = this.original_message + ".".repeat(this.processing_index);
+          this.algorithm_object.app.updateMessage();
+      }.bind(this), 500);
+    }
+
+    stop() {
+        this.algorithm_object.message = this.original_message;
+        this.algorithm_object.app.updateMessage();
+        clearInterval(this.processing_timer);
+    }
+}
+
 BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherParams, resultCallback, ignoreSeparateNodes = false)
 {
+    // Setup processing message
+    let processing_message = new ProcessingMessage(this);
+    
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
       console.log(algorithmName + " " + otherParams);
 
@@ -252,6 +277,7 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
         
         console.log(result);
         
+        processing_message.stop();
         resultCallback(pathObjects, properties, result);
     };
 
