@@ -15,7 +15,7 @@
 
     <h1 style="display:inline;" id="h1Header"><?= L('title_notg')?></h1>
 
-    <span class="hidden-xs" id="h1Text"><?= L('text')?></span>
+    <span class="hidden-phone" id="h1Text"><?= L('text')?></span>
 
     <section>
       <ul class="nav nav-pills" id="main-menu">
@@ -317,7 +317,7 @@
 
 <?php endif; ?>
 
-    <section class="translation">
+    <section class="translation" style="display:none;">
     <div id="addEdge">
 		<form>
 		<fieldset>

@@ -7,6 +7,12 @@
         <?php if (!empty($description)):?><meta name="description" content="<?= $description?>" /><?php endif?>
         <?php if (!empty($keyWords)):?><meta name="keywords" content="<?= $keyWords?>" /><?php endif?>
 
+        <meta property="og:title" content="<?= $title ?>" />
+        <meta property="og:type" content="website" />
+        <?php $page_url = 'https://' . $_SERVER['HTTP_HOST'] . explode('?', $_SERVER['REQUEST_URI'], 2)[0] . (!empty($_GET["graph"]) ? '?graph=' . $_GET["graph"] : "" ); ?>        
+        <meta property="og:url" content="<?= $page_url ?>" />
+        <?php if (!empty($g_lang["m_description_long"])):?><meta property="og:description" content="<?= $g_lang["m_description_long"] ?>"><?php endif?>
+
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?= Root('i/image/touch_icon/favicon_144x144.png')?>" />
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= Root('i/image/touch_icon/favicon_114x114.png')?>" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= Root('i/image/touch_icon/favicon_72x72.png')?>" />
