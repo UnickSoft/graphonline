@@ -6,16 +6,11 @@
 
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery.feedback_me.css')?>" />
 
-        <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
-        <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
+        <script src="<?= Root('i/js/dev/jquery-ui.min.js')?>"></script>
+<!-- No feedback supported for now        <script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script> -->
 
         <script src="<?= RootCacheJS("script/shared/config.js")?>" ></script>
         <script src="<?= RootCacheJS("script/shared/loader.js")?>" ></script>
-
-<!-- Yandex.RTB -->
-<script>window.yaContextCb=window.yaContextCb||[]</script>
-<script src="https://yandex.ru/ads/system/context.js" async></script>
-
     </head>
 
     <h1 style="display:inline;" id="h1Header"><?= L('title_notg')?></h1>
@@ -295,17 +290,10 @@
 <?php elseif (L('current_language') == "ru" && false): ?>
 <section id="bottom_adv">
   <section style="height:50px;text-align: center;" id="bottom_info" class="hidden-phone">
-<!-- Yandex.RTB R-A-202319-2 -->
 
-  <div id="yandex_rtb_R-A-202319-2"></div>
-<script>window.yaContextCb.push(()=>{
-  Ya.Context.AdvManager.render({
-    renderTo: 'yandex_rtb_R-A-202319-2',
-    blockId: 'R-A-202319-2'
-  })
-})</script>
+
   </section>  
-</section>
+    </section>
 
 <!--
   <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
@@ -317,34 +305,6 @@
   </div>
   </a>
 -->
-<!-- Yandex.RTB R-A-202319-1 -->
-<!--
-<div style="text-align:center;">
-<div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>
-</div>
-<script type="text/javascript">
-  (function(w, d, n, s, t) {
-      w[n] = w[n] || [];
-      w[n].push(function() {
-          Ya.Context.AdvManager.render({
-              blockId: "R-A-202319-1",
-              renderTo: "yandex_rtb_R-A-202319-1",
-              async: true
-          });
-      });
-      t = d.getElementsByTagName("script")[0];
-      s = d.createElement("script");
-      s.type = "text/javascript";
-      s.src = "//an.yandex.ru/system/context.js";
-      s.async = true;
-      t.parentNode.insertBefore(s, t);
-  })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
--->
-<!--
-  </section>
--->
-
 <?php else: ?>
     <section style="height:32px;text-align: center;" id="bottom_info" class="hidden-phone">
     <a class="ProgresssBarLink" href="mailto:admin@graphonline.ru" target="_blank">

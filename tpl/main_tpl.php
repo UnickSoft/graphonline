@@ -19,7 +19,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/funcs.css')?>" />
 
-        <script src="<?= Root("i/js/dev/jquery-2.0.3.js")?>" ></script>
+        <script src="<?= Root("i/js/dev/jquery-2.0.3.min.js")?>" ></script>
 
 <!--        <?php /*IncludeCom('dev/jquery')*/?> -->
         <?php IncludeCom('dev/font_ptsans')?>
@@ -78,14 +78,14 @@
             <?php endforeach?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="id_menu_lang" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= Root("i/image/flags/enru.png")?>" alt="<?= L('lang')?> icon"> <?= L('lang')?> <span class="caret"></span>
+                        <span class="bi bi-globe"></span> <?= L('lang')?> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="id_menu_lang">
                         <?php foreach($g_arrLangs as $lang => $langInfo):?>
                         <?php if (!array_key_exists('hidden', $langInfo) || !$langInfo["hidden"]):?>
                             <li>
                                 <a href="<?= ChangeLang($lang, GetCurUrl())?>" title="<?= $langInfo["name"]?>" class="<?= $lang == LANG ? "selected" : ""?> dropdown-item">
-                                    <img src="<?= Root("i/image/flags/{$lang}.png")?>" alt="<?= $langInfo["name"]?>"> <?= $langInfo["name"]?>
+                                    <img id="flag_<?= $lang?>" src="/i/image/1px.png" width="30" height="22"> <?= $langInfo["name"]?>
                                 </a>
                             </li>
                         <?php endif?>

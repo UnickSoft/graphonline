@@ -111,32 +111,4 @@
                 </section>
 <? endif; ?>
 
-                <? if (L('current_language') == "ru"): ?>
-    <section style="height:90px;text-align: center;" id="info" class="hidden-phone">
-<!-- Yandex.RTB R-A-202319-1 -->
-<!--
-<div style="text-align:center;">
-<div id="yandex_rtb_R-A-202319-1" style="display: inline-block;"></div>
-</div>
-<script type="text/javascript">
-    (function(w, d, n, s, t) {
-        w[n] = w[n] || [];
-        w[n].push(function() {
-            Ya.Context.AdvManager.render({
-                blockId: "R-A-202319-1",
-                renderTo: "yandex_rtb_R-A-202319-1",
-                async: true
-            });
-        });
-        t = d.getElementsByTagName("script")[0];
-        s = d.createElement("script");
-        s.type = "text/javascript";
-        s.src = "//an.yandex.ru/system/context.js";
-        s.async = true;
-        t.parentNode.insertBefore(s, t);
-    })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
--->
-    </section>
-<? endif; ?>
 

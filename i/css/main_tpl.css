@@ -295,6 +295,119 @@
     background: url(/i/image/menu.svg) no-repeat;
 }
 
+#flag_bg
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: 0 0;
+}
+
+#flag_ch
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -30px 0;
+}
+
+#flag_cs
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -60px 0;
+}
+
+#flag_de
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -90px 0;
+}
+
+#flag_el
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -120px 0;
+}
+
+#flag_en
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: 0 -22px;
+}
+
+#flag_es
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -30 -22px;
+}
+
+#flag_fr
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -60px -22px;
+}
+
+#flag_nl
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -90px -22px;
+}
+
+#flag_pl
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -120px -22px;
+}
+
+#flag_pt
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: 0 -44px;
+}
+
+#flag_ru 
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -30px -44px;
+}
+
+#flag_sv
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -60px -44px;
+}
+
+#flag_ua
+{
+    width: 30px;
+    height: 22px;
+    background: url('/i/image/flags/flags_atlas.png') no-repeat;
+    background-position: -90px -44px;
+}
+
+
 @media (max-width: 767px) {
 	.dropdown-menu.multi-column {
 		min-width: 240px !important;

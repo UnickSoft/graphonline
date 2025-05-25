@@ -2,7 +2,7 @@
     function onloadEditor() {
         console.log("onload() call");
         doIncludeAsync ([            
-            include ("shared/canvas2svg.js"),
+            include ("shared/canvas2svg.min.js"),
             include ("features/group_rename_handler/index.js"),
             include ("features/saved_graph_handler/index.js"),
             include ("features/saved_graph_image_handler/index.js"),

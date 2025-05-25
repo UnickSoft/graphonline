@@ -8,7 +8,7 @@
         <meta http-equiv="cleartype" content="on">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script src="<?= Root("i/js/dev/jquery-2.0.3.js")?>" ></script>
+        <script src="<?= Root("i/js/dev/jquery-2.0.3.min.js")?>" ></script>
 
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/funcs.css')?>" />
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/dev/bootstrap3/bootstrap.css')?>" />

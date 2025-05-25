@@ -8,7 +8,7 @@
 -->
         <link rel="stylesheet" type="text/css" href="<?= Root('i/css/jquery.feedback_me.css')?>" />
 
-        <script src="<?= Root('i/js/dev/jquery-ui.js')?>"></script>
+        <script src="<?= Root('i/js/dev/jquery-ui.min.js')?>"></script>
 	<script src="<?= Root('i/js/dev/jquery.feedback_me.js')?>"></script>
         <script src="<?= Root("script/example.js")?>" ></script>
 
