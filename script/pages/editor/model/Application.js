@@ -1094,6 +1094,12 @@ Application.prototype.LoadGraphFromString = function (str)
         this.graph.VerticesReposition(new Point(this.GetRealWidth(), this.GetRealHeight()), this.graph.vertices); 
     }
     this.AutoAdjustViewport();
+
+    if (this.handler != null)
+    {
+        this.handler.GraphWasUpdated();
+        this.handler.RestRedraw();
+    }
     this.updateMessage();
     this.redrawGraph();   
 }
@@ -1324,6 +1330,11 @@ Application.prototype.Undo = function()
     if (userSettings.hasOwnProperty("data") && userSettings["data"].length > 0)
         this.LoadUserSettings(userSettings["data"]);
 
+    if (this.handler != null)
+    {
+        this.handler.GraphWasUpdated();
+        this.handler.RestRedraw();
+    }
     this.redrawGraph();
 
     if (this.undoStack.IsUndoStackEmpty())

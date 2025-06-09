@@ -182,6 +182,12 @@ BaseHandler.prototype.GetSelect2VertexMenu = function()
         this.GetSelectVertexMenu("Vertex1") + " &rarr; " + this.GetSelectVertexMenu("Vertex2") + "</span>";
 }
 
+BaseHandler.prototype.GetSelectOneVertexMenu = function()
+{
+    return "<span style=\"float:right\">" + 
+        this.GetSelectVertexMenu("Vertex1") + "</span>";
+}
+
 BaseHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
 {}
 
@@ -455,3 +461,5 @@ BaseHandler.prototype.ShowEditEdgeDialog = function(edgeObject) {
         }
         });
 }
+
+BaseHandler.prototype.GraphWaUpdated = function() {}

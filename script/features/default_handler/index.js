@@ -10,19 +10,19 @@ doInclude ([
  */
 function DefaultHandler(app)
 {
-    this.removeStack = true;
+  this.removeStack = true;
 	BaseHandler.apply(this, arguments);
-	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>";
-        this.selectedObjects = [];
-        this.dragObject     = null;
-        this.selectedObject = null;
-	this.prevPosition   = null;
-    this.groupingSelect = false;
-    this.selectedLogRect    = false;
-    this.selectedLogCtrl    = false;
-    this.saveUndo    = false;
+  this.message = this.GetDefaultText();
+  this.selectedObjects = [];
+  this.dragObject     = null;
+  this.selectedObject = null;
+  this.prevPosition   = null;
+  this.groupingSelect = false;
+  this.selectedLogRect    = false;
+  this.selectedLogCtrl    = false;
+  this.saveUndo    = false;
 
-    this.addContextMenu();
+  this.addContextMenu();
 }
 
 // inheritance.
@@ -39,121 +39,103 @@ DefaultHandler.prototype.GetSelectedVertex = function()
 
 DefaultHandler.prototype.MouseMove = function(pos) 
 {
-	if (this.dragObject)
-	{
-        if (!this.saveUndo)
-        {
-            this.app.PushToStack("Move");
-            this.saveUndo = true;
-        }
+  if (this.dragObject) {
+    if (!this.saveUndo) {
+      this.app.PushToStack("Move");
+      this.saveUndo = true;
+    }
 
-                this.dragObject.position.x = pos.x;
-                this.dragObject.position.y = pos.y;
-		this.needRedraw = true;
-	}
-        else if (this.selectedObjects.length > 0 && this.pressed && !this.groupingSelect)
-        {
-            if (!this.saveUndo)
-            {
-                this.app.PushToStack("Move");
-                this.saveUndo = true;
-            }
-    
-                var offset = (new Point(pos.x, pos.y)).subtract(this.prevPosition);
-                for (var i = 0; i < this.selectedObjects.length; i ++)
-                {
-                  var object = this.selectedObjects[i];
-                  if (object instanceof BaseVertex)
-                  {
-                    object.position = object.position.add(offset);
-                  }
-                }
-                this.prevPosition = pos;
-		this.needRedraw = true;         
-        }
-        else if (this.pressed)
-        {
-          if (this.groupingSelect) 
-          {
-               // Rect select.
-               var newPos = new Point(pos.x, pos.y);
-               this.app.SetSelectionRect(new Rect(newPos.min(this.prevPosition), newPos.max(this.prevPosition)));
-               this.SelectObjectInRect(this.app.GetSelectionRect());    
-               this.needRedraw = true;
-               if (!this.selectedLogRect)
-               {
-                 userAction("GroupSelected.SelectRect");
-                 this.selectedLogRect = true;
-               }
-          }
-          else
-          {
-            // Move work space
-            this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
-            this.needRedraw = true;
-          }
-        }
+    this.dragObject.position.x = pos.x;
+    this.dragObject.position.y = pos.y;
+    this.needRedraw = true;
+  }
+  else if (this.selectedObjects.length > 0 && this.pressed && !this.groupingSelect) {
+    if (!this.saveUndo) {
+      this.app.PushToStack("Move");
+      this.saveUndo = true;
+    }
+
+    var offset = (new Point(pos.x, pos.y)).subtract(this.prevPosition);
+    for (var i = 0; i < this.selectedObjects.length; i++) {
+      var object = this.selectedObjects[i];
+      if (object instanceof BaseVertex) {
+        object.position = object.position.add(offset);
+      }
+    }
+    this.prevPosition = pos;
+    this.needRedraw = true;
+  }
+  else if (this.pressed) {
+    if (this.groupingSelect) {
+      // Rect select.
+      var newPos = new Point(pos.x, pos.y);
+      this.app.SetSelectionRect(new Rect(newPos.min(this.prevPosition), newPos.max(this.prevPosition)));
+      this.SelectObjectInRect(this.app.GetSelectionRect());
+      this.needRedraw = true;
+      if (!this.selectedLogRect) {
+        userAction("GroupSelected.SelectRect");
+        this.selectedLogRect = true;
+      }
+    }
+    else {
+      // Move work space
+      this.app.onCanvasMove((new Point(pos.x, pos.y)).subtract(this.prevPosition).multiply(this.app.canvasScale));
+      this.needRedraw = true;
+    }
+  }
 }
 
 DefaultHandler.prototype.MouseDown = function(pos)
 {
-	this.dragObject     = null;
-	var selectedObject = this.GetSelectedObject(pos);
-	var severalSelect  = g_ctrlPressed;
+  this.dragObject = null;
+  var selectedObject = this.GetSelectedObject(pos);
+  var severalSelect = g_ctrlPressed;
 
-	if (selectedObject == null || (!severalSelect && !this.selectedObjects.includes(selectedObject)))
-    {
-  	      this.selectedObject = null;
-          this.selectedObjects = [];
-          this.groupingSelect = g_ctrlPressed;
-    }        
+  if (selectedObject == null || (!severalSelect && !this.selectedObjects.includes(selectedObject))) {
+    this.selectedObject = null;
+    this.selectedObjects = [];
+    this.groupingSelect = g_ctrlPressed;
+  }
 
-        if ((severalSelect || this.selectedObjects.includes(selectedObject)) && (this.selectedObjects.length > 0 || this.selectedObject != null) && selectedObject != null) 
-        {
-          if (this.selectedObjects.length == 0)
-          {
-            this.selectedObjects.push(this.selectedObject);
-            this.selectedObject = null;
-            this.selectedObjects.push(selectedObject);
-          }
-          else if (!this.selectedObjects.includes(selectedObject))
-          {
-            this.selectedObjects.push(selectedObject);
-          }
-          else if (severalSelect && this.selectedObjects.includes(selectedObject))
-          {
-            var index = this.selectedObjects.indexOf(selectedObject);
-            this.selectedObjects.splice(index, 1);
-          }
-          if (!this.selectedLogCtrl)
-          {
-            userAction("GroupSelected.SelectCtrl");
-            this.selectedLogCtrl = true;
-          }
-        }
-        else
-        {
-          if (selectedObject != null)
-  	  {
-	    this.selectedObject = selectedObject;
- 	  }	
- 	  if ((selectedObject instanceof BaseVertex) && selectedObject != null)
-	  { 
-	    this.dragObject = selectedObject;
-	    this.message    = g_moveCursorForMoving;		
-	  }	
-        }
-	this.needRedraw = true;
-	this.pressed    = true;
-	this.prevPosition = pos;
-	this.app.canvas.style.cursor = "move";
+  if ((severalSelect || this.selectedObjects.includes(selectedObject)) && (this.selectedObjects.length > 0 || this.selectedObject != null) && selectedObject != null) {
+    if (this.selectedObjects.length == 0) {
+      this.selectedObjects.push(this.selectedObject);
+      this.selectedObject = null;
+      this.selectedObjects.push(selectedObject);
+    }
+    else if (!this.selectedObjects.includes(selectedObject)) {
+      this.selectedObjects.push(selectedObject);
+    }
+    else if (severalSelect && this.selectedObjects.includes(selectedObject)) {
+      var index = this.selectedObjects.indexOf(selectedObject);
+      this.selectedObjects.splice(index, 1);
+    }
+    if (!this.selectedLogCtrl) {
+      userAction("GroupSelected.SelectCtrl");
+      this.selectedLogCtrl = true;
+    }
+  }
+  else 
+  {
+    if (selectedObject != null) {
+      this.selectedObject = selectedObject;
+    }
+    if ((selectedObject instanceof BaseVertex) && selectedObject != null) {
+      this.dragObject = selectedObject;
+      this.message = g_moveCursorForMoving;
+    }
+  }
+  this.needRedraw = true;
+  this.pressed = true;
+  this.prevPosition = pos;
+  this.app.canvas.style.cursor = "move";
 }
 
 DefaultHandler.prototype.MouseUp = function(pos) 
 {
     this.saveUndo = false;
-	this.message = g_textsSelectAndMove + " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>";
-	this.dragObject = null;
+    this.message = this.GetDefaultText();
+    this.dragObject = null;
     this.pressed    = false;
     this.app.canvas.style.cursor = "auto";
 
@@ -428,4 +410,32 @@ DefaultHandler.prototype.SelectObjectInRect = function (rect)
         if (rect.isIn(edge.vertex1.position) && rect.isIn(edge.vertex2.position) && !this.selectedObjects.includes(edge))
             this.selectedObjects.push(edge);
 	}
+}
+
+DefaultHandler.prototype.GetDefaultText = function()
+{
+  return g_textsSelectAndMove + 
+    " <span class=\"hidden-phone\">" + g_selectGroupText + "</span>" + 
+    " <span class=\"hidden-phone\">" + g_useContextMenuText + "</span>" +
+    this.GetSelectOneVertexMenu();
+}
+
+DefaultHandler.prototype.SelectFirstVertexMenu = function(vertex1Text, vertex)
+{
+  this.selectedObject = vertex;
+  this.MouseUp(new Point(0, 0));
+}
+
+DefaultHandler.prototype.UpdateFirstVertexMenu = function(vertex1Text)
+{
+    if (this.selectedObject)
+    {
+        vertex1Text.value = this.selectedObject.mainText;        
+    }
+}
+
+BaseHandler.prototype.GraphWasUpdated = function() 
+{
+  // Update state
+  this.MouseUp(new Point(0, 0));
 }
