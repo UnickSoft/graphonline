@@ -6,6 +6,8 @@ function Editor(document, window) {
     this.application = new Application(document, window, self);
     this.fullscreen  = false;
     this.buttonsList = ['AddGraph', 'ConnectGraphs', 'DeleteObject', 'Default'];
+    this.arrowForVertex = document.getElementById('ShowArrow');
+    this.arrowForVertexTimer = null;
 }
 
 Editor.prototype.initMouseActions = function() {
@@ -18,6 +20,7 @@ Editor.prototype.initMouseActions = function() {
 
     this.application.canvas.onmousedown = function (e)
     {
+        self.StopArrowForVertexTimer();
         return self.application.CanvasOnMouseDown(e);
     };
 
@@ -28,6 +31,7 @@ Editor.prototype.initMouseActions = function() {
 
     this.application.canvas.onwheel = function (e)
     {
+        self.StopArrowForVertexTimer();
         var e = window.event || e; // old IE support
         var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
         if (delta > 0)
@@ -78,7 +82,10 @@ Editor.prototype.initKeyActions = function() {
               || ($('#saveImageDialog').hasClass('ui-dialog-content') && $('#saveImageDialog').dialog('isOpen'))
               || ($('#GroupRenameDialog').hasClass('ui-dialog-content') && $('#GroupRenameDialog').dialog('isOpen'))
               || $('#developerTools').css("display") != "none"
-              || ($('#NeedAlgorithm').hasClass('ui-dialog-content') && $('#NeedAlgorithm').dialog('isOpen')))
+              || ($('#NeedAlgorithm').hasClass('ui-dialog-content') && $('#NeedAlgorithm').dialog('isOpen'))
+              || $('#CanvasSearchText:focus').is(":focus")
+              || $('#Vertex1:focus').is(":focus")
+              || $('#Vertex2:focus').is(":focus"))
           {
               console.log("prevent");
               return; // Should do nothing if the default action has been cancelled
@@ -466,6 +473,78 @@ Editor.prototype.initButtonActions = function()
         document.getElementById("FullscreenIcon").className = self.fullscreen ? "bi bi-fullscreen-exit" : "bi bi-arrows-fullscreen";
 
         resizeCanvas();
+    }
+
+    document.getElementById('CanvasSearchText').addEventListener('focus', (event) => {
+        let datalist = document.getElementById('vertexListCanvas');
+        const options = datalist.options;
+        for (let i = options.length - 1; i >= 0; i--) {
+            options[i].remove();
+        }
+        
+        self.application.graph.vertices.forEach(vertex => {
+            const option = document.createElement('option');
+            option.value = vertex.mainText;
+            datalist.appendChild(option);
+        });
+    });
+
+    document.getElementById('CanvasSearchText').addEventListener('input', function(event) {
+        let vertex = self.application.GetVertexByName(event.target.value);
+        if (vertex != null)
+        {
+            let size = vertex.getBBox(vertex.getStyleFor(0));
+            let point1 = vertex.position.add(new Point(-size.x / 2, -size.y / 2));
+            let point2 = vertex.position.add(new Point(size.x / 2, size.y / 2));
+            if (!self.application.IsPointFitOnViewport(point1) || !self.application.IsPointFitOnViewport(point2))
+            {
+                self.application.canvasPosition = vertex.position.inverse().add( 
+                    new Point(self.application.GetRealWidth() / 2, self.application.GetRealHeight() / 2));
+                self.application.redrawGraph();
+            }
+            self.HighlightVertex(vertex);
+        }
+        else
+        {
+            self.StopArrowForVertexTimer();
+        }
+    });
+}
+
+Editor.prototype.StopArrowForVertexTimer = function()
+{
+    if (this.arrowForVertexTimer != null)
+    {
+        clearInterval(this.arrowForVertexTimer);
+        this.arrowForVertexTimer = null;
+    }
+    this.arrowForVertex.style.display = "none";
+}
+
+Editor.prototype.HighlightVertex = function(vertex)
+{
+    let pos = vertex.position.add(new Point(
+        vertex.model.diameter / 2 * Math.sin(Math.PI / 4 /* 45 degree*/) + this.arrowForVertex.clientWidth * 0, 
+        -vertex.model.diameter / 2 * Math.sin(Math.PI / 4 /* 45 degree*/) - 40 / this.application.canvasScale));
+    let posInWindow = this.application.GraphPosToCanvasPos(pos);
+    this.arrowForVertex.style.top = posInWindow.y + 'px';
+    this.arrowForVertex.style.left = posInWindow.x + 'px';
+    this.arrowForVertex.style.color = InvertColor(this.application.style.backgroundCommonStyle.commonColor);
+    this.arrowForVertex.style.display = "block";
+
+    if (this.arrowForVertexTimer == null)
+    {
+        this.arrowForVertexTimer = setInterval(function ()
+            {
+                if (this.arrowForVertex.style.display == "none")
+                {
+                    this.arrowForVertex.style.display = "block";
+                }
+                else
+                {
+                    this.arrowForVertex.style.display = "none";
+                }
+            }.bind(this), 400)
     }
 }
 

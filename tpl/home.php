@@ -239,9 +239,15 @@
     </section>
 
     <section id="canvasSection">
-    <span id="CanvasMessage"></span>    
+    <span id="CanvasMessage"></span>
+    <input type="text" id="CanvasSearchText" class="form-control form-control-sm hidden-phone" placeholder="⌕ <?= L('vertex_name_place_holder') ?>" list="vertexListCanvas"/>
+    <datalist id="vertexListCanvas">
+    </datalist>
+    
+    <span class="bi bi-arrow-down-left icon-300" id="ShowArrow"></span>
+    
     <button type="button" class="btn btn-default btn-sm hidden-phone" id="Fullscreen"><span class="bi bi-arrows-fullscreen" id="FullscreenIcon"></span></button>
-	<canvas id="canvas"><?= L('browser_no_support')?></canvas>
+    <canvas id="canvas"><?= L('browser_no_support')?></canvas>
     <div id="developerTools" class="well well-sm">
         <h4><?= L('developer_tools_title')?></h4> <span class="bi bi-arrows-fullscreen fa-fw leftTopPosition" id="devToolsZoom"></span>
         <span><?= L('developer_tools_text')?></span>
@@ -974,6 +980,8 @@
     <p id="originalGraph" class="translation"><?= L('original_graph')?></p>
     <p id="autoSavedGraph" class="translation"><?= L('autosaved_graph')?></p>
     <p id="selectGraphToLoad" class="translation"><?= L('load_oiginal_or_autosaved')?></p>
+
+    <p id="vertexNamePlaceHolder" class="translation"><?= L('vertex_name_place_holder')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>

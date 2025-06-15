@@ -325,4 +325,6 @@
     $g_lang['autosaved_graph'] = "Автозбереження графа";
 
     $g_lang['open_last_used_graph'] = "Відкрити нещодавній граф";
+
+    $g_lang['vertex_name_place_holder'] = "вершина";
 ?>

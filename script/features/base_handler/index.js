@@ -165,7 +165,8 @@ BaseHandler.prototype.RestoreAll = function()
 
 BaseHandler.prototype.GetSelectVertexMenu = function(menuName)
 {
-	var res = "<input list=\"vertexList" + menuName + "\" id=\"" + menuName + "\" class=\"SelectVertexInput\"/>" + 
+	var res = "<input list=\"vertexList" + menuName + "\" id=\"" + menuName + 
+      "\" class=\"SelectVertexInput\" placeholder=\"" + g_vertexNamePlaceHolder + "\" />" + 
       "<datalist id=\"vertexList" + menuName + "\">";
     
 	for (var i = 0; i < this.app.graph.vertices.length; i++)

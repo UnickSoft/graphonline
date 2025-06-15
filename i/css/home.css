@@ -261,7 +261,7 @@
 #CanvasMessage
 {
     position: absolute;
-    right: 48px;
+    left: 4px;
     z-index: 10;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -270,6 +270,35 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+#CanvasSearchText
+{
+    width: 120px; 
+    position: absolute; 
+    top: 6px; 
+    right: 38px; 
+    z-index: 10;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-height: 1em;
+}
+
+#ShowArrow
+{
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    width: 32px;
+    z-index: 10;
+    font-size: 32px;
+    padding: 0;
+    border: none;
+    margin: 0;
+    pointer-events: none;
+    display: none;
 }
 
 .MarginLeft

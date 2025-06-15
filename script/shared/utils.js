@@ -55,3 +55,18 @@ Array.prototype.swap = function (x, y) {
   this[y] = b;
   return this;
 }
+
+function InvertColor(hex) {
+    // Remove '#' if present
+    hex = hex.replace(/^#/, '');
+
+    // Parse r, g, b values
+    let r = 255 - parseInt(hex.slice(0, 2), 16);
+    let g = 255 - parseInt(hex.slice(2, 4), 16);
+    let b = 255 - parseInt(hex.slice(4, 6), 16);
+
+    // Convert back to hex and pad with 0s if necessary
+    const toHex = (n) => n.toString(16).padStart(2, '0');
+
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}

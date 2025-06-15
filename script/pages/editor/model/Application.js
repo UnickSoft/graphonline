@@ -1295,9 +1295,20 @@ Application.prototype.SetCurrentValue = function(paramName, value)
     this.algorithmsValues[paramName] = value;
 }
 
+Application.prototype.IsPointFitOnViewport = function(point)
+{
+    var canvasWidth  = this.GetRealWidth();//  * this.canvasScale;
+    var canvasHeight = this.GetRealHeight();// * this.canvasScale;
+    var canvasPositionInverse = this.canvasPosition./*multiply(this.canvasScale).*/inverse();
+    
+    return (Math.floor(canvasPositionInverse.x) <= Math.floor(point.x) &&
+        Math.floor(canvasPositionInverse.y) <= Math.floor(point.y) && 
+        Math.floor(canvasPositionInverse.x + canvasWidth) >= Math.floor(point.x) && 
+        Math.floor(canvasPositionInverse.y + canvasHeight) >= Math.floor(point.y));
+}
+
 Application.prototype.IsGraphFitOnViewport = function()
 {
-    res = true;
     graphBBox  = this.graph.getGraphBBox();
     var canvasWidth  = this.GetRealWidth();//  * this.canvasScale;
     var canvasHeight = this.GetRealHeight();// * this.canvasScale;
@@ -1306,8 +1317,9 @@ Application.prototype.IsGraphFitOnViewport = function()
     //    + " Position" + canvasPositionInverse.toString() + " - cw = " + canvasWidth + " ch = " + canvasHeight);
     
     return (Math.floor(canvasPositionInverse.x) <= Math.floor(graphBBox.minPoint.x) &&
-        Math.floor(canvasPositionInverse.y) <= Math.floor(graphBBox.minPoint.y) && Math.floor(canvasPositionInverse.x + canvasWidth) >= Math.floor(graphBBox.maxPoint.x)
-        && Math.floor(canvasPositionInverse.y + canvasHeight) >= Math.floor(graphBBox.maxPoint.y));
+        Math.floor(canvasPositionInverse.y) <= Math.floor(graphBBox.minPoint.y) && 
+        Math.floor(canvasPositionInverse.x + canvasWidth) >= Math.floor(graphBBox.maxPoint.x) && 
+        Math.floor(canvasPositionInverse.y + canvasHeight) >= Math.floor(graphBBox.maxPoint.y));
 }
 
 Application.prototype.PushToStack = function(actionName)
@@ -2005,4 +2017,26 @@ Application.prototype.LoadLastUsedGraphsFromCookie = function()
             graph.date = new Date(graph.date);
         }
     }
+}
+
+Application.prototype.GetVertexByName = function(vertex_name, withIndex)
+{
+    for (let i = 0; i < this.graph.vertices.length; i++)
+    {
+        if (this.graph.vertices[i].mainText == vertex_name)
+        {
+            return this.graph.vertices[i];
+        }
+    }
+    
+    return null;
+}
+
+Application.prototype.GraphPosToCanvasPos = function(pos)
+{
+    let windowPos = new Point(pos.x, pos.y);
+    windowPos.x = (windowPos.x + this.canvasPosition.x) * this.canvasScale;
+    windowPos.y = (windowPos.y + this.canvasPosition.y) * this.canvasScale;
+
+    return windowPos;
 }

@@ -323,4 +323,6 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['autosaved_graph'] = "Autosaved graph";
 
     $g_lang['open_last_used_graph'] = "Open Recent Graph";
+
+    $g_lang['vertex_name_place_holder'] = "vertex name";
 ?>

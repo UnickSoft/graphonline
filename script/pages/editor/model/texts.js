@@ -211,6 +211,8 @@ var g_originalGraph = "Original graph";
 var g_autoSavedGraph = "Autosaved graph";
 var g_selectGraphToLoad = "Would you like to load original graph or autosaved graph?";
 
+var g_vertexNamePlaceHolder = "vertex name";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -430,4 +432,5 @@ function loadTexts()
     g_originalGraph     = document.getElementById("originalGraph").innerHTML;
     g_autoSavedGraph    = document.getElementById("autoSavedGraph").innerHTML;
     g_selectGraphToLoad = document.getElementById("selectGraphToLoad").innerHTML;
+    g_vertexNamePlaceHolder = document.getElementById("vertexNamePlaceHolder").innerHTML;
 }
