@@ -213,6 +213,11 @@ var g_selectGraphToLoad = "Would you like to load original graph or autosaved gr
 
 var g_vertexNamePlaceHolder = "vertex name";
 
+var g_MaxIndependentSet = "Max Independent Set";
+var g_MaxIndependentSetNotFound = "Max Independent Set is not found";
+var g_MaxIndependentSetSizeIs = "Max Independent Set size is ";
+var g_MaxIndependentSetContains = ". Set contains these vertecies: ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -433,4 +438,9 @@ function loadTexts()
     g_autoSavedGraph    = document.getElementById("autoSavedGraph").innerHTML;
     g_selectGraphToLoad = document.getElementById("selectGraphToLoad").innerHTML;
     g_vertexNamePlaceHolder = document.getElementById("vertexNamePlaceHolder").innerHTML;
+
+    g_MaxIndependentSet = document.getElementById("maxIndependentSet").innerHTML;
+    g_MaxIndependentSetNotFound = document.getElementById("maxIndependentSetNotFound").innerHTML;
+    g_MaxIndependentSetSizeIs = document.getElementById("maxIndependentSetSizeIs").innerHTML;
+    g_MaxIndependentSetContains = document.getElementById("maxIndependentSetContains").innerHTML;  
 }

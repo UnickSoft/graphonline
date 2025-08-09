@@ -28,7 +28,8 @@ function loadAsyncAlgorithms(onFinish) {
                     "ModernGraphStyle.js",
                     "RadiusAndDiameter.js",
                     "ShortestPath.js",
-                    "VerticesDegree.js"];
+                    "VerticesDegree.js",
+                    "MaxIndependentSet.js"];
 
     doIncludeAsync (pluginsList.map((plugin) =>  include ("model/plugins/" + plugin, modulDir)), onFinish);
 }

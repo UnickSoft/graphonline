@@ -982,6 +982,11 @@
     <p id="selectGraphToLoad" class="translation"><?= L('load_oiginal_or_autosaved')?></p>
 
     <p id="vertexNamePlaceHolder" class="translation"><?= L('vertex_name_place_holder')?></p>
+
+    <p id="maxIndependentSet" class="translation"><?= L('max_independent_set')?></p>
+    <p id="maxIndependentSetNotFound" class="translation"><?= L('max_independent_set_not_found')?></p>
+    <p id="maxIndependentSetSizeIs" class="translation"><?= L('max_independent_set_size_is')?></p>
+    <p id="maxIndependentSetContains" class="translation"><?= L('max_independent_set_contains')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>

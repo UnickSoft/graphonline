@@ -327,4 +327,9 @@
     $g_lang['open_last_used_graph'] = "Відкрити нещодавній граф";
 
     $g_lang['vertex_name_place_holder'] = "вершина";
+
+    $g_lang["max_independent_set"] = "Максимальное независимое множество";
+    $g_lang["max_independent_set_not_found"] = "Максимальное независимое множество не найдена";
+    $g_lang["max_independent_set_size_is"] = "Размер Максимального независимого множества равен ";
+    $g_lang["max_independent_set_contains"] = ". Множества содержит следующие вершины: ";
 ?>

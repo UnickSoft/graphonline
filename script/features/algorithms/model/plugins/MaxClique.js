@@ -96,11 +96,6 @@ MaxClique.prototype.IsSupportNegativeWeight = function()
     return true;
 }
 
-MaxClique.prototype.IsSupportNegativeWeight = function()
-{
-    return true;
-}
-
 function CreateMaxClique(graph, app)
 {
     return new MaxClique(graph, app)

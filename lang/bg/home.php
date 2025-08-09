@@ -317,4 +317,14 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['open_last_used_graph'] = "Open Recent Graph";
 
     $g_lang['vertex_name_place_holder'] = "vertex name";
+
+    $g_lang["max_clique"] = "Max Clique";
+    $g_lang["max_clique_not_found"] = "Max Clique is not found";
+    $g_lang["max_clique_size_is"] = "Max Clique size is ";
+    $g_lang["max_clique_contains"] = ". Clique contains these vertecies: "; 
+
+    $g_lang["max_independent_set"] = "Max Independent Set";
+    $g_lang["max_independent_set_not_found"] = "Max Independent Set is not found";
+    $g_lang["max_independent_set_size_is"] = "Max Independent Set size is ";
+    $g_lang["max_independent_set_contains"] = ". Set contains these vertecies: ";
 ?>
