@@ -218,6 +218,9 @@ var g_MaxIndependentSetNotFound = "Max Independent Set is not found";
 var g_MaxIndependentSetSizeIs = "Max Independent Set size is ";
 var g_MaxIndependentSetContains = ". Set contains these vertecies: ";
 
+var g_FindAllShortestPathes = "Find all shortest paths";
+var g_numberOfShortestPathesFrom = "Number of shortest paths from ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -443,4 +446,7 @@ function loadTexts()
     g_MaxIndependentSetNotFound = document.getElementById("maxIndependentSetNotFound").innerHTML;
     g_MaxIndependentSetSizeIs = document.getElementById("maxIndependentSetSizeIs").innerHTML;
     g_MaxIndependentSetContains = document.getElementById("maxIndependentSetContains").innerHTML;  
+
+    g_FindAllShortestPathes = document.getElementById("findAllShortestPathes").innerHTML;
+    g_numberOfShortestPathesFrom = document.getElementById("numberOfShortestPathesFrom").innerHTML;
 }

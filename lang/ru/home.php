@@ -334,4 +334,7 @@
     $g_lang["max_independent_set_not_found"] = "Максимальное независимое множество не найдена";
     $g_lang["max_independent_set_size_is"] = "Размер Максимального независимого множества равен ";
     $g_lang["max_independent_set_contains"] = ". Множества содержит следующие вершины: ";
+
+    $g_lang['find_all_shortest_pathes'] = "Найти все кратчайшие пути между вершинами";
+    $g_lang['number_of_shortest_pathes_from'] = "Количество кратчайших путей из ";
 ?>

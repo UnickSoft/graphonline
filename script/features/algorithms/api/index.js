@@ -29,7 +29,8 @@ function loadAsyncAlgorithms(onFinish) {
                     "RadiusAndDiameter.js",
                     "ShortestPath.js",
                     "VerticesDegree.js",
-                    "MaxIndependentSet.js"];
+                    "MaxIndependentSet.js",
+                    "FindAllShortestPatches.js"];
 
     doIncludeAsync (pluginsList.map((plugin) =>  include ("model/plugins/" + plugin, modulDir)), onFinish);
 }

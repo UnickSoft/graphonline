@@ -285,4 +285,12 @@
     $g_lang['open_last_used_graph'] = "Open Recent Graph";
 
     $g_lang['vertex_name_place_holder'] = "vertex name";
+
+    $g_lang["max_independent_set"] = "Max Independent Set";
+    $g_lang["max_independent_set_not_found"] = "Max Independent Set is not found";
+    $g_lang["max_independent_set_size_is"] = "Max Independent Set size is ";
+    $g_lang["max_independent_set_contains"] = ". Set contains these vertecies: ";
+
+    $g_lang['find_all_shortest_pathes'] = "Find all shortest paths between 2 vertices";
+    $g_lang['number_of_shortest_pathes_from'] = "Number of shortest paths from ";
 ?>

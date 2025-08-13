@@ -329,4 +329,7 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang["max_independent_set_not_found"] = "Max Independent Set is not found";
     $g_lang["max_independent_set_size_is"] = "Max Independent Set size is ";
     $g_lang["max_independent_set_contains"] = ". Set contains these vertecies: ";
+
+    $g_lang['find_all_shortest_pathes'] = "Find all shortest paths between 2 vertices";
+    $g_lang['number_of_shortest_pathes_from'] = "Number of shortest paths from ";
 ?>

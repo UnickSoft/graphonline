@@ -987,6 +987,9 @@
     <p id="maxIndependentSetNotFound" class="translation"><?= L('max_independent_set_not_found')?></p>
     <p id="maxIndependentSetSizeIs" class="translation"><?= L('max_independent_set_size_is')?></p>
     <p id="maxIndependentSetContains" class="translation"><?= L('max_independent_set_contains')?></p>
+
+    <p id="findAllShortestPathes" class="translation"><?= L('find_all_shortest_pathes')?></p>
+    <p id="numberOfShortestPathesFrom" class="translation"><?= L('number_of_shortest_pathes_from')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>
