@@ -287,7 +287,7 @@
     $g_lang['use_context_menu'] = "Используйте контекстное меню для дополнительных действий.";
 
     $g_lang['find_longest_path'] = "Поиск самого длинного пути";
-    $g_lang['length_of_longest_path_from'] = "Длина самого длинного пути ровна ";
+    $g_lang['length_of_longest_path_from'] = "Длина самого длинного пути равна ";
 
 
     $g_lang['additionl_actions'] = "Особые действия";
@@ -337,4 +337,6 @@
 
     $g_lang['find_all_shortest_pathes'] = "Найти все кратчайшие пути между вершинами";
     $g_lang['number_of_shortest_pathes_from'] = "Количество кратчайших путей из ";
+    $g_lang['length_is'] = "длина равна ";
+
 ?>

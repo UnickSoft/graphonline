@@ -220,6 +220,7 @@ var g_MaxIndependentSetContains = ". Set contains these vertecies: ";
 
 var g_FindAllShortestPathes = "Find all shortest paths";
 var g_numberOfShortestPathesFrom = "Number of shortest paths from ";
+var g_length_is = "length is ";
 
 function loadTexts()
 {
@@ -449,4 +450,5 @@ function loadTexts()
 
     g_FindAllShortestPathes = document.getElementById("findAllShortestPathes").innerHTML;
     g_numberOfShortestPathesFrom = document.getElementById("numberOfShortestPathesFrom").innerHTML;
+    g_length_is = document.getElementById("lengthIs").innerHTML;
 }

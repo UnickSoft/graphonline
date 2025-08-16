@@ -335,4 +335,5 @@
 
     $g_lang['find_all_shortest_pathes'] = "Найти все кратчайшие пути между вершинами";
     $g_lang['number_of_shortest_pathes_from'] = "Количество кратчайших путей из ";
+    $g_lang['length_is'] = "длина равна ";
 ?>

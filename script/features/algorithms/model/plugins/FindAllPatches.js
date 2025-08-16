@@ -110,13 +110,11 @@ FindAllPathes.prototype.resultCallback = function(pathObjects, properties, resul
         }
   
         var subGraphIndex = 0;
-        var prevNodeId = -1;
         for (var i = 0; i < results.length; i++)
         {
           if (results[i].type == 6)
           {
             subGraphIndex++;
-            prevNodeId = -1;
           }
   
           if (results[i].type == 4)
@@ -126,14 +124,15 @@ FindAllPathes.prototype.resultCallback = function(pathObjects, properties, resul
             var subgGraph = this.foundSubGraphs[index];
             subgGraph[nodeId] = true;
 
-            this.foundPaths[index].push(nodeId);
-  
-            if (prevNodeId >= 0)
-            {
-              var edgeObject = this.graph.FindEdgeMin(prevNodeId, nodeId);
-              subgGraph[edgeObject.id] = true;
-            }
-            prevNodeId = nodeId;
+            this.foundPaths[index].push(nodeId);  
+          }
+
+          if (results[i].type == 5)
+          {
+            var edgeId = parseInt(results[i].value);
+            var index  = subGraphIndex;
+            var subgGraph = this.foundSubGraphs[index];
+            subgGraph[edgeId] = true;
           }
         }
 
@@ -222,6 +221,11 @@ FindAllPathes.prototype.getPriority = function()
 }
 
 FindAllPathes.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
+FindAllPathes.prototype.IsSupportMultiGraph = function()
 {
     return true;
 }

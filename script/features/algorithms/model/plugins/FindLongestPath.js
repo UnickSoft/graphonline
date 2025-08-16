@@ -113,7 +113,6 @@ FindLongestPath.prototype.resultCallback = function(pathObjects, properties, res
         }
   
         var subGraphIndex = 0;
-        var prevNodeId = -1;
         for (var i = 0; i < results.length; i++)
         {
           if (results[i].type == 6)
@@ -124,7 +123,6 @@ FindLongestPath.prototype.resultCallback = function(pathObjects, properties, res
             }
             currentLength = 0;
             subGraphIndex++;
-            prevNodeId = -1;
           }
   
           if (results[i].type == 4)
@@ -135,14 +133,16 @@ FindLongestPath.prototype.resultCallback = function(pathObjects, properties, res
             subgGraph[nodeId] = true;
 
             this.foundPaths[index].push(nodeId);
-  
-            if (prevNodeId >= 0)
-            {
-              var edgeObject = this.graph.FindEdgeMax(prevNodeId, nodeId);
-              subgGraph[edgeObject.id] = true;
-              currentLength += edgeObject.GetWeight();
-            }
-            prevNodeId = nodeId;
+          }
+
+          if (results[i].type == 5)
+          {
+            var edgeId = parseInt(results[i].value);
+            var index  = subGraphIndex;
+            var subgGraph = this.foundSubGraphs[index];
+            subgGraph[edgeId] = true;
+            let edgeObject = this.graph.FindEdgeById(edgeId);
+            currentLength += edgeObject.GetWeight();
           }
         }
         if (currentLength > this.maxPathLength) {
@@ -219,6 +219,11 @@ FindLongestPath.prototype.getPriority = function()
 }
 
 FindLongestPath.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
+FindLongestPath.prototype.IsSupportMultiGraph = function()
 {
     return true;
 }

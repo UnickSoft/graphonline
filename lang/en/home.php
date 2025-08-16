@@ -333,4 +333,5 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
 
     $g_lang['find_all_shortest_pathes'] = "Find all shortest paths between 2 vertices";
     $g_lang['number_of_shortest_pathes_from'] = "Number of shortest paths from ";
+    $g_lang['length_is'] = "length is ";
 ?>

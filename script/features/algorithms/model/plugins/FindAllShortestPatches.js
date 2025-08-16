@@ -11,6 +11,7 @@ function FindAllShortestPathes(graph, app)
     this.nSubgraphIndex  = 0;
     this.nSubGraphCount  = 0;
     this.foundPaths      = {};
+    this.min_len = 1E10;
 }
 
 
@@ -50,6 +51,8 @@ FindAllShortestPathes.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)
     {
+        this.min_len = 1E10;
+
         this.outResultCallback = function (result ) { resultCallback(result); };
         self = this;
         this.CalculateAlgorithm("prnpaths",            [
@@ -77,7 +80,7 @@ FindAllShortestPathes.prototype.setResultMessage = function()
 
         this.message = g_numberOfShortestPathesFrom + this.firstObject.mainText + 
             g_to + this.secondObject.mainText + g_are + 
-            this.nSubGraphCount + ". " + g_pathN + (1 + parseInt(this.nSubgraphIndex)) + ": " + currentPath + 
+            this.nSubGraphCount + " (" + g_length_is + this.min_len + ")" +". " + g_pathN + (1 + parseInt(this.nSubgraphIndex)) + ": " + currentPath + 
             " <select style=\"float:right\" id=\"enumSubgraphs\"></select>";
     }
     else
@@ -100,14 +103,12 @@ FindAllShortestPathes.prototype.resultCallback = function(pathObjects, propertie
     if (bFound)
     {
         let patches_len = {};
-        let min_len = 1E10;
 
         // Search minimal patches
         {
             let current_len = 0;
 
             var subGraphIndex = 0;
-            var prevNodeId = -1;
             let any_found = false;
             for (var i = 0; i < results.length; i++)
             {
@@ -115,35 +116,28 @@ FindAllShortestPathes.prototype.resultCallback = function(pathObjects, propertie
                 {
                     patches_len[subGraphIndex] = current_len;
                     subGraphIndex++;
-                    prevNodeId = -1;
-                    min_len = Math.min(min_len, current_len);
+                    this.min_len = Math.min(this.min_len, current_len);
                     current_len = 0;
                 }
         
-                if (results[i].type == 4)
+                if (results[i].type == 5)
                 {
                     any_found = true;
-                    var nodeId = parseInt(results[i].value);
-                    var index  = subGraphIndex;
-        
-                    if (prevNodeId >= 0)
-                    {
-                        var edgeObject = this.graph.FindEdgeMin(prevNodeId, nodeId);
-                        current_len = current_len + edgeObject.GetWeight();
-                    }
-                    prevNodeId = nodeId;
+                    var edgeId = parseInt(results[i].value);
+                    let edgeObject = this.graph.FindEdgeById(edgeId);
+                    current_len = current_len + edgeObject.GetWeight();
                 }
             }
             if (any_found)
             {
                 patches_len[subGraphIndex] = current_len;
-                min_len = Math.min(min_len, current_len);
+                this.min_len = Math.min(this.min_len, current_len);
             }
         }
 
         let min_pathes_count = 0;
         for (const [key, value] of Object.entries(patches_len)) {
-            if (value == min_len)
+            if (value == this.min_len)
             {
                 min_pathes_count = min_pathes_count + 1;
             }
@@ -160,17 +154,20 @@ FindAllShortestPathes.prototype.resultCallback = function(pathObjects, propertie
         }
 
         var subGraphIndex = 0;
-        var prevNodeId = -1;
+        let skipGraphsCount = patches_len[subGraphIndex] > this.min_len ? 1 : 0;
         for (var i = 0; i < results.length; i++)
         {
           if (results[i].type == 6)
           {
             subGraphIndex++;
-            prevNodeId = -1;
           }
 
-          if (patches_len[subGraphIndex] > min_len)
+          if (patches_len[subGraphIndex] > this.min_len)
           {
+            if (results[i].type == 6)
+            {
+                skipGraphsCount++;
+            }
             // Skip 
             continue;
           }
@@ -178,18 +175,18 @@ FindAllShortestPathes.prototype.resultCallback = function(pathObjects, propertie
           if (results[i].type == 4)
           {
             var nodeId = parseInt(results[i].value);
-            var index  = subGraphIndex;
+            var index  = subGraphIndex - skipGraphsCount;
             var subgGraph = this.foundSubGraphs[index];
             subgGraph[nodeId] = true;
-
             this.foundPaths[index].push(nodeId);
-  
-            if (prevNodeId >= 0)
-            {
-              var edgeObject = this.graph.FindEdgeMin(prevNodeId, nodeId);
-              subgGraph[edgeObject.id] = true;
-            }
-            prevNodeId = nodeId;
+          }
+
+          if (results[i].type == 5)
+          {
+            var index  = subGraphIndex - skipGraphsCount;
+            var subgGraph = this.foundSubGraphs[index];
+            var edgeId = parseInt(results[i].value);
+            subgGraph[edgeId] = true;
           }
         }
 
@@ -258,6 +255,7 @@ FindAllShortestPathes.prototype.deselectAll = function()
     this.nSubgraphIndex  = 0;
     this.nSubGraphCount  = 0;      
     this.message = g_selectStartVertex;
+
     return true;
 }
 
@@ -278,6 +276,11 @@ FindAllShortestPathes.prototype.getPriority = function()
 }
 
 FindAllShortestPathes.prototype.IsSupportNegativeWeight = function()
+{
+    return true;
+}
+
+FindAllShortestPathes.prototype.IsSupportMultiGraph = function()
 {
     return true;
 }

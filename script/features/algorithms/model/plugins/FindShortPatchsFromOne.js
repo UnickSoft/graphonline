@@ -66,7 +66,7 @@ FindShortPatchsFromOne.prototype.setResultMessage = function()
     if (this.nSubGraphCount > 0)
     {
         this.message = g_distanceFrom + this.firstObject.mainText + 
-        g_to + this.lastVertexInPath[this.nSubgraphIndex] + g_are + 
+            g_to + this.lastVertexInPath[this.nSubgraphIndex] + g_are + 
         this.lengthOfPath[this.nSubgraphIndex] + " <select style=\"float:right\" id=\"enumSubgraphs\"></select>";        
     }
     else

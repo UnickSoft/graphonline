@@ -332,4 +332,5 @@ Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickS
 
     $g_lang['find_all_shortest_pathes'] = "Find all shortest paths between 2 vertices";
     $g_lang['number_of_shortest_pathes_from'] = "Number of shortest paths from ";
+    $g_lang['length_is'] = "length is ";
 ?>
