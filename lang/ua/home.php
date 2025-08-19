@@ -328,12 +328,12 @@
 
     $g_lang['vertex_name_place_holder'] = "вершина";
 
-    $g_lang["max_independent_set"] = "Максимальное независимое множество";
-    $g_lang["max_independent_set_not_found"] = "Максимальное независимое множество не найдена";
-    $g_lang["max_independent_set_size_is"] = "Размер Максимального независимого множества равен ";
-    $g_lang["max_independent_set_contains"] = ". Множества содержит следующие вершины: ";
+    $g_lang["max_independent_set"] = "Максимальна незалежна множина";
+    $g_lang["max_independent_set_not_found"] = "Максимальна незалежна множина не знайдена";
+    $g_lang["max_independent_set_size_is"] = "Розмір Максимальної незалежної множини рівний ";
+    $g_lang["max_independent_set_contains"] = ". Множина містить наступні вершини: ";
 
-    $g_lang['find_all_shortest_pathes'] = "Найти все кратчайшие пути между вершинами";
-    $g_lang['number_of_shortest_pathes_from'] = "Количество кратчайших путей из ";
-    $g_lang['length_is'] = "длина равна ";
+    $g_lang['find_all_shortest_pathes'] = "Знайти всі найкоротші шляхі між вершинами";
+    $g_lang['number_of_shortest_pathes_from'] = "Кількість найкоротших шляхів з ";
+    $g_lang['length_is'] = "довжина рівна ";
 ?>
