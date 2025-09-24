@@ -128,7 +128,7 @@
     $g_lang["selected_vertex_settings"] = "Sommet sélectionné";
     $g_lang["common_edge_settings"] = "Arête ordinaire";
     $g_lang["selected_edge_settings"] = "Arête sélectionée";
-    $g_lang["common_color"] = "Coleur commune";
+    $g_lang["common_color"] = "Couleur commune";
     $g_lang["stroke_color"] = "Couleur des traits";
     $g_lang["stroke_size"] = "Epaisseur";
     $g_lang["text_color"] = "Couleur du texte";
