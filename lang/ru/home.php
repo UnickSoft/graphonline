@@ -339,4 +339,7 @@
     $g_lang['number_of_shortest_pathes_from'] = "Количество кратчайших путей из ";
     $g_lang['length_is'] = "длина равна ";
 
+    $g_lang['graph_is_to_large'] = "Граф слишком большой для этого алгоритма (<span id=\"current_graph_size\">X</span> вершин, <span id=\"current_edge_number\">X</span> дуг).";
+    $g_lang['algorith_supports_max_limit'] = "Алгоритм поддерживает графы размером не больше <span id=\"algorithm_max_limit\">X</span> вершин и <span id=\"algorithm_edge_limit\">X</span> дуг.";
+    $g_lang['error'] = "Ошибка";
 ?>

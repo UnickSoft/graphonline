@@ -687,9 +687,41 @@ Editor.prototype.createAlgorithmMenu = function()
         {
             e["closeThisMenu"] = true;
             userAction(this.id);
-            self.restButtons ("");
-            self.application.SetHandler(new AlgorithmGraphHandler(self.application, 
-                g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph, self.application)));
+            
+            let algorithm = g_Algorithms[g_AlgorithmIds.indexOf(this.id)](self.application.graph, self.application);
+            let is_vertex_fits_to_limits = self.application.graph.vertices.length <= algorithm.MaxGraphSize()
+            let is_edge_fits_to_limits = self.application.graph.edges.length <= algorithm.MaxEgdeNumber();
+            if (is_vertex_fits_to_limits && is_edge_fits_to_limits)
+            {
+                self.restButtons ("");
+                self.application.SetHandler(new AlgorithmGraphHandler(self.application, algorithm));
+            }
+            else
+            {
+                let warring_cond_begin = "<span class=\"text-danger\">";
+                let warring_cond_end   = "</span>";
+
+                $("#current_graph_size").html((is_vertex_fits_to_limits ? "" : warring_cond_begin ) + self.application.graph.vertices.length
+                    + (is_vertex_fits_to_limits ? "" : warring_cond_end ));
+                $("#current_edge_number").html((is_edge_fits_to_limits ? "" : warring_cond_begin ) + self.application.graph.edges.length
+                    + (is_edge_fits_to_limits ? "" : warring_cond_end ));
+                $("#algorithm_max_limit").html(algorithm.MaxGraphSize());
+                $("#algorithm_edge_limit").html(algorithm.MaxEgdeNumber());
+
+                var dialogButtons = {};
+                dialogButtons[g_close] = function() {
+                        $( this ).dialog( "close" );					
+                    }; 
+                // Show error message that graph is too large.
+                $("#graphMaxVerexLimit").dialog({
+                    resizable: false,
+                    title: g_error,
+                    width: 400,
+                    modal: true,
+                    dialogClass: 'EdgeDialog',
+                    buttons: dialogButtons,
+                });
+            }
         }
         
         var eventData = {};

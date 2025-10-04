@@ -35,6 +35,16 @@ FindEulerianPath.prototype.getCategory = function()
     return 1;
 }
 
+FindEulerianPath.prototype.MaxGraphSize = function()
+{
+    return 50;
+}
+
+FindEulerianPath.prototype.MaxEgdeNumber = function()
+{
+    return 500;
+}
+
 FindEulerianPath.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };

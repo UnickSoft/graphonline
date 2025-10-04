@@ -47,6 +47,16 @@ FindAllShortestPathes.prototype.getCategory = function()
     return 1;
 }
 
+FindAllShortestPathes.prototype.MaxGraphSize = function()
+{
+    return 50;
+}
+
+FindAllShortestPathes.prototype.MaxEgdeNumber = function()
+{
+    return 40;
+}
+
 FindAllShortestPathes.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)

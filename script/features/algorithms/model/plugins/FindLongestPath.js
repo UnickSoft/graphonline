@@ -47,6 +47,16 @@ FindLongestPath.prototype.getCategory = function()
     return 1;
 }
 
+FindLongestPath.prototype.MaxGraphSize = function()
+{
+    return 50;
+}
+
+FindLongestPath.prototype.MaxEgdeNumber = function()
+{
+    return 40;
+}
+
 FindLongestPath.prototype.result = function(resultCallback)
 {
     if (this.firstObject && this.secondObject)

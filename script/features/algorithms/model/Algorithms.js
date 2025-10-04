@@ -152,6 +152,17 @@ BaseAlgorithm.prototype.IsSupportNegativeWeight = function()
     return false;
 }
 
+// Limit by number of vertexes for the algorithm.
+BaseAlgorithm.prototype.MaxGraphSize = function()
+{
+    return 1000;
+}
+
+BaseAlgorithm.prototype.MaxEgdeNumber = function()
+{
+    return 10000;
+}
+
 /**
  * Default handler.
  * Select using mouse, drag.
@@ -218,20 +229,16 @@ BaseAlgorithmEx.prototype.CalculateAlgorithm = function(algorithmName, otherPara
         var $xml = $( xmlDoc );
         
         $results = $xml.find( "result" );
-        
-        $results.each(function(){
-                    $values = $(this).find( "value" );
-                    
-                    $values.each(function(){
-                                var type  = $(this).attr('type');
-                                var value = $(this).text();
-                                var res = {};
-                                res.type = type;
-                                res.value = value;
-                                result.push(res);
-                                });
-                    });
-        
+
+        // Use native because jqueary hangs for results with 10000+ nodes.
+        let values = $results[0].getElementsByTagName("value");
+        for (var j = 0; j < values.length; j++) 
+        {
+            var type = values[j].getAttribute('type');
+            var value = values[j].textContent;
+            result.push({ type: type, value: value });
+        }
+
         $nodes = $xml.find( "node" );
         
         $nodes.each(function(){

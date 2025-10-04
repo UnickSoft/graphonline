@@ -333,4 +333,8 @@
     $g_lang['find_all_shortest_pathes'] = "Find all shortest paths between 2 vertices";
     $g_lang['number_of_shortest_pathes_from'] = "Number of shortest paths from ";
     $g_lang['length_is'] = "length is ";
+
+    $g_lang['graph_is_to_large'] = "The graph is too large for this algorithm (<span id=\"current_graph_size\">X</span> vertices, <span id=\"current_edge_number\">X</span> edges).";
+    $g_lang['algorith_supports_max_limit'] = "The algorithm supports graphs of size no larger than <span id=\"algorithm_max_limit\">X</span> vertices and <span id=\"algorithm_edge_limit\">X</span> edges.";
+    $g_lang['error'] = "Error";
 ?>

@@ -222,6 +222,8 @@ var g_FindAllShortestPathes = "Find all shortest paths";
 var g_numberOfShortestPathesFrom = "Number of shortest paths from ";
 var g_length_is = "length is ";
 
+var g_error = "Error";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -451,4 +453,6 @@ function loadTexts()
     g_FindAllShortestPathes = document.getElementById("findAllShortestPathes").innerHTML;
     g_numberOfShortestPathesFrom = document.getElementById("numberOfShortestPathesFrom").innerHTML;
     g_length_is = document.getElementById("lengthIs").innerHTML;
+
+    g_error = document.getElementById("error").innerHTML;
 }

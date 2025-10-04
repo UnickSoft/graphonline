@@ -481,16 +481,21 @@
 
 
        <div id="matrixError" class="translation">
-	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
+	<div><span class="bi bi-exclamation-octagon-fill text-danger"></span> <?= L('bad_adj_matrix_message')?></div>
        </div>
 
        <div id="matrixErrorInc" class="translation">
-	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
+	<div><span class="bi bi-exclamation-octagon-fill text-danger"></span> <?= L('bad_inc_matrix_message')?></div>
        </div>
 
        <div id="pairErrorInc" class="translation">
-	<div><span class="bi bi-remove-sign text-danger"></span> <?= L('bad_inc_pair_message')?></div>
+	<div><span class="bi bi-exclamation-octagon-fill text-danger"></span> <?= L('bad_inc_pair_message')?></div>
        </div>       
+
+    <div id="graphMaxVerexLimit" class="translation">
+	      <div><span class="bi bi-exclamation-octagon-fill text-danger"></span> <?= L('graph_is_to_large')?></div>
+        <div><span class="bi bi-info-circle-fill text-info"></span> <?= L('algorith_supports_max_limit')?></div>
+    </div>
         
 	<div id="voteDialog">
 		<form>
@@ -991,6 +996,7 @@
     <p id="findAllShortestPathes" class="translation"><?= L('find_all_shortest_pathes')?></p>
     <p id="numberOfShortestPathesFrom" class="translation"><?= L('number_of_shortest_pathes_from')?></p>
     <p id="lengthIs" class="translation"><?= L('length_is')?></p>
+    <p id="error" class="translation"><?= L('error')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>

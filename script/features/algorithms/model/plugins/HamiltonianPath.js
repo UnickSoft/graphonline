@@ -35,6 +35,16 @@ FindHamiltonianPath.prototype.getCategory = function()
     return 1;
 }
 
+FindHamiltonianPath.prototype.MaxGraphSize = function()
+{
+    return 30;
+}
+
+FindHamiltonianPath.prototype.MaxEgdeNumber = function()
+{
+    return 450;
+}
+
 FindHamiltonianPath.prototype.result = function(resultCallback)
 {
     this.outResultCallback = function (result ) { resultCallback(result); };

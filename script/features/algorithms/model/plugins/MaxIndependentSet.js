@@ -86,6 +86,16 @@ MaxIndependentSet.prototype.getPriority = function()
     return -5;
 }
 
+MaxIndependentSet.prototype.MaxGraphSize = function()
+{
+    return 100;
+}
+
+MaxIndependentSet.prototype.MaxEgdeNumber = function()
+{
+    return 4000;
+}
+
 MaxIndependentSet.prototype.IsSupportNegativeWeight = function()
 {
     return true;
