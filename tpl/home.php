@@ -997,6 +997,12 @@
     <p id="numberOfShortestPathesFrom" class="translation"><?= L('number_of_shortest_pathes_from')?></p>
     <p id="lengthIs" class="translation"><?= L('length_is')?></p>
     <p id="error" class="translation"><?= L('error')?></p>
+
+    <p id="salesmanProblem" class="translation"><?= L('salesman_problem')?></p>
+    <p id="noSolution" class="translation"><?= L('no_solution')?></p>
+    <p id="shortestLoopIs" class="translation"><?= L('shortest_loop_is')?></p>
+    <p id="salesmanProblemPath" class="translation"><?= L('salesman_path_problem')?></p>
+    <p id="shortestPathIs" class="translation"><?= L('shortest_path_is')?></p>
 </section>
 
 <script src="<?= RootCacheJS("script/pages/editor/api/index.js")?>" ></script>

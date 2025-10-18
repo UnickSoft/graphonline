@@ -224,6 +224,12 @@ var g_length_is = "length is ";
 
 var g_error = "Error";
 
+var g_salesmanProblem = "Salesman Problem";
+var g_noSolution = "The solution doesn't exist";
+var g_shortestLoopIs = "The length of shortest possible loop is ";
+var g_salesmanProblemPath = "Salesman Path Problem";
+var g_shortestPathIs = "The length of shortest path is ";
+
 function loadTexts()
 {
 	g_textsSelectAndMove  = document.getElementById("SelectAndMoveObject").innerHTML;
@@ -455,4 +461,10 @@ function loadTexts()
     g_length_is = document.getElementById("lengthIs").innerHTML;
 
     g_error = document.getElementById("error").innerHTML;
+
+    g_salesmanProblem = document.getElementById("salesmanProblem").innerHTML;
+    g_noSolution = document.getElementById("noSolution").innerHTML;
+    g_shortestLoopIs = document.getElementById("shortestLoopIs").innerHTML;
+    g_salesmanProblemPath = document.getElementById("salesmanProblemPath").innerHTML;
+    g_shortestPathIs = document.getElementById("shortestPathIs").innerHTML;
 }

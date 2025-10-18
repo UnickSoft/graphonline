@@ -721,6 +721,8 @@ Editor.prototype.createAlgorithmMenu = function()
                     dialogClass: 'EdgeDialog',
                     buttons: dialogButtons,
                 });
+                userAction("graph_to_big/" + algorithm.getId() + "/" + self.application.graph.vertices.length + 
+                    "+vertices/" + self.application.graph.edges.length + "+edges");
             }
         }
         

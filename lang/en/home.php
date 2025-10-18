@@ -338,4 +338,10 @@ We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang['graph_is_to_large'] = "The graph is too large for this algorithm (<span id=\"current_graph_size\">X</span> vertices, <span id=\"current_edge_number\">X</span> edges).";
     $g_lang['algorith_supports_max_limit'] = "The algorithm supports graphs of size no larger than <span id=\"algorithm_max_limit\">X</span> vertices and <span id=\"algorithm_edge_limit\">X</span> edges.";
     $g_lang['error'] = "Error";
+
+    $g_lang['salesman_problem'] = "Salesman Problem";
+    $g_lang['no_solution'] = "The solution doesn't exist";
+    $g_lang['shortest_loop_is'] = "The length of shortest possible loop is ";
+    $g_lang['salesman_path_problem'] = "Salesman Path Problem";
+    $g_lang['shortest_path_is'] = "The length of shortest path is ";
 ?>

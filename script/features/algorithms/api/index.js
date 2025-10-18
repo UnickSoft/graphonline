@@ -30,7 +30,9 @@ function loadAsyncAlgorithms(onFinish) {
                     "ShortestPath.js",
                     "VerticesDegree.js",
                     "MaxIndependentSet.js",
-                    "FindAllShortestPatches.js"];
+                    "FindAllShortestPatches.js",
+                    "SalesmanProblem.js",
+                    "SalesmanProblemPath.js"];
 
     doIncludeAsync (pluginsList.map((plugin) =>  include ("model/plugins/" + plugin, modulDir)), onFinish);
 }
