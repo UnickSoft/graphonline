@@ -34,6 +34,13 @@ function processFiles($mask, &$countFiles, &$sizeFiles, &$ageCount, $ageCallback
     glob_recursive($mask, $processFile);
 }
 
+function str_ends_with($haystack, $needle) {
+    if ($needle === '') {
+        return true;
+    }
+    return substr($haystack, -strlen($needle)) === $needle;
+}
+
 $age6mLessCallback = function($age)
 {
     return $age <= 6;
