@@ -337,13 +337,13 @@
     $g_lang['number_of_shortest_pathes_from'] = "Кількість найкоротших шляхів з ";
     $g_lang['length_is'] = "довжина рівна ";
 
-    $g_lang['graph_is_to_large'] = "Граф слишком большой для этого алгоритма (<span id=\"current_graph_size\">X</span> вершин, <span id=\"current_edge_number\">X</span> дуг).";
-    $g_lang['algorith_supports_max_limit'] = "Алгоритм поддерживает графы размером не больше <span id=\"algorithm_max_limit\">X</span> вершин и <span id=\"algorithm_edge_limit\">X</span> дуг.";
-    $g_lang['error'] = "Ошибка";
+    $g_lang['graph_is_to_large'] = "Граф занадто великий для цього алгоритму (<span id=\"current_graph_size\">X</span> вершин, <span id=\"current_edge_number\">X</span> дуг).";
+    $g_lang['algorith_supports_max_limit'] = "Алгоритм підтримує графи розмером не більше <span id=\"algorithm_max_limit\">X</span> вершин і <span id=\"algorithm_edge_limit\">X</span> дуг.";
+    $g_lang['error'] = "Помилка";
 
-    $g_lang['salesman_problem'] = "Задача коммивояжёра";
-    $g_lang['no_solution'] = "Решения не существует";
-    $g_lang['shortest_loop_is'] = "Кратчайшие цикл имеет длинну ";
-    $g_lang['salesman_path_problem'] = "Задача коммивояжёра для пути";
-    $g_lang['shortest_path_is'] = "Кратчайшие путь имеет длинну ";
+    $g_lang['salesman_problem'] = "Задача комівояжера";
+    $g_lang['no_solution'] = "Рішення не існує";
+    $g_lang['shortest_loop_is'] = "Найкоротший цикл має довжину ";
+    $g_lang['salesman_path_problem'] = "Задача комівояжера для шляху";
+    $g_lang['shortest_path_is'] = "Найкоротший шлях має довжину ";
 ?>
