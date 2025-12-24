@@ -846,9 +846,9 @@ Application.prototype.GetStatus = function()
 }
 
 
-Application.prototype.GetAdjacencyMatrix = function ()
+Application.prototype.GetAdjacencyMatrix = function (res_columns_width)
 {
-	return this.graph.GetAdjacencyMatrixStr();
+	return this.graph.GetAdjacencyMatrixStr(res_columns_width);
 }
 
 Application.prototype.TestAdjacencyMatrix = function (matrix, rowsObj, colsObj, separator)

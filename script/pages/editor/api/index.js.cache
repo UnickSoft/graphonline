@@ -1,4 +1,4 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=103","/script/shared/gzip.js?v=103","/script/entities/graph/api/index.js?v=103","/script/shared/point.js?v=103","/script/entities/edge/api/index.js?v=103","/script/entities/edge/model/BaseEdge.js?v=103","/script/entities/edge/model/EdgeModel.js?v=103","/script/entities/vertex/api/index.js?v=103","/script/entities/vertex/model/BaseVertex.js?v=103","/script/entities/vertex/model/VertexModel.js?v=103","/script/entities/graph/model/Graph.js?v=103","/script/features/draw_graph/api/index.js?v=103","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=103","/script/features/draw_graph/model/EdgeStyle.js?v=103","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=103","/script/features/draw_graph/model/VertexShape.js?v=103","/script/features/draw_graph/model/VertexStyle.js?v=103","/script/features/draw_graph/model/BaseVertexDrawer.js?v=103","/script/features/draw_graph/model/GraphFullStyle.js?v=103","/script/features/algorithms/api/index.js?v=103","/script/features/algorithms/model/Algorithms.js?v=103","/script/features/algorithms/model/BaseTraversal.js?v=103","/script/features/base_handler/index.js?v=103","/script/features/default_handler/index.js?v=103","/script/features/add_vertices_handler/index.js?v=103","/script/features/connect_vertices_handler/index.js?v=103","/script/features/delete_objects_handler/index.js?v=103","/script/features/algorithm_handler/index.js?v=103","/script/features/select_auto_save_graph_or_not/index.js?v=103","/script/features/graph_preview/index.js?v=103","/script/features/serialization/api/index.js?v=103","/script/features/serialization/model/GraphMLCreator.js?v=103","/script/features/enum_vertices/EnumVertices.js?v=103","/script/pages/editor/model/texts.js?v=103","/script/pages/editor/model/UndoStack.js?v=103","/script/pages/editor/model/DiskSaveLoad.js?v=103","/script/pages/editor/model/Application.js?v=103","/script/pages/editor/ui/ya_metrika.js?v=103","/script/pages/editor/ui/editor.js?v=103","/script/pages/editor/ui/main.js?v=103",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=104","/script/shared/gzip.js?v=104","/script/entities/graph/api/index.js?v=104","/script/shared/point.js?v=104","/script/entities/edge/api/index.js?v=104","/script/entities/edge/model/BaseEdge.js?v=104","/script/entities/edge/model/EdgeModel.js?v=104","/script/entities/vertex/api/index.js?v=104","/script/entities/vertex/model/BaseVertex.js?v=104","/script/entities/vertex/model/VertexModel.js?v=104","/script/entities/graph/model/Graph.js?v=104","/script/features/draw_graph/api/index.js?v=104","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=104","/script/features/draw_graph/model/EdgeStyle.js?v=104","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=104","/script/features/draw_graph/model/VertexShape.js?v=104","/script/features/draw_graph/model/VertexStyle.js?v=104","/script/features/draw_graph/model/BaseVertexDrawer.js?v=104","/script/features/draw_graph/model/GraphFullStyle.js?v=104","/script/features/algorithms/api/index.js?v=104","/script/features/algorithms/model/Algorithms.js?v=104","/script/features/algorithms/model/BaseTraversal.js?v=104","/script/features/base_handler/index.js?v=104","/script/features/default_handler/index.js?v=104","/script/features/add_vertices_handler/index.js?v=104","/script/features/connect_vertices_handler/index.js?v=104","/script/features/delete_objects_handler/index.js?v=104","/script/features/algorithm_handler/index.js?v=104","/script/features/select_auto_save_graph_or_not/index.js?v=104","/script/features/graph_preview/index.js?v=104","/script/features/serialization/api/index.js?v=104","/script/features/serialization/model/GraphMLCreator.js?v=104","/script/features/enum_vertices/EnumVertices.js?v=104","/script/pages/editor/model/texts.js?v=104","/script/pages/editor/model/UndoStack.js?v=104","/script/pages/editor/model/DiskSaveLoad.js?v=104","/script/pages/editor/model/Application.js?v=104","/script/pages/editor/ui/ya_metrika.js?v=104","/script/pages/editor/ui/editor.js?v=104","/script/pages/editor/ui/main.js?v=104",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
 let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("shared/gzip.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/select_auto_save_graph_or_not/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
@@ -338,16 +338,26 @@ Graph.prototype.FindAllEdges=function(id1,id2)
 {var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(!edge.isDirect&&edge.vertex1.id==id2&&edge.vertex2.id==id1))
 {res.push(edge);}}
 return res;}
-Graph.prototype.GetAdjacencyMatrixStr=function()
-{var matrix="";for(var i=0;i<this.vertices.length;i++)
-{for(var j=0;j<this.vertices.length;j++)
-{var edge=this.FindEdgeMin(this.vertices[i].id,this.vertices[j].id);if(edge!=null)
-{matrix+=edge.weight;}
+Graph.prototype.GetAdjacencyMatrixStr=function(res_columns_width)
+{var matrix="";let cols_width=[];let get_edge_weight_str=(vertex_1,vertex_2)=>{var res="";var edge=this.FindEdgeMin(vertex_1.id,vertex_2.id);if(edge!=null)
+{res+=edge.weight;}
 else
-{matrix+="0";}
-if(j!=this.vertices.length)
+{res+="0";}
+return res;}
+for(var j=0;j<this.vertices.length;j++)
+{cols_width.push(0);for(var i=0;i<this.vertices.length;i++)
+{let weight_str=get_edge_weight_str(this.vertices[i],this.vertices[j]);let weight_len=weight_str.length;if(this.vertices[j].mainText.toString().length>weight_len&&weight_len==1)
+{weight_len=2;}
+if(weight_len>cols_width[j])
+{cols_width[j]=weight_len;}}}
+for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.vertices.length;j++)
+{let weight_str=get_edge_weight_str(this.vertices[i],this.vertices[j]);if(weight_str.length<cols_width[j])
+{weight_str=" ".repeat(cols_width[j]-weight_str.length)+weight_str;}
+matrix+=weight_str;if(j!=this.vertices.length)
 {matrix+=", ";}}
 matrix=matrix+"\n";}
+if(res_columns_width!==undefined){res_columns_width.length=0;res_columns_width.push(...cols_width);}
 return matrix;}
 Graph.prototype.GetAdjacencyMatrix=function()
 {var matrix=[];for(var i=0;i<this.vertices.length;i++)
@@ -502,17 +512,20 @@ for(var i=cols.length;i<Math.max(this.vertices.length,cols.length);i++)
 {this.DeleteVertex(this.vertices[i]);i--;}
 this.VerticesReposition(viewportSize,newVertices);}}
 Graph.prototype.GetIncidenceMatrix=function()
-{var matrix="";for(var i=0;i<this.vertices.length;i++)
-{for(var j=0;j<this.edges.length;j++)
-{if(this.edges[j].vertex1==this.vertices[i])
-{matrix+=this.edges[j].weight;}
-else if(this.edges[j].vertex2==this.vertices[i]&&!this.edges[j].isDirect)
-{matrix+=this.edges[j].weight;}
-else if(this.edges[j].vertex2==this.vertices[i]&&this.edges[j].isDirect)
-{matrix+=-this.edges[j].weight;}
+{var matrix="";let cols_width=[];let get_edge_weight_str=(vertex_index,edge_index)=>{if(this.edges[edge_index].vertex1==this.vertices[vertex_index])
+{return this.edges[edge_index].weight.toString();}
+else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&!this.edges[edge_index].isDirect)
+{return this.edges[edge_index].weight.toString();}
+else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&this.edges[edge_index].isDirect)
+{return-this.edges[edge_index].weight.toString();}
 else
-{matrix+="0";}
-if(j!=this.edges.length-1)
+{return"0";}};for(var j=0;j<this.edges.length;j++)
+{let max_width=0;for(var i=0;i<this.vertices.length;i++)
+{let str=""+get_edge_weight_str(i,j);max_width=Math.max(max_width,str.length);}
+cols_width.push(max_width);}
+for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.edges.length;j++)
+{let weight_str=get_edge_weight_str(i,j);weight_str=" ".repeat(cols_width[j]-weight_str.length)+weight_str;matrix+=""+weight_str;if(j!=this.edges.length-1)
 {matrix+=", ";}}
 matrix=matrix+"\n";}
 return matrix;}
@@ -1709,8 +1722,8 @@ Application.prototype.SetStatus=function(name,value)
 {this.status[name]=value;}
 Application.prototype.GetStatus=function()
 {return this.status[name];}
-Application.prototype.GetAdjacencyMatrix=function()
-{return this.graph.GetAdjacencyMatrixStr();}
+Application.prototype.GetAdjacencyMatrix=function(res_columns_width)
+{return this.graph.GetAdjacencyMatrixStr(res_columns_width);}
 Application.prototype.TestAdjacencyMatrix=function(matrix,rowsObj,colsObj,separator)
 {if(separator===undefined)
 {separator=",";}

@@ -1,4 +1,4 @@
-moduleLoader.beginCacheLoading(["/script/entities/graph/api/index.js?v=103","/script/shared/point.js?v=103","/script/entities/edge/api/index.js?v=103","/script/entities/edge/model/BaseEdge.js?v=103","/script/entities/edge/model/EdgeModel.js?v=103","/script/entities/vertex/api/index.js?v=103","/script/entities/vertex/model/BaseVertex.js?v=103","/script/entities/vertex/model/VertexModel.js?v=103","/script/entities/graph/model/Graph.js?v=103",]);{let modulDir="pages/create_graph_by_matrix/";doInclude([include("entities/graph/api/index.js")]);}
+moduleLoader.beginCacheLoading(["/script/entities/graph/api/index.js?v=104","/script/shared/point.js?v=104","/script/entities/edge/api/index.js?v=104","/script/entities/edge/model/BaseEdge.js?v=104","/script/entities/edge/model/EdgeModel.js?v=104","/script/entities/vertex/api/index.js?v=104","/script/entities/vertex/model/BaseVertex.js?v=104","/script/entities/vertex/model/VertexModel.js?v=104","/script/entities/graph/model/Graph.js?v=104",]);{let modulDir="pages/create_graph_by_matrix/";doInclude([include("entities/graph/api/index.js")]);}
 {let modulDir="entities/graph/";doInclude([include("shared/point.js"),include("entities/edge/api/index.js"),include("entities/vertex/api/index.js"),include("model/Graph.js",modulDir)])}function Point(x,y){this.x=x||0;this.y=y||0;};Point.prototype.x=null;Point.prototype.y=null;Point.prototype.add=function(v){return new Point(this.x+v.x,this.y+v.y);};Point.prototype.addValue=function(v){return new Point(this.x+v,this.y+v);};Point.prototype.clone=function(){return new Point(this.x,this.y);};Point.prototype.degreesTo=function(v){var dx=this.x-v.x;var dy=this.y-v.y;var angle=Math.atan2(dy,dx);return angle*(180/Math.PI);};Point.prototype.distance=function(v){return Math.sqrt(this.distanceSqr(v));};Point.prototype.distanceSqr=function(v){var x=this.x-v.x;var y=this.y-v.y;return x*x+y*y;};Point.prototype.equals=function(toCompare){return this.x==toCompare.x&&this.y==toCompare.y;};Point.prototype.interpolate=function(v,f){return new Point((this.x+v.x)*f,(this.y+v.y)*f);};Point.prototype.length=function(){return Math.sqrt(this.x*this.x+this.y*this.y);};Point.prototype.normalize=function(thickness){var l=this.length();this.x=this.x/l*thickness;this.y=this.y/l*thickness;return new Point(this.x,this.y);};Point.prototype.normalizeCopy=function(thickness){var l=this.length();return new Point(this.x/l*thickness,this.y/l*thickness);};Point.prototype.orbit=function(origin,arcWidth,arcHeight,degrees){var radians=degrees*(Math.PI/180);this.x=origin.x+arcWidth*Math.cos(radians);this.y=origin.y+arcHeight*Math.sin(radians);};Point.prototype.rotate=function(center,degrees){var radians=degrees*(Math.PI/180);offset=this.subtract(center);this.x=offset.x*Math.cos(radians)-offset.y*Math.sin(radians);this.y=offset.x*Math.sin(radians)+offset.y*Math.cos(radians);this.x=this.x+center.x;this.y=this.y+center.y;return this;};Point.prototype.offset=function(dx,dy){this.x+=dx;this.y+=dy;};Point.prototype.subtract=function(v){return new Point(this.x-v.x,this.y-v.y);};Point.prototype.subtractValue=function(value){return new Point(this.x-value,this.y-value);};Point.prototype.multiply=function(value){return new Point(this.x*value,this.y*value);};Point.prototype.toString=function(){return"(x="+this.x+", y="+this.y+")";};Point.prototype.normal=function(){return new Point(-this.y,this.x);};Point.prototype.min=function(point)
 {return new Point(Math.min(this.x,point.x),Math.min(this.y,point.y));};Point.prototype.max=function(point)
 {return new Point(Math.max(this.x,point.x),Math.max(this.y,point.y));};Point.prototype.inverse=function()
@@ -309,16 +309,26 @@ Graph.prototype.FindAllEdges=function(id1,id2)
 {var edge=this.edges[i];if((edge.vertex1.id==id1&&edge.vertex2.id==id2)||(!edge.isDirect&&edge.vertex1.id==id2&&edge.vertex2.id==id1))
 {res.push(edge);}}
 return res;}
-Graph.prototype.GetAdjacencyMatrixStr=function()
-{var matrix="";for(var i=0;i<this.vertices.length;i++)
-{for(var j=0;j<this.vertices.length;j++)
-{var edge=this.FindEdgeMin(this.vertices[i].id,this.vertices[j].id);if(edge!=null)
-{matrix+=edge.weight;}
+Graph.prototype.GetAdjacencyMatrixStr=function(res_columns_width)
+{var matrix="";let cols_width=[];let get_edge_weight_str=(vertex_1,vertex_2)=>{var res="";var edge=this.FindEdgeMin(vertex_1.id,vertex_2.id);if(edge!=null)
+{res+=edge.weight;}
 else
-{matrix+="0";}
-if(j!=this.vertices.length)
+{res+="0";}
+return res;}
+for(var j=0;j<this.vertices.length;j++)
+{cols_width.push(0);for(var i=0;i<this.vertices.length;i++)
+{let weight_str=get_edge_weight_str(this.vertices[i],this.vertices[j]);let weight_len=weight_str.length;if(this.vertices[j].mainText.toString().length>weight_len&&weight_len==1)
+{weight_len=2;}
+if(weight_len>cols_width[j])
+{cols_width[j]=weight_len;}}}
+for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.vertices.length;j++)
+{let weight_str=get_edge_weight_str(this.vertices[i],this.vertices[j]);if(weight_str.length<cols_width[j])
+{weight_str=" ".repeat(cols_width[j]-weight_str.length)+weight_str;}
+matrix+=weight_str;if(j!=this.vertices.length)
 {matrix+=", ";}}
 matrix=matrix+"\n";}
+if(res_columns_width!==undefined){res_columns_width.length=0;res_columns_width.push(...cols_width);}
 return matrix;}
 Graph.prototype.GetAdjacencyMatrix=function()
 {var matrix=[];for(var i=0;i<this.vertices.length;i++)
@@ -473,17 +483,20 @@ for(var i=cols.length;i<Math.max(this.vertices.length,cols.length);i++)
 {this.DeleteVertex(this.vertices[i]);i--;}
 this.VerticesReposition(viewportSize,newVertices);}}
 Graph.prototype.GetIncidenceMatrix=function()
-{var matrix="";for(var i=0;i<this.vertices.length;i++)
-{for(var j=0;j<this.edges.length;j++)
-{if(this.edges[j].vertex1==this.vertices[i])
-{matrix+=this.edges[j].weight;}
-else if(this.edges[j].vertex2==this.vertices[i]&&!this.edges[j].isDirect)
-{matrix+=this.edges[j].weight;}
-else if(this.edges[j].vertex2==this.vertices[i]&&this.edges[j].isDirect)
-{matrix+=-this.edges[j].weight;}
+{var matrix="";let cols_width=[];let get_edge_weight_str=(vertex_index,edge_index)=>{if(this.edges[edge_index].vertex1==this.vertices[vertex_index])
+{return this.edges[edge_index].weight.toString();}
+else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&!this.edges[edge_index].isDirect)
+{return this.edges[edge_index].weight.toString();}
+else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&this.edges[edge_index].isDirect)
+{return-this.edges[edge_index].weight.toString();}
 else
-{matrix+="0";}
-if(j!=this.edges.length-1)
+{return"0";}};for(var j=0;j<this.edges.length;j++)
+{let max_width=0;for(var i=0;i<this.vertices.length;i++)
+{let str=""+get_edge_weight_str(i,j);max_width=Math.max(max_width,str.length);}
+cols_width.push(max_width);}
+for(var i=0;i<this.vertices.length;i++)
+{for(var j=0;j<this.edges.length;j++)
+{let weight_str=get_edge_weight_str(i,j);weight_str=" ".repeat(cols_width[j]-weight_str.length)+weight_str;matrix+=""+weight_str;if(j!=this.edges.length-1)
 {matrix+=", ";}}
 matrix=matrix+"\n";}
 return matrix;}

@@ -46,9 +46,27 @@ ShowIncidenceMatrix.prototype.show = function()
 				$( this ).dialog( "close" );						
 			};
 
-	$( "#IncidenceMatrixField" ).val(this.app.GetIncidenceMatrix());	
+	let ta = $("#IncidenceMatrixField");
+	let sideWrap = $("#incidenceMatrix_side_text");
+
+	ta.on("scroll", function() {
+		sideWrap.scrollTop(ta.scrollTop());
+	});
+
+	$( "#IncidenceMatrixField" ).val(this.app.GetIncidenceMatrix().trimEnd());	
+	ta.focus()[0].setSelectionRange(0, 0);
+
 	$( "#BadIncidenceMatrixFormatMessage" ).hide();
 				
+	/* Make side and top text */
+	let sideText = "";
+	for (let i = 0; i < this.app.graph.vertices.length; i++)
+	{
+		/* Each vertex name max 3 symbols */
+		sideText += this.app.graph.vertices[i].mainText.toString().slice(0, 3) + "\n";		
+	}
+	$("#incidenceMatrix_side_text_text").html(sideText + "\n");
+
 	$( "#incidenceMatrix" ).dialog({
 		resizable: false,
         height: "auto",
@@ -56,6 +74,11 @@ ShowIncidenceMatrix.prototype.show = function()
 		modal: true,
 		title: g_incidenceMatrixText,
 		buttons: dialogButtons,
-		dialogClass: 'EdgeDialog'
+		dialogClass: 'EdgeDialog',
+		open: function(event, ui) {
+			/* Set width for side text */
+			$("#incidenceMatrix_top_text").width(ta.width());
+			$("#BadIncidenceMatrixFormatMessage").width(ta.width());
+		}
 	});
 }

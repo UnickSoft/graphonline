@@ -60,6 +60,7 @@
 		overflow: scroll;
 		width : 100%;
         height: 300px;
+        min-width: 400px;
 		overflow-wrap: normal;
 	}
 
@@ -68,6 +69,7 @@
 		overflow: scroll;
 		width : 100%;
 		height: 300px;
+        min-width: 400px;
 		overflow-wrap: normal;
 	}
 
@@ -76,6 +78,7 @@
 		overflow: scroll;
 		width : 100%;
 		height: 300px;
+        min-width: 400px;
 		overflow-wrap: normal;
     }
 
@@ -372,14 +375,17 @@
 	#AdjacencyMatrixField
 	{
         height: 200px;
+        min-width: 200px;
 	}
     #IncidenceMatrixField
     {
         height: 200px;
+        min-width: 200px;
     }
     #IncidenceMatrixField
     {
         height: 200px;
+        min-width: 200px;
     }
     
     #addVertex
@@ -495,4 +501,67 @@ label.switcherText {
 
 #autoSaveOrOriginalGraph .btn-xs{
     font-size: 12px;
+}
+
+/* Common matrix parameters */
+.ui-widget textarea.matrix,
+.top-text,
+.side-text {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre;
+  box-sizing: border-box;
+}
+
+/* GRID 2×2 */
+.matrix-wrapper {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: auto auto;
+  width: 100%;
+}
+
+/* Empty corner */
+.corner {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+
+/* Top text */
+.top-text-wrap {
+  /* width: 120px; */  /* ← Set in JS */
+  width: 10px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.top-text {
+  padding: 6px;
+}
+
+/* Left text */
+.side-text-wrap {
+  width: 40px;
+  height: 300px; /* ← Same as textarea */
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 650px) {
+    .side-text-wrap {
+        height: 200px; /* ← Same as textarea */
+    }
+}
+
+.side-text {
+  padding: 6px;
+}
+
+/* TEXTAREA */
+.ui-widget textarea.matrix {
+  padding: 6px;
+  overflow: auto;
+  resize: both;
 }

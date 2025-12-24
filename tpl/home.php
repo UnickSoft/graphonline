@@ -401,9 +401,21 @@
 	<div id="adjacencyMatrix">
 		<form>
 		<fieldset>
-				<p><?= L('adjacency_matrix_description')?></p>
-                <p id="AdjacencyMatrixMultiGraphDesc"><?= L('adjacency_matrix_multigraph_description')?></p>
-				<textarea name="adjacencyMatrixField" id="AdjacencyMatrixField" wrap="off"></textarea>
+				<p style="margin-bottom: 0.5rem;"><?= L('adjacency_matrix_description')?></p>
+        <p id="AdjacencyMatrixMultiGraphDesc"><?= L('adjacency_matrix_multigraph_description')?></p>
+        <div class="matrix-wrapper">
+          <div class="corner"><span class="bi bi-arrow-90deg-right"></span></div>
+
+          <div class="top-text-wrap" id="adjacencyMatrix_top_text">
+            <div class="top-text" id="adjacencyMatrix_top_text_text"></div>
+          </div>
+
+          <div class="side-text-wrap" id="adjacencyMatrix_side_text">
+            <div class="side-text" id="adjacencyMatrix_side_text_text"></div>
+          </div>
+
+          <textarea class="matrix" name="adjacencyMatrixField" id="AdjacencyMatrixField" wrap="off"></textarea>
+        </div>
 				<p id="BadMatrixFormatMessage"><?= L('adjacency_matrix_bad_format')?></p>
 		</fieldset>
 		</form>
@@ -412,8 +424,17 @@
 	<div id="incidenceMatrix">
 		<form>
 		<fieldset>
-				<p><?= L('incidence_matrix_description')?></p>				
-				<textarea name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
+				<p style="margin-bottom: 0.5rem;"><?= L('incidence_matrix_description')?></p>				
+				
+        <div class="matrix-wrapper">
+
+          <div class="side-text-wrap" id="incidenceMatrix_side_text">
+            <div class="side-text" id="incidenceMatrix_side_text_text"></div>
+          </div>
+
+          <textarea class="matrix" name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
+        </div>
+
 				<p id="BadIncidenceMatrixFormatMessage"><?= L('incidence_matrix_bad_format')?></p>
 		</fieldset>
 		</form>
@@ -422,8 +443,21 @@
 	<div id="floidMatrix">
 		<form>
 		<fieldset>
-				<p><?= L('min_dist_matrix_description') ?></p>
-				<textarea name="floidMatrixField" id="FloidMatrixField" wrap="off"></textarea>
+				<p style="margin-bottom: 0.5rem;"><?= L('min_dist_matrix_description') ?></p>
+
+        <div class="matrix-wrapper">
+          <div class="corner"><span class="bi bi-arrow-90deg-right"></span></div>
+
+          <div class="top-text-wrap" id="floidMatrix_top_text">
+            <div class="top-text" id="floidMatrix_top_text_text"></div>
+          </div>
+
+          <div class="side-text-wrap" id="floidMatrix_side_text">
+            <div class="side-text" id="floidMatrix_side_text_text"></div>
+          </div>
+
+          <textarea class="matrix" name="floidMatrixField" id="FloidMatrixField" wrap="off"></textarea>
+        </div>
 		</fieldset>
 		</form>
     </div>

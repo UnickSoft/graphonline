@@ -345,7 +345,7 @@
 
     $g_lang['salesman_problem'] = "Задача коммивояжёра";
     $g_lang['no_solution'] = "Решения не существует";
-    $g_lang['shortest_loop_is'] = "Кратчайшие цикл имеет длинну ";
+    $g_lang['shortest_loop_is'] = "Кратчайший цикл имеет длинну ";
     $g_lang['salesman_path_problem'] = "Задача коммивояжёра для пути";
-    $g_lang['shortest_path_is'] = "Кратчайшие путь имеет длинну ";
+    $g_lang['shortest_path_is'] = "Кратчайший путь имеет длинну ";
 ?>

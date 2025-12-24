@@ -289,30 +289,69 @@ Graph.prototype.FindAllEdges = function(id1, id2)
 	return res;
 }
 
-Graph.prototype.GetAdjacencyMatrixStr = function ()
+Graph.prototype.GetAdjacencyMatrixStr = function (res_columns_width)
 {
 	var matrix = "";
+	let cols_width = [];
+
+	let get_edge_weight_str = (vertex_1, vertex_2) => {
+		var res = "";
+
+		var edge = this.FindEdgeMin (vertex_1.id, vertex_2.id);
+		if (edge != null)
+		{
+			res += edge.weight;
+		}
+		else
+		{
+			res += "0";
+		}
+		
+		return res;
+	}
+
+	// Calculate max width for each column
+	for (var j = 0; j < this.vertices.length; j++)
+	{
+		cols_width.push(0);
+		for (var i = 0; i < this.vertices.length; i++)
+		{	
+			let weight_str = get_edge_weight_str(this.vertices[i], this.vertices[j]);
+			let weight_len = weight_str.length;
+			// Make the length at least 2 if vertex name length > 1
+			if (this.vertices[j].mainText.toString().length > weight_len && weight_len == 1)
+			{
+				weight_len = 2;
+			}
+			if (weight_len > cols_width[j]) 
+			{
+				cols_width[j] = weight_len;
+			}
+		}
+	}
+
 	for (var i = 0; i < this.vertices.length; i++)
 	{
 		for (var j = 0; j < this.vertices.length; j++)
 		{	
-			var edge = this.FindEdgeMin (this.vertices[i].id, this.vertices[j].id);
-			if (edge != null)
+			let weight_str = get_edge_weight_str(this.vertices[i], this.vertices[j]);
+			if (weight_str.length < cols_width[j])
 			{
-				matrix += edge.weight;
+				weight_str = " ".repeat(cols_width[j] - weight_str.length) + weight_str;
 			}
-			else
-			{
-				matrix += "0";
-			}
+			matrix += weight_str;
 			
 			if (j != this.vertices.length)
 			{
 				matrix += ", ";
 			}
-			
 		}
 		matrix = matrix + "\n";
+	}
+
+	if (res_columns_width !== undefined) {
+		res_columns_width.length = 0;
+		res_columns_width.push(...cols_width);
 	}
 	
 	return matrix;
@@ -939,32 +978,50 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 Graph.prototype.GetIncidenceMatrix = function ()
 {
 	var matrix = "";
+	let cols_width = [];
+
+	let get_edge_weight_str = (vertex_index, edge_index) => {
+		if (this.edges[edge_index].vertex1 == this.vertices[vertex_index])
+		{
+			return this.edges[edge_index].weight.toString();
+		}
+		else if (this.edges[edge_index].vertex2 == this.vertices[vertex_index] && !this.edges[edge_index].isDirect)
+		{
+			return this.edges[edge_index].weight.toString();
+		}
+		else if (this.edges[edge_index].vertex2 == this.vertices[vertex_index] && this.edges[edge_index].isDirect)
+		{
+			return -this.edges[edge_index].weight.toString();
+		}
+		else
+		{
+			return "0";
+		}
+	};
+
+	for (var j = 0; j < this.edges.length; j++)
+	{
+		let max_width = 0;
+		for (var i = 0; i < this.vertices.length; i++)
+		{	
+			let str = "" + get_edge_weight_str(i, j);
+			max_width = Math.max(max_width, str.length);
+		}
+		cols_width.push(max_width);
+	}
+
 	for (var i = 0; i < this.vertices.length; i++)
 	{
 		for (var j = 0; j < this.edges.length; j++)
 		{	
-			if (this.edges[j].vertex1 == this.vertices[i])
-			{
-				matrix += this.edges[j].weight;
-			}
-			else if (this.edges[j].vertex2 == this.vertices[i] && !this.edges[j].isDirect)
-			{
-				matrix += this.edges[j].weight;
-			}
-			else if (this.edges[j].vertex2 == this.vertices[i] && this.edges[j].isDirect)
-			{
-				matrix += -this.edges[j].weight;
-			}
-			else
-			{
-				matrix += "0";
-			}
-			
+			let weight_str = get_edge_weight_str(i, j);
+			weight_str = " ".repeat(cols_width[j] - weight_str.length) + weight_str;
+
+			matrix += "" + weight_str;
 			if (j != this.edges.length - 1)
 			{
 				matrix += ", ";
-			}
-			
+			}			
 		}
 		matrix = matrix + "\n";
 	}

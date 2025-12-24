@@ -139,7 +139,37 @@ FloidAlgorithm.prototype.messageWasChanged = function()
             dialogButtons[g_close] = function() {
 				$( this ).dialog( "close" );						
 			};
-            $( "#FloidMatrixField" ).val(self.GetFloidMatrix());	
+            let ta = $("#FloidMatrixField");
+            let topWrap = $("#floidMatrix_top_text");
+            let sideWrap = $("#floidMatrix_side_text");
+            ta.on("scroll", function() {
+                topWrap.scrollLeft(ta.scrollLeft());
+                sideWrap.scrollTop(ta.scrollTop());
+            });
+
+            let columns_width = [];
+            $( "#FloidMatrixField" ).val(self.GetFloidMatrix(columns_width).trimEnd());
+            ta.focus()[0].setSelectionRange(0, 0);
+            /* Make side and top text */
+            let sideText = "";
+            let topText = "";
+            for (let i = 0; i < self.graph.vertices.length; i++)
+            {
+                /* Each vertex name max 3 symbols */
+                sideText += self.graph.vertices[i].mainText.toString().slice(0, 3) + "\n";
+                
+                let col_width = columns_width[i];
+                let col_text = self.graph.vertices[i].mainText.toString();
+                if (col_width < col_text.length)
+                {
+                    col_text = col_text.slice(0, col_width);
+                }
+                col_text = col_text.padStart(col_width, " ");
+                topText += col_text + "  ";
+            }
+            $("#floidMatrix_top_text_text").html(topText);
+            $("#floidMatrix_side_text_text").html(sideText + "\n");
+            
             $( "#floidMatrix" ).dialog({
 		        resizable: false,
                 height: "auto",
@@ -147,7 +177,11 @@ FloidAlgorithm.prototype.messageWasChanged = function()
 		        modal: true,
 		        title: g_minDistMatrixText,
                 buttons: dialogButtons,
-                dialogClass: 'EdgeDialog'
+                dialogClass: 'EdgeDialog',
+                open: function(event, ui) {
+                    /* Set width for side text */
+                    $("#floidMatrix_top_text").width(ta.width());
+                }
 	       });
         };
     }
@@ -157,9 +191,9 @@ FloidAlgorithm.prototype.messageWasChanged = function()
     });
 }
 
-FloidAlgorithm.prototype.GetFloidMatrix = function()
+FloidAlgorithm.prototype.GetFloidMatrix = function(res_columns_width)
 {
-    return this.graph.GetAdjacencyMatrixStr();
+    return this.graph.GetAdjacencyMatrixStr(res_columns_width);
 }
 
 
