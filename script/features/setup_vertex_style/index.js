@@ -9,11 +9,26 @@ doInclude ([
 function SetupVertexStyle(app)
 {
   BaseHandler.apply(this, arguments);
-  this.message = "";	
+  this.message = "";
+  this.hdr_called = false;
 }
 
 // inheritance.
 SetupVertexStyle.prototype = Object.create(BaseHandler.prototype);
+
+SetupVertexStyle.prototype.apply_dpr = function(canvas) 
+{
+    if (this.hdr_called)
+    {
+        return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+
+    setDPIForCanvas(canvas, rect.width, rect.height);
+
+    this.hdr_called = true;
+}
 
 SetupVertexStyle.prototype.show = function(index, selectedVertices)
 {
@@ -131,11 +146,14 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
         
         context.save();
 
+        app.setupHighQualityRendering(context);
+        const dpr = window.devicePixelRatio || 1;
+
         var backgroundDrawer = new BaseBackgroundDrawer(context);
         backgroundDrawer.Draw(app.style.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer = new BaseVertexDrawer(context);
-        var baseVertex  = new BaseVertex(canvas.width / 2, canvas.height / 2, new BaseEnumVertices(this));
+        var baseVertex  = new BaseVertex(canvas.width / 2 / dpr, canvas.height / 2 / dpr, new BaseEnumVertices(this));
         baseVertex.mainText = "1";
         baseVertex.upText   = "Up Text";
         baseVertex.model.diameter = diameter;
@@ -276,7 +294,10 @@ SetupVertexStyle.prototype.show = function(index, selectedVertices)
 		modal: true,
 		title: g_vertexDraw,
 		buttons: dialogButtons,
-		dialogClass: 'EdgeDialog'
+		dialogClass: 'EdgeDialog',
+        open: function(event, ui) {
+            handler.apply_dpr(document.getElementById( "VertexPreview" ));
+        }
 	});
     
     redrawVertex();

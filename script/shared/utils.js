@@ -70,3 +70,29 @@ function InvertColor(hex) {
 
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
+
+function setDPIForCanvas(canvas, width, height) {
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width  = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+
+    if (dpr != 1)
+    {
+      canvas.style.width  = Math.round(width) + "px";
+      canvas.style.height = Math.round(height) + "px";
+    }
+
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function getCanvasLogicWidth(canvas) {
+    const dpr = window.devicePixelRatio || 1;
+    return canvas.width / dpr;
+}
+
+function getCanvasLogicHeight(canvas) {
+    const dpr = window.devicePixelRatio || 1;
+    return canvas.height / dpr;
+}

@@ -9,7 +9,8 @@ function Application(document, window, listener)
 {
     this.document = document;
     this.listener = listener;
-    this.canvas  = this.document.getElementById('canvas');
+    this.initCanvas();
+
     this.handler = new DefaultHandler(this);
     this.savedGraphName = "";
     this.currentEnumVerticesType = new BaseEnumVertices(this, 1);//this.enumVerticesTextList[0];
@@ -28,7 +29,6 @@ function Application(document, window, listener)
         new TextEnumVerticesGreek(this), 
         new TextEnumVerticesCustom(this)];
 
-    this.SetDefaultTransformations();
     this.algorithmsValues = {};
     this.undoStack  = new UndoStack(this.maxUndoStackSize);
 
@@ -79,6 +79,17 @@ Application.prototype.autosaveTimeInterval = 1000 * 60; // in ms. 1 minutes.
 Application.prototype.styliedGraphNamePostfix = "ZZcst";
 // Max size of last used graph list. It is saved into cookie and takes about 300 bytes.
 Application.prototype.maxLastUsedGraphCount = 5;
+
+Application.prototype.initCanvas = function()
+{
+    this.canvas  = this.document.getElementById('canvas');
+
+    console.log(this.canvas.width, this.canvas.height);
+    console.log(this.canvas.getBoundingClientRect());
+    console.log(window.devicePixelRatio);
+
+    this.SetDefaultTransformations();
+}
 
 Application.prototype.getMousePos = function(canvas, e)
 {
@@ -185,16 +196,24 @@ Application.prototype.redrawGraphTimer = function()
     }
 }
 
+Application.prototype.setupHighQualityRendering = function(context)
+{
+    context.imageSmoothingEnabled = false; // or false for pixel art
+    context.imageSmoothingQuality = 'high';
+}
+
 Application.prototype._redrawGraphInWindow = function()
 {
     var context = this.canvas.getContext('2d');
+
+    this.setupHighQualityRendering(context);
     
     context.save();
-    
+
     context.scale(this.canvasScale, this.canvasScale);
     context.translate(this.canvasPosition.x, this.canvasPosition.y);
     
-    this._RedrawGraph(context, {width: this.canvas.width, height: this.canvas.height, scale: this.canvasScale}, 
+    this._RedrawGraph(context, {width: getCanvasLogicWidth(this.canvas), height: getCanvasLogicHeight(this.canvas), scale: this.canvasScale}, 
         this.canvasPosition, this.style.backgroundCommonStyle, true);
 
     context.restore();
@@ -209,6 +228,8 @@ Application.prototype._OffscreenRedrawGraph = function()
     canvas.width  = bbox.size().x;
     canvas.height = bbox.size().y;
     var context = canvas.getContext('2d');
+
+    this.setupHighQualityRendering(context);
     
     context.save();
 
@@ -229,6 +250,8 @@ Application.prototype._PrintRedrawGraph = function()
     canvas.width  = bbox.size().x;
     canvas.height = bbox.size().y;
     var context = canvas.getContext('2d');
+
+    this.setupHighQualityRendering(context);
     
     context.save();
     
@@ -1202,12 +1225,12 @@ Application.prototype.GetFindPathReport = function ()
                                                     
 Application.prototype.GetRealWidth = function ()
 {
-    return this.canvas.width / this.canvasScale;
+    return getCanvasLogicWidth(this.canvas) / this.canvasScale;
 }
                           
 Application.prototype.GetRealHeight = function ()
 {
-    return this.canvas.height / this.canvasScale;
+    return getCanvasLogicHeight(this.canvas) / this.canvasScale;
 }
                           
 Application.prototype.SetDefaultTransformations = function()

@@ -9,11 +9,26 @@ doInclude ([
 function SetupEdgeStyle(app)
 {
   BaseHandler.apply(this, arguments);
-  this.message = "";	
+  this.message = "";
+  this.hdr_called = false;
 }
 
 // inheritance.
 SetupEdgeStyle.prototype = Object.create(BaseHandler.prototype);
+
+SetupEdgeStyle.prototype.apply_dpr = function(canvas) 
+{
+    if (this.hdr_called)
+    {
+        return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+
+    setDPIForCanvas(canvas, rect.width, rect.height);
+
+    this.hdr_called = true;
+}
 
 SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 {
@@ -126,13 +141,15 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
         var context = canvas.getContext('2d');    
         
         context.save();
-        
+
+        const dpr = window.devicePixelRatio || 1;
+        app.setupHighQualityRendering(context);
         var backgroundDrawer = new BaseBackgroundDrawer(context);
         backgroundDrawer.Draw(app.style.backgroundCommonStyle, canvas.width, canvas.height, new Point(0, 0), 1.0);
         
         var graphDrawer  = new BaseEdgeDrawer(context);
-        var baseVertex1  = new BaseVertex(0, canvas.height / 2, new BaseEnumVertices(this));
-        var baseVertex2  = new BaseVertex(canvas.width, canvas.height / 2, new BaseEnumVertices(this));
+        var baseVertex1  = new BaseVertex(0, canvas.height / 2 / dpr, new BaseEnumVertices(this));
+        var baseVertex2  = new BaseVertex(canvas.width / dpr, canvas.height / 2 / dpr, new BaseEnumVertices(this));
 
         baseVertex1.currentStyle = baseVertex1.getStyleFor(0);
         baseVertex2.currentStyle = baseVertex2.getStyleFor(0);
@@ -274,7 +291,10 @@ SetupEdgeStyle.prototype.show = function(index, selectedEdges)
 		modal: true,
 		title: g_edgeDraw,
 		buttons: dialogButtons,
-		dialogClass: 'EdgeDialog'
+		dialogClass: 'EdgeDialog',
+        open: function(event, ui) {
+            handler.apply_dpr(document.getElementById( "EdgePreview" ));
+        }
 	});
 
     redrawVertex();
