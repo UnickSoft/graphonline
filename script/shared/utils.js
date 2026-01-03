@@ -96,3 +96,8 @@ function getCanvasLogicHeight(canvas) {
     const dpr = window.devicePixelRatio || 1;
     return canvas.height / dpr;
 }
+
+function getLogicToCanvasSize(size) {
+    const dpr = window.devicePixelRatio || 1;
+    return size * dpr;
+}

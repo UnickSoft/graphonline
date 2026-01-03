@@ -1060,8 +1060,10 @@ Application.prototype.SaveGraphImageOnDisk = function (showDialogCallback)
 
         var pos = bbox.minPoint.subtract(canvasPositionInverse);
         
-        rectParams = "&x=" + Math.round(pos.x * this.canvasScale) + "&y=" + Math.round(pos.y * this.canvasScale)
-            + "&width=" + Math.round(bbox.size().x * this.canvasScale) + "&height=" + Math.round(bbox.size().y * this.canvasScale);
+        rectParams = "&x=" + Math.round(getLogicToCanvasSize(pos.x) * this.canvasScale) + 
+                     "&y=" + Math.round(getLogicToCanvasSize(pos.y) * this.canvasScale) + 
+                     "&width=" + Math.round(getLogicToCanvasSize(bbox.size().x) * this.canvasScale) + 
+                     "&height=" + Math.round(getLogicToCanvasSize(bbox.size().y) * this.canvasScale);
     }
 
     var imageBase64Data = this.canvas.toDataURL();

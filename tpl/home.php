@@ -560,7 +560,20 @@
         
     <div id="SetupVertexStyleDialog">
         <form class="pb-2">
-		<fieldset>
+		    <fieldset>
+          <div class="form-group row" id="VertexSelectedIndexForm">
+            <label for="vertexSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
+            <div class="col-sm-5">
+              <select id="vertexSelectedIndex" class="form-select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="all"><?= L('all')?></option>
+              </select>
+            </div>
+          </div>
           <div class="form-group row">
             <label for="vertexFillColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
             <div class="col-sm-5">
@@ -608,7 +621,7 @@
           <div class="form-group row">
             <label for="commonTextPosition" class="col-sm-5 col-form-label"><?= L('text_position') ?></label>
             <div class="col-sm-5">
-              <select id="commonTextPosition" class="form-control">
+              <select id="commonTextPosition" class="form-select">
                 <option value="0"><?= L('center') ?></option>
                 <option value="1"><?= L('on_up') ?></option>
               </select>
@@ -617,7 +630,7 @@
           <div class="form-group row">
             <label for="vertexShape" class="col-sm-5 col-form-label"><?= L('shape')?></label>
             <div class="col-sm-5">
-              <select id="vertexShape" class="form-control">
+              <select id="vertexShape" class="form-select">
                 <option value="0"><?= L('circle')?></option>
                 <option value="1"><?= L('squere')?></option>
                 <option value="2"><?= L('triangle')?></option>
@@ -632,11 +645,20 @@
             <div class="col-sm-5">
               <input type="number" class="form-control" id="vertexSize" placeholder="10" min="10" min="100">
             </div>
-          </div>
-          <div class="form-group row" id="VertexSelectedIndexForm">
-            <label for="vertexSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
+          </div>     
+        </fieldset>
+        </form>
+        
+        <canvas id="VertexPreview" width="350" height="150"></canvas>
+    </div>
+        
+    <div id="SetupEdgeStyleDialog">
+        <form class="pb-2">
+		    <fieldset>
+          <div class="form-group row" id="EdgeSelectedIndexForm">
+            <label for="edgeSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
             <div class="col-sm-5">
-              <select id="vertexSelectedIndex" class="form-control">
+              <select id="edgeSelectedIndex" class="form-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -645,16 +667,7 @@
                 <option value="all"><?= L('all')?></option>
               </select>
             </div>
-          </div>          
-        </fieldset>
-        </form>
-        
-        <canvas id="VertexPreview" width="300" height="150"></canvas>
-    </div>
-        
-    <div id="SetupEdgeStyleDialog">
-        <form class="pb-2">
-		<fieldset>
+          </div>
           <div class="form-group row">
             <label for="edgeStrokeColor" class="col-sm-5 col-form-label"><?= L('common_color') ?></label>
             <div class="col-sm-5">
@@ -688,7 +701,7 @@
           <div class="form-group row">
             <label for="weightTextPosition" class="col-sm-5 col-form-label"><?= L('weight_position') ?></label>
             <div class="col-sm-5">
-              <select id="weightTextPosition" class="form-control" >
+              <select id="weightTextPosition" class="form-select" >
                 <option value="0"><?= L('center') ?></option>
                 <option value="1"><?= L('on_up') ?></option>
               </select>
@@ -705,7 +718,7 @@
           <div class="form-group row">
             <label for="edgeStyle" class="col-sm-5 col-form-label"><?= L('line_style') ?></label>
             <div class="col-sm-5">
-              <select id="edgeStyle" class="form-control">
+              <select id="edgeStyle" class="form-select">
                 <option value="0">Solid</option>
                 <option value="1">Dotted</option>
                 <option value="2">Dashed</option>
@@ -718,24 +731,11 @@
             <div class="col-sm-5">
               <input type="number" class="form-control" id="edgeWidth" placeholder="3" min="1" min="20">
             </div>
-          </div>
-          <div class="form-group row" id="EdgeSelectedIndexForm">
-            <label for="edgeSelectedIndex" class="col-sm-5 col-form-label"><?= L('selected_index')?></label>
-            <div class="col-sm-5">
-              <select id="edgeSelectedIndex" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="all"><?= L('all')?></option>
-              </select>
-            </div>
-          </div>              
+          </div>          
         </fieldset>
         </form>
         
-        <canvas id="EdgePreview" width="300" height="150"></canvas>
+        <canvas id="EdgePreview" width="350" height="150"></canvas>
     </div>
         
     <div id="SetupBackgroundStyleDialog">

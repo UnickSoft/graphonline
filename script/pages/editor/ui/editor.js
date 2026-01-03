@@ -421,7 +421,7 @@ Editor.prototype.initButtonActions = function()
     {
         userAction(this.id);
         
-        var graphAsString  = self.application.graph.SaveToXML("");
+        var graphAsString  = self.application.graph.SaveToXML(self.application.SaveUserSettings());
         var savedGraphName = self.application.GetNewGraphName();
         
         var element = document.createElement('a');

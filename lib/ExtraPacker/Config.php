@@ -84,7 +84,7 @@
         public static function ChangeCssUrl_Url($url)
         {
             $url = self::ChangeCssUrl($url);
-            return "url('$url')";
+            return "url(\"$url\")";
         }
 
         public static function ChangeCssUrl_Src($url)
