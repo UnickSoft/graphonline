@@ -5,7 +5,7 @@
 
 var EdgeModels = {"line": 0, "curve" : 1};
 
-const defaultEdgeWidth = 4;
+const defaultEdgeWidth = 3;
                 
 function EdgeModel()
 {

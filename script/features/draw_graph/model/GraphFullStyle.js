@@ -4,17 +4,18 @@
 
 function GraphFullStyle(redrawCallback)
 {
-    this.edgeCommonStyle         = new CommonEdgeStyle();
+    this.version = 1;
+    this.edgeCommonStyle         = DefaultCommonEdgeStyle();
     this.isEdgeCommonStyleCustom = false;
     this.edgeSelectedStyles      = FullArrayCopy(DefaultSelectedEdgeStyles);
     this.isEdgeSelectedStylesCustom = false;
 
-    this.vertexCommonStyle          = new CommonVertexStyle();
+    this.vertexCommonStyle          = DefaultCommonVertexStyle();
     this.isVertexCommonStyleCustom  = false;
     this.vertexSelectedVertexStyles = FullArrayCopy(DefaultSelectedGraphStyles);
     this.isVertexSelectedVertexStylesCustom  = false;
 
-    this.backgroundCommonStyle = new CommonBackgroundStyle();
+    this.backgroundCommonStyle = DefaultCommonBackgroundStyle();
     this.isBackgroundCommonStyleCustom  = false;
 
     this.defaultVertexSize = null;
@@ -78,7 +79,7 @@ GraphFullStyle.prototype.Save = function()
     
     res = res + "";
     
-    return gEncodeToHTML(res);
+    return res;
 }
 
 GraphFullStyle.prototype.Load = function(json)
@@ -120,7 +121,7 @@ GraphFullStyle.prototype.Load = function(json)
                      check: "isBackgroundCommonStyleCustom",
                      deep: false});
     
-    var decoderStr = gDecodeFromHTML(json);
+    var decoderStr = json;
     var parsedSave = JSON.parse(decoderStr);
     
     var app = this;
@@ -192,3 +193,51 @@ GraphFullStyle.prototype.Load = function(json)
             }
         });
 }
+
+GraphFullStyle.prototype.GetVersion = function()
+{
+    return this.version;
+}
+
+GraphFullStyle.prototype.Print = function()
+{
+    let print_all_fields = function (style)
+    {
+        for (const [key, value] of Object.entries(style)) {
+            console.log(` ${key}:`, value);
+        }
+    }
+    console.log("Graph Full Style:");
+    console.log("Edge Common Style: ");
+    print_all_fields(this.edgeCommonStyle);
+    console.log("Edge Selected Styles:");
+    this.edgeSelectedStyles.forEach(function(edge_style, index) {
+        console.log(`[${index}]`);
+        print_all_fields(edge_style);
+    });
+    console.log("Vertex Common Style: ");
+    print_all_fields(this.vertexCommonStyle);
+    console.log("Vertex Selected Styles: ");
+    this.vertexSelectedVertexStyles.forEach(function(vertex_style, index) {
+        console.log(`[${index}]`);
+        print_all_fields(vertex_style);
+    });
+    console.log("Background Common Style: ");
+    print_all_fields(this.backgroundCommonStyle);
+}
+
+function OldGraphFullStyle()
+{
+    GraphFullStyle.apply(this, arguments);
+
+    this.version = 0;
+    this.edgeCommonStyle         = GetOldCommonEdgeStyle();
+    this.edgeSelectedStyles      = FullArrayCopy(OldSelectedEdgeStyles);
+
+    this.vertexCommonStyle          = GetOldCommonVertexStyle();
+    this.vertexSelectedVertexStyles = FullArrayCopy(OldSelectedGraphStyles);
+
+    this.backgroundCommonStyle = GetWhiteBackgroundStyle();
+}
+
+OldGraphFullStyle.prototype = Object.create(GraphFullStyle.prototype);

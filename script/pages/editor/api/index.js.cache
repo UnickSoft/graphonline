@@ -1,4 +1,4 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=106","/script/shared/gzip.js?v=106","/script/entities/graph/api/index.js?v=106","/script/shared/point.js?v=106","/script/entities/edge/api/index.js?v=106","/script/entities/edge/model/BaseEdge.js?v=106","/script/entities/edge/model/EdgeModel.js?v=106","/script/entities/vertex/api/index.js?v=106","/script/entities/vertex/model/BaseVertex.js?v=106","/script/entities/vertex/model/VertexModel.js?v=106","/script/entities/graph/model/Graph.js?v=106","/script/features/draw_graph/api/index.js?v=106","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=106","/script/features/draw_graph/model/EdgeStyle.js?v=106","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=106","/script/features/draw_graph/model/VertexShape.js?v=106","/script/features/draw_graph/model/VertexStyle.js?v=106","/script/features/draw_graph/model/BaseVertexDrawer.js?v=106","/script/features/draw_graph/model/GraphFullStyle.js?v=106","/script/features/algorithms/api/index.js?v=106","/script/features/algorithms/model/Algorithms.js?v=106","/script/features/algorithms/model/BaseTraversal.js?v=106","/script/features/base_handler/index.js?v=106","/script/features/default_handler/index.js?v=106","/script/features/add_vertices_handler/index.js?v=106","/script/features/connect_vertices_handler/index.js?v=106","/script/features/delete_objects_handler/index.js?v=106","/script/features/algorithm_handler/index.js?v=106","/script/features/select_auto_save_graph_or_not/index.js?v=106","/script/features/graph_preview/index.js?v=106","/script/features/serialization/api/index.js?v=106","/script/features/serialization/model/GraphMLCreator.js?v=106","/script/features/enum_vertices/EnumVertices.js?v=106","/script/pages/editor/model/texts.js?v=106","/script/pages/editor/model/UndoStack.js?v=106","/script/pages/editor/model/DiskSaveLoad.js?v=106","/script/pages/editor/model/Application.js?v=106","/script/pages/editor/ui/ya_metrika.js?v=106","/script/pages/editor/ui/editor.js?v=106","/script/pages/editor/ui/main.js?v=106",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=107","/script/shared/gzip.js?v=107","/script/entities/graph/api/index.js?v=107","/script/shared/point.js?v=107","/script/entities/edge/api/index.js?v=107","/script/entities/edge/model/BaseEdge.js?v=107","/script/entities/edge/model/EdgeModel.js?v=107","/script/entities/vertex/api/index.js?v=107","/script/entities/vertex/model/BaseVertex.js?v=107","/script/entities/vertex/model/VertexModel.js?v=107","/script/entities/graph/model/Graph.js?v=107","/script/features/draw_graph/api/index.js?v=107","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=107","/script/features/draw_graph/model/BackgroundStyle.js?v=107","/script/features/draw_graph/model/EdgeStyle.js?v=107","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=107","/script/features/draw_graph/model/VertexShape.js?v=107","/script/features/draw_graph/model/VertexStyle.js?v=107","/script/features/draw_graph/model/VertexOldStyle.js?v=107","/script/features/draw_graph/model/VertexPrintStyle.js?v=107","/script/features/draw_graph/model/OldEdgeStyle.js?v=107","/script/features/draw_graph/model/PrintEdgeStyle.js?v=107","/script/features/draw_graph/model/VertexNewWhiteStyle.js?v=107","/script/features/draw_graph/model/EdgeNewWhiteStyle.js?v=107","/script/features/draw_graph/model/BaseVertexDrawer.js?v=107","/script/features/draw_graph/model/GraphFullStyle.js?v=107","/script/features/algorithms/api/index.js?v=107","/script/features/algorithms/model/Algorithms.js?v=107","/script/features/algorithms/model/BaseTraversal.js?v=107","/script/features/base_handler/index.js?v=107","/script/features/default_handler/index.js?v=107","/script/features/add_vertices_handler/index.js?v=107","/script/features/connect_vertices_handler/index.js?v=107","/script/features/delete_objects_handler/index.js?v=107","/script/features/algorithm_handler/index.js?v=107","/script/features/select_auto_save_graph_or_not/index.js?v=107","/script/features/graph_preview/index.js?v=107","/script/features/serialization/api/index.js?v=107","/script/features/serialization/model/GraphMLCreator.js?v=107","/script/features/enum_vertices/EnumVertices.js?v=107","/script/pages/editor/model/texts.js?v=107","/script/pages/editor/model/UndoStack.js?v=107","/script/pages/editor/model/DiskSaveLoad.js?v=107","/script/pages/editor/model/Application.js?v=107","/script/pages/editor/ui/ya_metrika.js?v=107","/script/pages/editor/ui/editor.js?v=107","/script/pages/editor/ui/main.js?v=107",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
 let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("shared/gzip.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/select_auto_save_graph_or_not/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
@@ -147,7 +147,7 @@ style=globalApplication.GetStyle("edge","common");else
 style=globalApplication.GetStyle("edge","selected",undefined,index-1);return style;}}
 BaseEdge.prototype.hasOwnStyleFor=function(index)
 {return this.ownStyles.hasOwnProperty(index);}
-var EdgeModels={"line":0,"curve":1};const defaultEdgeWidth=4;function EdgeModel()
+var EdgeModels={"line":0,"curve":1};const defaultEdgeWidth=3;function EdgeModel()
 {this.width=globalApplication.GetDefaultEdgeWidth();this.type=EdgeModels.line;this.curveValue=EdgeModel.prototype.defaultCurve;this.default=true;this.sizeOfLoop=24;this.loopShiftAngel=Math.PI/6;}
 EdgeModel.prototype.defaultCurve=0.1;EdgeModel.prototype.copyFrom=function(other)
 {this.width=other.width;this.type=other.type;this.curveValue=other.curveValue;this.default=other.default;}
@@ -662,20 +662,18 @@ Graph.prototype.makeAllEdgesUndirected=function()
 {if(this.edges[i].isDirect)
 {this.edges[i].isDirect=false;}}
 this.isMultiGraph=this.checkMutiGraph();}
-{let modulDir="features/draw_graph/";doInclude([include("model/BaseBackgroundDrawer.js",modulDir),include("model/EdgeStyle.js",modulDir),include("model/BaseEdgeDrawer.js",modulDir),include("model/VertexShape.js",modulDir),include("model/VertexStyle.js",modulDir),include("model/BaseVertexDrawer.js",modulDir),include("model/GraphFullStyle.js",modulDir)])}
-function CommonBackgroundStyle()
+{let modulDir="features/draw_graph/";doInclude([include("model/BaseBackgroundDrawer.js",modulDir),include("model/BackgroundStyle.js",modulDir),include("model/EdgeStyle.js",modulDir),include("model/BaseEdgeDrawer.js",modulDir),include("model/VertexShape.js",modulDir),include("model/VertexStyle.js",modulDir),include("model/VertexOldStyle.js",modulDir),include("model/VertexPrintStyle.js",modulDir),include("model/OldEdgeStyle.js",modulDir),include("model/PrintEdgeStyle.js",modulDir),include("model/VertexNewWhiteStyle.js",modulDir),include("model/EdgeNewWhiteStyle.js",modulDir),include("model/BaseVertexDrawer.js",modulDir),include("model/GraphFullStyle.js",modulDir)])}
+function BaseBackgroundStyle()
 {this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
-CommonBackgroundStyle.prototype.Clear=function()
+BaseBackgroundStyle.prototype.Clear=function()
 {delete this.commonColor;delete this.commonOpacity;delete this.image;}
-CommonBackgroundStyle.prototype.ShouldLoad=function(field)
+BaseBackgroundStyle.prototype.ShouldLoad=function(field)
 {return true;}
-CommonBackgroundStyle.prototype.saveToJson=function(field)
+BaseBackgroundStyle.prototype.saveToJson=function(field)
 {return JSON.stringify({commonColor:this.commonColor,commonOpacity:this.commonOpacity,image:this.image!=null?this.image.src:null});}
-CommonBackgroundStyle.prototype.loadFromJson=function(json,callbackOnLoaded)
+BaseBackgroundStyle.prototype.loadFromJson=function(json,callbackOnLoaded)
 {this.commonColor=json["commonColor"];this.commonOpacity=json["commonOpacity"];this.image=null;if(typeof json["image"]==='string'){this.image=new Image();this.image.onload=function(){callbackOnLoaded();}
 this.image.src=json["image"];}}
-PrintBackgroundStyle.prototype=Object.create(CommonBackgroundStyle.prototype);function PrintBackgroundStyle()
-{CommonBackgroundStyle.apply(this,arguments);this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
 function BaseBackgroundDrawer(context)
 {this.context=context;}
 BaseBackgroundDrawer.prototype.Draw=function(style,width,height,position,scale)
@@ -685,7 +683,17 @@ context.globalAlpha=oldOpacity;}
 BaseBackgroundDrawer.prototype.DrawImage=function(style,width,height,position,scale)
 {if(style.image==null){return;}
 var context=this.context;context.clearRect(0,0,style.image.width,style.image.height);context.drawImage(style.image,0,0)}
-const lineDashTypes=[[],[4,4],[12,12],[16,4,4,4],];const WeightTextCenter=0,WeightTextUp=1;const DefaultFontEdge="px sans-serif",DefaultMainTextFontSizeEdge=16,TopTextFontSizeDeltaEdge=-4;function BaseEdgeStyle()
+function CommonBackgroundStyle()
+{BaseBackgroundStyle.apply(this,arguments);this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
+CommonBackgroundStyle.prototype=Object.create(BaseBackgroundStyle.prototype);function PrintBackgroundStyle()
+{CommonBackgroundStyle.apply(this,arguments);this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
+PrintBackgroundStyle.prototype=Object.create(CommonBackgroundStyle.prototype);function GetWhiteBackgroundStyle()
+{return new CommonBackgroundStyle();}
+function DefaultCommonBackgroundStyle()
+{return GetWhiteBackgroundStyle();}
+function DefaultPrintBackgroundStyle()
+{return new PrintBackgroundStyle();}
+const lineDashTypes=[[],[4,4],[12,12],[16,4,4,4],];const WeightTextCenter=0,WeightTextUp=1;const DefaultFontEdge="px sans-serif",DefaultMainTextFontSizeEdge=13,TopTextFontSizeDeltaEdge=-2;function BaseEdgeStyle()
 {this.baseStyles=[];}
 BaseEdgeStyle.prototype.GetStyle=function(baseStyle,object)
 {this.baseStyles.forEach(function(element){var styleObject=globalApplication.GetStyle("edge",element,object);baseStyle=styleObject.GetStyle(baseStyle,object);});if(this.hasOwnProperty('weightText'))
@@ -707,23 +715,7 @@ BaseEdgeStyle.prototype.Clear=function()
 {delete this.weightText;delete this.strokeStyle;delete this.fillStyle;delete this.textPadding;delete this.textStrokeWidth;delete this.lineDash;delete this.additionalTextColor;delete this.weightPosition;delete this.mainTextFontSize;}
 BaseEdgeStyle.prototype.ShouldLoad=function(field)
 {return field!="baseStyles";}
-function CommonEdgeStyle()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#c7b7c7';this.weightText='#f0d543';this.fillStyle='#68aeba';this.textPadding=4;this.textStrokeWidth=2;this.lineDash=0;this.additionalTextColor='#c7b7c7';this.weightPosition=WeightTextCenter;}
-CommonEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function CommonPrintEdgeStyle()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#000000';this.weightText='#000000';this.fillStyle='#FFFFFF';this.textPadding=4;this.textStrokeWidth=2;this.baseStyles.push("common");}
-CommonPrintEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle0()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#f0d543';this.weightText='#f0d543';this.fillStyle='#c7627a';this.baseStyles.push("common");}
-SelectedEdgeStyle0.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle1()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#8FBF83';this.weightText='#8FBF83';this.fillStyle='#F9F9D5';this.baseStyles.push("selected");}
-SelectedEdgeStyle1.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle2()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#8C4C86';this.weightText='#8C4C86';this.fillStyle='#253267';this.baseStyles.push("selected");}
-SelectedEdgeStyle2.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle3()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#6188FF';this.weightText='#6188FF';this.fillStyle='#E97CF9';this.baseStyles.push("selected");}
-SelectedEdgeStyle3.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle4()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#C6B484';this.weightText='#C6B484';this.fillStyle='#E0DEE1';this.baseStyles.push("selected");}
-SelectedEdgeStyle4.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgePrintStyle()
-{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#AAAAAA';this.weightText='#000000';this.fillStyle='#AAAAAA';this.baseStyles.push("printed");}
-SelectedEdgePrintStyle.prototype=Object.create(BaseEdgeStyle.prototype);var DefaultSelectedEdgeStyles=[new SelectedEdgeStyle0(),new SelectedEdgeStyle1(),new SelectedEdgeStyle2(),new SelectedEdgeStyle3(),new SelectedEdgeStyle4()];var DefaultPrintSelectedEdgeStyles=[new SelectedEdgePrintStyle()];function BaseEdgeDrawer(context,drawObjects)
+function BaseEdgeDrawer(context,drawObjects)
 {if(drawObjects===undefined)
 {drawObjects=null;}
 this.context=context;this.drawObject=null;this.drawArc=null;this.startArrowDirection=null;this.finishArrowDirection=null;this.textCenterObject=null;this.getPointOnArc=null;if(drawObjects)
@@ -836,7 +828,7 @@ function GetPointsForShape(shape,diameter,additional_data=null)
 function GetSizeForShape(shape,diameter)
 {switch(parseInt(shape))
 {case VertexSquareShape:return diameter;break;case VertexTriangleShape:return diameter*1.5;break;case VertexPentagonShape:return diameter*1.2;break;case VertexTextboxShape:return diameter;break;case VertexSnowflakeShape:return diameter*1.5;break;default:return diameter;break;}}
-const CommonTextCenter=0,CommonTextUp=1;const DefaultFont="px sans-serif",DefaultMainTextFontSize=16,TopTextFontSizeDelta=-4;function BaseVertexStyle()
+const CommonTextCenter=0,CommonTextUp=1;const DefaultFont="px sans-serif",DefaultMainTextFontSize=13,TopTextFontSizeDelta=-2;function BaseVertexStyle()
 {this.baseStyles=[];}
 BaseVertexStyle.prototype.GetStyle=function(baseStyle,object)
 {this.baseStyles.forEach(function(element){var styleObject=globalApplication.GetStyle("vertex",element,object);baseStyle=styleObject.GetStyle(baseStyle,object);});if(this.hasOwnProperty('lineWidth'))
@@ -857,11 +849,13 @@ BaseVertexStyle.prototype.Clear=function()
 {delete this.lineWidth;delete this.strokeStyle;delete this.fillStyle;delete this.mainTextColor;delete this.shape;delete this.upTextColor;delete this.commonTextPosition;delete this.lineWidth;delete this.mainTextFontSize;}
 BaseVertexStyle.prototype.ShouldLoad=function(field)
 {return field!="baseStyles";}
-function CommonVertexStyle()
-{BaseVertexStyle.apply(this,arguments);this.lineWidth=2;this.strokeStyle='#c7b7c7';this.fillStyle='#68aeba';this.mainTextColor='#f0d543';this.shape=VertexCircleShape;this.upTextColor='#68aeba';this.commonTextPosition=CommonTextCenter;this.baseStyles=[];}
-CommonVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function CommonPrintVertexStyle()
+function CommonPrintVertexStyle()
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#000000';this.fillStyle='#FFFFFF';this.mainTextColor='#000000';this.baseStyles.push("common");}
-CommonPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function SelectedVertexStyle0()
+CommonPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function SelectedPrintVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#000000';this.mainTextColor='#000000';this.fillStyle='#AAAAAA';this.baseStyles.push("printed");}
+SelectedPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function CommonVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.lineWidth=2;this.strokeStyle='#c7b7c7';this.fillStyle='#68aeba';this.mainTextColor='#f0d543';this.shape=VertexCircleShape;this.upTextColor='#68aeba';this.commonTextPosition=CommonTextCenter;this.baseStyles=[];}
+CommonVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function SelectedVertexStyle0()
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#f0d543';this.mainTextColor='#f0d543';this.fillStyle='#c7627a';this.baseStyles.push("common");}
 SelectedVertexStyle0.prototype=Object.create(BaseVertexStyle.prototype);function SelectedVertexStyle1()
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#7a9ba0';this.mainTextColor='#c3d2d5';this.fillStyle='#534641';this.baseStyles.push("selected");}
@@ -871,9 +865,67 @@ SelectedVertexStyle2.prototype=Object.create(BaseVertexStyle.prototype);function
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#6188FF';this.mainTextColor='#6188FF';this.fillStyle='#E97CF9';this.baseStyles.push("selected");}
 SelectedVertexStyle3.prototype=Object.create(BaseVertexStyle.prototype);function SelectedVertexStyle4()
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#C6B484';this.mainTextColor='#C6B484';this.fillStyle='#E0DEE1';this.baseStyles.push("selected");}
-SelectedVertexStyle4.prototype=Object.create(BaseVertexStyle.prototype);function SelectedPrintVertexStyle()
+SelectedVertexStyle4.prototype=Object.create(BaseVertexStyle.prototype);function GetOldCommonVertexStyle()
+{return new CommonVertexStyle();}
+var OldSelectedGraphStyles=[new SelectedVertexStyle0(),new SelectedVertexStyle1(),new SelectedVertexStyle2(),new SelectedVertexStyle3(),new SelectedVertexStyle4()];function CommonPrintVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#000000';this.fillStyle='#FFFFFF';this.mainTextColor='#000000';this.baseStyles.push("common");}
+CommonPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function SelectedPrintVertexStyle()
 {BaseVertexStyle.apply(this,arguments);this.strokeStyle='#000000';this.mainTextColor='#000000';this.fillStyle='#AAAAAA';this.baseStyles.push("printed");}
-SelectedPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);var DefaultSelectedGraphStyles=[new SelectedVertexStyle0(),new SelectedVertexStyle1(),new SelectedVertexStyle2(),new SelectedVertexStyle3(),new SelectedVertexStyle4()];var DefaultPrintSelectedGraphStyles=[new SelectedPrintVertexStyle()];function BaseVertexDrawer(context)
+SelectedPrintVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function DefaultCommonPrintVertexStyle()
+{return new CommonPrintVertexStyle();}
+var DefaultPrintSelectedGraphStyles=[new SelectedPrintVertexStyle()];function CommonEdgeStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#c7b7c7';this.weightText='#f0d543';this.fillStyle='#68aeba';this.textPadding=4;this.textStrokeWidth=2;this.lineDash=0;this.additionalTextColor='#c7b7c7';this.weightPosition=WeightTextCenter;}
+CommonEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle0()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#f0d543';this.weightText='#f0d543';this.fillStyle='#c7627a';this.baseStyles.push("common");}
+SelectedEdgeStyle0.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle1()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#8FBF83';this.weightText='#8FBF83';this.fillStyle='#F9F9D5';this.baseStyles.push("selected");}
+SelectedEdgeStyle1.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle2()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#8C4C86';this.weightText='#8C4C86';this.fillStyle='#253267';this.baseStyles.push("selected");}
+SelectedEdgeStyle2.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle3()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#6188FF';this.weightText='#6188FF';this.fillStyle='#E97CF9';this.baseStyles.push("selected");}
+SelectedEdgeStyle3.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgeStyle4()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#C6B484';this.weightText='#C6B484';this.fillStyle='#E0DEE1';this.baseStyles.push("selected");}
+SelectedEdgeStyle4.prototype=Object.create(BaseEdgeStyle.prototype);function GetOldCommonEdgeStyle()
+{return new CommonEdgeStyle();}
+var OldSelectedEdgeStyles=[new SelectedEdgeStyle0(),new SelectedEdgeStyle1(),new SelectedEdgeStyle2(),new SelectedEdgeStyle3(),new SelectedEdgeStyle4()];function CommonPrintEdgeStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#000000';this.weightText='#000000';this.fillStyle='#FFFFFF';this.textPadding=4;this.textStrokeWidth=2;this.baseStyles.push("common");}
+CommonPrintEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function SelectedEdgePrintStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#AAAAAA';this.weightText='#000000';this.fillStyle='#AAAAAA';this.baseStyles.push("printed");}
+SelectedEdgePrintStyle.prototype=Object.create(BaseEdgeStyle.prototype);function DefaultCommonPrintEdgeStyle()
+{return new CommonPrintEdgeStyle();}
+var DefaultPrintSelectedEdgeStyles=[new SelectedEdgePrintStyle()];function WhiteCommonVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.lineWidth=2;this.strokeStyle='#1e88e5';this.fillStyle='#e3f2fd';this.mainTextColor='#0d47a1';this.shape=VertexCircleShape;this.upTextColor='#455a64';this.commonTextPosition=CommonTextCenter;this.baseStyles=[];}
+WhiteCommonVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function WhiteSelectedVertexStyle0()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#fb8c00';this.mainTextColor='#e65100';this.fillStyle='#fff3e0';this.upTextColor='#e65100';this.baseStyles.push("common");}
+WhiteSelectedVertexStyle0.prototype=Object.create(BaseVertexStyle.prototype);function WhiteSelectedVertexStyle1()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#43a047';this.mainTextColor='#1b5e20';this.fillStyle='#e8f5e9';this.upTextColor='#1b5e20';this.baseStyles.push("selected");}
+WhiteSelectedVertexStyle1.prototype=Object.create(BaseVertexStyle.prototype);function WhiteSelectedVertexStyle2()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#8e24aa';this.mainTextColor='#4a148c';this.fillStyle='#f3e5f5';this.upTextColor='#4a148c';this.baseStyles.push("selected");}
+WhiteSelectedVertexStyle2.prototype=Object.create(BaseVertexStyle.prototype);function WhiteSelectedVertexStyle3()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#c62828';this.mainTextColor='#8e0000';this.fillStyle='#fdecea';this.upTextColor='#8e0000';this.baseStyles.push("selected");}
+WhiteSelectedVertexStyle3.prototype=Object.create(BaseVertexStyle.prototype);function WhiteSelectedVertexStyle4()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#6d4c41';this.mainTextColor='#3e2723';this.fillStyle='#efebe9';this.upTextColor='#3e2723';this.baseStyles.push("selected");}
+WhiteSelectedVertexStyle4.prototype=Object.create(BaseVertexStyle.prototype);function GetWhiteCommonVertexStyle()
+{return new WhiteCommonVertexStyle();}
+var WhiteSelectedGraphStyles=[new WhiteSelectedVertexStyle0(),new WhiteSelectedVertexStyle1(),new WhiteSelectedVertexStyle2(),new WhiteSelectedVertexStyle3(),new WhiteSelectedVertexStyle4()];function DefaultCommonVertexStyle()
+{return GetWhiteCommonVertexStyle();}
+var DefaultSelectedGraphStyles=WhiteSelectedGraphStyles;function WhiteCommonEdgeStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#1e88e5';this.weightText='#263238';this.fillStyle='#ffffff';this.textPadding=4;this.textStrokeWidth=2;this.lineDash=0;this.additionalTextColor='#263238';this.weightPosition=WeightTextCenter;}
+WhiteCommonEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function WhiteSelectedEdgeStyle0()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#fb8c00';this.weightText='#e65100';this.fillStyle='#fffee0';this.additionalTextColor='#e65100';this.baseStyles.push("common");}
+WhiteSelectedEdgeStyle0.prototype=Object.create(BaseEdgeStyle.prototype);function WhiteSelectedEdgeStyle1()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#43a047';this.weightText='#1b5e20';this.fillStyle='#e8f5e9';this.additionalTextColor='#1b5e20';this.baseStyles.push("selected");}
+WhiteSelectedEdgeStyle1.prototype=Object.create(BaseEdgeStyle.prototype);function WhiteSelectedEdgeStyle2()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#8e24aa';this.weightText='#4a148c';this.fillStyle='#f3e5f5';this.additionalTextColor='#4a148c';this.baseStyles.push("selected");}
+WhiteSelectedEdgeStyle2.prototype=Object.create(BaseEdgeStyle.prototype);function WhiteSelectedEdgeStyle3()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#c62828';this.weightText='#8e0000';this.fillStyle='#fdecea';this.additionalTextColor='#8e0000';this.baseStyles.push("selected");}
+WhiteSelectedEdgeStyle3.prototype=Object.create(BaseEdgeStyle.prototype);function WhiteSelectedEdgeStyle4()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#6d4c41';this.weightText='#3e2723';this.fillStyle='#efebe9';this.additionalTextColor='#3e2723';this.baseStyles.push("selected");}
+WhiteSelectedEdgeStyle4.prototype=Object.create(BaseEdgeStyle.prototype);function GetWhiteCommonEdgeStyle()
+{return new WhiteCommonEdgeStyle();}
+var WhiteSelectedEdgeStyles=[new WhiteSelectedEdgeStyle0(),new WhiteSelectedEdgeStyle1(),new WhiteSelectedEdgeStyle2(),new WhiteSelectedEdgeStyle3(),new WhiteSelectedEdgeStyle4()];function DefaultCommonEdgeStyle()
+{return GetWhiteCommonEdgeStyle();}
+var DefaultSelectedEdgeStyles=WhiteSelectedEdgeStyles;function BaseVertexDrawer(context)
 {this.context=context;}
 BaseVertexDrawer.prototype.Draw=function(baseGraph,graphStyle)
 {this.SetupStyle(graphStyle);this.DrawShape(baseGraph);if(this.currentStyle.lineWidth!=0)
@@ -896,14 +948,14 @@ this.context.fillText(text,position.x,position.y);}
 BaseVertexDrawer.prototype.DrawCenterText=function(position,text,color,outlineColor,bold,outline,size)
 {this.context.textBaseline="middle";this.context.font=(bold?"bold ":"")+size+DefaultFont;var textWidth=this.context.measureText(text).width;this.DrawText(new Point(position.x-textWidth/2,position.y),text,color,outlineColor,outline,this.context.font);}
 function GraphFullStyle(redrawCallback)
-{this.edgeCommonStyle=new CommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.vertexCommonStyle=new CommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.backgroundCommonStyle=new CommonBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.redrawCallback=redrawCallback;}
+{this.version=1;this.edgeCommonStyle=DefaultCommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.vertexCommonStyle=DefaultCommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.backgroundCommonStyle=DefaultCommonBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.redrawCallback=redrawCallback;}
 GraphFullStyle.prototype.Save=function()
 {var res="";var needEnd=false;var checkValue=[];checkValue.push({field:"edgeCommonStyle",value:this.edgeCommonStyle,check:this.isEdgeCommonStyleCustom});checkValue.push({field:"edgeSelectedStyles",value:this.edgeSelectedStyles,check:this.isEdgeSelectedStylesCustom});checkValue.push({field:"vertexCommonStyle",value:this.vertexCommonStyle,check:this.isVertexCommonStyleCustom});checkValue.push({field:"vertexSelectedVertexStyles",value:this.vertexSelectedVertexStyles,check:this.isVertexSelectedVertexStylesCustom});checkValue.push({field:"backgroundCommonStyle",value:this.backgroundCommonStyle,check:this.isBackgroundCommonStyleCustom});checkValue.push({field:"defaultVertexSize",value:this.defaultVertexSize,check:this.defaultVertexSize!=null});checkValue.push({field:"defaultEdgeWidth",value:this.defaultEdgeWidth,check:this.defaultEdgeWidth!=null});checkValue.forEach(function(entry){if(!entry.check)
 return;if(needEnd)
 res=res+",";let valueJson="";if(typeof entry.value.saveToJson==="function"){valueJson=entry.value.saveToJson();}else{valueJson=JSON.stringify(entry.value);}
-res=res+"\""+entry.field+"\""+":"+valueJson;needEnd=true;});res=res+"";return gEncodeToHTML(res);}
+res=res+"\""+entry.field+"\""+":"+valueJson;needEnd=true;});res=res+"";return res;}
 GraphFullStyle.prototype.Load=function(json)
-{var checkValue=[];checkValue.push({field:"edgeCommonStyle",value:this.edgeCommonStyle,check:"isEdgeCommonStyleCustom",deep:false});checkValue.push({field:"edgeSelectedStyles",value:this.edgeSelectedStyles,check:"isEdgeSelectedStylesCustom",deep:true});checkValue.push({field:"vertexCommonStyle",value:this.vertexCommonStyle,check:"isVertexCommonStyleCustom",deep:false});checkValue.push({field:"vertexSelectedVertexStyles",value:this.vertexSelectedVertexStyles,check:"isVertexSelectedVertexStylesCustom",deep:true});checkValue.push({field:"defaultVertexSize",value:"defaultVertexSize",check:null,deep:false});checkValue.push({field:"defaultEdgeWidth",value:"defaultEdgeWidth",check:null,deep:false});checkValue.push({field:"backgroundCommonStyle",value:this.backgroundCommonStyle,check:"isBackgroundCommonStyleCustom",deep:false});var decoderStr=gDecodeFromHTML(json);var parsedSave=JSON.parse(decoderStr);var app=this;checkValue.forEach(function(entry){if(parsedSave.hasOwnProperty(entry.field))
+{var checkValue=[];checkValue.push({field:"edgeCommonStyle",value:this.edgeCommonStyle,check:"isEdgeCommonStyleCustom",deep:false});checkValue.push({field:"edgeSelectedStyles",value:this.edgeSelectedStyles,check:"isEdgeSelectedStylesCustom",deep:true});checkValue.push({field:"vertexCommonStyle",value:this.vertexCommonStyle,check:"isVertexCommonStyleCustom",deep:false});checkValue.push({field:"vertexSelectedVertexStyles",value:this.vertexSelectedVertexStyles,check:"isVertexSelectedVertexStylesCustom",deep:true});checkValue.push({field:"defaultVertexSize",value:"defaultVertexSize",check:null,deep:false});checkValue.push({field:"defaultEdgeWidth",value:"defaultEdgeWidth",check:null,deep:false});checkValue.push({field:"backgroundCommonStyle",value:this.backgroundCommonStyle,check:"isBackgroundCommonStyleCustom",deep:false});var decoderStr=json;var parsedSave=JSON.parse(decoderStr);var app=this;checkValue.forEach(function(entry){if(parsedSave.hasOwnProperty(entry.field))
 {if(typeof parsedSave[entry.field]==='number')
 {app[entry.value]=parseInt(parsedSave[entry.field]);}
 else
@@ -926,7 +978,15 @@ entry.value[k].Clear();for(var deepK in parsedSave[entry.field][k])
 entry.value[k][deepK]=parsedSave[entry.field][k][deepK];}}}}
 if(entry.check!=null)
 app[entry.check]=true;}});}
-{let modulDir="features/algorithms/";doInclude([include("model/Algorithms.js",modulDir),include("model/BaseTraversal.js",modulDir)])
+GraphFullStyle.prototype.GetVersion=function()
+{return this.version;}
+GraphFullStyle.prototype.Print=function()
+{let print_all_fields=function(style)
+{for(const[key,value]of Object.entries(style)){console.log(`${key}:`,value);}}
+console.log("Graph Full Style:");console.log("Edge Common Style: ");print_all_fields(this.edgeCommonStyle);console.log("Edge Selected Styles:");this.edgeSelectedStyles.forEach(function(edge_style,index){console.log(`[${index}]`);print_all_fields(edge_style);});console.log("Vertex Common Style: ");print_all_fields(this.vertexCommonStyle);console.log("Vertex Selected Styles: ");this.vertexSelectedVertexStyles.forEach(function(vertex_style,index){console.log(`[${index}]`);print_all_fields(vertex_style);});console.log("Background Common Style: ");print_all_fields(this.backgroundCommonStyle);}
+function OldGraphFullStyle()
+{GraphFullStyle.apply(this,arguments);this.version=0;this.edgeCommonStyle=GetOldCommonEdgeStyle();this.edgeSelectedStyles=FullArrayCopy(OldSelectedEdgeStyles);this.vertexCommonStyle=GetOldCommonVertexStyle();this.vertexSelectedVertexStyles=FullArrayCopy(OldSelectedGraphStyles);this.backgroundCommonStyle=GetWhiteBackgroundStyle();}
+OldGraphFullStyle.prototype=Object.create(GraphFullStyle.prototype);{let modulDir="features/algorithms/";doInclude([include("model/Algorithms.js",modulDir),include("model/BaseTraversal.js",modulDir)])
 function loadAsyncAlgorithms(onFinish){let modulDir="features/algorithms/";let pluginsList=["BFS.js","Coloring.js","ConnectedComponent.js","DFS.js","EulerianLoop.js","EulerianPath.js","FindAllPatches.js","FindLongestPath.js","FindShortPatchsFromOne.js","Floid.js","GraphReorder.js","HamiltonianLoop.js","HamiltonianPath.js","IsomorphismCheck.js","MaxClique.js","MaxFlow.js","MinimumSpanningTree.js","ModernGraphStyle.js","RadiusAndDiameter.js","ShortestPath.js","VerticesDegree.js","MaxIndependentSet.js","FindAllShortestPatches.js","SalesmanProblem.js","SalesmanProblemPath.js"];doIncludeAsync(pluginsList.map((plugin)=>include("model/plugins/"+plugin,modulDir)),onFinish);}}
 function getVertexToVertexArray(graph,ignoreDirection)
 {res={};for(var i=0;i<graph.edges.length;i++)
@@ -1524,7 +1584,7 @@ DiskSaveLoad.RemoveAutoSaveGraphFromDisk=function(graphName,callback)
 {$.ajax({type:"GET",url:"/"+SiteDir+"backend/removeGraph.php?name=autosave_"+graphName}).done(callback);}
 var globalApplication=null;function Application(document,window,listener)
 {this.document=document;this.listener=listener;this.initCanvas();this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.algorithmsValues={};this.undoStack=new UndoStack(this.maxUndoStackSize);this.style=new GraphFullStyle(function()
-{this.redrawGraph();}.bind(this));this.edgePrintCommonStyle=new CommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexPrintCommonStyle=new CommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundPrintStyle=new PrintBackgroundStyle();this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;this.lastSavedAutoSave="";this.lastGraphName="";this.lastUsedGraphs=[];};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.maxAutosaveSizeForCookie=2000;Application.prototype.autosaveTimeInterval=1000*60;Application.prototype.styliedGraphNamePostfix="ZZcst";Application.prototype.maxLastUsedGraphCount=5;Application.prototype.initCanvas=function()
+{this.redrawGraph();}.bind(this));this.edgePrintCommonStyle=DefaultCommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexPrintCommonStyle=DefaultCommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundPrintStyle=DefaultPrintBackgroundStyle();this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;this.lastSavedAutoSave="";this.lastGraphName="";this.lastUsedGraphs=[];};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.maxAutosaveSizeForCookie=2000;Application.prototype.autosaveTimeInterval=1000*60;Application.prototype.styliedGraphNamePostfix="ZZcst";Application.prototype.maxLastUsedGraphCount=5;Application.prototype.initCanvas=function()
 {this.canvas=this.document.getElementById('canvas');console.log(this.canvas.width,this.canvas.height);console.log(this.canvas.getBoundingClientRect());console.log(window.devicePixelRatio);this.SetDefaultTransformations();}
 Application.prototype.getMousePos=function(canvas,e)
 {var rect=canvas.getBoundingClientRect();return{x:(e.clientX-rect.left)/this.canvasScale-this.canvasPosition.x,y:(e.clientY-rect.top)/this.canvasScale-this.canvasPosition.y};}
@@ -1874,10 +1934,18 @@ this.LoadUserSettings(userSettings["data"]);if(this.handler!=null)
 {this.handler.GraphWasUpdated();this.handler.RestRedraw();}
 this.redrawGraph();if(this.undoStack.IsUndoStackEmpty())
 document.getElementById('GraphUndo').style.display='none';}
-Application.prototype.SaveUserSettings=function()
-{return"{"+this.style.Save()+"}";}
+let g_base_style_str=" \"base_style\":";let g_base_style_0_str=" \"base_style\": 0";let g_base_style_1_str=" \"base_style\": 1";Application.prototype.SaveUserSettings=function()
+{let user_style=this.style.Save();let res="{"+user_style+
+(user_style!=""?",":"")+g_base_style_str+" "+this.style.GetVersion()+"}";return gEncodeToHTML(res);}
 Application.prototype.LoadUserSettings=function(json)
-{this.style.Load(json);}
+{let decoded_json=gDecodeFromHTML(json);if(decoded_json!=null&&decoded_json.length>("{"+g_base_style_1_str+"+ some other}").length)
+{if(decoded_json.indexOf(g_base_style_str)===-1||decoded_json.indexOf(g_base_style_0_str)!==-1)
+{this.style=new OldGraphFullStyle(function()
+{this.redrawGraph();}.bind(this));}
+else if(decoded_json.indexOf(g_base_style_1_str)!==-1)
+{this.style=new GraphFullStyle(function()
+{this.redrawGraph();}.bind(this));}}
+this.style.Load(decoded_json);}
 Application.prototype.SetVertexStyle=function(index,style)
 {if(index==0)
 {this.style.vertexCommonStyle=style;this.style.isVertexCommonStyleCustom=true;}
@@ -1885,7 +1953,7 @@ else
 {this.style.vertexSelectedVertexStyles[index-1]=style;this.style.isVertexSelectedVertexStylesCustom=true;}}
 Application.prototype.ResetVertexStyle=function(index)
 {if(index==0)
-{this.style.vertexCommonStyle=new CommonVertexStyle();this.style.isVertexCommonStyleCustom=false;}
+{this.style.vertexCommonStyle=DefaultCommonVertexStyle();this.style.isVertexCommonStyleCustom=false;}
 else
 {this.style.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.style.isVertexSelectedVertexStylesCustom=false;}}
 Application.prototype.SetEdgeStyle=function(index,style)
@@ -1895,13 +1963,13 @@ else
 {this.style.edgeSelectedStyles[index-1]=style;this.style.isEdgeSelectedStylesCustom=true;}}
 Application.prototype.ResetEdgeStyle=function(index)
 {if(index==0)
-{this.style.edgeCommonStyle=new CommonEdgeStyle();this.style.isEdgeCommonStyleCustom=false;}
+{this.style.edgeCommonStyle=DefaultCommonEdgeStyle();this.style.isEdgeCommonStyleCustom=false;}
 else
 {this.style.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.style.isEdgeSelectedStylesCustom=false;}}
 Application.prototype.SetBackgroundStyle=function(style)
 {this.style.backgroundCommonStyle=style;this.style.isBackgroundCommonStyleCustom=true;}
 Application.prototype.ResetBackgroundStyle=function()
-{this.style.backgroundCommonStyle=new CommonBackgroundStyle();this.style.isBackgroundCommonStyleCustom=false;}
+{this.style.backgroundCommonStyle=DefaultCommonBackgroundStyle();this.style.isBackgroundCommonStyleCustom=false;}
 Application.prototype.GetAvailableCurveValue=function(neighborEdges,originalEdge)
 {return this.graph.GetAvailableCurveValue(neighborEdges,originalEdge);}
 Application.prototype.GraphTypeChanged=function()

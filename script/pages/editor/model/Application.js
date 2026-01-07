@@ -37,12 +37,12 @@ function Application(document, window, listener)
             this.redrawGraph();
         }.bind(this));
     
-    this.edgePrintCommonStyle      = new CommonPrintEdgeStyle();
+    this.edgePrintCommonStyle      = DefaultCommonPrintEdgeStyle();
     this.edgePrintSelectedStyles   = FullArrayCopy(DefaultPrintSelectedEdgeStyles);
     
-    this.vertexPrintCommonStyle          = new CommonPrintVertexStyle(); 
+    this.vertexPrintCommonStyle          = DefaultCommonPrintVertexStyle(); 
     this.vertexPrintSelectedVertexStyles = FullArrayCopy(DefaultPrintSelectedGraphStyles);
-    this.backgroundPrintStyle  = new PrintBackgroundStyle();
+    this.backgroundPrintStyle  = DefaultPrintBackgroundStyle();
     this.renderPathWithEdges = false;
     
     this.edgePresets = [1, 3, 5, 7, 11, 42];
@@ -109,6 +109,8 @@ Application.prototype.redrawGraph = function()
         this._redrawGraphInWindow();
         
         this.GraphTypeChanged();
+
+        //this.style.Print();
     }
 }
 
@@ -1378,16 +1380,48 @@ Application.prototype.Undo = function()
         document.getElementById('GraphUndo').style.display = 'none';    
 }
 
+let g_base_style_str = " \"base_style\":";
+let g_base_style_0_str = " \"base_style\": 0";
+let g_base_style_1_str = " \"base_style\": 1";
 Application.prototype.SaveUserSettings = function()
 {
-    return "{" + this.style.Save() + "}";
+    let user_style = this.style.Save();
+    // Add base style to load graph with correct base style.
+    // 0 or not exist - apply old style 
+    // 1 - apply new style.
+    let res = "{" + user_style + 
+                 (user_style != "" ? "," : "") + g_base_style_str + " " + this.style.GetVersion() +
+            "}";
+    return gEncodeToHTML(res);
 }
 
 Application.prototype.LoadUserSettings = function(json)
 {
-    this.style.Load(json);
-}
+    let decoded_json = gDecodeFromHTML(json);
 
+    // Check if we have user style or just base style.
+    if (decoded_json != null && decoded_json.length > ("{" + g_base_style_1_str + "+ some other}").length)
+    {
+        // Apply needed base style.
+        if (decoded_json.indexOf(g_base_style_str) === -1 || decoded_json.indexOf(g_base_style_0_str) !== -1)
+        {
+            // No base_style or base_style = 0
+            this.style = new OldGraphFullStyle(function() 
+                                                {
+                                                    this.redrawGraph();
+                                                }.bind(this));
+        }
+        else if (decoded_json.indexOf(g_base_style_1_str) !== -1)
+        {
+            // base_style = 1
+            this.style = new GraphFullStyle(function() 
+                                                {
+                                                    this.redrawGraph();
+                                                }.bind(this));
+        }
+    }
+    this.style.Load(decoded_json);
+}
 
 Application.prototype.SetVertexStyle = function (index, style)
 {
@@ -1407,7 +1441,7 @@ Application.prototype.ResetVertexStyle = function (index)
 {
     if (index == 0)
     {
-        this.style.vertexCommonStyle = new CommonVertexStyle();
+        this.style.vertexCommonStyle = DefaultCommonVertexStyle();
         this.style.isVertexCommonStyleCustom = false;
     }
     else
@@ -1435,7 +1469,7 @@ Application.prototype.ResetEdgeStyle = function (index)
 {
     if (index == 0)
     {
-        this.style.edgeCommonStyle = new CommonEdgeStyle();
+        this.style.edgeCommonStyle = DefaultCommonEdgeStyle();
         this.style.isEdgeCommonStyleCustom = false;
     }
     else
@@ -1453,7 +1487,7 @@ Application.prototype.SetBackgroundStyle = function (style)
 
 Application.prototype.ResetBackgroundStyle = function ()
 {
-    this.style.backgroundCommonStyle         = new CommonBackgroundStyle();
+    this.style.backgroundCommonStyle         = DefaultCommonBackgroundStyle();
     this.style.isBackgroundCommonStyleCustom = false;
 }
 

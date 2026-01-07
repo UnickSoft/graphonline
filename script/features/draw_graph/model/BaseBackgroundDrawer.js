@@ -3,31 +3,31 @@
  */
  
  
-function CommonBackgroundStyle()
+function BaseBackgroundStyle()
 {
 	this.commonColor   = '#ffffff';
 	this.commonOpacity = 1.0;
-    this.image = null;
+  this.image = null;
 }
 
-CommonBackgroundStyle.prototype.Clear = function ()
+BaseBackgroundStyle.prototype.Clear = function ()
 {
   delete this.commonColor;
   delete this.commonOpacity;
   delete this.image;
 }
 
-CommonBackgroundStyle.prototype.ShouldLoad = function (field)
+BaseBackgroundStyle.prototype.ShouldLoad = function (field)
 {
   return true;
 }
 
-CommonBackgroundStyle.prototype.saveToJson = function (field)
+BaseBackgroundStyle.prototype.saveToJson = function (field)
 {
   return JSON.stringify({commonColor: this.commonColor, commonOpacity: this.commonOpacity, image: this.image != null ? this.image.src : null});
 }
 
-CommonBackgroundStyle.prototype.loadFromJson = function (json, callbackOnLoaded)
+BaseBackgroundStyle.prototype.loadFromJson = function (json, callbackOnLoaded)
 {
   this.commonColor   = json["commonColor"];
   this.commonOpacity = json["commonOpacity"];
@@ -39,17 +39,6 @@ CommonBackgroundStyle.prototype.loadFromJson = function (json, callbackOnLoaded)
     }
     this.image.src = json["image"];
   }
-}
-
-PrintBackgroundStyle.prototype = Object.create(CommonBackgroundStyle.prototype);
-
-function PrintBackgroundStyle()
-{
-  CommonBackgroundStyle.apply(this, arguments);
-
-	this.commonColor   = '#ffffff';
-	this.commonOpacity = 1.0;
-    this.image = null;
 }
 
 function BaseBackgroundDrawer(context)
