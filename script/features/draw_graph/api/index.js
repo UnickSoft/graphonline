@@ -14,6 +14,10 @@ doInclude ([
     include ("model/PrintEdgeStyle.js", modulDir),
     include ("model/VertexNewWhiteStyle.js", modulDir),
     include ("model/EdgeNewWhiteStyle.js", modulDir),
+    include ("model/EdgeNewNightStyle.js", modulDir),
+    include ("model/VertexNewNightStyle.js", modulDir),
+    include ("model/EdgeContrastStyle.js", modulDir),
+    include ("model/VertexContrastStyle.js", modulDir),
     include ("model/BaseVertexDrawer.js", modulDir),
     include ("model/GraphFullStyle.js", modulDir)
 ])

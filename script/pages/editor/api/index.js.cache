@@ -1,4 +1,4 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=107","/script/shared/gzip.js?v=107","/script/entities/graph/api/index.js?v=107","/script/shared/point.js?v=107","/script/entities/edge/api/index.js?v=107","/script/entities/edge/model/BaseEdge.js?v=107","/script/entities/edge/model/EdgeModel.js?v=107","/script/entities/vertex/api/index.js?v=107","/script/entities/vertex/model/BaseVertex.js?v=107","/script/entities/vertex/model/VertexModel.js?v=107","/script/entities/graph/model/Graph.js?v=107","/script/features/draw_graph/api/index.js?v=107","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=107","/script/features/draw_graph/model/BackgroundStyle.js?v=107","/script/features/draw_graph/model/EdgeStyle.js?v=107","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=107","/script/features/draw_graph/model/VertexShape.js?v=107","/script/features/draw_graph/model/VertexStyle.js?v=107","/script/features/draw_graph/model/VertexOldStyle.js?v=107","/script/features/draw_graph/model/VertexPrintStyle.js?v=107","/script/features/draw_graph/model/OldEdgeStyle.js?v=107","/script/features/draw_graph/model/PrintEdgeStyle.js?v=107","/script/features/draw_graph/model/VertexNewWhiteStyle.js?v=107","/script/features/draw_graph/model/EdgeNewWhiteStyle.js?v=107","/script/features/draw_graph/model/BaseVertexDrawer.js?v=107","/script/features/draw_graph/model/GraphFullStyle.js?v=107","/script/features/algorithms/api/index.js?v=107","/script/features/algorithms/model/Algorithms.js?v=107","/script/features/algorithms/model/BaseTraversal.js?v=107","/script/features/base_handler/index.js?v=107","/script/features/default_handler/index.js?v=107","/script/features/add_vertices_handler/index.js?v=107","/script/features/connect_vertices_handler/index.js?v=107","/script/features/delete_objects_handler/index.js?v=107","/script/features/algorithm_handler/index.js?v=107","/script/features/select_auto_save_graph_or_not/index.js?v=107","/script/features/graph_preview/index.js?v=107","/script/features/serialization/api/index.js?v=107","/script/features/serialization/model/GraphMLCreator.js?v=107","/script/features/enum_vertices/EnumVertices.js?v=107","/script/pages/editor/model/texts.js?v=107","/script/pages/editor/model/UndoStack.js?v=107","/script/pages/editor/model/DiskSaveLoad.js?v=107","/script/pages/editor/model/Application.js?v=107","/script/pages/editor/ui/ya_metrika.js?v=107","/script/pages/editor/ui/editor.js?v=107","/script/pages/editor/ui/main.js?v=107",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=108","/script/shared/gzip.js?v=108","/script/entities/graph/api/index.js?v=108","/script/shared/point.js?v=108","/script/entities/edge/api/index.js?v=108","/script/entities/edge/model/BaseEdge.js?v=108","/script/entities/edge/model/EdgeModel.js?v=108","/script/entities/vertex/api/index.js?v=108","/script/entities/vertex/model/BaseVertex.js?v=108","/script/entities/vertex/model/VertexModel.js?v=108","/script/entities/graph/model/Graph.js?v=108","/script/features/draw_graph/api/index.js?v=108","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=108","/script/features/draw_graph/model/BackgroundStyle.js?v=108","/script/features/draw_graph/model/EdgeStyle.js?v=108","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=108","/script/features/draw_graph/model/VertexShape.js?v=108","/script/features/draw_graph/model/VertexStyle.js?v=108","/script/features/draw_graph/model/VertexOldStyle.js?v=108","/script/features/draw_graph/model/VertexPrintStyle.js?v=108","/script/features/draw_graph/model/OldEdgeStyle.js?v=108","/script/features/draw_graph/model/PrintEdgeStyle.js?v=108","/script/features/draw_graph/model/VertexNewWhiteStyle.js?v=108","/script/features/draw_graph/model/EdgeNewWhiteStyle.js?v=108","/script/features/draw_graph/model/EdgeNewNightStyle.js?v=108","/script/features/draw_graph/model/VertexNewNightStyle.js?v=108","/script/features/draw_graph/model/EdgeContrastStyle.js?v=108","/script/features/draw_graph/model/VertexContrastStyle.js?v=108","/script/features/draw_graph/model/BaseVertexDrawer.js?v=108","/script/features/draw_graph/model/GraphFullStyle.js?v=108","/script/features/algorithms/api/index.js?v=108","/script/features/algorithms/model/Algorithms.js?v=108","/script/features/algorithms/model/BaseTraversal.js?v=108","/script/features/base_handler/index.js?v=108","/script/features/default_handler/index.js?v=108","/script/features/add_vertices_handler/index.js?v=108","/script/features/connect_vertices_handler/index.js?v=108","/script/features/delete_objects_handler/index.js?v=108","/script/features/algorithm_handler/index.js?v=108","/script/features/select_auto_save_graph_or_not/index.js?v=108","/script/features/graph_preview/index.js?v=108","/script/features/serialization/api/index.js?v=108","/script/features/serialization/model/GraphMLCreator.js?v=108","/script/features/enum_vertices/EnumVertices.js?v=108","/script/pages/editor/model/texts.js?v=108","/script/pages/editor/model/UndoStack.js?v=108","/script/pages/editor/model/DiskSaveLoad.js?v=108","/script/pages/editor/model/Application.js?v=108","/script/pages/editor/ui/ya_metrika.js?v=108","/script/pages/editor/ui/editor.js?v=108","/script/pages/editor/ui/main.js?v=108",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
 let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("shared/gzip.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/select_auto_save_graph_or_not/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
@@ -609,13 +609,19 @@ continue;if((curEdge.vertex1.id==edge.vertex1.id&&curEdge.vertex2.id==edge.verte
 {res.push(curEdge);}}
 return res;}
 Graph.prototype.checkMutiGraph=function()
-{var res=false;var start={};for(var i=0;i<this.edges.length;i++)
-{var edge=this.edges[i];if(start.hasOwnProperty(edge.vertex1.id)&&start[edge.vertex1.id]==edge.vertex2.id)
+{var res=false;let start={};let check_pair=function(id1,id2,start)
+{return(start.hasOwnProperty(id1)&&start[id1].includes(id2));}
+let add_to_start=function(id1,id2,start)
+{if(!start.hasOwnProperty(id1))
+{start[id1]=[];}
+start[id1].push(id2);}
+for(var i=0;i<this.edges.length;i++)
+{var edge=this.edges[i];if(check_pair(edge.vertex1.id,edge.vertex2.id,start))
 {res=true;break;}
-start[edge.vertex1.id]=edge.vertex2.id;if(!edge.isDirect)
-{if(start.hasOwnProperty(edge.vertex2.id)&&start[edge.vertex2.id]==edge.vertex1.id)
+add_to_start(edge.vertex1.id,edge.vertex2.id,start);if(!edge.isDirect)
+{if(check_pair(edge.vertex2.id,edge.vertex1.id,start))
 {res=true;break;}
-start[edge.vertex2.id]=edge.vertex1.id;}}
+add_to_start(edge.vertex2.id,edge.vertex1.id,start);}}
 return res;}
 Graph.prototype.checkNegativeWeight=function()
 {var res=false;for(var i=0;i<this.edges.length&&!res;i++)
@@ -662,7 +668,7 @@ Graph.prototype.makeAllEdgesUndirected=function()
 {if(this.edges[i].isDirect)
 {this.edges[i].isDirect=false;}}
 this.isMultiGraph=this.checkMutiGraph();}
-{let modulDir="features/draw_graph/";doInclude([include("model/BaseBackgroundDrawer.js",modulDir),include("model/BackgroundStyle.js",modulDir),include("model/EdgeStyle.js",modulDir),include("model/BaseEdgeDrawer.js",modulDir),include("model/VertexShape.js",modulDir),include("model/VertexStyle.js",modulDir),include("model/VertexOldStyle.js",modulDir),include("model/VertexPrintStyle.js",modulDir),include("model/OldEdgeStyle.js",modulDir),include("model/PrintEdgeStyle.js",modulDir),include("model/VertexNewWhiteStyle.js",modulDir),include("model/EdgeNewWhiteStyle.js",modulDir),include("model/BaseVertexDrawer.js",modulDir),include("model/GraphFullStyle.js",modulDir)])}
+{let modulDir="features/draw_graph/";doInclude([include("model/BaseBackgroundDrawer.js",modulDir),include("model/BackgroundStyle.js",modulDir),include("model/EdgeStyle.js",modulDir),include("model/BaseEdgeDrawer.js",modulDir),include("model/VertexShape.js",modulDir),include("model/VertexStyle.js",modulDir),include("model/VertexOldStyle.js",modulDir),include("model/VertexPrintStyle.js",modulDir),include("model/OldEdgeStyle.js",modulDir),include("model/PrintEdgeStyle.js",modulDir),include("model/VertexNewWhiteStyle.js",modulDir),include("model/EdgeNewWhiteStyle.js",modulDir),include("model/EdgeNewNightStyle.js",modulDir),include("model/VertexNewNightStyle.js",modulDir),include("model/EdgeContrastStyle.js",modulDir),include("model/VertexContrastStyle.js",modulDir),include("model/BaseVertexDrawer.js",modulDir),include("model/GraphFullStyle.js",modulDir)])}
 function BaseBackgroundStyle()
 {this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
 BaseBackgroundStyle.prototype.Clear=function()
@@ -687,8 +693,12 @@ function CommonBackgroundStyle()
 {BaseBackgroundStyle.apply(this,arguments);this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
 CommonBackgroundStyle.prototype=Object.create(BaseBackgroundStyle.prototype);function PrintBackgroundStyle()
 {CommonBackgroundStyle.apply(this,arguments);this.commonColor='#ffffff';this.commonOpacity=1.0;this.image=null;}
-PrintBackgroundStyle.prototype=Object.create(CommonBackgroundStyle.prototype);function GetWhiteBackgroundStyle()
+PrintBackgroundStyle.prototype=Object.create(CommonBackgroundStyle.prototype);function NightBackgroundStyle()
+{CommonBackgroundStyle.apply(this,arguments);this.commonColor='#0f172a';this.commonOpacity=1.0;this.image=null;}
+NightBackgroundStyle.prototype=Object.create(CommonBackgroundStyle.prototype);function GetWhiteBackgroundStyle()
 {return new CommonBackgroundStyle();}
+function GetNightBackgroundStyle()
+{return new NightBackgroundStyle();}
 function DefaultCommonBackgroundStyle()
 {return GetWhiteBackgroundStyle();}
 function DefaultPrintBackgroundStyle()
@@ -925,7 +935,48 @@ WhiteSelectedEdgeStyle4.prototype=Object.create(BaseEdgeStyle.prototype);functio
 {return new WhiteCommonEdgeStyle();}
 var WhiteSelectedEdgeStyles=[new WhiteSelectedEdgeStyle0(),new WhiteSelectedEdgeStyle1(),new WhiteSelectedEdgeStyle2(),new WhiteSelectedEdgeStyle3(),new WhiteSelectedEdgeStyle4()];function DefaultCommonEdgeStyle()
 {return GetWhiteCommonEdgeStyle();}
-var DefaultSelectedEdgeStyles=WhiteSelectedEdgeStyles;function BaseVertexDrawer(context)
+var DefaultSelectedEdgeStyles=WhiteSelectedEdgeStyles;function NightCommonEdgeStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#cbd5e1';this.weightText='#f8fafc';this.fillStyle='#020617';this.textPadding=4;this.textStrokeWidth=2;this.lineDash=0;this.additionalTextColor='#cbd5e1';this.weightPosition=WeightTextCenter;}
+NightCommonEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function NightSelectedEdgeStyle0()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#fdba74';this.weightText='#fff7ed';this.fillStyle='#7c2d12';this.additionalTextColor='#fff7ed';this.baseStyles.push("common");}
+NightSelectedEdgeStyle0.prototype=Object.create(BaseEdgeStyle.prototype);function NightSelectedEdgeStyle1()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#34d399';this.weightText='#ecfdf5';this.fillStyle='#064e3b';this.additionalTextColor='#ecfdf5';this.baseStyles.push("selected");}
+NightSelectedEdgeStyle1.prototype=Object.create(BaseEdgeStyle.prototype);function NightSelectedEdgeStyle2()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#a5b4fc';this.weightText='#ecfeff';this.fillStyle='#312e81';this.additionalTextColor='#ecfeff';this.baseStyles.push("selected");}
+NightSelectedEdgeStyle2.prototype=Object.create(BaseEdgeStyle.prototype);function NightSelectedEdgeStyle3()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#fca5a5';this.weightText='#fef2f2';this.fillStyle='#7f1d1d';this.additionalTextColor='#fef2f2';this.baseStyles.push("selected");}
+NightSelectedEdgeStyle3.prototype=Object.create(BaseEdgeStyle.prototype);function NightSelectedEdgeStyle4()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#d4d4d8';this.weightText='#fafafa';this.fillStyle='#3f3f46';this.additionalTextColor='#fafafa';this.baseStyles.push("selected");}
+NightSelectedEdgeStyle4.prototype=Object.create(BaseEdgeStyle.prototype);function GetNightCommonEdgeStyle()
+{return new NightCommonEdgeStyle();}
+var NightSelectedEdgeStyles=[new NightSelectedEdgeStyle0(),new NightSelectedEdgeStyle1(),new NightSelectedEdgeStyle2(),new NightSelectedEdgeStyle3(),new NightSelectedEdgeStyle4()];function NightCommonVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.lineWidth=2;this.strokeStyle='#38bdf8';this.fillStyle='#334155';this.mainTextColor='#e5e7eb';this.shape=VertexCircleShape;this.upTextColor='#94a3b8';this.commonTextPosition=CommonTextCenter;this.baseStyles=[];}
+NightCommonVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function NightSelectedVertexStyle0()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#fdba74';this.mainTextColor='#fff7ed';this.fillStyle='#7c2d12';this.upTextColor='#fff7ed';this.baseStyles.push("common");}
+NightSelectedVertexStyle0.prototype=Object.create(BaseVertexStyle.prototype);function NightSelectedVertexStyle1()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#34d399';this.mainTextColor='#ecfdf5';this.fillStyle='#064e3b';this.upTextColor='#ecfdf5';this.baseStyles.push("selected");}
+NightSelectedVertexStyle1.prototype=Object.create(BaseVertexStyle.prototype);function NightSelectedVertexStyle2()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#a5b4fc';this.mainTextColor='#ffffff';this.fillStyle='#312e81';this.upTextColor='#ffffff';this.baseStyles.push("selected");}
+NightSelectedVertexStyle2.prototype=Object.create(BaseVertexStyle.prototype);function NightSelectedVertexStyle3()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#fca5a5';this.mainTextColor='#fef2f2';this.fillStyle='#7f1d1d';this.upTextColor='#fef2f2';this.baseStyles.push("selected");}
+NightSelectedVertexStyle3.prototype=Object.create(BaseVertexStyle.prototype);function NightSelectedVertexStyle4()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#d4d4d8';this.mainTextColor='#fafafa';this.fillStyle='#3f3f46';this.upTextColor='#fafafa';this.baseStyles.push("selected");}
+NightSelectedVertexStyle4.prototype=Object.create(BaseVertexStyle.prototype);function GetNightCommonVertexStyle()
+{return new NightCommonVertexStyle();}
+var NightSelectedGraphStyles=[new NightSelectedVertexStyle0(),new NightSelectedVertexStyle1(),new NightSelectedVertexStyle2(),new NightSelectedVertexStyle3(),new NightSelectedVertexStyle4()];function ContrastCommonEdgeStyle()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#000000';this.weightText='#000000';this.fillStyle='#ffffff';this.textPadding=4;this.textStrokeWidth=2;this.lineDash=0;this.additionalTextColor='#000000';this.weightPosition=WeightTextCenter;this.mainTextFontSize=16;}
+ContrastCommonEdgeStyle.prototype=Object.create(BaseEdgeStyle.prototype);function ContrastSelectedEdgeStyle0()
+{BaseEdgeStyle.apply(this,arguments);this.strokeStyle='#000000';this.weightText='#000000';this.fillStyle='#ffffff';this.additionalTextColor='#000000';this.lineDash=1
+this.baseStyles.push("common");}
+ContrastSelectedEdgeStyle0.prototype=Object.create(BaseEdgeStyle.prototype);function GetContrastCommonEdgeStyle()
+{return new ContrastCommonEdgeStyle();}
+var ContrastSelectedEdgeStyles=[new ContrastSelectedEdgeStyle0(),new ContrastSelectedEdgeStyle0(),new ContrastSelectedEdgeStyle0(),new ContrastSelectedEdgeStyle0(),new ContrastSelectedEdgeStyle0()];function ContrastCommonVertexStyle()
+{BaseVertexStyle.apply(this,arguments);this.lineWidth=4;this.strokeStyle='#000000';this.fillStyle='#ffffff';this.mainTextColor='#000000';this.shape=VertexCircleShape;this.upTextColor='#000000';this.commonTextPosition=CommonTextCenter;this.mainTextFontSize=16;this.baseStyles=[];}
+ContrastCommonVertexStyle.prototype=Object.create(BaseVertexStyle.prototype);function ContrastSelectedVertexStyle0()
+{BaseVertexStyle.apply(this,arguments);this.strokeStyle='#000000';this.mainTextColor='#ffffff';this.fillStyle='#000000';this.upTextColor='#ffffff';this.baseStyles.push("common");}
+ContrastSelectedVertexStyle0.prototype=Object.create(BaseVertexStyle.prototype);function GetContrastCommonVertexStyle()
+{return new ContrastCommonVertexStyle();}
+var ContrastSelectedGraphStyles=[new ContrastSelectedVertexStyle0(),new ContrastSelectedVertexStyle0(),new ContrastSelectedVertexStyle0(),new ContrastSelectedVertexStyle0(),new ContrastSelectedVertexStyle0()];function BaseVertexDrawer(context)
 {this.context=context;}
 BaseVertexDrawer.prototype.Draw=function(baseGraph,graphStyle)
 {this.SetupStyle(graphStyle);this.DrawShape(baseGraph);if(this.currentStyle.lineWidth!=0)
@@ -948,7 +999,7 @@ this.context.fillText(text,position.x,position.y);}
 BaseVertexDrawer.prototype.DrawCenterText=function(position,text,color,outlineColor,bold,outline,size)
 {this.context.textBaseline="middle";this.context.font=(bold?"bold ":"")+size+DefaultFont;var textWidth=this.context.measureText(text).width;this.DrawText(new Point(position.x-textWidth/2,position.y),text,color,outlineColor,outline,this.context.font);}
 function GraphFullStyle(redrawCallback)
-{this.version=1;this.edgeCommonStyle=DefaultCommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.vertexCommonStyle=DefaultCommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.backgroundCommonStyle=DefaultCommonBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.defaultVertexSize=null;this.defaultEdgeWidth=null;this.redrawCallback=redrawCallback;}
+{this.version=1;this.edgeCommonStyle=DefaultCommonEdgeStyle();this.isEdgeCommonStyleCustom=false;this.edgeSelectedStyles=FullArrayCopy(DefaultSelectedEdgeStyles);this.isEdgeSelectedStylesCustom=false;this.vertexCommonStyle=DefaultCommonVertexStyle();this.isVertexCommonStyleCustom=false;this.vertexSelectedVertexStyles=FullArrayCopy(DefaultSelectedGraphStyles);this.isVertexSelectedVertexStylesCustom=false;this.backgroundCommonStyle=DefaultCommonBackgroundStyle();this.isBackgroundCommonStyleCustom=false;this.defaultVertexSize=30;this.defaultEdgeWidth=3;this.redrawCallback=redrawCallback;}
 GraphFullStyle.prototype.Save=function()
 {var res="";var needEnd=false;var checkValue=[];checkValue.push({field:"edgeCommonStyle",value:this.edgeCommonStyle,check:this.isEdgeCommonStyleCustom});checkValue.push({field:"edgeSelectedStyles",value:this.edgeSelectedStyles,check:this.isEdgeSelectedStylesCustom});checkValue.push({field:"vertexCommonStyle",value:this.vertexCommonStyle,check:this.isVertexCommonStyleCustom});checkValue.push({field:"vertexSelectedVertexStyles",value:this.vertexSelectedVertexStyles,check:this.isVertexSelectedVertexStylesCustom});checkValue.push({field:"backgroundCommonStyle",value:this.backgroundCommonStyle,check:this.isBackgroundCommonStyleCustom});checkValue.push({field:"defaultVertexSize",value:this.defaultVertexSize,check:this.defaultVertexSize!=null});checkValue.push({field:"defaultEdgeWidth",value:this.defaultEdgeWidth,check:this.defaultEdgeWidth!=null});checkValue.forEach(function(entry){if(!entry.check)
 return;if(needEnd)
@@ -985,8 +1036,12 @@ GraphFullStyle.prototype.Print=function()
 {for(const[key,value]of Object.entries(style)){console.log(`${key}:`,value);}}
 console.log("Graph Full Style:");console.log("Edge Common Style: ");print_all_fields(this.edgeCommonStyle);console.log("Edge Selected Styles:");this.edgeSelectedStyles.forEach(function(edge_style,index){console.log(`[${index}]`);print_all_fields(edge_style);});console.log("Vertex Common Style: ");print_all_fields(this.vertexCommonStyle);console.log("Vertex Selected Styles: ");this.vertexSelectedVertexStyles.forEach(function(vertex_style,index){console.log(`[${index}]`);print_all_fields(vertex_style);});console.log("Background Common Style: ");print_all_fields(this.backgroundCommonStyle);}
 function OldGraphFullStyle()
-{GraphFullStyle.apply(this,arguments);this.version=0;this.edgeCommonStyle=GetOldCommonEdgeStyle();this.edgeSelectedStyles=FullArrayCopy(OldSelectedEdgeStyles);this.vertexCommonStyle=GetOldCommonVertexStyle();this.vertexSelectedVertexStyles=FullArrayCopy(OldSelectedGraphStyles);this.backgroundCommonStyle=GetWhiteBackgroundStyle();}
-OldGraphFullStyle.prototype=Object.create(GraphFullStyle.prototype);{let modulDir="features/algorithms/";doInclude([include("model/Algorithms.js",modulDir),include("model/BaseTraversal.js",modulDir)])
+{GraphFullStyle.apply(this,arguments);this.version=0;this.edgeCommonStyle=GetOldCommonEdgeStyle();this.edgeSelectedStyles=FullArrayCopy(OldSelectedEdgeStyles);this.vertexCommonStyle=GetOldCommonVertexStyle();this.vertexSelectedVertexStyles=FullArrayCopy(OldSelectedGraphStyles);this.backgroundCommonStyle=GetWhiteBackgroundStyle();this.defaultVertexSize=30;this.defaultEdgeWidth=4;}
+OldGraphFullStyle.prototype=Object.create(GraphFullStyle.prototype);function NightGraphFullStyle()
+{GraphFullStyle.apply(this,arguments);this.version=1;this.edgeCommonStyle=GetNightCommonEdgeStyle();this.edgeSelectedStyles=FullArrayCopy(NightSelectedEdgeStyles);this.vertexCommonStyle=GetNightCommonVertexStyle();this.vertexSelectedVertexStyles=FullArrayCopy(NightSelectedGraphStyles);this.backgroundCommonStyle=GetNightBackgroundStyle();this.defaultVertexSize=30;this.defaultEdgeWidth=3;this.isEdgeCommonStyleCustom=true;this.isEdgeSelectedStylesCustom=true;this.isVertexCommonStyleCustom=true;this.isVertexSelectedVertexStylesCustom=true;this.isBackgroundCommonStyleCustom=true;}
+NightGraphFullStyle.prototype=Object.create(GraphFullStyle.prototype);function ContrastGraphFullStyle()
+{GraphFullStyle.apply(this,arguments);this.version=1;this.edgeCommonStyle=GetContrastCommonEdgeStyle();this.edgeSelectedStyles=FullArrayCopy(ContrastSelectedEdgeStyles);this.vertexCommonStyle=GetContrastCommonVertexStyle();this.vertexSelectedVertexStyles=FullArrayCopy(ContrastSelectedGraphStyles);this.backgroundCommonStyle=GetWhiteBackgroundStyle();this.defaultVertexSize=36;this.defaultEdgeWidth=4;this.isEdgeCommonStyleCustom=true;this.isEdgeSelectedStylesCustom=true;this.isVertexCommonStyleCustom=true;this.isVertexSelectedVertexStylesCustom=true;this.isBackgroundCommonStyleCustom=true;}
+ContrastGraphFullStyle.prototype=Object.create(GraphFullStyle.prototype);{let modulDir="features/algorithms/";doInclude([include("model/Algorithms.js",modulDir),include("model/BaseTraversal.js",modulDir)])
 function loadAsyncAlgorithms(onFinish){let modulDir="features/algorithms/";let pluginsList=["BFS.js","Coloring.js","ConnectedComponent.js","DFS.js","EulerianLoop.js","EulerianPath.js","FindAllPatches.js","FindLongestPath.js","FindShortPatchsFromOne.js","Floid.js","GraphReorder.js","HamiltonianLoop.js","HamiltonianPath.js","IsomorphismCheck.js","MaxClique.js","MaxFlow.js","MinimumSpanningTree.js","ModernGraphStyle.js","RadiusAndDiameter.js","ShortestPath.js","VerticesDegree.js","MaxIndependentSet.js","FindAllShortestPatches.js","SalesmanProblem.js","SalesmanProblemPath.js"];doIncludeAsync(pluginsList.map((plugin)=>include("model/plugins/"+plugin,modulDir)),onFinish);}}
 function getVertexToVertexArray(graph,ignoreDirection)
 {res={};for(var i=0;i<graph.edges.length;i++)
@@ -1590,7 +1645,7 @@ Application.prototype.getMousePos=function(canvas,e)
 {var rect=canvas.getBoundingClientRect();return{x:(e.clientX-rect.left)/this.canvasScale-this.canvasPosition.x,y:(e.clientY-rect.top)/this.canvasScale-this.canvasPosition.y};}
 Application.prototype.redrawGraph=function()
 {if(!this.isTimerRender)
-{this._redrawGraphInWindow();this.GraphTypeChanged();}}
+{this.listener.OnRenderToEditor();this._redrawGraphInWindow();this.GraphTypeChanged();}}
 Application.prototype.redrawGraphTimer=function()
 {if(this.isTimerRender)
 {var context=this._redrawGraphInWindow();if(this.renderPath.length>1)
@@ -1940,12 +1995,17 @@ let g_base_style_str=" \"base_style\":";let g_base_style_0_str=" \"base_style\":
 Application.prototype.LoadUserSettings=function(json)
 {let decoded_json=gDecodeFromHTML(json);if(decoded_json!=null&&decoded_json.length>("{"+g_base_style_1_str+"+ some other}").length)
 {if(decoded_json.indexOf(g_base_style_str)===-1||decoded_json.indexOf(g_base_style_0_str)!==-1)
-{this.style=new OldGraphFullStyle(function()
-{this.redrawGraph();}.bind(this));}
+{this.UpdateFullStyle(OldGraphFullStyle);}
 else if(decoded_json.indexOf(g_base_style_1_str)!==-1)
-{this.style=new GraphFullStyle(function()
-{this.redrawGraph();}.bind(this));}}
+{this.UpdateFullStyle(GraphFullStyle);}}
 this.style.Load(decoded_json);}
+Application.prototype.UpdateFullStyle=function(FullStyleType)
+{let newStyle=new FullStyleType(function()
+{this.redrawGraph();}.bind(this));if(newStyle.defaultVertexSize!=null)
+{this.SetDefaultVertexSize(newStyle.defaultVertexSize);}
+if(newStyle.defaultEdgeWidth!=null)
+{this.SetDefaultEdgeWidth(newStyle.defaultEdgeWidth);}
+this.style=newStyle;}
 Application.prototype.SetVertexStyle=function(index,style)
 {if(index==0)
 {this.style.vertexCommonStyle=style;this.style.isVertexCommonStyleCustom=true;}
@@ -2291,6 +2351,12 @@ userAction(self.fullscreen?"fullscreen_on":"fullscreen_off");for(var i=0;i<idLis
 element.style.display="none";else
 element.style.display="block";}
 document.getElementById("mainContainer").className=self.fullscreen?"container-fluid page-wrap":"container page-wrap";document.getElementById("FullscreenIcon").className=self.fullscreen?"bi bi-fullscreen-exit":"bi bi-arrows-fullscreen";resizeCanvas();}
+document.getElementById("ApplyDefaultStyle").onclick=function()
+{userAction("select_default_style");self.application.PushToStack("change_style");self.application.UpdateFullStyle(GraphFullStyle);self.application.redrawGraph();}
+document.getElementById("ApplyNightStyle").onclick=function()
+{userAction("select_night_style");self.application.PushToStack("change_style");self.application.UpdateFullStyle(NightGraphFullStyle);self.application.redrawGraph();}
+document.getElementById("ApplyLargeStyle").onclick=function()
+{userAction("select_contrast_style");self.application.PushToStack("change_style");self.application.UpdateFullStyle(ContrastGraphFullStyle);self.application.redrawGraph();}
 document.getElementById('CanvasSearchText').addEventListener('focus',(event)=>{let datalist=document.getElementById('vertexListCanvas');const options=datalist.options;for(let i=options.length-1;i>=0;i--){options[i].remove();}
 self.application.graph.vertices.forEach(vertex=>{const option=document.createElement('option');option.value=vertex.mainText;datalist.appendChild(option);});});document.getElementById('CanvasSearchText').addEventListener('input',function(event){let vertex=self.application.GetVertexByName(event.target.value);if(vertex!=null)
 {let size=vertex.getBBox(vertex.getStyleFor(0));let point1=vertex.position.add(new Point(-size.x/2,-size.y/2));let point2=vertex.position.add(new Point(size.x/2,size.y/2));if(!self.application.IsPointFitOnViewport(point1)||!self.application.IsPointFitOnViewport(point2))
@@ -2325,6 +2391,8 @@ $(document.getElementById("algorithmCategoryBtn1").querySelector('span[name="hid
 Editor.prototype.init=function()
 {this.application.onLoad();this.initMouseActions();this.initKeyActions();this.initButtonActions();this.initVoteButton();let self=this;loadAsyncAlgorithms(function(){self.createAlgorithmMenu();});var devTools=document.getElementById('developerTools');devTools.style.left=0;resizeCanvas();this.application.onPostLoadEvent();this.initAlgorithmList();}
 Editor.prototype.redraw=function(){this.application.redrawGraph();}
+Editor.prototype.OnRenderToEditor=function()
+{$("#CanvasMessage").css('color',this.application.style.edgeCommonStyle.strokeStyle);$("#FullscreenIcon").css('color',this.application.style.edgeCommonStyle.strokeStyle);}
 Editor.prototype.createAlgorithmMenu=function()
 {let self=this;var algorithmBaseId="Algo";var algorithms=this.application.getAlgorithmNames();var index=0;for(var i=0;i<algorithms.length;i++)
 {algorithm=algorithms[i];var list=document.getElementById("algorithmCategoryElements"+algorithm.category);var item=document.getElementById("algTopic"+algorithm.category);var clone=item.cloneNode(true);var button=clone.getElementsByTagName("a")[0];var textSpan=button.getElementsByTagName("span")[1];button.id=algorithm.id;textSpan.innerHTML=algorithm.name;clone.style.display="block";button.onclick=function(e)

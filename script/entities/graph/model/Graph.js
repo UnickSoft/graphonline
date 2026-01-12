@@ -1317,29 +1317,42 @@ Graph.prototype.checkMutiGraph = function ()
 {
 	var res = false;
     
-    var start  = {};
+    let start = {};
+
+	let check_pair = function(id1, id2, start)
+	{
+		return (start.hasOwnProperty(id1) && start[id1].includes(id2));
+	}
+
+	let add_to_start = function(id1, id2, start)
+	{
+		if (!start.hasOwnProperty(id1))
+		{
+			start[id1] = [];
+		}
+		start[id1].push(id2);
+	}
     
 	for (var i = 0; i < this.edges.length; i++)
 	{
         var edge = this.edges[i];
-        if (start.hasOwnProperty(edge.vertex1.id) && 
-            start[edge.vertex1.id] == edge.vertex2.id)
+        if (check_pair(edge.vertex1.id, edge.vertex2.id, start))
         {
             res = true;
             break;
         }
-        
-        start[edge.vertex1.id] = edge.vertex2.id;
+
+		add_to_start(edge.vertex1.id, edge.vertex2.id, start);
+
         if (!edge.isDirect)
         {
-            if (start.hasOwnProperty(edge.vertex2.id) && 
-                start[edge.vertex2.id] == edge.vertex1.id)
+            if (check_pair(edge.vertex2.id, edge.vertex1.id, start))
             {
                 res = true;
                 break;
             }
             
-            start[edge.vertex2.id] = edge.vertex1.id;
+            add_to_start(edge.vertex2.id, edge.vertex1.id, start);
         }
 	}
 	

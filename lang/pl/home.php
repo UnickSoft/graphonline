@@ -343,4 +343,9 @@ Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang['shortest_loop_is'] = "The length of shortest possible loop is ";
     $g_lang['salesman_path_problem'] = "Salesman Path Problem";
     $g_lang['shortest_path_is'] = "The length of shortest path is ";
+
+    $g_lang['default_style'] = "Default";
+    $g_lang['night_style'] = "Night";
+    $g_lang['large_high_contrast_style'] = "Large High Contrast";
+    $g_lang['styles'] = "Styles";
 ?>

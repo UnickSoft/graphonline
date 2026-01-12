@@ -18,8 +18,8 @@ function GraphFullStyle(redrawCallback)
     this.backgroundCommonStyle = DefaultCommonBackgroundStyle();
     this.isBackgroundCommonStyleCustom  = false;
 
-    this.defaultVertexSize = null;
-    this.defaultEdgeWidth = null;
+    this.defaultVertexSize = 30;
+    this.defaultEdgeWidth = 3;
     this.redrawCallback = redrawCallback;
 }
 
@@ -238,6 +238,63 @@ function OldGraphFullStyle()
     this.vertexSelectedVertexStyles = FullArrayCopy(OldSelectedGraphStyles);
 
     this.backgroundCommonStyle = GetWhiteBackgroundStyle();
+
+    this.defaultVertexSize = 30;
+    this.defaultEdgeWidth = 4;
 }
 
 OldGraphFullStyle.prototype = Object.create(GraphFullStyle.prototype);
+
+function NightGraphFullStyle()
+{
+    GraphFullStyle.apply(this, arguments);
+
+    this.version = 1;
+    this.edgeCommonStyle         = GetNightCommonEdgeStyle();
+    this.edgeSelectedStyles      = FullArrayCopy(NightSelectedEdgeStyles);
+
+    this.vertexCommonStyle          = GetNightCommonVertexStyle();
+    this.vertexSelectedVertexStyles = FullArrayCopy(NightSelectedGraphStyles);
+
+    this.backgroundCommonStyle = GetNightBackgroundStyle();
+
+    this.defaultVertexSize = 30;
+    this.defaultEdgeWidth = 3;
+
+    this.isEdgeCommonStyleCustom = true;
+    this.isEdgeSelectedStylesCustom = true;
+
+    this.isVertexCommonStyleCustom = true;
+    this.isVertexSelectedVertexStylesCustom = true;
+
+    this.isBackgroundCommonStyleCustom = true;
+}
+
+NightGraphFullStyle.prototype = Object.create(GraphFullStyle.prototype);
+
+function ContrastGraphFullStyle()
+{
+    GraphFullStyle.apply(this, arguments);
+
+    this.version = 1;
+    this.edgeCommonStyle         = GetContrastCommonEdgeStyle();
+    this.edgeSelectedStyles      = FullArrayCopy(ContrastSelectedEdgeStyles);
+
+    this.vertexCommonStyle          = GetContrastCommonVertexStyle();
+    this.vertexSelectedVertexStyles = FullArrayCopy(ContrastSelectedGraphStyles);
+
+    this.backgroundCommonStyle = GetWhiteBackgroundStyle();
+
+    this.defaultVertexSize = 36;
+    this.defaultEdgeWidth = 4;
+
+    this.isEdgeCommonStyleCustom = true;
+    this.isEdgeSelectedStylesCustom = true;
+
+    this.isVertexCommonStyleCustom = true;
+    this.isVertexSelectedVertexStylesCustom = true;
+
+    this.isBackgroundCommonStyleCustom = true;
+}
+
+ContrastGraphFullStyle.prototype = Object.create(GraphFullStyle.prototype);

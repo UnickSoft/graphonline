@@ -199,22 +199,39 @@
                 <span class="bi bi-tools menu-text"></span><span class="menu-text"> <?= L('settings')?> </span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right" role="menu" id="Settings">
-                  <li> 
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyle"><?= L('common_vertex_settings')?></a>
-                  </li>
-                  <li> 
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyleSelected"><?= L('selected_vertex_settings')?></a>
+                  <li>
+                    <a class="dropdown-item dropdown-toggle btn btn-sm btn-submenu" href="javascript:;" role="button">
+                    <span class="bi bi-brush"></span> <?= L('styles')?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu" id="LastUsedGraphsList">
+                      <li>
+                        <a class="dropdown-item btn btn-sm" href="javascript:;" role="button" id="ApplyDefaultStyle"><?= L('default_style')?></a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item btn btn-sm" href="javascript:;" role="button" id="ApplyNightStyle"><?= L('night_style')?></a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item btn btn-sm" href="javascript:;" role="button" id="ApplyLargeStyle"><?= L('large_high_contrast_style')?></a>
+                      </li>
+                    </ul>
                   </li>
                   <li><hr class="dropdown-divider hidden-phone"></li>
                   <li> 
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyle"><?= L('common_edge_settings')?></a>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyle"><span class="bi bi-1-circle"></span> <?= L('common_vertex_settings')?></a>
                   </li>
                   <li> 
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyleSelected"><?= L('selected_edge_settings')?></a>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupVertexStyleSelected"><span class="bi bi-1-circle-fill"></span> <?= L('selected_vertex_settings')?></a>
                   </li>
                   <li><hr class="dropdown-divider hidden-phone"></li>
                   <li> 
-                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupBackgroundStyle"><?= L('background_style') ?></a>
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyle"><span class="bi bi-arrow-up-right"></span> <?= L('common_edge_settings')?></a>
+                  </li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupEdgeStyleSelected"><span class="bi bi-arrow-up-right"></span> <?= L('selected_edge_settings')?></a>
+                  </li>
+                  <li><hr class="dropdown-divider hidden-phone"></li>
+                  <li> 
+                    <a class="dropdown-item btn btn-sm btn-submenu" href="javascript:;" role="button" id="SetupBackgroundStyle"><span class="bi bi-back"></span> <?= L('background_style') ?></a>
                   </li>
               </ul>
           </li>

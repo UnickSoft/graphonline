@@ -348,4 +348,9 @@
     $g_lang['shortest_loop_is'] = "Кратчайший цикл имеет длинну ";
     $g_lang['salesman_path_problem'] = "Задача коммивояжёра для пути";
     $g_lang['shortest_path_is'] = "Кратчайший путь имеет длинну ";
+
+    $g_lang['default_style'] = "По умолчанию";
+    $g_lang['night_style'] = "Ночной";
+    $g_lang['large_high_contrast_style'] = "Крупный высоко-контрастностный";
+    $g_lang['styles'] = "Стили";
 ?>

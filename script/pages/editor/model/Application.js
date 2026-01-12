@@ -106,6 +106,8 @@ Application.prototype.redrawGraph = function()
 {
     if (!this.isTimerRender)
     {
+        this.listener.OnRenderToEditor();
+
         this._redrawGraphInWindow();
         
         this.GraphTypeChanged();
@@ -1406,21 +1408,33 @@ Application.prototype.LoadUserSettings = function(json)
         if (decoded_json.indexOf(g_base_style_str) === -1 || decoded_json.indexOf(g_base_style_0_str) !== -1)
         {
             // No base_style or base_style = 0
-            this.style = new OldGraphFullStyle(function() 
-                                                {
-                                                    this.redrawGraph();
-                                                }.bind(this));
+            this.UpdateFullStyle(OldGraphFullStyle);
         }
         else if (decoded_json.indexOf(g_base_style_1_str) !== -1)
         {
             // base_style = 1
-            this.style = new GraphFullStyle(function() 
-                                                {
-                                                    this.redrawGraph();
-                                                }.bind(this));
+            this.UpdateFullStyle(GraphFullStyle);
         }
     }
     this.style.Load(decoded_json);
+}
+
+Application.prototype.UpdateFullStyle = function (FullStyleType)
+{
+    let newStyle = new FullStyleType(function() 
+                                        {
+                                            this.redrawGraph();
+                                        }.bind(this));
+    if (newStyle.defaultVertexSize != null)
+    {
+        this.SetDefaultVertexSize(newStyle.defaultVertexSize);
+    }
+
+    if (newStyle.defaultEdgeWidth != null)
+    {
+        this.SetDefaultEdgeWidth(newStyle.defaultEdgeWidth);
+    }
+    this.style = newStyle;
 }
 
 Application.prototype.SetVertexStyle = function (index, style)

@@ -25,9 +25,25 @@ function PrintBackgroundStyle()
 
 PrintBackgroundStyle.prototype = Object.create(CommonBackgroundStyle.prototype);
 
+function NightBackgroundStyle()
+{
+  CommonBackgroundStyle.apply(this, arguments);
+
+	this.commonColor   = '#0f172a';
+	this.commonOpacity = 1.0;
+  this.image = null;
+}
+
+NightBackgroundStyle.prototype = Object.create(CommonBackgroundStyle.prototype);
+
 function GetWhiteBackgroundStyle()
 {
   return new CommonBackgroundStyle();
+}
+
+function GetNightBackgroundStyle()
+{
+  return new NightBackgroundStyle();
 }
 
 function DefaultCommonBackgroundStyle()

@@ -475,6 +475,33 @@ Editor.prototype.initButtonActions = function()
         resizeCanvas();
     }
 
+    document.getElementById("ApplyDefaultStyle").onclick = function()
+    {
+        userAction("select_default_style");
+        self.application.PushToStack("change_style");
+
+        self.application.UpdateFullStyle(GraphFullStyle);
+        self.application.redrawGraph();
+    }
+
+    document.getElementById("ApplyNightStyle").onclick = function()
+    {
+        userAction("select_night_style");
+        self.application.PushToStack("change_style");
+
+        self.application.UpdateFullStyle(NightGraphFullStyle);
+        self.application.redrawGraph();   
+    }
+
+    document.getElementById("ApplyLargeStyle").onclick = function()
+    {
+        userAction("select_contrast_style");
+        self.application.PushToStack("change_style");
+
+        self.application.UpdateFullStyle(ContrastGraphFullStyle);
+        self.application.redrawGraph();
+    }
+
     document.getElementById('CanvasSearchText').addEventListener('focus', (event) => {
         let datalist = document.getElementById('vertexListCanvas');
         const options = datalist.options;
@@ -659,6 +686,12 @@ Editor.prototype.init = function()
 
 Editor.prototype.redraw = function() {
     this.application.redrawGraph();
+}
+
+Editor.prototype.OnRenderToEditor = function()
+{
+    $("#CanvasMessage").css('color', this.application.style.edgeCommonStyle.strokeStyle);
+    $("#FullscreenIcon").css('color', this.application.style.edgeCommonStyle.strokeStyle);
 }
 
 Editor.prototype.createAlgorithmMenu = function()
