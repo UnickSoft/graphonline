@@ -178,6 +178,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/el/\" target=\"_blank\">
 Tenemos traducciones en griego 🇬🇷.</a> <a href=\"https://github.com/UnickSoft/graphonline/pull/4\" target=\"_blank\">Gracias KyriakosG78</a>";
     $g_lang["text_above_edge"] = "Textos sobre arista";
+    $g_lang["edge_enumeration"] = "Numeración de aristas";
+    $g_lang["no_enumeration"] = "Sin numeración";
+    $g_lang["edit_edge_names"] = "Editar textos de aristas";
 
     $g_lang["select_groupe_mac"] = "Usa Cmd⌘ para seleccionar varios objetos.";
     $g_lang["select_groupe_win"] = "Usa Ctrl para seleccionar varios objetos.";

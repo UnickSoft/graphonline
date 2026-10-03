@@ -14,6 +14,7 @@ function Application(document, window, listener)
     this.handler = new DefaultHandler(this);
     this.savedGraphName = "";
     this.currentEnumVerticesType = new BaseEnumVertices(this, 1);//this.enumVerticesTextList[0];
+    this.currentEnumEdgesType = "";
     this.findPathReport = 1;
     this.isTimerRender = false;
     globalApplication  = this;
@@ -728,6 +729,8 @@ Application.prototype.getParameterByName = function (name)
 Application.prototype.onPostLoadEvent = function()
 {
     this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+    var edgeEnumCookie = /(?:^|;\s*)edgeEnumType\s*=\s*([^;]*)/.exec(document.cookie);
+    this.SetEnumEdgesType(edgeEnumCookie ? edgeEnumCookie[1] : "");
 
     var wasLoad = false;
     let startAutoSave = true;
@@ -927,9 +930,9 @@ Application.prototype.SetPair = function (pair)
 	return res;
 }
 
-Application.prototype.GetIncidenceMatrix = function ()
+Application.prototype.GetIncidenceMatrix = function (res_columns_width)
 {
-	return this.graph.GetIncidenceMatrix();
+    return this.graph.GetIncidenceMatrix(res_columns_width);
 }
 
 Application.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj)
@@ -1217,6 +1220,23 @@ Application.prototype.SetEnumVerticesType = function(value)
 		}
 	}
 
+}
+
+Application.prototype.SetEnumEdgesType = function(value)
+{
+    if (value === "Custom")
+    {
+        value = "";
+    }
+
+    var isValidValue = value === "" || this.enumVerticesTextList.some(function(enumType) {
+        return enumType.GetValue() === value && value !== "Custom";
+    });
+    if (isValidValue)
+    {
+        this.currentEnumEdgesType = value;
+        document.cookie = "edgeEnumType=" + value;
+    }
 }
                          
 Application.prototype.SetFindPathReport = function (value)

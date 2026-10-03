@@ -178,6 +178,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
 我们添加了中文翻译 🇳🇱. 感谢 Xingyi Zhang</a>";
     $g_lang["text_above_edge"] = "边上的文本";
+    $g_lang["edge_enumeration"] = "边编号";
+    $g_lang["no_enumeration"] = "不编号";
+    $g_lang["edit_edge_names"] = "编辑边文本";
 
     $g_lang["select_groupe_mac"] = "使用 Cmd⌘ 选择数个对象.";
     $g_lang["select_groupe_win"] = "使用 Ctrl 选择数个对象.";

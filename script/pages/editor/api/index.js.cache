@@ -1,4 +1,4 @@
-moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=109","/script/shared/gzip.js?v=109","/script/entities/graph/api/index.js?v=109","/script/shared/point.js?v=109","/script/entities/edge/api/index.js?v=109","/script/entities/edge/model/BaseEdge.js?v=109","/script/entities/edge/model/EdgeModel.js?v=109","/script/entities/vertex/api/index.js?v=109","/script/entities/vertex/model/BaseVertex.js?v=109","/script/entities/vertex/model/VertexModel.js?v=109","/script/entities/graph/model/Graph.js?v=109","/script/features/draw_graph/api/index.js?v=109","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=109","/script/features/draw_graph/model/BackgroundStyle.js?v=109","/script/features/draw_graph/model/EdgeStyle.js?v=109","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=109","/script/features/draw_graph/model/VertexShape.js?v=109","/script/features/draw_graph/model/VertexStyle.js?v=109","/script/features/draw_graph/model/VertexOldStyle.js?v=109","/script/features/draw_graph/model/VertexPrintStyle.js?v=109","/script/features/draw_graph/model/OldEdgeStyle.js?v=109","/script/features/draw_graph/model/PrintEdgeStyle.js?v=109","/script/features/draw_graph/model/VertexNewWhiteStyle.js?v=109","/script/features/draw_graph/model/EdgeNewWhiteStyle.js?v=109","/script/features/draw_graph/model/EdgeNewNightStyle.js?v=109","/script/features/draw_graph/model/VertexNewNightStyle.js?v=109","/script/features/draw_graph/model/EdgeContrastStyle.js?v=109","/script/features/draw_graph/model/VertexContrastStyle.js?v=109","/script/features/draw_graph/model/BaseVertexDrawer.js?v=109","/script/features/draw_graph/model/GraphFullStyle.js?v=109","/script/features/algorithms/api/index.js?v=109","/script/features/algorithms/model/Algorithms.js?v=109","/script/features/algorithms/model/BaseTraversal.js?v=109","/script/features/base_handler/index.js?v=109","/script/features/default_handler/index.js?v=109","/script/features/add_vertices_handler/index.js?v=109","/script/features/connect_vertices_handler/index.js?v=109","/script/features/delete_objects_handler/index.js?v=109","/script/features/algorithm_handler/index.js?v=109","/script/features/select_auto_save_graph_or_not/index.js?v=109","/script/features/graph_preview/index.js?v=109","/script/features/serialization/api/index.js?v=109","/script/features/serialization/model/GraphMLCreator.js?v=109","/script/features/enum_vertices/EnumVertices.js?v=109","/script/pages/editor/model/texts.js?v=109","/script/pages/editor/model/UndoStack.js?v=109","/script/pages/editor/model/DiskSaveLoad.js?v=109","/script/pages/editor/model/Application.js?v=109","/script/pages/editor/ui/ya_metrika.js?v=109","/script/pages/editor/ui/editor.js?v=109","/script/pages/editor/ui/main.js?v=109",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
+moduleLoader.beginCacheLoading(["/script/shared/utils.js?v=110","/script/shared/gzip.js?v=110","/script/entities/graph/api/index.js?v=110","/script/shared/point.js?v=110","/script/entities/edge/api/index.js?v=110","/script/entities/edge/model/BaseEdge.js?v=110","/script/entities/edge/model/EdgeModel.js?v=110","/script/entities/vertex/api/index.js?v=110","/script/entities/vertex/model/BaseVertex.js?v=110","/script/entities/vertex/model/VertexModel.js?v=110","/script/entities/graph/model/Graph.js?v=110","/script/features/draw_graph/api/index.js?v=110","/script/features/draw_graph/model/BaseBackgroundDrawer.js?v=110","/script/features/draw_graph/model/BackgroundStyle.js?v=110","/script/features/draw_graph/model/EdgeStyle.js?v=110","/script/features/draw_graph/model/BaseEdgeDrawer.js?v=110","/script/features/draw_graph/model/VertexShape.js?v=110","/script/features/draw_graph/model/VertexStyle.js?v=110","/script/features/draw_graph/model/VertexOldStyle.js?v=110","/script/features/draw_graph/model/VertexPrintStyle.js?v=110","/script/features/draw_graph/model/OldEdgeStyle.js?v=110","/script/features/draw_graph/model/PrintEdgeStyle.js?v=110","/script/features/draw_graph/model/VertexNewWhiteStyle.js?v=110","/script/features/draw_graph/model/EdgeNewWhiteStyle.js?v=110","/script/features/draw_graph/model/EdgeNewNightStyle.js?v=110","/script/features/draw_graph/model/VertexNewNightStyle.js?v=110","/script/features/draw_graph/model/EdgeContrastStyle.js?v=110","/script/features/draw_graph/model/VertexContrastStyle.js?v=110","/script/features/draw_graph/model/BaseVertexDrawer.js?v=110","/script/features/draw_graph/model/GraphFullStyle.js?v=110","/script/features/algorithms/api/index.js?v=110","/script/features/algorithms/model/Algorithms.js?v=110","/script/features/algorithms/model/BaseTraversal.js?v=110","/script/features/base_handler/index.js?v=110","/script/features/default_handler/index.js?v=110","/script/features/add_vertices_handler/index.js?v=110","/script/features/connect_vertices_handler/index.js?v=110","/script/features/delete_objects_handler/index.js?v=110","/script/features/algorithm_handler/index.js?v=110","/script/features/select_auto_save_graph_or_not/index.js?v=110","/script/features/graph_preview/index.js?v=110","/script/features/serialization/api/index.js?v=110","/script/features/serialization/model/GraphMLCreator.js?v=110","/script/features/enum_vertices/EnumVertices.js?v=110","/script/pages/editor/model/texts.js?v=110","/script/pages/editor/model/UndoStack.js?v=110","/script/pages/editor/model/DiskSaveLoad.js?v=110","/script/pages/editor/model/Application.js?v=110","/script/pages/editor/ui/ya_metrika.js?v=110","/script/pages/editor/ui/editor.js?v=110","/script/pages/editor/ui/main.js?v=110",]);{function onloadEditor(){console.log("onload() call");doIncludeAsync([include("shared/canvas2svg.min.js"),include("features/group_rename_handler/index.js"),include("features/saved_graph_handler/index.js"),include("features/saved_graph_image_handler/index.js"),include("features/show_adjacency_matrix/index.js"),include("features/show_distance_matrix/index.js"),include("features/show_incidence_matrix/index.js"),include("features/setup_background_style/index.js"),include("features/setup_edge_style/index.js"),include("features/setup_vertex_style/index.js"),]);postLoadPage();}
 let modulDir="pages/editor/";doInclude([include("shared/utils.js"),include("shared/gzip.js"),include("entities/graph/api/index.js"),include("features/draw_graph/api/index.js"),include("features/algorithms/api/index.js"),include("features/base_handler/index.js"),include("features/default_handler/index.js"),include("features/add_vertices_handler/index.js"),include("features/connect_vertices_handler/index.js"),include("features/delete_objects_handler/index.js"),include("features/algorithm_handler/index.js"),include("features/select_auto_save_graph_or_not/index.js"),include("features/serialization/api/index.js"),include("features/enum_vertices/EnumVertices.js"),include("model/texts.js",modulDir),include("model/UndoStack.js",modulDir),include("model/DiskSaveLoad.js",modulDir),include("model/Application.js",modulDir),include("ui/ya_metrika.js",modulDir),include("ui/editor.js",modulDir),include("ui/main.js",modulDir)],onloadEditor);}
 function gEncodeToHTML(str)
 {if(typeof str!=='string')
@@ -487,7 +487,7 @@ if(i==0)
 if(colsObj.cols[i].length!=columnCount)
 {bGoodFormat=false;break;}}
 if(bGoodFormat)
-{for(var i=0;i<colsObj.cols[0].length;i++)
+{for(var i=0;i<columnCount;i++)
 {var values=[];for(j=0;j<colsObj.cols.length;++j)
 {if(colsObj.cols[j][i]!=0)
 {values.push(colsObj.cols[j][i]);}}
@@ -498,7 +498,7 @@ Graph.prototype.SetIncidenceMatrix=function(matrix,viewportSize,currentEnumVerti
 {var rowsObj={};var colsObj={};if(this.TestIncidenceMatrix(matrix,rowsObj,colsObj))
 {rows=rowsObj.rows;cols=colsObj.cols;var clonedEdge=this.edges.slice(0);for(var i=0;i<clonedEdge.length;i++)
 {this.DeleteEdge(clonedEdge[i]);}
-var newVertices=[];var bWeightGraph=false;for(var i=0;i<cols[0].length;i++)
+var newVertices=[];var bWeightGraph=false;var columnCount=cols.length>0?cols[0].length:0;for(var i=0;i<columnCount;i++)
 {var edgeValue=[];var edgeIndex=[];for(var j=0;j<cols.length;j++)
 {if(j>=this.vertices.length)
 {var newPos=new Point(0,0);newVertices.push(new BaseVertex(newPos.x,newPos.y,currentEnumVerticesType));this.AddNewVertex(newVertices[newVertices.length-1]);}
@@ -514,10 +514,10 @@ var nEdgeIndex=this.AddNewEdgeSafe(this.vertices[edgeIndex[0]],this.vertices[edg
 {bWeightGraph=bWeightGraph||this.edges[nEdgeIndex].weight!=1;}}}
 if(!bWeightGraph)
 {this.edges.forEach(function(part,index,theArray){theArray[index].useWeight=false;});}
-for(var i=cols.length;i<Math.max(this.vertices.length,cols.length);i++)
+var rowCount=rows.length>0?rows.length:this.vertices.length;for(var i=rowCount;i<this.vertices.length;i++)
 {this.DeleteVertex(this.vertices[i]);i--;}
 this.VerticesReposition(viewportSize,newVertices);}}
-Graph.prototype.GetIncidenceMatrix=function()
+Graph.prototype.GetIncidenceMatrix=function(res_columns_width)
 {var matrix="";let cols_width=[];let get_edge_weight_str=(vertex_index,edge_index)=>{if(this.edges[edge_index].vertex1==this.vertices[vertex_index])
 {return this.edges[edge_index].weight.toString();}
 else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&!this.edges[edge_index].isDirect)
@@ -526,7 +526,7 @@ else if(this.edges[edge_index].vertex2==this.vertices[vertex_index]&&this.edges[
 {return-this.edges[edge_index].weight.toString();}
 else
 {return"0";}};for(var j=0;j<this.edges.length;j++)
-{let max_width=0;for(var i=0;i<this.vertices.length;i++)
+{let max_width=Math.min(this.edges[j].GetUpText().toString().length,2);for(var i=0;i<this.vertices.length;i++)
 {let str=""+get_edge_weight_str(i,j);max_width=Math.max(max_width,str.length);}
 cols_width.push(max_width);}
 for(var i=0;i<this.vertices.length;i++)
@@ -534,6 +534,7 @@ for(var i=0;i<this.vertices.length;i++)
 {let weight_str=get_edge_weight_str(i,j);weight_str=" ".repeat(cols_width[j]-weight_str.length)+weight_str;matrix+=""+weight_str;if(j!=this.edges.length-1)
 {matrix+=", ";}}
 matrix=matrix+"\n";}
+if(res_columns_width!==undefined){res_columns_width.length=0;res_columns_width.push(...cols_width);}
 return matrix;}
 Graph.prototype.SplitMatrixString=function(line,separator)
 {if(separator===undefined)
@@ -1638,7 +1639,7 @@ DiskSaveLoad.LoadAutoSaveGraphFromDisk=function(graphName,callback)
 DiskSaveLoad.RemoveAutoSaveGraphFromDisk=function(graphName,callback)
 {$.ajax({type:"GET",url:"/"+SiteDir+"backend/removeGraph.php?name=autosave_"+graphName}).done(callback);}
 var globalApplication=null;function Application(document,window,listener)
-{this.document=document;this.listener=listener;this.initCanvas();this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.algorithmsValues={};this.undoStack=new UndoStack(this.maxUndoStackSize);this.style=new GraphFullStyle(function()
+{this.document=document;this.listener=listener;this.initCanvas();this.handler=new DefaultHandler(this);this.savedGraphName="";this.currentEnumVerticesType=new BaseEnumVertices(this,1);this.currentEnumEdgesType="";this.findPathReport=1;this.isTimerRender=false;globalApplication=this;this.renderPath=[];this.renderTimer=0;this.renderPathLength=0;this.renderPathCounter=0;this.renderPathLoops=0;this.enumVerticesTextList=[new BaseEnumVertices(this,1),new BaseEnumVertices(this,0),new TextEnumVertices(this),new TextEnumVerticesCyr(this),new TextEnumVerticesGreek(this),new TextEnumVerticesCustom(this)];this.algorithmsValues={};this.undoStack=new UndoStack(this.maxUndoStackSize);this.style=new GraphFullStyle(function()
 {this.redrawGraph();}.bind(this));this.edgePrintCommonStyle=DefaultCommonPrintEdgeStyle();this.edgePrintSelectedStyles=FullArrayCopy(DefaultPrintSelectedEdgeStyles);this.vertexPrintCommonStyle=DefaultCommonPrintVertexStyle();this.vertexPrintSelectedVertexStyles=FullArrayCopy(DefaultPrintSelectedGraphStyles);this.backgroundPrintStyle=DefaultPrintBackgroundStyle();this.renderPathWithEdges=false;this.edgePresets=[1,3,5,7,11,42];this.maxEdgePresets=6;this.selectionRect=null;this.processEmscriptenFunction=null;this.defaultEdge=null;this.useDefaultEdge=false;this.lastSavedAutoSave="";this.lastGraphName="";this.lastUsedGraphs=[];};Application.prototype.graph=new Graph();Application.prototype.dragObject=-1;Application.prototype.handler=null;Application.prototype.status={};Application.prototype.graphNameLength=16;Application.prototype.maxUndoStackSize=8;Application.prototype.maxAutosaveSizeForCookie=2000;Application.prototype.autosaveTimeInterval=1000*60;Application.prototype.styliedGraphNamePostfix="ZZcst";Application.prototype.maxLastUsedGraphCount=5;Application.prototype.initCanvas=function()
 {this.canvas=this.document.getElementById('canvas');console.log(this.canvas.width,this.canvas.height);console.log(this.canvas.getBoundingClientRect());console.log(window.devicePixelRatio);this.SetDefaultTransformations();}
 Application.prototype.getMousePos=function(canvas,e)
@@ -1807,7 +1808,7 @@ Application.prototype.ToDefaultStateAndRedraw=function()
 Application.prototype.getParameterByName=function(name)
 {name=name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var regex=new RegExp("[\\?&]"+name+"=([^&#]*)"),results=regex.exec(location.search);return results===null?"":decodeURIComponent(results[1].replace(/\+/g," "));}
 Application.prototype.onPostLoadEvent=function()
-{this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/,"$1"));var wasLoad=false;let startAutoSave=true;var matrix=document.getElementById("inputMatrix").innerHTML;var separator=document.getElementById("separator").innerHTML=="space"?" ":",";console.log(matrix);console.log("separator: \""+separator+"\"");matrix=(matrix.length<=0)?this.getParameterByName("matrix"):matrix;if(matrix.length>0)
+{this.SetEnumVerticesType(document.cookie.replace(/(?:(?:^|.*;\s*)enumType\s*\=\s*([^;]*).*$)|^.*$/,"$1"));var edgeEnumCookie=/(?:^|;\s*)edgeEnumType\s*=\s*([^;]*)/.exec(document.cookie);this.SetEnumEdgesType(edgeEnumCookie?edgeEnumCookie[1]:"");var wasLoad=false;let startAutoSave=true;var matrix=document.getElementById("inputMatrix").innerHTML;var separator=document.getElementById("separator").innerHTML=="space"?" ":",";console.log(matrix);console.log("separator: \""+separator+"\"");matrix=(matrix.length<=0)?this.getParameterByName("matrix"):matrix;if(matrix.length>0)
 {if(!this.SetAdjacencyMatrixSmart(matrix,separator))
 {userAction("AdjacencyMatrix.Failed");this.listener.ShowAdjacencyMatrixErrorDialog(matrix);}
 else
@@ -1863,8 +1864,8 @@ Application.prototype.SetPair=function(pair)
 {var res=true;var r={};var c={};if(!this.TestPair(pair))
 {$.get("/"+SiteDir+"backend/addFailedMatrix.php?text=pair&matrix="+encodeURIComponent(pair),function(data){;});res=false;}
 this.graph.SetPair(pair,new Point(this.GetRealWidth(),this.GetRealHeight()),this.currentEnumVerticesType);this.AutoAdjustViewport();this.redrawGraph();return res;}
-Application.prototype.GetIncidenceMatrix=function()
-{return this.graph.GetIncidenceMatrix();}
+Application.prototype.GetIncidenceMatrix=function(res_columns_width)
+{return this.graph.GetIncidenceMatrix(res_columns_width);}
 Application.prototype.TestIncidenceMatrix=function(matrix,rowsObj,colsObj)
 {return this.graph.TestIncidenceMatrix(matrix,rowsObj,colsObj);}
 Application.prototype.TestPair=function(pair)
@@ -1944,6 +1945,11 @@ Application.prototype.SetEnumVerticesType=function(value)
 {for(var i=0;i<this.enumVerticesTextList.length;i++)
 {if(this.enumVerticesTextList[i].GetValue()==value)
 {this.currentEnumVerticesType=this.enumVerticesTextList[i];document.cookie="enumType="+value;break;}}}
+Application.prototype.SetEnumEdgesType=function(value)
+{if(value==="Custom")
+{value="";}
+var isValidValue=value===""||this.enumVerticesTextList.some(function(enumType){return enumType.GetValue()===value&&value!=="Custom";});if(isValidValue)
+{this.currentEnumEdgesType=value;document.cookie="edgeEnumType="+value;}}
 Application.prototype.SetFindPathReport=function(value)
 {this.findPathReport=value;}
 Application.prototype.GetFindPathReport=function()

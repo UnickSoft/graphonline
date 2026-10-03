@@ -177,6 +177,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
     Přidali jsme překlad do češtiny 🇨🇿. Děkujeme Jakubovi Mazuchovi!</a>";
     $g_lang["text_above_edge"] = "Text nad hranou";
+    $g_lang["edge_enumeration"] = "Číslování hran";
+    $g_lang["no_enumeration"] = "Bez číslování";
+    $g_lang["edit_edge_names"] = "Upravit texty hran";
 
     $g_lang["select_groupe_mac"] = "Pro označení více objektů použijte klávesy Cmd⌘.";
     $g_lang["select_groupe_win"] = "Pro označení více objektů použijte klávesy Ctrl.";

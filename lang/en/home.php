@@ -178,6 +178,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
 We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["text_above_edge"] = "Text above edge";
+    $g_lang["edge_enumeration"] = "Edge enumeration";
+    $g_lang["no_enumeration"] = "No enumeration";
+    $g_lang["edit_edge_names"] = "Edit edge text";
 
     $g_lang["select_groupe_mac"] = "Use Cmd⌘ to select several objects.";
     $g_lang["select_groupe_win"] = "Use Ctrl to select several objects.";

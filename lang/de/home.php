@@ -143,6 +143,9 @@
     $g_lang["replace_edge"] = "aktulle ersetzen";
     $g_lang["add_edge"] = "Einfügen (Multigraph)";
     $g_lang["text_above_edge"] = "Text an der Kante";
+    $g_lang["edge_enumeration"] = "Kantennummerierung";
+    $g_lang["no_enumeration"] = "Keine Nummerierung";
+    $g_lang["edit_edge_names"] = "Kantentexte bearbeiten";
     $g_lang["select_groupe_mac"] = "Nutzen Sie Cmd⌘ um mehrere Objekten zu wählen.";
     $g_lang["select_groupe_win"] = "Nutzen Sie Strg um mehrere Objekten zu wählen.";
     $g_lang["drag_select_group"] = "Gruppe ziehen";

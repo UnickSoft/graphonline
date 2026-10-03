@@ -179,6 +179,9 @@
     $g_lang["graph_is_multi_message"]   = "Мультиграф не підтримує всі алгоритми";
     $g_lang["graph_is_general_message"] = "";
     $g_lang["text_above_edge"] = "Текст над дугою";
+    $g_lang["edge_enumeration"] = "Нумерація дуг";
+    $g_lang["no_enumeration"] = "Без нумерації";
+    $g_lang["edit_edge_names"] = "Редагувати підписи дуг";
 
     $g_lang["select_groupe_mac"] = "Виділіть декілька обʼєктів використовуючи Cmd⌘.";
     $g_lang["select_groupe_win"] = "Виділіть декілька обʼєктів використовуючи Ctrl.";

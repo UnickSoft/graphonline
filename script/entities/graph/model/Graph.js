@@ -869,7 +869,7 @@ Graph.prototype.TestIncidenceMatrix = function (matrix, rowsObj, colsObj, separa
 
 	if (bGoodFormat)
 	{
-		for (var i = 0; i < colsObj.cols[0].length; i++)
+		for (var i = 0; i < columnCount; i++)
 		{
 			var values = [];
 			for (j = 0; j < colsObj.cols.length; ++j)
@@ -908,7 +908,8 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
 		}
 		var newVertices = [];
         var bWeightGraph = false;
-		for (var i = 0; i < cols[0].length; i++)
+		var columnCount = cols.length > 0 ? cols[0].length : 0;
+		for (var i = 0; i < columnCount; i++)
 		{
 			var edgeValue = [];
 			var edgeIndex = [];
@@ -965,17 +966,18 @@ Graph.prototype.SetIncidenceMatrix = function (matrix, viewportSize, currentEnum
                                });
         }
 
-		for (var i = cols.length; i < Math.max(this.vertices.length, cols.length); i++)
+		var rowCount = rows.length > 0 ? rows.length : this.vertices.length;
+		for (var i = rowCount; i < this.vertices.length; i++)
 		{
 			this.DeleteVertex(this.vertices[i]);
-			i--;             
+			i--;
 		}                        
 
           	this.VerticesReposition(viewportSize, newVertices);
 	}	
 }
 
-Graph.prototype.GetIncidenceMatrix = function ()
+Graph.prototype.GetIncidenceMatrix = function (res_columns_width)
 {
 	var matrix = "";
 	let cols_width = [];
@@ -1001,7 +1003,7 @@ Graph.prototype.GetIncidenceMatrix = function ()
 
 	for (var j = 0; j < this.edges.length; j++)
 	{
-		let max_width = 0;
+		let max_width = Math.min(this.edges[j].GetUpText().toString().length, 2);
 		for (var i = 0; i < this.vertices.length; i++)
 		{	
 			let str = "" + get_edge_weight_str(i, j);
@@ -1024,6 +1026,11 @@ Graph.prototype.GetIncidenceMatrix = function ()
 			}			
 		}
 		matrix = matrix + "\n";
+	}
+	
+	if (res_columns_width !== undefined) {
+		res_columns_width.length = 0;
+		res_columns_width.push(...cols_width);
 	}
 	
 	return matrix;

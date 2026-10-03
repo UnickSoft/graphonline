@@ -145,6 +145,9 @@
     $g_lang["replace_edge"] = "remplacer l'actuel";
     $g_lang["add_edge"] = "ajout (multigraphe)";
     $g_lang["text_above_edge"] = "Texte au-dessus du bord";
+    $g_lang["edge_enumeration"] = "Numérotation des arêtes";
+    $g_lang["no_enumeration"] = "Sans numérotation";
+    $g_lang["edit_edge_names"] = "Modifier les textes des arêtes";
 
     $g_lang["select_groupe_mac"] = "Utiliser Cmd⌘ pour sélectionner plusieurs objets.";
     $g_lang["select_groupe_win"] = "Utiliser Ctrl pour sélectionner plusieurs objets.";

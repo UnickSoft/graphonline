@@ -554,6 +554,31 @@ label.switcherText {
   padding: 6px;
 }
 
+.incidence-matrix-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.incidence-matrix-controls label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+#incidenceEdgeEnumeration {
+    flex: 1 1 150px;
+    width: auto;
+    min-width: 150px;
+}
+
+#incidenceEdgeNamesList {
+    width: 100%;
+    min-width: 300px;
+    resize: vertical;
+}
+
 /* Left text */
 .side-text-wrap {
   width: 40px;

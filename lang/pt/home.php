@@ -142,6 +142,9 @@
     $g_lang["graph_is_general_message"] = "";
 
     $g_lang["text_above_edge"] = "Text above edge";
+    $g_lang["edge_enumeration"] = "Numeração das arestas";
+    $g_lang["no_enumeration"] = "Sem numeração";
+    $g_lang["edit_edge_names"] = "Editar textos das arestas";
 
     $g_lang["select_groupe_mac"] = "Use Cmd⌘ to select several objects.";
     $g_lang["select_groupe_win"] = "Use Ctrl to select several objects.";

@@ -178,6 +178,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
 Dodaliśmy polskie tłumaczenie, Patryk</a>";
     $g_lang["text_above_edge"] = "Tekst nad krawędzią";
+    $g_lang["edge_enumeration"] = "Numerowanie krawędzi";
+    $g_lang["no_enumeration"] = "Bez numerowania";
+    $g_lang["edit_edge_names"] = "Edytuj teksty krawędzi";
 
     $g_lang["select_groupe_mac"] = "Użyj Cmd⌘ by wybrać dane obiekty.";
     $g_lang["select_groupe_win"] = "Użyj Ctrl by wybrać dane obiekty.";

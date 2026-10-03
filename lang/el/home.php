@@ -179,6 +179,9 @@
     $g_lang["french_add"] = "Προσθέσαμε γαλλική μετάφραση 🇫🇷";
     $g_lang["greece_add"] = "Προσθέσαμε ελληνική μετάφραση GR";
     $g_lang["text_above_edge"] = "Κείμενο πάνω από την άκρη";
+    $g_lang["edge_enumeration"] = "Αρίθμηση ακμών";
+    $g_lang["no_enumeration"] = "Χωρίς αρίθμηση";
+    $g_lang["edit_edge_names"] = "Επεξεργασία κειμένων ακμών";
 
     $g_lang["select_groupe_mac"] = "Χρησιμοποιήστε Cmd⌘ για να επιλέξετε πολλαπλά αντικείμενα.";
     $g_lang["select_groupe_win"] = "Χρησιμοποιήστε Ctrl για να επιλέξετε πολλαπλά αντικείμενα.";

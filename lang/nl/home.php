@@ -143,6 +143,9 @@
     $g_lang["replace_edge"] = "vervang huidige";
     $g_lang["add_edge"] = "Toevoegen (multigraaf)";
     $g_lang["text_above_edge"] = "Tekst boven de lijn";
+    $g_lang["edge_enumeration"] = "Lijnnummering";
+    $g_lang["no_enumeration"] = "Geen nummering";
+    $g_lang["edit_edge_names"] = "Lijnteksten bewerken";
     $g_lang["select_groupe_mac"] = "Gebruik Cmd⌘ om meerdere objecten te selecteren.";
     $g_lang["select_groupe_win"] = "Gebruik Ctrl om meerdere objecten te selecteren.";
     $g_lang["drag_select_group"] = "Sleep groep";

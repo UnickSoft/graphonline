@@ -77,6 +77,9 @@
     $g_lang["zoom_out"] = "Zooma ut";
     $g_lang["move_workspace"] = "Flytta arbetsytan";
     $g_lang["custom"] = "Anpassad text";
+    $g_lang["edge_enumeration"] = "Kantnumrering";
+    $g_lang["no_enumeration"] = "Ingen numrering";
+    $g_lang["edit_edge_names"] = "Redigera kanttexter";
     $g_lang["enter_vertex_title"] = "Ange text";
     $g_lang["rename_vertex"] = "Byt namn på nod";
     $g_lang["rename_text"] = "Byt namn ";

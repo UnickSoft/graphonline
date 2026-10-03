@@ -445,6 +445,11 @@
 				
         <div class="matrix-wrapper">
 
+          <div class="corner"></div>
+          <div class="top-text-wrap" id="incidenceMatrix_top_text">
+            <div class="top-text" id="incidenceMatrix_top_text_text"></div>
+          </div>
+
           <div class="side-text-wrap" id="incidenceMatrix_side_text">
             <div class="side-text" id="incidenceMatrix_side_text_text"></div>
           </div>
@@ -452,11 +457,25 @@
           <textarea class="matrix" name="incidenceMatrixField" id="IncidenceMatrixField" wrap="off"></textarea>
         </div>
 
+        <div class="incidence-matrix-controls">
+          <label for="incidenceEdgeEnumeration"><?= L('edge_enumeration') ?></label>
+          <select id="incidenceEdgeEnumeration" class="form-select form-select-sm">
+            <option value=""><?= L('no_enumeration') ?></option>
+          </select>
+          <button type="button" id="editIncidenceEdgeNames" class="btn btn-outline-secondary btn-sm">
+            <span class="bi bi-pencil" aria-hidden="true"></span> <?= L('edit_edge_names') ?>
+          </button>
+        </div>
+
 				<p id="BadIncidenceMatrixFormatMessage"><?= L('incidence_matrix_bad_format')?></p>
 		</fieldset>
 		</form>
        </div>
-        
+
+    <div id="incidenceEdgeNamesDialog" style="display:none;">
+      <textarea id="incidenceEdgeNamesList" class="form-control" rows="8" wrap="off"></textarea>
+    </div>
+
 	<div id="floidMatrix">
 		<form>
 		<fieldset>

@@ -176,6 +176,9 @@
     $g_lang["greek_add"] = "<a class=\"ProgresssBarLink\" href=\"/nl/\" target=\"_blank\">
 We have added Dutch translation 🇳🇱. Thank you Willie de Wit</a>";
     $g_lang["text_above_edge"] = "Текст над ребро";
+    $g_lang["edge_enumeration"] = "Номериране на ребрата";
+    $g_lang["no_enumeration"] = "Без номериране";
+    $g_lang["edit_edge_names"] = "Редактиране на текстовете";
 
     $g_lang["select_groupe_mac"] = "Използвайте Cmd⌘ за да изберете няколко обекта.";
     $g_lang["select_groupe_win"] = "Използвайте Ctrl за да изберете няколко обекта.";
