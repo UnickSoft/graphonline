@@ -350,10 +350,10 @@
     $g_lang['salesman_path_problem'] = "Задача комівояжера для шляху";
     $g_lang['shortest_path_is'] = "Найкоротший шлях має довжину ";
 
-    $g_lang['default_style'] = "По умолчанию";
-    $g_lang['night_style'] = "Ночной";
-    $g_lang['large_high_contrast_style'] = "Крупный высоко-контрастностный";
-    $g_lang['styles'] = "Стили";
+    $g_lang['default_style'] = "По замовчуванню";
+    $g_lang['night_style'] = "Нічний";
+    $g_lang['large_high_contrast_style'] = "Великий високої-контрастності";
+    $g_lang['styles'] = "Стилі";
 
-    $g_lang['this_is_graph_image_link'] = "Изображение сохранено и будет доступно по ссылке:";
+    $g_lang['this_is_graph_image_link'] = "Зображення збережено і буде доступно за посиланням:";
 ?>
